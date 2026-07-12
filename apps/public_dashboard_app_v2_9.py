@@ -65,7 +65,7 @@ from ssip_dashboard.dst_history import (
 )
 
 
-APP_VERSION = "3.4.0.11"
+APP_VERSION = "3.4.0.12"
 PAGE_NAMES = [
     "Home",
     "Scheme Explorer",
@@ -470,11 +470,23 @@ def render_home(bundle: CatalogueBundle, official_sources: list[OfficialSource])
     sector_ready = next((item.complete for item in analytics.readiness if item.label == "Sector evidenced"), 0)
 
     st.markdown(
-        '<div class="finder-heading finder-heading-main">'
-        '<div><h1 class="finder-title">Startup Support Intelligence</h1>'
-        '<p>Explore governed government schemes and programmes, distinguish live application calls from historical opportunities, and understand where catalogue evidence is complete or still being curated.</p></div>'
-        '<span class="finder-badge">Verified data · Clear status</span>'
-        "</div>",
+        '<section class="public-hero" aria-labelledby="public-hero-title">'
+        '<div class="public-hero-copy">'
+        '<span class="public-hero-kicker">Government startup opportunity intelligence</span>'
+        '<h1 id="public-hero-title">Find Startup Support with Clear Evidence</h1>'
+        '<p>Search curated schemes and programmes, monitor live application calls separately, and use official sources to make informed application decisions.</p>'
+        '<div class="public-hero-scope" aria-label="Catalogue scope">'
+        '<span>Central Government</span><span>Andhra Pradesh</span><span>Startup &amp; Innovator Focus</span>'
+        '</div></div>'
+        '<aside class="public-hero-summary" aria-label="Current catalogue summary">'
+        '<div class="public-hero-summary-label">Current catalogue</div>'
+        '<div class="public-hero-summary-grid">'
+        f'<div><strong>{analytics.scheme_count}</strong><span>Schemes &amp;<br>programmes</span></div>'
+        f'<div><strong>{analytics.call_count}</strong><span>Calls &amp;<br>challenges</span></div>'
+        f'<div><strong>{analytics.open_call_windows}</strong><span>Open call<br>windows</span></div>'
+        '</div>'
+        f'<div class="public-hero-verified"><span>Latest verification</span><strong>{esc(analytics.latest_verification_signal)}</strong></div>'
+        '</aside></section>',
         unsafe_allow_html=True,
     )
 

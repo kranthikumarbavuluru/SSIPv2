@@ -9,7 +9,6 @@ import sys
 from pathlib import Path
 
 import streamlit as st
-import streamlit.components.v1 as components
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 if str(PROJECT_ROOT) not in sys.path:
@@ -66,7 +65,7 @@ from ssip_dashboard.dst_history import (
 )
 
 
-APP_VERSION = "3.4.0.10"
+APP_VERSION = "3.4.0.11"
 PAGE_NAMES = [
     "Home",
     "Scheme Explorer",
@@ -86,6 +85,16 @@ NAV_LABELS = {
     "Official Sources": "Official Sources",
     "Directory": "Resources",
     "Scheme Details": "Scheme Profiles",
+}
+PAGE_SLUGS = {
+    "Home": "overview",
+    "Scheme Explorer": "scheme-finder",
+    "DST Schemes": "dst-programmes",
+    "Calls & Opportunities": "live-calls",
+    "Incubators & Ecosystem": "ecosystem",
+    "Official Sources": "official-sources",
+    "Directory": "resources",
+    "Scheme Details": "scheme-profiles",
 }
 
 
@@ -309,7 +318,7 @@ def render_composition_chart(
 ) -> str:
     total = sum(counter.values())
     if total <= 0:
-        return f'<section class="chart-card analytics-card"><div class="section-title">{esc(title)}</div><div class="empty-note">No structured data recorded.</div></section>'
+        return f'<section class="chart-card analytics-card"><h2 class="section-title">{esc(title)}</h2><div class="empty-note">No structured data recorded.</div></section>'
     segments: list[str] = []
     legend_rows: list[str] = []
     rows = ordered_counter_rows(counter, order)
@@ -328,7 +337,7 @@ def render_composition_chart(
         )
     return (
         '<section class="chart-card analytics-card">'
-        f'<div class="section-title">{esc(title)}</div>'
+        f'<h2 class="section-title">{esc(title)}</h2>'
         f'<div class="composition-total"><strong>{total}</strong><span>governed record(s)</span></div>'
         f'<div class="composition-track" role="img" aria-label="{esc(title)}: {esc(accessible_summary)}">{"".join(segments)}</div>'
         f'<div class="analytics-legend">{"".join(legend_rows)}</div>'
@@ -346,7 +355,7 @@ def render_ranked_bars(
 ) -> str:
     rows = counter.most_common(limit)
     if not rows:
-        return f'<section class="chart-card analytics-card"><div class="section-title">{esc(title)}</div><div class="empty-note">No structured data recorded.</div></section>'
+        return f'<section class="chart-card analytics-card"><h2 class="section-title">{esc(title)}</h2><div class="empty-note">No structured data recorded.</div></section>'
     maximum = max(value for _label, value in rows) or 1
     total = sum(counter.values())
     body: list[str] = []
@@ -361,7 +370,7 @@ def render_ranked_bars(
         )
     return (
         '<section class="chart-card analytics-card">'
-        f'<div class="section-title">{esc(title)}</div>'
+        f'<h2 class="section-title">{esc(title)}</h2>'
         f'<div class="analytics-bars">{"".join(body)}</div>'
         f'<div class="chart-note">{esc(note)}</div>'
         "</section>"
@@ -385,7 +394,7 @@ def render_readiness_chart(
         )
     return (
         '<section class="chart-card analytics-card readiness-card">'
-        '<div class="section-title">Catalogue Data Readiness</div>'
+        '<h2 class="section-title">Catalogue Data Readiness</h2>'
         f'<div class="readiness-list">{"".join(rows)}</div>'
         f'<div class="chart-note">{esc(note)}</div>'
         "</section>"
@@ -462,7 +471,7 @@ def render_home(bundle: CatalogueBundle, official_sources: list[OfficialSource])
 
     st.markdown(
         '<div class="finder-heading finder-heading-main">'
-        '<div><div class="finder-title">Startup Support Intelligence</div>'
+        '<div><h1 class="finder-title">Startup Support Intelligence</h1>'
         '<p>Explore governed government schemes and programmes, distinguish live application calls from historical opportunities, and understand where catalogue evidence is complete or still being curated.</p></div>'
         '<span class="finder-badge">Verified data · Clear status</span>'
         "</div>",
@@ -470,7 +479,7 @@ def render_home(bundle: CatalogueBundle, official_sources: list[OfficialSource])
     )
 
     catalogue_snapshot_html = (
-        '<div class="section-band intelligence-snapshot"><div class="section-title">Current Catalogue Snapshot</div>'
+        '<div class="section-band intelligence-snapshot"><h2 class="section-title">Current Catalogue Snapshot</h2>'
         '<div class="snapshot-lead">Schemes describe durable government support. Calls and challenges are separate, time-bound application opportunities. All figures below are calculated from the currently loaded governed catalogue.</div>'
         '<div class="kpi-strip">'
         + metric_card("Schemes & Programmes", analytics.scheme_count, "Durable support identities", "blue")
@@ -533,13 +542,13 @@ def render_home(bundle: CatalogueBundle, official_sources: list[OfficialSource])
     )
 
     quick_links_html = (
-        '<div class="section-band"><div class="section-title">Quick Links</div>'
+        '<div class="section-band"><h2 class="section-title">Quick Links</h2>'
         + render_quick_links(official_sources)
         + "</div>"
     )
 
     latest_schemes_html = (
-        '<div class="section-band"><div class="section-title">Latest Schemes</div>'
+        '<div class="section-band"><h2 class="section-title">Latest Schemes</h2>'
         + render_latest_list(records)
         + "</div>"
     )
@@ -555,7 +564,7 @@ def render_home(bundle: CatalogueBundle, official_sources: list[OfficialSource])
     )
 
     st.markdown(
-        '<div class="section-band"><div class="section-title">Priority Official Sources To Expand</div>'
+        '<div class="section-band"><h2 class="section-title">Priority Official Sources to Expand</h2>'
         + '<div class="source-grid">'
         + "".join(render_source_card(source) for source in official_sources[:4])
         + "</div>"
@@ -566,7 +575,7 @@ def render_home(bundle: CatalogueBundle, official_sources: list[OfficialSource])
     st.markdown(
         """
         <div class="section-band">
-          <div class="section-title">How It Works</div>
+          <h2 class="section-title">How It Works</h2>
           <div class="how-grid">
             <div class="how-step"><strong>1. Search</strong><br>Find schemes by keyword, agency, sector or eligibility.</div>
             <div class="how-step"><strong>2. Explore</strong><br>Review eligibility, benefits, funding, dates and official documents.</div>
@@ -633,7 +642,7 @@ def render_explorer(bundle: CatalogueBundle) -> None:
     records = populations.main_scheme_records
     st.markdown(
         '<div class="finder-heading finder-heading-main explorer-search-panel">'
-        '<div><div class="finder-title">Find Schemes, Grants, Challenges & Startup Programmes</div>'
+        '<div><h1 class="finder-title">Find Schemes, Grants, Challenges &amp; Startup Programmes</h1>'
         '<p>Search the complete catalogue by scheme name, ministry, department, sector, eligibility, benefit, application portal or support type.</p></div>'
         '<span class="finder-badge">Scheme Explorer</span>'
         "</div>",
@@ -642,7 +651,7 @@ def render_explorer(bundle: CatalogueBundle) -> None:
     search_col, action_col = st.columns([5, 1])
     keyword = search_col.text_input(
         "Search schemes, grants, challenges and programmes",
-        placeholder="Search schemes, grants, challenges, departments, sectors, eligibility...",
+        placeholder="Search schemes, grants, challenges, departments, sectors, eligibility…",
         key="explorer_search",
         label_visibility="collapsed",
     )
@@ -688,7 +697,7 @@ def render_explorer(bundle: CatalogueBundle) -> None:
 
 def render_departments(bundle: CatalogueBundle) -> None:
     records = split_catalogue_populations(bundle.records).main_scheme_records
-    st.markdown('<div class="section-band"><div class="section-title">Departments & Agencies</div>' + horizontal_bars(department_coverage(records), limit=20) + "</div>", unsafe_allow_html=True)
+    st.markdown('<div class="section-band"><h2 class="section-title">Departments &amp; Agencies</h2>' + horizontal_bars(department_coverage(records), limit=20) + "</div>", unsafe_allow_html=True)
     rows = []
     for label, count in department_coverage(records).most_common():
         rows.append({"Department / Agency / Source": label, "Records": count})
@@ -707,7 +716,7 @@ def render_official_sources(official_sources: list[OfficialSource], bundle: Cata
         unsafe_allow_html=True,
     )
     st.markdown(
-        '<div class="section-band"><div class="section-title">Official Source Registry</div>'
+        '<div class="section-band"><h2 class="section-title">Official Source Registry</h2>'
         + '<div class="metric-grid">'
         + metric_card("Source Portals", stats["total_sources"], "Not counted as schemes", "blue")
         + metric_card("Central", stats["central_sources"], "National sources", "green")
@@ -740,13 +749,13 @@ def render_official_sources(official_sources: list[OfficialSource], bundle: Cata
     )
     left, right = st.columns(2)
     left.markdown(
-        '<div class="section-band"><div class="section-title">By Ministry / Government</div>'
+        '<div class="section-band"><h2 class="section-title">By Ministry / Government</h2>'
         + horizontal_bars(source_counter(official_sources, "ministry"), limit=12)
         + "</div>",
         unsafe_allow_html=True,
     )
     right.markdown(
-        '<div class="section-band"><div class="section-title">By Source Type</div>'
+        '<div class="section-band"><h2 class="section-title">By Source Type</h2>'
         + horizontal_bars(source_counter(official_sources, "source_type"), limit=12)
         + "</div>",
         unsafe_allow_html=True,
@@ -756,8 +765,8 @@ def render_official_sources(official_sources: list[OfficialSource], bundle: Cata
 
 def render_sectors(bundle: CatalogueBundle) -> None:
     records = split_catalogue_populations(bundle.records).main_scheme_records
-    st.markdown('<div class="section-band"><div class="section-title">Sector Coverage</div>' + horizontal_bars(sector_coverage(records), limit=20) + "</div>", unsafe_allow_html=True)
-    st.markdown('<div class="section-band"><div class="section-title">Grant / Support Types</div>' + horizontal_bars(grant_support_distribution(records), limit=20) + "</div>", unsafe_allow_html=True)
+    st.markdown('<div class="section-band"><h2 class="section-title">Sector Coverage</h2>' + horizontal_bars(sector_coverage(records), limit=20) + "</div>", unsafe_allow_html=True)
+    st.markdown('<div class="section-band"><h2 class="section-title">Grant / Support Types</h2>' + horizontal_bars(grant_support_distribution(records), limit=20) + "</div>", unsafe_allow_html=True)
 
 
 def render_resources(bundle: CatalogueBundle, official_sources: list[OfficialSource]) -> None:
@@ -829,7 +838,7 @@ def render_resources(bundle: CatalogueBundle, official_sources: list[OfficialSou
     st.markdown(f'<div class="filter-summary"><strong>{len(visible)}</strong> resource record(s)<span>Showing {len(displayed)} · official links open in a new tab</span></div>', unsafe_allow_html=True)
     st.markdown('<div class="resource-grid">' + "".join(cards) + '</div>', unsafe_allow_html=True)
     st.markdown(
-        '<div class="section-band resource-source-band"><div class="section-title">Priority Government Portals</div>'
+        '<div class="section-band resource-source-band"><h2 class="section-title">Priority Government Portals</h2>'
         + '<div class="source-link-grid">'
         + "".join(
             f'<a target="_blank" rel="noopener" href="{esc(source.official_url)}"><strong>{esc(source.name)}</strong><span>{esc(source.scope)} · {esc(source.source_type.replace("_", " ").title())}</span></a>'
@@ -899,7 +908,7 @@ def render_dst_schemes() -> None:
     if not bundle.programmes:
         return
     c1, c2, c3 = st.columns([2, 1, 1])
-    keyword = c1.text_input("Search DST schemes", key="dst_scheme_keyword", placeholder="PRAYAS, seed support, accelerator...")
+    keyword = c1.text_input("Search DST schemes", key="dst_scheme_keyword", placeholder="PRAYAS, seed support, accelerator…")
     entity_types = sorted({item.entity_type for item in bundle.programmes})
     entity_type = c2.selectbox("Programme type", ["", *entity_types], format_func=lambda value: value.replace("_", " ").title() if value else "All types")
     scopes = sorted({item.sector_scope for item in bundle.programmes})
@@ -957,7 +966,7 @@ def _render_dst_call_filters(calls: list[DSTCall], *, key_prefix: str) -> list[D
         format_func=lambda value: f"{value.replace('_', ' ').title()} ({len(calls) if value == 'ALL' else counts.get(value, 0)})",
     )
     c1, c2, c3 = st.columns([2, 1, 1])
-    keyword = c1.text_input("Search calls", key=f"{key_prefix}_keyword", placeholder="startup, quantum, PRAYAS...")
+    keyword = c1.text_input("Search calls", key=f"{key_prefix}_keyword", placeholder="startup, quantum, PRAYAS…")
     sectors = sorted({item.primary_sector for item in calls if item.primary_sector})
     sector = c2.selectbox("Sector", ["", *sectors], key=f"{key_prefix}_sector", format_func=lambda value: value or "All sectors")
     parent_ids = sorted({item.parent_master_id for item in calls if item.parent_master_id})
@@ -1075,7 +1084,7 @@ def render_dst_historical_archive() -> None:
         + metric_card("General DST", manifest["relevance_counts"]["GENERAL_DST"], "Not shown as startup opportunities", "orange")
     ) + '</div>'
     st.markdown(metrics, unsafe_allow_html=True)
-    st.markdown('<div class="section-band"><div class="section-title">DST Historical Calls by Closing Year</div>' + _historical_chart(records) + '</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-band"><h2 class="section-title">DST Historical Calls by Closing Year</h2>' + _historical_chart(records) + '</div>', unsafe_allow_html=True)
 
     c1, c2, c3, c4 = st.columns([2, 1, 1, 1])
     keyword = c1.text_input("Search historical calls", placeholder="Title, applicant, sector or programme", key="dst_history_keyword").strip().casefold()
@@ -1138,7 +1147,7 @@ def _render_published_call_filters(
         format_func=lambda value: f"{value.replace('_', ' ').title()} ({len(calls) if value == 'ALL' else counts.get(value, 0)})",
     )
     c1, c2, c3 = st.columns([2, 1, 1])
-    keyword = c1.text_input("Search calls", key=f"{key_prefix}_keyword", placeholder="startup, quantum, PRAYAS...").strip().casefold()
+    keyword = c1.text_input("Search calls", key=f"{key_prefix}_keyword", placeholder="startup, quantum, PRAYAS…").strip().casefold()
     sectors = sorted({sector for item in calls for sector in item.sectors if sector})
     sector = c2.selectbox("Sector", ["", *sectors], key=f"{key_prefix}_sector", format_func=lambda value: value or "All sectors")
     parent_ids = sorted({item.parent_master_id for item in calls if item.parent_master_id})
@@ -1315,7 +1324,7 @@ def render_scheme_details(bundle: CatalogueBundle) -> None:
     )
     if detail_links:
         st.markdown(
-            '<div class="section-band"><div class="section-title">All official resources</div>'
+            '<div class="section-band"><h2 class="section-title">All Official Resources</h2>'
             '<div class="resource-actions">'
             + "".join(
                 f'<a target="_blank" rel="noopener" href="{html.escape(url, quote=True)}">{esc(label)}</a>'
@@ -1328,53 +1337,23 @@ def render_scheme_details(bundle: CatalogueBundle) -> None:
         st.caption("No official resource links are recorded.")
 
 
-def enable_landing_animations() -> None:
-    components.html(
-        """
-        <script>
-        (() => {
-          const documentRoot = window.parent.document;
-          let attempts = 0;
-
-          const attachAnimations = () => {
-            const kpis = [...documentRoot.querySelectorAll('.intelligence-snapshot .metric-card')];
-            if (!kpis.length && attempts++ < 12) {
-              window.setTimeout(attachAnimations, 120);
-              return;
-            }
-
-            window.setTimeout(() => {
-              kpis.forEach((card) => card.classList.add('is-kpi-visible'));
-            }, 140);
-
-            const replay = (element, replayClass) => {
-              element.classList.remove(replayClass);
-              void element.offsetWidth;
-              element.classList.add(replayClass);
-            };
-
-            kpis.forEach((card) => {
-              if (card.dataset.sshipKpiReplayAttached) return;
-              card.dataset.sshipKpiReplayAttached = 'true';
-              card.addEventListener('mouseenter', () => replay(card, 'is-kpi-replaying'));
-            });
-
-          };
-
-          window.setTimeout(attachAnimations, 60);
-        })();
-        </script>
-        """,
-        height=0,
-        width=0,
-    )
-
-
 def main() -> None:
+    requested_slug = str(st.query_params.get("page", "") or "").strip().lower()
+    requested_page = next(
+        (page_name for page_name, slug in PAGE_SLUGS.items() if slug == requested_slug),
+        None,
+    )
+    if "ssip_primary_navigation" not in st.session_state and requested_page:
+        st.session_state["ssip_primary_navigation"] = requested_page
+
     dark_mode = st.session_state.get("ssip_dark_mode", False)
     if dark_mode:
         st.markdown('<span id="ssip-dark-mode" aria-hidden="true"></span>', unsafe_allow_html=True)
 
+    st.markdown(
+        '<a class="skip-link" href="#ssip-main-content">Skip to main content</a>',
+        unsafe_allow_html=True,
+    )
     st.markdown(nav_header(), unsafe_allow_html=True)
     st.markdown(
         '<div class="primary-nav-heading"><strong>Explore SSIP</strong>'
@@ -1389,6 +1368,10 @@ def main() -> None:
         format_func=lambda value: NAV_LABELS[value],
         key="ssip_primary_navigation",
     )
+    active_slug = PAGE_SLUGS[page]
+    if str(st.query_params.get("page", "") or "") != active_slug:
+        st.query_params["page"] = active_slug
+
     utility_column, appearance_column = st.columns([6, 1.35])
     with utility_column:
         st.markdown('<div class="nav-context">Evidence-based catalogue · Calls and schemes are maintained as separate populations</div>', unsafe_allow_html=True)
@@ -1398,6 +1381,10 @@ def main() -> None:
             key="ssip_dark_mode",
             help="Switch between the light and dark dashboard appearance.",
         )
+    st.markdown(
+        '<span id="ssip-main-content" class="main-content-anchor" tabindex="-1"></span>',
+        unsafe_allow_html=True,
+    )
     try:
         bundle = cached_catalogue()
         official_sources = cached_official_sources()
@@ -1425,9 +1412,6 @@ def main() -> None:
         render_resources(bundle, official_sources)
     elif page == "Scheme Details":
         render_scheme_details(bundle)
-
-    if page == "Home":
-        enable_landing_animations()
 
     st.caption(f"SSIP Public Dashboard v{APP_VERSION}. SQLite access is read-only. Current mode: {bundle.mode.value}.")
 

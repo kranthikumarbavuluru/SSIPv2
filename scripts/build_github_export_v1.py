@@ -9,7 +9,7 @@ import shutil
 
 
 SOURCE_DIRECTORIES = (
-    ".codex/skills/data-visualization",
+    ".codex/skills",
     "agents",
     "apps",
     "assets",

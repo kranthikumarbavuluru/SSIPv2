@@ -2,8 +2,8 @@
   "export_version": "1.0.0",
   "source_root": ".",
   "target_purpose": "clean GitHub repository export",
-  "file_count": 311,
-  "total_bytes": 5105663,
+  "file_count": 313,
+  "total_bytes": 5113777,
   "files": [
     {
       "path": ".codex/skills/data-visualization/SKILL.md",
@@ -14,6 +14,16 @@
       "path": ".codex/skills/data-visualization/agents/openai.yaml",
       "size": 229,
       "sha256": "85c50a6c7e3a4b426e603200df9c7b71a5e0b3eb6f5b257b640d065344bbbb9a"
+    },
+    {
+      "path": ".codex/skills/web-interface-guidelines/SKILL.md",
+      "size": 4109,
+      "sha256": "67d5b4362632e71e82b1d15fb022d91e9a6795c324ab2615700b47f1b94dd694"
+    },
+    {
+      "path": ".codex/skills/web-interface-guidelines/agents/openai.yaml",
+      "size": 235,
+      "sha256": "7ab3386c52eb615a137fc9cccca282fc514370753876ab123516b45ff9b53361"
     },
     {
       "path": ".gitignore",
@@ -222,8 +232,8 @@
     },
     {
       "path": "apps/public_dashboard_app_v2_9.py",
-      "size": 68561,
-      "sha256": "3d7bff8693c6f3962e792043b9b6f487e972584b708fc14a18ad05e1731a5720"
+      "size": 68271,
+      "sha256": "0485b00bc5a8ed3e89976844226572ef1338303e32db27707e6d2834aaa4d800"
     },
     {
       "path": "apps/ssip_public_dashboard_v3_4_0_4.py",
@@ -232,8 +242,8 @@
     },
     {
       "path": "assets/dashboard_theme.css",
-      "size": 44529,
-      "sha256": "848c213e70e18d72533754cd21304792c2437843304b645e9357ac59dfa09e07"
+      "size": 48094,
+      "sha256": "434b7553d402187e6f81bc09348feb4b67003b41aebe89f23492cfee1f5083d2"
     },
     {
       "path": "config/agent_platform_v3_4_1_0.json",
@@ -572,8 +582,8 @@
     },
     {
       "path": "scripts/build_github_export_v1.py",
-      "size": 8262,
-      "sha256": "f6c2318b65e6490fbac7aaee4cd6b489f1b8eb56692695251508c05957d21e24"
+      "size": 8243,
+      "sha256": "012b25ff0c44239b50b02382dbdeec20174f7187de190d7d31f721459a1a125c"
     },
     {
       "path": "scripts/catalogue_normalization_plan_v2_8_1.py",
@@ -1067,8 +1077,8 @@
     },
     {
       "path": "ssip_dashboard/components.py",
-      "size": 5197,
-      "sha256": "98c90bd3c3d594f5cff09bdbea82220573ede36a37db298efd1fe7a626392add"
+      "size": 5152,
+      "sha256": "f5041202faa24589b357941ce8097f28ed697dccda8e2dc4a3479fc964ae7f06"
     },
     {
       "path": "ssip_dashboard/config.py",
@@ -1397,8 +1407,8 @@
     },
     {
       "path": "tests/test_public_dashboard_motion.py",
-      "size": 1785,
-      "sha256": "02681d50358e4aaf5134acdbe2665457ec0a7eb5b21bd3e2ae01865a972ca265"
+      "size": 2344,
+      "sha256": "7aec220a687a4daa936a0a073e069be357b0b82a4dfece71670c50cee48a54c2"
     },
     {
       "path": "tests/test_public_dashboard_smart_match.py",

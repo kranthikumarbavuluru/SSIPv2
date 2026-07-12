@@ -26,13 +26,9 @@ def mode_banner(mode: str, record_count: int, public_count: int) -> str:
 
 
 def metric_card(label: str, value: Any, hint: str = "", tone: str = "blue") -> str:
-    value_text = str(value)
-    is_counting_number = value_text.isdigit()
-    value_class = "metric-value is-counting" if is_counting_number else "metric-value"
-    count_style = f' style="--ssip-count: {value_text}"' if is_counting_number else ""
     return (
         f'<div class="metric-card tone-{tone}">'
-        f'<div class="{value_class}"{count_style} aria-label="{esc(value)}">{esc(value)}</div>'
+        f'<div class="metric-value" aria-label="{esc(value)}">{esc(value)}</div>'
         f'<div class="metric-label">{esc(label)}</div>'
         f'<div class="metric-hint">{esc(hint)}</div>'
         "</div>"
@@ -41,20 +37,22 @@ def metric_card(label: str, value: Any, hint: str = "", tone: str = "blue") -> s
 
 def nav_header() -> str:
     return """
-    <div class="gov-strip">
-      <span>Government of India scheme intelligence</span>
-      <span>Official sources &middot; Evidence reviewed &middot; Publication controlled</span>
-    </div>
-    <div class="top-shell">
-      <div class="brand">
-        <div class="brand-mark">SSIP</div>
-        <div>
-          <div class="brand-title">SSIP</div>
-          <div class="brand-subtitle">Startup Scheme Intelligence Platform</div>
-        </div>
+    <header class="portal-header" aria-label="SSIP public portal header">
+      <div class="gov-strip">
+        <span>Government Startup-Support Intelligence</span>
+        <span>Central Government &middot; Andhra Pradesh &middot; State Ecosystems</span>
       </div>
-      <div class="nav-note"><span class="trust-dot"></span>Curated government schemes, programmes and live calls</div>
-    </div>
+      <div class="top-shell">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true"><span translate="no">SSIP</span></div>
+          <div class="brand-copy">
+            <div class="brand-title" translate="no">SSIP</div>
+            <div class="brand-subtitle">Startup Scheme Intelligence Platform</div>
+          </div>
+        </div>
+        <div class="nav-note"><span class="trust-dot" aria-hidden="true"></span><span>Curated schemes, programmes &amp; verified calls</span></div>
+      </div>
+    </header>
     """
 
 

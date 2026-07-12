@@ -1283,7 +1283,7 @@ input:focus-visible,
 .st-key-ssip_primary_navigation div[role="radiogroup"],
 .st-key-ssip_primary_navigation div[data-testid="stRadioGroup"] {
   display: grid !important;
-  grid-template-columns: repeat(8, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: .42rem;
   margin: 0 0 .35rem;
   padding: .55rem;
@@ -1333,14 +1333,14 @@ input:focus-visible,
   transition: inherit;
 }
 
-.st-key-ssip_primary_navigation label[data-testid="stRadioOption"]:nth-child(1)::before { content: "⌂"; }
-.st-key-ssip_primary_navigation label[data-testid="stRadioOption"]:nth-child(2)::before { content: "⌕"; }
-.st-key-ssip_primary_navigation label[data-testid="stRadioOption"]:nth-child(3)::before { content: "◈"; }
-.st-key-ssip_primary_navigation label[data-testid="stRadioOption"]:nth-child(4)::before { content: "↗"; }
-.st-key-ssip_primary_navigation label[data-testid="stRadioOption"]:nth-child(5)::before { content: "◎"; }
-.st-key-ssip_primary_navigation label[data-testid="stRadioOption"]:nth-child(6)::before { content: "◆"; }
-.st-key-ssip_primary_navigation label[data-testid="stRadioOption"]:nth-child(7)::before { content: "▤"; }
-.st-key-ssip_primary_navigation label[data-testid="stRadioOption"]:nth-child(8)::before { content: "≡"; }
+.st-key-ssip_primary_navigation label[data-testid="stRadioOption"]:nth-child(1)::before { content: "\2302"; }
+.st-key-ssip_primary_navigation label[data-testid="stRadioOption"]:nth-child(2)::before { content: "\2315"; }
+.st-key-ssip_primary_navigation label[data-testid="stRadioOption"]:nth-child(3)::before { content: "\25C8"; }
+.st-key-ssip_primary_navigation label[data-testid="stRadioOption"]:nth-child(4)::before { content: "\2197"; }
+.st-key-ssip_primary_navigation label[data-testid="stRadioOption"]:nth-child(5)::before { content: "\25CE"; }
+.st-key-ssip_primary_navigation label[data-testid="stRadioOption"]:nth-child(6)::before { content: "\25C6"; }
+.st-key-ssip_primary_navigation label[data-testid="stRadioOption"]:nth-child(7)::before { content: "\25A4"; }
+.st-key-ssip_primary_navigation label[data-testid="stRadioOption"]:nth-child(8)::before { content: "\2261"; }
 
 .st-key-ssip_primary_navigation label[data-testid="stRadioOption"] p {
   min-width: 0;
@@ -1358,7 +1358,7 @@ input:focus-visible,
   border-color: #bad0e9;
   background: #f2f7fd;
   box-shadow: none;
-  transform: translateY(-1px);
+  transform: none;
 }
 
 .st-key-ssip_primary_navigation label[data-testid="stRadioOption"]:hover::before {
@@ -1609,4 +1609,143 @@ input:focus-visible,
   .analytics-legend { grid-template-columns: 1fr; }
   .data-quality-callout { grid-template-columns: 1fr; gap: .25rem; }
   .data-quality-callout strong { white-space: normal; }
+}
+
+/* v3.4.0.11 — web-interface-guidelines accessibility and professional polish */
+:root { color-scheme: light; }
+:root:has(#ssip-dark-mode) { color-scheme: dark; }
+
+.stApp {
+  overflow-x: clip;
+  background:
+    radial-gradient(circle at 94% 4%, rgba(18, 97, 201, .08), transparent 25rem),
+    linear-gradient(180deg, #f4f8fd 0, #ffffff 31rem, #f7faff 100%);
+}
+
+.portal-header { display: block; }
+
+.skip-link {
+  position: fixed;
+  z-index: 10000;
+  top: max(.5rem, env(safe-area-inset-top));
+  left: max(.5rem, env(safe-area-inset-left));
+  padding: .65rem .9rem;
+  border-radius: .4rem;
+  background: #ffffff;
+  color: #082c63 !important;
+  font-weight: 800;
+  box-shadow: 0 0 0 3px #f2a900, 0 10px 25px rgba(8, 44, 99, .2);
+  transform: translateY(-180%);
+  transition: transform .16s ease;
+}
+.skip-link:focus { transform: translateY(0); }
+.main-content-anchor { display: block; scroll-margin-top: 1rem; }
+
+h1, h2, h3,
+.finder-title,
+.section-title {
+  text-wrap: balance;
+  scroll-margin-top: 1.25rem;
+}
+
+.metric-value,
+.analytics-bar-heading span,
+.readiness-heading span,
+.archive-metric-value {
+  font-variant-numeric: tabular-nums;
+}
+
+a, button, label, input, select, textarea,
+[role="button"], [role="radio"] {
+  touch-action: manipulation;
+}
+
+a:focus-visible,
+button:focus-visible,
+label[data-testid="stRadioOption"]:focus-within,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[role="button"]:focus-visible {
+  outline: 3px solid #f2a900 !important;
+  outline-offset: 3px !important;
+}
+
+.gov-strip {
+  padding-left: max(.75rem, env(safe-area-inset-left));
+  padding-right: max(.75rem, env(safe-area-inset-right));
+}
+
+.top-shell {
+  min-height: 76px;
+  align-items: center;
+}
+
+.brand-mark {
+  border-radius: 12px;
+  box-shadow: 0 7px 18px rgba(8, 44, 99, .18);
+}
+
+.primary-nav-heading { margin-top: .55rem; }
+
+.st-key-ssip_primary_navigation div[role="radiogroup"],
+.st-key-ssip_primary_navigation div[data-testid="stRadioGroup"] {
+  border-radius: 10px;
+  box-shadow: 0 5px 18px rgba(8, 44, 99, .06);
+}
+
+.st-key-ssip_primary_navigation div[role="radiogroup"] label,
+.st-key-ssip_primary_navigation label[data-testid="stRadioOption"] {
+  min-height: 48px;
+  transition: color .16s ease, background-color .16s ease, border-color .16s ease, box-shadow .16s ease;
+}
+
+.metric-card,
+.chart-card,
+.scheme-card,
+.source-card,
+.resource-card,
+.quick-link {
+  border-radius: 10px;
+  box-shadow: 0 5px 18px rgba(8, 44, 99, .055);
+}
+
+.metric-card:hover,
+.chart-card:hover,
+.scheme-card:hover,
+.source-card:hover,
+.resource-card:hover,
+.quick-link:hover {
+  transform: none;
+  box-shadow: 0 8px 22px rgba(8, 44, 99, .095);
+}
+
+:root:has(#ssip-dark-mode) .stApp {
+  background:
+    radial-gradient(circle at 94% 4%, rgba(70, 142, 235, .10), transparent 25rem),
+    linear-gradient(180deg, #091525 0, #0d1b2e 31rem, #0b1728 100%);
+}
+
+@media (max-width: 720px) {
+  .gov-strip { align-items: flex-start; }
+  .gov-strip span:last-child { opacity: .88; }
+  .top-shell { min-height: 64px; }
+  .nav-note { max-width: 100%; text-align: left; justify-content: flex-start; }
+  .primary-nav-heading span { display: none; }
+}
+
+@media (max-width: 420px) {
+  .st-key-ssip_primary_navigation div[role="radiogroup"],
+  .st-key-ssip_primary_navigation div[data-testid="stRadioGroup"] {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skip-link { transition: none; }
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }

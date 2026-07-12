@@ -1,0 +1,4 @@
+interface:
+  display_name: "Web Interface Guidelines"
+  short_description: "Audit and improve professional web interfaces"
+  default_prompt: "Use $web-interface-guidelines to audit and improve the SSIP public dashboard interface."

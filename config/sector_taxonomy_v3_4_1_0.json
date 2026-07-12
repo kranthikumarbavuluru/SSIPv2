@@ -1,0 +1,429 @@
+{
+  "version": "2026.07.10",
+  "cross_sector_names": [
+    "Cross-sector Innovation & Entrepreneurship",
+    "Cross-sector MSME & Startup Finance",
+    "Sector Agnostic / Multi-sector"
+  ],
+  "sectors": [
+    {
+      "name": "Agriculture & AgriTech",
+      "description": "Agriculture, horticulture, fisheries, livestock, food production and agricultural technology.",
+      "strong_phrases": [
+        "agritech",
+        "agri-tech",
+        "agriculture",
+        "horticulture",
+        "fisheries",
+        "livestock",
+        "farm mechanization",
+        "precision farming"
+      ],
+      "weak_phrases": [
+        "farmer",
+        "crop",
+        "soil",
+        "irrigation",
+        "post-harvest",
+        "food processing"
+      ],
+      "negative_phrases": []
+    },
+    {
+      "name": "Biotechnology & Life Sciences",
+      "description": "Biotechnology, genomics, biopharma, life sciences and biological research commercialization.",
+      "strong_phrases": [
+        "biotechnology",
+        "biotech",
+        "genomics",
+        "biopharma",
+        "bio-incubator",
+        "synthetic biology"
+      ],
+      "weak_phrases": [
+        "life sciences",
+        "biological",
+        "bioscience",
+        "bioeconomy"
+      ],
+      "negative_phrases": []
+    },
+    {
+      "name": "Healthcare & MedTech",
+      "description": "Healthcare delivery, medical devices, diagnostics, digital health and medical technology.",
+      "strong_phrases": [
+        "medtech",
+        "medical device",
+        "diagnostics",
+        "digital health",
+        "healthtech",
+        "healthcare"
+      ],
+      "weak_phrases": [
+        "hospital",
+        "patient",
+        "clinical",
+        "therapeutic",
+        "public health"
+      ],
+      "negative_phrases": []
+    },
+    {
+      "name": "Artificial Intelligence & Data",
+      "description": "Artificial intelligence, machine learning, data science, analytics and language technologies.",
+      "strong_phrases": [
+        "artificial intelligence",
+        "machine learning",
+        "deep learning",
+        "data science",
+        "generative ai",
+        "computer vision"
+      ],
+      "weak_phrases": [
+        "analytics",
+        "big data",
+        "natural language processing",
+        "data-driven"
+      ],
+      "negative_phrases": []
+    },
+    {
+      "name": "Digital Technology & Software",
+      "description": "Software products, cloud, SaaS, digital platforms, IT and digital services.",
+      "strong_phrases": [
+        "software product",
+        "saas",
+        "cloud computing",
+        "digital platform",
+        "information technology"
+      ],
+      "weak_phrases": [
+        "software",
+        "digital",
+        "mobile application",
+        "web platform",
+        "it services"
+      ],
+      "negative_phrases": []
+    },
+    {
+      "name": "Cybersecurity",
+      "description": "Cybersecurity, privacy, cryptography, digital trust and secure systems.",
+      "strong_phrases": [
+        "cybersecurity",
+        "cyber security",
+        "cryptography",
+        "digital forensics",
+        "information security"
+      ],
+      "weak_phrases": [
+        "privacy",
+        "secure systems",
+        "digital trust",
+        "network security"
+      ],
+      "negative_phrases": []
+    },
+    {
+      "name": "Electronics & Semiconductors",
+      "description": "Electronics design, semiconductor, chips, sensors, embedded systems and electronic manufacturing.",
+      "strong_phrases": [
+        "semiconductor",
+        "chip design",
+        "electronics system design",
+        "esdm",
+        "microelectronics"
+      ],
+      "weak_phrases": [
+        "sensor",
+        "embedded system",
+        "electronic manufacturing",
+        "vlsi"
+      ],
+      "negative_phrases": []
+    },
+    {
+      "name": "Deep Technology",
+      "description": "Research-intensive emerging technology with defensible scientific or engineering intellectual property.",
+      "strong_phrases": [
+        "deep tech",
+        "deeptech",
+        "quantum technology",
+        "advanced materials",
+        "photonics"
+      ],
+      "weak_phrases": [
+        "emerging technology",
+        "frontier technology",
+        "technology translation"
+      ],
+      "negative_phrases": []
+    },
+    {
+      "name": "Robotics & Automation",
+      "description": "Robotics, drones, autonomous systems, industrial automation and mechatronics.",
+      "strong_phrases": [
+        "robotics",
+        "industrial automation",
+        "autonomous system",
+        "unmanned aerial vehicle",
+        "drone technology"
+      ],
+      "weak_phrases": [
+        "robot",
+        "automation",
+        "mechatronics",
+        "cobot"
+      ],
+      "negative_phrases": []
+    },
+    {
+      "name": "Manufacturing & Industry 4.0",
+      "description": "Advanced manufacturing, industrial technology, production, machinery and Industry 4.0.",
+      "strong_phrases": [
+        "industry 4.0",
+        "advanced manufacturing",
+        "smart manufacturing",
+        "additive manufacturing"
+      ],
+      "weak_phrases": [
+        "manufacturing",
+        "industrial technology",
+        "machinery",
+        "production technology"
+      ],
+      "negative_phrases": []
+    },
+    {
+      "name": "ClimateTech & Clean Energy",
+      "description": "Climate mitigation/adaptation, clean technology, decarbonisation and clean energy.",
+      "strong_phrases": [
+        "climate technology",
+        "climatetech",
+        "clean energy",
+        "decarbonization",
+        "decarbonisation",
+        "climate change"
+      ],
+      "weak_phrases": [
+        "low carbon",
+        "green technology",
+        "net zero",
+        "carbon capture"
+      ],
+      "negative_phrases": []
+    },
+    {
+      "name": "Renewable Energy & Energy Storage",
+      "description": "Solar, wind, hydrogen, batteries, energy storage and renewable energy systems.",
+      "strong_phrases": [
+        "renewable energy",
+        "solar energy",
+        "wind energy",
+        "green hydrogen",
+        "energy storage",
+        "battery technology"
+      ],
+      "weak_phrases": [
+        "solar",
+        "wind",
+        "hydrogen",
+        "battery",
+        "microgrid"
+      ],
+      "negative_phrases": []
+    },
+    {
+      "name": "Environment & Circular Economy",
+      "description": "Waste, recycling, pollution control, water, sanitation and circular economy.",
+      "strong_phrases": [
+        "circular economy",
+        "waste management",
+        "recycling",
+        "pollution control",
+        "waste to wealth"
+      ],
+      "weak_phrases": [
+        "water treatment",
+        "sanitation",
+        "environmental technology",
+        "effluent"
+      ],
+      "negative_phrases": []
+    },
+    {
+      "name": "Financial Services & FinTech",
+      "description": "FinTech, financial services, digital payments, insurance technology and regulated financial innovation.",
+      "strong_phrases": [
+        "fintech",
+        "financial technology",
+        "digital payment",
+        "insurtech",
+        "regtech"
+      ],
+      "weak_phrases": [
+        "financial services",
+        "payment",
+        "insurance",
+        "banking technology"
+      ],
+      "negative_phrases": [
+        "credit guarantee",
+        "working capital loan"
+      ]
+    },
+    {
+      "name": "Education & EdTech",
+      "description": "Education technology, learning, skilling and training products.",
+      "strong_phrases": [
+        "edtech",
+        "education technology",
+        "digital learning",
+        "learning platform"
+      ],
+      "weak_phrases": [
+        "education",
+        "training",
+        "skilling",
+        "learning"
+      ],
+      "negative_phrases": [
+        "fellowship",
+        "scholarship"
+      ]
+    },
+    {
+      "name": "Space Technology",
+      "description": "Space systems, satellites, launch, geospatial and downstream space applications.",
+      "strong_phrases": [
+        "space technology",
+        "spacetech",
+        "satellite",
+        "launch vehicle",
+        "geospatial"
+      ],
+      "weak_phrases": [
+        "space",
+        "remote sensing",
+        "earth observation"
+      ],
+      "negative_phrases": []
+    },
+    {
+      "name": "Aerospace & Defence",
+      "description": "Aerospace, defence technology, dual-use systems and defence manufacturing.",
+      "strong_phrases": [
+        "aerospace",
+        "defence technology",
+        "defense technology",
+        "dual-use technology",
+        "defence manufacturing"
+      ],
+      "weak_phrases": [
+        "aviation",
+        "military",
+        "strategic systems"
+      ],
+      "negative_phrases": []
+    },
+    {
+      "name": "Mobility & Transportation",
+      "description": "Electric mobility, automotive, logistics, transport and mobility services.",
+      "strong_phrases": [
+        "electric vehicle",
+        "e-mobility",
+        "mobility technology",
+        "transport technology"
+      ],
+      "weak_phrases": [
+        "automotive",
+        "logistics",
+        "transportation",
+        "mobility"
+      ],
+      "negative_phrases": []
+    },
+    {
+      "name": "FoodTech & Food Processing",
+      "description": "Food processing, food technology, nutrition products and supply chains.",
+      "strong_phrases": [
+        "food technology",
+        "foodtech",
+        "food processing",
+        "food innovation"
+      ],
+      "weak_phrases": [
+        "nutrition",
+        "food supply chain",
+        "cold chain"
+      ],
+      "negative_phrases": []
+    },
+    {
+      "name": "Social Impact & Rural Innovation",
+      "description": "Inclusive, rural, grassroots and social-impact innovation.",
+      "strong_phrases": [
+        "social innovation",
+        "rural innovation",
+        "grassroots innovation",
+        "inclusive innovation"
+      ],
+      "weak_phrases": [
+        "rural",
+        "social impact",
+        "underserved",
+        "livelihood"
+      ],
+      "negative_phrases": []
+    },
+    {
+      "name": "Cross-sector Innovation & Entrepreneurship",
+      "description": "General startup, innovation, incubation and entrepreneurship support without industry restriction.",
+      "strong_phrases": [
+        "sector agnostic startup",
+        "startups across sectors",
+        "innovation and entrepreneurship",
+        "technology business incubator"
+      ],
+      "weak_phrases": [
+        "startup",
+        "entrepreneurship",
+        "innovation",
+        "incubation",
+        "innovator"
+      ],
+      "negative_phrases": []
+    },
+    {
+      "name": "Cross-sector MSME & Startup Finance",
+      "description": "General loans, guarantees, credit, working capital and finance support available across industries.",
+      "strong_phrases": [
+        "credit guarantee",
+        "working capital",
+        "bill discounting",
+        "startup loan",
+        "msme finance"
+      ],
+      "weak_phrases": [
+        "loan",
+        "credit",
+        "finance",
+        "guarantee",
+        "financial assistance"
+      ],
+      "negative_phrases": []
+    },
+    {
+      "name": "Sector Agnostic / Multi-sector",
+      "description": "Explicitly multi-sector or no defensible narrower industry restriction.",
+      "strong_phrases": [
+        "all sectors",
+        "sector agnostic",
+        "multi-sector",
+        "multiple sectors"
+      ],
+      "weak_phrases": [],
+      "negative_phrases": []
+    }
+  ]
+}

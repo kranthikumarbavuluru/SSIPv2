@@ -1,0 +1,107 @@
+{
+  "service_version": "3.4.0.2",
+  "department_code": "DST",
+  "minimum_auto_confidence": 0.72,
+  "minimum_master_candidate_confidence": 0.70,
+  "review_margin_threshold": 0.08,
+  "maximum_unknown_rate": 0.20,
+  "body_fallback_review_word_threshold": 80,
+  "category_min_relevant_internal_links": 5,
+  "evidence_excerpt_length": 500,
+  "scheme_evidence_phrases": {
+    "objective": [
+      "objective",
+      "objectives",
+      "aims to",
+      "aim of the scheme",
+      "purpose of the scheme"
+    ],
+    "eligibility": [
+      "eligibility",
+      "eligible",
+      "who can apply",
+      "applicants should",
+      "applicant must"
+    ],
+    "benefit": [
+      "financial assistance",
+      "support provided",
+      "funding support",
+      "grant",
+      "assistance",
+      "benefits"
+    ],
+    "application": [
+      "how to apply",
+      "application procedure",
+      "apply online",
+      "application process",
+      "submit proposal"
+    ],
+    "beneficiary": [
+      "target group",
+      "beneficiaries",
+      "scientists",
+      "researchers",
+      "institutions",
+      "universities"
+    ],
+    "duration": [
+      "duration",
+      "tenure",
+      "project period"
+    ],
+    "scope": [
+      "scope",
+      "thrust areas",
+      "focus areas",
+      "areas of support"
+    ]
+  },
+  "programme_terms": [
+    "programme",
+    "program",
+    "mission",
+    "initiative",
+    "platform",
+    "network",
+    "facility",
+    "cooperation",
+    "capacity building",
+    "research council"
+  ],
+  "scheme_terms": [
+    "scheme",
+    "fellowship",
+    "award",
+    "grant",
+    "fund",
+    "support scheme"
+  ],
+  "call_terms": [
+    "call for proposal",
+    "call for proposals",
+    "call for project proposal",
+    "joint call",
+    "special call",
+    "inviting proposals",
+    "proposal invited",
+    "applications invited"
+  ],
+  "index_terms": [
+    "schemes/programmes",
+    "schemes and programmes",
+    "programmes & initiatives",
+    "programmes and initiatives"
+  ],
+  "identity_safeguard": {
+    "forbidden_output_fields": [
+      "scheme_id",
+      "canonical_scheme_name",
+      "locked_scheme_name",
+      "canonical_programme_name",
+      "programme_id"
+    ],
+    "call_title_must_not_become_scheme_name": true
+  }
+}

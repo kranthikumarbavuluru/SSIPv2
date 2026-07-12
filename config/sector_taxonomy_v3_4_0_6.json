@@ -1,0 +1,183 @@
+{
+  "version": "3.4.0.6",
+  "taxonomy_name": "SSIP Startup and Innovation Sector Taxonomy",
+  "cross_sector_values": [
+    "Cross-sector Innovation & Entrepreneurship",
+    "Cross-sector MSME & Startup Finance",
+    "Sector Agnostic / Multi-sector"
+  ],
+  "sectors": [
+    {
+      "name": "Agriculture & AgriTech",
+      "aliases": ["agriculture", "agritech", "agri-tech", "farming", "farm", "horticulture", "aquaculture", "fisheries", "dairy", "livestock", "post-harvest", "crop", "rural agriculture"],
+      "negative": []
+    },
+    {
+      "name": "Food Processing & FoodTech",
+      "aliases": ["food processing", "foodtech", "food tech", "food technology", "cold chain", "food safety", "nutraceutical", "packaged food"],
+      "negative": []
+    },
+    {
+      "name": "Biotechnology & Life Sciences",
+      "aliases": ["biotechnology", "biotech", "life sciences", "bioe3", "bio-ai", "genomics", "synthetic biology", "biomanufacturing", "bioscience", "bioeconomy"],
+      "negative": []
+    },
+    {
+      "name": "Healthcare & MedTech",
+      "aliases": ["healthcare", "health tech", "healthtech", "medtech", "medical device", "diagnostic", "hospital", "public health", "digital health", "clinical"],
+      "negative": []
+    },
+    {
+      "name": "Pharmaceuticals & Drug Discovery",
+      "aliases": ["pharmaceutical", "pharma", "drug discovery", "drug development", "therapeutic", "vaccine", "active pharmaceutical ingredient", "api manufacturing"],
+      "negative": []
+    },
+    {
+      "name": "Artificial Intelligence & Data",
+      "aliases": ["artificial intelligence", "machine learning", "deep learning", "data science", "big data", "generative ai", "computer vision", "natural language processing", "ai/", " ai "],
+      "negative": []
+    },
+    {
+      "name": "Digital Technology & Software",
+      "aliases": ["software", "digital technology", "information technology", "it services", "saas", "cloud computing", "platform technology", "digital solution", "mobile application", "web technology"],
+      "negative": []
+    },
+    {
+      "name": "Cybersecurity",
+      "aliases": ["cybersecurity", "cyber security", "information security", "data security", "privacy technology", "cryptography", "secure computing"],
+      "negative": ["cyber-physical"]
+    },
+    {
+      "name": "Electronics & Semiconductors",
+      "aliases": ["electronics", "semiconductor", "chip design", "microelectronics", "embedded system", "electronic system design", "esdm", "sensor", "vlsi"],
+      "negative": []
+    },
+    {
+      "name": "Telecommunications & Connectivity",
+      "aliases": ["telecommunication", "telecom", "5g", "6g", "broadband", "connectivity", "wireless communication", "optical communication", "network technology"],
+      "negative": []
+    },
+    {
+      "name": "Deep Technology",
+      "aliases": ["deep tech", "deeptech", "cyber-physical", "quantum technology", "quantum computing", "advanced materials", "frontier technology", "emerging technology", "disruptive technology"],
+      "negative": []
+    },
+    {
+      "name": "Robotics & Automation",
+      "aliases": ["robotics", "robot", "automation", "autonomous system", "industrial automation", "mechatronics", "unmanned system", "cyber-physical system"],
+      "negative": []
+    },
+    {
+      "name": "Manufacturing & Industry 4.0",
+      "aliases": ["manufacturing", "industry 4.0", "smart factory", "advanced manufacturing", "industrial technology", "production technology", "tooling", "capital goods"],
+      "negative": []
+    },
+    {
+      "name": "Automotive & Mobility",
+      "aliases": ["automotive", "automobile", "electric vehicle", "ev", "mobility", "vehicle technology", "transport technology", "battery vehicle"],
+      "negative": []
+    },
+    {
+      "name": "Aerospace & Defence",
+      "aliases": ["aerospace", "aviation", "defence", "defense", "drone", "unmanned aerial", "aircraft", "military technology"],
+      "negative": []
+    },
+    {
+      "name": "Space Technology",
+      "aliases": ["space technology", "spacetech", "satellite", "launch vehicle", "earth observation", "remote sensing", "space application"],
+      "negative": []
+    },
+    {
+      "name": "ClimateTech & Clean Energy",
+      "aliases": ["climate tech", "climatetech", "climate change", "clean energy", "clean technology", "cleantech", "decarbonization", "carbon capture", "net zero", "green technology", "energy transition"],
+      "negative": []
+    },
+    {
+      "name": "Renewable Energy & Energy Storage",
+      "aliases": ["renewable energy", "solar", "wind energy", "hydrogen", "bioenergy", "energy storage", "battery technology", "fuel cell", "smart grid"],
+      "negative": []
+    },
+    {
+      "name": "Environment & Circular Economy",
+      "aliases": ["environment", "circular economy", "waste management", "recycling", "pollution control", "air quality", "sustainability", "biodegradable", "resource efficiency"],
+      "negative": ["business environment"]
+    },
+    {
+      "name": "Water & Sanitation",
+      "aliases": ["water technology", "water treatment", "wastewater", "sanitation", "drinking water", "water conservation", "sewage", "desalination"],
+      "negative": []
+    },
+    {
+      "name": "Financial Services & FinTech",
+      "aliases": ["fintech", "financial technology", "digital payment", "banking technology", "insurance technology", "insurtech", "lending platform", "wealthtech"],
+      "negative": ["financial assistance", "financial support", "funding", "loan", "credit guarantee"]
+    },
+    {
+      "name": "Logistics & Supply Chain",
+      "aliases": ["logistics", "supply chain", "warehousing", "freight", "last mile", "transportation logistics", "inventory management"],
+      "negative": []
+    },
+    {
+      "name": "Education & EdTech",
+      "aliases": ["edtech", "education technology", "digital learning", "e-learning", "skill technology", "learning platform", "education innovation"],
+      "negative": ["higher educational institutions", "universities and higher education"]
+    },
+    {
+      "name": "Textiles, Apparel & Handicrafts",
+      "aliases": ["textile", "apparel", "garment", "handloom", "handicraft", "fashion technology", "technical textile"],
+      "negative": []
+    },
+    {
+      "name": "Tourism, Travel & Hospitality",
+      "aliases": ["tourism", "travel technology", "traveltech", "hospitality", "hotel technology", "destination management"],
+      "negative": []
+    },
+    {
+      "name": "Media, Gaming & Creative Industries",
+      "aliases": ["gaming", "animation", "visual effects", "avgc", "media technology", "creative industry", "film technology", "music technology", "immersive media"],
+      "negative": []
+    },
+    {
+      "name": "Retail, Commerce & Consumer Technology",
+      "aliases": ["retail tech", "retail technology", "e-commerce", "ecommerce", "consumer internet", "direct to consumer", "d2c", "commerce platform"],
+      "negative": []
+    },
+    {
+      "name": "Social Impact & Rural Innovation",
+      "aliases": ["social impact", "social innovation", "rural innovation", "inclusive innovation", "livelihood", "grassroots innovation", "assistive technology", "development sector"],
+      "negative": []
+    },
+    {
+      "name": "Cross-sector Innovation & Entrepreneurship",
+      "aliases": ["sector agnostic", "all sectors", "across sectors", "multi-sector", "multiple sectors", "innovation and entrepreneurship", "science and technology entrepreneurship", "technology entrepreneurship", "startup ecosystem", "incubation support", "accelerator", "prototype support", "proof of concept", "entrepreneur in residence", "nidhi", "prayas", "technology business incubator"],
+      "negative": []
+    },
+    {
+      "name": "Cross-sector MSME & Startup Finance",
+      "aliases": ["credit guarantee", "fund of funds", "seed fund", "startup fund", "venture fund", "working capital", "bill discounting", "loan scheme", "credit support", "financial assistance to startups", "financial assistance to msmes", "equity support", "risk capital"],
+      "negative": []
+    },
+    {
+      "name": "Sector Agnostic / Multi-sector",
+      "aliases": ["general startup support", "general msme support", "all industries", "eligible sectors", "sector-neutral", "sector neutral"],
+      "negative": []
+    }
+  ],
+  "field_weights": {
+    "scheme_name": 5.0,
+    "sector": 4.0,
+    "objectives": 3.0,
+    "eligibility": 3.0,
+    "benefits": 3.0,
+    "target_beneficiaries": 2.0,
+    "startup_stage": 1.5,
+    "scheme_type": 1.0,
+    "official_page_text": 2.5,
+    "guideline_text": 2.0,
+    "other": 1.0
+  },
+  "minimum_specific_score": 5.0,
+  "secondary_score_ratio": 0.58,
+  "maximum_secondary_sectors": 2,
+  "manual_review_confidence_below": 0.55
+}

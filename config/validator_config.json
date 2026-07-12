@@ -1,0 +1,15 @@
+{
+  "approval_score": 0.82,
+  "review_score": 0.62,
+  "minimum_text_length": 24,
+  "trusted_domains": {
+    "BIRAC": ["birac.nic.in", "www.birac.nic.in"],
+    "DST": ["dst.gov.in", "www.dst.gov.in"],
+    "Startup India": [
+      "startupindia.gov.in",
+      "www.startupindia.gov.in",
+      "seedfund.startupindia.gov.in",
+      "seedfundapi.startupindia.gov.in"
+    ]
+  }
+}

@@ -1,0 +1,65 @@
+﻿# Python
+.venv/
+venv/
+env/
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Local settings and credentials
+.env
+.env.*
+*.key
+*.pem
+secrets.toml
+.streamlit/secrets.toml
+
+# Backups and logs
+backups/
+logs/
+*.log
+
+# Generated exports and runtime output
+outputs/
+github_export/
+.pytest_cache/
+.test_tmp*/
+data/test_runs/
+data/agent_runs/
+data/agent_state/
+data/backups/
+data/incremental/
+data/extraction_cache*/
+data/**/backups/
+data/**/crawl/
+data/**/live_refresh/
+
+# Local working databases
+database/*.db
+database/*.db-wal
+database/*.db-shm
+database/*.sqlite
+database/*.sqlite3
+*.db-wal
+*.db-shm
+
+# Generated SQLite databases outside database/
+data/**/*.db
+
+# The curated DST pilot evidence database is an explicit public-data fixture.
+!data/departments/dst/pilot_v1/dst_evidence_pilot_v1.db
+
+# Local LLM/model files
+*.gguf
+*.safetensors
+
+# IDE files
+.vscode/
+.idea/
+
+# Temporary files
+*.tmp
+*.bak
+.DS_Store
+Thumbs.db

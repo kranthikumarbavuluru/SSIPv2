@@ -1,0 +1,16 @@
+{
+  "service_version": "3.4.2.1",
+  "active_catalogue": "data/catalogue_preview/v3_3_2/catalogue_preview_v3_3_2.csv",
+  "calls_output": "data/governance/current_calls_and_opportunities.csv",
+  "taxonomy": "config/sector_taxonomy_v3_4_2_1.json",
+  "lm_studio": {
+    "enabled": false
+  },
+  "validation": {
+    "minimum_public_scheme_count": 5
+  },
+  "dashboard": {
+    "app": "apps/public_dashboard_app_v2_9.py",
+    "port": 8502
+  }
+}

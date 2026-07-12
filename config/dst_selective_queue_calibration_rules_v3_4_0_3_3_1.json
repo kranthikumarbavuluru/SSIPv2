@@ -1,0 +1,57 @@
+{
+  "allowed_domains": ["dst.gov.in", "www.dst.gov.in"],
+  "high_queue_score": 45,
+  "medium_queue_score": 30,
+  "manual_review_score": 15,
+  "minimum_queue_score_without_main_content": 35,
+  "maximum_selective_queue_size": 20,
+  "maximum_final_unresolved_rate": 0.05,
+  "minimum_gap_resolution_rate": 0.95,
+  "request_timeout_seconds": 30,
+  "delay_seconds": 1.0,
+  "maximum_response_bytes": 5000000,
+  "maximum_text_length": 120000,
+  "maximum_excerpt_length": 1000,
+  "user_agent": "SSIP-DST-CalibratedSelectiveCrawler/3.4.0.3.3.1 (+government-scheme-indexing)",
+  "known_category_urls": [
+    "/national-missions",
+    "/international-cooperation-mega-science",
+    "/st-data-policy-and-training",
+    "/seed-home"
+  ],
+  "known_supporting_urls": [
+    "/brief-history",
+    "/objectives-mandate",
+    "/monitoring-and-evaluation",
+    "/stakeholders-target-groups",
+    "/highlights-achievements",
+    "/about-ngcma",
+    "/oecd-principles-glp",
+    "/glp-certified-test-facilities",
+    "/right-information",
+    "/public-grievance",
+    "/parliament-matters",
+    "/parliament-qa",
+    "/pension-grievance-redressal"
+  ],
+  "institution_url_terms": [
+    "/attached-institutions",
+    "/autonomous-st-attached-institutions",
+    "/professional-bodies",
+    "/statutory-board",
+    "/international-bi-lateral-institutions",
+    "/anusandhan-national-research-foundation"
+  ],
+  "document_url_terms": [
+    "/document",
+    "/reports/",
+    "/report/",
+    "/budget/",
+    "/publication/",
+    "/publications/"
+  ],
+  "resource_url_terms": ["/importantlinks/", "/important_link"],
+  "news_url_terms": ["/pressrelease/", "/news/", "/whatsnew/", "/photo-gallery"],
+  "manual_review_names": ["Science Wings Abroad"],
+  "selective_crawl_names": ["Science Wings Abroad"]
+}

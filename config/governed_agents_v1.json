@@ -1,0 +1,30 @@
+{
+  "version": "1.0.0",
+  "active_catalogue": "data/catalogue_preview/v3_3_2/catalogue_preview_v3_3_2.csv",
+  "run_root": "data/agent_runs",
+  "state_database": "data/agent_state/governed_agents_v1.sqlite3",
+  "preview_manifest": "data/agent_state/current_preview_manifest.json",
+  "approved_manifest": "data/agent_state/current_approved_manifest.json",
+  "publication_root": "data/publication",
+  "log_root": "logs/governed_agents",
+  "record_role_rules": "config/record_role_rules_v1.json",
+  "startup_relevance_rules": "config/startup_relevance_rules_v1.json",
+  "sector_taxonomy": "config/sector_taxonomy_v1.json",
+  "official_domain_allowlist": "config/official_domain_allowlist_v1.json",
+  "network": {
+    "enabled": false,
+    "respect_robots_txt": true,
+    "minimum_delay_seconds": 2.0,
+    "timeout_seconds": 20
+  },
+  "lm_studio": {
+    "enabled": false,
+    "base_url": "http://127.0.0.1:1234",
+    "model": "AUTO"
+  },
+  "publication": {
+    "maximum_change_percent_without_override": 10,
+    "require_approval_file_for_large_change": true,
+    "never_reduce_without_deletion_approval": true
+  }
+}

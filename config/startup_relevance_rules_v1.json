@@ -1,0 +1,10 @@
+{
+  "version": "1.0.0",
+  "beneficiary_terms": ["startup", "start-up", "dpiit-recognised startup", "dpiit-recognized startup", "innovator", "entrepreneur", "incubatee", "technology venture", "company", "industrial concern", "msme", "individual innovator"],
+  "support_terms": ["grant", "loan", "credit", "guarantee", "seed support", "prototype support", "proof of concept", "incubation", "acceleration", "commercialisation", "commercialization", "market access", "procurement support", "financial assistance", "funding"],
+  "access_terms": ["application portal", "call for applications", "apply", "application", "through approved incubator", "through implementing hub", "submit proposal", "registration"],
+  "institution_only_terms": ["universities only", "university only", "academic institutions only", "research institutions only", "government laboratory only", "host institution only"],
+  "research_only_terms": ["researchers only", "faculty only", "academic research only", "research infrastructure only"],
+  "ecosystem_mission_terms": ["ecosystem mission", "startup mission", "startup india initiative", "innovation mission"],
+  "known_direct_families": ["startup india seed fund scheme", "credit guarantee scheme for startups", "nidhi-prayas", "nidhi prayas", "nidhi seed support", "entrepreneur-in-residence"]
+}

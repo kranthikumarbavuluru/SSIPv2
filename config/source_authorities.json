@@ -1,0 +1,26 @@
+{
+  "Startup India": {
+    "ministry": "Ministry of Commerce and Industry",
+    "department": "Department for Promotion of Industry and Internal Trade (DPIIT)",
+    "implementing_agency": "Startup India / DPIIT",
+    "official_url": "https://www.startupindia.gov.in/",
+    "evidence_note": "Startup India is the Government of India startup initiative operated through DPIIT under the Ministry of Commerce and Industry.",
+    "confidence": 0.9
+  },
+  "DST": {
+    "ministry": "Ministry of Science and Technology",
+    "department": "Department of Science and Technology (DST)",
+    "implementing_agency": "Department of Science and Technology (DST)",
+    "official_url": "https://dst.gov.in/",
+    "evidence_note": "Configured from the official Department of Science and Technology website.",
+    "confidence": 0.92
+  },
+  "BIRAC": {
+    "ministry": "Ministry of Science and Technology",
+    "department": "Department of Biotechnology (DBT)",
+    "implementing_agency": "Biotechnology Industry Research Assistance Council (BIRAC)",
+    "official_url": "https://www.birac.nic.in/",
+    "evidence_note": "BIRAC is a public sector enterprise set up by the Department of Biotechnology, Government of India.",
+    "confidence": 0.94
+  }
+}

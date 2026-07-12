@@ -1,0 +1,17 @@
+{
+  "version": "1.0.0",
+  "domains": [
+    "gov.in", "nic.in", "startupindia.gov.in", "myscheme.gov.in", "msme.gov.in",
+    "dcmsme.gov.in", "nsic.co.in", "dst.gov.in", "tdb.gov.in", "birac.nic.in",
+    "dbtindia.gov.in", "meity.gov.in", "msh.meity.gov.in", "indiaai.gov.in",
+    "investindia.gov.in", "sidbi.in", "cgtmse.in", "ap.gov.in", "apit.ap.gov.in",
+    "apedb.gov.in", "apinnovation.in", "aim.gov.in", "niti.gov.in"
+  ],
+  "authority_domains": {
+    "Department for Promotion of Industry and Internal Trade (DPIIT)": ["startupindia.gov.in", "dpiit.gov.in", "investindia.gov.in"],
+    "Ministry of Micro, Small and Medium Enterprises": ["msme.gov.in", "dcmsme.gov.in", "nsic.co.in"],
+    "Department of Science and Technology (DST)": ["dst.gov.in", "tdb.gov.in"],
+    "Department of Biotechnology (DBT)": ["dbtindia.gov.in", "birac.nic.in"],
+    "Ministry of Electronics and Information Technology (MeitY)": ["meity.gov.in", "msh.meity.gov.in", "indiaai.gov.in"]
+  }
+}

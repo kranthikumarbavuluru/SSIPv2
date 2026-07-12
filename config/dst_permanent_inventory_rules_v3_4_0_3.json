@@ -1,0 +1,60 @@
+{
+  "minimum_inventory_confidence": 0.62,
+  "minimum_auto_review_free_confidence": 0.82,
+  "maximum_identity_name_length": 220,
+  "maximum_unknown_index_candidates": 500,
+  "evidence_excerpt_length": 600,
+  "generic_titles": [
+    "home",
+    "schemes/programmes",
+    "schemes and programmes",
+    "programmes and initiatives",
+    "programme",
+    "programmes",
+    "scheme",
+    "schemes",
+    "overview",
+    "about us",
+    "what's new",
+    "announcements",
+    "guidelines",
+    "call for proposals"
+  ],
+  "site_title_suffixes": [
+    "department of science and technology",
+    "department of science & technology",
+    "ministry of science and technology",
+    "government of india",
+    "dst"
+  ],
+  "call_like_terms": [
+    "call for proposal",
+    "call for proposals",
+    "call for project proposal",
+    "applications invited",
+    "application invited",
+    "inviting applications",
+    "expression of interest",
+    "deadline extension",
+    "last date extended",
+    "corrigendum",
+    "result of",
+    "selected proposals",
+    "shortlisted"
+  ],
+  "temporary_tokens": [
+    "round",
+    "cycle",
+    "cohort",
+    "special call",
+    "joint call",
+    "open call",
+    "current call",
+    "phase i",
+    "phase ii",
+    "phase iii"
+  ],
+  "curated_url_replacements": {
+    "https://dst.gov.in/promotion-university-research-and-scientific-excellencepurse": "https://dst.gov.in/promotion-university-research-and-scientific-excellence-purse"
+  }
+}

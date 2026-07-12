@@ -1,0 +1,15 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+import json, sys
+from pathlib import Path
+ROOT=Path(__file__).resolve().parents[1]
+sys.path.insert(0,str(ROOT/'scripts'))
+from load_approved_records_v2_7_3_3a import self_test
+
+def main()->int:
+    result=self_test()
+    print(json.dumps(result,indent=2,ensure_ascii=False))
+    return 0 if result['passed'] else 1
+
+if __name__=='__main__':
+    raise SystemExit(main())

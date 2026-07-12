@@ -1,0 +1,168 @@
+{
+  "version": "3.3.1",
+  "generated_on": "2026-07-10",
+  "purpose": "Controlled 100+ scheme catalogue expansion policy. This file defines counting rules, extraction batches, required fields and safety gates without modifying dashboard code or production database tables.",
+  "dashboard_ui_frozen": true,
+  "production_database_writes_allowed": false,
+  "automatic_publication_allowed": false,
+  "network_discovery_requires_approval": true,
+  "counting_policy": {
+    "main_scheme_total_record_kinds": [
+      "SCHEME_OR_PROGRAMME",
+      "GRANT",
+      "FUND",
+      "CREDIT_SUPPORT",
+      "CREDIT_GUARANTEE",
+      "SUBSIDY",
+      "INCENTIVE",
+      "FELLOWSHIP",
+      "INCUBATION_SUPPORT",
+      "ACCELERATOR_SUPPORT",
+      "INFRASTRUCTURE_SUPPORT",
+      "RESEARCH_SUPPORT",
+      "PROCUREMENT_SUPPORT"
+    ],
+    "excluded_from_main_scheme_total": [
+      "APPLICATION_CALL",
+      "GUIDELINE",
+      "MANUAL",
+      "APPLICATION_PORTAL",
+      "DIRECTORY_PAGE",
+      "POLICY_PAGE",
+      "RESULT_PAGE",
+      "NEWS_PAGE",
+      "ARCHIVE_PAGE",
+      "FAQ"
+    ],
+    "separate_metrics": [
+      "application_calls",
+      "open_schemes",
+      "closing_soon",
+      "upcoming",
+      "closed_historical",
+      "verification_required"
+    ],
+    "unique_key": "master_id"
+  },
+  "targets": {
+    "discovered_candidate_urls": {"min": 500, "max": 800},
+    "relevant_classified_pages": {"min": 250, "max": 350},
+    "unique_master_records": {"min": 140, "max": 180},
+    "core_validation_passed": {"min": 110, "max": 140},
+    "catalogue_available_records": {"min": 105},
+    "duplicate_master_ids": 0
+  },
+  "core_required_fields": [
+    "master_id",
+    "scheme_name",
+    "primary_official_url",
+    "ministry_or_department_or_implementing_authority",
+    "government_level",
+    "record_type",
+    "programme_status",
+    "application_status",
+    "status_evidence",
+    "sector_or_not_specified",
+    "last_verified_date",
+    "duplicate_check"
+  ],
+  "pipeline_steps": [
+    "discovery",
+    "url_classification",
+    "permanent_core_programme_page_resolution",
+    "master_record_grouping",
+    "deterministic_core_extraction",
+    "optional_llm_enrichment",
+    "strict_validation",
+    "admin_review_output"
+  ],
+  "master_grouping_evidence_types": [
+    "permanent_scheme_page",
+    "latest_application_call",
+    "guideline_or_manual",
+    "application_portal",
+    "faq",
+    "previous_calls",
+    "results"
+  ],
+  "batches": [
+    {
+      "batch_id": "batch_1_enterprise_startup_indexes",
+      "registry_batch_ids": ["central_priority_indexes"],
+      "title": "MSME, DPIIT, Startup India, myScheme business and entrepreneurship sources",
+      "source_ids": [
+        "msme_schemes",
+        "msme_dc_scheme_directory",
+        "msme_champions_portal",
+        "nsic_schemes",
+        "startup_india_central_schemes",
+        "startup_india_programs_challenges",
+        "startup_india_incubator_schemes",
+        "startup_india_discovery_index",
+        "myscheme_national_scheme_discovery",
+        "myscheme_discovery_index"
+      ],
+      "target_unique_master_records": {"min": 30, "max": 40},
+      "stop_after_batch": true
+    },
+    {
+      "batch_id": "batch_2_science_technology_innovation",
+      "registry_batch_ids": ["meity_programme_sources"],
+      "title": "DST, DBT, BIRAC, MeitY, MeitY Startup Hub, STPI, IndiaAI, AIM, TDB and DSIR",
+      "source_ids": [
+        "dst_schemes_programmes",
+        "birac_support_startups",
+        "meity_schemes",
+        "meity_programmes_index",
+        "meity_startup_hub",
+        "meity_startup_hub_programmes",
+        "stpi",
+        "indiaai",
+        "atal_innovation_mission",
+        "technology_development_board",
+        "dsir",
+        "nidhi_dst"
+      ],
+      "target_unique_master_records": {"min": 35, "max": 45},
+      "stop_after_batch": true
+    },
+    {
+      "batch_id": "batch_3_defence_space_energy_agri_skills",
+      "registry_batch_ids": ["registry_remaining_sources"],
+      "title": "iDEX, Defence, IN-SPACe, Space, MNRE, Agriculture, RKVY, Education, Skills, Environment and Textiles",
+      "source_ids": [
+        "idex_defence_innovation",
+        "inspace",
+        "mnre",
+        "rkvy",
+        "moe_innovation_cell",
+        "smart_india_hackathon",
+        "india_portal_government_schemes"
+      ],
+      "target_unique_master_records": {"min": 30, "max": 40},
+      "stop_after_batch": true
+    },
+    {
+      "batch_id": "batch_4_state_pilot_sources",
+      "registry_batch_ids": ["andhra_pradesh_pilot", "registry_remaining_sources"],
+      "title": "Andhra Pradesh, Kerala and Odisha official State sources",
+      "source_ids": [
+        "ap_innovation_society",
+        "ap_startup_portal",
+        "ap_industries_incentives",
+        "kerala_startup_mission",
+        "startup_odisha",
+        "startup_india_state_policies"
+      ],
+      "target_unique_master_records": {"min": 25, "max": 35},
+      "stop_after_batch": true
+    }
+  ],
+  "output_contract": {
+    "root": "outputs/catalogue_expansion_v3_3_1",
+    "checkpoint_file": "checkpoint.json",
+    "batch_report_file": "batch_report.json",
+    "admin_review_file": "admin_review_candidates.json",
+    "production_database": "read_only"
+  }
+}

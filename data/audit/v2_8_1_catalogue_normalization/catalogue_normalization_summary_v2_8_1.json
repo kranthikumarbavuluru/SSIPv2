@@ -1,0 +1,43 @@
+{
+  "normalization_version": "2.8.1",
+  "database": "database\\ssip_staging_v1.db",
+  "total_unique_records": 17,
+  "by_current_location": {
+    "REVIEW_ONLY": 7,
+    "SCHEME_STAGING": 10
+  },
+  "by_catalogue_inclusion": {
+    "ARCHIVED": 5,
+    "INCLUDED": 10,
+    "PENDING_REVALIDATION": 2
+  },
+  "by_catalogue_section": {
+    "CLOSED_OPPORTUNITIES": 3,
+    "CURRENT_OPPORTUNITIES": 3,
+    "HISTORICAL_PROGRAMMES": 2,
+    "INDIRECT_FINANCIAL_SUPPORT": 1,
+    "OPPORTUNITIES_REQUIRING_VERIFICATION": 1,
+    "SCHEMES_AND_PROGRAMMES": 6,
+    "UMBRELLA_PROGRAMMES": 1
+  },
+  "by_normalized_record_kind": {
+    "APPLICATION_CALL": 7,
+    "SCHEME_OR_PROGRAMME": 9,
+    "UMBRELLA_PROGRAMME": 1
+  },
+  "by_normalization_disposition": {
+    "KEEP_AS_CLOSED_OPPORTUNITY": 1,
+    "KEEP_AS_CURRENT_OPPORTUNITY": 3,
+    "KEEP_AS_SCHEME_OR_PROGRAMME": 3,
+    "KEEP_AS_UMBRELLA_PROGRAMME": 1,
+    "KEEP_SCHEME_WITH_CLOSED_STATUS": 1,
+    "REVALIDATE_AS_CLOSED_CATALOGUE_RECORD": 2,
+    "REVALIDATE_AS_HISTORICAL_RECORD": 4,
+    "REVALIDATE_AS_INDIRECT_SUPPORT": 1,
+    "VERIFY_CURRENT_DEADLINE": 1
+  },
+  "legacy_staged_record_count": 5,
+  "revalidation_backlog_count": 7,
+  "catalogue_inclusion_candidate_count": 10,
+  "database_modified": false
+}

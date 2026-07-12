@@ -1,0 +1,48 @@
+{
+  "service_version": "3.4.1.0",
+  "active_catalogue": "data/catalogue_preview/v3_3_2/catalogue_preview_v3_3_2.csv",
+  "state_database": "data/agent_state/ssip_agents_v3_4_1_0.sqlite3",
+  "sector_taxonomy": "config/sector_taxonomy_v3_4_1_0.json",
+  "official_domain_allowlist": [
+    "startupindia.gov.in",
+    "dpiit.gov.in",
+    "nsic.co.in",
+    "msme.gov.in",
+    "dcmsme.gov.in",
+    "dst.gov.in",
+    "nidhi.dst.gov.in",
+    "nmicps.gov.in",
+    "nmicps.in",
+    "tdb.gov.in",
+    "birac.nic.in",
+    "dbtindia.gov.in",
+    "meity.gov.in",
+    "msh.meity.gov.in",
+    "aim.gov.in",
+    "niti.gov.in",
+    "gov.in",
+    "nic.in"
+  ],
+  "fetch": {
+    "timeout_seconds": 25,
+    "cache_hours": 24,
+    "max_page_bytes": 5000000
+  },
+  "sector": {
+    "deterministic_accept_score": 14,
+    "deterministic_margin": 6,
+    "llm_min_confidence": 0.82
+  },
+  "lm_studio": {
+    "enabled": true,
+    "base_url": "http://127.0.0.1:1234",
+    "model": "AUTO",
+    "timeout_seconds": 120
+  },
+  "publication": {
+    "allow_review_rows": true,
+    "restart_dashboard": true,
+    "dashboard_port": 8502,
+    "dashboard_app": "apps/public_dashboard_app_v2_9.py"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "readiness_allowlist": [
+    "READY_FOR_EXTRACTION",
+    "NEEDS_CONTENT_EXTRACTION_AND_REVIEW"
+  ],
+  "max_sources_per_master": 6,
+  "master_concurrency": 3,
+  "http_concurrency": 8,
+  "timeout_seconds": 30,
+  "cache_ttl_hours": 24,
+  "max_download_mb": 20,
+  "max_pdf_pages": 80,
+  "use_browser_fallback": true,
+  "browser_text_threshold": 450,
+  "browser_ignore_https_errors": false,
+  "insecure_ssl_hosts": [],
+  "retries": 2
+}

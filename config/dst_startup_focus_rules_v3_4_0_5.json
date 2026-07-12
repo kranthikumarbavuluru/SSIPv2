@@ -1,0 +1,238 @@
+{
+  "service_version": "3.4.0.5",
+  "department_code": "DST",
+  "catalogue_path": "data/catalogue_preview/v3_3_2/catalogue_preview_v3_3_2.csv",
+  "dashboard_app_path": "apps/public_dashboard_app_v2_9.py",
+  "output_directory": "data/departments/dst/v3_4_0_5",
+  "crawl": {
+    "max_pages": 180,
+    "max_depth": 2,
+    "delay_seconds": 0.4,
+    "timeout_seconds": 35,
+    "user_agent": "SSIP-Startup-Focus/3.4.0.5 (+official-scheme-research)",
+    "allowed_hosts": [
+      "dst.gov.in",
+      "nidhi.dst.gov.in",
+      "nmicps.in",
+      "tdb.gov.in",
+      "nidhi-prayas.org"
+    ],
+    "seeds": [
+      "https://dst.gov.in/scientific-programmes/st-and-socio-economic-development/national-science-technology-entrepreneurship-development-board-nstedb",
+      "https://dst.gov.in/call-for-proposals",
+      "https://dst.gov.in/archive-call-for-proposals",
+      "https://dst.gov.in/national-mission-interdisciplinary-cyber-physical-systems-nm-icps",
+      "https://nidhi.dst.gov.in/",
+      "https://nidhi.dst.gov.in/schemes-programmes/",
+      "https://nidhi.dst.gov.in/document-category/programme-guidelines/",
+      "https://nidhi.dst.gov.in/document-category/programme-wise-tbi-lists/",
+      "https://nmicps.in/",
+      "https://tdb.gov.in/",
+      "https://tdb.gov.in/faqs_new",
+      "https://tdb.gov.in/call-for-proposal",
+      "https://tdb.gov.in/downloads-0"
+    ]
+  },
+  "relevance": {
+    "beneficiary_terms": [
+      "startup", "start-up", "startups", "start-ups", "innovator", "innovators",
+      "entrepreneur", "entrepreneurs", "incubatee", "incubatees", "technology venture",
+      "dpiit-recognised startup", "dpiit-recognized startup", "company", "industrial concern"
+    ],
+    "access_terms": [
+      "how to apply", "application process", "apply", "applications", "application portal",
+      "call for applications", "call for proposals", "through incubator", "through tbi",
+      "through centre", "online portal", "periodically announce calls", "submit proposals"
+    ],
+    "support_terms": [
+      "grant", "funding", "financial assistance", "seed support", "fellowship", "prototype",
+      "incubation", "accelerator", "mentoring", "commercialisation", "commercialization",
+      "loan", "equity", "infrastructure access", "investor connect"
+    ],
+    "institution_only_terms": [
+      "universities and higher educational institutions", "host institution may apply",
+      "academic institutions are eligible", "research institutions are eligible",
+      "universities are eligible", "institutional infrastructure", "faculty members only"
+    ],
+    "noise_terms": [
+      "press release", "success story", "compendium", "annual report", "newsletter", "awardees",
+      "results", "result of", "recruitment", "tender", "corrigendum", "deadline extension",
+      "utilization certificate", "progress report format"
+    ],
+    "discovery_link_terms": [
+      "startup", "start-up", "innovator", "entrepreneur", "nidhi", "incubat", "accelerator",
+      "seed support", "prayas", "eir", "tbi", "innovation hub", "technology hub", "call",
+      "proposal", "challenge", "cohort", "commercial", "funding", "grant", "apply", "scheme",
+      "programme", "program"
+    ]
+  },
+  "curated_startup_schemes": [
+    {
+      "code": "NIDHI-PRAYAS",
+      "canonical_name": "NIDHI – PRAYAS",
+      "official_abbreviation": "NIDHI-PRAYAS",
+      "official_page_url": "https://nidhi.dst.gov.in/schemes-programmes/nidhiprayas/",
+      "current_version_url": "https://nidhi.dst.gov.in/prayas2-0/",
+      "classification": "DIRECT_STARTUP_SCHEME",
+      "sector": "Cross-sector Innovation",
+      "secondary_sectors": "Prototype Development; Deep Technology",
+      "scheme_type": "PROTOTYPE_GRANT",
+      "startup_stage": "IDEA_TO_PROTOTYPE",
+      "objective": "Supports innovators and startups in converting technology ideas into functional prototypes through funding, mentoring, infrastructure and technical guidance.",
+      "eligibility": "Innovators and startups apply through approved NIDHI-PRAYAS Centres or Advance PRAYAS Centres, subject to the current programme guidelines.",
+      "benefits": "Prototype funding, fabrication and laboratory access, technical and business mentoring, IP/legal assistance and industry or investor connections.",
+      "funding_summary": "Current PRAYAS 2.0 information states support up to INR 20 lakh through PRAYAS Centres and up to INR 40 lakh through Advance PRAYAS Centres.",
+      "funding_maximum": "4000000",
+      "application_process": "Apply to an approved PRAYAS Centre or Advance PRAYAS Centre when that centre announces an application window.",
+      "application_route": "THROUGH_APPROVED_CENTRE",
+      "source_evidence": "Official NIDHI pages explicitly identify innovators and startups as beneficiaries and explain the centre-mediated application route."
+    },
+    {
+      "code": "NIDHI-EIR",
+      "canonical_name": "NIDHI – Entrepreneur-in-Residence",
+      "official_abbreviation": "NIDHI-EIR",
+      "official_page_url": "https://nidhi.dst.gov.in/nidhieir/",
+      "classification": "DIRECT_STARTUP_SCHEME",
+      "sector": "Cross-sector Innovation",
+      "secondary_sectors": "Entrepreneurship; Founder Fellowship",
+      "scheme_type": "FELLOWSHIP_OR_ENTREPRENEUR_SUPPORT",
+      "startup_stage": "IDEATION_PRE_STARTUP",
+      "objective": "Encourages graduate students and aspiring technology entrepreneurs to pursue entrepreneurial ventures by reducing early-stage personal and business risk.",
+      "eligibility": "Aspiring entrepreneurs and innovators apply through approved NIDHI-EIR Centres, subject to the current centre call and guidelines.",
+      "benefits": "Financial and non-financial fellowship support, mentoring and an incubation pathway for developing a technology venture.",
+      "funding_summary": "Fellowship amount and tenure must be confirmed from the current official guideline or centre call.",
+      "application_process": "Apply through an approved NIDHI-EIR Centre when applications are invited.",
+      "application_route": "THROUGH_APPROVED_CENTRE",
+      "source_evidence": "Official NIDHI EIR page states that students and innovators apply through selected NIDHI-EIR Centres."
+    },
+    {
+      "code": "NIDHI-SSP",
+      "canonical_name": "NIDHI Seed Support Program",
+      "official_abbreviation": "NIDHI-SSP",
+      "official_page_url": "https://nidhi.dst.gov.in/nidhissp/",
+      "classification": "DIRECT_STARTUP_SCHEME",
+      "sector": "Cross-sector Innovation",
+      "secondary_sectors": "Seed Funding; Commercialisation",
+      "scheme_type": "SEED_SUPPORT",
+      "startup_stage": "PROTOTYPE_TO_EARLY_MARKET",
+      "objective": "Provides seed support through approved incubators to promising startups developing innovative technologies, products and services.",
+      "eligibility": "Potential and incubatee startups apply to listed supported incubators or TBIs under their periodic calls.",
+      "benefits": "Seed support for product development, market entry and progression from technology development toward commercialisation.",
+      "funding_summary": "Official programme information states support to a deserving startup may be up to INR 100 lakh, subject to incubator assessment and current guidelines.",
+      "funding_maximum": "10000000",
+      "application_process": "Apply to a supported Startup Incubator or TBI when it announces a NIDHI-SSP call.",
+      "application_route": "THROUGH_SUPPORTED_INCUBATOR",
+      "source_evidence": "Official NIDHI-SSP page explicitly identifies startups as beneficiaries and requires application through supported incubators."
+    },
+    {
+      "code": "NIDHI-TBI",
+      "canonical_name": "NIDHI – Technology Business Incubators",
+      "official_abbreviation": "NIDHI-TBI",
+      "official_page_url": "https://nidhi.dst.gov.in/nidhitbi/",
+      "classification": "STARTUP_ACCESS_PROGRAMME",
+      "sector": "Cross-sector Innovation",
+      "secondary_sectors": "Incubation; Infrastructure; Mentoring",
+      "scheme_type": "INCUBATION_ACCESS",
+      "startup_stage": "IDEATION_TO_EARLY_GROWTH",
+      "objective": "Creates and supports technology business incubators that provide workspace, facilities, mentoring and venture-development assistance to innovators and startups.",
+      "eligibility": "Innovators and startups apply to individual DST-supported TBIs under each incubator's admission criteria and periodic calls.",
+      "benefits": "Incubation, common facilities, laboratories, co-working space, mentoring, networks and venture-development support.",
+      "funding_summary": "Support to startups varies by incubator and linked NIDHI programme; verify the relevant TBI call.",
+      "application_process": "Select a relevant DST-supported TBI and apply under its current incubatee admission process.",
+      "application_route": "THROUGH_TBI",
+      "source_evidence": "Official NIDHI-TBI page states that innovators and startups may apply to DST-supported TBIs, which periodically announce enrollment calls."
+    },
+    {
+      "code": "NIDHI-ITBI",
+      "canonical_name": "NIDHI – Inclusive Technology Business Incubators",
+      "official_abbreviation": "NIDHI-iTBI",
+      "official_page_url": "https://nidhi.dst.gov.in/nidhiitbi/",
+      "classification": "STARTUP_ACCESS_PROGRAMME",
+      "sector": "Cross-sector Innovation",
+      "secondary_sectors": "Inclusive Entrepreneurship; Tier-2 and Tier-3 Ecosystems",
+      "scheme_type": "INCUBATION_ACCESS",
+      "startup_stage": "IDEATION_TO_EARLY_STAGE",
+      "objective": "Strengthens inclusive innovation and entrepreneurship ecosystems, especially in regions where startup support is at an early stage.",
+      "eligibility": "Students, innovators, researchers and entrepreneurs access support through an operating NIDHI-iTBI and its intake process.",
+      "benefits": "Incubation, mentoring, entrepreneurial capacity building and support for converting ideas into startups.",
+      "funding_summary": "Startup-level support varies by iTBI and call; verify the selected iTBI's current opportunity.",
+      "application_process": "Apply to a relevant operating NIDHI-iTBI when it invites innovators or startups.",
+      "application_route": "THROUGH_ITBI",
+      "source_evidence": "Official NIDHI-iTBI page explicitly describes support for innovators, entrepreneurs and startup creation."
+    },
+    {
+      "code": "NIDHI-ACCELERATOR",
+      "canonical_name": "NIDHI – Accelerator",
+      "official_abbreviation": "NIDHI-Accelerator",
+      "official_page_url": "https://nidhi.dst.gov.in/schemes-programmes/nidhiaccelerator/",
+      "classification": "STARTUP_ACCESS_PROGRAMME",
+      "sector": "Cross-sector Innovation",
+      "secondary_sectors": "Acceleration; Investment Readiness; Scaling",
+      "scheme_type": "ACCELERATION",
+      "startup_stage": "POST_INCUBATION_SCALING",
+      "objective": "Fast-tracks the growth of promising post-incubation startups through structured mentoring, market validation, networking and investor exposure.",
+      "eligibility": "Startups participate through accelerator cohorts operated by eligible supported TBIs; individual cohort criteria apply.",
+      "benefits": "Three-to-six-month structured acceleration, mentoring, networking, customer validation, investment readiness and demo-day exposure.",
+      "funding_summary": "Programme funding is provided to eligible TBIs for accelerator cohorts; startup benefits are delivered through the cohort.",
+      "application_process": "Apply to a NIDHI-supported accelerator cohort when an implementing TBI opens applications.",
+      "application_route": "THROUGH_ACCELERATOR_COHORT",
+      "source_evidence": "Official NIDHI Accelerator page describes a post-incubation programme for potential startups delivered through existing TBIs."
+    },
+    {
+      "code": "TDB-CORE-FUNDING",
+      "canonical_name": "Technology Development Board Core Funding",
+      "official_abbreviation": "TDB Funding",
+      "official_page_url": "https://tdb.gov.in/",
+      "application_url": "https://tdb.gov.in/",
+      "guideline_url": "https://tdb.gov.in/downloads-0",
+      "classification": "DIRECT_STARTUP_SCHEME",
+      "sector": "Technology Commercialisation",
+      "secondary_sectors": "Cross-sector; Industrial R&D; Scale-up",
+      "scheme_type": "LOAN_EQUITY_OR_GRANT",
+      "startup_stage": "COMMERCIALISATION_AND_SCALE",
+      "objective": "Provides financial assistance for development and commercial application of indigenous technology or wider domestic application of adapted technology.",
+      "eligibility": "Eligible Indian industrial concerns, including qualifying DPIIT-recognised startups incorporated as companies, may apply under TDB guidelines.",
+      "benefits": "Financial assistance through loan, equity and, in exceptional cases, grant support for eligible technology-commercialisation projects.",
+      "funding_summary": "Official TDB FAQ states qualifying DPIIT-recognised startups with projects costing up to INR 5 crore may be funded up to 70 percent of project cost, subject to appraisal and guidelines.",
+      "application_process": "Submit a project proposal through TDB's official process using the current application form, checklist and funding guidelines.",
+      "application_route": "DIRECT_TO_TDB",
+      "source_evidence": "Official TDB FAQ explicitly states startup eligibility and a startup-specific funding proportion."
+    }
+  ],
+  "curated_ecosystem_records": [
+    {
+      "code": "NIDHI-UMBRELLA",
+      "name": "National Initiative for Developing and Harnessing Innovations (NIDHI)",
+      "classification": "STARTUP_ECOSYSTEM_MISSION",
+      "official_page_url": "https://nidhi.dst.gov.in/",
+      "description": "DST umbrella programme for scouting, supporting and scaling knowledge-based and technology-driven innovations into startups.",
+      "access_route": "Use the linked NIDHI component programmes and approved centres."
+    },
+    {
+      "code": "NSTEDB",
+      "name": "National Science & Technology Entrepreneurship Development Board",
+      "classification": "STARTUP_ECOSYSTEM_MISSION",
+      "official_page_url": "https://dst.gov.in/scientific-programmes/st-and-socio-economic-development/national-science-technology-entrepreneurship-development-board-nstedb",
+      "description": "DST entrepreneurship board supporting science, technology and innovation-based entrepreneurship and technology-intensive ventures.",
+      "access_route": "Access support through NIDHI programmes, incubators and associated initiatives."
+    },
+    {
+      "code": "NM-ICPS",
+      "name": "National Mission on Interdisciplinary Cyber-Physical Systems",
+      "classification": "STARTUP_ECOSYSTEM_MISSION",
+      "official_page_url": "https://dst.gov.in/national-mission-interdisciplinary-cyber-physical-systems-nm-icps",
+      "directory_url": "https://nmicps.in/",
+      "description": "Mission supporting translational research, technology development, startup incubation and commercialisation through Technology Innovation Hubs.",
+      "access_route": "Startups should use the relevant Technology Innovation Hub's incubation, accelerator, challenge or funding opportunity."
+    },
+    {
+      "code": "NIDHI-COE",
+      "name": "NIDHI – Centres of Excellence",
+      "classification": "INCUBATOR_OR_HUB_NETWORK",
+      "official_page_url": "https://nidhi.dst.gov.in/schemes-programmes/",
+      "directory_url": "https://nidhi.dst.gov.in/document-category/programme-wise-tbi-lists/",
+      "description": "High-capacity entrepreneurship centres that strengthen regional innovation and startup support networks.",
+      "access_route": "Use the programme-wise centre directory and individual centre opportunities."
+    }
+  ]
+}

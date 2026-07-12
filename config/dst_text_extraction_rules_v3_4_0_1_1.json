@@ -1,0 +1,24 @@
+{
+  "service_version": "3.4.0.1.1",
+  "department_code": "DST",
+  "minimum_text_extraction_success_rate": 0.98,
+  "input_version": "3.4.0.1",
+  "network_access_allowed": false,
+  "recrawl_allowed": false,
+  "identity_safeguard": {
+    "create_canonical_scheme_identity": false,
+    "promote_call_title_to_scheme": false
+  },
+  "known_broken_url_resolutions": [
+    {
+      "url": "https://dst.gov.in/promotion-university-research-and-scientific-excellencepurse",
+      "resolution": "BROKEN_URL_REPLACED",
+      "replacement_url": "https://dst.gov.in/promotion-university-research-and-scientific-excellence-purse"
+    },
+    {
+      "url": "https://dst.gov.in/sites/default/files/agriculture.htm",
+      "resolution": "BROKEN_LEGACY_RESOURCE",
+      "replacement_url": ""
+    }
+  ]
+}

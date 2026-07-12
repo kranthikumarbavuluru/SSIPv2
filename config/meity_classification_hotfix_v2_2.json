@@ -1,0 +1,37 @@
+{
+  "hotfix_version": "2.2.0",
+  "source": "MeitY Startup Hub",
+  "official_domain": "msh.meity.gov.in",
+  "records": {
+    "/schemes/samridh": {
+      "canonical_name": "SAMRIDH",
+      "classification": "SCHEME",
+      "master_type": "SCHEME_OR_PROGRAMME"
+    },
+    "/schemes/tide": {
+      "canonical_name": "TIDE 2.0",
+      "classification": "SCHEME",
+      "master_type": "SCHEME_OR_PROGRAMME"
+    },
+    "/schemes/sasact": {
+      "canonical_name": "SASACT",
+      "classification": "SCHEME",
+      "master_type": "SCHEME_OR_PROGRAMME"
+    },
+    "/schemes/genesis": {
+      "canonical_name": "GENESIS",
+      "classification": "SCHEME",
+      "master_type": "SCHEME_OR_PROGRAMME"
+    },
+    "/challenges/home/5f56490b-947e-4893-b9da-fe11f15251ec": {
+      "canonical_name": "SITAA - Contactless Fingerprint Authentication",
+      "classification": "CALL",
+      "master_type": "ACTIVE_CALL_FAMILY"
+    },
+    "/challenges/home/35ed1bc3-26e1-4aef-99ee-3f759a530f55": {
+      "canonical_name": "SITAA - Presentation Attack Detection",
+      "classification": "CALL",
+      "master_type": "ACTIVE_CALL_FAMILY"
+    }
+  }
+}

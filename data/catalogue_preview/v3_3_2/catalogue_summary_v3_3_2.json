@@ -1,0 +1,30 @@
+{
+  "version": "3.3.2",
+  "run_id": "resolution_v3_3_2_20260710",
+  "generated_at": "2026-07-10T07:42:04+00:00",
+  "candidates_reviewed": 99,
+  "candidates_by_priority": {
+    "P4_DIRECTORY_OR_INDEX": 9,
+    "P3_OFFICIAL_PDF_NEEDS_IDENTITY_CHECK": 62,
+    "P2_APPLICATION_CALL_NEEDS_PARENT": 15,
+    "P6_UNRESOLVED": 10,
+    "P1_LIKELY_CORE_SCHEME": 1,
+    "P5_NEWS_RESULT_FAQ": 2
+  },
+  "targeted_network_requests": 2,
+  "successful_resolution_fetches": 2,
+  "browser_fallback_count": 0,
+  "permanent_core_pages_resolved": 27,
+  "programme_families_created": 27,
+  "newly_validated_schemes": 27,
+  "manual_review_records": 0,
+  "rejected_records": 0,
+  "duplicates_merged": 0,
+  "old_preview_scheme_count": 88,
+  "new_preview_scheme_count": 115,
+  "application_call_count": 20,
+  "duplicate_master_id_count": 0,
+  "database_writes": 0,
+  "preview_catalogue": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\catalogue_preview\\v3_3_2\\catalogue_preview_v3_3_2.csv",
+  "status": "V3_3_2_COMPLETE_WAITING_FOR_APPROVAL"
+}

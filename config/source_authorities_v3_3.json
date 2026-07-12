@@ -1,0 +1,106 @@
+{
+  "version": "3.3.0",
+  "generated_on": "2026-07-10",
+  "purpose": "Authority mappings used by SSIP v3.3.0 discovery planning, classification, validation and coverage auditing.",
+  "authority_rules": [
+    {
+      "match_field": "agency",
+      "match_values": ["India.gov.in"],
+      "authority_id": "india_gov_in",
+      "ministry": "Government of India",
+      "department": "National Informatics Centre / respective ministries",
+      "authority_type": "national_portal",
+      "confidence": 0.88
+    },
+    {
+      "match_field": "agency",
+      "match_values": ["myScheme"],
+      "authority_id": "myscheme",
+      "ministry": "Ministry of Electronics and Information Technology",
+      "department": "Digital India Corporation",
+      "authority_type": "national_scheme_portal",
+      "confidence": 0.92
+    },
+    {
+      "match_field": "agency",
+      "match_values": ["Startup India"],
+      "authority_id": "startup_india",
+      "ministry": "Ministry of Commerce and Industry",
+      "department": "Department for Promotion of Industry and Internal Trade (DPIIT)",
+      "authority_type": "startup_portal",
+      "confidence": 0.9
+    },
+    {
+      "match_field": "ministry",
+      "match_values": ["Ministry of Micro, Small and Medium Enterprises"],
+      "authority_id": "msme",
+      "ministry": "Ministry of Micro, Small and Medium Enterprises",
+      "department": "Ministry of Micro, Small and Medium Enterprises",
+      "authority_type": "central_ministry",
+      "confidence": 0.9
+    },
+    {
+      "match_field": "agency",
+      "match_values": ["Stand-Up India", "MUDRA"],
+      "authority_id": "department_financial_services",
+      "ministry": "Ministry of Finance",
+      "department": "Department of Financial Services",
+      "authority_type": "credit_scheme_authority",
+      "confidence": 0.86
+    },
+    {
+      "match_field": "agency",
+      "match_values": ["Biotechnology Industry Research Assistance Council (BIRAC)"],
+      "authority_id": "birac",
+      "ministry": "Ministry of Science and Technology",
+      "department": "Department of Biotechnology (DBT)",
+      "authority_type": "public_sector_agency",
+      "confidence": 0.94
+    },
+    {
+      "match_field": "department",
+      "match_values": ["Department of Science and Technology (DST)", "Department of Scientific and Industrial Research (DSIR)"],
+      "authority_id": "science_technology_departments",
+      "ministry": "Ministry of Science and Technology",
+      "department": "Science and technology departments",
+      "authority_type": "central_department",
+      "confidence": 0.9
+    },
+    {
+      "match_field": "ministry",
+      "match_values": ["Ministry of Electronics and Information Technology"],
+      "authority_id": "meity",
+      "ministry": "Ministry of Electronics and Information Technology",
+      "department": "Ministry of Electronics and Information Technology",
+      "authority_type": "central_ministry",
+      "confidence": 0.9
+    },
+    {
+      "match_field": "agency",
+      "match_values": ["AIM"],
+      "authority_id": "atal_innovation_mission",
+      "ministry": "NITI Aayog",
+      "department": "Atal Innovation Mission",
+      "authority_type": "mission_portal",
+      "confidence": 0.88
+    },
+    {
+      "match_field": "ministry",
+      "match_values": ["Ministry of Defence", "Department of Space", "Ministry of Education", "Ministry of New and Renewable Energy", "Ministry of Agriculture and Farmers Welfare"],
+      "authority_id": "central_programme_authority",
+      "ministry": "Government of India",
+      "department": "Central ministry or department",
+      "authority_type": "central_ministry",
+      "confidence": 0.84
+    },
+    {
+      "match_field": "scope",
+      "match_values": ["State/UT"],
+      "authority_id": "state_government_source",
+      "ministry": "State/UT Government",
+      "department": "State/UT department or startup mission",
+      "authority_type": "state_government",
+      "confidence": 0.78
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "allowed_domains": ["dst.gov.in", "www.dst.gov.in"],
+  "minimum_main_content_occurrences": 1,
+  "minimum_selective_relevance_score": 45,
+  "strong_selective_relevance_score": 70,
+  "global_navigation_source_page_threshold": 8,
+  "global_navigation_occurrence_threshold": 8,
+  "maximum_final_unresolved_rate": 0.05,
+  "minimum_gap_resolution_rate": 0.95,
+  "request_timeout_seconds": 30,
+  "delay_seconds": 1.0,
+  "maximum_response_bytes": 5000000,
+  "maximum_text_length": 120000,
+  "maximum_excerpt_length": 800,
+  "user_agent": "SSIP-DST-SelectiveCrawler/3.4.0.3.3 (+government-scheme-indexing)",
+  "navigation_names": [
+    "Home", "About DST", "About Us", "Introduction", "Mandate",
+    "Vision Mission", "Screen Reader Access", "Accessibility", "Contact",
+    "Contact Us", "Site Map", "Sitemap", "Search", "Skip to Main Content",
+    "Archive", "Tenders", "Vacancies", "Who Is Who", "Organization Chart",
+    "Website Policies", "Help", "Feedback", "Terms and Conditions"
+  ],
+  "navigation_url_terms": [
+    "/screen-reader-access", "/about_us", "/about-us/", "/introduction",
+    "/vision-mission", "/contact", "/sitemap", "/search", "/archive",
+    "/taxonomy/", "/who-is-who", "/organisation", "/organization",
+    "/website-policies", "/help", "/feedback", "/tenders", "/vacancies"
+  ],
+  "supporting_terms": [
+    "Funding Mechanism", "About the Schemes", "About Schemes", "How to Apply",
+    "Application Guidance", "Guidelines", "Manual", "FAQ", "Frequently Asked",
+    "Office Memorandum", "Sanctioned Projects", "Contact", "Forms",
+    "Downloads", "Documents", "Publication", "Annual Report"
+  ]
+}

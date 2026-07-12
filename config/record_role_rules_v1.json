@@ -1,0 +1,14 @@
+{
+  "version": "1.0.0",
+  "navigation_terms": ["sitemap", "contact", "about", "accessibility statement", "disclaimer", "search", "dashboard", "privacy policy", "terms and conditions", "screen reader"],
+  "index_terms": ["schemes", "existing schemes", "new schemes", "government schemes", "schemes for starters", "directory", "official sources", "category", "index"],
+  "report_terms": ["annual report", "research report", "market report", "whitepaper", "white paper", "study", "publication", "handbook", "playbook"],
+  "guideline_terms": ["guideline", "guidelines", "notification", "manual", "brochure", "corrigendum", "annexure"],
+  "news_terms": ["press release", "news", "announcement", "media coverage"],
+  "facility_terms": ["laboratory", "testing lab", "technical service centre", "facility", "space available on hire", "exhibition complex"],
+  "directory_terms": ["directory", "list of", "database of", "portal listing"],
+  "call_terms": ["call for proposals", "call for applications", "applications invited", "application round", "cohort", "challenge", "hackathon", "expression of interest", "eoi", "deadline extension", "applications open"],
+  "incubator_terms": ["incubator", "technology business incubator", "innovation hub", "startup hub", "accelerator centre"],
+  "scheme_terms": ["scheme", "grant", "fund", "credit guarantee", "financial assistance", "subsidy", "incentive"],
+  "programme_terms": ["programme", "program", "nidhi", "prayas", "entrepreneur-in-residence", "accelerator", "seed support"]
+}

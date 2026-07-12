@@ -1,0 +1,211 @@
+{
+  "service_version": "3.4.0.1",
+  "department_code": "DST",
+  "department_name": "Department of Science and Technology",
+  "policy": {
+    "html_crawl_domain": "dst.gov.in",
+    "external_links": "record_only",
+    "canonical_scheme_identity": "not_created_in_this_phase",
+    "call_titles": "source_evidence_only_never_scheme_name"
+  },
+  "seeds": [
+    {
+      "seed_id": "DST-ROOT-001",
+      "source_group": "DEPARTMENT_ROOT",
+      "source_role_hint": "DEPARTMENT_HOME",
+      "url": "https://dst.gov.in/",
+      "priority": 70,
+      "crawl_depth": 1,
+      "rationale": "Official DST department root; used for ownership and top-level discovery."
+    },
+    {
+      "seed_id": "DST-SCHEME-INDEX-001",
+      "source_group": "SCHEMES_AND_PROGRAMMES",
+      "source_role_hint": "SCHEME_PROGRAMME_INDEX",
+      "url": "https://dst.gov.in/schemes-programmes",
+      "priority": 100,
+      "crawl_depth": 5,
+      "rationale": "Primary official index for permanent DST schemes and programmes."
+    },
+    {
+      "seed_id": "DST-RDI-001",
+      "source_group": "SCHEMES_AND_PROGRAMMES",
+      "source_role_hint": "SCHEME_PROGRAMME_CANDIDATE",
+      "url": "https://dst.gov.in/rdi-scheme/research-development-and-innovation-rdi-cell",
+      "priority": 95,
+      "crawl_depth": 3,
+      "rationale": "Official RDI scheme page and related implementation evidence."
+    },
+    {
+      "seed_id": "DST-CAPACITY-001",
+      "source_group": "SCHEME_CATEGORIES",
+      "source_role_hint": "PROGRAMME_CATEGORY",
+      "url": "https://dst.gov.in/human-capacity-building-programmes",
+      "priority": 95,
+      "crawl_depth": 4,
+      "rationale": "Official S&T capacity-building category page."
+    },
+    {
+      "seed_id": "DST-INSTITUTION-001",
+      "source_group": "SCHEME_CATEGORIES",
+      "source_role_hint": "PROGRAMME_CATEGORY",
+      "url": "https://dst.gov.in/institutional-capacity-building-programmes",
+      "priority": 95,
+      "crawl_depth": 4,
+      "rationale": "Official institutional capacity-building scheme category."
+    },
+    {
+      "seed_id": "DST-RD-001",
+      "source_group": "SCHEME_CATEGORIES",
+      "source_role_hint": "PROGRAMME_CATEGORY",
+      "url": "https://dst.gov.in/research-development-programmes",
+      "priority": 95,
+      "crawl_depth": 4,
+      "rationale": "Official research and development programme category."
+    },
+    {
+      "seed_id": "DST-INNOVATION-001",
+      "source_group": "SCHEME_CATEGORIES",
+      "source_role_hint": "PROGRAMME_CATEGORY",
+      "url": "https://dst.gov.in/innovation-and-technology-development-programmes",
+      "priority": 95,
+      "crawl_depth": 4,
+      "rationale": "Official innovation and technology-development category."
+    },
+    {
+      "seed_id": "DST-SOCIETY-001",
+      "source_group": "SCHEME_CATEGORIES",
+      "source_role_hint": "PROGRAMME_CATEGORY",
+      "url": "https://dst.gov.in/science-society-programmes",
+      "priority": 95,
+      "crawl_depth": 4,
+      "rationale": "Official science-for-society programme category."
+    },
+    {
+      "seed_id": "DST-MISSIONS-001",
+      "source_group": "SCHEME_CATEGORIES",
+      "source_role_hint": "PROGRAMME_CATEGORY",
+      "url": "https://dst.gov.in/national-missions",
+      "priority": 95,
+      "crawl_depth": 4,
+      "rationale": "Official national missions category."
+    },
+    {
+      "seed_id": "DST-INTL-001",
+      "source_group": "SCHEME_CATEGORIES",
+      "source_role_hint": "PROGRAMME_CATEGORY",
+      "url": "https://dst.gov.in/international-cooperation-mega-science",
+      "priority": 92,
+      "crawl_depth": 4,
+      "rationale": "Official international cooperation and mega-science category."
+    },
+    {
+      "seed_id": "DST-DATA-001",
+      "source_group": "SCHEME_CATEGORIES",
+      "source_role_hint": "PROGRAMME_CATEGORY",
+      "url": "https://dst.gov.in/st-data-policy-and-training",
+      "priority": 92,
+      "crawl_depth": 4,
+      "rationale": "Official S&T data, policy and training category."
+    },
+    {
+      "seed_id": "DST-STATE-001",
+      "source_group": "SCHEME_CATEGORIES",
+      "source_role_hint": "PROGRAMME_CATEGORY",
+      "url": "https://dst.gov.in/state-st",
+      "priority": 92,
+      "crawl_depth": 4,
+      "rationale": "Official state science and technology initiatives category."
+    },
+    {
+      "seed_id": "DST-GLP-001",
+      "source_group": "SCHEME_CATEGORIES",
+      "source_role_hint": "PROGRAMME_CATEGORY",
+      "url": "https://dst.gov.in/ngcma",
+      "priority": 88,
+      "crawl_depth": 3,
+      "rationale": "Official Good Laboratory Practice / NGCMA programme source."
+    },
+    {
+      "seed_id": "DST-CALL-CURRENT-001",
+      "source_group": "CALLS_FOR_PROPOSALS",
+      "source_role_hint": "CALL_INDEX_CURRENT",
+      "url": "https://dst.gov.in/call-for-proposals",
+      "priority": 100,
+      "crawl_depth": 4,
+      "rationale": "Current time-bound DST calls; must remain separate from scheme identity."
+    },
+    {
+      "seed_id": "DST-CALL-ARCHIVE-001",
+      "source_group": "CALLS_FOR_PROPOSALS",
+      "source_role_hint": "CALL_INDEX_ARCHIVE",
+      "url": "https://dst.gov.in/archive-call-for-proposals",
+      "priority": 100,
+      "crawl_depth": 5,
+      "rationale": "Paginated archive used to reconstruct recurring calls and parent schemes."
+    },
+    {
+      "seed_id": "DST-GUIDELINES-001",
+      "source_group": "GUIDELINES_AND_OMS",
+      "source_role_hint": "GUIDELINES_INDEX",
+      "url": "https://dst.gov.in/oms-and-guidelines",
+      "priority": 90,
+      "crawl_depth": 4,
+      "rationale": "Official OMs and guidelines supporting scheme and call evidence."
+    },
+    {
+      "seed_id": "DST-SEED-PROGRAMMES-001",
+      "source_group": "DIVISIONAL_PROGRAMMES",
+      "source_role_hint": "PROGRAMME_CATEGORY",
+      "url": "https://dst.gov.in/programmes-innitiatives",
+      "priority": 95,
+      "crawl_depth": 4,
+      "rationale": "Official SEED programmes and initiatives page (official URL spelling retained)."
+    },
+    {
+      "seed_id": "DST-SEED-SCHEMES-001",
+      "source_group": "DIVISIONAL_PROGRAMMES",
+      "source_role_hint": "SCHEME_PROGRAMME_INDEX",
+      "url": "https://dst.gov.in/about-schemes",
+      "priority": 95,
+      "crawl_depth": 4,
+      "rationale": "Official SEED operational scheme inventory and eligibility evidence."
+    },
+    {
+      "seed_id": "DST-SEED-APPLY-001",
+      "source_group": "APPLICATION_SUPPORT",
+      "source_role_hint": "APPLICATION_GUIDANCE",
+      "url": "https://dst.gov.in/how-apply-project-support",
+      "priority": 85,
+      "crawl_depth": 3,
+      "rationale": "Official application process guidance and e-PMS linkage."
+    },
+    {
+      "seed_id": "DST-SANCTIONED-001",
+      "source_group": "HISTORICAL_EVIDENCE",
+      "source_role_hint": "SANCTIONED_PROJECTS_INDEX",
+      "url": "https://dst.gov.in/sanctioned-projects",
+      "priority": 82,
+      "crawl_depth": 3,
+      "rationale": "Historical programme, renaming and implementation evidence."
+    },
+    {
+      "seed_id": "DST-ARCHIVE-001",
+      "source_group": "HISTORICAL_EVIDENCE",
+      "source_role_hint": "DIVISION_ARCHIVE",
+      "url": "https://dst.gov.in/archive",
+      "priority": 78,
+      "crawl_depth": 3,
+      "rationale": "Division-level archived programme evidence; not a generic site archive."
+    },
+    {
+      "seed_id": "DST-ANNOUNCEMENT-001",
+      "source_group": "SUPPORTING_ANNOUNCEMENTS",
+      "source_role_hint": "ANNOUNCEMENT_INDEX",
+      "url": "https://dst.gov.in/whatsnew/announcement",
+      "priority": 68,
+      "crawl_depth": 2,
+      "rationale": "Mixed announcements used only for supporting evidence and exclusions."
+    }
+  ]
+}

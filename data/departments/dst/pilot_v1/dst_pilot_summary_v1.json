@@ -1,0 +1,36 @@
+﻿{
+  "run_id": "dst_pilot_20260711T075150Z",
+  "generated_at": "2026-07-11T07:51:50+00:00",
+  "verification_date": "2026-07-11",
+  "source_snapshot": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\departments\\dst\\v3_4_0_1\\crawl\\dst_crawled_pages_v3_4_0_1.csv",
+  "source_snapshot_is_production": false,
+  "live_refresh_enabled": true,
+  "live_refresh_inventory": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\departments\\dst\\pilot_v1\\live_refresh\\live_crawled_pages.csv",
+  "live_refresh_page_count": 10,
+  "live_refresh_error_count": 0,
+  "programme_count": 10,
+  "individual_call_count": 352,
+  "startup_relevant_call_count": 14,
+  "startup_ecosystem_call_count": 4,
+  "startup_call_review_count": 9,
+  "open_call_count": 4,
+  "upcoming_call_count": 0,
+  "unresolved_startup_parent_count": 15,
+  "curation_queue_count": 37,
+  "production_modified": false,
+  "validation": {
+    "passed": true,
+    "checks": {
+      "unique_programme_ids": true,
+      "unique_call_ids": true,
+      "all_programme_parents_exist": true,
+      "all_call_parents_exist_or_unresolved": true,
+      "no_index_container_stored_as_call": true,
+      "all_calls_have_detail_or_container_evidence": true,
+      "open_calls_have_official_status_evidence": true,
+      "programme_sector_scopes_controlled": true,
+      "unknown_programme_sectors_not_invented": true,
+      "calls_do_not_inherit_parent_sector": true
+    }
+  }
+}

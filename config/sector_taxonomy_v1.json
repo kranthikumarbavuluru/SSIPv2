@@ -1,0 +1,28 @@
+{
+  "version": "1.0.0",
+  "sectors": [
+    {"name": "Agriculture & AgriTech", "strong_phrases": ["agritech", "agri-tech", "agriculture", "precision farming", "horticulture", "fisheries", "livestock"], "weak_phrases": ["farmer", "crop", "irrigation", "post-harvest"]},
+    {"name": "Biotechnology & Life Sciences", "strong_phrases": ["biotechnology", "biotech", "bio-ai", "bioe3", "genomics", "biopharma", "synthetic biology"], "weak_phrases": ["life sciences", "bioscience", "bioeconomy"]},
+    {"name": "Healthcare & MedTech", "strong_phrases": ["medtech", "medical device", "diagnostics", "digital health", "healthtech", "healthcare"], "weak_phrases": ["clinical", "hospital", "therapeutic"]},
+    {"name": "Artificial Intelligence & Data", "strong_phrases": ["artificial intelligence", "machine learning", "deep learning", "bio-ai", "computer vision"], "weak_phrases": ["data science", "analytics", "natural language processing"]},
+    {"name": "Digital Technology & Software", "strong_phrases": ["saas", "cloud computing", "software product", "digital platform", "information technology"], "weak_phrases": ["software", "digital service", "mobile application"]},
+    {"name": "Cybersecurity", "strong_phrases": ["cybersecurity", "cyber security", "cryptography", "digital forensics"], "weak_phrases": ["privacy", "digital trust", "network security"]},
+    {"name": "Electronics & Semiconductors", "strong_phrases": ["semiconductor", "chip design", "microelectronics", "esdm", "vlsi"], "weak_phrases": ["embedded system", "sensor", "electronics manufacturing"]},
+    {"name": "Deep Technology", "strong_phrases": ["deep tech", "deeptech", "quantum technology", "photonics", "advanced materials"], "weak_phrases": ["frontier technology", "technology translation"]},
+    {"name": "Robotics & Automation", "strong_phrases": ["robotics", "industrial automation", "autonomous system", "drone technology"], "weak_phrases": ["robot", "automation", "mechatronics"]},
+    {"name": "Manufacturing & Industry 4.0", "strong_phrases": ["industry 4.0", "advanced manufacturing", "smart manufacturing", "additive manufacturing"], "weak_phrases": ["manufacturing", "machinery", "production technology"]},
+    {"name": "ClimateTech & Clean Energy", "strong_phrases": ["climatetech", "climate technology", "clean energy", "decarbonisation", "climate change"], "weak_phrases": ["low carbon", "green technology", "net zero"]},
+    {"name": "Renewable Energy & Energy Storage", "strong_phrases": ["renewable energy", "solar energy", "wind energy", "green hydrogen", "energy storage", "battery technology"], "weak_phrases": ["solar", "wind", "hydrogen", "battery"]},
+    {"name": "Environment & Circular Economy", "strong_phrases": ["circular economy", "waste management", "recycling", "pollution control", "waste to wealth"], "weak_phrases": ["water treatment", "sanitation", "effluent"]},
+    {"name": "Financial Services & FinTech", "strong_phrases": ["fintech", "financial technology", "digital payment", "insurtech", "regtech"], "weak_phrases": ["payment technology", "banking technology"]},
+    {"name": "Education & EdTech", "strong_phrases": ["edtech", "education technology", "digital learning", "learning platform"], "weak_phrases": ["education", "skilling", "training"]},
+    {"name": "Space Technology", "strong_phrases": ["space technology", "spacetech", "satellite", "launch vehicle", "geospatial"], "weak_phrases": ["remote sensing", "earth observation"]},
+    {"name": "Aerospace & Defence", "strong_phrases": ["aerospace", "defence technology", "defense technology", "dual-use technology"], "weak_phrases": ["aviation", "defence manufacturing"]},
+    {"name": "Mobility & Transportation", "strong_phrases": ["electric vehicle", "e-mobility", "mobility technology", "transport technology"], "weak_phrases": ["automotive", "logistics", "transportation"]},
+    {"name": "FoodTech & Food Processing", "strong_phrases": ["foodtech", "food technology", "food processing", "food innovation"], "weak_phrases": ["cold chain", "nutrition"]},
+    {"name": "Social Impact & Rural Innovation", "strong_phrases": ["social innovation", "rural innovation", "grassroots innovation", "inclusive innovation"], "weak_phrases": ["social impact", "livelihood", "underserved"]},
+    {"name": "Cross-sector Innovation & Entrepreneurship", "strong_phrases": ["sector agnostic startup", "startups across sectors", "innovation and entrepreneurship", "technology business incubator"], "weak_phrases": ["startup", "entrepreneurship", "incubation", "innovator"]},
+    {"name": "Cross-sector MSME & Startup Finance", "strong_phrases": ["credit guarantee", "working capital", "bill discounting", "startup loan", "msme finance"], "weak_phrases": ["loan", "credit", "finance", "guarantee", "financial assistance"]},
+    {"name": "Sector Agnostic / Multi-sector", "strong_phrases": ["all sectors", "sector agnostic", "multi-sector", "multiple sectors"], "weak_phrases": []}
+  ]
+}

@@ -1,0 +1,185 @@
+{
+  "version": "3.3.0",
+  "generated_on": "2026-07-10",
+  "purpose": "Official-source registry for bounded SSIP discovery planning across startup, MSME, innovation, challenge and state pilot portals.",
+  "important_note": "These entries are discovery sources only. They are not scheme records and must not be counted as catalogue schemes until discovery, classification, validation, admin review and publication accept extracted records.",
+  "base_registry": "public_dashboard_official_sources_v3_0.json",
+  "defaults": {
+    "enabled": true,
+    "status": "DISCOVERY_SEED",
+    "respect_robots": true,
+    "rate_limit_per_domain_per_second": 0.5,
+    "max_depth": 1,
+    "max_pages_per_seed": 25,
+    "dry_run_only": true
+  },
+  "discovery_batches": [
+    {
+      "batch_id": "central_priority_indexes",
+      "description": "National and central-government discovery indexes for startup, MSME and scheme directories.",
+      "priority": "HIGH",
+      "source_ids": [
+        "myscheme_discovery_index",
+        "startup_india_discovery_index",
+        "msme_dc_scheme_directory",
+        "msme_champions_portal"
+      ]
+    },
+    {
+      "batch_id": "meity_programme_sources",
+      "description": "MeitY and MeitY Startup Hub programme discovery sources.",
+      "priority": "HIGH",
+      "source_ids": [
+        "meity_programmes_index",
+        "meity_startup_hub_programmes"
+      ]
+    },
+    {
+      "batch_id": "andhra_pradesh_pilot",
+      "description": "State pilot sources for Andhra Pradesh startup, innovation and industries support discovery.",
+      "priority": "MEDIUM",
+      "source_ids": [
+        "ap_innovation_society",
+        "ap_startup_portal",
+        "ap_industries_incentives"
+      ]
+    }
+  ],
+  "additional_sources": [
+    {
+      "source_id": "myscheme_discovery_index",
+      "name": "myScheme - Search and Discovery Index",
+      "scope": "Central",
+      "ministry": "Ministry of Electronics and Information Technology",
+      "department": "Digital India Corporation",
+      "agency": "myScheme",
+      "source_type": "national_scheme_discovery_index",
+      "priority": "HIGH",
+      "official_url": "https://www.myscheme.gov.in/search",
+      "seed_urls": ["https://www.myscheme.gov.in/search"],
+      "coverage_note": "Search index for official government schemes and eligibility-guided discovery.",
+      "status": "DISCOVERY_SEED",
+      "enabled": true
+    },
+    {
+      "source_id": "startup_india_discovery_index",
+      "name": "Startup India - Discovery Index",
+      "scope": "Central",
+      "ministry": "Ministry of Commerce and Industry",
+      "department": "Department for Promotion of Industry and Internal Trade (DPIIT)",
+      "agency": "Startup India",
+      "source_type": "startup_discovery_index",
+      "priority": "HIGH",
+      "official_url": "https://www.startupindia.gov.in/content/sih/en/search.html",
+      "seed_urls": ["https://www.startupindia.gov.in/content/sih/en/search.html"],
+      "coverage_note": "Startup India search surface for schemes, programmes, challenges and ecosystem resources.",
+      "status": "DISCOVERY_SEED",
+      "enabled": true
+    },
+    {
+      "source_id": "msme_dc_scheme_directory",
+      "name": "Office of Development Commissioner MSME - Schemes",
+      "scope": "Central",
+      "ministry": "Ministry of Micro, Small and Medium Enterprises",
+      "department": "Office of Development Commissioner (MSME)",
+      "agency": "DC MSME",
+      "source_type": "msme_scheme_directory",
+      "priority": "HIGH",
+      "official_url": "https://dcmsme.gov.in/schemes.aspx",
+      "seed_urls": ["https://dcmsme.gov.in/schemes.aspx"],
+      "coverage_note": "Official DC MSME scheme directory for enterprise development and support programmes.",
+      "status": "DISCOVERY_SEED",
+      "enabled": true
+    },
+    {
+      "source_id": "msme_champions_portal",
+      "name": "MSME Champions Portal",
+      "scope": "Central",
+      "ministry": "Ministry of Micro, Small and Medium Enterprises",
+      "department": "Ministry of Micro, Small and Medium Enterprises",
+      "agency": "MSME Champions",
+      "source_type": "msme_support_portal",
+      "priority": "MEDIUM",
+      "official_url": "https://champions.gov.in/",
+      "seed_urls": ["https://champions.gov.in/"],
+      "coverage_note": "Official MSME support and facilitation portal for enterprise assistance.",
+      "status": "DISCOVERY_SEED",
+      "enabled": true
+    },
+    {
+      "source_id": "meity_programmes_index",
+      "name": "MeitY - Programmes and Schemes",
+      "scope": "Central",
+      "ministry": "Ministry of Electronics and Information Technology",
+      "department": "Ministry of Electronics and Information Technology",
+      "agency": "MeitY",
+      "source_type": "electronics_it_programme_index",
+      "priority": "HIGH",
+      "official_url": "https://www.meity.gov.in/schemes",
+      "seed_urls": ["https://www.meity.gov.in/schemes", "https://www.meity.gov.in/content/schemes-and-services"],
+      "coverage_note": "Official MeitY schemes, services and programme discovery surface.",
+      "status": "DISCOVERY_SEED",
+      "enabled": true
+    },
+    {
+      "source_id": "meity_startup_hub_programmes",
+      "name": "MeitY Startup Hub - Programmes",
+      "scope": "Central",
+      "ministry": "Ministry of Electronics and Information Technology",
+      "department": "Ministry of Electronics and Information Technology",
+      "agency": "MeitY Startup Hub",
+      "source_type": "electronics_it_startup_programmes",
+      "priority": "HIGH",
+      "official_url": "https://msh.meity.gov.in/",
+      "seed_urls": ["https://msh.meity.gov.in/", "https://msh.meity.gov.in/schemes"],
+      "coverage_note": "Official MeitY Startup Hub source for startup schemes, cohorts, challenges and innovation programmes.",
+      "status": "DISCOVERY_SEED",
+      "enabled": true
+    },
+    {
+      "source_id": "ap_innovation_society",
+      "name": "Andhra Pradesh Innovation Society",
+      "scope": "State/UT",
+      "ministry": "Government of Andhra Pradesh",
+      "department": "Information Technology, Electronics and Communications Department",
+      "agency": "Andhra Pradesh Innovation Society",
+      "source_type": "state_innovation_portal",
+      "priority": "MEDIUM",
+      "official_url": "https://apis.ap.gov.in/",
+      "seed_urls": ["https://apis.ap.gov.in/"],
+      "coverage_note": "Andhra Pradesh pilot source for innovation, startup and ecosystem programmes.",
+      "status": "DISCOVERY_SEED",
+      "enabled": true
+    },
+    {
+      "source_id": "ap_startup_portal",
+      "name": "Andhra Pradesh Startup Portal",
+      "scope": "State/UT",
+      "ministry": "Government of Andhra Pradesh",
+      "department": "Information Technology, Electronics and Communications Department",
+      "agency": "Andhra Pradesh Startup Portal",
+      "source_type": "state_startup_portal",
+      "priority": "MEDIUM",
+      "official_url": "https://startup.ap.gov.in/",
+      "seed_urls": ["https://startup.ap.gov.in/"],
+      "coverage_note": "Andhra Pradesh pilot source for startup policy, programmes and ecosystem support.",
+      "status": "DISCOVERY_SEED",
+      "enabled": true
+    },
+    {
+      "source_id": "ap_industries_incentives",
+      "name": "Andhra Pradesh Industries - Incentives and Schemes",
+      "scope": "State/UT",
+      "ministry": "Government of Andhra Pradesh",
+      "department": "Industries and Commerce Department",
+      "agency": "Andhra Pradesh Industries",
+      "source_type": "state_industry_scheme_directory",
+      "priority": "MEDIUM",
+      "official_url": "https://www.apindustries.gov.in/",
+      "seed_urls": ["https://www.apindustries.gov.in/"],
+      "coverage_note": "Andhra Pradesh pilot source for industry incentives and enterprise support schemes.",
+      "status": "DISCOVERY_SEED",
+      "enabled": true
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "database_path": null,
+  "busy_timeout_ms": 20000,
+  "preserve_workflow_fields": true,
+  "require_meity_source": true
+}

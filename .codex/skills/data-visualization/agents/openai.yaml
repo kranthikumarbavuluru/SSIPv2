@@ -1,0 +1,4 @@
+interface:
+  display_name: "Data Visualization"
+  short_description: "Design clear, accessible dashboard visuals"
+  default_prompt: "Use $data-visualization to design clear, accessible visualizations for the SSIP dashboard."

@@ -2022,3 +2022,61 @@ section[data-testid="stMain"]::-webkit-scrollbar-thumb:hover { background: #527c
   }
   .intelligence-snapshot .kpi-strip { grid-template-columns: 1fr; }
 }
+
+/* v3.4.0.13 — one native browser scroll surface (no nested Streamlit scroller) */
+html {
+  height: auto !important;
+  min-height: 100% !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  scrollbar-color: #7d9fc5 #e8f0f8;
+  scrollbar-width: auto;
+  background: #ffffff !important;
+}
+
+body,
+#root {
+  position: relative !important;
+  height: auto !important;
+  min-height: 100% !important;
+  overflow: visible !important;
+  background: #ffffff !important;
+}
+
+.stApp,
+div[data-testid="stAppViewContainer"] {
+  position: relative !important;
+  inset: auto !important;
+  height: auto !important;
+  min-height: 100vh !important;
+  overflow: visible !important;
+}
+
+section[data-testid="stMain"] {
+  height: auto !important;
+  min-height: 100vh !important;
+  overflow: visible !important;
+  overscroll-behavior: auto;
+  scrollbar-gutter: auto;
+  touch-action: pan-y;
+}
+
+html::-webkit-scrollbar { width: 12px; }
+html::-webkit-scrollbar-track { background: #e8f0f8; }
+html::-webkit-scrollbar-thumb {
+  min-height: 48px;
+  border: 3px solid #e8f0f8;
+  border-radius: 999px;
+  background: #7d9fc5;
+}
+html::-webkit-scrollbar-thumb:hover { background: #527cae; }
+
+:root:has(#ssip-dark-mode) html {
+  scrollbar-color: #5d7da4 #13253e;
+  background: #0b1728 !important;
+}
+
+:root:has(#ssip-dark-mode) body,
+:root:has(#ssip-dark-mode) #root {
+  background: #0b1728 !important;
+}

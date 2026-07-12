@@ -3,7 +3,7 @@
   "source_root": ".",
   "target_purpose": "clean GitHub repository export",
   "file_count": 313,
-  "total_bytes": 5121678,
+  "total_bytes": 5123069,
   "files": [
     {
       "path": ".codex/skills/data-visualization/SKILL.md",
@@ -233,7 +233,7 @@
     {
       "path": "apps/public_dashboard_app_v2_9.py",
       "size": 69346,
-      "sha256": "fa175caffd7369b7168c3c5c2852388c71bd1376829018b1b83023de5218efc7"
+      "sha256": "1c18fe97d120ac7752ccbbd3cca37c9dc4d4ea89eed123a29692658421e632c7"
     },
     {
       "path": "apps/ssip_public_dashboard_v3_4_0_4.py",
@@ -242,8 +242,8 @@
     },
     {
       "path": "assets/dashboard_theme.css",
-      "size": 54842,
-      "sha256": "b0bdab616f81e44705d8607d3cc8a2274e155fb3a670cce55bf43a6b5ad01865"
+      "size": 56233,
+      "sha256": "aa98879eef30e208da2815d8b39d2c31044276b9384c722e98830a2d01160a2b"
     },
     {
       "path": "config/agent_platform_v3_4_1_0.json",

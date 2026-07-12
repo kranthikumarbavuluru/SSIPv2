@@ -65,7 +65,7 @@ from ssip_dashboard.dst_history import (
 )
 
 
-APP_VERSION = "3.4.0.12"
+APP_VERSION = "3.4.0.13"
 PAGE_NAMES = [
     "Home",
     "Scheme Explorer",

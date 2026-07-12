@@ -73,11 +73,11 @@ def scheme_card(record: Any, *, compact: bool = False) -> str:
     tag_html = "".join(f'<span class="tag">{esc(tag)}</span>' for tag in tags)
     links = []
     if getattr(record, "official_page_url", ""):
-        links.append(f'<a target="_blank" href="{esc(record.official_page_url)}">Official Page</a>')
+        links.append(f'<a target="_blank" rel="noopener noreferrer" href="{esc(record.official_page_url)}">Official Page</a>')
     if getattr(record, "application_url", ""):
-        links.append(f'<a target="_blank" href="{esc(record.application_url)}">Application Portal</a>')
+        links.append(f'<a target="_blank" rel="noopener noreferrer" href="{esc(record.application_url)}">Application Portal</a>')
     if getattr(record, "guideline_urls", []):
-        links.append(f'<a target="_blank" href="{esc(record.guideline_urls[0])}">Manual / Guideline</a>')
+        links.append(f'<a target="_blank" rel="noopener noreferrer" href="{esc(record.guideline_urls[0])}">Manual / Guideline</a>')
     link_html = "".join(f'<span class="link-pill">{link}</span>' for link in links)
     date_line = esc(getattr(record, "closing_date", "") or "Closing date not recorded")
     funding = format_inr(getattr(record, "funding_maximum", None))

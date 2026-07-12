@@ -161,7 +161,7 @@ def render_source_card(source: OfficialSource) -> str:
         f'<p>{esc(source.coverage_note)}</p>'
         f'<div class="scheme-meta"><span>{esc(source.source_type.replace("_", " ").title())}</span>'
         f'<span>{len(source.seed_urls)} seed URL(s)</span></div>'
-        f'<div class="link-row"><span class="link-pill"><a target="_blank" href="{esc(source.official_url)}">Official Source</a></span></div>'
+        f'<div class="link-row"><span class="link-pill"><a target="_blank" rel="noopener noreferrer" href="{esc(source.official_url)}">Official Source</a></span></div>'
         "</article>"
     )
 
@@ -195,15 +195,15 @@ def render_scheme_row(record: CatalogueRecord, lookup: dict[str, str] | None = N
     level = government_level(record, lookup or {})
     links = []
     if record.official_page_url:
-        links.append(f'<a target="_blank" href="{esc(record.official_page_url)}">Official Page</a>')
+        links.append(f'<a target="_blank" rel="noopener noreferrer" href="{esc(record.official_page_url)}">Official Page</a>')
     if record.application_url:
-        links.append(f'<a target="_blank" href="{esc(record.application_url)}">Application Portal</a>')
+        links.append(f'<a target="_blank" rel="noopener noreferrer" href="{esc(record.application_url)}">Application Portal</a>')
     if record.application_process:
         links.append("<span>How to Apply</span>")
     if record.guideline_urls:
-        links.append(f'<a target="_blank" href="{esc(record.guideline_urls[0])}">Manual</a>')
+        links.append(f'<a target="_blank" rel="noopener noreferrer" href="{esc(record.guideline_urls[0])}">Manual</a>')
     if record.reference_urls:
-        links.append(f'<a target="_blank" href="{esc(record.reference_urls[0])}">Reference</a>')
+        links.append(f'<a target="_blank" rel="noopener noreferrer" href="{esc(record.reference_urls[0])}">Reference</a>')
     link_html = "".join(f'<span class="link-pill">{link}</span>' for link in links)
     eligibility = "; ".join(record.target_beneficiaries[:2] or record.eligibility[:1])
     return (
@@ -265,7 +265,7 @@ def render_quick_links(official_sources: list[OfficialSource]) -> str:
         source = official_sources[0]
         rows += (
             '<div class="quick-link">'
-            f'<a target="_blank" href="{esc(source.official_url)}"><strong>{esc(source.name)}</strong></a>'
+            f'<a target="_blank" rel="noopener noreferrer" href="{esc(source.official_url)}"><strong>{esc(source.name)}</strong></a>'
             '<span>Priority source seed</span>'
             "</div>"
         )

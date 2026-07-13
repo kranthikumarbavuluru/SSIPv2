@@ -1,0 +1,64 @@
+{
+  "gate_status": "WAITING_FOR_ADMIN",
+  "generated_at": "2026-07-13T08:35:06+00:00",
+  "outputs": [
+    {
+      "path": "data/departments/meity/v3_4_3_7/meity_admin_approved_delta_v3_4_3_7.csv",
+      "sha256": "3e41455e242b6987c222df812aa1eb79d7f01ef7a28c53e0a9bb5358632e9e9e",
+      "size_bytes": 699
+    },
+    {
+      "path": "data/departments/meity/v3_4_3_7/meity_admin_decision_template_v3_4_3_7.csv",
+      "sha256": "47f1b94a58f85aa43cb271f2494979ee118e711a43384ef61f7858302a1363c6",
+      "size_bytes": 2283
+    },
+    {
+      "path": "data/departments/meity/v3_4_3_7/meity_admin_deferred_delta_v3_4_3_7.csv",
+      "sha256": "3e41455e242b6987c222df812aa1eb79d7f01ef7a28c53e0a9bb5358632e9e9e",
+      "size_bytes": 699
+    },
+    {
+      "path": "data/departments/meity/v3_4_3_7/meity_admin_evidence_bundle_v3_4_3_7.json",
+      "sha256": "4db66716e6ecea7d2ab5d12c28ff6f8191a06887fbe32537f8cd04f04c4048e7",
+      "size_bytes": 12383
+    },
+    {
+      "path": "data/departments/meity/v3_4_3_7/meity_admin_protected_file_hashes_v3_4_3_7.json",
+      "sha256": "fb62d475e593e065be00965d0c671a3b39618abe0c26f5bf92c8b66969ea1230",
+      "size_bytes": 4695
+    },
+    {
+      "path": "data/departments/meity/v3_4_3_7/meity_admin_rejected_delta_v3_4_3_7.csv",
+      "sha256": "3e41455e242b6987c222df812aa1eb79d7f01ef7a28c53e0a9bb5358632e9e9e",
+      "size_bytes": 699
+    },
+    {
+      "path": "data/departments/meity/v3_4_3_7/meity_admin_returned_delta_v3_4_3_7.csv",
+      "sha256": "3e41455e242b6987c222df812aa1eb79d7f01ef7a28c53e0a9bb5358632e9e9e",
+      "size_bytes": 699
+    },
+    {
+      "path": "data/departments/meity/v3_4_3_7/meity_admin_review_queue_v3_4_3_7.csv",
+      "sha256": "47f1b94a58f85aa43cb271f2494979ee118e711a43384ef61f7858302a1363c6",
+      "size_bytes": 2283
+    },
+    {
+      "path": "data/departments/meity/v3_4_3_7/meity_admin_verification_gate_v3_4_3_7.json",
+      "sha256": "2f5a7b4495ad393f7f1ee6a56b3594c58ed5396e52ce508ea1cacd9b3262e7a7",
+      "size_bytes": 1231
+    },
+    {
+      "path": "data/departments/meity/v3_4_3_7/meity_admin_verification_summary_v3_4_3_7.json",
+      "sha256": "2f5a7b4495ad393f7f1ee6a56b3594c58ed5396e52ce508ea1cacd9b3262e7a7",
+      "size_bytes": 1231
+    },
+    {
+      "path": "data/departments/meity/v3_4_3_7/meity_calls_coverage_gap_v3_4_3_7.json",
+      "sha256": "7df32b07098cff9f5a9afbd5dfce213f2b71bf2493c47f93c8b824a2b5b2ae61",
+      "size_bytes": 9519
+    }
+  ],
+  "phase": "MeitY Admin Verification Gate",
+  "publication_status": "NOT_PUBLISHED",
+  "version": "3.4.3.7"
+}

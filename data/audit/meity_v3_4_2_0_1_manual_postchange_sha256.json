@@ -1,0 +1,92 @@
+{
+  "version": "3.4.2.0.1",
+  "phase": "MeitY Manual Master Register Pilot - SAMRIDH and TIDE 2.0",
+  "execution_mode": "MANUAL_PREVIEW_ONLY",
+  "baseline_recorded_at": "2026-07-12T22:08:28.9016571+05:30",
+  "validation_status": "PASS",
+  "frozen_files": [
+    {
+      "path": "data/catalogue_preview/v3_3_2/catalogue_preview_v3_3_2.csv",
+      "expected_sha256": "f82556d15593f83ffe40255fc79c8da9fba22430f82add99d07240d11d0f971a",
+      "actual_sha256": "f82556d15593f83ffe40255fc79c8da9fba22430f82add99d07240d11d0f971a",
+      "unchanged": true
+    },
+    {
+      "path": "data/publication/current_manifest.json",
+      "expected_sha256": "193e0d37a296662d9ed124d5847a27749f4c7bb64118b11294ea650264949a5a",
+      "actual_sha256": "193e0d37a296662d9ed124d5847a27749f4c7bb64118b11294ea650264949a5a",
+      "unchanged": true
+    },
+    {
+      "path": "data/publication/20260710T162806+0000_f4936983/catalogue.csv",
+      "expected_sha256": "f82556d15593f83ffe40255fc79c8da9fba22430f82add99d07240d11d0f971a",
+      "actual_sha256": "f82556d15593f83ffe40255fc79c8da9fba22430f82add99d07240d11d0f971a",
+      "unchanged": true
+    },
+    {
+      "path": "data/publication/20260710T162806+0000_f4936983/manifest.json",
+      "expected_sha256": "193e0d37a296662d9ed124d5847a27749f4c7bb64118b11294ea650264949a5a",
+      "actual_sha256": "193e0d37a296662d9ed124d5847a27749f4c7bb64118b11294ea650264949a5a",
+      "unchanged": true
+    },
+    {
+      "path": "apps/public_dashboard_app_v2_9.py",
+      "expected_sha256": "77bd6cff08353e9587459b8f507ef5399b3c508fd514d73bdb87f8cc97ca14cd",
+      "actual_sha256": "77bd6cff08353e9587459b8f507ef5399b3c508fd514d73bdb87f8cc97ca14cd",
+      "unchanged": true
+    },
+    {
+      "path": "assets/dashboard_theme.css",
+      "expected_sha256": "2841d412db0c4f1f4c5800b5bfc71860217f6427a62855b2560004e5af946524",
+      "actual_sha256": "2841d412db0c4f1f4c5800b5bfc71860217f6427a62855b2560004e5af946524",
+      "unchanged": true
+    },
+    {
+      "path": "assets/styles/ssip_public_dashboard.css",
+      "expected_sha256": "9c03cb27fd339acf075c3daa986a2805fd68f52ffe55adafc7266dc8c96bc1b8",
+      "actual_sha256": "9c03cb27fd339acf075c3daa986a2805fd68f52ffe55adafc7266dc8c96bc1b8",
+      "unchanged": true
+    },
+    {
+      "path": "tests/test_end_to_end_governed_agents_v1.py",
+      "expected_sha256": "ae41218d6000a28c3831843411faec2fc4e65d2efd1a2dd5b4f530127d1f70a8",
+      "actual_sha256": "ae41218d6000a28c3831843411faec2fc4e65d2efd1a2dd5b4f530127d1f70a8",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/dpiit_manual_pilot_finalize_v3_4_1_0_4.ps1",
+      "expected_sha256": "434d2ea1c94d6c3832e52feecf6900509f78ccf1b400cf8953e6a8b981f6d108",
+      "actual_sha256": "434d2ea1c94d6c3832e52feecf6900509f78ccf1b400cf8953e6a8b981f6d108",
+      "unchanged": true
+    }
+  ],
+  "frozen_trees": [
+    {
+      "path": "data/departments/dpiit",
+      "expected_sha256": "dd292198e9067548c5057bbe882fdadb7d81c5b39e21316f401c8ae04f5a268e",
+      "actual_sha256": "dd292198e9067548c5057bbe882fdadb7d81c5b39e21316f401c8ae04f5a268e",
+      "unchanged": true
+    },
+    {
+      "path": "data/departments/dst",
+      "expected_sha256": "5a32eb04530f9a72cfd7f01f354fa081595613b678153b5e7942ab9425261976",
+      "actual_sha256": "5a32eb04530f9a72cfd7f01f354fa081595613b678153b5e7942ab9425261976",
+      "unchanged": true
+    }
+  ],
+  "phase_output_tree_sha256": "a1bf95f236f1167ece2e5dce7959331f1babaa0135d1f72cd18839798d434ba3",
+  "generated_output_hashes": {
+    "validation": "40fe9609db1f29e34253e5e5d1ac7b11be817c2fef4effe52e19a16d828a2d16",
+    "summary": "4bf801568c35d8e8ffcbbaedc0b9473fb548739557a2aad62c594bbfecf33a58",
+    "manifest": "742b46ec679adc5c9f1b53068b267e17f7a1fec8075ad30e68b5d2af1b501bc4"
+  },
+  "catalogue_baseline": {
+    "active_rows": 137,
+    "visible_records": 51,
+    "immutable_published_rows": 137,
+    "canonical_publication_hash": "838ca86cde4b2ceebd4325850c783823c931a3e42ef5c4ef74b7ae54a4596e4d"
+  },
+  "publication_performed": false,
+  "database_modified": false,
+  "dashboard_modified": false
+}

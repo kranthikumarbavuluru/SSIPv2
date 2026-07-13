@@ -1,0 +1,15 @@
+{
+  "package": "SSIP Emergency Catalogue Restore",
+  "files": [
+    {
+      "path": "README_EMERGENCY_RESTORE.md",
+      "sha256": "8d40972a05e7853fc6916ed0c8ac349adfe1a944bd23acdb991c1153dbb271dc",
+      "size_bytes": 808
+    },
+    {
+      "path": "RESTORE_PRE_GOVERNANCE_CATALOGUE.ps1",
+      "sha256": "a0909b996f4fb96810dc04d7b2b1632282237545bc85db01833248cc05d64e6b",
+      "size_bytes": 6334
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "service_version": "3.4.0.6b",
+  "generated_at": "2026-07-10T15:36:54+00:00",
+  "input_catalogue": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\catalogue_preview\\v3_3_2\\catalogue_preview_v3_3_2.csv",
+  "applied_to_active_dashboard_catalogue": true,
+  "backup": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\backups\\sector_verification_v3_4_0_6b\\catalogue_preview_v3_3_2_before_sector_repair_20260710_210654.csv",
+  "counts": {
+    "input_rows": 137,
+    "visible_rows": 137,
+    "blank_sector_rows": 0,
+    "sector_not_specified_rows": 0,
+    "manual_review_rows": 62
+  },
+  "distribution": {
+    "Cross-sector MSME & Startup Finance": 35,
+    "Cross-sector Innovation & Entrepreneurship": 77,
+    "Digital Technology & Software": 1,
+    "Sector Agnostic / Multi-sector": 14,
+    "Artificial Intelligence & Data": 4,
+    "Healthcare & MedTech": 2,
+    "Aerospace & Defence": 2,
+    "Financial Services & FinTech": 1,
+    "Retail, Commerce & Consumer Technology": 1
+  },
+  "validation_passed": true,
+  "outputs": {
+    "mapping": "sector_scheme_mapping_v3_4_0_6b.csv",
+    "review_queue": "sector_manual_review_queue_v3_4_0_6b.csv",
+    "distribution": "sector_distribution_v3_4_0_6b.csv",
+    "validation": "sector_validation_v3_4_0_6b.json"
+  }
+}

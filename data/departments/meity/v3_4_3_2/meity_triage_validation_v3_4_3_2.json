@@ -1,0 +1,69 @@
+{
+  "version": "3.4.3.2",
+  "phase": "MeitY Candidate Normalization, Identity Deduplication and Classification Triage",
+  "validation_status": "PASS",
+  "checks": [
+    {
+      "name": "input_master_candidates_21",
+      "passed": true,
+      "details": "actual=21"
+    },
+    {
+      "name": "verified_permanent_schemes_4",
+      "passed": true,
+      "details": "actual=4"
+    },
+    {
+      "name": "existing_ids_preserved",
+      "passed": true,
+      "details": "{\"147173e17ea741687247\": \"SAMRIDH\", \"6af79cf6c8a213dddce8\": \"TIDE 2.0\"}"
+    },
+    {
+      "name": "new_scheme_candidates_require_identity_validation",
+      "passed": true,
+      "details": "SASACT and GENESIS must not receive permanent IDs automatically."
+    },
+    {
+      "name": "generic_titles_replaced",
+      "passed": true,
+      "details": "No normalized candidate may retain MeityStartupHub as its name."
+    },
+    {
+      "name": "no_duplicate_verified_identity_names",
+      "passed": true,
+      "details": "duplicate_groups=0"
+    },
+    {
+      "name": "fetch_errors_quarantined",
+      "passed": true,
+      "details": "actual=23"
+    },
+    {
+      "name": "all_outputs_not_published",
+      "passed": true,
+      "details": "All triage outputs must remain preview-only."
+    },
+    {
+      "name": "v3_4_3_1_inputs_unchanged",
+      "passed": true,
+      "details": "{\"calls\": true, \"pages\": true, \"programmes\": true, \"reviews\": true, \"schemes\": true, \"summary\": true}"
+    }
+  ],
+  "failed_checks": [],
+  "source_hashes": {
+    "schemes": "a2929bb58be50eaec671ed53d94e69997178e93e4cee641994332210b816d812",
+    "programmes": "be2fee4e5d8597c76aa560ab8c979457783cdae1808557444a37fbd620492f1e",
+    "calls": "8cada74aabb9d291bc63a89561804b92ffc655ebd1e15f7d85611b449616bd4c",
+    "reviews": "ae5d2733d09fa97b41b5811618d480034a05844054971a525ecd4c13353484dc",
+    "pages": "7a74e0a26b3aaaa382d7ce261d3736d5f5b25b15cf062c06648edeaf6d548945",
+    "summary": "3257514c9b06a3831f918f97e9204c4fe1d04de6fd4530377cf31f99a6af7c5b"
+  },
+  "source_unchanged": {
+    "schemes": true,
+    "programmes": true,
+    "calls": true,
+    "reviews": true,
+    "pages": true,
+    "summary": true
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "version": "3.4.3.1",
+  "phase": "MeitY Discovery Expansion Hotfix",
+  "generated_at": "2026-07-13T07:08:23+00:00",
+  "coverage_status": "PASS",
+  "outputs": [
+    {
+      "path": "data/departments/meity/v3_4_3_1/meity_call_instances_v3_4_3_1.csv",
+      "sha256": "8cada74aabb9d291bc63a89561804b92ffc655ebd1e15f7d85611b449616bd4c",
+      "size_bytes": 3361
+    },
+    {
+      "path": "data/departments/meity/v3_4_3_1/meity_discovered_pages_v3_4_3_1.csv",
+      "sha256": "7a74e0a26b3aaaa382d7ce261d3736d5f5b25b15cf062c06648edeaf6d548945",
+      "size_bytes": 209014
+    },
+    {
+      "path": "data/departments/meity/v3_4_3_1/meity_discovery_indexes_v3_4_3_1.csv",
+      "sha256": "e3e6da4aa70093dfc2152c147f1133ace0c7eed3bde78720b84f021d30a462d5",
+      "size_bytes": 1455
+    },
+    {
+      "path": "data/departments/meity/v3_4_3_1/meity_discovery_summary_v3_4_3_1.json",
+      "sha256": "3257514c9b06a3831f918f97e9204c4fe1d04de6fd4530377cf31f99a6af7c5b",
+      "size_bytes": 2492
+    },
+    {
+      "path": "data/departments/meity/v3_4_3_1/meity_evidence_only_pages_v3_4_3_1.csv",
+      "sha256": "5c88bb5ced6f44d1975d8841524f9f03bc3ff162115d76cb4a02e2d0500a11e1",
+      "size_bytes": 10266
+    },
+    {
+      "path": "data/departments/meity/v3_4_3_1/meity_manual_review_queue_v3_4_3_1.csv",
+      "sha256": "ae5d2733d09fa97b41b5811618d480034a05844054971a525ecd4c13353484dc",
+      "size_bytes": 10449
+    },
+    {
+      "path": "data/departments/meity/v3_4_3_1/meity_non_catalogue_pages_v3_4_3_1.csv",
+      "sha256": "c94d676581944fd9f20ff81d5359eb7d5e13ce63151909d40aa63616229bb3f2",
+      "size_bytes": 4390
+    },
+    {
+      "path": "data/departments/meity/v3_4_3_1/meity_programme_master_candidates_v3_4_3_1.csv",
+      "sha256": "be2fee4e5d8597c76aa560ab8c979457783cdae1808557444a37fbd620492f1e",
+      "size_bytes": 5080
+    },
+    {
+      "path": "data/departments/meity/v3_4_3_1/meity_scheme_master_candidates_v3_4_3_1.csv",
+      "sha256": "a2929bb58be50eaec671ed53d94e69997178e93e4cee641994332210b816d812",
+      "size_bytes": 1094
+    }
+  ],
+  "publication_status": "NOT_PUBLISHED"
+}

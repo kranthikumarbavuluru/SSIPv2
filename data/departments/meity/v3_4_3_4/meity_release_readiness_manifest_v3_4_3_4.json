@@ -1,0 +1,29 @@
+{
+  "version": "3.4.3.4",
+  "phase": "MeitY SASACT and GENESIS Publication Candidate, Dashboard Preview and Release Readiness",
+  "generated_at": "2026-07-13T08:35:06+00:00",
+  "release_readiness_status": "PASS",
+  "outputs": [
+    {
+      "path": "data/catalogue_preview/v3_4_3_4/catalogue_preview_v3_4_3_4.csv",
+      "sha256": "ef43bd7e27df2ead5fe88ab8bf2751a80eac6c4e13e8894173a6625b57650a8c",
+      "size_bytes": 278525
+    },
+    {
+      "path": "data/departments/meity/v3_4_3_4/meity_publication_candidate_rows_v3_4_3_4.csv",
+      "sha256": "93ffda96e958bbf15f13e3f02bd5031fcfb5ca9d36029618b1ef22b864d64e1f",
+      "size_bytes": 6048
+    },
+    {
+      "path": "data/departments/meity/v3_4_3_4/meity_dashboard_preview_validation_v3_4_3_4.json",
+      "sha256": "dd32039e04c87b90977d4a295c2641b5131f62f7cbb6eac98deb0781c0571515",
+      "size_bytes": 5222
+    },
+    {
+      "path": "data/departments/meity/v3_4_3_4/meity_release_readiness_summary_v3_4_3_4.json",
+      "sha256": "b16b49cab636857391591e813fbca4080a97e55e49b7384040746e61c9aaf0c9",
+      "size_bytes": 1321
+    }
+  ],
+  "publication_status": "NOT_PUBLISHED"
+}

@@ -1,0 +1,143 @@
+{
+  "version": "3.4.3.3",
+  "phase": "MeitY SASACT and GENESIS Identity, Evidence and Status Validation",
+  "validation_status": "PASS",
+  "completed_at": "2026-07-13T08:24:23+00:00",
+  "as_of_date": "2026-07-13",
+  "counts": {
+    "target_candidates": 2,
+    "identity_confirmed": 2,
+    "permanent_master_ids_assigned": 2,
+    "official_sources_configured": 9,
+    "official_sources_successful": 8,
+    "field_evidence_rows": 17,
+    "review_queue_rows": 3,
+    "required_evidence_missing": 0,
+    "public_application_urls": 0
+  },
+  "scheme_results": [
+    {
+      "master_id": "194b7ba77d6b53f30b91",
+      "candidate_id": "meity_1c5c50d5e86fc876d0b3",
+      "canonical_name": "SASACT",
+      "official_full_name": "Scheme for Accelerating Startups around Post-COVID Technology Opportunities (SASACT)",
+      "official_page_url": "https://msh.meity.gov.in/schemes/sasact",
+      "identity_decision": "VERIFIED_PERMANENT_SCHEME_IDENTITY",
+      "identity_confirmed": "true",
+      "deterministic_id_rule": "MEITY_SCHEME_SASACT",
+      "official_sources_successful": 3,
+      "identity_evidence_urls": "https://msh.meity.gov.in/schemes/sasact",
+      "programme_status": "HISTORICAL_SCHEME_INFORMATION_AVAILABLE",
+      "scheme_status": "HISTORICAL_INFORMATION_ONLY",
+      "verified_field_count": 4,
+      "missing_field_names": "",
+      "publication_status": "NOT_PUBLISHED"
+    },
+    {
+      "master_id": "94f8ab0a070a6ff15fce",
+      "candidate_id": "meity_28ac6fb921386a6968c7",
+      "canonical_name": "GENESIS",
+      "official_full_name": "GEN-NEXT Support for Innovative Startups (GENESIS)",
+      "official_page_url": "https://msh.meity.gov.in/schemes/genesis",
+      "identity_decision": "VERIFIED_PERMANENT_SCHEME_IDENTITY",
+      "identity_confirmed": "true",
+      "deterministic_id_rule": "MEITY_SCHEME_GENESIS",
+      "official_sources_successful": 5,
+      "identity_evidence_urls": "https://msh.meity.gov.in/schemes/genesis",
+      "programme_status": "UMBRELLA_SCHEME_INFORMATION_AVAILABLE",
+      "scheme_status": "CURRENT_SCHEME_INFORMATION_AVAILABLE",
+      "verified_field_count": 9,
+      "missing_field_names": "",
+      "publication_status": "NOT_PUBLISHED"
+    }
+  ],
+  "application_results": [
+    {
+      "master_id": "194b7ba77d6b53f30b91",
+      "candidate_id": "meity_1c5c50d5e86fc876d0b3",
+      "canonical_name": "SASACT",
+      "scheme_status": "HISTORICAL_INFORMATION_ONLY",
+      "application_status": "NO_CURRENT_APPLICATION_ROUTE_CONFIRMED",
+      "application_url": "",
+      "application_route_status": "NO_PUBLIC_APPLY_ACTION",
+      "reference_application_form_url": "",
+      "reference_form_role": "",
+      "current_call_id": "",
+      "deadline": "",
+      "status_rationale": "Official evidence confirms the SASACT scheme identity and historical implementation, but no current application window or current official application route is confirmed.",
+      "invalid_application_urls_rejected": "https://msh.meity.gov.in/about/applyforthelogo; https://msh.meity.gov.in/about/contactus; https://msh.meity.gov.in/registration",
+      "as_of_date": "2026-07-13",
+      "publication_status": "NOT_PUBLISHED"
+    },
+    {
+      "master_id": "94f8ab0a070a6ff15fce",
+      "candidate_id": "meity_28ac6fb921386a6968c7",
+      "canonical_name": "GENESIS",
+      "scheme_status": "CURRENT_SCHEME_INFORMATION_AVAILABLE",
+      "application_status": "APPLICATION_STATUS_REQUIRES_VERIFICATION",
+      "application_url": "",
+      "application_route_status": "NO_PUBLIC_APPLY_ACTION",
+      "reference_application_form_url": "https://www.meity.gov.in/static/uploads/2024/02/Application-Form_GENESIS.pdf",
+      "reference_form_role": "HISTORICAL_OR_REFERENCE_IMPLEMENTING_AGENCY_FORM",
+      "current_call_id": "",
+      "deadline": "",
+      "status_rationale": "Official MeitY material confirms GENESIS as a five-year umbrella scheme. A historical/reference Implementing Agency application form exists, but no currently open application window is confirmed for public display.",
+      "invalid_application_urls_rejected": "https://msh.meity.gov.in/about/applyforthelogo; https://msh.meity.gov.in/about/contactus; https://msh.meity.gov.in/registration",
+      "as_of_date": "2026-07-13",
+      "publication_status": "NOT_PUBLISHED"
+    }
+  ],
+  "checks": [
+    {
+      "name": "two_target_candidates_loaded",
+      "passed": true,
+      "details": "actual=2"
+    },
+    {
+      "name": "two_identities_confirmed",
+      "passed": true,
+      "details": "actual=2"
+    },
+    {
+      "name": "two_deterministic_master_ids_assigned",
+      "passed": true,
+      "details": "ids=['194b7ba77d6b53f30b91', '94f8ab0a070a6ff15fce']"
+    },
+    {
+      "name": "minimum_field_evidence",
+      "passed": true,
+      "details": "actual=17 minimum=12"
+    },
+    {
+      "name": "required_evidence_complete",
+      "passed": true,
+      "details": "missing_required=0"
+    },
+    {
+      "name": "no_public_application_urls",
+      "passed": true,
+      "details": "Both schemes must remain without an Apply action."
+    },
+    {
+      "name": "invalid_application_urls_rejected",
+      "passed": true,
+      "details": "Logo, registration and contact pages must not be exposed."
+    },
+    {
+      "name": "frozen_files_unchanged",
+      "passed": true,
+      "details": "{\"apps/public_dashboard_app_v2_9.py\": true, \"data/catalogue_preview/v3_3_2/catalogue_preview_v3_3_2.csv\": true, \"data/departments/meity/v3_4_3_2/meity_candidate_identity_register_v3_4_3_2.csv\": true, \"data/departments/meity/v3_4_3_2/meity_triage_validation_v3_4_3_2.json\": true, \"data/publication/current_manifest.json\": true, \"database/ssip_staging_v1.db\": true}"
+    },
+    {
+      "name": "publication_not_performed",
+      "passed": true,
+      "details": "This phase is validation-only."
+    }
+  ],
+  "failed_checks": [],
+  "browser_available": true,
+  "browser_error": "",
+  "publication_performed": false,
+  "database_modified": false,
+  "dashboard_modified": false
+}

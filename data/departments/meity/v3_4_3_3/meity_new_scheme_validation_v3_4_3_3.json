@@ -1,0 +1,77 @@
+{
+  "version": "3.4.3.3",
+  "phase": "MeitY SASACT and GENESIS Identity, Evidence and Status Validation",
+  "validation_status": "PASS",
+  "checks": [
+    {
+      "name": "two_target_candidates_loaded",
+      "passed": true,
+      "details": "actual=2"
+    },
+    {
+      "name": "two_identities_confirmed",
+      "passed": true,
+      "details": "actual=2"
+    },
+    {
+      "name": "two_deterministic_master_ids_assigned",
+      "passed": true,
+      "details": "ids=['194b7ba77d6b53f30b91', '94f8ab0a070a6ff15fce']"
+    },
+    {
+      "name": "minimum_field_evidence",
+      "passed": true,
+      "details": "actual=17 minimum=12"
+    },
+    {
+      "name": "required_evidence_complete",
+      "passed": true,
+      "details": "missing_required=0"
+    },
+    {
+      "name": "no_public_application_urls",
+      "passed": true,
+      "details": "Both schemes must remain without an Apply action."
+    },
+    {
+      "name": "invalid_application_urls_rejected",
+      "passed": true,
+      "details": "Logo, registration and contact pages must not be exposed."
+    },
+    {
+      "name": "frozen_files_unchanged",
+      "passed": true,
+      "details": "{\"apps/public_dashboard_app_v2_9.py\": true, \"data/catalogue_preview/v3_3_2/catalogue_preview_v3_3_2.csv\": true, \"data/departments/meity/v3_4_3_2/meity_candidate_identity_register_v3_4_3_2.csv\": true, \"data/departments/meity/v3_4_3_2/meity_triage_validation_v3_4_3_2.json\": true, \"data/publication/current_manifest.json\": true, \"database/ssip_staging_v1.db\": true}"
+    },
+    {
+      "name": "publication_not_performed",
+      "passed": true,
+      "details": "This phase is validation-only."
+    }
+  ],
+  "failed_checks": [],
+  "pre_hashes": {
+    "data/catalogue_preview/v3_3_2/catalogue_preview_v3_3_2.csv": "0181012e52125ffb646c89ff86b39ac0136277aa76750e527e2870de7aaf43ba",
+    "data/publication/current_manifest.json": "189d1f363db367080dd7117640f717527707e1d86e089f151f0f58adca53ccb0",
+    "database/ssip_staging_v1.db": "41862a0fadd78ac2238153fec50af7136619eaf6a5c22951f57ba42a2ee101c3",
+    "apps/public_dashboard_app_v2_9.py": "1db5b66ffc049cc521615e9595042e02a277ad6f14d77ec84f5c8c9e880e9bb0",
+    "data/departments/meity/v3_4_3_2/meity_candidate_identity_register_v3_4_3_2.csv": "62cd640260d28697ec156b5001e02ee1c15e90901d6386de2b66c62f9156cb7b",
+    "data/departments/meity/v3_4_3_2/meity_triage_validation_v3_4_3_2.json": "c5ded94364515e766437160fb5a3e62d10ee547e049be8ddd54177b8d0d77d82"
+  },
+  "post_hashes": {
+    "data/catalogue_preview/v3_3_2/catalogue_preview_v3_3_2.csv": "0181012e52125ffb646c89ff86b39ac0136277aa76750e527e2870de7aaf43ba",
+    "data/publication/current_manifest.json": "189d1f363db367080dd7117640f717527707e1d86e089f151f0f58adca53ccb0",
+    "database/ssip_staging_v1.db": "41862a0fadd78ac2238153fec50af7136619eaf6a5c22951f57ba42a2ee101c3",
+    "apps/public_dashboard_app_v2_9.py": "1db5b66ffc049cc521615e9595042e02a277ad6f14d77ec84f5c8c9e880e9bb0",
+    "data/departments/meity/v3_4_3_2/meity_candidate_identity_register_v3_4_3_2.csv": "62cd640260d28697ec156b5001e02ee1c15e90901d6386de2b66c62f9156cb7b",
+    "data/departments/meity/v3_4_3_2/meity_triage_validation_v3_4_3_2.json": "c5ded94364515e766437160fb5a3e62d10ee547e049be8ddd54177b8d0d77d82"
+  },
+  "frozen_unchanged": {
+    "data/catalogue_preview/v3_3_2/catalogue_preview_v3_3_2.csv": true,
+    "data/publication/current_manifest.json": true,
+    "database/ssip_staging_v1.db": true,
+    "apps/public_dashboard_app_v2_9.py": true,
+    "data/departments/meity/v3_4_3_2/meity_candidate_identity_register_v3_4_3_2.csv": true,
+    "data/departments/meity/v3_4_3_2/meity_triage_validation_v3_4_3_2.json": true
+  }
+}

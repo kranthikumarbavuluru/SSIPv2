@@ -1,0 +1,24 @@
+{
+  "dashboard_modified": false,
+  "deterministic": true,
+  "input": "data/departments/dpiit/v3_4_1_0_1/dpiit_discovery_candidates_v3_4_1_0_1.csv",
+  "input_sha256": "06e1cb247a70be12fd93d67039579a9846b05c7d05181d8341c90cc9f212726f",
+  "outputs": {
+    "dpiit_canonical_alias_registry_v3_4_1_0_2.csv": "b0e411dc2651e4b4db3111e4a497f0773a3fbf940e75c8d7d5a8e1ad6fcbb33d",
+    "dpiit_canonical_entity_registry_v3_4_1_0_2.csv": "4a9fc630f2142b1bb961a9e39a6bd353aa315574b450a19891f48c26bb705f65",
+    "dpiit_canonical_evidence_map_v3_4_1_0_2.csv": "c060ba2e9f52f340eb835722d53370524d4500272bb3c780ee1584c6fdd438a2",
+    "dpiit_canonical_platform_service_registry_v3_4_1_0_2.csv": "b0cc7c847f304fd31a443727e05aaeef3afef0f0a86a0b9705a66634b94eaede",
+    "dpiit_canonical_programme_registry_v3_4_1_0_2.csv": "783c0493eb6f05e32fdeeb5b0fb819a679962f1e801160b0de668656163c3a67",
+    "dpiit_canonical_relationship_registry_v3_4_1_0_2.csv": "81d02608664f427e857fa8c11854d86eff99d88e0d9d247d2c40fe265afac707",
+    "dpiit_canonical_scheme_registry_v3_4_1_0_2.csv": "fefbd58aa5d23fee53be05c942f1dd0937220106eb56128122ec34798843b307",
+    "dpiit_identity_lock_audit_v3_4_1_0_2.csv": "fd6ed7dbae1a59fd23877f6aa7a0768fffd01f4f54e159841b4bbc19d1c77877",
+    "dpiit_identity_resolution_rejections_v3_4_1_0_2.csv": "217d54833a141dcc3ab865a95e09d93c72ed998f574d3d1f9f74274eaaf8cd69",
+    "dpiit_identity_resolution_summary_v3_4_1_0_2.json": "c7b645e3c459bd3a38c2e6f9ecd092428af1ff6afbee2b4e0f9e1858edea67df",
+    "dpiit_identity_resolution_validation_v3_4_1_0_2.json": "60e099f6db266d9cf53f85f4b3af34b789edb7ee7863a9da973182419bd4dc87",
+    "dpiit_manual_identity_review_queue_v3_4_1_0_2.csv": "109c685d47bc8eb6d8dde7104c179acabc373433c6c5e04b96c18e5f864062c4"
+  },
+  "publication_performed": false,
+  "run_id": "dpiit_identity_run_2705240fac5f9fca5f7d",
+  "validation_passed": true,
+  "version": "3.4.1.0.2"
+}

@@ -1,0 +1,65 @@
+{
+  "hotfix_version": "2.1.0",
+  "source": "MeitY Startup Hub",
+  "official_domain": "msh.meity.gov.in",
+  "dry_run": false,
+  "existing_candidate_count_before": 156,
+  "existing_meity_candidate_count_before": 0,
+  "live_candidate_count": 6,
+  "bootstrap_candidate_count": 6,
+  "hotfix_unique_candidate_count": 6,
+  "new_unique_candidates_added": 6,
+  "existing_candidates_updated": 0,
+  "unchanged_duplicate_candidates": 0,
+  "merged_candidate_count_after": 162,
+  "meity_candidate_count_after": 6,
+  "network_stats": {
+    "MeitY Startup Hub | SAMRIDH": {
+      "queued": 1,
+      "pages_claimed": 1,
+      "pages_fetched": 1,
+      "browser_renders": 1,
+      "candidates": 1
+    },
+    "MeitY Startup Hub | TIDE 2.0": {
+      "queued": 1,
+      "pages_claimed": 1,
+      "pages_fetched": 1,
+      "browser_renders": 1,
+      "candidates": 1
+    },
+    "MeitY Startup Hub | SASACT": {
+      "queued": 1,
+      "pages_claimed": 1,
+      "pages_fetched": 1,
+      "browser_renders": 1,
+      "candidates": 1
+    },
+    "MeitY Startup Hub | GENESIS": {
+      "queued": 1,
+      "pages_claimed": 1,
+      "pages_fetched": 1,
+      "browser_renders": 1,
+      "candidates": 1
+    },
+    "MeitY Startup Hub | SITAA Contactless Fingerprint Authentication": {
+      "queued": 1,
+      "pages_claimed": 1,
+      "pages_fetched": 1,
+      "browser_renders": 1,
+      "candidates": 1
+    },
+    "MeitY Startup Hub | SITAA Presentation Attack Detection": {
+      "queued": 1,
+      "pages_claimed": 1,
+      "pages_fetched": 1,
+      "browser_renders": 1,
+      "candidates": 1
+    }
+  },
+  "input_path": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\discovery_results_v2.json",
+  "meity_output_path": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\meity_discovery_results_v2_1.json",
+  "merged_output_path": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\discovery_results_v2.json",
+  "backup_path": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\backups\\discovery_results_v2_before_meity_hotfix_20260708T130543Z.json",
+  "generated_at": "2026-07-08T13:05:43.376860+00:00"
+}

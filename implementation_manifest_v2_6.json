@@ -1,0 +1,98 @@
+{
+  "implementation": "Full Multi-Source Coverage Audit v2.6",
+  "audit_version": "2.6.0",
+  "generated_at": "2026-07-09T06:06:00.238174+00:00",
+  "read_only_verified": true,
+  "new_or_generated_files": [
+    {
+      "path": "ssip_agents/coverage_audit_agent_v2_6.py",
+      "size_bytes": 58801,
+      "sha256": "a24c3635983277bd7ec782e43b901091a8b94b2ff705177fd04869ecc7f418e7"
+    },
+    {
+      "path": "tests/test_coverage_audit_v2_6.py",
+      "size_bytes": 8691,
+      "sha256": "c33db23a8d52cee9d6a11e76226fab75713daa03f8f858bb527c21c04cfd859c"
+    },
+    {
+      "path": "FULL_MULTI_SOURCE_COVERAGE_AUDIT_V2_6.md",
+      "size_bytes": 6643,
+      "sha256": "c23a82c7148ad3e23b6fe7d9ddda5d4cbc82adad04a76c96a6487082a31b5c1c"
+    },
+    {
+      "path": "data/audit/coverage_audit_summary_v2_6.json",
+      "size_bytes": 23533,
+      "sha256": "53d67a964f0453b91c231e4754b4628528c0d2e01f9d2325665ad50335345d38"
+    },
+    {
+      "path": "data/audit/coverage_audit_summary_v2_6.txt",
+      "size_bytes": 1457,
+      "sha256": "51c694c5b4ad1c17f27ce0211e72a585ecd78f397feb25827f305016909ceffb"
+    },
+    {
+      "path": "data/audit/current_v2_only/coverage_audit_summary_v2_6.json",
+      "size_bytes": 22972,
+      "sha256": "a429f08b54689ea2abc339e09edc6d387151425d4a6584ece03757814d32b8fc"
+    },
+    {
+      "path": "data/audit/current_v2_only/coverage_audit_summary_v2_6.txt",
+      "size_bytes": 1454,
+      "sha256": "34a20755ff399b6cdb03bf433fdf93141bbee94886b9b2abf8d4f6d4d77f152a"
+    },
+    {
+      "path": "data/audit/current_v2_only/master_pipeline_backlog_v2_6.csv",
+      "size_bytes": 6012,
+      "sha256": "9e22f2d85b6e723fdb94d9c9f6750ed63eb5f0401192ed3d1100deb31a288304"
+    },
+    {
+      "path": "data/audit/current_v2_only/missing_pipeline_records_v2_6.csv",
+      "size_bytes": 43473,
+      "sha256": "9aa57c2fdbe82d71a3a240bdb2fc33da0bc8ae198f62e03589a3934250914e73"
+    },
+    {
+      "path": "data/audit/current_v2_only/multi_source_coverage_audit_v2_6.csv",
+      "size_bytes": 72216,
+      "sha256": "0773993cfdd193145e1fb5eeb68ac49aaaec88572e144fe8372721575456d579"
+    },
+    {
+      "path": "data/audit/current_v2_only/multi_source_coverage_audit_v2_6.json",
+      "size_bytes": 156861,
+      "sha256": "69e5d45bc5ee3b469cec13be42d1b5ced3a5da4c2aab64fe02566bc1153c2d2d"
+    },
+    {
+      "path": "data/audit/current_v2_only/source_coverage_summary_v2_6.csv",
+      "size_bytes": 947,
+      "sha256": "dc9ba16d25ee01b49b5dc3c096a6725db5a0dd6db77eda69b1e78ce8b186b352"
+    },
+    {
+      "path": "data/audit/master_pipeline_backlog_v2_6.csv",
+      "size_bytes": 6012,
+      "sha256": "9e22f2d85b6e723fdb94d9c9f6750ed63eb5f0401192ed3d1100deb31a288304"
+    },
+    {
+      "path": "data/audit/missing_pipeline_records_v2_6.csv",
+      "size_bytes": 166625,
+      "sha256": "cd2d1feb046cf4dbc2f0976b9eead3032266e14e511db2ed9367336aa58d5254"
+    },
+    {
+      "path": "data/audit/multi_source_coverage_audit_v2_6.csv",
+      "size_bytes": 205325,
+      "sha256": "94adc1ec90d5fcd7757e326ce3279f48dd8459742f87d3059a176052d79053db"
+    },
+    {
+      "path": "data/audit/multi_source_coverage_audit_v2_6.json",
+      "size_bytes": 492234,
+      "sha256": "1e1127ca79d950639b64b1e94cfd18db97280e3e8c7680e7ac33d2632bdf720d"
+    },
+    {
+      "path": "data/audit/source_coverage_summary_v2_6.csv",
+      "size_bytes": 964,
+      "sha256": "415bdf9b2c7ba032346c577fd7f8c67f403fd4a466073e02c22080ce443dca06"
+    }
+  ],
+  "verification": {
+    "tests": "python -m tests.test_coverage_audit_v2_6 -> 2 tests passed",
+    "database_files_unchanged": true,
+    "key_pipeline_json_files_unchanged": true
+  }
+}

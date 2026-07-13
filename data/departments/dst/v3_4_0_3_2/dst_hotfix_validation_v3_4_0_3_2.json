@@ -1,0 +1,49 @@
+{
+  "service_version": "3.4.0.3.2",
+  "department_code": "DST",
+  "generated_at": "2026-07-10T10:56:15+00:00",
+  "counts": {
+    "input_category_gap_rows": 443,
+    "unique_category_gaps": 114,
+    "duplicate_gap_occurrences": 329,
+    "direct_target_matches": 15,
+    "unresolved_unique_gaps": 102,
+    "existing_entity_gap_matches": 0,
+    "possible_new_schemes": 0,
+    "possible_new_programmes": 0,
+    "gap_non_entity_pages": 11,
+    "true_broken_targets": 1,
+    "input_provisional_entities": 33,
+    "corrected_provisional_schemes": 3,
+    "corrected_provisional_programmes": 20,
+    "provisional_entity_downgrades": 5,
+    "admin_review_rows": 107
+  },
+  "quality": {
+    "direct_target_match_rate": 0.131579,
+    "minimum_direct_target_match_rate": 0.95,
+    "unresolved_rate": 0.894737,
+    "maximum_unresolved_rate": 0.1,
+    "invalid_gap_classifications": [],
+    "generic_lock_candidates": [],
+    "call_contamination": 0,
+    "forbidden_identity_fields_found": []
+  },
+  "checks": {
+    "all_gap_occurrences_accounted_for": true,
+    "unique_gap_urls_unique": true,
+    "duplicate_gap_occurrences_accounted_for": true,
+    "direct_target_match_rate_passed": false,
+    "unresolved_rate_within_limit": false,
+    "gap_classifications_valid": true,
+    "all_provisional_entities_audited": true,
+    "all_provisional_entities_accounted_for": true,
+    "generic_pages_excluded_from_corrected_inventory": true,
+    "call_pages_not_proposed_as_permanent_entities": true,
+    "forbidden_identity_fields_absent": true,
+    "canonical_scheme_identity_created": false,
+    "identity_locked": false
+  },
+  "hotfix_validation_passed": false,
+  "ready_for_v3_4_0_4": false
+}

@@ -1,0 +1,25 @@
+{
+  "service_version": "3.4.0.6b",
+  "validated_at": "2026-07-10T15:36:54+00:00",
+  "input_catalogue": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\catalogue_preview\\v3_3_2\\catalogue_preview_v3_3_2.csv",
+  "counts": {
+    "input_rows": 137,
+    "visible_rows": 137,
+    "blank_sector_rows": 0,
+    "sector_not_specified_rows": 0,
+    "manual_review_rows": 62
+  },
+  "checks": {
+    "active_catalogue_path_is_explicit": true,
+    "row_count_preserved": true,
+    "master_id_order_preserved": true,
+    "zero_blank_sector_rows": true,
+    "zero_sector_not_specified_rows": true,
+    "all_sectors_in_controlled_taxonomy": true,
+    "every_visible_row_has_primary_sector": true
+  },
+  "missing": [],
+  "unspecified": [],
+  "invalid": [],
+  "validation_passed": true
+}

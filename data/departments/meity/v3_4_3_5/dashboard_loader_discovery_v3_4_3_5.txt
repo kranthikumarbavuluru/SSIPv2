@@ -1,0 +1,2570 @@
+﻿D:\WebSite\DASHBOARD\Code\SSIP\ssip_dashboard\config.py:42
+    @classmethod
+    def from_env(cls, project_root: Path | None = None) -> "DashboardConfig":
+        root = find_project_root(project_root)
+        mode_text = os.environ.get("SSIP_PUBLIC_CATALOGUE_MODE", "CATALOGUE_PREVIEW")
+        try:
+            mode = CatalogueMode(mode_text.strip().upper())
+        except ValueError:
+----------------------------------------------------
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2.py:277
+    # dashboard_public_ids() uses a broad fallback for non-active paths,
+    # which incorrectly includes pending and review-only catalogue rows.
+    # Load the candidate through the actual dashboard pipeline.
+    # DashboardConfig does not use SSIP_PUBLIC_CATALOGUE, so create
+    # an explicit candidate configuration using the candidate path.
+    from dataclasses import replace as dataclass_replace
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_config_path_fix.py:277
+    previous_public_catalogue = os.environ.get(
+        "SSIP_PUBLIC_CATALOGUE"
+    )
+    os.environ["SSIP_PUBLIC_CATALOGUE"] = str(
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_config_path_fix.py:280
+        CANDIDATE
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_config_path_fix.py:315
+    finally:
+        if previous_public_catalogue is None:
+            os.environ.pop(
+                "SSIP_PUBLIC_CATALOGUE",
+                None,
+            )
+        else:
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_config_path_fix.py:320
+            os.environ[
+                "SSIP_PUBLIC_CATALOGUE"
+            ] = previous_public_catalogue
+    new_visible = EXPECTED_IDS & visible_after
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_direct_config_fix.py:277
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_direct_config_fix.py:280
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_direct_config_fix.py:315
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_direct_config_fix.py:320
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\patch_meity_candidate_config_path_v3_4_2_0_2.py:63
+replacement = '''    # Load the candidate through the actual dashboard pipeline.
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\patch_meity_candidate_visibility_exact_v3_4_2_0_2.py:23
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\patch_meity_candidate_visibility_exact_v3_4_2_0_2.py:26
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\patch_meity_candidate_visibility_exact_v3_4_2_0_2.py:61
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\patch_meity_candidate_visibility_exact_v3_4_2_0_2.py:66
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\patch_meity_candidate_visibility_v3_4_2_0_2.py:57
+    # dashboard_public_ids() uses a broad fallback for any path
+    # other than the exact active catalogue filename.
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\patch_meity_candidate_visibility_v3_4_2_0_2.py:60
+        CANDIDATE_PATH
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\patch_meity_candidate_visibility_v3_4_2_0_2.py:99
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\patch_meity_candidate_visibility_v3_4_2_0_2.py:104
+    new_visible_ids = EXPECTED_IDS & visible_after
+D:\WebSite\DASHBOARD\Code\SSIP\ssip_dashboard\catalogue.py:556
+            review_row = review_by_id.get(master_id, {})
+            rejected_row = rejected_by_id.get(master_id, {})
+            is_review_only = not data_row
+            is_explicit_preview_file = "catalogue_preview" in {part.lower() for part in config.normalization_path.parts}
+            is_rejected = as_text(
+                first_value(plan_row.get("current_decision"), review_row.get("decision"), rejected_row.get("decision"))
+            ).upper() == "REJECTED"
+D:\WebSite\DASHBOARD\Code\SSIP\ssip_dashboard\components.py:16
+def mode_banner(mode: str, record_count: int, public_count: int) -> str:
+    if mode == "CATALOGUE_PREVIEW":
+        return (
+            '<div class="preview-banner"><strong>Catalogue Preview</strong>'
+            f"<span>{record_count} normalized records loaded for development. "
+D:\WebSite\DASHBOARD\Code\SSIP\ssip_dashboard\config.py:10
+class CatalogueMode(str, Enum):
+    CATALOGUE_PREVIEW = "CATALOGUE_PREVIEW"
+    PUBLISHED_ONLY = "PUBLISHED_ONLY"
+D:\WebSite\DASHBOARD\Code\SSIP\ssip_dashboard\config.py:36
+    normalization_path: Path
+    normalization_fallback_path: Path | None = None
+    preview_path_configured: bool = False
+    mode: CatalogueMode = CatalogueMode.CATALOGUE_PREVIEW
+    sqlite_timeout_seconds: float = 30.0
+D:\WebSite\DASHBOARD\Code\SSIP\ssip_dashboard\config.py:46
+            mode = CatalogueMode.CATALOGUE_PREVIEW
+        fallback_path = (
+            root
+            / "data"
+D:\WebSite\DASHBOARD\Code\SSIP\ssip_dashboard\config.py:54
+            / "v2_8_1_catalogue_normalization"
+            / "catalogue_normalization_plan_v2_8_1.csv"
+        )
+        configured_preview = os.environ.get("SSIP_CATALOGUE_PREVIEW_PATH", "").strip()
+        default_preview = root / "data" / "catalogue_preview" / "v3_3_2" / "catalogue_preview_v3_3_2.csv"
+        previous_preview = root / "data" / "catalogue_preview" / "v3_3_1" / "batch_1_catalogue_preview_v3_3_1.csv"
+        preview_path_configured = bool(configured_preview)
+D:\WebSite\DASHBOARD\Code\SSIP\ssip_dashboard\config.py:55
+        if configured_preview:
+D:\WebSite\DASHBOARD\Code\SSIP\ssip_dashboard\config.py:56
+            normalization_path = Path(configured_preview)
+D:\WebSite\DASHBOARD\Code\SSIP\ssip_dashboard\config.py:62
+            if not normalization_path.is_absolute():
+                normalization_path = root / normalization_path
+        elif mode == CatalogueMode.CATALOGUE_PREVIEW and default_preview.exists():
+            normalization_path = default_preview
+        elif mode == CatalogueMode.CATALOGUE_PREVIEW and previous_preview.exists():
+            normalization_path = previous_preview
+D:\WebSite\DASHBOARD\Code\SSIP\ssip_dashboard\config.py:64
+            normalization_path = fallback_path
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\build_github_export_v1.py:52
+}
+DATA_FILES = {
+    "data/catalogue_preview/v3_3_2/catalogue_preview_v3_3_2.csv",
+    "data/catalogue_preview/v3_3_2/catalogue_summary_v3_3_2.json",
+    "data/audit/v2_8_1_catalogue_normalization/catalogue_normalization_plan_v2_8_1.csv",
+    "data/audit/v2_8_1_catalogue_normalization/catalogue_normalization_summary_v2_8_1.json",
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\build_github_export_v1.py:53
+    "data/departments/dst/pilot_v1/dst_evidence_pilot_v1.db",
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_startup_focus_pipeline_v3_4_0_5.py:477
+    backup = backup_dir / f"catalogue_before_startup_focus_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv"
+    shutil.copy2(catalogue, backup)
+    write_csv(catalogue, fields, merged)
+    versioned = output_dir / "catalogue_preview_startup_focused_v3_4_0_5.csv"
+    write_csv(versioned, fields, merged)
+    quarantine_fields = list(dict.fromkeys(fields + ["quarantine_reason", "quarantined_at"]))
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\integrate_dst_v3_4_0_4_into_existing_dashboard.py:15
+from typing import Any, Iterable, Mapping
+VERSION = "3.4.0.4a"
+DEFAULT_BASE_PREVIEW = Path("data/catalogue_preview/v3_3_2/catalogue_preview_v3_3_2.csv")
+DEFAULT_DST_PUBLICATION = Path("data/departments/dst/v3_4_0_4/dst_publication_catalogue_v3_4_0_4.csv")
+DEFAULT_MERGED_OUTPUT = Path("data/catalogue_preview/v3_4_0_4/catalogue_preview_v3_4_0_4.csv")
+DEFAULT_APP = Path("apps/public_dashboard_app_v2_9.py")
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\integrate_dst_v3_4_0_4_into_existing_dashboard.py:17
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\integrate_dst_v3_4_0_4_into_existing_dashboard.py:194
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    backup_dir = root / "backups" / "v3_4_0_4a_dashboard_integration"
+    backup_dir.mkdir(parents=True, exist_ok=True)
+    backup_path = backup_dir / f"catalogue_preview_v3_3_2_before_dst_merge_{timestamp}.csv"
+    shutil.copy2(base_path, backup_path)
+    write_csv(merged_path, fields, merged_rows)
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\integrate_dst_v3_4_0_4_into_existing_dashboard.py:240
+    }
+    summary["integration_passed"] = all(summary["checks"].values())
+    summary_path = root / "data" / "catalogue_preview" / "v3_4_0_4" / "dst_dashboard_integration_summary_v3_4_0_4a.json"
+    summary_path.parent.mkdir(parents=True, exist_ok=True)
+    summary_path.write_text(json.dumps(summary, indent=2, ensure_ascii=False), encoding="utf-8")
+    summary["summary_path"] = str(summary_path)
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_application_link_hotfix_v3_4_2_0_3.py:23
+ACTIVE = (
+    ROOT
+    / "data"
+    / "catalogue_preview"
+    / "v3_3_2"
+    / "catalogue_preview_v3_3_2.csv"
+)
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_application_link_hotfix_v3_4_2_0_3.py:25
+CURRENT_MANIFEST = ROOT / "data" / "publication" / "current_manifest.json"
+PUBLICATION_ROOT = ROOT / "data" / "publication"
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_application_link_hotfix_v3_4_2_0_3.py:31
+AUDIT_DIR = ROOT / "data" / "audit"
+PHASE_DIR = ROOT / "data" / "departments" / "meity" / "v3_4_2_0_3"
+PREVIEW_DIR = ROOT / "data" / "catalogue_preview" / "v3_4_2_0_3"
+VALIDATION_PATH = PHASE_DIR / "meity_application_link_hotfix_validation_v3_4_2_0_3.json"
+SUMMARY_PATH = PHASE_DIR / "meity_application_link_hotfix_summary_v3_4_2_0_3.json"
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_application_link_hotfix_v3_4_2_0_3.py:36
+AUDIT_PATH = AUDIT_DIR / "meity_v3_4_2_0_3_application_link_hotfix.json"
+PREVIEW_COPY = PREVIEW_DIR / "catalogue_preview_v3_4_2_0_3.csv"
+SAMRIDH_ID = "147173e17ea741687247"
+TIDE_ID = "6af79cf6c8a213dddce8"
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2.py:19
+SRC = ROOT / "data/departments/meity/v3_4_2_0_1"
+OUT = ROOT / "data/departments/meity/v3_4_2_0_2"
+AUDIT = ROOT / "data/audit"
+ACTIVE = ROOT / "data/catalogue_preview/v3_3_2/catalogue_preview_v3_3_2.csv"
+CURRENT_MANIFEST = ROOT / "data/publication/current_manifest.json"
+IMMUTABLE = ROOT / "data/publication/20260710T162806+0000_f4936983/catalogue.csv"
+DASHBOARD = ROOT / "apps/public_dashboard_app_v2_9.py"
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_config_path_fix.py:19
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_dashboard_loader_fix.py:18
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_direct_config_fix.py:19
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_visibility_fix.py:18
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_department_discovery_agent_v3_4_3_0.py:441
+    name_to_id: dict[str, str] = {}
+    candidate_files = [
+        root / "data" / "catalogue_preview" / "v3_3_2" / "catalogue_preview_v3_3_2.csv",
+        root / "data" / "departments" / "meity" / "v3_4_2_0_1" / "meity_existing_identity_lookup_v3_4_2_0_1.csv",
+        root / "data" / "departments" / "meity" / "v3_4_2_0_1" / "meity_scheme_master_registry_v3_4_2_0_1.csv",
+        root / "data" / "catalogue_preview" / "v3_4_2_0_2" / "catalogue_preview_v3_4_2_0_2.csv",
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_department_discovery_agent_v3_4_3_0.py:444
+    ]
+    for path in candidate_files:
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_department_discovery_agent_v3_4_3_0.py:800
+    active_catalogue = (
+        root
+        / "data"
+        / "catalogue_preview"
+        / "v3_3_2"
+        / "catalogue_preview_v3_3_2.csv"
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_department_discovery_agent_v3_4_3_0.py:802
+    current_manifest = root / "data" / "publication" / "current_manifest.json"
+    database = root / "database" / "ssip_staging_v1.db"
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_discovery_expansion_agent_v3_4_3_1.py:747
+    candidates = [
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_discovery_expansion_agent_v3_4_3_1.py:748
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_discovery_expansion_agent_v3_4_3_1.py:1214
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_discovery_expansion_agent_v3_4_3_1.py:1216
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_discovery_expansion_agent_v3_4_3_1_before_download_guard.py:747
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_discovery_expansion_agent_v3_4_3_1_before_download_guard.py:748
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_discovery_expansion_agent_v3_4_3_1_before_download_guard.py:1214
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_discovery_expansion_agent_v3_4_3_1_before_download_guard.py:1216
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_governed_publish_v3_4_2_0_2.py:30
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_governed_publish_v3_4_2_0_2.py:32
+CANDIDATE = (
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_governed_publish_v3_4_2_0_2.py:37
+    / "v3_4_2_0_2"
+    / "catalogue_preview_v3_4_2_0_2.csv"
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_governed_publish_v3_4_2_0_2.py:39
+CANDIDATE_VALIDATION = (
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_governed_publish_v3_4_2_0_2.py:226
+    release_manifest = release_dir / "manifest.json"
+    release_summary = release_dir / "publication_summary.json"
+    rollback_dir = PUBLICATION_ROOT / "rollback" / f"{run_id}_pre_meity_v3_4_2_0_2"
+    backup_active = rollback_dir / "catalogue_preview_v3_3_2.csv"
+    backup_manifest = rollback_dir / "current_manifest.json"
+    postchange_audit = AUDIT_ROOT / f"meity_v3_4_2_0_2_publication_{run_id}.json"
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_governed_rollback_v3_4_2_0_2.py:16
+sys.path.insert(0, str(ROOT))
+os.chdir(ROOT)
+ACTIVE = ROOT / "data" / "catalogue_preview" / "v3_3_2" / "catalogue_preview_v3_3_2.csv"
+LATEST_POINTER = ROOT / "data" / "publication" / "meity_v3_4_2_0_2_latest_publication.json"
+AUDIT_ROOT = ROOT / "data" / "audit"
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_governed_rollback_v3_4_2_0_2.py:52
+        raise RuntimeError(f"Publication pointer missing: {LATEST_POINTER}")
+    pointer = json.loads(LATEST_POINTER.read_text(encoding="utf-8-sig"))
+    rollback_dir = Path(pointer["rollback_directory"])
+    if not backup_active.exists() or not backup_manifest.exists():
+        raise RuntimeError("Rollback backup files are missing.")
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_manual_pilot_finalize_v3_4_2_0_1.py:36
+    "validation": PHASE_DIR / "meity_extraction_validation_v3_4_2_0_1.json",
+    "summary": PHASE_DIR / "meity_extraction_summary_v3_4_2_0_1.json",
+    "manifest": PHASE_DIR / "meity_extraction_manifest_v3_4_2_0_1.json",
+    "active": ROOT / "data" / "catalogue_preview" / "v3_3_2" / "catalogue_preview_v3_3_2.csv",
+    "published": ROOT / "data" / "publication" / "20260710T162806+0000_f4936983" / "catalogue.csv",
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_manual_pilot_finalize_v3_4_2_0_1_before_generic_tree_hash_fix.py:36
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_manual_pilot_finalize_v3_4_2_0_1_before_tree_hash_fix.py:36
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_new_scheme_identity_evidence_agent_v3_4_3_3.py:672
+    frozen_paths = [
+        / "catalogue_preview_v3_3_2.csv",
+        root / "data" / "publication" / "current_manifest.json",
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_new_scheme_identity_evidence_agent_v3_4_3_3.py:674
+        root / "database" / "ssip_staging_v1.db",
+        root / "apps" / "public_dashboard_app_v2_9.py",
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_publication_candidate_preview_v3_4_3_4.py:330
+        return 0
+    project = root()
+    active = project / "data" / "catalogue_preview" / "v3_3_2" / "catalogue_preview_v3_3_2.csv"
+    manifest = project / "data" / "publication" / "current_manifest.json"
+    database = project / "database" / "ssip_staging_v1.db"
+    dashboard = project / "apps" / "public_dashboard_app_v2_9.py"
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_publication_candidate_preview_v3_4_3_4.py:342
+    upstream_validation = source_dir / "meity_new_scheme_validation_v3_4_3_3.json"
+    output_dir = project / "data" / "departments" / "meity" / "v3_4_3_4"
+    preview_dir = project / "data" / "catalogue_preview" / "v3_4_3_4"
+    audit_dir = project / "data" / "audit"
+    candidate = preview_dir / "catalogue_preview_v3_4_3_4.csv"
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_publication_candidate_preview_v3_4_3_4.py:345
+    candidate_rows_file = output_dir / "meity_publication_candidate_rows_v3_4_3_4.csv"
+    validation_file = output_dir / "meity_dashboard_preview_validation_v3_4_3_4.json"
+    summary_file = output_dir / "meity_release_readiness_summary_v3_4_3_4.json"
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\preflight_agents_v3_4_1_0.py:14
+        root / "agents" / "orchestrator.py",
+        root / "config" / "agent_platform_v3_4_1_0.json",
+        root / "config" / "sector_taxonomy_v3_4_1_0.json",
+    checks = {str(x.relative_to(root)): x.exists() for x in required}
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\sector_catalogue_repair_v3_4_0_6b.py:28
+    pass
+VERSION = "3.4.0.6b"
+DEFAULT_INPUT = Path("data/catalogue_preview/v3_3_2/catalogue_preview_v3_3_2.csv")
+DEFAULT_RULES = Path("config/sector_rules_v3_4_0_6b.json")
+DEFAULT_OUTPUT = Path("data/sector_verification/v3_4_0_6b")
+BLANKS = {"", "none", "null", "unknown", "n/a", "na", "not specified", "sector not specified", "[]"}
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\sector_verification_agent_v3_4_0_6.py:38
+from urllib.parse import urlparse
+VERSION = "3.4.0.6"
+DEFAULT_CATALOGUE = Path("data/catalogue_preview/v3_3_2/catalogue_preview_v3_3_2.csv")
+DEFAULT_TAXONOMY = Path("config/sector_taxonomy_v3_4_0_6.json")
+DEFAULT_OUTPUT_DIR = Path("data/sector_verification/v3_4_0_6")
+DEFAULT_LM_STUDIO_URL = "http://127.0.0.1:1234/v1/chat/completions"
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\sector_verification_agent_v3_4_0_6.py:522
+    if default.exists():
+        return default
+    candidates = sorted(
+        (root / "data" / "catalogue_preview").glob("**/*.csv"),
+        key=lambda path: path.stat().st_mtime,
+        reverse=True,
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\sector_verification_agent_v3_4_0_6.py:527
+    if not candidates:
+        raise FileNotFoundError("No catalogue CSV found under data/catalogue_preview")
+    return candidates[0]
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\validate_meity_explicit_preview_v3_4_2_0_2.py:16
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\validate_meity_explicit_preview_v3_4_2_0_2.py:18
+SOURCE_CANDIDATE = (
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\validate_meity_explicit_preview_v3_4_2_0_2.py:33
+PREVIEW_DIR = (
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\validate_meity_explicit_preview_v3_4_2_0_2.py:39
+PREVIEW_CANDIDATE = (
+    PREVIEW_DIR
+VALIDATION = (
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\verify_active_catalogue_v3_4_1_0.py:7
+def main() -> int:
+    root = Path(sys.argv[1] if len(sys.argv) > 1 else ".").resolve()
+    path = root / "data/catalogue_preview/v3_3_2/catalogue_preview_v3_3_2.csv"
+    taxonomy = json.loads((root / "config/sector_taxonomy_v3_4_1_0.json").read_text(encoding="utf-8"))
+    allowed = {x["name"] for x in taxonomy["sectors"]}
+    with path.open("r", encoding="utf-8-sig", newline="") as fh:
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\verify_dashboard_sector_source_v3_4_0_6b.py:14
+def main():
+    p=argparse.ArgumentParser(); p.add_argument("--project-root",default="."); args=p.parse_args()
+    root=Path(args.project_root).resolve()
+    cat=root/"data/catalogue_preview/v3_3_2/catalogue_preview_v3_3_2.csv"
+    with cat.open("r",encoding="utf-8-sig",newline="") as f: rows=list(csv.DictReader(f))
+    dist=Counter(clean(r.get("primary_sector") or r.get("sector")) for r in rows)
+    unspecified=sum(c for s,c in dist.items() if not s or s.casefold()=="sector not specified")
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\verify_governance_v3_4_2_1.py:7
+    active = root / "data/catalogue_preview/v3_3_2/catalogue_preview_v3_3_2.csv"
+    with active.open("r", encoding="utf-8-sig", newline="") as fh:
+        rows = list(csv.DictReader(fh))
+    bad = [r for r in rows if not (r.get("sector") or "").strip()]
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_end_to_end_governed_agents_v1.py:24
+            "official_domain_allowlist_v1.json",
+        ):
+            shutil.copy2(ROOT / "config" / name, root / "config" / name)
+        active = root / "data/catalogue_preview/v3_3_2/catalogue_preview_v3_3_2.csv"
+        active.parent.mkdir(parents=True)
+        fields = [
+            "master_id", "scheme_name", "normalized_record_kind", "official_page_url",
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_end_to_end_governed_agents_v1.py:80
+        self.assertNotIn("PUBLISH_APPROVED_AGENT_RUN_v1.ps1", text)
+    def test_current_51_record_population_is_recoverable(self) -> None:
+        active = ROOT / "data/catalogue_preview/v3_3_2/catalogue_preview_v3_3_2.csv"
+        self.assertEqual(len(dashboard_public_ids(ROOT, active)), 51)
+        backups = sorted((ROOT / "backups/codex_governed_agents").glob("*/data/catalogue_preview/v3_3_2/catalogue_preview_v3_3_2.csv"))
+        self.assertTrue(backups)
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_end_to_end_governed_agents_v1.py:82
+        self.assertEqual(sha256_file(backups[-1]), sha256_file(active))
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_end_to_end_governed_agents_v1_before_51_fix.py:24
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_end_to_end_governed_agents_v1_before_51_fix.py:80
+    def test_current_47_record_population_is_recoverable(self) -> None:
+        self.assertEqual(len(dashboard_public_ids(ROOT, active)), 47)
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_end_to_end_governed_agents_v1_before_51_fix.py:82
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_integrate_dst_v3_4_0_4_existing_dashboard.py:27
+    def test_full_merge(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = root / "data/catalogue_preview/v3_3_2/catalogue_preview_v3_3_2.csv"
+            dst = root / "data/departments/dst/v3_4_0_4/dst_publication_catalogue_v3_4_0_4.csv"
+            app = root / "apps/public_dashboard_app_v2_9.py"
+            base.parent.mkdir(parents=True)
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_integrate_dst_v3_4_0_4_existing_dashboard.py:48
+                for i in range(23):
+                    writer.writerow({"master_id": f"dst_{i}", "scheme_name": f"DST {i}", "entity_type": "SCHEME" if i < 3 else "PROGRAMME", "ministry": "Ministry of Science and Technology", "department": "Department of Science and Technology", "programme_status": "SCHEME_INFORMATION_AVAILABLE", "application_status": "REFERENCE", "official_page_url": f"https://dst.gov.in/{i}", "last_verified_date": "2026-07-10"})
+            app.write_text('APP_VERSION = "3.2.0"\n', encoding="utf-8")
+            summary = integrate(root, Path("data/catalogue_preview/v3_3_2/catalogue_preview_v3_3_2.csv"), Path("data/departments/dst/v3_4_0_4/dst_publication_catalogue_v3_4_0_4.csv"), Path("data/catalogue_preview/v3_4_0_4/catalogue_preview_v3_4_0_4.csv"), Path("apps/public_dashboard_app_v2_9.py"))
+            self.assertTrue(summary["integration_passed"])
+            self.assertEqual(summary["counts"]["old_dst_rows_removed"], 1)
+            self.assertEqual(summary["counts"]["dst_rows_added"], 23)
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_meity_catalogue_action_reference_v3_4_3_5.py:79
+    source_path = (
+        PROJECT_ROOT
+        / "data/catalogue_preview/v3_4_3_4/"
+        "catalogue_preview_v3_4_3_4.csv"
+    actions_path = (
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_meity_catalogue_action_reference_v3_4_3_5.py:80
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_public_dashboard_data_access.py:184
+        finally:
+            self.cleanup_project(temp_dir)
+    def test_catalogue_preview_loads_normalized_record(self) -> None:
+        temp_dir = self.temp_project()
+            root = self.make_project(str(temp_dir))
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_public_dashboard_data_access.py:192
+                project_root=root,
+                database_path=root / "database" / "ssip_staging_v1.db",
+                normalization_path=root / "data" / "audit" / "v2_8_1_catalogue_normalization" / "catalogue_normalization_plan_v2_8_1.csv",
+                mode=CatalogueMode.CATALOGUE_PREVIEW,
+            bundle = load_catalogue(config)
+            self.assertEqual(len(bundle.records), 1)
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_public_dashboard_data_access.py:216
+    def test_catalogue_preview_appends_published_records_missing_from_plan(self) -> None:
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_public_dashboard_data_access.py:255
+            self.assertEqual({record.master_id for record in bundle.records}, {"one", "published-call"})
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_public_dashboard_data_access.py:268
+    def test_catalogue_preview_does_not_duplicate_published_plan_record(self) -> None:
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_public_dashboard_data_access.py:284
+            self.assertEqual([record.master_id for record in bundle.records], ["one"])
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_public_dashboard_data_access.py:319
+            self.assertEqual([record.master_id for record in bundle.records], ["published-one"])
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2.py:20
+PILOT = SRC / "meity_extraction_pilot_records_v3_4_2_0_1.csv"
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_config_path_fix.py:20
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_dashboard_loader_fix.py:19
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_direct_config_fix.py:20
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_visibility_fix.py:19
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_end_to_end_governed_agents_v1.py:72
+            public_ids = {row["scheme_master_id"] for row in public}
+            review_ids = {row.get("scheme_master_id", "") for row in review}
+            self.assertFalse(public_ids & {item for item in review_ids if item})
+            self.assertFalse((root / "data/publication/current/public_catalogue.csv").exists())
+    def test_nightly_task_installs_preview_only(self) -> None:
+        text = (ROOT / "INSTALL_NIGHTLY_AGENT_PREVIEW_TASK_v1.ps1").read_text(encoding="utf-8")
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_end_to_end_governed_agents_v1_before_51_fix.py:72
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_publication_guard_v1.py:66
+            (root / "config").mkdir()
+            (root / "data/active").mkdir(parents=True)
+            (root / "data/agent_runs/run-1").mkdir(parents=True)
+            (root / "data/publication/current").mkdir(parents=True)
+            (root / "backups/governed_publication").mkdir(parents=True)
+            config = {
+                "active_catalogue": "data/active/catalogue.csv",
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_publication_guard_v1.py:85
+            for name in ("call_instances.csv", "ecosystem_entities.csv"):
+                (root / f"data/agent_runs/run-1/{name}").write_text("id\n", encoding="utf-8")
+            previous = "old-current-catalogue\n"
+            (root / "data/publication/current/public_catalogue.csv").write_text(previous, encoding="utf-8")
+            approval = root / "approval.csv"
+            approval.write_text("run_id,proposed_action,approved_by,approval_date\nrun-1,APPROVE_PUBLICATION,Reviewer,2026-07-10\n", encoding="utf-8")
+            with patch.object(publication, "validate_run", return_value={"passed": True}), patch.object(publication, "dashboard_public_ids", return_value={"scheme-1"}), patch.object(publication, "verify", return_value={"valid": False}):
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_publication_guard_v1.py:91
+                with self.assertRaises(RuntimeError):
+                    publication.publish(root, "run-1", approval)
+            self.assertEqual((root / "data/publication/current/public_catalogue.csv").read_text(encoding="utf-8"), previous)
+            self.assertFalse((root / "data/publication/current/publication_manifest.json").exists())
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_publication_guard_v1.py:92
+if __name__ == "__main__":
+D:\WebSite\DASHBOARD\Code\SSIP\apps\public_dashboard_app_v2_9.py:22
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+from ssip_dashboard.catalogue import CatalogueBundle, CatalogueRecord, load_catalogue
+from ssip_dashboard.analytics import ReadinessMeasure, build_public_analytics
+from ssip_dashboard.components import (
+    esc,
+D:\WebSite\DASHBOARD\Code\SSIP\apps\public_dashboard_app_v2_9.py:226
+@st.cache_data(ttl=45, show_spinner=False)
+def cached_catalogue() -> CatalogueBundle:
+    loaded = load_catalogue(DashboardConfig.from_env(PROJECT_ROOT))
+    return canonicalize_catalogue_organisations(loaded)
+D:\WebSite\DASHBOARD\Code\SSIP\ssip_dashboard\catalogue.py:497
+    return bool(left_tokens & right_tokens)
+def load_catalogue(config: DashboardConfig) -> CatalogueBundle:
+    if getattr(config, "preview_path_configured", False) and not config.normalization_path.exists():
+        raise FileNotFoundError(f"Configured catalogue preview file not found: {config.normalization_path}")
+    tables = read_dashboard_tables(
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\generate_identity_review_v3_3_4.py:16
+from ssip_dashboard.catalogue import load_catalogue
+from ssip_dashboard.catalogue_populations import (
+    split_catalogue_populations,
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\generate_identity_review_v3_3_4.py:141
+    noise_ids = load_noise_ids()
+    config = DashboardConfig.from_env()
+    bundle = load_catalogue(config)
+    populations = split_catalogue_populations(
+        bundle.records
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_application_link_hotfix_v3_4_2_0_3.py:91
+def load_dashboard_records():
+    from ssip_dashboard.catalogue import load_catalogue
+    from ssip_dashboard.catalogue_populations import split_catalogue_populations
+    from ssip_dashboard.config import DashboardConfig
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_application_link_hotfix_v3_4_2_0_3.py:96
+    config = DashboardConfig.from_env(ROOT)
+    populations = split_catalogue_populations(bundle.records)
+    records_by_id = {
+        record.master_id: record
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2.py:281
+    from ssip_dashboard.catalogue_populations import (
+        split_catalogue_populations,
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2.py:297
+        preview_path_configured=True,
+    candidate_catalogue = load_catalogue(
+        candidate_config
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_config_path_fix.py:285
+    try:
+        from ssip_dashboard.catalogue import load_catalogue
+        from ssip_dashboard.catalogue_populations import (
+            split_catalogue_populations,
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_config_path_fix.py:295
+            ROOT
+        candidate_catalogue = load_catalogue(
+            candidate_config
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_direct_config_fix.py:285
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_direct_config_fix.py:295
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_governed_publish_v3_4_2_0_2.py:100
+def dashboard_snapshot(path: Path) -> dict[str, Any]:
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_governed_publish_v3_4_2_0_2.py:110
+        normalization_path=path.resolve(),
+    main_ids = {
+        record.master_id
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_governed_rollback_v3_4_2_0_2.py:35
+def visible_count(path: Path) -> tuple[int, set[str]]:
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_governed_rollback_v3_4_2_0_2.py:41
+    base = DashboardConfig.from_env(ROOT)
+    config = replace(base, normalization_path=path.resolve(), preview_path_configured=True)
+    ids = {record.master_id for record in populations.main_scheme_records if record.master_id}
+    return len(ids), ids
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_publication_candidate_preview_v3_4_3_4.py:266
+def dashboard_snapshot(project: Path, catalogue: Path) -> dict[str, Any]:
+    sys.path.insert(0, str(project))
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_publication_candidate_preview_v3_4_3_4.py:271
+    config = override_catalogue_path(DashboardConfig.from_env(project), catalogue)
+    records = {
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\patch_meity_candidate_config_path_v3_4_2_0_2.py:67
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\patch_meity_candidate_config_path_v3_4_2_0_2.py:83
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\patch_meity_candidate_visibility_exact_v3_4_2_0_2.py:31
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\patch_meity_candidate_visibility_exact_v3_4_2_0_2.py:41
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\patch_meity_candidate_visibility_v3_4_2_0_2.py:66
+        from ssip_dashboard.catalogue import (
+            load_catalogue,
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\patch_meity_candidate_visibility_v3_4_2_0_2.py:79
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\validate_meity_explicit_preview_v3_4_2_0_2.py:136
+    from ssip_dashboard.catalogue import (
+        load_catalogue,
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\validate_meity_explicit_preview_v3_4_2_0_2.py:163
+    active_bundle = load_catalogue(
+        active_config
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\validate_meity_explicit_preview_v3_4_2_0_2.py:167
+    candidate_bundle = load_catalogue(
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\verify_v3_3_3_dashboard_wiring.py:11
+import re
+    primary_sector_counts,
+    primary_support_type_counts,
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\verify_v3_3_3_dashboard_wiring.py:26
+config = DashboardConfig.from_env()
+bundle = load_catalogue(config)
+populations = split_catalogue_populations(bundle.records)
+main_records = populations.main_scheme_records
+metrics = compute_metrics(bundle.records)
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_public_dashboard_data_access.py:12
+import uuid
+from ssip_dashboard.config import CatalogueMode, DashboardConfig
+from ssip_dashboard.data_access import readonly_connection
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_public_dashboard_data_access.py:194
+            self.assertEqual(bundle.records[0].scheme_name, "Open Grant")
+            self.assertEqual(bundle.records[0].sectors, ["Biotechnology"])
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_public_dashboard_data_access.py:211
+                mode=CatalogueMode.PUBLISHED_ONLY,
+            self.assertEqual(bundle.records, [])
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_public_dashboard_data_access.py:257
+            self.assertEqual(bundle.metadata["published_appended_count"], 1)
+            call = next(record for record in bundle.records if record.master_id == "published-call")
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_public_dashboard_data_access.py:286
+            self.assertEqual(bundle.metadata["published_appended_count"], 0)
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_public_dashboard_data_access.py:321
+            self.assertEqual(bundle.metadata["published_merged_count"], 1)
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\compare_agent_run_with_active_catalogue_v1.py:13
+from agents.governed_v1.common import atomic_write_csv, dashboard_public_ids, first, load_json, read_csv
+def compare(root: Path, run_id: str) -> dict:
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\compare_agent_run_with_active_catalogue_v1.py:21
+    run_dir = root / config["run_root"] / run_id
+    active = root / config["active_catalogue"]
+    active_ids = dashboard_public_ids(root, active)
+    active_rows, _ = read_csv(active)
+    active_names = {first(row, "master_id", "scheme_master_id"): first(row, "scheme_name", "canonical_name") for row in active_rows}
+    candidates, _ = read_csv(run_dir / "publication_candidate.csv")
+    candidate_names = {first(row, "scheme_master_id", "master_id"): first(row, "canonical_name", "scheme_name") for row in candidates}
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\compare_agent_run_with_active_catalogue_v1.py:23
+    candidate_ids = set(candidate_names)
+    rows = []
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_canonical_publication_builder_v3_4_0_4.py:205
+    return urlunsplit((scheme, netloc, path, "", ""))
+def read_csv(path: Path, required: bool = True) -> list[dict[str, str]]:
+    if not path.exists():
+        if required:
+            raise FileNotFoundError(f"Required input not found: {path}")
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_canonical_publication_builder_v3_4_0_4.py:271
+    by_url: dict[str, dict[str, str]] = {}
+    if not path or not path.exists() or path.stat().st_size == 0:
+        return by_id, by_url
+    for row in read_csv(path, required=False):
+        provisional_id = first_value(row, "provisional_entity_id", "upstream_provisional_entity_id")
+        source_url = normalize_url(first_value(row, "official_source_url", "source_url"))
+        if provisional_id:
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_canonical_publication_builder_v3_4_0_4.py:918
+    upstream_validation = read_json(paths["upstream"] / UPSTREAM_VALIDATION_INPUT)
+    read_json(paths["upstream"] / UPSTREAM_SUMMARY_INPUT)
+    schemes = read_csv(paths["upstream"] / SCHEMES_INPUT)
+    programmes = read_csv(paths["upstream"] / PROGRAMMES_INPUT)
+    manual = read_csv(paths["upstream"] / MANUAL_REVIEW_INPUT, required=False)
+    final_review = read_csv(paths["upstream"] / FINAL_REVIEW_INPUT, required=False)
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_canonical_publication_builder_v3_4_0_4.py:919
+    # Merge only explicit manual entity rows; never carry NO_RECORDS placeholders.
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_canonical_publication_builder_v3_4_0_4.py:920
+    combined_manual = manual + [row for row in final_review if upper(first_value(row, "review_type")) == "MANUAL_ENTITY_REVIEW"]
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_canonical_publication_builder_v3_4_0_4.py:921
+    aliases = read_csv(paths["inventory"] / ALIASES_INPUT, required=False)
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_canonical_publication_builder_v3_4_0_4.py:924
+    hierarchy = read_csv(paths["inventory"] / HIERARCHY_INPUT, required=False)
+    evidence = read_csv(paths["inventory"] / EVIDENCE_INPUT, required=False)
+    overrides_by_id, overrides_by_url = load_overrides(paths["overrides"])
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_canonical_publication_builder_v3_4_0_4.py:925
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_canonical_publication_builder_v3_4_0_4.py:926
+    result = build(
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_category_gap_consolidation_v3_4_0_3_1.py:271
+    return urlunsplit((scheme, netloc, path, query, ""))
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_category_gap_consolidation_v3_4_0_3_1.py:986
+def run_pipeline(project_root: Path, config: Mapping[str, Any], dry_run: bool = False) -> tuple[ConsolidationResult | None, dict[str, Any]]:
+    inventory_dir, classifier_dir, _crawl_dir, output_dir, link_graph_path = resolve_paths(project_root)
+    review_rows = read_csv(inventory_dir / REVIEW_INPUT)
+    schemes = read_csv(inventory_dir / SCHEME_INPUT)
+    programmes = read_csv(inventory_dir / PROGRAMME_INPUT)
+    aliases = read_csv(inventory_dir / ALIAS_INPUT, required=False)
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_category_gap_consolidation_v3_4_0_3_1.py:987
+    pages = read_csv(classifier_dir / CLASSIFIED_PAGES_INPUT)
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_category_gap_consolidation_v3_4_0_3_1.py:988
+    links = read_csv(link_graph_path)
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_category_gap_consolidation_v3_4_0_3_1.py:989
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_category_gap_consolidation_v3_4_0_3_1.py:990
+    if dry_run:
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_category_gap_consolidation_v3_4_0_3_1.py:991
+        gap_count = sum(upper(row.get("review_type")) == "CATEGORY_INDEX_DISCOVERY_GAP" for row in review_rows)
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_direct_target_inventory_quality_hotfix_v3_4_0_3_2.py:336
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_direct_target_inventory_quality_hotfix_v3_4_0_3_2.py:1408
+    dry_run: bool = False,
+) -> tuple[HotfixResult | None, dict[str, Any]]:
+    paths = resolve_paths(project_root)
+    review_rows = read_csv(paths["review"])
+    schemes = read_csv(paths["schemes"])
+    programmes = read_csv(paths["programmes"])
+    aliases = read_csv(paths["aliases"], required=False)
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_direct_target_inventory_quality_hotfix_v3_4_0_3_2.py:1409
+    pages = read_csv(paths["pages"])
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_direct_target_inventory_quality_hotfix_v3_4_0_3_2.py:1410
+    links = read_csv(paths["links"])
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_direct_target_inventory_quality_hotfix_v3_4_0_3_2.py:1411
+    gap_rows = [row for row in review_rows if upper(row.get("review_type")) == "CATEGORY_INDEX_DISCOVERY_GAP"]
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_direct_target_inventory_quality_hotfix_v3_4_0_3_2.py:1412
+    groups, duplicates = aggregate_gap_rows(review_rows, config)
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_direct_target_inventory_quality_hotfix_v3_4_0_3_2.py:1413
+    direct_match_preview = sum(
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_evidence_page_role_classifier_v3_4_0_2.py:220
+    return f"{prefix}_{hashlib.sha256(payload.encode('utf-8')).hexdigest()[:20]}"
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_evidence_page_role_classifier_v3_4_0_2.py:889
+        if not required.exists():
+            raise FileNotFoundError(f"Required input not found: {required}")
+    input_pages = read_csv(page_path)
+    input_documents = read_csv(document_path)
+    call_audit = read_csv(call_audit_path)
+    link_rows = read_csv(link_graph_path)
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_evidence_page_role_classifier_v3_4_0_2.py:890
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_evidence_page_role_classifier_v3_4_0_2.py:891
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_evidence_page_role_classifier_v3_4_0_2.py:892
+        return {
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_navigation_aware_gap_selective_crawl_v3_4_0_3_3.py:313
+    return urlunsplit((scheme, netloc, path, urlencode(sorted(query_items)), ""))
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_navigation_aware_gap_selective_crawl_v3_4_0_3_3.py:1303
+    max_targets: int = 0,
+) -> tuple[PipelineResult | None, dict[str, Any]]:
+    direct_targets = read_csv(paths["direct_targets"])
+    duplicates = read_csv(paths["duplicates"], required=False)
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_navigation_aware_gap_selective_crawl_v3_4_0_3_3.py:1304
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_navigation_aware_gap_selective_crawl_v3_4_0_3_3.py:1305
+    downgrades = read_csv(paths["downgrades"], required=False)
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_navigation_aware_gap_selective_crawl_v3_4_0_3_3.py:1306
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_navigation_aware_gap_selective_crawl_v3_4_0_3_3.py:1307
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_navigation_aware_gap_selective_crawl_v3_4_0_3_3.py:1308
+    context_audit = read_csv(paths["context_audit"], required=False)
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_navigation_aware_gap_selective_crawl_v3_4_0_3_3.py:1309
+    existing_crawled = read_csv(paths["existing_crawled"], required=False)
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_navigation_aware_gap_selective_crawl_v3_4_0_3_3.py:1310
+    if len(existing_crawled) == 1 and first_value(existing_crawled[0], "record_status") == "NO_RECORDS":
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_navigation_aware_gap_selective_crawl_v3_4_0_3_3.py:1311
+        existing_crawled = []
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_navigation_aware_gap_selective_crawl_v3_4_0_3_3.py:1312
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_permanent_inventory_builder_v3_4_0_3.py:278
+    return value
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_permanent_inventory_builder_v3_4_0_3.py:1096
+def run_builder(args: argparse.Namespace) -> int:
+    input_dir, output_dir, link_graph_path, config_path = resolve_paths(args)
+    config = load_config(config_path)
+    pages = read_csv(input_dir / CLASSIFIED_PAGES_INPUT)
+    documents = read_csv(input_dir / CLASSIFIED_DOCUMENTS_INPUT)
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_permanent_inventory_builder_v3_4_0_3.py:1097
+    if args.dry_run:
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_permanent_inventory_builder_v3_4_0_3.py:1098
+        payload = {
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_selective_queue_calibration_v3_4_0_3_3_1.py:290
+    return not re.search(r"\.(pdf|docx?|xlsx?|pptx?|zip|rar|jpg|jpeg|png|gif)(?:$|\?)", parts.path, re.I)
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_selective_queue_calibration_v3_4_0_3_3_1.py:1091
+) -> tuple[Result, dict[str, Any]]:
+    context = read_csv(paths["context"])
+    review = read_csv(paths["review"])
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_selective_queue_calibration_v3_4_0_3_3_1.py:1092
+    summary_input = read_json(paths["summary_input"], required=False)
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_selective_queue_calibration_v3_4_0_3_3_1.py:1093
+    user_calibration = read_csv(paths["user_calibration"], required=False)
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_selective_queue_calibration_v3_4_0_3_3_1.py:1094
+    context = merge_user_calibration(context, user_calibration, config)
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_selective_queue_calibration_v3_4_0_3_3_1.py:1096
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_selective_queue_calibration_v3_4_0_3_3_1.py:1098
+        preview = process(context, review, schemes, programmes, config, run_crawl=False)
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_snapshot_text_recovery_v3_4_0_1_1.py:186
+def read_csv(path: Path) -> list[dict[str, str]]:
+        raise FileNotFoundError(f"Required input not found: {path}")
+    with path.open("r", encoding="utf-8-sig", newline="") as handle:
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_snapshot_text_recovery_v3_4_0_1_1.py:772
+            raise FileNotFoundError(f"Required v3.4.0.1 input is missing: {required}")
+    input_external = read_csv(external_path)
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_snapshot_text_recovery_v3_4_0_1_1.py:773
+        snapshots = sum(resolve_snapshot(input_dir, row.get("snapshot_path", "")).exists() for row in input_pages)
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_snapshot_text_recovery_v3_4_0_1_1.py:774
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_snapshot_text_recovery_v3_4_0_1_1.py:919
+        write_csv(input_dir / LINK_INPUT, link_rows)
+        result = run_hotfix(input_dir, output_dir, 1.0)
+        enriched_pages = read_csv(output_dir / PAGE_OUTPUT)
+        enriched_docs = read_csv(output_dir / DOCUMENT_OUTPUT)
+        enriched_ext = read_csv(output_dir / EXTERNAL_OUTPUT)
+        calls = read_csv(output_dir / CALL_AUDIT_OUTPUT)
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_snapshot_text_recovery_v3_4_0_1_1.py:920
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_snapshot_text_recovery_v3_4_0_1_1.py:921
+        checks["main_text_recovered"] = safe_int(enriched_pages[0]["word_count"]) > 5
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_snapshot_text_recovery_v3_4_0_1_1.py:922
+        checks["empty_main_shell_not_selected"] = enriched_pages[0]["text_selected_selector"] != "main"
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_startup_focus_pipeline_v3_4_0_5.py:74
+    return urlunsplit(("https", host, path, urlencode(sorted(query)), ""))
+def read_csv(path: Path) -> tuple[list[str], list[dict[str, str]]]:
+        raise FileNotFoundError(f"Required CSV not found: {path}")
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_startup_focus_pipeline_v3_4_0_5.py:465
+def publish(root: Path, config: Mapping[str, Any], output_dir: Path) -> dict[str, Any]:
+    catalogue = root / config["catalogue_path"]
+    fields, rows = read_csv(catalogue)
+    old_dst = [row for row in rows if is_dst_row(row)]
+    retained = [row for row in rows if not is_dst_row(row)]
+    verified_on = date.today().isoformat()
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\integrate_dst_v3_4_0_4_into_existing_dashboard.py:25
+    return datetime.now(timezone.utc).replace(microsecond=0).isoformat()
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\integrate_dst_v3_4_0_4_into_existing_dashboard.py:177
+    merged_path = root / merged_output
+    app_full_path = root / app_path
+    fields, base_rows = read_csv(base_path)
+    _, dst_rows = read_csv(dst_path)
+    if len(dst_rows) != 23:
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\integrate_dst_v3_4_0_4_into_existing_dashboard.py:178
+        raise ValueError(f"Expected exactly 23 DST publication rows, found {len(dst_rows)} in {dst_path}")
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\integrate_dst_v3_4_0_4_into_existing_dashboard.py:202
+    # Replace that file only after the versioned merged output is safely written.
+    write_csv(base_path, fields, merged_rows)
+    re_fields, reloaded = read_csv(base_path)
+    if re_fields != fields:
+        raise RuntimeError("Catalogue header changed during write")
+    final_dst = [row for row in reloaded if is_existing_dst_row(row)]
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_application_link_hotfix_v3_4_2_0_3.py:51
+        reader = csv.DictReader(handle)
+        return list(reader.fieldnames or []), list(reader)
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_application_link_hotfix_v3_4_2_0_3.py:117
+    if missing:
+        raise RuntimeError("Required files are missing:\n" + "\n".join(missing))
+    fields, before_rows = read_csv(ACTIVE)
+    before_manifest = read_json(CURRENT_MANIFEST)
+    if len(before_rows) != 139:
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_application_link_hotfix_v3_4_2_0_3.py:187
+                {"name": name, "passed": bool(passed), "details": details}
+        _, reloaded_rows = read_csv(ACTIVE)
+        reloaded_by_id = {
+            row.get("master_id", "").strip(): row
+            for row in reloaded_rows
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_candidate_triage_agent_v3_4_3_2.py:81
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_candidate_triage_agent_v3_4_3_2.py:254
+    source_hashes = {key: sha256(path) for key, path in paths.items()}
+    _, scheme_rows = read_csv(paths["schemes"])
+    _, programme_rows = read_csv(paths["programmes"])
+    _, call_rows = read_csv(paths["calls"])
+    _, review_rows = read_csv(paths["reviews"])
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_candidate_triage_agent_v3_4_3_2.py:255
+    _, page_rows = read_csv(paths["pages"])
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_candidate_triage_agent_v3_4_3_2.py:256
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_candidate_triage_agent_v3_4_3_2.py:257
+    master_rows: list[dict[str, object]] = []
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_candidate_triage_agent_v3_4_3_2.py:258
+    identity_rows: list[dict[str, object]] = []
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_candidate_triage_agent_v3_4_3_2_before_v3_4_3_2_1.py:81
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_candidate_triage_agent_v3_4_3_2_before_v3_4_3_2_1.py:254
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_candidate_triage_agent_v3_4_3_2_before_v3_4_3_2_1.py:255
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_candidate_triage_agent_v3_4_3_2_before_v3_4_3_2_1.py:256
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_candidate_triage_agent_v3_4_3_2_before_v3_4_3_2_1.py:257
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_candidate_triage_agent_v3_4_3_2_before_v3_4_3_2_1.py:258
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2.py:41
+CALL_KINDS = {"APPLICATION_CALL", "CALL", "CHALLENGE", "APPLICATION_WINDOW", "COHORT_INSTANCE", "ROUND_INSTANCE"}
+def read_csv(path: Path):
+    with path.open("r", encoding="utf-8-sig", newline="") as f:
+        r = csv.DictReader(f)
+        return list(r.fieldnames or []), list(r)
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2.py:162
+    if src_validation.get("validation_status") != "PASS":
+        raise RuntimeError("Source MeitY pilot validation is not PASS.")
+    active_fields, active_rows = read_csv(ACTIVE)
+    pilot_fields, pilot_rows = read_csv(PILOT)
+    review_fields, review_rows = read_csv(REVIEWS)
+    _, evidence_rows = read_csv(FIELD_EVIDENCE)
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2.py:163
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2.py:164
+    if len(active_rows) != 137 or len(pilot_rows) != 2 or len(review_rows) != 7 or len(evidence_rows) != 42:
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2.py:165
+        raise RuntimeError(f"Unexpected counts: active={len(active_rows)}, pilot={len(pilot_rows)}, reviews={len(review_rows)}, evidence={len(evidence_rows)}")
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2.py:343
+        "recorded_at": datetime.now(timezone.utc).isoformat(),
+        "active_catalogue": {"path": ACTIVE.relative_to(ROOT).as_posix(), "row_count": len(active_rows), "sha256": sha(ACTIVE)},
+        "current_manifest_sha256": sha(CURRENT_MANIFEST),
+        "immutable_catalogue": {"row_count": len(read_csv(IMMUTABLE)[1]), "sha256": sha(IMMUTABLE)},
+        "dashboard_sha256": sha(DASHBOARD),
+        "publication_performed": False,
+        "database_modified": False,
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_config_path_fix.py:41
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_config_path_fix.py:162
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_config_path_fix.py:163
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_config_path_fix.py:164
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_config_path_fix.py:165
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_config_path_fix.py:351
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_dashboard_loader_fix.py:40
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_dashboard_loader_fix.py:161
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_dashboard_loader_fix.py:162
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_dashboard_loader_fix.py:163
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_dashboard_loader_fix.py:164
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_dashboard_loader_fix.py:301
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_direct_config_fix.py:41
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_direct_config_fix.py:162
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_direct_config_fix.py:163
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_direct_config_fix.py:164
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_direct_config_fix.py:165
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_direct_config_fix.py:351
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_visibility_fix.py:40
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_visibility_fix.py:161
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_visibility_fix.py:162
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_visibility_fix.py:163
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_visibility_fix.py:164
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_visibility_fix.py:301
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_governed_publish_v3_4_2_0_2.py:72
+    os.replace(temp, path)
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_governed_publish_v3_4_2_0_2.py:180
+            + ", ".join(validation.get("failed_checks", []))
+    candidate_fields, candidate_rows = read_csv(CANDIDATE)
+    current_manifest = read_json(CURRENT_MANIFEST)
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_governed_publish_v3_4_2_0_2.py:181
+    if len(active_rows) != 137:
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_governed_publish_v3_4_2_0_2.py:251
+        atomic_copy(CANDIDATE, ACTIVE)
+        promoted_fields, promoted_rows = read_csv(ACTIVE)
+        if promoted_fields != candidate_fields or promoted_rows != candidate_rows:
+            raise RuntimeError("Promoted active catalogue does not match the candidate.")
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_manual_pilot_finalize_v3_4_2_0_1.py:56
+]
+        return list(csv.DictReader(f))
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_manual_pilot_finalize_v3_4_2_0_1.py:163
+    baseline = read_json(P["baseline"])
+    masters = read_csv(P["master"])
+    legacy = read_csv(P["legacy"])
+    calls = read_csv(P["calls"])
+    official = read_csv(P["official"])
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_manual_pilot_finalize_v3_4_2_0_1.py:164
+    statuses = read_csv(P["statuses"])
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_manual_pilot_finalize_v3_4_2_0_1.py:165
+    pilot = read_csv(P["pilot"])
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_manual_pilot_finalize_v3_4_2_0_1.py:166
+    reviews = read_csv(P["reviews"])
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_manual_pilot_finalize_v3_4_2_0_1.py:167
+    field = read_csv(P["field"])
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_manual_pilot_finalize_v3_4_2_0_1.py:168
+    active = read_csv(P["active"])
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_manual_pilot_finalize_v3_4_2_0_1.py:169
+    published = read_csv(P["published"])
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_manual_pilot_finalize_v3_4_2_0_1.py:170
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_manual_pilot_finalize_v3_4_2_0_1.py:171
+    checks = []
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_manual_pilot_finalize_v3_4_2_0_1.py:172
+    def add(name, passed, details):
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_manual_pilot_finalize_v3_4_2_0_1.py:318
+    write_json(P["summary"], summary)
+    governed_outputs = [P[k] for k in ("master", "legacy", "calls", "official", "statuses", "pilot", "reviews", "field", "validation", "summary")]
+    manifest_entries = [{"path": rel(x), "sha256": sha256_file(x), "row_count": len(read_csv(x)) if x.suffix.lower() == ".csv" else None} for x in governed_outputs]
+    manifest = {
+        "version": VERSION, "phase": PHASE, "execution_mode": MODE,
+        "baseline_recorded_at": baseline.get("recorded_at"), "validation_status": status,
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_manual_pilot_finalize_v3_4_2_0_1_before_generic_tree_hash_fix.py:56
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_manual_pilot_finalize_v3_4_2_0_1_before_generic_tree_hash_fix.py:108
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_manual_pilot_finalize_v3_4_2_0_1_before_generic_tree_hash_fix.py:109
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_manual_pilot_finalize_v3_4_2_0_1_before_generic_tree_hash_fix.py:110
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_manual_pilot_finalize_v3_4_2_0_1_before_generic_tree_hash_fix.py:111
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_manual_pilot_finalize_v3_4_2_0_1_before_generic_tree_hash_fix.py:112
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_manual_pilot_finalize_v3_4_2_0_1_before_generic_tree_hash_fix.py:113
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_manual_pilot_finalize_v3_4_2_0_1_before_generic_tree_hash_fix.py:114
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_manual_pilot_finalize_v3_4_2_0_1_before_generic_tree_hash_fix.py:115
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_manual_pilot_finalize_v3_4_2_0_1_before_generic_tree_hash_fix.py:116
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_manual_pilot_finalize_v3_4_2_0_1_before_generic_tree_hash_fix.py:117
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_manual_pilot_finalize_v3_4_2_0_1_before_generic_tree_hash_fix.py:263
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_manual_pilot_finalize_v3_4_2_0_1_before_tree_hash_fix.py:56
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_manual_pilot_finalize_v3_4_2_0_1_before_tree_hash_fix.py:108
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_manual_pilot_finalize_v3_4_2_0_1_before_tree_hash_fix.py:109
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_manual_pilot_finalize_v3_4_2_0_1_before_tree_hash_fix.py:110
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_manual_pilot_finalize_v3_4_2_0_1_before_tree_hash_fix.py:111
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_manual_pilot_finalize_v3_4_2_0_1_before_tree_hash_fix.py:112
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_manual_pilot_finalize_v3_4_2_0_1_before_tree_hash_fix.py:113
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_manual_pilot_finalize_v3_4_2_0_1_before_tree_hash_fix.py:114
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_manual_pilot_finalize_v3_4_2_0_1_before_tree_hash_fix.py:115
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_manual_pilot_finalize_v3_4_2_0_1_before_tree_hash_fix.py:116
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_manual_pilot_finalize_v3_4_2_0_1_before_tree_hash_fix.py:117
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_manual_pilot_finalize_v3_4_2_0_1_before_tree_hash_fix.py:263
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_new_scheme_identity_evidence_agent_v3_4_3_3.py:560
+        return list(csv.DictReader(handle))
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_new_scheme_identity_evidence_agent_v3_4_3_3.py:646
+            "Required v3.4.3.2 inputs are missing:\n" + "\n".join(missing)
+    input_rows = read_csv(identity_input)
+    target_rows = {
+        normalize_space(row.get("canonical_name", "")).upper(): row
+        for row in input_rows
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_publication_candidate_preview_v3_4_3_4.py:68
+    return h.hexdigest()
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_publication_candidate_preview_v3_4_3_4.py:378
+        },
+    fields, active_rows = read_csv(active)
+    if len(active_rows) != 139:
+        raise RuntimeError(f"Expected 139 active rows; found {len(active_rows)}.")
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_publication_candidate_preview_v3_4_3_4.py:391
+        if template_id not in active_by_id:
+            raise RuntimeError(f"Template record missing: {template_id}")
+    _, identity_rows = read_csv(identity_file)
+    _, evidence_rows = read_csv(evidence_file)
+    _, application_rows = read_csv(application_file)
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_publication_candidate_preview_v3_4_3_4.py:392
+    identities = {norm(row.get("canonical_name")).upper(): row for row in identity_rows}
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_publication_candidate_preview_v3_4_3_4.py:393
+    applications = {norm(row.get("canonical_name")).upper(): row for row in application_rows}
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_publication_candidate_preview_v3_4_3_4.py:425
+    write_csv(candidate_rows_file, fields, new_rows)
+    append_preserving_bytes(active, candidate, fields, new_rows)
+    candidate_fields, candidate_rows = read_csv(candidate)
+    if candidate_fields != fields:
+        raise RuntimeError("Candidate columns differ from active columns.")
+    if len(candidate_rows) != 141:
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\publish_approved_agent_run_v1.py:16
+from agents.governed_v1.common import atomic_write_json, canonical_key, dashboard_public_ids, first, load_json, read_csv, sha256_file
+from scripts.validate_governed_agent_run_v1 import validate_run
+from scripts.verify_dashboard_source_v1 import verify
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\publish_approved_agent_run_v1.py:24
+def approval_is_valid(path: Path | None, run_id: str) -> bool:
+    if not path or not path.exists():
+        return False
+    rows, _ = read_csv(path)
+    return any(
+        row.get("run_id", "").strip() == run_id
+        and row.get("proposed_action", "").strip() == "APPROVE_PUBLICATION"
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\publish_approved_agent_run_v1.py:87
+    validation = validate_run(root, run_id, deletion_approval, write_result=False)
+    if not validation["passed"]:
+        raise RuntimeError("Publication validation failed; the staged run remains unpublished.")
+    candidate_rows, _ = read_csv(run_dir / "publication_candidate.csv")
+    candidate_ids = {row.get("scheme_master_id", "") or row.get("master_id", "") for row in candidate_rows}
+    active_path = root / config["active_catalogue"]
+    active_ids = dashboard_public_ids(root, active_path)
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\publish_approved_agent_run_v1.py:91
+    active_rows, _ = read_csv(active_path)
+    candidate_names = {first(row, "scheme_master_id", "master_id"): first(row, "canonical_name", "scheme_name") for row in candidate_rows}
+    renamed = [
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\sector_catalogue_repair_v3_4_0_6b.py:74
+def read_csv(path: Path) -> tuple[list[dict[str, str]], list[str]]:
+        return [dict(x) for x in r], list(r.fieldnames or [])
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\sector_catalogue_repair_v3_4_0_6b.py:247
+    if not input_path.exists():
+        raise FileNotFoundError(f"Active dashboard catalogue not found: {input_path}")
+    rows, fields = read_csv(input_path)
+    rules = json.loads(rules_path.read_text(encoding="utf-8"))
+    enriched: list[dict[str, Any]] = []
+    audits: list[dict[str, Any]] = []
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\sector_verification_agent_v3_4_0_6.py:83
+    path.write_text(json.dumps(value, ensure_ascii=False, indent=2), encoding="utf-8")
+        rows = [dict(row) for row in reader]
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\sector_verification_agent_v3_4_0_6.py:588
+    output_dir.mkdir(parents=True, exist_ok=True)
+    taxonomy = Taxonomy(read_json(taxonomy_path))
+    rows, original_fields = read_csv(catalogue)
+    lm_mode = args.lm_studio
+    use_lm = lm_mode == "on" or (lm_mode == "auto" and lm_studio_available(args.lm_url))
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\validate_governed_agent_run_v1.py:14
+from agents.governed_v1.common import (
+    atomic_write_json, dashboard_public_ids, load_json, read_csv, sha256_file,
+from agents.governed_v1.publication_guard_agent import PublicationGuardAgent
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\validate_governed_agent_run_v1.py:29
+    if not run_dir.is_dir():
+        raise FileNotFoundError(f"Run not found: {run_dir}")
+    public_rows, _ = read_csv(run_dir / "publication_candidate.csv")
+    call_rows, _ = read_csv(run_dir / "call_instances.csv")
+    summary = load_json(run_dir / "summary.json")
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\validate_governed_agent_run_v1.py:30
+    active_hash = sha256_file(active)
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\validate_meity_explicit_preview_v3_4_2_0_2.py:57
+    with path.open(
+        "r",
+        encoding="utf-8-sig",
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\validate_meity_explicit_preview_v3_4_2_0_2.py:110
+        PREVIEW_CANDIDATE,
+    active_fields, active_rows = read_csv(
+        ACTIVE
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\validate_meity_explicit_preview_v3_4_2_0_2.py:114
+    candidate_fields, candidate_rows = read_csv(
+        PREVIEW_CANDIDATE
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\verify_dashboard_source_v1.py:13
+from agents.governed_v1.common import load_json, read_csv, sha256_file
+def verify(root: Path) -> dict:
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\verify_dashboard_source_v1.py:28
+        actual = sha256_file(current_catalogue)
+        valid = expected == actual and bool(manifest.get("validation_passed"))
+        if valid:
+            rows, _ = read_csv(current_catalogue)
+            return {"source_status": "APPROVED_PUBLICATION_AVAILABLE", "valid": True, "path": str(current_catalogue), "row_count": len(rows), "sha256": actual}
+    rows, _ = read_csv(fallback)
+    return {"source_status": "FALLBACK_ACTIVE_CATALOGUE", "valid": True, "path": str(fallback), "row_count": len(rows), "sha256": sha256_file(fallback)}
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\verify_dashboard_source_v1.py:30
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_dpiit_canonical_identity_v3_4_1_0_2.py:23
+OUTPUT_DIR = PROJECT_ROOT / "data/departments/dpiit/v3_4_1_0_2"
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_dpiit_canonical_identity_v3_4_1_0_2.py:29
+def candidates() -> list[dict[str, str]]:
+    return read_csv(INPUT_DIR / "dpiit_discovery_candidates_v3_4_1_0_1.csv")
+def test_canonical_entity_counts_and_types() -> None:
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_dpiit_canonical_identity_v3_4_1_0_2.py:123
+def test_output_schemas_are_exact() -> None:
+    run(INPUT_DIR, OUTPUT_DIR, project_root=PROJECT_ROOT)
+    assert list(read_csv(OUTPUT_DIR / OUTPUT_NAMES["entities"])[0]) == ENTITY_FIELDS
+    assert list(read_csv(OUTPUT_DIR / OUTPUT_NAMES["relationships"])[0]) == RELATIONSHIP_FIELDS
+    assert list(read_csv(OUTPUT_DIR / OUTPUT_NAMES["reviews"])[0]) == REVIEW_FIELDS
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_dpiit_canonical_identity_v3_4_1_0_2.py:124
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_dpiit_canonical_identity_v3_4_1_0_2.py:125
+def test_deterministic_rerun_is_byte_identical() -> None:
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_dpiit_discovery_v3_4_1_0_1.py:24
+OUTPUT_DIR = PROJECT_ROOT / "data/departments/dpiit/v3_4_1_0_1"
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_dpiit_discovery_v3_4_1_0_1.py:95
+def test_output_schemas_roles_and_preservation() -> None:
+    result = run(OUTPUT_DIR, project_root=PROJECT_ROOT)
+    assert result["validation"]["validation_passed"] is True
+    sources = read_csv(OUTPUT_DIR / OUTPUT_NAMES["source_registry"])
+    candidates = read_csv(OUTPUT_DIR / OUTPUT_NAMES["candidates"])
+    assert list(sources[0]) == SOURCE_FIELDS
+    assert list(candidates[0]) == CANDIDATE_FIELDS
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_dpiit_discovery_v3_4_1_0_1.py:96
+    assert len(candidates) == len({row["normalized_url"] for row in candidates})
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_dpiit_discovery_v3_4_1_0_1.py:120
+    assert set(path.name for path in OUTPUT_DIR.iterdir() if path.is_file()) == set(OUTPUT_NAMES.values())
+    assert result["summary"]["publication_performed"] is False
+    assert result["summary"]["full_scheme_extraction_performed"] is False
+    assert all(row["http_status"] == "PREVIEW_NOT_FETCHED" for row in read_csv(OUTPUT_DIR / OUTPUT_NAMES["candidates"]))
+    manifest = json.loads((OUTPUT_DIR / OUTPUT_NAMES["manifest"]).read_text(encoding="utf-8"))
+    assert manifest["network_enabled"] is False
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_dpiit_ownership_service_v3_4_1_0_3.py:20
+ENTITY_PATH = V2_DIR / "dpiit_canonical_entity_registry_v3_4_1_0_2.csv"
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_dpiit_ownership_service_v3_4_1_0_3.py:26
+def resolved():
+    return resolve(read_csv(REVIEW_PATH), read_csv(ENTITY_PATH))
+def test_all_six_review_items_are_adjudicated() -> None:
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_dpiit_ownership_service_v3_4_1_0_3.py:33
+    result = resolved()
+    assert len(result["resolved"]) == 6
+    assert result["unresolved"] == []
+    assert {row["review_id"] for row in result["resolved"]} == {row["review_id"] for row in read_csv(REVIEW_PATH)}
+def test_gazette_issuer_is_verified_from_dpiit_notification() -> None:
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_dpiit_ownership_service_v3_4_1_0_3.py:109
+    run(REVIEW_PATH, ENTITY_PATH, OUTPUT_DIR, project_root=PROJECT_ROOT)
+    assert list(read_csv(OUTPUT_DIR / OUTPUT_NAMES["ownership"])[0]) == OWNERSHIP_FIELDS
+    assert list(read_csv(OUTPUT_DIR / OUTPUT_NAMES["service_decisions"])[0]) == SERVICE_DECISION_FIELDS
+    assert list(read_csv(OUTPUT_DIR / OUTPUT_NAMES["resolved"])[0]) == RESOLUTION_FIELDS
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_dpiit_ownership_service_v3_4_1_0_3.py:110
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_dpiit_ownership_service_v3_4_1_0_3.py:111
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_dst_startup_focus_pipeline_v3_4_0_5.py:79
+    output_dir = tmp_path / CONFIG["output_directory"]
+    result = MODULE.publish(tmp_path, CONFIG, output_dir)
+    assert result["publication_passed"] is True
+    _, final_rows = MODULE.read_csv(catalogue)
+    dst_rows = [r for r in final_rows if MODULE.is_dst_row(r)]
+    assert len(dst_rows) == 7
+    assert all(r["catalogue_section"] == "STARTUP_SCHEMES" for r in dst_rows)
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_end_to_end_governed_agents_v1.py:8
+import tempfile
+import unittest
+from agents.governed_v1.common import dashboard_public_ids, read_csv, sha256_file
+from agents.governed_v1.orchestrator import GovernedAgentOrchestrator
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_end_to_end_governed_agents_v1.py:64
+                "deletion_approval_template.csv", "publication_approval_template.csv",
+            }
+            self.assertTrue(expected.issubset({path.name for path in run_dir.iterdir()}))
+            calls, _ = read_csv(run_dir / "call_instances.csv")
+            self.assertEqual(len(calls), 1)
+            self.assertEqual(calls[0]["parent_scheme_id"], "nidhi-prayas")
+            public, _ = read_csv(run_dir / "publication_candidate.csv")
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_end_to_end_governed_agents_v1.py:67
+            review, _ = read_csv(run_dir / "manual_review_queue.csv")
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_end_to_end_governed_agents_v1.py:68
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_end_to_end_governed_agents_v1_before_51_fix.py:8
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_end_to_end_governed_agents_v1_before_51_fix.py:64
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_end_to_end_governed_agents_v1_before_51_fix.py:67
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_end_to_end_governed_agents_v1_before_51_fix.py:68
+D:\WebSite\DASHBOARD\Code\SSIP\apps\public_dashboard_app_v2_9.py:429
+            f'<a class="public-action public-action-secondary" target="_top" '
+            f'href="{html.escape(record_details_href(record), quote=True)}">View details</a>'
+    if record.official_page_url:
+        actions.append(
+            f'<a class="public-action public-action-quiet" target="_blank" rel="noopener noreferrer" '
+            f'href="{esc(record.official_page_url)}">Official page <span aria-hidden="true">↗</span></a>'
+D:\WebSite\DASHBOARD\Code\SSIP\apps\public_dashboard_app_v2_9.py:432
+    if record.guideline_urls:
+D:\WebSite\DASHBOARD\Code\SSIP\apps\public_dashboard_app_v2_9.py:517
+    level = government_level(record, lookup or {})
+    links = []
+        links.append(f'<a target="_blank" rel="noopener noreferrer" href="{esc(record.official_page_url)}">Official Page</a>')
+    if record.application_url:
+        links.append(f'<a target="_blank" rel="noopener noreferrer" href="{esc(record.application_url)}">Application Portal</a>')
+D:\WebSite\DASHBOARD\Code\SSIP\apps\public_dashboard_app_v2_9.py:518
+    if record.application_process:
+D:\WebSite\DASHBOARD\Code\SSIP\apps\public_dashboard_app_v2_9.py:1211
+    records = [*populations.main_scheme_records, *populations.application_call_records]
+    resource_records = [
+        item for item in records
+        if item.official_page_url or item.application_url or item.guideline_urls or item.reference_urls
+    st.markdown(
+        page_intro(
+D:\WebSite\DASHBOARD\Code\SSIP\apps\public_dashboard_app_v2_9.py:1249
+            continue
+        if resource_type == "GUIDELINE" and not item.guideline_urls:
+        if resource_type == "OFFICIAL" and not item.official_page_url:
+        if keyword and keyword not in " ".join([item.scheme_name, item.department, item.implementing_agency, item.source, item.search_blob]).casefold():
+D:\WebSite\DASHBOARD\Code\SSIP\apps\public_dashboard_app_v2_9.py:1260
+        kind = "Application call" if item.record_kind.upper() in {"APPLICATION_CALL", "CHALLENGE"} else "Scheme / programme"
+        agency = item.department or item.implementing_agency or item.source or "Agency not recorded"
+        links = _dst_links(
+            ("Official page", item.official_page_url),
+            ("Apply", item.application_url),
+            ("Guideline", item.guideline_urls[0] if item.guideline_urls else ""),
+            ("Reference", item.reference_urls[0] if item.reference_urls else ""),
+D:\WebSite\DASHBOARD\Code\SSIP\apps\public_dashboard_app_v2_9.py:1839
+    actions: list[str] = []
+        actions.append(f'<a class="public-action public-action-primary" target="_blank" rel="noopener" href="{esc(record.application_url)}">Apply now</a>')
+        actions.append(f'<a class="public-action public-action-secondary" target="_blank" rel="noopener" href="{esc(record.official_page_url)}">Official page ↗</a>')
+        actions.append(f'<a class="public-action public-action-quiet" target="_blank" rel="noopener" href="{esc(record.guideline_urls[0])}">Guideline ↗</a>')
+D:\WebSite\DASHBOARD\Code\SSIP\apps\public_dashboard_app_v2_9.py:1840
+D:\WebSite\DASHBOARD\Code\SSIP\apps\public_dashboard_app_v2_9.py:1922
+    detail_links: list[tuple[str, str]] = []
+        detail_links.append(("Official scheme page", record.official_page_url))
+        detail_links.append(("Application portal", record.application_url))
+D:\WebSite\DASHBOARD\Code\SSIP\apps\public_dashboard_app_v2_9.py:1923
+    detail_links.extend((f"Guideline or manual {index}", url) for index, url in enumerate(record.guideline_urls or [], start=1))
+D:\WebSite\DASHBOARD\Code\SSIP\ssip_dashboard\analytics.py:96
+        ReadinessMeasure("Department mapped", sum(bool(_text(record, "department")) for record in schemes), total),
+        ReadinessMeasure("Sector evidenced", sum(primary_sector(record) != MISSING_SECTOR for record in schemes), total),
+        ReadinessMeasure("Funding structured", sum(has_structured_funding(record) for record in schemes), total),
+        ReadinessMeasure("Official page linked", sum(bool(_text(record, "official_page_url")) for record in schemes), total),
+    government_levels = Counter(
+D:\WebSite\DASHBOARD\Code\SSIP\ssip_dashboard\catalogue.py:45
+    current_location: str = ""
+    current_review_status: str = ""
+    current_decision: str = ""
+    official_page_url: str = ""
+    application_url: str = ""
+    opening_date: str = ""
+    closing_date: str = ""
+D:\WebSite\DASHBOARD\Code\SSIP\ssip_dashboard\catalogue.py:362
+        [
+            url
+            for url in [
+                safe_url(direct("official_page_url", "final_url", "best_available_url")),
+                safe_url(direct("application_url", "apply_url")),
+            ]
+            if url
+D:\WebSite\DASHBOARD\Code\SSIP\ssip_dashboard\catalogue.py:398
+        current_location=as_text(plan_row.get("current_location")),
+        current_review_status=as_text(first_value(plan_row.get("current_review_status"), review_row.get("review_status"))),
+        current_decision=as_text(first_value(plan_row.get("current_decision"), review_row.get("decision"), rejected_row.get("decision"))),
+        official_page_url=safe_url(direct("official_page_url", "final_url", "best_available_url")),
+        application_url=safe_url(direct("application_url", "apply_url")),
+        opening_date=as_text(direct("opening_date")),
+        closing_date=as_text(direct("closing_date", "deadline")),
+D:\WebSite\DASHBOARD\Code\SSIP\ssip_dashboard\catalogue.py:481
+    right_tokens = _identity_tokens(right.scheme_name)
+    if left_tokens and left_tokens == right_tokens:
+        return True
+    left_url = as_text(left.official_page_url).casefold().rstrip("/")
+    right_url = as_text(right.official_page_url).casefold().rstrip("/")
+    if not left_url or left_url != right_url:
+D:\WebSite\DASHBOARD\Code\SSIP\ssip_dashboard\catalogue.py:482
+    url_tail = left_url.rsplit("/", 1)[-1]
+D:\WebSite\DASHBOARD\Code\SSIP\ssip_dashboard\catalogue_populations.py:153
+def decoded_url(record: Any) -> str:
+    return unquote(value(record, "official_page_url"))
+def is_rejected(record: Any) -> bool:
+D:\WebSite\DASHBOARD\Code\SSIP\ssip_dashboard\catalogue_populations.py:234
+def has_primary_source(record: Any) -> bool:
+    return bool(value(record, "official_page_url"))
+def is_main_scheme_record(record: Any, seen_ids: set[str] | None = None) -> tuple[bool, str]:
+D:\WebSite\DASHBOARD\Code\SSIP\ssip_dashboard\components.py:75
+    tag_html = "".join(f'<span class="tag">{esc(tag)}</span>' for tag in tags)
+    if getattr(record, "official_page_url", ""):
+    if getattr(record, "application_url", ""):
+D:\WebSite\DASHBOARD\Code\SSIP\ssip_dashboard\components.py:76
+    if getattr(record, "guideline_urls", []):
+D:\WebSite\DASHBOARD\Code\SSIP\ssip_dashboard\metrics.py:305
+    return {
+        "application_portals": sum(1 for record in records if getattr(record, "application_url", "")),
+        "manuals_guidelines": sum(1 for record in records if getattr(record, "guideline_urls", [])),
+        "official_pages": sum(1 for record in records if getattr(record, "official_page_url", "")),
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\apply_v3_3_3_manual_patch.py:25
+DEPARTMENT_REPLACEMENT = '\ndef department_coverage(records: list[Any]) -> Counter[str]:\n    counter: Counter[str] = Counter()\n    main_records = split_catalogue_populations(\n        visible_records(records)\n    ).main_scheme_records\n    for record in main_records:\n        label = (\n            str(getattr(record, "department", "") or "").strip()\n            or str(getattr(record, "implementing_agency", "") or "").strip()\n            or str(getattr(record, "source", "") or "").strip()\n            or "Unspecified"\n        )\n        counter[label] += 1\n    return counter\n'
+SECTOR_REPLACEMENT = '\ndef sector_coverage(records: list[Any]) -> Counter[str]:\n    main_records = split_catalogue_populations(\n        visible_records(records)\n    ).main_scheme_records\n    return primary_sector_counts(main_records)\n'
+GRANT_REPLACEMENT = '\ndef grant_support_distribution(records: list[Any]) -> Counter[str]:\n    main_records = split_catalogue_populations(\n        visible_records(records)\n    ).main_scheme_records\n    return primary_support_type_counts(main_records)\n'
+SCHEME_DETAILS_REPLACEMENT = '\ndef render_scheme_details(bundle: CatalogueBundle) -> None:\n    records = sorted(\n        split_catalogue_populations(\n            bundle.records\n        ).main_scheme_records,\n        key=lambda record: (\n            record.scheme_name.casefold(),\n            (\n                record.department\n                or record.implementing_agency\n                or record.source\n                or ""\n            ).casefold(),\n        ),\n    )\n\n    if not records:\n        st.info("No eligible scheme or programme records are available.")\n        return\n\n    records_by_id = {record.master_id: record for record in records}\n    record_labels = {}\n    for item in records:\n        agency = (\n            item.department\n            or item.implementing_agency\n            or item.source\n            or "Agency not recorded"\n        )\n        record_labels[item.master_id] = f"{item.scheme_name} — {agency}"\n\n    selected_id = st.selectbox(\n        "Select scheme",\n        options=[record.master_id for record in records],\n        format_func=lambda item_id: record_labels[item_id],\n    )\n    record = records_by_id[selected_id]\n\n    st.markdown(scheme_card(record), unsafe_allow_html=True)\n    c1, c2, c3 = st.columns(3)\n    c1.write(f"**Ministry**  \\n{record.ministry or \'Not recorded\'}")\n    c2.write(\n        f"**Department / Agency**  \\n"\n        f"{record.department or record.implementing_agency or record.source or \'Not recorded\'}"\n    )\n    c3.write(\n        f"**Record Type**  \\n"\n        f"{record.record_kind.replace(\'_\', \' \').title()}"\n    )\n\n    detail_sections = [\n        ("Objectives", record.objectives),\n        ("Eligibility", record.eligibility),\n        ("Benefits", record.benefits),\n        ("Application Process", record.application_process),\n        ("Required Documents", record.required_documents),\n        ("Contacts", record.contacts),\n    ]\n\n    for title, items in detail_sections:\n        with st.expander(title, expanded=title in {"Objectives", "Eligibility"}):\n            if items:\n                for item in items:\n                    st.markdown(f"- {item}")\n            else:\n                st.caption("Not recorded in structured catalogue data.")\n\n    st.markdown("### Official links")\n\n    if record.official_page_url:\n        st.markdown(\n            f"- [Official scheme/programme page]({record.official_page_url})"\n        )\n    if record.application_url:\n        st.markdown(\n            f"- [Application portal]({record.application_url})"\n        )\n\n    for index, url in enumerate(record.guideline_urls or [], start=1):\n        st.markdown(f"- [Guideline / manual {index}]({url})")\n\n    if not (\n        record.official_page_url\n        or record.application_url\n        or record.guideline_urls\n    ):\n        st.caption("No official resource links are recorded.")\n'
+def fail(message: str) -> None:
+    raise SystemExit(f"PATCH FAILED: {message}")
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\catalogue_normalization_plan_v2_8_1.py:446
+    if not combined.get("record_kind"):
+        issues.append("RECORD_KIND_MISSING")
+    if not combined.get("official_page_url"):
+        issues.append("OFFICIAL_PAGE_URL_MISSING")
+    if not combined.get("application_url"):
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\catalogue_normalization_plan_v2_8_1.py:447
+        issues.append("APPLICATION_URL_MISSING")
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\catalogue_normalization_plan_v2_8_1.py:503
+            "publication_recommendation": classification[
+                "publication_recommendation"
+            ],
+            "official_page_url": combined.get(
+                "official_page_url"
+            ),
+            "application_url": combined.get(
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\catalogue_normalization_plan_v2_8_1.py:504
+                "application_url"
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_canonical_publication_builder_v3_4_0_4.py:88
+PUBLICATION_FIELDS = [
+    "master_id", "scheme_name", "entity_type", "record_kind", "source",
+    "ministry", "department", "programme_status", "application_status",
+    "public_status", "official_page_url", "application_url", "guideline_url",
+    "objective", "eligibility", "benefits", "funding_summary",
+    "application_process", "required_documents", "contact_information",
+    "official_abbreviation", "information_completeness", "verification_status",
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_canonical_publication_builder_v3_4_0_4.py:440
+        "programme_status": str(config.get("publication_status")),
+        "application_status": str(config.get("application_status")),
+        "public_status": entity["public_status"],
+        "official_page_url": entity["official_source_url"],
+        "application_url": first_value(source_row, "application_url", "apply_url"),
+        "guideline_url": first_value(source_row, "guideline_url", "guidelines_url"),
+        **detailed_fields,
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_canonical_publication_builder_v3_4_0_4.py:628
+    entity_ids = set(ids)
+    publication_call_contamination = [
+        row for row in result.publication
+        if safety_reasons(row["scheme_name"], row["official_page_url"], config)
+    manual_published = [row for row in result.manual_review if row.get("review_id") in publication_ids]
+    upstream_ready = bool(upstream_validation.get("ready_for_v3_4_0_4"))
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_canonical_publication_builder_v3_4_0_4.py:718
+                programme_status TEXT NOT NULL,
+                application_status TEXT NOT NULL,
+                public_status TEXT NOT NULL,
+                official_page_url TEXT NOT NULL,
+                application_url TEXT,
+                guideline_url TEXT,
+                objective TEXT,
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_canonical_publication_builder_v3_4_0_4.py:778
+                "INSERT INTO publication_catalogue VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                (
+                    row["master_id"], row["scheme_name"], row["entity_type"], row["ministry"], row["department"],
+                    row["programme_status"], row["application_status"], row["public_status"], row["official_page_url"],
+                    row["application_url"], row["guideline_url"], row["objective"], row["eligibility"], row["benefits"],
+                    row["funding_summary"], row["application_process"], row["required_documents"], row["contact_information"],
+                    row["official_abbreviation"], safe_float(row["information_completeness"]), row["verification_status"],
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_startup_focus_pipeline_v3_4_0_5.py:109
+def is_dst_row(row: Mapping[str, Any]) -> bool:
+    blob = " ".join(
+        collapse(row.get(key))
+        for key in ("source", "ministry", "department", "implementing_agency", "official_page_url")
+    ).casefold()
+    return (
+        "department of science and technology" in blob
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_startup_focus_pipeline_v3_4_0_5.py:430
+        "current_decision": "APPROVED_FOR_DATABASE",
+        "validation_decision": "APPROVED_FOR_DATABASE",
+        "publication_status": "PUBLISHED_STARTUP_RELEVANT",
+        "official_page_url": seed.get("official_page_url", ""),
+        "application_url": seed.get("application_url", ""),
+        "guideline_urls": seed.get("guideline_url", "https://nidhi.dst.gov.in/document-category/programme-guidelines/"),
+        "guideline_url": seed.get("guideline_url", "https://nidhi.dst.gov.in/document-category/programme-guidelines/"),
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_startup_focus_pipeline_v3_4_0_5.py:493
+        "master_id", "code", "canonical_name", "official_abbreviation", "classification", "sector",
+        "secondary_sectors", "scheme_type", "startup_stage", "objective", "eligibility", "benefits",
+        "funding_summary", "funding_maximum", "application_process", "application_route",
+        "official_page_url", "application_url", "guideline_url", "source_evidence"
+    registry = []
+    for seed in config["curated_startup_schemes"]:
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_startup_focus_pipeline_v3_4_0_5.py:502
+        registry.append(item)
+    write_csv(output_dir / "dst_verified_startup_scheme_registry_v3_4_0_5.csv", registry_fields, registry)
+    eco_fields = ["ecosystem_id", "code", "name", "classification", "official_page_url", "directory_url", "description", "access_route"]
+    ecosystems = []
+    for seed in config["curated_ecosystem_records"]:
+        item = dict(seed)
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_startup_focus_pipeline_v3_4_0_5.py:561
+        pages_count = 1
+    marker_match = re.search(r"(?m)^def render_scheme_details\(", text)
+    helper = f'''\n\ndef _read_v3405_rows(filename: str) -> list[dict[str, str]]:\n    path = Path("{output_dir_rel}") / filename\n    if not path.exists():\n        return []\n    with path.open("r", encoding="utf-8-sig", newline="") as handle:\n        return [{{str(k): str(v or "") for k, v in row.items()}} for row in csv.DictReader(handle)]\n\n\ndef render_calls_and_opportunities() -> None:\n    rows = _read_v3405_rows("dst_startup_calls_v3_4_0_5.csv")\n    st.markdown("## Calls & Opportunities")\n    st.caption("Time-bound calls are shown separately from permanent schemes. Verify the current status on the official source before applying.")\n    if not rows:\n        st.info("No verified call records are available yet. Run the v3.4.0.5 official deep search to refresh this page.")\n        return\n    statuses = ["All"] + sorted({{row.get("application_status", "VERIFICATION_REQUIRED") for row in rows}})\n    selected = st.selectbox("Status", statuses, key="v3405_call_status")\n    visible = rows if selected == "All" else [row for row in rows if row.get("application_status") == selected]\n    st.write(f"**{{len(visible)}} opportunity record(s)**")\n    for row in visible:\n        title = html.escape(row.get("call_title") or "Untitled opportunity")\n        parent = html.escape(row.get("parent_scheme_code") or "Parent scheme under review")\n        status = html.escape(row.get("application_status") or "VERIFICATION_REQUIRED")\n        closing = html.escape(row.get("closing_date") or "Not recorded")\n        beneficiary = html.escape(row.get("eligible_beneficiary") or "Verification required")\n        source = html.escape(row.get("source_url") or "")\n        apply_url = html.escape(row.get("application_url") or "")\n        links = f'<a target="_blank" href="{{source}}">Official source</a>' if source else ""\n        if apply_url:\n            links += f' &nbsp; <a target="_blank" href="{{apply_url}}">Application link</a>'\n        st.markdown(f"""<div style='border:1px solid #d8e3f5;border-radius:12px;padding:16px;margin:10px 0;background:white'>\n        <div style='font-size:1.05rem;font-weight:700;color:#073b88'>{{title}}</div>\n        <div><b>Parent:</b> {{parent}} &nbsp; <b>Status:</b> {{status}}</div>\n        <div><b>Closing:</b> {{closing}} &nbsp; <b>Beneficiaries:</b> {{beneficiary}}</div>\n        <div style='margin-top:8px'>{{links}}</div></div>""", unsafe_allow_html=True)\n\n\ndef render_startup_ecosystem() -> None:\n    rows = _read_v3405_rows("dst_startup_ecosystem_registry_v3_4_0_5.csv")\n    st.markdown("## Incubators & Startup Ecosystem")\n    st.caption("Umbrella missions, incubator networks and hubs are not counted as direct schemes; use them to find the actual programme or call through which a startup can apply.")\n    for row in rows:\n        name = html.escape(row.get("name") or "Ecosystem record")\n        description = html.escape(row.get("description") or "")\n        route = html.escape(row.get("access_route") or "")\n        official = html.escape(row.get("official_page_url") or "")\n        directory = html.escape(row.get("directory_url") or "")\n        links = f'<a target="_blank" href="{{official}}">Official page</a>' if official else ""\n        if directory:\n            links += f' &nbsp; <a target="_blank" href="{{directory}}">Directory</a>'\n        st.markdown(f"""<div style='border:1px solid #d8e3f5;border-radius:12px;padding:16px;margin:10px 0;background:white'>\n        <div style='font-size:1.05rem;font-weight:700;color:#073b88'>{{name}}</div>\n        <div>{{description}}</div><div style='margin-top:6px'><b>How startups access support:</b> {{route}}</div>\n        <div style='margin-top:8px'>{{links}}</div></div>""", unsafe_allow_html=True)\n\n\n'''
+    if "def render_calls_and_opportunities()" not in text:
+        if not marker_match:
+            return {"patched": False, "reason": "Scheme details marker not found", "backup": str(backup)}
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\generate_identity_review_v3_3_4.py:105
+def official_url(record) -> str:
+        text(record, "official_page_url")
+        or text(record, "final_url")
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\generate_identity_review_v3_3_4.py:231
+                    record,
+                    "application_status",
+                ),
+                "official_page_url": url,
+                "application_url": text(
+                    "application_url",
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\generate_identity_review_v3_3_4.py:270
+        "record_kind",
+        "programme_status",
+        "application_status",
+        "official_page_url",
+        "application_url",
+        "objectives_present",
+        "eligibility_present",
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\integrate_dst_v3_4_0_4_into_existing_dashboard.py:59
+    source = str(row.get("source", "") or "").strip().casefold()
+    department = str(row.get("department", "") or "").strip().casefold()
+    ministry = str(row.get("ministry", "") or "").strip().casefold()
+    url = str(row.get("official_page_url", "") or "").strip().casefold()
+        source == "dst"
+        or "department of science and technology" in source
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\integrate_dst_v3_4_0_4_into_existing_dashboard.py:100
+        "publication_status": "PUBLISHED_LIMITED_INFORMATION",
+        "official_page_url": source.get("official_page_url", ""),
+        "application_url": source.get("application_url", ""),
+        "guideline_urls": source.get("guideline_url", ""),
+        "guideline_url": source.get("guideline_url", ""),
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\integrate_dst_v3_4_0_4_into_existing_dashboard.py:253
+        "implementing_agency", "normalized_record_kind", "record_kind",
+        "programme_status", "application_status", "status_evidence", "sector",
+        "scheme_type", "catalogue_inclusion", "catalogue_section", "current_decision",
+        "official_page_url", "application_url", "guideline_urls", "eligibility",
+        "benefits", "application_process", "required_documents", "contact_details",
+        "last_verified_date", "field_evidence",
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\integrate_dst_v3_4_0_4_into_existing_dashboard.py:265
+        "department": "Department of Science and Technology",
+        "programme_status": "SCHEME_INFORMATION_AVAILABLE",
+        "application_status": "REFERENCE",
+        "official_page_url": "https://dst.gov.in/test",
+        "verification_status": "IDENTITY_VERIFIED_ATTRIBUTES_PENDING",
+        "last_verified_date": "2026-07-10",
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\integrate_dst_v3_4_0_4_into_existing_dashboard.py:272
+    adapted = adapt_dst_row(sample, fields)
+    checks = {
+        "dst_detection_by_source": is_existing_dst_row({"source": "DST"}),
+        "dst_detection_by_url": is_existing_dst_row({"official_page_url": "https://dst.gov.in/a"}),
+        "non_dst_preserved": not is_existing_dst_row({"source": "BIRAC", "official_page_url": "https://birac.nic.in/x"}),
+        "master_id_mapped": adapted["master_id"] == "dst_test_1",
+        "record_kind_mapped": adapted["record_kind"] == "SCHEME_OR_PROGRAMME",
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\integrate_dst_v3_4_0_4_into_existing_dashboard.py:273
+        "source_searchable_as_dst": adapted["source"] == "DST",
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\load_approved_records_v2_7_3_3a.py:7
+Supports the actual SSIP scheme_staging schema, including:
+* canonical_name -> scheme_name
+* final_url -> official_page_url
+* confidence_after_validation -> validation_score
+* deadline -> closing_date
+* mandatory legacy audit fields:
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\load_approved_records_v2_7_3_3a.py:59
+    ),
+    "final_url": (
+        "final_url",
+        "official_url",
+        "official_scheme_url",
+        "scheme_page_url",
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\load_approved_records_v2_7_3_3a.py:1374
+                application_status TEXT,
+                scheme_status TEXT,
+                geographic_scope TEXT,
+                official_page_url TEXT,
+                opening_date TEXT,
+                closing_date TEXT,
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\load_approved_records_v2_7_3_3a.py:1502
+        report = inspect_database(database, output_dir)
+        result["tests"]["production_schema_ready"] = report["database_ready"]
+        result["tests"]["final_url_maps_to_official_page_url"] = (
+            report["resolved_field_mapping"]["final_url"] == "official_page_url"
+        result["tests"]["mandatory_audit_fields_synthesized"] = set(
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\load_approved_records_v2_7_3_3a.py:1503
+            (
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\load_approved_records_v2_7_3_3a.py:1564
+            result["tests"]["field_mapping_correct"] = (
+                row["scheme_name"]
+                == "Mega Facilities for Basic Research Scheme"
+                and row["official_page_url"]
+                == "https://dst.gov.in/mega-facilities-basic-research-scheme"
+                and float(row["validation_score"]) == 1.0
+                and row["validation_decision"] == APPROVED_DECISION
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_application_link_hotfix_v3_4_2_0_3.py:162
+            row["application_status"] = "NO_CURRENT_APPLICATION_ROUTE_CONFIRMED"
+        row["official_page_url"] = EXPECTED_OFFICIAL_PAGES[master_id]
+    changed_non_target_rows = [
+        index
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_application_link_hotfix_v3_4_2_0_3.py:235
+            "official_pages_preserved",
+            all(
+                target_id in records_by_id
+                and getattr(records_by_id[target_id], "official_page_url", "")
+                == EXPECTED_OFFICIAL_PAGES[target_id]
+                for target_id in TARGET_IDS
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_application_link_hotfix_v3_4_2_0_3.py:327
+                {
+                    "master_id": target_id,
+                    "scheme_name": getattr(records_by_id[target_id], "scheme_name", ""),
+                    "official_page_url": getattr(
+                        records_by_id[target_id], "official_page_url", ""
+                    ),
+                    "application_url_exposed_to_dashboard": getattr(
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_application_link_hotfix_v3_4_2_0_3.py:328
+                        records_by_id[target_id], "application_url", ""
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2.py:114
+def field_evidence_json(p):
+    page = pick(p, "official_page_url")
+    guide = pick(p, "guideline_url")
+    status = pick(p, "status_evidence_url", "official_page_url", "guideline_url")
+    owner = pick(p, "ownership_evidence_url", "official_page_url")
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2.py:116
+    data = {
+        "scheme_name": page,
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2.py:117
+        "ministry": owner,
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2.py:220
+            "record_kind": "SCHEME",
+            "programme_status": pick(p, "programme_status"),
+            "application_status": pick(p, "application_status"),
+            "status_evidence": pick(p, "status_evidence_url", "guideline_url", "official_page_url"),
+            "sector": "Cross-sector Innovation & Entrepreneurship",
+            "scheme_type": "Accelerator Support; Funding Support" if mid == "147173e17ea741687247" else "Incubation Support; Funding Support",
+            "target_beneficiaries": pick(p, "beneficiary_type"),
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2.py:228
+            "catalogue_inclusion": defaults["catalogue_inclusion"],
+            "catalogue_section": defaults["catalogue_section"],
+            "current_decision": defaults["current_decision"],
+            "official_page_url": pick(p, "official_page_url"),
+            "application_url": "",
+            "guideline_urls": join_urls(pick(p, "guideline_url"), pick(p, "notification_url")),
+            "opening_date": "",
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2.py:251
+            "sector_review_required": defaults["sector_review_required"],
+            "sector_verified_at": VERIFIED_DATE,
+            "sector_agent_version": VERSION,
+            "sector_evidence_url": pick(p, "guideline_url", "official_page_url"),
+            "sector_reason": "The scheme supports technology startups through acceleration, incubation and structured financial or market support.",
+            "startup_relevance_classification": defaults["startup_relevance_classification"],
+            "startup_relevance_score": "1.00",
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2.py:324
+    add("no_open_application_claim", all(not r.get("application_url", "").strip() and not r.get("application_status", "").upper().startswith("OPEN") for r in additions), "application_url blank and no OPEN status")
+    add("both_meity_ids_dashboard_visible", new_visible == EXPECTED_IDS, f"visible_ids={sorted(new_visible)}")
+    add("dashboard_visible_count_increases_by_two", len(visible_after) == len(visible_before) + 2, f"before={len(visible_before)} after={len(visible_after)}")
+    add("official_urls_only", all(official_url(r.get(f, "")) for r in additions for f in ["official_page_url", "application_url", "sector_evidence_url"]), "approved official hosts only")
+    contaminated = [r for r in additions if "applyforthelogo" in " ".join(r.values()).lower() or "2023-03-29" in " ".join(r.values())]
+    add("legacy_contamination_excluded", not contaminated, f"contaminated={len(contaminated)}")
+    expected_statuses = {
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_config_path_fix.py:114
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_config_path_fix.py:116
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_config_path_fix.py:117
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_config_path_fix.py:220
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_config_path_fix.py:228
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_config_path_fix.py:251
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_config_path_fix.py:332
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_dashboard_loader_fix.py:113
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_dashboard_loader_fix.py:115
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_dashboard_loader_fix.py:116
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_dashboard_loader_fix.py:219
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_dashboard_loader_fix.py:227
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_dashboard_loader_fix.py:250
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_dashboard_loader_fix.py:282
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_direct_config_fix.py:114
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_direct_config_fix.py:116
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_direct_config_fix.py:117
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_direct_config_fix.py:220
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_direct_config_fix.py:228
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_direct_config_fix.py:251
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_direct_config_fix.py:332
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_visibility_fix.py:113
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_visibility_fix.py:115
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_visibility_fix.py:116
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_visibility_fix.py:219
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_visibility_fix.py:227
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_visibility_fix.py:250
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_visibility_fix.py:282
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_department_discovery_agent_v3_4_3_0.py:468
+                        continue
+                    for key in (
+                        "official_page_url",
+                        "core_scheme_url",
+                        "best_available_url",
+                        "final_url",
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_discovery_expansion_agent_v3_4_3_1.py:779
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_discovery_expansion_agent_v3_4_3_1_before_download_guard.py:779
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_manual_pilot_finalize_v3_4_2_0_1.py:48
+    "programme_owner", "implementing_agency", "platform_host", "programme_status",
+    "application_status", "objective", "eligibility", "beneficiary_type", "startup_stage",
+    "benefits", "funding_maximum", "currency", "funding_context", "application_process",
+    "official_page_url", "guideline_url", "notification_url", "official_scheme_end_date",
+PILOT_URL_FIELDS = [
+    "official_page_url", "guideline_url", "notification_url", "identity_evidence_url",
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_manual_pilot_finalize_v3_4_2_0_1.py:51
+    "ownership_evidence_url", "status_evidence_url",
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_manual_pilot_finalize_v3_4_2_0_1_before_generic_tree_hash_fix.py:48
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_manual_pilot_finalize_v3_4_2_0_1_before_generic_tree_hash_fix.py:51
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_manual_pilot_finalize_v3_4_2_0_1_before_tree_hash_fix.py:48
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_manual_pilot_finalize_v3_4_2_0_1_before_tree_hash_fix.py:51
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_new_scheme_identity_evidence_agent_v3_4_3_3.py:46
+            "Scheme for Accelerating Startups around "
+            "Post-COVID Technology Opportunities (SASACT)"
+        ),
+        "official_page_url": "https://msh.meity.gov.in/schemes/sasact",
+        "scheme_status": "HISTORICAL_INFORMATION_ONLY",
+        "application_status": "NO_CURRENT_APPLICATION_ROUTE_CONFIRMED",
+        "programme_status": "HISTORICAL_SCHEME_INFORMATION_AVAILABLE",
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_new_scheme_identity_evidence_agent_v3_4_3_3.py:130
+        "identity_key": "MEITY_SCHEME_GENESIS",
+        "canonical_name": "GENESIS",
+        "official_full_name": "GEN-NEXT Support for Innovative Startups (GENESIS)",
+        "official_page_url": "https://msh.meity.gov.in/schemes/genesis",
+        "scheme_status": "CURRENT_SCHEME_INFORMATION_AVAILABLE",
+        "application_status": "APPLICATION_STATUS_REQUIRES_VERIFICATION",
+        "programme_status": "UMBRELLA_SCHEME_INFORMATION_AVAILABLE",
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_new_scheme_identity_evidence_agent_v3_4_3_3.py:874
+                "candidate_id": config["candidate_id"],
+                "canonical_name": config["canonical_name"],
+                "official_full_name": config["official_full_name"],
+                "official_page_url": config["official_page_url"],
+                "identity_decision": (
+                    "VERIFIED_PERMANENT_SCHEME_IDENTITY"
+                    if identity_confirmed
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_new_scheme_identity_evidence_agent_v3_4_3_3.py:990
+        "candidate_id",
+        "canonical_name",
+        "official_full_name",
+        "identity_decision",
+        "identity_confirmed",
+        "deterministic_id_rule",
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_publication_candidate_preview_v3_4_3_4.py:164
+    set_many(
+        row,
+        available,
+        ("official_page_url", "core_scheme_url", "best_available_url", "final_url", "scheme_url"),
+        config["official_url"],
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\publication_control_service_v2_7_3_4.py:152
+        "scheme_name",
+        "source",
+        "validation_decision",
+        "publication_status",
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\publication_control_service_v2_7_3_4.py:242
+    if str(row["validation_decision"] or "").strip().upper() != "APPROVED_FOR_DATABASE":
+        blockers.append("validation_decision is not APPROVED_FOR_DATABASE")
+    if not valid_http_url(row["official_page_url"]):
+        blockers.append("official_page_url is missing or invalid")
+    application_url = row["application_url"]
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\publication_control_service_v2_7_3_4.py:243
+    if application_url is None or not str(application_url).strip():
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\publication_control_service_v2_7_3_4.py:611
+                "scheme_name": row["scheme_name"],
+                "source": row["source"],
+                "programme_status": row["programme_status"],
+                "official_page_url": row["official_page_url"],
+                "application_url": row["application_url"],
+                "validation_decision": row["validation_decision"],
+                "validation_score": row["validation_score"]
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\publication_control_service_v2_7_3_4.py:664
+                publication_status,
+                is_public,
+                record_version,
+                official_page_url,
+                application_url
+            FROM scheme_staging
+            {where}
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\publication_control_service_v2_7_3_4.py:696
+                scheme_name TEXT NOT NULL,
+                source TEXT,
+                programme_status TEXT,
+                validation_score REAL,
+                validation_decision TEXT NOT NULL,
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\publication_control_service_v2_7_3_4.py:769
+            """
+            INSERT INTO scheme_staging (
+                master_id, scheme_name, source, programme_status,
+                official_page_url, application_url, validation_score,
+                validation_decision, publication_status, is_public,
+                record_version, record_hash, raw_record_json, updated_at
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\sector_catalogue_repair_v3_4_0_6b.py:142
+    notes: list[str] = []
+    if allow_network:
+        urls: list[str] = []
+        for field in ("official_page_url", "application_url", "source_url", "final_url"):
+            u = clean(row.get(field))
+            if u.startswith(("http://", "https://")) and u not in urls:
+                urls.append(u)
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\sector_verification_agent_v3_4_0_6.py:151
+def safe_urls(row: Mapping[str, Any]) -> list[tuple[str, str]]:
+    pairs: list[tuple[str, str]] = []
+    for field, role in (
+        ("official_page_url", "official_page_text"),
+        ("application_url", "official_page_text"),
+    ):
+        url = normalized(row.get(field))
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_admin_publication_service_v1.py:42
+        "application_status": "NOT_APPLICABLE",
+        "scheme_status": "REFERENCE_PROGRAMME",
+        "geographic_scope": "National (India)",
+        "official_page_url": url,
+        "application_url": None,
+        "opening_date": None,
+        "closing_date": None,
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_admin_publication_service_v1.py:62
+        "master_id": master_id, "scheme_name": name, "source": "Test Department",
+        "record_kind": "SCHEME_OR_PROGRAMME", "programme_status": record["programme_status"],
+        "application_status": "NOT_APPLICABLE", "official_page_url": url,
+        "application_url": None, "decision": "NEEDS_ADMIN_REVIEW", "validation_score": None,
+        "priority": "NORMAL", "decision_reasons": ["Curator verification required"],
+        "warnings": [], "critical_flags": [], "recommended_admin_actions": [],
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_admin_review_app_v1.py:24
+    values = {
+        "scheme_name": "Updated Sample",
+        "source": "DST",
+        "official_page_url": "https://example.gov.in",
+        "funding_maximum": "50,00,000",
+        "beneficiary_maximum": "50,00,000",
+        "currency": "INR",
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_admin_review_service_v1.py:46
+        "selection_process": [],
+        "required_documents": [],
+        "application_url": f"https://example.gov.in/apply/{master_id}",
+        "official_page_url": f"https://example.gov.in/scheme/{master_id}",
+        "guideline_urls": [],
+        "closing_date": "2026-07-31",
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_admin_review_service_v1.py:83
+        "record_kind": "APPLICATION_CALL",
+        "programme_status": "CALL_INFORMATION_CURRENT",
+        "application_status": "OPEN",
+        "official_page_url": record["official_page_url"],
+        "application_url": record["application_url"],
+        "decision": "NEEDS_ADMIN_REVIEW",
+        "validation_score": 0.75,
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_admin_verification_intelligence_v1.py:35
+        "source": "Department",
+        "official_page_url": "https://example.gov.in/call",
+        "source_evidence": [{"url": "https://example.gov.in/call"}],
+    assessment = verification_assessment(record)
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_batch1_actual_v3_3_1.py:62
+                "scheme_name": "Included Scheme Record",
+                "normalized_record_kind": "SCHEME_OR_PROGRAMME",
+                "catalogue_inclusion": "INCLUDED",
+                "official_page_url": "https://example.gov.in/scheme",
+            },
+        ]
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_canonical_identity_agent_v1.py:11
+        self.agent = CanonicalIdentityAgent()
+    def test_nidhi_prayas_is_a_permanent_programme_identity(self) -> None:
+        identity = self.agent.create_master({"master_id": "nidhi-prayas", "scheme_name": "NIDHI - PRAYAS", "official_page_url": "https://dst.gov.in/nidhi-prayas"})
+        self.assertEqual(identity.scheme_master_id, "nidhi-prayas")
+        self.assertEqual(identity.canonical_name, "NIDHI-PRAYAS")
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_core_resolution_v3_3_2.py:44
+    def test_priority_assignment_keeps_pdf_and_directory_out_of_validated_core_bucket(self) -> None:
+        pdf_priority = priority_for_candidate(
+            {
+                "official_page_url": "https://example.gov.in/scheme.pdf",
+                "scheme_name": "Scheme PDF",
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_core_resolution_v3_3_2.py:51
+        directory_priority = priority_for_candidate(
+                "official_page_url": "https://example.gov.in/schemes",
+                "scheme_name": "Schemes",
+                "validation_issues": "NON_CORE_INDEX_OR_SITEMAP_PAGE",
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_database_loader_selftest_v1.py:50
+                "selection_process": [],
+                "required_documents": ["Registration certificate"],
+                "application_url": "https://example.gov.in/apply",
+                "guideline_urls": [],
+                "opening_date": "2026-07-01",
+                "closing_date": "2026-07-31",
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_database_loader_selftest_v1.py:89
+                "record_kind": "APPLICATION_CALL",
+                "programme_status": "CALL_INFORMATION_CURRENT",
+                "application_status": "OPEN",
+                "official_page_url": "https://example.gov.in/review",
+                "application_url": None,
+                "decision": "NEEDS_MORE_EVIDENCE",
+                "validation_score": 0.55,
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_dst_startup_focus_pipeline_v3_4_0_5.py:62
+        "ministry", "department", "implementing_agency", "normalized_record_kind", "record_kind",
+        "current_record_kind", "programme_status", "application_status", "scheme_status", "status_evidence",
+        "sector", "sectors", "scheme_type", "scheme_types", "catalogue_inclusion", "catalogue_section",
+        "current_decision", "validation_decision", "publication_status", "official_page_url", "application_url",
+        "guideline_urls", "guideline_url", "opening_date", "closing_date", "funding_minimum", "funding_maximum",
+        "currency", "objective", "objectives", "eligibility", "benefits", "funding_summary",
+        "application_process", "required_documents", "last_verified_date", "last_updated", "verification_status",
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_dst_startup_focus_pipeline_v3_4_0_5.py:72
+    catalogue.parent.mkdir(parents=True, exist_ok=True)
+    rows = [
+        {"master_id": "other1", "scheme_name": "Other Scheme", "source": "DPIIT", "department": "DPIIT"},
+        {"master_id": "dst1", "scheme_name": "Climate Change Programme", "source": "DST", "department": "Department of Science and Technology", "official_page_url": "https://dst.gov.in/climate-change-programme"},
+        {"master_id": "dst2", "scheme_name": "FIST", "source": "DST", "department": "Department of Science and Technology", "official_page_url": "https://dst.gov.in/fist"},
+    MODULE.write_csv(catalogue, fields, rows)
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_dst_startup_focus_pipeline_v3_4_0_5.py:73
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_end_to_end_governed_agents_v1.py:27
+            "department", "ministry", "eligibility", "benefits", "application_process",
+            "objectives", "closing_date",
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_end_to_end_governed_agents_v1.py:32
+        rows = [
+            {"master_id": "sisfs", "scheme_name": "Startup India Seed Fund Scheme", "normalized_record_kind": "SCHEME_OR_PROGRAMME", "official_page_url": "https://startupindia.gov.in/sisfs", "department": "DPIIT", "ministry": "Commerce", "eligibility": "DPIIT-recognised startup", "benefits": "Seed funding and proof of concept grant", "application_process": "Apply through the application portal", "objectives": "Startup innovation support"},
+            {"master_id": "nidhi-prayas", "scheme_name": "NIDHI-PRAYAS", "normalized_record_kind": "SCHEME_OR_PROGRAMME", "official_page_url": "https://dst.gov.in/nidhi-prayas", "department": "DST", "ministry": "Science", "eligibility": "Innovator or startup through an incubator", "benefits": "Prototype support grant", "application_process": "Apply through approved incubator", "objectives": "Innovation and entrepreneurship"},
+            {"master_id": "round-2026", "scheme_name": "NIDHI-PRAYAS Application Round 2026", "normalized_record_kind": "APPLICATION_CALL", "official_page_url": "https://dst.gov.in/nidhi-prayas-call", "department": "DST", "ministry": "Science", "eligibility": "Innovator and startup", "benefits": "Prototype support", "application_process": "Call for applications", "closing_date": "2026-12-31"},
+            {"master_id": "site-map", "scheme_name": "Sitemap.xml", "normalized_record_kind": "SCHEME_OR_PROGRAMME", "official_page_url": "https://dst.gov.in/sitemap.xml", "department": "DST", "ministry": "Science"},
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_end_to_end_governed_agents_v1.py:33
+            {"master_id": "university-only", "scheme_name": "University Research Infrastructure Support", "normalized_record_kind": "RESEARCH_SUPPORT", "official_page_url": "https://dst.gov.in/university-support", "department": "DST", "ministry": "Science", "eligibility": "Universities only and academic institutions only", "benefits": "Research infrastructure grant"},
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_end_to_end_governed_agents_v1.py:34
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_end_to_end_governed_agents_v1.py:35
+        with active.open("w", encoding="utf-8", newline="") as handle:
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_end_to_end_governed_agents_v1.py:36
+            writer = csv.DictWriter(handle, fieldnames=fields)
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_end_to_end_governed_agents_v1_before_51_fix.py:27
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_end_to_end_governed_agents_v1_before_51_fix.py:32
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_end_to_end_governed_agents_v1_before_51_fix.py:33
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_end_to_end_governed_agents_v1_before_51_fix.py:34
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_end_to_end_governed_agents_v1_before_51_fix.py:35
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_end_to_end_governed_agents_v1_before_51_fix.py:36
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_extractor_selftest_v1.py:68
+        "source": "Example Authority",
+        "readiness": "READY_FOR_EXTRACTION",
+        "current_status": "ACTIVE_CALL_OPEN",
+        "official_page_url": "https://example.gov.in/scheme",
+        "best_available_url": "https://example.gov.in/scheme",
+        "supporting_documents": [],
+        "active_calls": [
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_integrate_dst_v3_4_0_4_existing_dashboard.py:14
+class IntegrationTests(unittest.TestCase):
+    def test_dst_detection(self) -> None:
+        self.assertTrue(is_existing_dst_row({"source": "DST"}))
+        self.assertTrue(is_existing_dst_row({"official_page_url": "https://dst.gov.in/test"}))
+        self.assertFalse(is_existing_dst_row({"source": "BIRAC", "official_page_url": "https://birac.nic.in/test"}))
+    def test_adaptation(self) -> None:
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_integrate_dst_v3_4_0_4_existing_dashboard.py:15
+        fields = ["master_id", "scheme_name", "source", "record_kind", "catalogue_inclusion", "official_page_url"]
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_integrate_dst_v3_4_0_4_existing_dashboard.py:18
+        row = adapt_dst_row({"master_id": "x", "scheme_name": "Y", "entity_type": "SCHEME", "official_page_url": "https://dst.gov.in/y"}, fields)
+        self.assertEqual(row["source"], "DST")
+        self.assertEqual(row["record_kind"], "SCHEME_OR_PROGRAMME")
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_integrate_dst_v3_4_0_4_existing_dashboard.py:19
+        self.assertEqual(row["catalogue_inclusion"], "INCLUDED")
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_integrate_dst_v3_4_0_4_existing_dashboard.py:33
+            dst.parent.mkdir(parents=True)
+            app.parent.mkdir(parents=True)
+            fields = ["master_id", "scheme_name", "source", "ministry", "department", "normalized_record_kind", "record_kind", "programme_status", "application_status", "catalogue_inclusion", "current_decision", "official_page_url", "last_verified_date"]
+            with base.open("w", encoding="utf-8-sig", newline="") as handle:
+                writer = csv.DictWriter(handle, fieldnames=fields)
+                writer.writeheader()
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_integrate_dst_v3_4_0_4_existing_dashboard.py:38
+                writer.writerows([
+                    {"master_id": "old_dst", "scheme_name": "Old DST", "source": "DST", "official_page_url": "https://dst.gov.in/old"},
+                    {"master_id": "other", "scheme_name": "Other", "source": "BIRAC", "official_page_url": "https://birac.nic.in/other"},
+                ])
+            pub_fields = ["master_id", "scheme_name", "entity_type", "ministry", "department", "programme_status", "application_status", "official_page_url", "last_verified_date"]
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_integrate_dst_v3_4_0_4_existing_dashboard.py:39
+            with dst.open("w", encoding="utf-8-sig", newline="") as handle:
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_integrate_dst_v3_4_0_4_existing_dashboard.py:41
+                writer = csv.DictWriter(handle, fieldnames=pub_fields)
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_integrate_dst_v3_4_0_4_existing_dashboard.py:46
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_meity_incremental_extraction_v2_3.py:122
+        "master_type": "SCHEME_OR_PROGRAMME",
+        "current_status": "SCHEME_INFORMATION_AVAILABLE",
+        "best_available_url": url,
+        "best_relevance_score": 0.95,
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_meity_incremental_extraction_v2_3.py:188
+            "master_id": "non-meity-existing",
+            "scheme_name": "Existing DST Scheme",
+            "source": "DST",
+            "official_page_url": "https://dst.gov.in/existing",
+            "quality_flags": [],
+            "extraction_confidence": 0.875,
+            "source_evidence": [{"url": "https://dst.gov.in/existing", "source_hash": "dst-hash"}],
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_meity_incremental_staging_loader_v2_5.py:45
+        "ministry": "Ministry of Electronics and Information Technology",
+        "department": "MeitY Startup Hub",
+        "implementing_agency": "MeitY Startup Hub",
+        "official_page_url": f"https://msh.meity.gov.in/schemes/test-{index}",
+        "scheme_status": "SCHEME_INFORMATION_AVAILABLE_STATUS_UNVERIFIED",
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_meity_incremental_staging_loader_v2_5.py:95
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_meity_incremental_staging_loader_v2_5.py:123
+                record_kind TEXT,
+                decision TEXT NOT NULL,
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_meity_incremental_validation_v2_4.py:66
+        "application_url": f"https://msh.meity.gov.in/apply/test-{index}" if application else None,
+        "closing_date": "2026-12-31" if active_call else None,
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_meity_incremental_validation_v2_4.py:117
+        "master_id": f"existing-{index}",
+        "scheme_name": f"Existing Scheme {index}",
+        "source": "DST" if index % 2 else "BIRAC",
+        "official_page_url": f"https://example.gov.in/scheme-{index}",
+        "source_evidence": [
+                "url": f"https://example.gov.in/scheme-{index}",
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_meity_incremental_validation_v2_4_1.py:66
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_meity_incremental_validation_v2_4_1.py:117
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_public_dashboard_analytics_v3_4_0_10.py:26
+        "implementing_agency": "Agency A",
+        "source": "Official Source A",
+        "government_level": "Central Government",
+        "sectors": ["Deep Technology"],
+        "scheme_types": ["GRANT"],
+        "application_status": "",
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_public_dashboard_data_access.py:46
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_public_dashboard_data_access.py:77
+                decision TEXT,
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_public_dashboard_data_access.py:114
+                master_id, scheme_name, source, ministry, department, implementing_agency,
+                record_kind, programme_status, application_status, official_page_url,
+                validation_decision, publication_status, funding_maximum, currency,
+                record_hash, raw_record_json, first_loaded_at, last_loaded_at, is_public
+            ) VALUES (
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_public_dashboard_data_access.py:147
+                    "catalogue_inclusion",
+                    "catalogue_section",
+                    "official_page_url",
+                    "decision_reasons",
+                    "warnings",
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_public_dashboard_data_access.py:168
+                    "application_status": "OPEN",
+                    "catalogue_inclusion": "INCLUDED",
+                    "catalogue_section": "SCHEMES_AND_PROGRAMMES",
+                    "official_page_url": "https://example.gov/open",
+                }
+        return root
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_public_dashboard_data_access.py:238
+                    """
+                    INSERT INTO scheme_staging (
+                        master_id, scheme_name, source, department, implementing_agency,
+                        record_kind, application_status, official_page_url, application_url,
+                        publication_status, is_public, raw_record_json, record_hash,
+                        first_loaded_at, last_loaded_at
+                    ) VALUES (?, ?, 'DST', 'Department of Science and Technology',
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_public_dashboard_data_access.py:302
+                        master_id, scheme_name, source, department, record_kind,
+                        application_status, official_page_url, publication_status,
+                        is_public, raw_record_json, record_hash, first_loaded_at, last_loaded_at
+                    ) VALUES (
+                        'published-one', 'Open Grant', 'DST', 'Department A',
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_public_dashboard_metrics.py:33
+        "master_id": f"metric-fixture-{next(_RECORD_IDS)}",
+        "scheme_name": "Metric Fixture Scheme",
+        "record_kind": "SCHEME_OR_PROGRAMME",
+    defaults.update(kwargs)
+    return SimpleNamespace(**defaults)
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_record_role_agent_v1.py:15
+        self.agent = RecordRoleAgent(ROOT / "config/record_role_rules_v1.json")
+    def test_sitemap_is_never_a_scheme(self) -> None:
+        decision = self.agent.classify({"scheme_name": "Sitemap.xml", "official_page_url": "https://dst.gov.in/sitemap.xml"})
+        self.assertEqual(decision.role, "NAVIGATION_OR_UTILITY")
+    def test_contact_page_is_never_a_scheme(self) -> None:
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_record_role_agent_v1.py:19
+        decision = self.agent.classify({"scheme_name": "Contact Us", "official_page_url": "https://msme.gov.in/contact"})
+    def test_report_pdf_is_never_a_scheme(self) -> None:
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_record_role_agent_v1.py:23
+        decision = self.agent.classify({"scheme_name": "Annual Research Report.pdf", "official_page_url": "https://dst.gov.in/report.pdf"})
+        self.assertIn(decision.role, {"REPORT_OR_PUBLICATION", "SUPPORTING_DOCUMENT"})
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_scheme_extraction_agent_v1.py:58
+            f"{record['source']:<16} | {record['scheme_name']}"
+        print(f"    Status: {record['scheme_status']}")
+        print(f"    Official URL: {record['official_page_url']}")
+        print(
+            f"    Eligibility: {len(record['eligibility'])} | "
+            f"Benefits: {len(record['benefits'])} | "
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_sector_verification_agent_v1.py:15
+        self.agent = SectorVerificationAgent(ROOT / "config/sector_taxonomy_v1.json")
+    def test_credit_guarantee_maps_to_cross_sector_finance(self) -> None:
+        decision = self.agent.classify({"scheme_name": "Credit Guarantee Scheme for Startups", "benefits": "Credit guarantee for startup loans", "official_page_url": "https://startupindia.gov.in/cgss"})
+        self.assertEqual(decision.primary_sector, "Cross-sector MSME & Startup Finance")
+    def test_agritech_maps_to_agriculture(self) -> None:
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_sector_verification_agent_v1.py:19
+        decision = self.agent.classify({"scheme_name": "AgriTech Innovation Grant", "eligibility": "AgriTech startups working in precision farming", "official_page_url": "https://myscheme.gov.in/agritech"})
+        self.assertEqual(decision.primary_sector, "Agriculture & AgriTech")
+    def test_bio_ai_has_biotech_primary_and_ai_secondary(self) -> None:
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_sector_verification_agent_v1.py:23
+        decision = self.agent.classify({"scheme_name": "Bio-AI Programme", "objectives": "Biotechnology startups using artificial intelligence and machine learning", "official_page_url": "https://birac.nic.in/bio-ai"})
+        self.assertEqual(decision.primary_sector, "Biotechnology & Life Sciences")
+        self.assertIn("Artificial Intelligence & Data", decision.secondary_sectors)
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_strict_validation_handoff_v2_7_2.py:79
+            CREATE TABLE scheme_staging (
+                master_id TEXT PRIMARY KEY,
+                scheme_name TEXT,
+                application_url TEXT
+            );
+            CREATE TABLE admin_review_queue (
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_strict_validation_handoff_v2_7_2.py:85
+            CREATE TABLE admin_review_actions (
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_strict_validation_handoff_v2_7_2.py:105
+        con.execute(
+            "INSERT INTO scheme_staging(master_id, scheme_name, official_page_url, application_url) VALUES (?, ?, ?, ?)",
+            ("existing-id", "Existing Programme", "https://birac.nic.in/existing", ""),
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_strict_validation_handoff_v2_7_2.py:109
+            ("other-id", "Potential Duplicate Programme", "https://birac.nic.in/other", ""),
+        con.commit()
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_strict_validation_handoff_v2_7_2_1.py:43
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_strict_validation_handoff_v2_7_2_1.py:49
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_strict_validation_handoff_v2_7_2_1.py:66
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_strict_validation_handoff_v2_7_2_1.py:70
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_validator_selftest_v1.py:32
+        "application_url": "https://dst.gov.in/sample-apply",
+        "official_page_url": "https://dst.gov.in/sample-call",
+        "contact_details": [{"type": "phone", "value": "15-07-2026 04"}],
+        "funding_amount": {
+D:\WebSite\DASHBOARD\Code\SSIP\apps\public_dashboard_app_v2_9.py:419
+    fact_html = f'<div class="public-record-facts">{"".join(facts)}</div>' if facts else ""
+            f'<a class="public-action public-action-primary" target="_blank" rel="noopener noreferrer" '
+            f'href="{esc(record.application_url)}">Apply now</a>'
+D:\WebSite\DASHBOARD\Code\SSIP\apps\public_dashboard_app_v2_9.py:422
+    if include_details_link and record.master_id:
+D:\WebSite\DASHBOARD\Code\SSIP\apps\public_dashboard_app_v2_9.py:519
+        links.append("<span>How to Apply</span>")
+D:\WebSite\DASHBOARD\Code\SSIP\apps\public_dashboard_app_v2_9.py:520
+D:\WebSite\DASHBOARD\Code\SSIP\apps\public_dashboard_app_v2_9.py:1222
+        unsafe_allow_html=True,
+    application_count = sum(bool(item.application_url) for item in resource_records)
+    guideline_count = sum(bool(item.guideline_urls) for item in resource_records)
+        '<div class="metric-grid resource-metrics">'
+D:\WebSite\DASHBOARD\Code\SSIP\apps\public_dashboard_app_v2_9.py:1245
+        if population == "SCHEME" and is_call:
+        if resource_type == "APPLICATION" and not item.application_url:
+D:\WebSite\DASHBOARD\Code\SSIP\apps\public_dashboard_app_v2_9.py:1261
+D:\WebSite\DASHBOARD\Code\SSIP\apps\public_dashboard_app_v2_9.py:1385
+        f'<p><b>Funding:</b> {esc(funding)}</p>'
+        f'<p><b>Status evidence:</b> {esc(item.status_evidence or item.application_status.replace("_", " ").title())}</p>'
+        f'<p class="muted"><b>Evidence decision:</b> {esc(item.startup_relevance_reason or item.applicant_layer_reason)}</p>'
+        f'<div class="scheme-links">{_dst_links(("Official announcement", item.detail_url), ("Apply", item.application_url), ("Guidelines", item.guideline_url), ("Attachment", item.attachment_url))}</div>'
+        '</article>'
+D:\WebSite\DASHBOARD\Code\SSIP\apps\public_dashboard_app_v2_9.py:1837
+    agency = record.department or record.implementing_agency or record.source or "Government department / agency"
+    summary = concise_text(" ".join((record.objectives or record.benefits or ["Official scheme information is available."])[:1]), limit=330)
+D:\WebSite\DASHBOARD\Code\SSIP\apps\public_dashboard_app_v2_9.py:1838
+D:\WebSite\DASHBOARD\Code\SSIP\apps\public_dashboard_app_v2_9.py:1924
+    detail_links.extend((f"Official reference {index}", url) for index, url in enumerate(record.reference_urls or [], start=1))
+D:\WebSite\DASHBOARD\Code\SSIP\apps\public_dashboard_app_v2_9.py:1925
+    if detail_links:
+D:\WebSite\DASHBOARD\Code\SSIP\ssip_dashboard\catalogue.py:46
+    validation_score: float | None = None
+D:\WebSite\DASHBOARD\Code\SSIP\ssip_dashboard\catalogue.py:363
+D:\WebSite\DASHBOARD\Code\SSIP\ssip_dashboard\catalogue.py:399
+        validation_score=as_float(direct("validation_score", "confidence")),
+D:\WebSite\DASHBOARD\Code\SSIP\ssip_dashboard\components.py:77
+        links.append(f'<a target="_blank" rel="noopener noreferrer" href="{esc(record.guideline_urls[0])}">Manual / Guideline</a>')
+D:\WebSite\DASHBOARD\Code\SSIP\ssip_dashboard\components.py:78
+    link_html = "".join(f'<span class="link-pill">{link}</span>' for link in links)
+D:\WebSite\DASHBOARD\Code\SSIP\ssip_dashboard\dst_pilot.py:78
+    funding_summary: str
+    funding_maximum: str
+    startup_stage: str
+    application_url: str
+    detail_url: str
+    attachment_url: str
+    guideline_url: str
+D:\WebSite\DASHBOARD\Code\SSIP\ssip_dashboard\dst_pilot.py:157
+                secondary_sectors=_text(row["secondary_sectors"]), sector_reason=_text(raw.get("sector_reason")),
+                eligible_applicants=_text(raw.get("eligible_applicants")), funding_summary=_text(raw.get("funding_summary")),
+                funding_maximum=_text(raw.get("funding_maximum")), startup_stage=_text(row["startup_stage"]),
+                application_url=safe_http_url(raw.get("application_url")),
+                detail_url=safe_http_url(row["detail_url"]), attachment_url=safe_http_url(row["attachment_url"]),
+                guideline_url=safe_http_url(row["guideline_url"]),
+                evidence_note=_text(raw.get("evidence_note")),
+D:\WebSite\DASHBOARD\Code\SSIP\ssip_dashboard\metrics.py:151
+        records_missing_funding_information=funding["records_missing_funding"],
+        records_with_application_portals=sum(
+            1 for record in scheme_records
+            if getattr(record, "application_url", "")
+        records_with_manuals_guidelines=sum(
+D:\WebSite\DASHBOARD\Code\SSIP\ssip_dashboard\metrics.py:303
+def resource_counts(records: list[Any]) -> dict[str, int]:
+    records = visible_records(records)
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\apply_v3_3_3_manual_patch.py:17
+POPULATION_REPLACEMENT = '\ndef split_catalogue_populations(records: list[Any]) -> CataloguePopulations:\n    # Evidence-only detection deliberately runs before application-call\n    # classification. This prevents a sitemap, PDF manual, report, FAQ or\n    # directory incorrectly labelled APPLICATION_CALL from entering calls.\n    seen_ids: set[str] = set()\n    main: list[Any] = []\n    calls: list[Any] = []\n    archived: list[Any] = []\n    verification: list[Any] = []\n    evidence: list[Any] = []\n    excluded: list[Any] = []\n\n    for record in records:\n        ok, reason = is_main_scheme_record(record, seen_ids)\n\n        if ok:\n            seen_ids.add(value(record, "master_id"))\n            main.append(record)\n            if is_archived(record):\n                archived.append(record)\n            if requires_verification(record):\n                verification.append(record)\n            continue\n\n        evidence_only, evidence_reason = is_evidence_only(record)\n        poor_name_reason = poor_scheme_name_reason(record)\n\n        if (\n            evidence_only\n            or poor_name_reason\n            in {\n                "RAW_OR_URL_ENCODED_FILENAME_AS_NAME",\n                "GENERIC_SCHEME_NAME",\n                "SITEMAP_OR_DIRECTORY_TITLE",\n            }\n        ):\n            evidence.append(record)\n        elif is_application_call(record) and not is_rejected(record):\n            calls.append(record)\n        else:\n            excluded.append(record)\n\n    return CataloguePopulations(\n        main_scheme_records=main,\n        application_call_records=calls,\n        archived_scheme_records=archived,\n        verification_required_scheme_records=verification,\n        evidence_only_records=evidence,\n        excluded_records=excluded,\n    )\n'
+METRICS_IMPORT = 'from .catalogue_populations import (\n    primary_sector,\n    primary_sector_counts,\n    primary_support_type,\n    primary_support_type_counts,\n    split_catalogue_populations,\n)\n'
+COMPUTE_METRICS_REPLACEMENT = '\ndef compute_metrics(records: list[Any]) -> DashboardMetrics:\n    populations = split_catalogue_populations(visible_records(records))\n    scheme_records = populations.main_scheme_records\n    application_call_records = populations.application_call_records\n\n    bucket_counts = Counter(status_bucket(record) for record in scheme_records)\n    funding = funding_summary(scheme_records)\n\n    sector_values = {\n        primary_sector(record)\n        for record in scheme_records\n        if primary_sector(record) != "Sector Not Specified"\n    }\n    support_values = {\n        primary_support_type(record)\n        for record in scheme_records\n        if primary_support_type(record) != "SUPPORT_TYPE_NOT_SPECIFIED"\n    }\n\n    return DashboardMetrics(\n        total_catalogue_records=len(scheme_records),\n        application_call_records=len(application_call_records),\n        evidence_or_directory_records=(\n            len(populations.evidence_only_records)\n            + len(populations.excluded_records)\n        ),\n        total_explicit_ministries=explicit_count(scheme_records, "ministry"),\n        total_explicit_departments=explicit_count(scheme_records, "department"),\n        total_implementing_agencies=explicit_count(\n            scheme_records, "implementing_agency"\n        ),\n        total_source_organisations=explicit_count(scheme_records, "source"),\n        total_sectors=len(sector_values),\n        total_grant_support_types=len(support_values),\n        open_records=bucket_counts["OPEN"],\n        closing_soon_records=bucket_counts["CLOSING_SOON"],\n        upcoming_records=bucket_counts["UPCOMING"],\n        verification_required_records=bucket_counts["VERIFICATION_REQUIRED"],\n        closed_records=bucket_counts["CLOSED"],\n        historical_records=bucket_counts["HISTORICAL"],\n        records_with_funding_information=funding["records_with_funding"],\n        records_missing_funding_information=funding["records_missing_funding"],\n        records_with_application_portals=sum(\n            1 for record in scheme_records\n            if getattr(record, "application_url", "")\n        ),\n        records_with_manuals_guidelines=sum(\n            1 for record in scheme_records\n            if getattr(record, "guideline_urls", [])\n        ),\n        minimum_recorded_funding=funding["minimum_recorded_funding"],\n        maximum_recorded_funding=funding["maximum_recorded_funding"],\n        records_missing_ministry=sum(\n            1 for record in scheme_records\n            if not str(getattr(record, "ministry", "") or "").strip()\n        ),\n        records_missing_department=sum(\n            1 for record in scheme_records\n            if not str(getattr(record, "department", "") or "").strip()\n        ),\n        records_missing_sector=sum(\n            1 for record in scheme_records\n            if primary_sector(record) == "Sector Not Specified"\n        ),\n    )\n'
+LATEST_RECORDS_REPLACEMENT = '\ndef latest_records(records: list[Any], *, limit: int = 5) -> list[Any]:\n    main_records = split_catalogue_populations(\n        visible_records(records)\n    ).main_scheme_records\n    return sorted(\n        main_records,\n        key=lambda record: str(getattr(record, "last_updated", "") or ""),\n        reverse=True,\n    )[:limit]\n'
+OPEN_RECORDS_REPLACEMENT = '\ndef open_records(records: list[Any], *, limit: int | None = None) -> list[Any]:\n    main_records = split_catalogue_populations(\n        visible_records(records)\n    ).main_scheme_records\n    output = [\n        record\n        for record in main_records\n        if status_bucket(record) in {"OPEN", "CLOSING_SOON"}\n    ]\n    return output if limit is None else output[:limit]\n'
+GOVERNMENT_REPLACEMENT = '\ndef government_level_coverage(\n    records: list[Any],\n    lookup: dict[str, str] | None = None,\n) -> Counter[str]:\n    counter: Counter[str] = Counter(\n        {level: 0 for level in GOVERNMENT_LEVELS}\n    )\n    main_records = split_catalogue_populations(\n        visible_records(records)\n    ).main_scheme_records\n    for record in main_records:\n        counter[government_level(record, lookup)] += 1\n    return counter\n'
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\catalogue_normalization_plan_v2_8_1.py:449
+    issues.extend(str(item) for item in warnings)
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\catalogue_normalization_plan_v2_8_1.py:450
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\catalogue_normalization_plan_v2_8_1.py:506
+            "decision_reasons": json.dumps(
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\catalogue_normalization_plan_v2_8_1.py:507
+                reasons,
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_canonical_publication_builder_v3_4_0_4.py:441
+        "official_abbreviation": entity["official_abbreviation"],
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_canonical_publication_builder_v3_4_0_4.py:719
+                eligibility TEXT,
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_canonical_publication_builder_v3_4_0_4.py:779
+                    row["last_verified_date"], row["identity_lock_version"],
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_startup_focus_pipeline_v3_4_0_5.py:309
+                    "closing_date": closing_date,
+                    "application_status": infer_call_status(text, opening_date, closing_date),
+                    "eligible_beneficiary": beneficiary_summary(text),
+                    "application_url": find_application_link(links),
+                    "guideline_url": find_guideline_link(links),
+                    "source_url": final_url,
+                    "last_verified_at": utc_now(),
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_startup_focus_pipeline_v3_4_0_5.py:431
+        "opening_date": "",
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_startup_focus_pipeline_v3_4_0_5.py:623
+    if args.deep_search:
+        pages, calls, reviews, documents = crawl(config, output_dir)
+        page_fields = ["page_id", "url", "final_url", "title", "depth", "http_status", "content_type", "word_count", "classification", "startup_relevance_score", "classification_reasons", "opening_date", "closing_date", "text_excerpt", "fetched_at", "error"]
+        call_fields = ["call_id", "parent_scheme_code", "parent_master_id", "call_title", "call_type", "opening_date", "closing_date", "application_status", "eligible_beneficiary", "application_url", "guideline_url", "source_url", "last_verified_at", "evidence_excerpt"]
+        review_fields = page_fields
+        document_fields = ["source_url", "document_url", "anchor_text", "content_type", "http_status"]
+        write_csv(output_dir / "dst_startup_deep_search_pages_v3_4_0_5.csv", page_fields, pages)
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_startup_focus_pipeline_v3_4_0_5.py:641
+    else:
+        calls_path = output_dir / "dst_startup_calls_v3_4_0_5.csv"
+        if not calls_path.exists():
+            write_csv(calls_path, ["call_id", "parent_scheme_code", "parent_master_id", "call_title", "call_type", "opening_date", "closing_date", "application_status", "eligible_beneficiary", "application_url", "guideline_url", "source_url", "last_verified_at", "evidence_excerpt"], [])
+    if args.patch_dashboard:
+        summary["dashboard_patch"] = patch_dashboard(root / config["dashboard_app_path"], config["output_directory"])
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\generate_identity_review_v3_3_4.py:232
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\generate_identity_review_v3_3_4.py:234
+                "objectives_present": has_content(
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\generate_identity_review_v3_3_4.py:271
+        "benefits_present",
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\integrate_dst_v3_4_0_4_into_existing_dashboard.py:101
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\load_approved_records_v2_7_3.py:310
+            row["final_url"] = validate_url(
+                row.get("final_url"), "final_url", row_number
+            if "application_url" in row:
+                row["application_url"] = validate_url(
+                    row.get("application_url"), "application_url", row_number
+                )
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\load_approved_records_v2_7_3.py:311
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\load_approved_records_v2_7_3.py:312
+            rows.append(row)
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\load_approved_records_v2_7_3.py:973
+                canonical_name TEXT,
+                final_url TEXT,
+                confidence_after_validation REAL,
+                publication_status TEXT NOT NULL DEFAULT 'STAGED',
+                is_public INTEGER NOT NULL DEFAULT 0,
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\load_approved_records_v2_7_3.py:1121
+            "canonical_name": "Updated Scheme Name",
+            "programme_status": "SCHEME_INFORMATION_AVAILABLE",
+            "final_url": "https://example.gov/updated",
+            "application_url": "https://example.gov/apply",
+            "confidence_after_validation": "1.0",
+            "validation_decision": APPROVED_DECISION,
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\load_approved_records_v2_7_3.py:1131
+            "canonical_name": "New Approved Scheme",
+            "final_url": "https://example.gov/new",
+            "confidence_after_validation": "0.95",
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\load_approved_records_v2_7_3.py:1141
+            "canonical_name": "Attempted Automated Change",
+            "final_url": "https://example.gov/public-new",
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\load_approved_records_v2_7_3_1.py:80
+        "webpage_url",
+        "url",
+    "application_url": (
+        "apply_url",
+        "application_link",
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\load_approved_records_v2_7_3_1.py:81
+        "apply_link",
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\load_approved_records_v2_7_3_1.py:451
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\load_approved_records_v2_7_3_1.py:452
+            valid.append(row)
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\load_approved_records_v2_7_3_1.py:453
+        except ValueError as exc:
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\load_approved_records_v2_7_3_1.py:1051
+                {name_column} TEXT NOT NULL,
+                {status_column} TEXT NOT NULL,
+                {url_column} TEXT NOT NULL,
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\load_approved_records_v2_7_3_1.py:1130
+            "canonical_name": "Compatibility Test Scheme",
+            "final_url": "https://example.gov/scheme",
+        }
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\load_approved_records_v2_7_3_3a.py:70
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\load_approved_records_v2_7_3_3a.py:71
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\load_approved_records_v2_7_3_3a.py:662
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\load_approved_records_v2_7_3_3a.py:663
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\load_approved_records_v2_7_3_3a.py:664
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\load_approved_records_v2_7_3_3a.py:1375
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\load_approved_records_v2_7_3_3a.py:1473
+            "canonical_name": "Mega Facilities for Basic Research Scheme",
+            "final_url": "https://dst.gov.in/mega-facilities-basic-research-scheme",
+            "application_url": "https://dst.gov.in/announcement/applications-invited-throughout-year",
+            "confidence_after_validation": "1.000",
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_application_link_hotfix_v3_4_2_0_3.py:155
+        if master_id not in TARGET_IDS:
+        row["application_url"] = SUPPRESSION_VALUE
+        if master_id == SAMRIDH_ID:
+            row["application_status"] = "APPLICATION_STATUS_REQUIRES_VERIFICATION"
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_application_link_hotfix_v3_4_2_0_3.py:207
+        add(
+            "target_plan_values_suppress_db_fallback",
+                reloaded_by_id[target_id].get("application_url")
+                == SUPPRESSION_VALUE
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_application_link_hotfix_v3_4_2_0_3.py:214
+            "Both catalogue rows must contain the explicit non-URL suppression value.",
+            "dashboard_application_urls_blank",
+                and not getattr(records_by_id[target_id], "application_url", "")
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_application_link_hotfix_v3_4_2_0_3.py:217
+            "The dashboard loader must expose a blank application_url for both schemes.",
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_application_link_hotfix_v3_4_2_0_3.py:220
+            "invalid_logo_url_absent_from_loaded_records",
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_application_link_hotfix_v3_4_2_0_3.py:226
+                INVALID_URL.casefold()
+                not in getattr(records_by_id[target_id], "application_url", "").casefold()
+            "The MSH logo-application URL must not be exposed.",
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_application_link_hotfix_v3_4_2_0_3.py:330
+                    "application_status": getattr(
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_application_link_hotfix_v3_4_2_0_3.py:331
+                        records_by_id[target_id], "application_status", ""
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_application_link_hotfix_v3_4_2_0_3.py:353
+            "publication_status": "PASS",
+            "run_id": run_id,
+            "problem": (
+                "Legacy database application_url values pointed SAMRIDH and "
+                "TIDE 2.0 to the unrelated MeitY Startup Hub logo-application page."
+            "resolution": (
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_application_link_hotfix_v3_4_2_0_3.py:357
+                "The governed catalogue now explicitly suppresses application_url "
+                "fallback for both schemes. Their official scheme-information pages "
+                "remain available, but no Apply Now link is exposed."
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2.py:136
+def resolve_review(row):
+    key = (pick(row, "master_id"), pick(row, "field_name"))
+    resolutions = {
+        ("147173e17ea741687247", "application_url"): ("APPROVED_OMISSION_NO_CURRENT_ROUTE", "No current official application route was verified. application_url remains blank and OPEN is not claimed."),
+        ("147173e17ea741687247", "required_documents"): ("APPROVED_OMISSION_NOT_VERIFIED", "No governed scheme-wide document checklist was verified; the field remains blank."),
+        ("147173e17ea741687247", "official_scheme_end_date"): ("APPROVED_OMISSION_NO_OFFICIAL_END_DATE", "No permanent-scheme end date was established; cohort dates are not reused."),
+        ("147173e17ea741687247", "contact_details"): ("APPROVED_OMISSION_NOT_VERIFIED", "No scheme-specific public contact was verified; the field remains blank."),
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2.py:229
+            "closing_date": "",
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2.py:321
+    add("candidate_row_count", len(candidate_rows) == 139, f"rows={len(candidate_rows)}")
+    add("candidate_master_ids_unique", len({r.get('master_id','') for r in candidate_rows}) == len(candidate_rows), "all master_id values must be unique")
+    add("reviews_resolved", len(resolved) == 7 and all(r.get("review_status") == "RESOLVED" for r in resolved), f"resolved={sum(r.get('review_status') == 'RESOLVED' for r in resolved)}")
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_config_path_fix.py:136
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_config_path_fix.py:229
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_config_path_fix.py:329
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_dashboard_loader_fix.py:135
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_dashboard_loader_fix.py:228
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_dashboard_loader_fix.py:279
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_direct_config_fix.py:136
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_direct_config_fix.py:229
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_direct_config_fix.py:329
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_visibility_fix.py:135
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_visibility_fix.py:228
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_candidate_builder_v3_4_2_0_2_before_visibility_fix.py:279
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_manual_pilot_finalize_v3_4_2_0_1.py:209
+    add("pilot_statuses_governed", sam.get("programme_status") == "CURRENT_SCHEME_INFORMATION_AVAILABLE" and sam.get("application_status") == "APPLICATION_STATUS_REQUIRES_VERIFICATION" and tide.get("programme_status") == "HISTORICAL_INFORMATION_ONLY" and tide.get("application_status") == "NO_CURRENT_APPLICATION_ROUTE_CONFIRMED" and tide.get("official_scheme_end_date") == "2024-01-31", "No open application asserted")
+    invalid_open = [r for r in statuses if r.get("current_open_call_confirmed", "").lower() != "false"]
+    invalid_app = [r for r in pilot if r.get("application_url", "").strip() or r.get("application_status", "").startswith("OPEN")]
+    add("no_open_application_asserted", not invalid_open and not invalid_app, f"Open-call violations: {len(invalid_open)}; application violations: {len(invalid_app)}")
+    public_rows = masters + official + statuses + pilot + field
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_manual_pilot_finalize_v3_4_2_0_1.py:216
+    contaminated = [r for r in public_rows if "applyforthelogo" in " ".join(r.values()).lower() or "2023-03-29" in " ".join(r.values())]
+    add("legacy_contamination_excluded", not contaminated, f"Contaminated public/governed rows: {len(contaminated)}")
+    legacy_ok = all(r.get("adjudication_decision") == "LEGACY_STATUS_REJECTED_AS_CONTAMINATED" and r.get("application_url_disposition") == "REJECT_AS_UNRELATED_MSH_LOGO_LINK" and r.get("closing_date_disposition") == "REJECT_AS_UNRELATED_PAGE_DEADLINE" and r.get("permanent_identity_disposition") == "PRESERVE_EXISTING_MASTER_ID" for r in legacy)
+    add("legacy_contamination_adjudicated", legacy_ok, "Legacy contamination preserved only as adjudication evidence")
+    calls_ok = all(r.get("create_permanent_master", "").lower() == "false" for r in calls) and sum(r.get("candidate_type") == "COHORT_INSTANCE" for r in calls) == 2 and sum(r.get("candidate_type") == "UNRELATED_PAGE_DEADLINE" for r in calls) == 2
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_manual_pilot_finalize_v3_4_2_0_1_before_generic_tree_hash_fix.py:154
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_manual_pilot_finalize_v3_4_2_0_1_before_generic_tree_hash_fix.py:161
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_manual_pilot_finalize_v3_4_2_0_1_before_tree_hash_fix.py:154
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_manual_pilot_finalize_v3_4_2_0_1_before_tree_hash_fix.py:161
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_new_scheme_identity_evidence_agent_v3_4_3_3.py:31
+PHASE = "MeitY SASACT and GENESIS Identity, Evidence and Status Validation"
+USER_AGENT = "SSIP-Governed-Evidence-Agent/3.4.3.3 (+official-source research)"
+INVALID_APPLICATION_URLS = {
+    "https://msh.meity.gov.in/about/applyforthelogo",
+    "https://msh.meity.gov.in/registration",
+    "https://msh.meity.gov.in/about/contactus",
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_new_scheme_identity_evidence_agent_v3_4_3_3.py:906
+                "scheme_status": config["scheme_status"],
+                "application_status": config["application_status"],
+                "application_url": "",
+                "application_route_status": "NO_PUBLIC_APPLY_ACTION",
+                "reference_application_form_url": reference_application_form,
+                "reference_form_role": (
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_new_scheme_identity_evidence_agent_v3_4_3_3.py:917
+                "current_call_id": "",
+                "deadline": "",
+                "status_rationale": config["status_rationale"],
+                "invalid_application_urls_rejected": "; ".join(
+                    sorted(INVALID_APPLICATION_URLS)
+                "as_of_date": date.today().isoformat(),
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_new_scheme_identity_evidence_agent_v3_4_3_3.py:918
+                "publication_status": "NOT_PUBLISHED",
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_new_scheme_identity_evidence_agent_v3_4_3_3.py:954
+                    "candidate_id": config["candidate_id"],
+                    "canonical_name": config["canonical_name"],
+                    "review_type": "CURRENT_APPLICATION_ROUTE",
+                    "field_name": "application_url",
+                    "review_reason": (
+                        "The official reference application form does not prove that "
+                        "an application window is currently open."
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_new_scheme_identity_evidence_agent_v3_4_3_3.py:1024
+        "scheme_status",
+        "application_route_status",
+        "reference_application_form_url",
+        "reference_form_role",
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_new_scheme_identity_evidence_agent_v3_4_3_3.py:1031
+        "current_call_id",
+        "deadline",
+        "status_rationale",
+        "invalid_application_urls_rejected",
+        "as_of_date",
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_new_scheme_identity_evidence_agent_v3_4_3_3.py:1091
+        row["master_id"] for row in identity_rows if row["master_id"]
+    duplicate_ids = len(permanent_ids) != len(set(permanent_ids))
+    application_urls_blank = all(
+        not normalize_space(row["application_url"])
+        for row in application_rows
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_new_scheme_identity_evidence_agent_v3_4_3_3.py:1092
+    invalid_exposed = any(
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_new_scheme_identity_evidence_agent_v3_4_3_3.py:1096
+        normalize_space(row["application_url"]) in INVALID_APPLICATION_URLS
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_new_scheme_identity_evidence_agent_v3_4_3_3.py:1136
+            "details": f"missing_required={required_evidence_missing}",
+        {
+            "name": "no_public_application_urls",
+            "passed": application_urls_blank,
+            "details": "Both schemes must remain without an Apply action.",
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_new_scheme_identity_evidence_agent_v3_4_3_3.py:1137
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_new_scheme_identity_evidence_agent_v3_4_3_3.py:1141
+            "name": "invalid_application_urls_rejected",
+            "passed": not invalid_exposed,
+            "details": "Logo, registration and contact pages must not be exposed.",
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_new_scheme_identity_evidence_agent_v3_4_3_3.py:1180
+            "field_evidence_rows": len(evidence_rows),
+            "review_queue_rows": len(review_rows),
+            "required_evidence_missing": required_evidence_missing,
+            "public_application_urls": sum(
+                bool(normalize_space(row["application_url"]))
+                for row in application_rows
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_new_scheme_identity_evidence_agent_v3_4_3_3.py:1181
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_publication_candidate_preview_v3_4_3_4.py:174
+    set_many(row, available, ("programme_status",), config["programme_status"])
+    set_many(row, available, ("scheme_status", "current_status"), config["scheme_status"])
+    set_many(row, available, ("application_status",), config["application_status"])
+    set_many(row, available, ("application_url",), SUPPRESS_APPLICATION)
+    objective = evidence.get("objective", application.get("status_rationale", ""))
+    eligibility = evidence.get("startup_eligibility", "")
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_publication_candidate_preview_v3_4_3_4.py:292
+            "loaded": record is not None,
+            "main_visible": master_id in main_ids,
+            "scheme_name": getattr(record, "scheme_name", "") if record else "",
+            "application_url": getattr(record, "application_url", "") if record else "",
+            "application_status": getattr(record, "application_status", "") if record else "",
+            "programme_status": getattr(record, "programme_status", "") if record else "",
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_publication_candidate_preview_v3_4_3_4.py:305
+def self_test() -> None:
+    fields = ["master_id", "scheme_name", "application_url", "catalogue_inclusion"]
+    row = build_row(
+        "SASACT",
+        TARGETS["SASACT"],
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_publication_candidate_preview_v3_4_3_4.py:315
+        {},
+    assert row["master_id"] == SASACT_ID
+    assert row["application_url"] == SUPPRESS_APPLICATION
+    assert row["catalogue_inclusion"] == "INCLUDED"
+    print("MeitY v3.4.3.4 publication-candidate self-test: PASS")
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_publication_candidate_preview_v3_4_3_4.py:408
+            raise RuntimeError(f"{scheme} identity is not confirmed.")
+        if norm(identity.get("master_id")) != config["master_id"]:
+            raise RuntimeError(f"{scheme} governed master ID mismatch.")
+        if norm(application.get("application_url")):
+            raise RuntimeError(f"{scheme} unexpectedly has an application URL.")
+        new_rows.append(
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_publication_candidate_preview_v3_4_3_4.py:452
+        ("candidate_dashboard_55", candidate_snapshot["main_visible_records"] == 55, f"actual={candidate_snapshot['main_visible_records']}"),
+        ("targets_loaded", all(candidate_snapshot["targets"][mid]["loaded"] for mid in TARGET_IDS), json.dumps(candidate_snapshot["targets"], sort_keys=True)),
+        ("targets_main_visible", all(candidate_snapshot["targets"][mid]["main_visible"] for mid in TARGET_IDS), json.dumps(candidate_snapshot["targets"], sort_keys=True)),
+        ("no_public_application_urls", all(not norm(candidate_snapshot["targets"][mid]["application_url"]) for mid in TARGET_IDS), json.dumps(candidate_snapshot["targets"], sort_keys=True)),
+        ("frozen_files_unchanged", all(frozen_unchanged.values()), json.dumps(frozen_unchanged, sort_keys=True)),
+        ("publication_not_performed", True, "preview only"),
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\publication_control_service_v2_7_3_4.py:153
+        "is_public",
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\publication_control_service_v2_7_3_4.py:245
+        warnings.append("application_url is unavailable")
+    elif not valid_http_url(application_url):
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\publication_control_service_v2_7_3_4.py:246
+        blockers.append("application_url is present but invalid")
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\publication_control_service_v2_7_3_4.py:247
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\publication_control_service_v2_7_3_4.py:248
+    if str(row["publication_status"] or "") != "READY_FOR_PUBLICATION":
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\publication_control_service_v2_7_3_4.py:249
+        blockers.append("publication_status is not READY_FOR_PUBLICATION")
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\publication_control_service_v2_7_3_4.py:612
+                if "validation_score" in row.keys()
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\publication_control_service_v2_7_3_4.py:665
+            ORDER BY source, scheme_name
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\publication_control_service_v2_7_3_4.py:697
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\sector_verification_agent_v3_4_0_6.py:152
+        if url:
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\validate_meity_explicit_preview_v3_4_2_0_2.py:314
+            "name": "no_open_application_claim",
+            "passed": all(
+                not row.get(
+                    "",
+                ).strip()
+                and not row.get(
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\validate_meity_explicit_preview_v3_4_2_0_2.py:324
+                for row in raw_meity_rows
+            "details": (
+                "application_url must remain blank "
+                "and no OPEN status may be asserted."
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_admin_publication_service_v1.py:43
+        "scheme_type": ["Scheme"],
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_admin_publication_service_v1.py:63
+        "validated_record": record,
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_admin_review_service_v1.py:45
+        "application_process": ["Apply online."],
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_admin_review_service_v1.py:84
+        "decision_reasons": ["Manual verification required."],
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_database_loader_selftest_v1.py:49
+                "application_process": ["Apply online."],
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_database_loader_selftest_v1.py:90
+                "decision_reasons": ["Missing eligibility."],
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_dst_admin_bridge_v1.py:49
+    assert record["implementing_entity"] == "Technology Development Board"
+    assert record["applicant_layer"] == "DIRECT_BENEFICIARY"
+    assert record["status_basis"] == "EXPLICIT_OFFICIAL_APPLY_ROUTE"
+    assert record["application_url"] == "https://www.e-techcom.tdb.gov.in/rdif-registration.php"
+def test_dry_run_is_read_only_and_skips_decided_semantic_duplicate() -> None:
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_dst_dashboard_integration_v1.py:66
+    assert call.application_status == "OPEN"
+    assert call.status_basis == "EXPLICIT_OFFICIAL_APPLY_ROUTE"
+    assert call.implementing_entity == "Technology Development Board"
+    assert call.application_url == "https://www.e-techcom.tdb.gov.in/rdif-registration.php"
+    assert not filter_dst_calls(bundle.calls, parent_id=tdb_core.master_id)
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_dst_pilot_v1.py:135
+        assert call["implementing_entity"] == "Technology Development Board"
+        assert call["application_status"] == "OPEN"
+        assert call["status_basis"] == "EXPLICIT_OFFICIAL_APPLY_ROUTE"
+        assert call["application_url"] == "https://www.e-techcom.tdb.gov.in/rdif-registration.php"
+        assert call["last_verified_at"] == "2026-07-11T00:00:00+00:00"
+        shutil.rmtree(path)
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_extractor_selftest_v1.py:98
+    assert record["scheme_name"] == "Example Startup Seed Grant Scheme"
+    assert record["eligibility"], "Eligibility was not extracted"
+    assert record["benefits"], "Benefits were not extracted"
+    assert record["application_url"] == "https://example.gov.in/apply"
+    assert record["funding_amount"]["maximum"] == 2_000_000
+    assert record["closing_date"] == "2026-12-31"
+    assert "Startups" in record["target_beneficiaries"]
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_extractor_selftest_v1.py:109
+    print(f"Confidence: {record['extraction_confidence']}")
+    print(f"Funding maximum: {record['funding_amount']['maximum']}")
+    print(f"Closing date: {record['closing_date']}")
+    print(f"Application URL: {record['application_url']}")
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_master_backlog_executor_v2_7_1.py:166
+            "funding_text": "Rs. 1 crore",
+            "deadline": "31 December 2026",
+            "application_process": "Apply online",
+            "application_url": "https://example.gov.in/apply",
+            "documents_required": "Proposal",
+        confidence, flags, decision, identity = evaluate_record(
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_meity_incremental_staging_loader_v2_5.py:46
+        "funding_amount": {"minimum": None, "maximum": None, "currency": "INR"},
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_meity_incremental_staging_loader_v2_5.py:96
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_meity_incremental_staging_loader_v2_5.py:124
+                review_status TEXT NOT NULL DEFAULT 'PENDING',
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_meity_incremental_validation_v2_4.py:65
+        "application_process": ["Apply through the official portal."] if application else [],
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_meity_incremental_validation_v2_4_1.py:65
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_public_dashboard_data_access.py:47
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_public_dashboard_data_access.py:78
+                review_status TEXT,
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_public_dashboard_data_access.py:148
+                    "recommended_actions",
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_public_dashboard_metrics.py:26
+        "catalogue_section": "",
+        "catalogue_inclusion": "",
+        "application_url": "",
+        "funding_minimum": None,
+        "funding_maximum": None,
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_public_dashboard_metrics.py:50
+                sectors=["Biotechnology"],
+                scheme_types=["Grant"],
+                application_status="OPEN",
+                application_url="https://apply.example",
+                guideline_urls=["https://manual.example/file.pdf"],
+                funding_maximum=100000,
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_strict_validation_handoff_v2_7_2.py:16
+FIELDS = [
+    "master_id", "source", "canonical_name", "master_type", "final_url",
+    "application_url", "http_status", "page_title", "document_type",
+    "page_identity_score", "llm_status", "scheme_name", "ministry",
+    "department", "programme_status", "eligibility", "benefits",
+    "funding_text", "funding_min", "funding_max", "deadline",
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_strict_validation_handoff_v2_7_2.py:33
+        "canonical_name": name,
+        "final_url": url,
+        "application_url": "https://birac.nic.in/apply/submit",
+        "http_status": "200",
+        "page_title": name,
+        "document_type": "HTML",
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_strict_validation_handoff_v2_7_2.py:80
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_strict_validation_handoff_v2_7_2.py:86
+                action_id INTEGER PRIMARY KEY AUTOINCREMENT,
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_strict_validation_handoff_v2_7_2_1.py:16
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_strict_validation_handoff_v2_7_2_1.py:44
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_strict_validation_handoff_v2_7_2_1.py:50
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_strict_validation_handoff_v2_7_2_1.py:102
+            "canonical_name": name,
+            "master_type": "SCHEME_OR_PROGRAMME",
+            "final_url": url,
+            "application_url": "https://birac.nic.in/apply/submit",
+            "http_status": "200",
+            "page_title": name,
+            "document_type": "HTML",
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_strict_validation_handoff_v2_7_2_1.py:156
+                "funding_text": "Detailed call dated 2017 with closing date 31/03/2017.",
+                "funding_min": "2017.0",
+                "funding_max": "2017.0",
+                "next_decision": "READY_FOR_VALIDATION",
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_validator_selftest_v1.py:31
+        "application_process": ["Submit the online application through the official portal."],
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_canonical_publication_builder_v3_4_0_4.py:114
+        "call for proposal", "call for proposals", "applications invited",
+        "application invited", "inviting applications", "expression of interest",
+        "deadline extension", "last date extended", "corrigendum", "addendum",
+        "result of", "selected proposals", "shortlisted", "apply now",
+        "submission deadline", "closing date", "open call", "special call",
+        "joint call", "request for proposal", "recruitment", "vacancy", "tender",
+        "press release", "annual report", "budget", "policy 2013",
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_category_gap_consolidation_v3_4_0_3_1.py:138
+        "applications invited", "application invited", "inviting applications",
+        "expression of interest", "eoi", "deadline extension", "last date extended",
+        "corrigendum", "addendum", "result", "selected proposals", "shortlisted",
+        "apply now", "submission deadline", "closing date", "open call", "special call",
+        "joint call", "current call", "request for proposal", "rfp",
+    ],
+    "temporary_terms": [
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_direct_target_inventory_quality_hotfix_v3_4_0_3_2.py:203
+    "call_url_terms": [
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_navigation_aware_gap_selective_crawl_v3_4_0_3_3.py:166
+        "inviting applications", "expression of interest", " eoi ",
+        "result", "selected proposals", "shortlisted", "apply now",
+        "joint call", "request for proposal", " rfp ", "call document",
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_selective_queue_calibration_v3_4_0_3_3_1.py:129
+        "inviting applications", "expression of interest", "deadline",
+        "last date", "corrigendum", "addendum", "selected proposals",
+        "shortlisted", "apply now", "request for proposal", "result",
+    "news_recruitment_terms": [
+        "press release", "filling up", "post of", "deputation", "recruitment",
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_action_link_offline_classification_v3_4_3_5.py:74
+    print(f"Classified rows:              {summary['classified_row_count']}")
+    print(f"Review queue rows:            {summary['review_queue_row_count']}")
+    print(f"Public-button eligible:       {summary['public_button_eligible_count']}")
+    print(f"Apply Now buttons:            {summary['apply_now_button_count']}")
+    print(f"Network requests:             {summary['network_requests']}")
+    print(f"Database modified:            {not summary['safety']['database_files_unchanged']}")
+    print(
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_application_link_hotfix_v3_4_2_0_3.py:359
+            "active_catalogue_rows": 139,
+            "dashboard_visible_records": 53,
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_action_reference_preview_v3_4_3_5.py:95
+        f"{summary['scheme_details_reference_count']}"
+        f"Apply Now references:           "
+        f"{summary['apply_now_reference_count']}"
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_department_discovery_agent_v3_4_3_0.py:74
+    "applications invited",
+    "application invited",
+    "applications open",
+    "apply now",
+    "call for proposals",
+    "call for application",
+    "expression of interest",
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_discovery_expansion_agent_v3_4_3_1.py:133
+    "call for applications",
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_discovery_expansion_agent_v3_4_3_1_before_download_guard.py:133
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_scheme_page_browser_verification_v3_4_3_5.py:118
+        f"Pages requiring review:         "
+        f"{summary['review_required_count']}"
+    print(f"Apply Now buttons:              {summary['apply_now_button_count']}")
+    print(f"Open-call buttons:              {summary['open_call_button_count']}")
+    print(f"PDF requests:                   {summary['pdf_requests']}")
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_scheme_page_online_verification_v3_4_3_5.py:128
+        "Pages requiring review:         "
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_verified_public_actions_v3_4_3_5.py:80
+        f"{summary['scheme_details_button_count']}"
+        f"Apply Now buttons:              "
+        f"{summary['apply_now_button_count']}"
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_dst_pilot_v1.py:63
+      <h1>RDIF - TDB as Second Level Fund Manager (SLFM)</h1>
+      <p>Indian legal entities including DPIIT startups at TRL 4 and above may apply
+      for loan, equity or hybrid support across sunrise and strategic sectors.</p>
+      <a href="https://www.e-techcom.tdb.gov.in/rdif-registration.php">Apply Now</a>
+    </main></body></html>
+    """
+    with gzip.open(snapshots / "rdif.html.gz", "wt", encoding="utf-8") as handle:
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_public_dashboard_data_access.py:229
+                "parent_scheme_name": "Research Development and Innovation Fund",
+                "applicant_layer": "DIRECT_BENEFICIARY",
+                "status_basis": "EXPLICIT_OFFICIAL_APPLY_ROUTE",
+                "status_evidence": "Official Apply Now route verified",
+                "last_verified_at": "2026-07-11",
+            con = sqlite3.connect(root / "database" / "ssip_staging_v1.db")
+D:\WebSite\DASHBOARD\Code\SSIP\apps\public_dashboard_app_v2_9.py:82
+    "Incubators & Ecosystem",
+    "Directory",
+    "Official Sources",
+    "Scheme Details",
+NAV_LABELS = {
+    "Home": "Home",
+D:\WebSite\DASHBOARD\Code\SSIP\apps\public_dashboard_app_v2_9.py:92
+    "Incubators & Ecosystem": "Ecosystem",
+    "Directory": "Resources",
+    "Official Sources": "Sources",
+    "Scheme Details": "Profiles",
+PAGE_SLUGS = {
+    "Home": "overview",
+D:\WebSite\DASHBOARD\Code\SSIP\apps\public_dashboard_app_v2_9.py:102
+    "Incubators & Ecosystem": "ecosystem",
+    "Official Sources": "official-sources",
+    "Directory": "resources",
+    "Scheme Details": "scheme-profiles",
+D:\WebSite\DASHBOARD\Code\SSIP\apps\public_dashboard_app_v2_9.py:357
+def record_details_href(record: CatalogueRecord) -> str:
+        f"?page={PAGE_SLUGS['Scheme Details']}"
+        f"&scheme={quote(str(record.master_id or ''))}"
+D:\WebSite\DASHBOARD\Code\SSIP\apps\public_dashboard_app_v2_9.py:477
+            f'<a class="ssip-nav-link{active}" target="_top" href="?page={PAGE_SLUGS[page_name]}">'
+            f'{esc(NAV_LABELS[page_name])}</a>'
+    more_active = active_page in {"Incubators & Ecosystem", "Scheme Details"}
+    more_class = " is-active" if more_active else ""
+    more_links = (
+        f'<a target="_top" href="?page={PAGE_SLUGS["Incubators & Ecosystem"]}">Ecosystem</a>'
+D:\WebSite\DASHBOARD\Code\SSIP\apps\public_dashboard_app_v2_9.py:481
+        f'<a target="_top" href="?page={PAGE_SLUGS["Scheme Details"]}">Scheme profiles</a>'
+        '<header class="ssip-site-header">'
+D:\WebSite\DASHBOARD\Code\SSIP\apps\public_dashboard_app_v2_9.py:2002
+        render_startup_ecosystem()
+    elif page == "Directory":
+        render_resources(bundle, official_sources)
+    elif page == "Scheme Details":
+        render_scheme_details(bundle)
+    st.caption("SSIP · Information sourced from official government portals.")
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_startup_focus_pipeline_v3_4_0_5.py:552
+    if '"Calls & Opportunities"' not in text:
+        text, pages_count = re.subn(
+            r'(?ms)(PAGES\s*=\s*\[.*?"Directory",\s*)("Scheme Details",)',
+            r'\1"Calls & Opportunities",\n    "Incubators & Ecosystem",\n    \2',
+            text,
+            count=1,
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\dst_startup_focus_pipeline_v3_4_0_5.py:564
+        text = text[:marker_match.start()] + helper + text[marker_match.start():]
+    if 'elif page == "Calls & Opportunities":' not in text:
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_catalogue_action_reference_preview_v3_4_3_5.py:91
+        f"{summary['action_enriched_row_count']}"
+        f"Scheme Details references:      "
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_scheme_page_browser_verification_v3_4_3_5.py:111
+        f"{summary['verified_information_page_count']}"
+        f"Scheme Details candidates:      "
+        f"{summary['scheme_details_button_candidate_count']}"
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_scheme_page_online_verification_v3_4_3_5.py:121
+        "Scheme Details candidates:      "
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_verified_public_actions_v3_4_3_5.py:44
+    parser.add_argument(
+        "--self-test",
+        action="store_true",
+        help="Build and validate four preview-only Scheme Details actions.",
+        "--build-actions",
+D:\WebSite\DASHBOARD\Code\SSIP\scripts\meity_verified_public_actions_v3_4_3_5.py:76
+        f"{summary['verified_public_action_count']}"
+        f"Scheme Details buttons:         "
+D:\WebSite\DASHBOARD\Code\SSIP\tests\test_dst_startup_focus_pipeline_v3_4_0_5.py:93
+    app = tmp_path / "apps" / "public_dashboard_app_v2_9.py"
+    app.parent.mkdir(parents=True)
+    app.write_text(
+        'from __future__ import annotations\n\nAPP_VERSION = "3.2.0"\nPAGES = [\n    "Home",\n    "Scheme Explorer",\n    "Official Sources",\n    "Directory",\n    "Scheme Details",\n]\n\ndef render_scheme_details(bundle):\n    pass\n\ndef main():\n    page = "Home"\n    if page == "Home":\n        pass\n    elif page == "Directory":\n        pass\n    elif page == "Scheme Details":\n        render_scheme_details(None)\n',
+        encoding="utf-8",
+    result = MODULE.patch_dashboard(app, "data/departments/dst/v3_4_0_5")

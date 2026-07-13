@@ -1,0 +1,178 @@
+{
+  "version": "3.4.2.0.1",
+  "phase": "MeitY Manual Master Register Pilot - SAMRIDH and TIDE 2.0",
+  "execution_mode": "MANUAL_PREVIEW_ONLY",
+  "baseline_recorded_at": "2026-07-12T22:08:28.9016571+05:30",
+  "validation_status": "PASS",
+  "counts": {
+    "master_records": 2,
+    "legacy_adjudications": 2,
+    "call_instance_reviews": 4,
+    "official_evidence_rows": 13,
+    "status_adjudications": 2,
+    "extraction_pilot_records": 2,
+    "extraction_review_rows": 7,
+    "field_evidence_rows": 42,
+    "active_catalogue_rows": 137,
+    "dashboard_visible_records": 51,
+    "immutable_published_rows": 137
+  },
+  "governed_master_ids": [
+    "147173e17ea741687247",
+    "6af79cf6c8a213dddce8"
+  ],
+  "canonical_publication_hash": "838ca86cde4b2ceebd4325850c783823c931a3e42ef5c4ef74b7ae54a4596e4d",
+  "checks": [
+    {
+      "name": "exactly_two_master_records",
+      "passed": true,
+      "details": "Actual master records: 2"
+    },
+    {
+      "name": "exactly_two_pilot_records",
+      "passed": true,
+      "details": "Actual pilot records: 2"
+    },
+    {
+      "name": "existing_master_ids_preserved",
+      "passed": true,
+      "details": "Existing IDs retained"
+    },
+    {
+      "name": "no_new_permanent_identity",
+      "passed": true,
+      "details": "Unexpected governed IDs: 0"
+    },
+    {
+      "name": "legacy_adjudication_count",
+      "passed": true,
+      "details": "Actual: 2; expected: 2"
+    },
+    {
+      "name": "call_review_count",
+      "passed": true,
+      "details": "Actual: 4; expected: 4"
+    },
+    {
+      "name": "official_evidence_count",
+      "passed": true,
+      "details": "Actual: 13; expected: 13"
+    },
+    {
+      "name": "current_status_adjudication_count",
+      "passed": true,
+      "details": "Actual: 2; expected: 2"
+    },
+    {
+      "name": "extraction_review_count",
+      "passed": true,
+      "details": "Actual: 7; expected: 7"
+    },
+    {
+      "name": "field_evidence_count",
+      "passed": true,
+      "details": "Actual: 42; expected: 42"
+    },
+    {
+      "name": "both_identities_are_schemes",
+      "passed": true,
+      "details": "Both master records are SCHEME"
+    },
+    {
+      "name": "existing_identity_decisions_retained",
+      "passed": true,
+      "details": "Existing IDs retained"
+    },
+    {
+      "name": "master_statuses_governed",
+      "passed": true,
+      "details": "SAMRIDH current information; TIDE 2.0 historical"
+    },
+    {
+      "name": "pilot_statuses_governed",
+      "passed": true,
+      "details": "No open application asserted"
+    },
+    {
+      "name": "no_open_application_asserted",
+      "passed": true,
+      "details": "Open-call violations: 0; application violations: 0"
+    },
+    {
+      "name": "legacy_contamination_excluded",
+      "passed": true,
+      "details": "Contaminated public/governed rows: 0"
+    },
+    {
+      "name": "legacy_contamination_adjudicated",
+      "passed": true,
+      "details": "Legacy contamination preserved only as adjudication evidence"
+    },
+    {
+      "name": "calls_and_cohorts_separate_from_scheme_masters",
+      "passed": true,
+      "details": "No call or cohort creates a master"
+    },
+    {
+      "name": "every_populated_public_field_has_exact_evidence",
+      "passed": true,
+      "details": "Coverage failures: 0; duplicate groups: 0"
+    },
+    {
+      "name": "all_evidence_urls_are_official",
+      "passed": true,
+      "details": "Invalid evidence URLs: 0"
+    },
+    {
+      "name": "all_pilot_urls_are_official",
+      "passed": true,
+      "details": "Invalid pilot URLs: 0"
+    },
+    {
+      "name": "all_phase_outputs_not_published",
+      "passed": true,
+      "details": "Publication-state violations: 0"
+    },
+    {
+      "name": "field_completeness_scores_valid",
+      "passed": true,
+      "details": "Expected SAMRIDH=0.77 and TIDE 2.0=0.85"
+    },
+    {
+      "name": "frozen_files_unchanged",
+      "passed": true,
+      "details": "Changed frozen files: 0"
+    },
+    {
+      "name": "frozen_department_trees_unchanged",
+      "passed": true,
+      "details": "Changed frozen trees: 0"
+    },
+    {
+      "name": "active_catalogue_row_count_unchanged",
+      "passed": true,
+      "details": "Active catalogue rows: 137"
+    },
+    {
+      "name": "immutable_publication_row_count_unchanged",
+      "passed": true,
+      "details": "Immutable published rows: 137"
+    },
+    {
+      "name": "dashboard_visible_baseline_unchanged",
+      "passed": true,
+      "details": "Dashboard-visible records: 51"
+    },
+    {
+      "name": "canonical_publication_hash_unchanged",
+      "passed": true,
+      "details": "Canonical publication hash: 838ca86cde4b2ceebd4325850c783823c931a3e42ef5c4ef74b7ae54a4596e4d"
+    },
+    {
+      "name": "pilot_records_absent_from_active_catalogue",
+      "passed": true,
+      "details": "Pilot IDs in active catalogue: 0"
+    }
+  ],
+  "failed_checks": []
+}

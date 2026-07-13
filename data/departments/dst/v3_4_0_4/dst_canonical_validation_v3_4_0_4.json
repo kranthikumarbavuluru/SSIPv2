@@ -1,0 +1,38 @@
+{
+  "service_version": "3.4.0.4",
+  "department_code": "DST",
+  "validated_at": "2026-07-10T11:55:26+00:00",
+  "partial_run": false,
+  "counts": {
+    "canonical_entities": 23,
+    "canonical_schemes": 3,
+    "canonical_programmes": 20,
+    "canonical_aliases": 18,
+    "relationship_reviews": 9,
+    "manual_entity_reviews": 4,
+    "identity_lock_rejections": 0,
+    "publication_records": 23
+  },
+  "checks": {
+    "upstream_ready_for_v3_4_0_4": true,
+    "all_entities_identity_locked": true,
+    "canonical_ids_unique": true,
+    "canonical_names_unique_within_type": true,
+    "official_urls_unique": true,
+    "publication_matches_locked_entities": true,
+    "no_call_or_generic_contamination": true,
+    "manual_review_not_published": true,
+    "no_rejected_entities_published": true,
+    "scheme_count_matches_expected": true,
+    "programme_count_matches_expected": true,
+    "public_catalogue_non_empty": true
+  },
+  "quality": {
+    "publication_call_or_generic_contamination": [],
+    "manual_rows_published": [],
+    "rejected_master_ids": []
+  },
+  "canonical_validation_passed": true,
+  "ready_for_dashboard_preview": true,
+  "ready_for_v3_4_0_5": true
+}

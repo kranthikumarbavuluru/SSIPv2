@@ -1,0 +1,10 @@
+SSIP v3.4.0.3.3.1 package validation
+=====================================
+
+Python compile: PASSED
+Self-test: PASSED (self_test_passed = true)
+Automated tests: PASSED (8 passed)
+Network requests during validation: 0
+Production database writes during validation: 0
+
+Validated in the generated package before ZIP creation.

@@ -1,0 +1,3148 @@
+/*
+ * SSIP Public Dashboard — final presentation layer
+ * Location: assets/styles/ssip_public_dashboard.css
+ *
+ * Load order:
+ *   1. ssip_dashboard/assets/styles.css
+ *   2. assets/dashboard_theme.css
+ *   3. this file
+ *
+ * This file intentionally contains only presentation rules. It does not
+ * change catalogue data, publication governance, filtering, or status logic.
+ */
+
+:root {
+  --public-navy: #082c63;
+  --public-blue: #1261c9;
+  --public-blue-dark: #0b3a82;
+  --public-blue-soft: #eaf3ff;
+  --public-green: #0b7a5a;
+  --public-green-soft: #eaf8f2;
+  --public-amber: #a85d0a;
+  --public-amber-soft: #fff5e7;
+  --public-red: #a33a3a;
+  --public-red-soft: #fff0f0;
+  --public-ink: #10213f;
+  --public-muted: #5e6d84;
+  --public-border: #d7e3f1;
+  --public-border-strong: #b8cde5;
+  --public-surface: #ffffff;
+  --public-surface-soft: #f6f9fd;
+  --public-page: #f5f9fe;
+  --public-radius-sm: 7px;
+  --public-radius: 10px;
+  --public-radius-lg: 16px;
+  --public-shadow-sm: 0 5px 16px rgba(8, 44, 99, .06);
+  --public-shadow: 0 10px 28px rgba(8, 44, 99, .09);
+  --public-shadow-hover: 0 16px 38px rgba(8, 44, 99, .14);
+  --public-focus: 0 0 0 3px rgba(18, 97, 201, .22);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+.stApp,
+button,
+input,
+textarea,
+select {
+  font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+.stApp {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 92% 2%, rgba(18, 97, 201, .08), transparent 24rem),
+    linear-gradient(180deg, var(--public-page) 0, #ffffff 360px, #f7faff 100%);
+  color: var(--public-ink);
+}
+
+.block-container {
+  width: min(100%, 1540px);
+  padding-top: .75rem;
+  padding-bottom: 3rem;
+}
+
+/* Keep the public surface clean while preserving Streamlit functionality. */
+#MainMenu,
+footer {
+  visibility: hidden;
+}
+
+header[data-testid="stHeader"] {
+  background: transparent;
+}
+
+[data-testid="stToolbar"] {
+  opacity: .3;
+  transition: opacity .2s ease;
+}
+
+[data-testid="stToolbar"]:hover,
+[data-testid="stToolbar"]:focus-within {
+  opacity: 1;
+}
+
+.skip-link {
+  position: fixed;
+  z-index: 99999;
+  left: 1rem;
+  top: -4rem;
+  padding: .65rem .9rem;
+  border-radius: var(--public-radius-sm);
+  background: var(--public-navy);
+  color: #ffffff !important;
+  font-weight: 800;
+  text-decoration: none;
+  box-shadow: var(--public-shadow);
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+.main-content-anchor {
+  display: block;
+  scroll-margin-top: 1rem;
+}
+
+/* Header and primary navigation */
+.gov-strip {
+  border-bottom-color: #f2a900;
+  box-shadow: 0 2px 0 rgba(8, 44, 99, .08);
+}
+
+.top-shell {
+  align-items: center;
+}
+
+.brand-mark {
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, .38);
+  border-radius: 12px;
+  color: #ffffff;
+  font-weight: 900;
+  letter-spacing: .04em;
+}
+
+.brand-title {
+  letter-spacing: -.035em;
+  line-height: 1;
+}
+
+.brand-subtitle {
+  margin-top: .2rem;
+  line-height: 1.35;
+}
+
+.primary-nav-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: .65rem 0 .25rem;
+  color: var(--public-muted);
+}
+
+.primary-nav-heading strong {
+  color: var(--public-navy);
+  font-size: .82rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.primary-nav-heading span {
+  font-size: .76rem;
+}
+
+div[role="radiogroup"],
+div[data-testid="stRadioGroup"] {
+  align-items: stretch;
+}
+
+div[role="radiogroup"] label,
+label[data-testid="stRadioOption"] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  white-space: nowrap;
+}
+
+label[data-testid="stRadioOption"] p {
+  font-size: .84rem;
+  font-weight: 750;
+}
+
+.nav-context {
+  gap: .45rem;
+}
+
+.nav-context::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--public-green);
+  box-shadow: 0 0 0 4px var(--public-green-soft);
+}
+
+/* Home hero */
+.public-hero {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(300px, .75fr);
+  gap: 1.3rem;
+  overflow: hidden;
+  margin: .55rem 0 1rem;
+  padding: clamp(1.35rem, 3vw, 2.25rem);
+  border: 1px solid rgba(174, 200, 232, .9);
+  border-radius: var(--public-radius-lg);
+  background:
+    radial-gradient(circle at 90% 10%, rgba(255, 255, 255, .18), transparent 16rem),
+    linear-gradient(125deg, #061f48 0%, #0b3a82 52%, #1261c9 100%);
+  color: #ffffff;
+  box-shadow: 0 18px 45px rgba(8, 44, 99, .18);
+}
+
+.public-hero::before,
+.public-hero::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, .11);
+}
+
+.public-hero::before {
+  width: 25rem;
+  height: 25rem;
+  right: -9rem;
+  top: -12rem;
+}
+
+.public-hero::after {
+  width: 15rem;
+  height: 15rem;
+  right: 3rem;
+  bottom: -9rem;
+}
+
+.public-hero-copy {
+  align-self: center;
+}
+
+.public-hero-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  margin-bottom: .75rem;
+  padding: .34rem .62rem;
+  border: 1px solid rgba(255, 255, 255, .25);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .1);
+  color: #ffffff;
+  font-size: .74rem;
+  font-weight: 800;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+}
+
+.public-hero-kicker::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #5fe0b2;
+  box-shadow: 0 0 0 4px rgba(95, 224, 178, .16);
+}
+
+.public-hero h1 {
+  max-width: 840px;
+  margin: 0;
+  color: #ffffff !important;
+  font-size: clamp(2rem, 4vw, 3.55rem);
+  line-height: 1.02;
+  letter-spacing: -.045em;
+}
+
+.public-hero p {
+  max-width: 850px;
+  margin: .85rem 0 0;
+  color: rgba(255, 255, 255, .9) !important;
+  font-size: clamp(.98rem, 1.5vw, 1.12rem);
+  line-height: 1.65;
+}
+
+.public-hero-scope {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .45rem;
+  margin-top: 1.1rem;
+}
+
+.public-hero-scope span {
+  padding: .34rem .65rem;
+  border: 1px solid rgba(255, 255, 255, .2);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .09);
+  color: #ffffff;
+  font-size: .76rem;
+  font-weight: 700;
+}
+
+.public-hero-summary {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.1rem;
+  border: 1px solid rgba(255, 255, 255, .2);
+  border-radius: 13px;
+  background: rgba(255, 255, 255, .1);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .16);
+  backdrop-filter: blur(8px);
+}
+
+.public-hero-summary-label {
+  color: rgba(255, 255, 255, .76);
+  font-size: .72rem;
+  font-weight: 800;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}
+
+.public-hero-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: .5rem;
+}
+
+.public-hero-summary-grid > div {
+  min-width: 0;
+  padding: .7rem .5rem;
+  border-radius: 9px;
+  background: rgba(255, 255, 255, .09);
+  text-align: center;
+}
+
+.public-hero-summary-grid strong {
+  display: block;
+  color: #ffffff;
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  line-height: 1;
+}
+
+.public-hero-summary-grid span {
+  display: block;
+  margin-top: .35rem;
+  color: rgba(255, 255, 255, .78);
+  font-size: .68rem;
+  line-height: 1.25;
+}
+
+.public-hero-verified {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .8rem;
+  padding-top: .8rem;
+  border-top: 1px solid rgba(255, 255, 255, .18);
+}
+
+.public-hero-verified span {
+  color: rgba(255, 255, 255, .72);
+  font-size: .73rem;
+}
+
+.public-hero-verified strong {
+  color: #ffffff;
+  font-size: .85rem;
+  text-align: right;
+}
+
+/* Reusable surfaces */
+.section-band,
+.chart-card,
+.scheme-card,
+.source-card,
+.resource-card,
+.opportunity-row,
+.right-panel,
+.smart-strip,
+div[data-testid="stExpander"] details {
+  border-radius: var(--public-radius);
+}
+
+.section-band {
+  margin: 0 0 1rem;
+}
+
+.section-title {
+  letter-spacing: -.012em;
+}
+
+.section-title::before {
+  flex: 0 0 4px;
+}
+
+.snapshot-lead,
+.snapshot-note,
+.chart-note,
+.empty-note,
+.footer-note {
+  line-height: 1.55;
+}
+
+/* KPI and analytics layout */
+.kpi-strip,
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: .75rem;
+}
+
+.metric-card {
+  position: relative;
+  overflow: hidden;
+  min-width: 0;
+  padding: .9rem;
+}
+
+.metric-card::after {
+  content: "";
+  position: absolute;
+  width: 72px;
+  height: 72px;
+  right: -34px;
+  bottom: -36px;
+  border-radius: 50%;
+  background: rgba(18, 97, 201, .055);
+}
+
+.metric-value {
+  overflow-wrap: anywhere;
+  font-size: clamp(1.35rem, 2.3vw, 2rem);
+  line-height: 1.05;
+}
+
+.metric-label {
+  margin-top: .34rem;
+  font-weight: 800;
+}
+
+.metric-hint {
+  margin-top: .3rem;
+  font-size: .72rem;
+  line-height: 1.35;
+}
+
+.analytics-dashboard {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.analytics-primary-grid,
+.analytics-comparison-grid,
+.analytics-secondary-grid,
+.home-pair-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.analytics-card,
+.home-pair-grid > .section-band {
+  height: 100%;
+  margin: 0;
+}
+
+.composition-track,
+.analytics-bar-track,
+.readiness-track {
+  overflow: hidden;
+  border-radius: 999px;
+}
+
+.composition-track {
+  display: flex;
+  min-height: 16px;
+  background: #e7eef8;
+}
+
+.composition-segment {
+  min-width: 3px;
+}
+
+.analytics-legend,
+.readiness-list,
+.analytics-bars {
+  display: grid;
+  gap: .55rem;
+}
+
+.analytics-legend-row,
+.analytics-bar-heading,
+.readiness-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem;
+}
+
+.analytics-legend-row strong,
+.analytics-bar-heading strong,
+.readiness-heading strong {
+  color: var(--public-ink);
+  font-size: .82rem;
+}
+
+.analytics-legend-row span:last-child,
+.analytics-bar-heading span,
+.readiness-heading span {
+  color: var(--public-muted);
+  font-size: .75rem;
+  text-align: right;
+}
+
+.analytics-legend-key {
+  width: 11px;
+  height: 11px;
+  flex: 0 0 11px;
+  margin-right: auto;
+  border-radius: 3px;
+}
+
+.analytics-bar-track,
+.readiness-track {
+  height: 9px;
+  background: #e7eef8;
+}
+
+.analytics-bar-track > span,
+.readiness-track > span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--public-blue), #4b91df);
+}
+
+.data-quality-callout {
+  display: flex;
+  align-items: flex-start;
+  gap: .75rem;
+  padding: .9rem 1rem;
+  border: 1px solid #e8d7a2;
+  border-left: 4px solid #d58b19;
+  border-radius: var(--public-radius-sm);
+  background: #fffaf0;
+  color: #674812;
+}
+
+.data-quality-callout strong {
+  flex: 0 0 auto;
+}
+
+/* Search, filters and Streamlit controls */
+.explorer-search-panel {
+  margin-bottom: .75rem;
+}
+
+.finder-button-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  border: 1px solid var(--public-blue);
+  border-radius: var(--public-radius-sm);
+  background: var(--public-blue);
+  color: #ffffff;
+  font-size: .84rem;
+  font-weight: 800;
+  box-shadow: 0 6px 14px rgba(18, 97, 201, .18);
+}
+
+div[data-baseweb="input"],
+div[data-baseweb="select"] > div,
+div[data-testid="stTextInputRootElement"],
+div[data-testid="stNumberInput"] > div {
+  min-height: 42px;
+  border-radius: var(--public-radius-sm) !important;
+}
+
+div[data-baseweb="input"] input,
+div[data-baseweb="select"] input,
+input[type="text"],
+input[type="number"] {
+  font-size: .88rem;
+}
+
+div[data-testid="stTextInputRootElement"]:focus-within,
+div[data-baseweb="select"] > div:focus-within,
+div[data-testid="stNumberInput"] > div:focus-within {
+  border-color: var(--public-blue) !important;
+  box-shadow: var(--public-focus) !important;
+}
+
+div[data-testid="stExpander"] details {
+  overflow: hidden;
+  background: var(--public-surface);
+}
+
+div[data-testid="stExpander"] summary {
+  color: var(--public-navy);
+  font-weight: 800;
+}
+
+.filter-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 46px;
+  margin: .75rem 0;
+  padding: .65rem .85rem;
+  border-radius: var(--public-radius-sm);
+}
+
+/* Result cards and official resources */
+.scheme-results-grid,
+.source-grid,
+.resource-grid,
+.call-grid,
+.programme-grid {
+  align-items: stretch;
+}
+
+.scheme-result-item {
+  min-width: 0;
+}
+
+.scheme-card,
+.source-card,
+.resource-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.scheme-card::before,
+.source-card::before,
+.resource-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  background: linear-gradient(180deg, var(--public-blue), var(--public-green));
+  opacity: .72;
+}
+
+.scheme-card h3,
+.source-card h3,
+.resource-card h3,
+.opportunity-main h3 {
+  letter-spacing: -.015em;
+  overflow-wrap: anywhere;
+}
+
+.scheme-meta,
+.agency-line {
+  line-height: 1.45;
+}
+
+.scheme-links,
+.resource-actions,
+.link-row,
+.tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .42rem;
+}
+
+.link-pill a,
+.scheme-links a,
+.resource-actions a,
+div[data-testid="stLinkButton"] a {
+  transition: transform .16s ease, border-color .16s ease, background .16s ease;
+}
+
+.link-pill a:hover,
+.scheme-links a:hover,
+.resource-actions a:hover,
+div[data-testid="stLinkButton"] a:hover {
+  transform: translateY(-1px);
+}
+
+.opportunity-row {
+  grid-template-columns: 54px minmax(0, 1.45fr) minmax(180px, .62fr) minmax(220px, .8fr);
+  align-items: start;
+}
+
+.opportunity-icon {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid #b9d1eb;
+  border-radius: 12px;
+  background: linear-gradient(145deg, #edf5ff, #dcecff);
+  color: var(--public-blue-dark);
+  font-size: .82rem;
+  font-weight: 900;
+}
+
+.opportunity-meta {
+  min-width: 0;
+}
+
+.opportunity-meta strong,
+.opportunity-meta span {
+  overflow-wrap: anywhere;
+}
+
+.latest-row,
+.quick-link {
+  transition: background .16s ease, border-color .16s ease;
+}
+
+.latest-row:hover,
+.quick-link:hover {
+  border-color: var(--public-border-strong);
+  background: var(--public-surface-soft);
+}
+
+.notice-panel,
+.warning-box,
+.archive-governance {
+  line-height: 1.55;
+}
+
+.footer-note {
+  margin-top: 1rem;
+  padding: .75rem 0 0;
+  border-top: 1px solid var(--public-border);
+}
+
+/* Buttons */
+div[data-testid="stButton"] > button,
+div[data-testid="stDownloadButton"] > button {
+  border-radius: var(--public-radius-sm);
+  transition: transform .16s ease, box-shadow .16s ease, background .16s ease;
+}
+
+div[data-testid="stButton"] > button:hover,
+div[data-testid="stDownloadButton"] > button:hover {
+  transform: translateY(-1px);
+}
+
+div[data-testid="stButton"] > button:active,
+div[data-testid="stDownloadButton"] > button:active {
+  transform: translateY(0);
+}
+
+/* Keyboard accessibility */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[role="radio"]:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid rgba(18, 97, 201, .3) !important;
+  outline-offset: 2px;
+}
+
+/* Dark mode follows the marker emitted by the production Python app. */
+:root:has(#ssip-dark-mode) {
+  --public-navy: #edf5ff;
+  --public-blue: #72afff;
+  --public-blue-dark: #a9d0ff;
+  --public-blue-soft: #132b49;
+  --public-green: #66d4ad;
+  --public-green-soft: #14372f;
+  --public-amber: #ffc36d;
+  --public-amber-soft: #392a17;
+  --public-red: #ffaaaa;
+  --public-red-soft: #3b2024;
+  --public-ink: #edf5ff;
+  --public-muted: #b2c1d4;
+  --public-border: #2c4669;
+  --public-border-strong: #486991;
+  --public-surface: #10213a;
+  --public-surface-soft: #122844;
+  --public-page: #081426;
+  --public-shadow-sm: 0 6px 18px rgba(0, 0, 0, .22);
+  --public-shadow: 0 12px 30px rgba(0, 0, 0, .28);
+  --public-shadow-hover: 0 18px 40px rgba(0, 0, 0, .35);
+}
+
+:root:has(#ssip-dark-mode) .stApp {
+  background:
+    radial-gradient(circle at 92% 2%, rgba(102, 167, 255, .1), transparent 24rem),
+    linear-gradient(180deg, #081426 0%, #0c1b30 48%, #081426 100%);
+}
+
+:root:has(#ssip-dark-mode) .primary-nav-heading strong,
+:root:has(#ssip-dark-mode) .analytics-legend-row strong,
+:root:has(#ssip-dark-mode) .analytics-bar-heading strong,
+:root:has(#ssip-dark-mode) .readiness-heading strong {
+  color: var(--public-ink);
+}
+
+:root:has(#ssip-dark-mode) .composition-track,
+:root:has(#ssip-dark-mode) .analytics-bar-track,
+:root:has(#ssip-dark-mode) .readiness-track {
+  background: #1d3554;
+}
+
+:root:has(#ssip-dark-mode) .data-quality-callout {
+  border-color: #71572e;
+  border-left-color: #dba54e;
+  background: #2d2417;
+  color: #f0d6a5;
+}
+
+:root:has(#ssip-dark-mode) .opportunity-icon {
+  border-color: #385b82;
+  background: linear-gradient(145deg, #15304f, #10233b);
+  color: #bcd9ff;
+}
+
+:root:has(#ssip-dark-mode) .latest-row:hover,
+:root:has(#ssip-dark-mode) .quick-link:hover {
+  background: #122844;
+}
+
+:root:has(#ssip-dark-mode) .footer-note {
+  border-top-color: var(--public-border);
+}
+
+/* Responsive behaviour */
+@media (max-width: 1280px) {
+  .kpi-strip,
+  .metric-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .opportunity-row {
+    grid-template-columns: 50px minmax(0, 1.3fr) minmax(170px, .7fr);
+  }
+
+  .opportunity-row > .opportunity-meta:last-child {
+    grid-column: 2 / -1;
+  }
+}
+
+@media (max-width: 1020px) {
+  .public-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .public-hero-summary {
+    min-height: 0;
+  }
+
+  .analytics-primary-grid,
+  .analytics-comparison-grid,
+  .analytics-secondary-grid,
+  .home-pair-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .opportunity-row {
+    grid-template-columns: 48px minmax(0, 1fr);
+  }
+
+  .opportunity-row > .opportunity-meta {
+    grid-column: 2;
+  }
+}
+
+@media (max-width: 760px) {
+  .block-container {
+    padding-left: .75rem;
+    padding-right: .75rem;
+  }
+
+  .primary-nav-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: .15rem;
+  }
+
+  .public-hero {
+    padding: 1.2rem;
+    border-radius: 12px;
+  }
+
+  .public-hero h1 {
+    font-size: clamp(1.85rem, 9vw, 2.55rem);
+  }
+
+  .public-hero-summary-grid {
+    gap: .35rem;
+  }
+
+  .public-hero-summary-grid > div {
+    padding: .65rem .25rem;
+  }
+
+  .kpi-strip,
+  .metric-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .filter-summary,
+  .data-quality-callout {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .opportunity-row {
+    display: block;
+  }
+
+  .opportunity-icon {
+    margin-bottom: .65rem;
+  }
+
+  .opportunity-row > .opportunity-meta {
+    margin-top: .75rem;
+  }
+
+  .finder-button-visual {
+    min-height: 40px;
+  }
+}
+
+@media (max-width: 520px) {
+  .public-hero-summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .public-hero-summary-grid > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    text-align: left;
+  }
+
+  .public-hero-summary-grid span {
+    margin-top: 0;
+    text-align: right;
+  }
+
+  .kpi-strip,
+  .metric-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .metric-card {
+    min-height: 0;
+  }
+
+  .public-hero-verified {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .public-hero-verified strong {
+    text-align: left;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+
+/* ==========================================================================\n   v3.4.0.14 UI Phase 1 — compact public journey\n   ========================================================================== */
+
+:root {
+  --phase1-content: 1320px;
+  --phase1-section-gap: 2.8rem;
+}
+
+.block-container {
+  width: min(100%, var(--phase1-content)) !important;
+  max-width: var(--phase1-content) !important;
+  padding: .35rem 1.4rem 3.2rem !important;
+}
+
+.gov-strip {
+  margin: -.35rem -1.4rem 0 !important;
+  min-height: 30px;
+  padding: .35rem .8rem !important;
+  font-size: .68rem !important;
+}
+
+.top-shell {
+  min-height: 66px;
+  padding: .55rem .1rem .5rem !important;
+  margin-bottom: .2rem !important;
+}
+
+.brand-mark {
+  width: 44px !important;
+  height: 44px !important;
+  border-radius: 10px !important;
+}
+
+.brand-title { font-size: 1.72rem !important; }
+.brand-subtitle { font-size: .78rem !important; }
+.nav-note { font-size: .78rem !important; }
+
+/* Navigation is a compact website menu, not a large dashboard selector. */
+div[data-testid="stRadioGroup"] {
+  margin: .15rem 0 .15rem !important;
+  padding: 0 !important;
+  border: 0 !important;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+div[role="radiogroup"] {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  gap: .25rem !important;
+  min-width: max-content;
+  padding: .1rem 0 !important;
+}
+
+div[role="radiogroup"] label,
+label[data-testid="stRadioOption"] {
+  flex: 0 0 auto !important;
+  min-height: 34px !important;
+  padding: .3rem .62rem !important;
+  border: 1px solid transparent !important;
+  border-radius: 7px !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+div[role="radiogroup"] label:hover,
+label[data-testid="stRadioOption"]:hover {
+  border-color: #c8d9ec !important;
+  background: #f0f6fd !important;
+}
+
+label[data-testid="stRadioOption"][data-selected="true"] {
+  border-color: #b7d0ed !important;
+  background: #eaf3ff !important;
+  box-shadow: inset 0 -2px 0 var(--public-blue) !important;
+}
+
+label[data-testid="stRadioOption"] p {
+  font-size: .76rem !important;
+  font-weight: 750 !important;
+}
+
+div[data-testid="stToggle"] {
+  min-width: 104px !important;
+  justify-content: flex-end !important;
+}
+
+div[data-testid="stToggle"] label {
+  font-size: .72rem !important;
+  white-space: nowrap;
+}
+
+.compact-trust-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .45rem 1rem;
+  margin: .35rem 0 .8rem;
+  padding: .45rem 0 .55rem;
+  border-top: 1px solid #e4edf7;
+  color: var(--public-muted);
+  font-size: .72rem;
+}
+
+.compact-trust-strip span {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+}
+
+.compact-trust-strip span::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--public-green);
+  box-shadow: 0 0 0 3px var(--public-green-soft);
+}
+
+.public-hero.public-hero-compact {
+  grid-template-columns: minmax(0, 1.45fr) minmax(280px, .7fr) !important;
+  min-height: 286px;
+  margin: .2rem 0 1.35rem !important;
+  padding: clamp(1.4rem, 3vw, 2.35rem) !important;
+  border-radius: 18px !important;
+}
+
+.public-hero-compact h1 {
+  max-width: 720px;
+  margin: 0;
+  font-size: clamp(2.25rem, 4.1vw, 3.75rem) !important;
+  line-height: 1.02 !important;
+  letter-spacing: -.045em !important;
+}
+
+.public-hero-compact p {
+  max-width: 780px;
+  margin: 1rem 0 0 !important;
+  font-size: clamp(.98rem, 1.35vw, 1.12rem) !important;
+  line-height: 1.55 !important;
+}
+
+.public-hero-summary {
+  align-self: stretch !important;
+  padding: 1.05rem !important;
+}
+
+.public-hero-summary-grid { gap: .45rem !important; }
+.public-hero-summary-grid > div { min-height: 78px !important; padding: .6rem .35rem !important; }
+.public-hero-summary-grid strong { font-size: 1.65rem !important; }
+.public-hero-summary-grid span { font-size: .67rem !important; }
+
+.home-search-heading,
+.home-section-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.home-search-heading { margin: 0 0 .65rem; }
+.home-search-heading h2,
+.home-section-heading h2 {
+  margin: .12rem 0 .2rem;
+  color: var(--public-navy);
+  font-size: clamp(1.45rem, 2.2vw, 2rem);
+  line-height: 1.15;
+  letter-spacing: -.025em;
+}
+.home-search-heading p,
+.home-section-heading p { margin: 0; color: var(--public-muted); font-size: .88rem; }
+.home-section-heading-spaced { margin-top: var(--phase1-section-gap); }
+.home-section-action { color: var(--public-muted); font-size: .72rem; text-align: right; }
+
+/* Primary search should look like a product entry point. */
+div[data-testid="stTextInputRootElement"] {
+  min-height: 48px !important;
+  border: 1px solid #b9cee7 !important;
+  border-radius: 10px !important;
+  box-shadow: 0 6px 18px rgba(8, 44, 99, .065) !important;
+}
+div[data-testid="stTextInputRootElement"] input { font-size: .94rem !important; }
+div[data-testid="stTextInputRootElement"]:focus-within {
+  border-color: var(--public-blue) !important;
+  box-shadow: var(--public-focus), 0 8px 20px rgba(8, 44, 99, .08) !important;
+}
+
+div[data-testid="stButton"] > button {
+  min-height: 46px !important;
+  border-radius: 9px !important;
+  box-shadow: none !important;
+}
+
+.home-featured-grid,
+.home-call-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: .9rem !important;
+  margin-top: .9rem !important;
+}
+
+.home-call-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+
+.home-featured-grid .scheme-card,
+.home-call-grid .scheme-card {
+  height: 100%;
+  margin: 0 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 14px rgba(8, 44, 99, .045) !important;
+}
+
+.home-featured-grid .scheme-card:hover,
+.home-call-grid .scheme-card:hover {
+  transform: translateY(-2px);
+  border-color: #9dbce0 !important;
+  box-shadow: 0 10px 24px rgba(8, 44, 99, .09) !important;
+}
+
+.home-empty-state {
+  display: flex;
+  flex-direction: column;
+  gap: .25rem;
+  padding: 1rem 1.1rem;
+  margin-top: .8rem;
+  border: 1px dashed #b9cee7;
+  border-radius: 10px;
+  background: #f8fbff;
+  color: var(--public-muted);
+}
+.home-empty-state strong { color: var(--public-navy); }
+
+.home-support-grid { margin-top: var(--phase1-section-gap) !important; }
+.home-journey-card,
+.home-trust-card { padding: 1.15rem 1.2rem !important; box-shadow: none !important; }
+.how-grid-compact { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: .65rem !important; }
+.how-grid-compact .how-step { min-height: 74px; padding: .75rem !important; border-radius: 8px !important; }
+
+.trust-list { display: grid; gap: .65rem; }
+.trust-list span {
+  display: flex;
+  align-items: flex-start;
+  gap: .55rem;
+  color: var(--public-muted);
+  line-height: 1.45;
+}
+.trust-list span::before {
+  content: "✓";
+  display: grid;
+  place-items: center;
+  flex: 0 0 20px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--public-green-soft);
+  color: var(--public-green);
+  font-size: .72rem;
+  font-weight: 900;
+}
+
+/* Analytics are still available, but no longer dominate the public landing page. */
+div[data-testid="stExpander"] { margin-top: 1.25rem; }
+div[data-testid="stExpander"] details {
+  border-radius: 10px !important;
+  box-shadow: none !important;
+}
+div[data-testid="stExpander"] summary { font-weight: 800 !important; color: var(--public-navy) !important; }
+.compact-analytics-dashboard .chart-card { min-height: 0 !important; }
+.compact-analytics-dashboard .analytics-primary-grid,
+.compact-analytics-dashboard .analytics-comparison-grid,
+.compact-analytics-dashboard .analytics-secondary-grid { gap: .8rem !important; }
+
+.home-source-band { margin-top: var(--phase1-section-gap) !important; box-shadow: none !important; }
+.home-source-grid { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+.home-source-grid .source-card { box-shadow: none !important; }
+.home-final-notice { margin-top: 1.5rem !important; }
+
+/* Reduce the universal box-heavy feeling. */
+.section-band,
+.chart-card,
+.scheme-card,
+.source-card,
+.resource-card,
+.opportunity-row {
+  border-radius: 10px !important;
+}
+
+.section-band { box-shadow: none !important; }
+.chart-card { box-shadow: 0 3px 12px rgba(8, 44, 99, .045) !important; }
+
+.section-title {
+  font-size: clamp(1.2rem, 1.9vw, 1.65rem) !important;
+  letter-spacing: -.02em;
+}
+
+.footer-note { margin-top: 1.25rem !important; font-size: .72rem !important; }
+
+@media (max-width: 1080px) {
+  .home-featured-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  .home-source-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  .public-hero.public-hero-compact { grid-template-columns: 1fr !important; }
+  .public-hero-summary { max-width: none !important; }
+}
+
+@media (max-width: 760px) {
+  .block-container { padding-left: .85rem !important; padding-right: .85rem !important; }
+  .gov-strip { margin-left: -.85rem !important; margin-right: -.85rem !important; }
+  .top-shell { min-height: 58px; }
+  .nav-note { display: none !important; }
+  .compact-trust-strip span:nth-child(3) { display: none; }
+  .public-hero.public-hero-compact { min-height: 0; padding: 1.25rem !important; }
+  .public-hero-compact h1 { font-size: 2.2rem !important; }
+  .public-hero-summary-grid { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+  .home-featured-grid,
+  .home-call-grid,
+  .home-source-grid { grid-template-columns: 1fr !important; }
+  .home-search-heading,
+  .home-section-heading { align-items: flex-start; flex-direction: column; gap: .45rem; }
+  .home-section-action { text-align: left; }
+  .how-grid-compact { grid-template-columns: 1fr !important; }
+}
+
+:root:has(#ssip-dark-mode) .compact-trust-strip { border-color: #284466; color: #b8c6d7; }
+:root:has(#ssip-dark-mode) div[role="radiogroup"] label:hover,
+:root:has(#ssip-dark-mode) label[data-testid="stRadioOption"]:hover { background: #132a47 !important; border-color: #35587f !important; }
+:root:has(#ssip-dark-mode) label[data-testid="stRadioOption"][data-selected="true"] { background: #17365d !important; border-color: #4775aa !important; }
+:root:has(#ssip-dark-mode) .home-search-heading h2,
+:root:has(#ssip-dark-mode) .home-section-heading h2 { color: #edf5ff !important; }
+:root:has(#ssip-dark-mode) .home-empty-state { background: #0e2139; border-color: #35587f; }
+:root:has(#ssip-dark-mode) .home-empty-state strong { color: #edf5ff; }
+
+/* v3.4.0.15 — Phase 2: compact navigation and public-first record cards */
+.block-container {
+  width: min(100%, 1380px);
+  padding-top: .35rem;
+}
+
+.ssip-site-header {
+  margin-bottom: .2rem;
+}
+
+.ssip-gov-bar {
+  min-height: 27px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .25rem .72rem;
+  border-bottom: 3px solid #f2a900;
+  background: #082c63;
+  color: #ffffff;
+  font-size: .69rem;
+  font-weight: 750;
+  letter-spacing: .01em;
+}
+
+.ssip-brand-bar {
+  min-height: 61px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .55rem .15rem .48rem;
+  border-bottom: 1px solid #d7e3f1;
+}
+
+.ssip-brand-lockup {
+  display: flex;
+  align-items: center;
+  gap: .68rem;
+}
+
+.ssip-brand-mark {
+  width: 43px;
+  height: 43px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: linear-gradient(145deg, #0b3a82, #1261c9);
+  color: #ffffff;
+  font-size: .9rem;
+  font-weight: 900;
+  letter-spacing: .03em;
+  box-shadow: 0 6px 14px rgba(8, 44, 99, .18);
+}
+
+.ssip-brand-lockup strong {
+  display: block;
+  color: #082c63;
+  font-size: 1.55rem;
+  letter-spacing: -.04em;
+  line-height: 1;
+}
+
+.ssip-brand-lockup small {
+  display: block;
+  margin-top: .18rem;
+  color: #607089;
+  font-size: .76rem;
+}
+
+.ssip-header-trust {
+  display: inline-flex;
+  align-items: center;
+  gap: .48rem;
+  color: #52677f;
+  font-size: .76rem;
+  font-weight: 650;
+}
+
+.ssip-header-trust i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #16875f;
+  box-shadow: 0 0 0 4px #e2f5ed;
+}
+
+/* Compact website-style primary navigation. */
+.st-key-ssip_primary_navigation div[role="radiogroup"],
+.st-key-ssip_primary_navigation div[data-testid="stRadioGroup"] {
+  display: flex !important;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .18rem;
+  min-height: 39px;
+  margin: .12rem 0 .15rem;
+  padding: .16rem;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.st-key-ssip_primary_navigation div[role="radiogroup"] label,
+.st-key-ssip_primary_navigation label[data-testid="stRadioOption"] {
+  flex: 0 0 auto;
+  min-height: 34px;
+  gap: 0;
+  padding: .34rem .66rem;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  border-radius: 7px 7px 0 0;
+  background: transparent;
+  box-shadow: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.st-key-ssip_primary_navigation label[data-testid="stRadioOption"]::before {
+  display: none !important;
+  content: none !important;
+}
+
+.st-key-ssip_primary_navigation label[data-testid="stRadioOption"] p {
+  overflow: visible;
+  color: #42556f !important;
+  -webkit-text-fill-color: #42556f !important;
+  font-size: .79rem !important;
+  font-weight: 720 !important;
+  white-space: nowrap !important;
+  text-overflow: clip;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.st-key-ssip_primary_navigation label[data-testid="stRadioOption"]:hover {
+  border-color: transparent;
+  border-bottom-color: #91b5df;
+  background: #f1f6fc;
+}
+
+.st-key-ssip_primary_navigation label[data-testid="stRadioOption"][data-selected="true"] {
+  border-color: transparent;
+  border-bottom-color: #1261c9;
+  background: #eaf3ff;
+  box-shadow: none;
+}
+
+.st-key-ssip_primary_navigation label[data-testid="stRadioOption"][data-selected="true"] p {
+  color: #082c63 !important;
+  -webkit-text-fill-color: #082c63 !important;
+}
+
+.st-key-ssip_dark_mode {
+  display: flex;
+  align-items: center;
+  min-height: 39px;
+}
+
+.compact-trust-strip {
+  min-height: 30px;
+  margin: .05rem 0 .75rem;
+  padding: .35rem .1rem;
+  border-top: 1px solid #e1e9f3;
+  border-bottom: 0;
+  background: transparent;
+}
+
+.compact-trust-strip span {
+  font-size: .72rem;
+}
+
+.public-hero.public-hero-compact {
+  min-height: 230px;
+  grid-template-columns: minmax(0, 1.7fr) minmax(275px, .62fr);
+  gap: 1.2rem;
+  margin: .45rem 0 .9rem;
+  padding: clamp(1.35rem, 2.6vw, 2.15rem);
+}
+
+.public-hero.public-hero-compact h1 {
+  max-width: 720px;
+  margin-bottom: .65rem;
+  font-size: clamp(2.15rem, 3.65vw, 3.45rem);
+  line-height: 1.02;
+}
+
+.public-hero.public-hero-compact p {
+  max-width: 700px;
+  font-size: clamp(.94rem, 1.1vw, 1.05rem);
+  line-height: 1.52;
+}
+
+.public-hero.public-hero-compact .public-hero-scope {
+  margin-top: .85rem;
+}
+
+.public-hero.public-hero-compact .public-hero-summary {
+  padding: 1rem;
+}
+
+.public-hero.public-hero-compact .public-hero-summary-grid > div {
+  padding: .65rem .45rem;
+}
+
+.public-hero.public-hero-compact .public-hero-summary-grid strong {
+  font-size: 1.55rem;
+}
+
+/* Public-first scheme and call cards. */
+.scheme-results-grid.home-featured-grid,
+.scheme-results-grid.home-call-grid,
+.scheme-results-grid {
+  align-items: stretch;
+}
+
+.public-record-card {
+  min-width: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 1.05rem;
+  border: 1px solid #d8e4f1;
+  border-left: 3px solid #5a9be2;
+  border-radius: 11px;
+  background: #ffffff;
+  box-shadow: 0 5px 16px rgba(8, 44, 99, .045);
+  transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease;
+}
+
+.public-record-card:hover {
+  transform: translateY(-2px);
+  border-color: #9cbde1;
+  border-left-color: #16875f;
+  box-shadow: 0 11px 24px rgba(8, 44, 99, .09);
+}
+
+.public-record-card-top {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .42rem;
+  margin-bottom: .7rem;
+}
+
+.public-kind {
+  display: inline-flex;
+  align-items: center;
+  min-height: 25px;
+  padding: .18rem .48rem;
+  border: 1px solid #d7e3f0;
+  border-radius: 6px;
+  background: #f4f7fb;
+  color: #52657e;
+  font-size: .68rem;
+  font-weight: 760;
+}
+
+.public-record-card h3 {
+  margin: 0;
+  color: #082c63;
+  font-size: 1.04rem;
+  line-height: 1.34;
+}
+
+.public-record-agency {
+  margin-top: .5rem;
+  color: #62728a;
+  font-size: .79rem;
+}
+
+.public-record-card p {
+  display: -webkit-box;
+  overflow: hidden;
+  margin: .48rem 0 .65rem;
+  color: #273d5b;
+  font-size: .86rem;
+  line-height: 1.52;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.public-record-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .35rem 1rem;
+  margin: 0 0 .62rem;
+  color: #5b6c83;
+  font-size: .75rem;
+}
+
+.public-record-facts b {
+  color: #263d5b;
+  font-weight: 750;
+}
+
+.public-record-note {
+  margin: 0 0 .58rem;
+  color: #7b8798;
+  font-size: .73rem;
+}
+
+.public-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .32rem;
+  margin-top: auto;
+}
+
+.public-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 25px;
+  padding: .18rem .48rem;
+  border: 1px solid #dce4ed;
+  border-radius: 999px;
+  background: #f7f9fc;
+  color: #53657d;
+  font-size: .68rem;
+  font-weight: 650;
+}
+
+.public-record-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .42rem;
+  margin-top: .78rem;
+  padding-top: .72rem;
+  border-top: 1px solid #e7edf4;
+}
+
+.public-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 34px;
+  padding: .38rem .68rem;
+  border-radius: 7px;
+  font-size: .75rem;
+  font-weight: 780;
+  text-decoration: none !important;
+}
+
+.public-action-primary {
+  border: 1px solid #1261c9;
+  background: #1261c9;
+  color: #ffffff !important;
+  box-shadow: 0 4px 10px rgba(18, 97, 201, .16);
+}
+
+.public-action-primary:hover {
+  border-color: #0b3a82;
+  background: #0b3a82;
+  color: #ffffff !important;
+}
+
+.public-action-secondary {
+  border: 1px solid #9dbce0;
+  background: #eef5fd;
+  color: #0b4da5 !important;
+}
+
+.public-action-secondary:hover {
+  border-color: #1261c9;
+  background: #dfeeff;
+  color: #082c63 !important;
+}
+
+.public-action-quiet {
+  min-height: 31px;
+  padding-inline: .42rem;
+  border: 0;
+  background: transparent;
+  color: #405f83 !important;
+}
+
+.public-action-quiet:hover {
+  background: #f1f6fc;
+  color: #0b4da5 !important;
+}
+
+.home-featured-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.home-call-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.official-source-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  margin: 2rem 0 1rem;
+  padding: 1.1rem 1.2rem;
+  border: 1px solid #d8e4f1;
+  border-radius: 11px;
+  background: linear-gradient(105deg, #ffffff, #f4f8fd);
+}
+
+.official-source-summary h2 {
+  margin: .15rem 0 .25rem;
+  color: #082c63;
+  font-size: 1.25rem;
+}
+
+.official-source-summary p {
+  margin: 0;
+  color: #62728a;
+  font-size: .82rem;
+}
+
+.official-source-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .35rem;
+  margin-top: .65rem;
+}
+
+.official-source-chips span {
+  padding: .2rem .5rem;
+  border-radius: 999px;
+  background: #edf4fc;
+  color: #4d6380;
+  font-size: .69rem;
+}
+
+.public-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1rem;
+  padding: .7rem .1rem 0;
+  border-top: 1px solid #dce6f1;
+  color: #738096;
+  font-size: .7rem;
+}
+
+:root:has(#ssip-dark-mode) .ssip-brand-lockup strong,
+:root:has(#ssip-dark-mode) .public-record-card h3,
+:root:has(#ssip-dark-mode) .official-source-summary h2 {
+  color: #edf5ff;
+}
+
+:root:has(#ssip-dark-mode) .ssip-brand-bar,
+:root:has(#ssip-dark-mode) .compact-trust-strip {
+  border-color: #2c4669;
+}
+
+:root:has(#ssip-dark-mode) .ssip-brand-lockup small,
+:root:has(#ssip-dark-mode) .ssip-header-trust,
+:root:has(#ssip-dark-mode) .public-record-agency,
+:root:has(#ssip-dark-mode) .public-record-facts,
+:root:has(#ssip-dark-mode) .official-source-summary p,
+:root:has(#ssip-dark-mode) .public-footer {
+  color: #b2c1d4;
+}
+
+:root:has(#ssip-dark-mode) .st-key-ssip_primary_navigation label[data-testid="stRadioOption"] p {
+  color: #b9c9dc !important;
+  -webkit-text-fill-color: #b9c9dc !important;
+}
+
+:root:has(#ssip-dark-mode) .st-key-ssip_primary_navigation label[data-testid="stRadioOption"]:hover,
+:root:has(#ssip-dark-mode) .st-key-ssip_primary_navigation label[data-testid="stRadioOption"][data-selected="true"] {
+  background: #172b46;
+}
+
+:root:has(#ssip-dark-mode) .st-key-ssip_primary_navigation label[data-testid="stRadioOption"][data-selected="true"] p {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+:root:has(#ssip-dark-mode) .public-record-card,
+:root:has(#ssip-dark-mode) .official-source-summary {
+  border-color: #2c4669;
+  background: #10213a;
+}
+
+:root:has(#ssip-dark-mode) .public-record-card p,
+:root:has(#ssip-dark-mode) .public-record-facts b {
+  color: #d5e2f2;
+}
+
+:root:has(#ssip-dark-mode) .public-kind,
+:root:has(#ssip-dark-mode) .public-chip,
+:root:has(#ssip-dark-mode) .official-source-chips span {
+  border-color: #385577;
+  background: #172e4b;
+  color: #c4d3e5;
+}
+
+:root:has(#ssip-dark-mode) .public-record-actions {
+  border-color: #2c4669;
+}
+
+@media (max-width: 1050px) {
+  .home-featured-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .public-hero.public-hero-compact { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 760px) {
+  .ssip-gov-bar { display: none; }
+  .ssip-brand-bar { min-height: 56px; }
+  .ssip-header-trust { display: none; }
+  .st-key-ssip_primary_navigation div[role="radiogroup"],
+  .st-key-ssip_primary_navigation div[data-testid="stRadioGroup"] {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: thin;
+  }
+  .st-key-ssip_primary_navigation div[role="radiogroup"] label,
+  .st-key-ssip_primary_navigation label[data-testid="stRadioOption"] {
+    flex: 0 0 auto;
+  }
+  .compact-trust-strip span:nth-child(2) { display: none; }
+  .home-featured-grid,
+  .home-call-grid { grid-template-columns: 1fr; }
+  .official-source-summary { align-items: flex-start; flex-direction: column; }
+  .public-footer { flex-direction: column; gap: .2rem; }
+}
+
+@media (max-width: 480px) {
+  .ssip-brand-lockup small { display: none; }
+  .public-hero.public-hero-compact { padding: 1.2rem; }
+  .public-record-card { padding: .9rem; }
+}
+
+
+
+/* v3.4.0.16 — Phase 3 product navigation, finder toolbar and scheme profiles */
+.block-container {
+  max-width: 1400px;
+  padding-top: .45rem;
+}
+
+.ssip-site-header {
+  margin: 0;
+  border: 0;
+  background: transparent;
+}
+
+.ssip-header-main {
+  min-height: 66px;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1.35rem;
+  padding: .45rem 0 .5rem;
+  border-bottom: 1px solid #d9e4f2;
+}
+
+.ssip-brand-lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: .65rem;
+  color: inherit !important;
+  text-decoration: none !important;
+}
+
+.ssip-brand-copy { display: grid; gap: .08rem; }
+.ssip-brand-lockup strong { color: #082c63; font-size: 1.45rem; line-height: 1; }
+.ssip-brand-lockup small { color: #687990; font-size: .7rem; white-space: nowrap; }
+.ssip-brand-mark { width: 42px; height: 42px; border-radius: 10px; font-size: .72rem; }
+
+.ssip-primary-nav {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .12rem;
+}
+
+.ssip-nav-link,
+.ssip-nav-more > summary {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: .45rem .65rem;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: #40546f !important;
+  font-size: .76rem;
+  font-weight: 720;
+  line-height: 1;
+  text-decoration: none !important;
+  cursor: pointer;
+  list-style: none;
+}
+
+.ssip-nav-link:hover,
+.ssip-nav-more > summary:hover { background: #f0f6fd; color: #0b4da5 !important; }
+.ssip-nav-link.is-active,
+.ssip-nav-more.is-active > summary { background: #eaf3ff; color: #0b4da5 !important; }
+.ssip-nav-link.is-active::after,
+.ssip-nav-more.is-active > summary::after {
+  content: "";
+  position: absolute;
+  left: .65rem;
+  right: .65rem;
+  bottom: 2px;
+  height: 2px;
+  border-radius: 2px;
+  background: #1261c9;
+}
+
+.ssip-nav-more { position: relative; }
+.ssip-nav-more > summary::-webkit-details-marker { display: none; }
+.ssip-nav-more > summary::before { content: "More"; }
+.ssip-nav-more > summary { font-size: 0; }
+.ssip-nav-more > summary::before { font-size: .76rem; }
+.ssip-nav-more > summary::after { margin-left: .3rem; content: "▾"; font-size: .62rem; }
+.ssip-nav-more[open] > summary { background: #eaf3ff; color: #0b4da5 !important; }
+.ssip-nav-more-menu {
+  position: absolute;
+  z-index: 50;
+  top: calc(100% + .35rem);
+  right: 0;
+  min-width: 180px;
+  display: grid;
+  gap: .15rem;
+  padding: .4rem;
+  border: 1px solid #d7e3f1;
+  border-radius: 9px;
+  background: #ffffff;
+  box-shadow: 0 14px 32px rgba(8, 44, 99, .16);
+}
+.ssip-nav-more-menu a { padding: .55rem .65rem; border-radius: 6px; color: #334b69 !important; font-size: .75rem; font-weight: 700; text-decoration: none !important; }
+.ssip-nav-more-menu a:hover { background: #edf5ff; color: #0b4da5 !important; }
+
+.ssip-header-trust { font-size: .68rem; white-space: nowrap; }
+
+.st-key-ssip_dark_mode { display: flex; justify-content: flex-end; align-items: center; min-height: 66px; }
+.st-key-ssip_dark_mode label { gap: .35rem !important; color: #40546f !important; font-size: .72rem !important; font-weight: 750 !important; }
+
+.public-hero.public-hero-compact {
+  min-height: 330px;
+  grid-template-columns: minmax(0, 1.65fr) minmax(265px, .75fr);
+  gap: 1.5rem;
+  margin-top: 1.15rem;
+  padding: 1.9rem 2.15rem;
+}
+.public-hero.public-hero-compact h1 { max-width: 760px; font-size: clamp(2.25rem, 4.3vw, 3.45rem); line-height: 1.02; }
+.public-hero.public-hero-compact p { max-width: 780px; margin-top: 1rem; font-size: 1rem; }
+.public-hero-summary { min-height: 245px; padding: 1rem; }
+.public-hero-summary-grid { gap: .45rem; }
+.public-hero-summary-grid > div { min-height: 76px; padding: .65rem .35rem; }
+.public-hero-summary-grid strong { font-size: 1.55rem; }
+
+.home-search-heading { margin-top: 1.35rem; }
+.st-key-home_open_finder button { border-color: #1261c9 !important; background: #1261c9 !important; }
+.st-key-home_open_finder button:hover { border-color: #0b3a82 !important; background: #0b3a82 !important; }
+.home-section-action { color: #0b4da5 !important; font-weight: 750; text-decoration: none !important; }
+.home-section-action:hover { text-decoration: underline !important; }
+
+.public-record-card .status-reference { background: #eef5fd; color: #315b8d; border-color: #c9dced; }
+.public-record-card { border-left-width: 3px; }
+.public-action-quiet span { margin-left: .12rem; }
+
+.page-intro,
+.finder-heading-main { padding: 1rem 1.15rem; margin: .55rem 0 .85rem; }
+.page-intro h1,
+.finder-heading-main .finder-title { font-size: clamp(1.65rem, 3vw, 2.15rem); }
+
+.explorer-result-count {
+  min-height: 58px;
+  display: flex;
+  align-items: baseline;
+  gap: .5rem;
+  padding: .55rem .75rem;
+  border: 1px solid #d8e4f1;
+  border-radius: 9px;
+  background: #f8fbff;
+}
+.explorer-result-count strong { color: #0b3a82; font-size: 1.35rem; }
+.explorer-result-count span { color: #314a68; font-size: .8rem; font-weight: 680; }
+.explorer-result-count small { margin-left: auto; color: #6b7b91; font-size: .7rem; }
+.active-filter-chips { display: flex; align-items: center; flex-wrap: wrap; gap: .35rem; margin: .5rem 0 .8rem; }
+.active-filter-chips > span { color: #64758c; font-size: .7rem; font-weight: 750; }
+.active-filter-chips b { padding: .22rem .5rem; border: 1px solid #d8e4f1; border-radius: 999px; background: #f5f9fe; color: #405873; font-size: .68rem; font-weight: 650; }
+
+/* Keep all expanders consistent with the light public portal. */
+div[data-testid="stExpander"] details { overflow: hidden; border: 1px solid #d8e4f1 !important; border-radius: 9px !important; background: #ffffff !important; }
+div[data-testid="stExpander"] summary { min-height: 46px; background: #f8fbff !important; color: #173a66 !important; }
+div[data-testid="stExpander"] summary:hover { background: #edf5ff !important; }
+div[data-testid="stExpander"] summary p,
+div[data-testid="stExpander"] summary span { color: #173a66 !important; -webkit-text-fill-color: #173a66 !important; font-weight: 750 !important; }
+
+.profile-breadcrumb { display: flex; align-items: center; gap: .45rem; margin: .25rem 0 .75rem; color: #6b7a90; font-size: .74rem; }
+.profile-breadcrumb a { color: #0b4da5 !important; text-decoration: none !important; }
+.profile-breadcrumb a:hover { text-decoration: underline !important; }
+
+.scheme-profile-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 230px;
+  gap: 1.5rem;
+  margin: .8rem 0 1rem;
+  padding: 1.55rem 1.65rem;
+  border: 1px solid #cbdced;
+  border-radius: 12px;
+  background: linear-gradient(110deg, #ffffff 0%, #f3f8fe 75%, #e8f2ff 100%);
+  box-shadow: 0 12px 30px rgba(8, 44, 99, .07);
+}
+.scheme-profile-hero h1 { max-width: 900px; margin: .55rem 0 .25rem; color: #082c63; font-size: clamp(1.75rem, 3vw, 2.55rem); line-height: 1.12; }
+.scheme-profile-agency { margin: 0; color: #5c6f87; font-size: .82rem; }
+.scheme-profile-summary { max-width: 900px; margin: .85rem 0 0; color: #263f5e; font-size: .92rem; line-height: 1.58; }
+.scheme-profile-actions { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: 1rem; }
+.scheme-profile-trust { align-self: stretch; display: flex; flex-direction: column; justify-content: center; gap: .3rem; padding: 1rem; border: 1px solid #c8ddf2; border-radius: 10px; background: rgba(255,255,255,.72); }
+.scheme-profile-trust span { color: #64758c; font-size: .7rem; font-weight: 750; text-transform: uppercase; letter-spacing: .06em; }
+.scheme-profile-trust strong { color: #0b3a82; font-size: 1.2rem; }
+.scheme-profile-trust small { color: #667790; font-size: .7rem; line-height: 1.45; }
+
+.profile-meta-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .65rem; margin: 0 0 1rem; }
+.profile-meta-grid > div { min-width: 0; padding: .85rem .9rem; border: 1px solid #d9e4f2; border-radius: 9px; background: #ffffff; }
+.profile-meta-grid span { display: block; margin-bottom: .3rem; color: #6b7a90; font-size: .68rem; font-weight: 750; text-transform: uppercase; letter-spacing: .05em; }
+.profile-meta-grid strong { display: block; overflow-wrap: anywhere; color: #173a66; font-size: .82rem; line-height: 1.42; }
+
+.profile-detail-grid { display: grid; grid-template-columns: 1fr; gap: .8rem; margin-bottom: .8rem; }
+.profile-detail-grid-two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.profile-detail-panel,
+.profile-tag-panel,
+.profile-resource-panel { padding: 1rem 1.1rem; border: 1px solid #d9e4f2; border-radius: 10px; background: #ffffff; }
+.profile-detail-panel h2,
+.profile-tag-panel h2,
+.profile-resource-panel h2 { margin: 0 0 .65rem; color: #082c63; font-size: 1.05rem; }
+.profile-detail-panel ul { display: grid; gap: .48rem; margin: 0; padding-left: 1.1rem; color: #273f5d; font-size: .83rem; line-height: 1.55; }
+.profile-empty { margin: 0; color: #7a8798; font-size: .78rem; }
+.profile-tag-panel { margin: 0 0 .8rem; }
+.profile-section-heading { margin: 1.6rem 0 .7rem; }
+.profile-section-heading h2 { margin: .18rem 0 .2rem; color: #082c63; font-size: 1.45rem; }
+.profile-section-heading p { margin: 0; color: #65758b; font-size: .82rem; }
+.profile-resource-panel { display: flex; align-items: center; justify-content: space-between; gap: 1.25rem; margin-top: 1rem; background: linear-gradient(105deg, #ffffff, #f5f9fe); }
+.profile-resource-panel p { margin: 0; color: #65758b; font-size: .8rem; }
+.profile-resource-panel .resource-actions { justify-content: flex-end; }
+
+:root:has(#ssip-dark-mode) .ssip-header-main { border-color: #2c4669; }
+:root:has(#ssip-dark-mode) .ssip-nav-link,
+:root:has(#ssip-dark-mode) .ssip-nav-more > summary { color: #b9c9dc !important; }
+:root:has(#ssip-dark-mode) .ssip-nav-link:hover,
+:root:has(#ssip-dark-mode) .ssip-nav-link.is-active,
+:root:has(#ssip-dark-mode) .ssip-nav-more > summary:hover,
+:root:has(#ssip-dark-mode) .ssip-nav-more.is-active > summary { background: #172b46; color: #ffffff !important; }
+:root:has(#ssip-dark-mode) .ssip-nav-more-menu,
+:root:has(#ssip-dark-mode) .scheme-profile-hero,
+:root:has(#ssip-dark-mode) .profile-meta-grid > div,
+:root:has(#ssip-dark-mode) .profile-detail-panel,
+:root:has(#ssip-dark-mode) .profile-tag-panel,
+:root:has(#ssip-dark-mode) .profile-resource-panel,
+:root:has(#ssip-dark-mode) .explorer-result-count,
+:root:has(#ssip-dark-mode) div[data-testid="stExpander"] details { background: #10213a !important; border-color: #2c4669 !important; }
+:root:has(#ssip-dark-mode) div[data-testid="stExpander"] summary { background: #142945 !important; }
+:root:has(#ssip-dark-mode) div[data-testid="stExpander"] summary p,
+:root:has(#ssip-dark-mode) div[data-testid="stExpander"] summary span { color: #dce9f8 !important; -webkit-text-fill-color: #dce9f8 !important; }
+:root:has(#ssip-dark-mode) .scheme-profile-hero h1,
+:root:has(#ssip-dark-mode) .profile-detail-panel h2,
+:root:has(#ssip-dark-mode) .profile-tag-panel h2,
+:root:has(#ssip-dark-mode) .profile-resource-panel h2,
+:root:has(#ssip-dark-mode) .profile-meta-grid strong { color: #edf5ff; }
+:root:has(#ssip-dark-mode) .scheme-profile-summary,
+:root:has(#ssip-dark-mode) .profile-detail-panel ul { color: #cfdded; }
+
+@media (max-width: 1120px) {
+  .ssip-header-main { grid-template-columns: auto 1fr; }
+  .ssip-header-trust { display: none; }
+  .ssip-primary-nav { justify-content: flex-end; }
+  .scheme-profile-hero { grid-template-columns: 1fr; }
+  .scheme-profile-trust { min-height: auto; }
+}
+
+@media (max-width: 820px) {
+  .ssip-header-main { grid-template-columns: 1fr; gap: .35rem; }
+  .ssip-primary-nav { justify-content: flex-start; overflow-x: auto; padding-bottom: .2rem; }
+  .ssip-brand-lockup small { white-space: normal; }
+  .public-hero.public-hero-compact { min-height: auto; padding: 1.4rem; }
+  .profile-meta-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .profile-detail-grid-two { grid-template-columns: 1fr; }
+  .profile-resource-panel { align-items: flex-start; flex-direction: column; }
+}
+
+@media (max-width: 560px) {
+  .ssip-brand-copy small { display: none; }
+  .ssip-nav-link, .ssip-nav-more > summary { min-height: 34px; padding: .4rem .5rem; font-size: .7rem; }
+  .public-hero.public-hero-compact h1 { font-size: 2rem; }
+  .profile-meta-grid { grid-template-columns: 1fr; }
+  .scheme-profile-hero { padding: 1rem; }
+}
+
+/* v3.4.0.17 — Phase 4 final-polish, accessibility, equal-height cards and print safety */
+
+/* Keep the single accessibility skip link off-canvas until keyboard focus. */
+.skip-link {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  clip-path: inset(50%) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+  top: 0 !important;
+  left: 0 !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+  position: fixed !important;
+  z-index: 100000 !important;
+  width: auto !important;
+  height: auto !important;
+  padding: .65rem .9rem !important;
+  margin: 0 !important;
+  overflow: visible !important;
+  clip: auto !important;
+  clip-path: none !important;
+  white-space: nowrap !important;
+  top: .75rem !important;
+  left: .75rem !important;
+  border-radius: 7px !important;
+  background: #082c63 !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 0 3px #f2a900, 0 10px 25px rgba(8, 44, 99, .22) !important;
+}
+
+/* Header and navigation spacing remain stable at desktop and export widths. */
+.ssip-header-main {
+  gap: .85rem;
+}
+
+.ssip-primary-nav {
+  gap: .38rem;
+  flex-wrap: nowrap;
+}
+
+.ssip-nav-link,
+.ssip-nav-more > summary {
+  white-space: nowrap;
+  flex: 0 0 auto;
+}
+
+.ssip-nav-link + .ssip-nav-link,
+.ssip-nav-more {
+  margin-left: .08rem;
+}
+
+/* Prevent the Streamlit appearance control from collapsing into vertical text. */
+.st-key-ssip_dark_mode,
+div[data-testid="stToggle"].st-key-ssip_dark_mode,
+div[data-testid="stToggle"]:has(input[aria-label="Dark mode"]) {
+  min-width: 118px !important;
+  width: 100% !important;
+  flex: 0 0 auto !important;
+}
+
+.st-key-ssip_dark_mode label,
+.st-key-ssip_dark_mode label p,
+.st-key-ssip_dark_mode [data-testid="stWidgetLabel"],
+.st-key-ssip_dark_mode [data-testid="stWidgetLabel"] p {
+  white-space: nowrap !important;
+  flex-wrap: nowrap !important;
+  word-break: keep-all !important;
+  overflow-wrap: normal !important;
+}
+
+/* Slightly tighter first-screen composition. */
+.public-hero.public-hero-compact {
+  min-height: 298px;
+  padding: 1.55rem 1.8rem;
+}
+
+.public-hero.public-hero-compact h1 {
+  font-size: clamp(2.15rem, 4vw, 3.1rem);
+}
+
+.public-hero-summary {
+  min-height: 218px;
+}
+
+/* Equal-height, aligned cards without rigid fixed heights. */
+.scheme-results-grid,
+.home-featured-grid,
+.home-call-grid {
+  grid-auto-rows: 1fr;
+  align-items: stretch;
+}
+
+.public-record-card {
+  height: 100%;
+}
+
+.public-record-card h3 {
+  min-height: 2.68em;
+}
+
+.public-record-agency {
+  min-height: 2.3em;
+}
+
+.public-record-card p {
+  min-height: calc(1.52em * 3);
+}
+
+.public-record-actions {
+  margin-top: .78rem;
+}
+
+/* Maintain a balanced three-card featured row on common laptop and PDF widths. */
+@media (min-width: 901px) {
+  .home-featured-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (min-width: 681px) and (max-width: 900px) {
+  .home-featured-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 680px) {
+  .home-featured-grid,
+  .home-call-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .public-record-card h3,
+  .public-record-agency,
+  .public-record-card p {
+    min-height: 0;
+  }
+}
+
+/* Export a clean, readable light-theme document regardless of browser appearance. */
+@page {
+  size: A4 landscape;
+  margin: 10mm;
+}
+
+@media print {
+  *, *::before, *::after {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .skip-link,
+  .main-content-anchor,
+  .st-key-ssip_dark_mode,
+  div[data-testid="stToggle"],
+  header[data-testid="stHeader"],
+  [data-testid="stToolbar"],
+  #MainMenu,
+  footer {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+  html,
+  body,
+  .stApp,
+  [data-testid="stAppViewContainer"],
+  section[data-testid="stMain"],
+  .main,
+  .block-container {
+    width: auto !important;
+    max-width: none !important;
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+    background: #ffffff !important;
+    color: #10213f !important;
+  }
+
+  .block-container {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .ssip-header-main {
+    min-height: 54px !important;
+    grid-template-columns: auto minmax(0, 1fr) auto !important;
+    gap: .7rem !important;
+    padding: .25rem 0 .4rem !important;
+    border-color: #d9e4f2 !important;
+  }
+
+  .ssip-primary-nav {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: .28rem .62rem !important;
+    overflow: visible !important;
+  }
+
+  .ssip-nav-link,
+  .ssip-nav-more > summary {
+    min-height: 28px !important;
+    padding: .25rem .35rem !important;
+    margin: 0 .08rem !important;
+    background: transparent !important;
+    color: #264566 !important;
+    white-space: nowrap !important;
+    text-decoration: none !important;
+  }
+
+  .ssip-nav-link.is-active,
+  .ssip-nav-more.is-active > summary {
+    color: #0b4da5 !important;
+    background: #edf5ff !important;
+  }
+
+  .ssip-nav-more-menu {
+    display: none !important;
+  }
+
+  .ssip-header-trust {
+    color: #4d627a !important;
+  }
+
+  .public-hero.public-hero-compact {
+    min-height: 0 !important;
+    padding: 1.2rem 1.35rem !important;
+    margin-top: .65rem !important;
+    background: linear-gradient(120deg, #082c63 0%, #1261c9 100%) !important;
+    break-inside: avoid;
+  }
+
+  .public-hero.public-hero-compact h1,
+  .public-hero.public-hero-compact p,
+  .public-hero.public-hero-compact span,
+  .public-hero.public-hero-compact strong {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+  }
+
+  .home-featured-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+
+  .home-call-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .public-record-card,
+  .section-band,
+  .home-journey-card,
+  .home-trust-card,
+  .official-source-summary,
+  .notice-panel,
+  .warning-box,
+  .scheme-profile-hero,
+  .profile-meta-grid > div,
+  .profile-detail-panel,
+  .profile-tag-panel,
+  .profile-resource-panel,
+  div[data-testid="stExpander"] details {
+    background: #ffffff !important;
+    color: #10213f !important;
+    border-color: #cfdeee !important;
+    box-shadow: none !important;
+    break-inside: avoid;
+  }
+
+  .public-record-card h3,
+  .section-title,
+  .home-section-heading h2,
+  .home-search-heading h2,
+  .scheme-profile-hero h1,
+  .profile-detail-panel h2,
+  .profile-tag-panel h2,
+  .profile-resource-panel h2 {
+    color: #082c63 !important;
+    -webkit-text-fill-color: #082c63 !important;
+  }
+
+  .public-record-card p,
+  .public-record-agency,
+  .public-record-note,
+  .public-record-facts,
+  .home-section-heading p,
+  .home-search-heading p,
+  .scheme-profile-summary,
+  .profile-detail-panel ul {
+    color: #334e6d !important;
+    -webkit-text-fill-color: #334e6d !important;
+  }
+
+  .public-kind,
+  .public-chip,
+  .official-source-chips span {
+    background: #f5f8fc !important;
+    color: #405873 !important;
+    border-color: #d7e3f0 !important;
+  }
+
+  div[data-testid="stExpander"] summary {
+    background: #f5f9fe !important;
+    color: #173a66 !important;
+  }
+
+  div[data-testid="stExpander"] summary p,
+  div[data-testid="stExpander"] summary span {
+    color: #173a66 !important;
+    -webkit-text-fill-color: #173a66 !important;
+  }
+
+  .public-record-card,
+  .scheme-profile-hero,
+  .profile-detail-panel,
+  .official-source-summary,
+  .home-pair-grid,
+  .home-section-heading {
+    page-break-inside: avoid;
+  }
+
+  .public-record-card:hover,
+  .scheme-card:hover,
+  .source-card:hover {
+    transform: none !important;
+  }
+}
+
+/* v3.4.0.18 — same-tab internal navigation and high-contrast finder filters */
+
+/* Internal SSIP query-string links must stay in the current tab. */
+a[href^="?page="],
+a[href^="./?page="],
+a[href^="/?page="] {
+  cursor: pointer;
+}
+
+/* Advanced finder panel: force readable light-theme widget text regardless of
+   the host Streamlit theme. The keyed wrapper keeps these overrides local. */
+.st-key-explorer_filters_panel div[data-testid="stExpander"] details,
+.st-key-explorer_filters_panel div[data-testid="stExpanderDetails"] {
+  background: #ffffff !important;
+  color: #173a66 !important;
+}
+
+.st-key-explorer_filters_panel [data-testid="stWidgetLabel"],
+.st-key-explorer_filters_panel [data-testid="stWidgetLabel"] p,
+.st-key-explorer_filters_panel [data-testid="stWidgetLabel"] span,
+.st-key-explorer_filters_panel label,
+.st-key-explorer_filters_panel label p,
+.st-key-explorer_filters_panel label span {
+  color: #173a66 !important;
+  -webkit-text-fill-color: #173a66 !important;
+  opacity: 1 !important;
+}
+
+.st-key-explorer_filters_panel div[data-baseweb="select"] > div,
+.st-key-explorer_filters_panel div[data-baseweb="input"],
+.st-key-explorer_filters_panel div[data-testid="stTextInputRootElement"],
+.st-key-explorer_filters_panel div[data-testid="stNumberInput"] > div {
+  border-color: #bfd0e5 !important;
+  background: #ffffff !important;
+  color: #173a66 !important;
+  box-shadow: none !important;
+}
+
+.st-key-explorer_filters_panel div[data-baseweb="select"] *,
+.st-key-explorer_filters_panel div[data-baseweb="input"] *,
+.st-key-explorer_filters_panel div[data-testid="stNumberInput"] input,
+.st-key-explorer_filters_panel input[role="combobox"],
+.st-key-explorer_filters_panel input[type="text"],
+.st-key-explorer_filters_panel input[type="number"] {
+  color: #173a66 !important;
+  -webkit-text-fill-color: #173a66 !important;
+  opacity: 1 !important;
+}
+
+.st-key-explorer_filters_panel input::placeholder,
+.st-key-explorer_filters_panel div[data-baseweb="select"] input::placeholder {
+  color: #6b7b91 !important;
+  -webkit-text-fill-color: #6b7b91 !important;
+  opacity: 1 !important;
+}
+
+.st-key-explorer_filters_panel div[data-baseweb="select"] svg,
+.st-key-explorer_filters_panel div[data-baseweb="input"] svg,
+.st-key-explorer_filters_panel div[data-testid="stNumberInput"] svg {
+  color: #46627f !important;
+  fill: currentColor !important;
+}
+
+.st-key-explorer_filters_panel div[data-testid="stNumberInput"] button {
+  min-width: 42px !important;
+  border-color: #bfd0e5 !important;
+  background: #eef5fd !important;
+  color: #0b4da5 !important;
+}
+
+.st-key-explorer_filters_panel div[data-testid="stNumberInput"] button:hover {
+  background: #dcecff !important;
+  color: #082c63 !important;
+}
+
+.st-key-explorer_filters_panel div[data-testid="stCheckbox"] label,
+.st-key-explorer_filters_panel div[data-testid="stCheckbox"] label p,
+.st-key-explorer_filters_panel div[data-testid="stCheckbox"] label span {
+  color: #10213f !important;
+  -webkit-text-fill-color: #10213f !important;
+  opacity: 1 !important;
+  font-weight: 700 !important;
+}
+
+.st-key-explorer_filters_panel div[data-baseweb="select"] > div:focus-within,
+.st-key-explorer_filters_panel div[data-baseweb="input"]:focus-within,
+.st-key-explorer_filters_panel div[data-testid="stNumberInput"] > div:focus-within {
+  border-color: #1261c9 !important;
+  box-shadow: 0 0 0 3px rgba(18, 97, 201, .14) !important;
+}
+
+/* Dropdown menus are rendered outside the expander subtree. Keep them legible. */
+div[role="listbox"],
+ul[role="listbox"] {
+  background: #ffffff !important;
+  color: #173a66 !important;
+}
+
+div[role="option"],
+li[role="option"],
+div[role="option"] *,
+li[role="option"] * {
+  color: #173a66 !important;
+  -webkit-text-fill-color: #173a66 !important;
+}
+
+div[role="option"]:hover,
+li[role="option"]:hover,
+div[role="option"][aria-selected="true"],
+li[role="option"][aria-selected="true"] {
+  background: #edf5ff !important;
+}
+
+/* Dark mode equivalents for the finder panel. */
+:root:has(#ssip-dark-mode) .st-key-explorer_filters_panel div[data-testid="stExpander"] details,
+:root:has(#ssip-dark-mode) .st-key-explorer_filters_panel div[data-testid="stExpanderDetails"] {
+  background: #10213a !important;
+  color: #e8f2ff !important;
+}
+
+:root:has(#ssip-dark-mode) .st-key-explorer_filters_panel [data-testid="stWidgetLabel"],
+:root:has(#ssip-dark-mode) .st-key-explorer_filters_panel [data-testid="stWidgetLabel"] p,
+:root:has(#ssip-dark-mode) .st-key-explorer_filters_panel label,
+:root:has(#ssip-dark-mode) .st-key-explorer_filters_panel label p,
+:root:has(#ssip-dark-mode) .st-key-explorer_filters_panel label span,
+:root:has(#ssip-dark-mode) .st-key-explorer_filters_panel input {
+  color: #e8f2ff !important;
+  -webkit-text-fill-color: #e8f2ff !important;
+}
+
+:root:has(#ssip-dark-mode) .st-key-explorer_filters_panel div[data-baseweb="select"] > div,
+:root:has(#ssip-dark-mode) .st-key-explorer_filters_panel div[data-baseweb="input"],
+:root:has(#ssip-dark-mode) .st-key-explorer_filters_panel div[data-testid="stNumberInput"] > div {
+  border-color: #385577 !important;
+  background: #142945 !important;
+  color: #e8f2ff !important;
+}
+
+:root:has(#ssip-dark-mode) .st-key-explorer_filters_panel input::placeholder {
+  color: #aebdd0 !important;
+  -webkit-text-fill-color: #aebdd0 !important;
+}
+
+:root:has(#ssip-dark-mode) .st-key-explorer_filters_panel div[data-testid="stNumberInput"] button {
+  border-color: #385577 !important;
+  background: #1b3555 !important;
+  color: #dcecff !important;
+}
+
+:root:has(#ssip-dark-mode) div[role="listbox"],
+:root:has(#ssip-dark-mode) ul[role="listbox"] {
+  background: #10213a !important;
+  color: #e8f2ff !important;
+}
+
+:root:has(#ssip-dark-mode) div[role="option"],
+:root:has(#ssip-dark-mode) li[role="option"],
+:root:has(#ssip-dark-mode) div[role="option"] *,
+:root:has(#ssip-dark-mode) li[role="option"] * {
+  color: #e8f2ff !important;
+  -webkit-text-fill-color: #e8f2ff !important;
+}
+
+:root:has(#ssip-dark-mode) div[role="option"]:hover,
+:root:has(#ssip-dark-mode) li[role="option"]:hover,
+:root:has(#ssip-dark-mode) div[role="option"][aria-selected="true"],
+:root:has(#ssip-dark-mode) li[role="option"][aria-selected="true"] {
+  background: #1b3555 !important;
+}
+
+/* v3.4.0.19 — readable BaseWeb dropdown portals and reliable same-tab navigation */
+
+/*
+Streamlit/BaseWeb mounts select popovers near the document root instead of
+inside the keyed filter panel. These final rules intentionally override both
+the host theme and earlier dark-mode portal rules so filter choices remain
+readable. The control itself can still follow light/dark mode; the transient
+option menu uses a high-contrast neutral surface in both modes.
+*/
+html body div[data-baseweb="popover"],
+html body div[data-baseweb="popover"] > div {
+  z-index: 1000000 !important;
+}
+
+html body div[data-baseweb="popover"] > div,
+html body div[data-baseweb="popover"] div[data-baseweb="menu"],
+html body div[data-baseweb="popover"] div[role="listbox"],
+html body div[data-baseweb="popover"] ul[role="listbox"],
+html body div[data-baseweb="menu"],
+html body div[role="listbox"],
+html body ul[role="listbox"] {
+  background: #ffffff !important;
+  color: #10213f !important;
+  border-color: #bfd0e5 !important;
+  box-shadow: 0 14px 34px rgba(8, 44, 99, .18) !important;
+}
+
+html body div[data-baseweb="popover"] [role="option"],
+html body div[data-baseweb="popover"] [role="option"] *,
+html body div[data-baseweb="menu"] [role="option"],
+html body div[data-baseweb="menu"] [role="option"] *,
+html body div[role="listbox"] [role="option"],
+html body div[role="listbox"] [role="option"] *,
+html body ul[role="listbox"] [role="option"],
+html body ul[role="listbox"] [role="option"] * {
+  background: transparent !important;
+  color: #173a66 !important;
+  -webkit-text-fill-color: #173a66 !important;
+  opacity: 1 !important;
+}
+
+html body div[data-baseweb="popover"] [role="option"]:hover,
+html body div[data-baseweb="popover"] [role="option"][aria-selected="true"],
+html body div[data-baseweb="menu"] [role="option"]:hover,
+html body div[data-baseweb="menu"] [role="option"][aria-selected="true"],
+html body div[role="listbox"] [role="option"]:hover,
+html body div[role="listbox"] [role="option"][aria-selected="true"],
+html body ul[role="listbox"] [role="option"]:hover,
+html body ul[role="listbox"] [role="option"][aria-selected="true"] {
+  background: #eaf3ff !important;
+  color: #082c63 !important;
+  -webkit-text-fill-color: #082c63 !important;
+}
+
+html body div[data-baseweb="popover"] [aria-disabled="true"],
+html body div[data-baseweb="popover"] [aria-disabled="true"] * {
+  color: #7b899b !important;
+  -webkit-text-fill-color: #7b899b !important;
+}
+
+/* Keep internal SSIP links in the existing browser tab/window. */
+a[target="_top"][href^="?page="],
+a[target="_top"][href^="./?page="],
+a[target="_top"][href^="/?page="] {
+  cursor: pointer;
+}
+
+/* v3.4.0.20 — final dark-mode contrast and control consistency */
+
+/* Keep the complete Streamlit canvas dark instead of allowing white bands. */
+html:has(#ssip-dark-mode),
+html:has(#ssip-dark-mode) body,
+html:has(#ssip-dark-mode) .stApp,
+html:has(#ssip-dark-mode) [data-testid="stAppViewContainer"],
+html:has(#ssip-dark-mode) [data-testid="stMain"],
+html:has(#ssip-dark-mode) [data-testid="stMainBlockContainer"],
+html:has(#ssip-dark-mode) .main,
+html:has(#ssip-dark-mode) .block-container {
+  background: #081426 !important;
+  color: #edf5ff !important;
+}
+
+/* Dark finder panel container and summary. */
+html:has(#ssip-dark-mode) .st-key-explorer_filters_panel div[data-testid="stExpander"] details,
+html:has(#ssip-dark-mode) .st-key-explorer_filters_panel div[data-testid="stExpanderDetails"] {
+  background: #10213a !important;
+  border-color: #355477 !important;
+  color: #edf5ff !important;
+}
+
+html:has(#ssip-dark-mode) .st-key-explorer_filters_panel div[data-testid="stExpander"] summary {
+  background: #17304f !important;
+  border-bottom-color: #355477 !important;
+}
+
+html:has(#ssip-dark-mode) .st-key-explorer_filters_panel div[data-testid="stExpander"] summary p,
+html:has(#ssip-dark-mode) .st-key-explorer_filters_panel div[data-testid="stExpander"] summary span,
+html:has(#ssip-dark-mode) .st-key-explorer_filters_panel div[data-testid="stExpander"] summary svg {
+  color: #edf5ff !important;
+  fill: currentColor !important;
+  -webkit-text-fill-color: #edf5ff !important;
+}
+
+/* Widget labels and checkbox labels. */
+html:has(#ssip-dark-mode) .st-key-explorer_filters_panel [data-testid="stWidgetLabel"],
+html:has(#ssip-dark-mode) .st-key-explorer_filters_panel [data-testid="stWidgetLabel"] *,
+html:has(#ssip-dark-mode) .st-key-explorer_filters_panel label,
+html:has(#ssip-dark-mode) .st-key-explorer_filters_panel label *,
+html:has(#ssip-dark-mode) .st-key-explorer_filters_panel div[data-testid="stCheckbox"] label,
+html:has(#ssip-dark-mode) .st-key-explorer_filters_panel div[data-testid="stCheckbox"] label * {
+  color: #dce9f8 !important;
+  -webkit-text-fill-color: #dce9f8 !important;
+  opacity: 1 !important;
+}
+
+/* Closed select/multiselect controls. */
+html:has(#ssip-dark-mode) .st-key-explorer_filters_panel div[data-baseweb="select"] > div,
+html:has(#ssip-dark-mode) .st-key-explorer_filters_panel div[data-baseweb="input"],
+html:has(#ssip-dark-mode) .st-key-explorer_filters_panel div[data-testid="stTextInputRootElement"],
+html:has(#ssip-dark-mode) .st-key-explorer_filters_panel div[data-testid="stNumberInput"] > div {
+  background: #142945 !important;
+  border-color: #436486 !important;
+  color: #edf5ff !important;
+  box-shadow: none !important;
+}
+
+/*
+BaseWeb nests extra divs and an input inside multiselect controls. Force those
+nested surfaces transparent so no black blocks appear behind placeholder text.
+*/
+html:has(#ssip-dark-mode) .st-key-explorer_filters_panel div[data-baseweb="select"] > div div,
+html:has(#ssip-dark-mode) .st-key-explorer_filters_panel div[data-baseweb="select"] > div span,
+html:has(#ssip-dark-mode) .st-key-explorer_filters_panel div[data-baseweb="select"] > div input,
+html:has(#ssip-dark-mode) .st-key-explorer_filters_panel div[data-baseweb="input"] div,
+html:has(#ssip-dark-mode) .st-key-explorer_filters_panel div[data-baseweb="input"] span,
+html:has(#ssip-dark-mode) .st-key-explorer_filters_panel div[data-baseweb="input"] input {
+  background-color: transparent !important;
+  color: #edf5ff !important;
+  -webkit-text-fill-color: #edf5ff !important;
+  opacity: 1 !important;
+}
+
+/* Placeholder, entered text, selected tags and dropdown arrows. */
+html:has(#ssip-dark-mode) .st-key-explorer_filters_panel input,
+html:has(#ssip-dark-mode) .st-key-explorer_filters_panel input::placeholder,
+html:has(#ssip-dark-mode) .st-key-explorer_filters_panel div[data-baseweb="select"] input::placeholder,
+html:has(#ssip-dark-mode) .st-key-explorer_filters_panel div[data-baseweb="select"] [aria-label],
+html:has(#ssip-dark-mode) .st-key-explorer_filters_panel div[data-baseweb="select"] [data-baseweb="tag"] {
+  color: #dce9f8 !important;
+  -webkit-text-fill-color: #dce9f8 !important;
+  opacity: 1 !important;
+}
+
+html:has(#ssip-dark-mode) .st-key-explorer_filters_panel div[data-baseweb="select"] svg,
+html:has(#ssip-dark-mode) .st-key-explorer_filters_panel div[data-baseweb="input"] svg,
+html:has(#ssip-dark-mode) .st-key-explorer_filters_panel div[data-testid="stNumberInput"] svg {
+  color: #9fc5ef !important;
+  fill: currentColor !important;
+  stroke: currentColor !important;
+  opacity: 1 !important;
+}
+
+/* Selected multiselect chips. */
+html:has(#ssip-dark-mode) .st-key-explorer_filters_panel [data-baseweb="tag"] {
+  background: #20456f !important;
+  border: 1px solid #527aa5 !important;
+  color: #edf5ff !important;
+}
+
+html:has(#ssip-dark-mode) .st-key-explorer_filters_panel [data-baseweb="tag"] * {
+  color: #edf5ff !important;
+  -webkit-text-fill-color: #edf5ff !important;
+}
+
+/* Number inputs and controls. */
+html:has(#ssip-dark-mode) .st-key-explorer_filters_panel div[data-testid="stNumberInput"] input {
+  background: #0f2037 !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+html:has(#ssip-dark-mode) .st-key-explorer_filters_panel div[data-testid="stNumberInput"] button {
+  background: #1d3c61 !important;
+  border-color: #436486 !important;
+  color: #dce9f8 !important;
+}
+
+html:has(#ssip-dark-mode) .st-key-explorer_filters_panel div[data-testid="stNumberInput"] button:hover {
+  background: #28517f !important;
+  color: #ffffff !important;
+}
+
+/* Focus ring. */
+html:has(#ssip-dark-mode) .st-key-explorer_filters_panel div[data-baseweb="select"] > div:focus-within,
+html:has(#ssip-dark-mode) .st-key-explorer_filters_panel div[data-baseweb="input"]:focus-within,
+html:has(#ssip-dark-mode) .st-key-explorer_filters_panel div[data-testid="stNumberInput"] > div:focus-within {
+  border-color: #66a7ff !important;
+  box-shadow: 0 0 0 3px rgba(102, 167, 255, .22) !important;
+}
+
+/* Dark-mode popup menu. This overrides the neutral Phase 4.2 menu only in dark mode. */
+html:has(#ssip-dark-mode) body div[data-baseweb="popover"] > div,
+html:has(#ssip-dark-mode) body div[data-baseweb="popover"] div[data-baseweb="menu"],
+html:has(#ssip-dark-mode) body div[data-baseweb="popover"] div[role="listbox"],
+html:has(#ssip-dark-mode) body div[data-baseweb="popover"] ul[role="listbox"],
+html:has(#ssip-dark-mode) body div[data-baseweb="menu"],
+html:has(#ssip-dark-mode) body div[role="listbox"],
+html:has(#ssip-dark-mode) body ul[role="listbox"] {
+  background: #10213a !important;
+  color: #edf5ff !important;
+  border-color: #436486 !important;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, .42) !important;
+}
+
+html:has(#ssip-dark-mode) body div[data-baseweb="popover"] [role="option"],
+html:has(#ssip-dark-mode) body div[data-baseweb="popover"] [role="option"] *,
+html:has(#ssip-dark-mode) body div[data-baseweb="menu"] [role="option"],
+html:has(#ssip-dark-mode) body div[data-baseweb="menu"] [role="option"] *,
+html:has(#ssip-dark-mode) body div[role="listbox"] [role="option"],
+html:has(#ssip-dark-mode) body div[role="listbox"] [role="option"] *,
+html:has(#ssip-dark-mode) body ul[role="listbox"] [role="option"],
+html:has(#ssip-dark-mode) body ul[role="listbox"] [role="option"] * {
+  background: transparent !important;
+  color: #dce9f8 !important;
+  -webkit-text-fill-color: #dce9f8 !important;
+  opacity: 1 !important;
+}
+
+html:has(#ssip-dark-mode) body div[data-baseweb="popover"] [role="option"]:hover,
+html:has(#ssip-dark-mode) body div[data-baseweb="popover"] [role="option"][aria-selected="true"],
+html:has(#ssip-dark-mode) body div[data-baseweb="menu"] [role="option"]:hover,
+html:has(#ssip-dark-mode) body div[data-baseweb="menu"] [role="option"][aria-selected="true"],
+html:has(#ssip-dark-mode) body div[role="listbox"] [role="option"]:hover,
+html:has(#ssip-dark-mode) body div[role="listbox"] [role="option"][aria-selected="true"],
+html:has(#ssip-dark-mode) body ul[role="listbox"] [role="option"]:hover,
+html:has(#ssip-dark-mode) body ul[role="listbox"] [role="option"][aria-selected="true"] {
+  background: #20456f !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+/* Explorer results toolbar and sort/show controls. */
+html:has(#ssip-dark-mode) .explorer-result-count {
+  background: #10213a !important;
+  border-color: #355477 !important;
+}
+
+html:has(#ssip-dark-mode) .explorer-result-count strong,
+html:has(#ssip-dark-mode) .explorer-result-count span,
+html:has(#ssip-dark-mode) .explorer-result-count small,
+html:has(#ssip-dark-mode) .active-filter-chips > span {
+  color: #dce9f8 !important;
+  -webkit-text-fill-color: #dce9f8 !important;
+}
+
+html:has(#ssip-dark-mode) .active-filter-chips b {
+  background: #17304f !important;
+  border-color: #436486 !important;
+  color: #dce9f8 !important;
+}
+
+html:has(#ssip-dark-mode) div[data-testid="stSelectbox"] div[data-baseweb="select"] > div {
+  background: #142945 !important;
+  border-color: #436486 !important;
+  color: #edf5ff !important;
+}
+
+html:has(#ssip-dark-mode) div[data-testid="stSelectbox"] div[data-baseweb="select"] > div *,
+html:has(#ssip-dark-mode) div[data-testid="stSelectbox"] input,
+html:has(#ssip-dark-mode) div[data-testid="stSelectbox"] input::placeholder {
+  background-color: transparent !important;
+  color: #edf5ff !important;
+  -webkit-text-fill-color: #edf5ff !important;
+  opacity: 1 !important;
+}
+
+html:has(#ssip-dark-mode) div[data-testid="stSelectbox"] svg {
+  color: #9fc5ef !important;
+  fill: currentColor !important;
+}
+
+/* Preserve clean light printing regardless of current screen mode. */
+@media print {
+  html:has(#ssip-dark-mode),
+  html:has(#ssip-dark-mode) body,
+  html:has(#ssip-dark-mode) .stApp,
+  html:has(#ssip-dark-mode) [data-testid="stAppViewContainer"],
+  html:has(#ssip-dark-mode) [data-testid="stMain"],
+  html:has(#ssip-dark-mode) [data-testid="stMainBlockContainer"] {
+    background: #ffffff !important;
+    color: #10213f !important;
+  }
+}
+
+/* v3.4.0.21 — final light dropdown and dark Scheme Finder corrections */
+
+/*
+BaseWeb popovers may use the browser/Streamlit dark colour scheme even when
+the SSIP switch is off. Apply a complete light palette to the portal itself
+when the dark-mode marker is absent.
+*/
+html:not(:has(#ssip-dark-mode)) [data-baseweb="popover"],
+html:not(:has(#ssip-dark-mode)) [data-baseweb="popover"] > div,
+html:not(:has(#ssip-dark-mode)) [data-baseweb="popover"] [data-baseweb="menu"],
+html:not(:has(#ssip-dark-mode)) [data-baseweb="popover"] [role="listbox"],
+html:not(:has(#ssip-dark-mode)) [data-baseweb="menu"],
+html:not(:has(#ssip-dark-mode)) [role="listbox"] {
+  color-scheme: light !important;
+  background-color: #ffffff !important;
+  color: #173a66 !important;
+  -webkit-text-fill-color: #173a66 !important;
+  border-color: #bfd0e5 !important;
+}
+
+html:not(:has(#ssip-dark-mode)) [data-baseweb="popover"] *,
+html:not(:has(#ssip-dark-mode)) [data-baseweb="menu"] *,
+html:not(:has(#ssip-dark-mode)) [role="listbox"] * {
+  color: #173a66 !important;
+  -webkit-text-fill-color: #173a66 !important;
+  opacity: 1 !important;
+}
+
+html:not(:has(#ssip-dark-mode)) [data-baseweb="popover"] [role="option"],
+html:not(:has(#ssip-dark-mode)) [data-baseweb="menu"] [role="option"],
+html:not(:has(#ssip-dark-mode)) [role="listbox"] [role="option"],
+html:not(:has(#ssip-dark-mode)) li[role="option"],
+html:not(:has(#ssip-dark-mode)) div[role="option"] {
+  background-color: #ffffff !important;
+  color: #173a66 !important;
+  -webkit-text-fill-color: #173a66 !important;
+}
+
+html:not(:has(#ssip-dark-mode)) [data-baseweb="popover"] [role="option"]:hover,
+html:not(:has(#ssip-dark-mode)) [data-baseweb="popover"] [role="option"][aria-selected="true"],
+html:not(:has(#ssip-dark-mode)) [data-baseweb="menu"] [role="option"]:hover,
+html:not(:has(#ssip-dark-mode)) [data-baseweb="menu"] [role="option"][aria-selected="true"],
+html:not(:has(#ssip-dark-mode)) [role="listbox"] [role="option"]:hover,
+html:not(:has(#ssip-dark-mode)) [role="listbox"] [role="option"][aria-selected="true"],
+html:not(:has(#ssip-dark-mode)) li[role="option"]:hover,
+html:not(:has(#ssip-dark-mode)) li[role="option"][aria-selected="true"],
+html:not(:has(#ssip-dark-mode)) div[role="option"]:hover,
+html:not(:has(#ssip-dark-mode)) div[role="option"][aria-selected="true"] {
+  background-color: #eaf3ff !important;
+  color: #082c63 !important;
+  -webkit-text-fill-color: #082c63 !important;
+}
+
+/* Keep the Select all/header row readable in light mode. */
+html:not(:has(#ssip-dark-mode)) [data-baseweb="popover"] button,
+html:not(:has(#ssip-dark-mode)) [data-baseweb="popover"] [role="button"],
+html:not(:has(#ssip-dark-mode)) [data-baseweb="popover"] input {
+  background-color: #f5f9fe !important;
+  color: #173a66 !important;
+  -webkit-text-fill-color: #173a66 !important;
+}
+
+/*
+The Scheme Finder intro is a light gradient by default. In dark mode, give
+the complete intro component a genuine dark surface rather than only changing
+its text colours.
+*/
+html:has(#ssip-dark-mode) .page-intro,
+html:has(#ssip-dark-mode) .finder-heading,
+html:has(#ssip-dark-mode) .finder-heading-main {
+  background: linear-gradient(120deg, #10213a 0%, #142945 70%, #173555 100%) !important;
+  border-color: #355477 !important;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, .28) !important;
+}
+
+html:has(#ssip-dark-mode) .page-intro h1,
+html:has(#ssip-dark-mode) .finder-heading h1,
+html:has(#ssip-dark-mode) .finder-heading-main h1,
+html:has(#ssip-dark-mode) .finder-heading-main .finder-title {
+  color: #f4f8ff !important;
+  -webkit-text-fill-color: #f4f8ff !important;
+  opacity: 1 !important;
+}
+
+html:has(#ssip-dark-mode) .page-intro p,
+html:has(#ssip-dark-mode) .finder-heading p,
+html:has(#ssip-dark-mode) .finder-heading-main p {
+  color: #c7d8ec !important;
+  -webkit-text-fill-color: #c7d8ec !important;
+  opacity: 1 !important;
+}
+
+html:has(#ssip-dark-mode) .page-intro .page-eyebrow,
+html:has(#ssip-dark-mode) .finder-heading .page-eyebrow,
+html:has(#ssip-dark-mode) .finder-heading-main .page-eyebrow {
+  color: #75b5ff !important;
+  -webkit-text-fill-color: #75b5ff !important;
+}
+
+html:has(#ssip-dark-mode) .page-intro .finder-badge,
+html:has(#ssip-dark-mode) .finder-heading .finder-badge,
+html:has(#ssip-dark-mode) .finder-heading-main .finder-badge {
+  background: #17304f !important;
+  border-color: #527aa5 !important;
+  color: #edf5ff !important;
+  -webkit-text-fill-color: #edf5ff !important;
+}
+
+/* Search field immediately below the Scheme Finder intro. */
+html:has(#ssip-dark-mode) .st-key-explorer_search div[data-baseweb="input"],
+html:has(#ssip-dark-mode) .st-key-explorer_search div[data-testid="stTextInputRootElement"] {
+  background: #10213a !important;
+  border-color: #436486 !important;
+  color: #ffffff !important;
+}
+
+html:has(#ssip-dark-mode) .st-key-explorer_search input,
+html:has(#ssip-dark-mode) .st-key-explorer_search input::placeholder {
+  background-color: transparent !important;
+  color: #edf5ff !important;
+  -webkit-text-fill-color: #edf5ff !important;
+  opacity: 1 !important;
+}
+
+/* v3.4.0.22 — definitive light popup surface and Advanced Search filter target */
+
+/*
+Some BaseWeb menu descendants retain Streamlit's dark inline surface even
+while SSIP is in light mode. Force every structural descendant of the opened
+popover/listbox to the light surface, then restore the hover/selected state.
+*/
+html:not(:has(#ssip-dark-mode)) body [data-baseweb="popover"],
+html:not(:has(#ssip-dark-mode)) body [data-baseweb="popover"] > div,
+html:not(:has(#ssip-dark-mode)) body [data-baseweb="popover"] div,
+html:not(:has(#ssip-dark-mode)) body [data-baseweb="popover"] ul,
+html:not(:has(#ssip-dark-mode)) body [data-baseweb="popover"] li,
+html:not(:has(#ssip-dark-mode)) body [data-baseweb="menu"],
+html:not(:has(#ssip-dark-mode)) body [data-baseweb="menu"] > div,
+html:not(:has(#ssip-dark-mode)) body [data-baseweb="menu"] div,
+html:not(:has(#ssip-dark-mode)) body [data-baseweb="menu"] ul,
+html:not(:has(#ssip-dark-mode)) body [data-baseweb="menu"] li,
+html:not(:has(#ssip-dark-mode)) body [role="listbox"],
+html:not(:has(#ssip-dark-mode)) body [role="listbox"] > div,
+html:not(:has(#ssip-dark-mode)) body [role="listbox"] div,
+html:not(:has(#ssip-dark-mode)) body [role="listbox"] ul,
+html:not(:has(#ssip-dark-mode)) body [role="listbox"] li {
+  color-scheme: light !important;
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  color: #173a66 !important;
+  -webkit-text-fill-color: #173a66 !important;
+  opacity: 1 !important;
+}
+
+html:not(:has(#ssip-dark-mode)) body [data-baseweb="popover"] [role="option"]:hover,
+html:not(:has(#ssip-dark-mode)) body [data-baseweb="popover"] [role="option"][aria-selected="true"],
+html:not(:has(#ssip-dark-mode)) body [data-baseweb="menu"] [role="option"]:hover,
+html:not(:has(#ssip-dark-mode)) body [data-baseweb="menu"] [role="option"][aria-selected="true"],
+html:not(:has(#ssip-dark-mode)) body [role="listbox"] [role="option"]:hover,
+html:not(:has(#ssip-dark-mode)) body [role="listbox"] [role="option"][aria-selected="true"] {
+  background: #eaf3ff !important;
+  background-color: #eaf3ff !important;
+  color: #082c63 !important;
+  -webkit-text-fill-color: #082c63 !important;
+}
+
+/* Restore dark surfaces after the broad light-mode structural reset. */
+html:has(#ssip-dark-mode) body [data-baseweb="popover"],
+html:has(#ssip-dark-mode) body [data-baseweb="popover"] > div,
+html:has(#ssip-dark-mode) body [data-baseweb="popover"] div,
+html:has(#ssip-dark-mode) body [data-baseweb="popover"] ul,
+html:has(#ssip-dark-mode) body [data-baseweb="popover"] li,
+html:has(#ssip-dark-mode) body [data-baseweb="menu"],
+html:has(#ssip-dark-mode) body [data-baseweb="menu"] > div,
+html:has(#ssip-dark-mode) body [data-baseweb="menu"] div,
+html:has(#ssip-dark-mode) body [data-baseweb="menu"] ul,
+html:has(#ssip-dark-mode) body [data-baseweb="menu"] li,
+html:has(#ssip-dark-mode) body [role="listbox"],
+html:has(#ssip-dark-mode) body [role="listbox"] > div,
+html:has(#ssip-dark-mode) body [role="listbox"] div,
+html:has(#ssip-dark-mode) body [role="listbox"] ul,
+html:has(#ssip-dark-mode) body [role="listbox"] li {
+  color-scheme: dark !important;
+  background: #10213a !important;
+  background-color: #10213a !important;
+  color: #dce9f8 !important;
+  -webkit-text-fill-color: #dce9f8 !important;
+}
+
+html:has(#ssip-dark-mode) body [data-baseweb="popover"] [role="option"]:hover,
+html:has(#ssip-dark-mode) body [data-baseweb="popover"] [role="option"][aria-selected="true"],
+html:has(#ssip-dark-mode) body [data-baseweb="menu"] [role="option"]:hover,
+html:has(#ssip-dark-mode) body [data-baseweb="menu"] [role="option"][aria-selected="true"],
+html:has(#ssip-dark-mode) body [role="listbox"] [role="option"]:hover,
+html:has(#ssip-dark-mode) body [role="listbox"] [role="option"][aria-selected="true"] {
+  background: #20456f !important;
+  background-color: #20456f !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+/* Home-page Advanced Search link styled as the primary action button. */
+.home-advanced-search-link {
+  min-height: 3.25rem;
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: .72rem 1rem;
+  border: 1px solid #1261c9;
+  border-radius: 10px;
+  background: #1261c9;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  font-weight: 750;
+  text-decoration: none !important;
+  box-shadow: 0 8px 20px rgba(18, 97, 201, .16);
+}
+
+.home-advanced-search-link:hover {
+  background: #0d4fa8;
+  border-color: #0d4fa8;
+  color: #ffffff !important;
+  transform: translateY(-1px);
+}
+
+/* Anchor lands with enough breathing room below the compact site header. */
+.scheme-filter-anchor {
+  display: block;
+  height: 1px;
+  width: 1px;
+  position: relative;
+  top: -8px;
+  scroll-margin-top: 7.5rem;
+  pointer-events: none;
+}
+
+@media (max-width: 760px) {
+  .scheme-filter-anchor {
+    scroll-margin-top: 5.5rem;
+  }
+}
+

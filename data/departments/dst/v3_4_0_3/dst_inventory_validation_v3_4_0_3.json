@@ -1,0 +1,47 @@
+{
+  "service_version": "3.4.0.3",
+  "department_code": "DST",
+  "generated_at": "2026-07-10T10:12:30+00:00",
+  "counts": {
+    "input_pages": 418,
+    "input_master_candidates": 33,
+    "provisional_schemes": 6,
+    "provisional_programmes": 27,
+    "total_provisional_entities": 33,
+    "rejected_or_merged_candidates": 0,
+    "alias_candidates": 20,
+    "hierarchy_candidates": 11,
+    "evidence_rows": 116,
+    "identity_review_rows": 476
+  },
+  "quality": {
+    "duplicate_entity_ids": 0,
+    "duplicate_scheme_names": 0,
+    "duplicate_programme_names": 0,
+    "call_seeded_entities": 0,
+    "call_like_names": 0,
+    "temporal_names": 0,
+    "locked_entities": 0,
+    "missing_names": 0,
+    "missing_sources": 0,
+    "missing_confidence": 0,
+    "forbidden_lock_fields_found": []
+  },
+  "checks": {
+    "input_master_candidates_accounted_for": true,
+    "at_least_one_provisional_entity_created": true,
+    "entity_ids_unique": true,
+    "scheme_names_unique_within_inventory": true,
+    "programme_names_unique_within_inventory": true,
+    "entity_names_complete": true,
+    "source_urls_complete": true,
+    "identity_confidence_complete": true,
+    "call_pages_not_used_as_entity_seeds": true,
+    "call_like_names_absent": true,
+    "temporal_names_absent": true,
+    "identity_not_locked": true,
+    "forbidden_lock_fields_absent": true
+  },
+  "inventory_validation_passed": true,
+  "ready_for_v3_4_0_4": true
+}

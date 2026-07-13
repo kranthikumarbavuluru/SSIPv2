@@ -1,0 +1,24 @@
+{
+  "dashboard_modified": false,
+  "deterministic": true,
+  "inputs": {
+    "data/departments/dpiit/v3_4_1_0_2/dpiit_canonical_entity_registry_v3_4_1_0_2.csv": "4a9fc630f2142b1bb961a9e39a6bd353aa315574b450a19891f48c26bb705f65",
+    "data/departments/dpiit/v3_4_1_0_2/dpiit_manual_identity_review_queue_v3_4_1_0_2.csv": "109c685d47bc8eb6d8dde7104c179acabc373433c6c5e04b96c18e5f864062c4"
+  },
+  "outputs": {
+    "dpiit_adjudication_evidence_registry_v3_4_1_0_3.csv": "1d7728f2f4bb811215627c52e0b87239a6faecb27aaefca631380cea9ea30334",
+    "dpiit_ownership_evidence_decisions_v3_4_1_0_3.csv": "87b2e1d266d0baf25ce1df3b29044f83a8b97aa759c98f1b3ae3ecee62c59e55",
+    "dpiit_ownership_service_summary_v3_4_1_0_3.json": "1be46aff70991429281c0f5b6bdadc19ac3ccebc22a87ad3d4e63ceca3762874",
+    "dpiit_ownership_service_validation_v3_4_1_0_3.json": "040216be5364ff98c5a4207ebf189fc0b5015fbf62753d5efba43229150a6ce2",
+    "dpiit_resolved_review_items_v3_4_1_0_3.csv": "afdfc2af5c35508cfa48729f98c978da75b883516889f6a7083a40fb7a1f509f",
+    "dpiit_resolved_service_registry_v3_4_1_0_3.csv": "d1b87cd1344fb0c2270127394d2bf67419f87b5da2240865c4fd872c1a26a43e",
+    "dpiit_scheme_lineage_decisions_v3_4_1_0_3.csv": "54c20aea8319839a025d6fc1d34e5695b9cf04baf5fc43313a19b522382f77c6",
+    "dpiit_service_boundary_decisions_v3_4_1_0_3.csv": "a6aa48deeffc192257da6841a8ac504fa0b72699b77a96584cf4987cafc1b8af",
+    "dpiit_service_relationship_registry_v3_4_1_0_3.csv": "fb14cc2da3b9c44cbba9abaae8d3af0ecf1536c3564d2b76af292d7282a295be",
+    "dpiit_unresolved_review_queue_v3_4_1_0_3.csv": "bf80bdd621d4774e710c8f474b8718dc66ce04d077914141e331940669274d05"
+  },
+  "publication_performed": false,
+  "run_id": "dpiit_adjudication_run_20caf4ee1ea6b562017c",
+  "validation_passed": true,
+  "version": "3.4.1.0.3"
+}

@@ -1,0 +1,45 @@
+{
+  "aliases": 15,
+  "as_of": "2026-07-12",
+  "canonical_entities": 11,
+  "canonical_entities_by_type": {
+    "ECOSYSTEM_PLATFORM": 3,
+    "GOVERNMENT_SERVICE": 1,
+    "SCHEME": 4,
+    "UMBRELLA_PROGRAMME": 3
+  },
+  "canonical_names": [
+    "Bharat Startup Knowledge Access Registry",
+    "MAARG Startup India National Mentorship Platform",
+    "Startup India Investor Connect",
+    "DPIIT Startup Recognition",
+    "Credit Guarantee Scheme for Startups",
+    "Scheme for Facilitating Startups Intellectual Property Protection",
+    "Startup India Fund of Funds 2.0",
+    "Startup India Seed Fund Scheme",
+    "Bharat Startup Grand Challenge",
+    "National Startup Awards",
+    "Startup India Initiative"
+  ],
+  "database_modified": false,
+  "evidence_mappings": 19,
+  "manual_review": 6,
+  "manual_review_by_type": {
+    "MIXED_SERVICE_IDENTITY": 1,
+    "OWNERSHIP_VERIFICATION": 4,
+    "VERSION_AND_PREDECESSOR_LINEAGE": 1
+  },
+  "publication_performed": false,
+  "rejections": 1,
+  "relationships": 7,
+  "relationships_by_type": {
+    "HAS_APPLICATION_CALL": 1,
+    "HAS_APPLICATION_PORTAL": 1,
+    "HAS_AWARD_EDITION": 1,
+    "HAS_CHALLENGE_INSTANCE": 1,
+    "HAS_FAQ": 1,
+    "HAS_SUPPORTING_GUIDELINE": 2
+  },
+  "validation_passed": true,
+  "version": "3.4.1.0.2"
+}

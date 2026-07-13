@@ -1,0 +1,66 @@
+{
+  "service_version": "3.4.0.3.3.1",
+  "department_code": "DST",
+  "validated_at": "2026-07-10T11:48:28+00:00",
+  "mode": "SELECTIVE_CRAWL",
+  "counts": {
+    "input_gap_context_rows": 114,
+    "input_review_rows": 64,
+    "input_corrected_schemes": 3,
+    "input_corrected_programmes": 20,
+    "unresolved_targets_scored": 59,
+    "offline_closures": 55,
+    "selective_crawl_queue": 1,
+    "processed_selective_targets": 1,
+    "manual_entity_reviews": 4,
+    "possible_new_schemes": 0,
+    "possible_new_programmes": 0,
+    "final_corrected_schemes": 3,
+    "final_corrected_programmes": 20,
+    "final_unresolved": 0
+  },
+  "rates": {
+    "final_unresolved_rate": 0.0,
+    "gap_resolution_rate": 1.0,
+    "maximum_final_unresolved_rate": 0.05,
+    "minimum_gap_resolution_rate": 0.95
+  },
+  "classification_counts": {
+    "ACCESSIBILITY_LINK": 2,
+    "GLOBAL_NAVIGATION": 36,
+    "CATEGORY_OR_INDEX_PAGE": 7,
+    "SUPPORTING_INFORMATION": 23,
+    "BROKEN_OFFICIAL_LINK": 1,
+    "POLICY_REPORT_OR_DOCUMENT": 12,
+    "NEWS_EVENT_OR_RECRUITMENT": 14,
+    "INSTITUTION_OR_RESOURCE": 15,
+    "MANUAL_ENTITY_REVIEW": 4
+  },
+  "checks": {
+    "all_input_context_rows_preserved": true,
+    "all_final_classifications_valid": true,
+    "selective_crawl_depth_zero": true,
+    "selective_queue_within_limit": true,
+    "all_queue_targets_processed": true,
+    "unresolved_rate_within_limit": true,
+    "gap_resolution_rate_met": true,
+    "no_call_contamination": true,
+    "no_forbidden_identity_fields_created": true,
+    "identity_locked": false,
+    "existing_scheme_inventory_preserved": true,
+    "existing_programme_inventory_preserved": true
+  },
+  "quality": {
+    "invalid_final_classifications": [],
+    "call_contamination": 0,
+    "call_contamination_rows": [],
+    "forbidden_identity_fields_created": []
+  },
+  "upstream_summary": {
+    "service_version": "3.4.0.3.3",
+    "ready_for_v3_4_0_4": false
+  },
+  "calibration_validation_passed": true,
+  "ready_for_v3_4_0_4": true,
+  "partial_run": false
+}

@@ -1,0 +1,12 @@
+{
+  "package": "SSIP_v3_4_0_5_Startup_Focus_Deep_Search",
+  "service_version": "3.4.0.5",
+  "checks": {
+    "python_compile": true,
+    "self_test": true,
+    "pytest": true,
+    "curated_startup_scheme_count": true,
+    "curated_ecosystem_count": true
+  },
+  "package_validation_passed": true
+}

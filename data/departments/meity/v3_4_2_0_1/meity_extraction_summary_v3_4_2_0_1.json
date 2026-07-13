@@ -1,0 +1,62 @@
+{
+  "version": "3.4.2.0.1",
+  "phase": "MeitY Manual Master Register Pilot - SAMRIDH and TIDE 2.0",
+  "execution_mode": "MANUAL_PREVIEW_ONLY",
+  "validation_status": "PASS",
+  "publication_status": "NOT_PUBLISHED",
+  "scope": {
+    "permanent_scheme_count": 2,
+    "permanent_scheme_names": [
+      "SAMRIDH",
+      "TIDE 2.0"
+    ],
+    "new_permanent_identities_created": 0,
+    "open_calls_created": 0
+  },
+  "output_counts": {
+    "master_records": 2,
+    "legacy_adjudications": 2,
+    "call_instance_reviews": 4,
+    "official_evidence_rows": 13,
+    "status_adjudications": 2,
+    "extraction_pilot_records": 2,
+    "extraction_review_rows": 7,
+    "field_evidence_rows": 42
+  },
+  "catalogue_baseline": {
+    "active_rows": 137,
+    "visible_records": 51,
+    "immutable_published_rows": 137,
+    "canonical_publication_hash": "838ca86cde4b2ceebd4325850c783823c931a3e42ef5c4ef74b7ae54a4596e4d"
+  },
+  "decisions": [
+    {
+      "master_id": "147173e17ea741687247",
+      "canonical_name": "SAMRIDH",
+      "identity_decision": "EXISTING_MASTER_ID_RETAINED",
+      "programme_status": "CURRENT_SCHEME_INFORMATION_AVAILABLE",
+      "application_status": "APPLICATION_STATUS_REQUIRES_VERIFICATION",
+      "field_completeness": "0.77",
+      "confidence": "0.95",
+      "review_decision": "NEEDS_MANUAL_REVIEW"
+    },
+    {
+      "master_id": "6af79cf6c8a213dddce8",
+      "canonical_name": "TIDE 2.0",
+      "identity_decision": "EXISTING_MASTER_ID_RETAINED",
+      "programme_status": "HISTORICAL_INFORMATION_ONLY",
+      "application_status": "NO_CURRENT_APPLICATION_ROUTE_CONFIRMED",
+      "official_scheme_end_date": "2024-01-31",
+      "field_completeness": "0.85",
+      "confidence": "0.99",
+      "review_decision": "NEEDS_MANUAL_REVIEW"
+    }
+  ],
+  "unresolved_review_count": 7,
+  "governance_notes": [
+    "Existing SAMRIDH and TIDE 2.0 master IDs are retained.",
+    "Cohorts, rounds and application windows are not permanent scheme masters.",
+    "The unrelated MSH logo URL and 29 March 2023 date are excluded from public fields.",
+    "No publication, database update or dashboard update was performed."
+  ]
+}

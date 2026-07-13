@@ -1,0 +1,72 @@
+{
+  "version": "3.4.2.0.2",
+  "phase": "MeitY Governed Catalogue Promotion — SAMRIDH and TIDE 2.0",
+  "run_id": "20260713T060812+0000_024ea12e",
+  "published_at": "2026-07-13T06:08:12+00:00",
+  "publication_status": "PASS",
+  "before": {
+    "active_rows": 137,
+    "active_raw_sha256": "f82556d15593f83ffe40255fc79c8da9fba22430f82add99d07240d11d0f971a",
+    "active_canonical_sha256": "838ca86cde4b2ceebd4325850c783823c931a3e42ef5c4ef74b7ae54a4596e4d",
+    "current_manifest_sha256": "193e0d37a296662d9ed124d5847a27749f4c7bb64118b11294ea650264949a5a",
+    "dashboard_sha256": "77bd6cff08353e9587459b8f507ef5399b3c508fd514d73bdb87f8cc97ca14cd",
+    "database_sha256": "41862a0fadd78ac2238153fec50af7136619eaf6a5c22951f57ba42a2ee101c3",
+    "dashboard_snapshot": {
+      "loaded_records": 164,
+      "main_visible_records": 51,
+      "application_calls": 38,
+      "evidence_only_records": 75,
+      "archived_records": 4,
+      "verification_required_records": 35,
+      "meity_loaded_ids": [],
+      "meity_main_visible_ids": []
+    }
+  },
+  "after": {
+    "active_rows": 139,
+    "active_raw_sha256": "89e96cf71eb0852a12e4418097a8ceba62ca17f52cdebe9f55a604bf9ac564a4",
+    "active_canonical_sha256": "e6eda5af5e2287d28119baabee90fc71fcebb264bb580c90f1ebc0d1ca36b6f6",
+    "current_manifest_sha256": "58f87215a7f9f97a1407e8376f67418cb5d34528a09c4e09277994f125574c16",
+    "release_catalogue_sha256": "89e96cf71eb0852a12e4418097a8ceba62ca17f52cdebe9f55a604bf9ac564a4",
+    "release_manifest_sha256": "58f87215a7f9f97a1407e8376f67418cb5d34528a09c4e09277994f125574c16",
+    "dashboard_sha256": "77bd6cff08353e9587459b8f507ef5399b3c508fd514d73bdb87f8cc97ca14cd",
+    "database_sha256": "41862a0fadd78ac2238153fec50af7136619eaf6a5c22951f57ba42a2ee101c3",
+    "dashboard_snapshot": {
+      "loaded_records": 166,
+      "main_visible_records": 53,
+      "application_calls": 38,
+      "evidence_only_records": 75,
+      "archived_records": 4,
+      "verification_required_records": 37,
+      "meity_loaded_ids": [
+        "147173e17ea741687247",
+        "6af79cf6c8a213dddce8"
+      ],
+      "meity_main_visible_ids": [
+        "147173e17ea741687247",
+        "6af79cf6c8a213dddce8"
+      ]
+    }
+  },
+  "checks": {
+    "candidate_validation_passed": true,
+    "active_row_count_before_137": true,
+    "active_row_count_after_139": true,
+    "existing_137_rows_preserved": true,
+    "identity_order_preserved_for_existing_rows": true,
+    "master_ids_unique": true,
+    "both_meity_ids_present": true,
+    "dashboard_visible_53": true,
+    "both_meity_ids_dashboard_visible": true,
+    "dashboard_code_unchanged": true,
+    "database_unchanged": true,
+    "immutable_release_matches_active": true
+  },
+  "rollback": {
+    "directory": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\publication\\rollback\\20260713T060812+0000_024ea12e_pre_meity_v3_4_2_0_2",
+    "active_catalogue_backup": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\publication\\rollback\\20260713T060812+0000_024ea12e_pre_meity_v3_4_2_0_2\\catalogue_preview_v3_3_2.csv",
+    "current_manifest_backup": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\publication\\rollback\\20260713T060812+0000_024ea12e_pre_meity_v3_4_2_0_2\\current_manifest.json"
+  },
+  "database_modified": false,
+  "dashboard_modified": false
+}

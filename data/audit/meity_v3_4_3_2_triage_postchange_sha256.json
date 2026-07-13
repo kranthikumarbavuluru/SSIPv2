@@ -1,0 +1,16 @@
+{
+  "version": "3.4.3.2",
+  "phase": "MeitY Candidate Normalization, Identity Deduplication and Classification Triage",
+  "recorded_at": "2026-07-13T07:15:42+00:00",
+  "source_unchanged": {
+    "schemes": true,
+    "programmes": true,
+    "calls": true,
+    "reviews": true,
+    "pages": true,
+    "summary": true
+  },
+  "publication_performed": false,
+  "database_modified": false,
+  "dashboard_modified": false
+}

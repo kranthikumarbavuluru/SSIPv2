@@ -1,0 +1,94 @@
+{
+  "version": "3.4.3.5",
+  "stage": "CATALOGUE_ACTION_REFERENCE_MERGE_VALIDATION",
+  "execution_mode": "PREVIEW_ONLY",
+  "release_readiness_status": "PASS",
+  "action_validation": {
+    "checks": {
+      "exactly_four_actions": true,
+      "expected_schemes_only": true,
+      "all_action_ids_present": true,
+      "unique_action_ids": true,
+      "all_master_ids_present": true,
+      "unique_master_ids": true,
+      "all_scheme_details": true,
+      "all_scheme_master_roles": true,
+      "all_verified_information_pages": true,
+      "all_public_button_eligible": true,
+      "all_active": true,
+      "all_non_time_bound": true,
+      "all_urls_present": true,
+      "unique_urls": true,
+      "no_apply_now": true,
+      "no_open_call": true
+    },
+    "passed": true
+  },
+  "merge_validation": {
+    "master_id_column": "master_id",
+    "canonical_name_column": "scheme_name",
+    "enriched_rows": [
+      {
+        "row_number": 138,
+        "master_id": "147173e17ea741687247",
+        "canonical_name": "SAMRIDH",
+        "action_count": 1,
+        "action_ids": [
+          "3b4b9f5abbc860249aea77db"
+        ]
+      },
+      {
+        "row_number": 139,
+        "master_id": "6af79cf6c8a213dddce8",
+        "canonical_name": "TIDE 2.0",
+        "action_count": 1,
+        "action_ids": [
+          "3f93bf3290129a85a6d30883"
+        ]
+      },
+      {
+        "row_number": 140,
+        "master_id": "194b7ba77d6b53f30b91",
+        "canonical_name": "SASACT",
+        "action_count": 1,
+        "action_ids": [
+          "da08be38c7627802a59bff89"
+        ]
+      },
+      {
+        "row_number": 141,
+        "master_id": "94f8ab0a070a6ff15fce",
+        "canonical_name": "GENESIS",
+        "action_count": 1,
+        "action_ids": [
+          "965550efaa8901c53caa4094"
+        ]
+      }
+    ],
+    "checks": {
+      "source_row_count_is_141": true,
+      "output_row_count_equals_source": true,
+      "source_columns_preserved_in_order": true,
+      "only_expected_columns_appended": true,
+      "original_cell_values_preserved": true,
+      "exactly_four_rows_enriched": true,
+      "expected_schemes_enriched": true,
+      "one_action_per_enriched_row": true,
+      "sasact_enriched": true,
+      "genesis_enriched": true,
+      "non_action_rows_have_zero_count": true,
+      "no_apply_now_references": true,
+      "no_open_call_references": true
+    },
+    "passed": true
+  },
+  "safety": {
+    "source_catalogue_unchanged": true,
+    "verified_actions_unchanged": true,
+    "database_files_unchanged": true,
+    "dashboard_python_files_unchanged": true,
+    "publication_current_unchanged": true
+  },
+  "passed": true,
+  "validated_at_utc": "2026-07-13T09:28:15+00:00"
+}

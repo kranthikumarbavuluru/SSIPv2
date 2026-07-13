@@ -1,0 +1,10 @@
+{
+  "version": "3.4.2.0.2",
+  "validation_status": "FAIL",
+  "active_catalogue_unchanged": true,
+  "candidate_catalogue": "data/departments/meity/v3_4_2_0_2/catalogue_candidate_v3_4_2_0_2.csv",
+  "candidate_rows": 139,
+  "dashboard_visible_before": 51,
+  "dashboard_visible_after_candidate": 25,
+  "next_action": "Inspect failed checks before publication."
+}

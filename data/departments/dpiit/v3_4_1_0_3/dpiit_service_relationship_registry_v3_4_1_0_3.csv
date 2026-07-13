@@ -1,0 +1,2 @@
+﻿relationship_id,source_master_id,target_master_id,relationship_type,evidence_url,status,reasons
+dpiit_service_relationship_daed6df830911b7c3fd5,dpiit_master_3b767c3b91080149015f,dpiit_master_6c1afb477ef37cd6acaa,REQUIRES_DPIIT_RECOGNITION,https://www.dpiit.gov.in/static/uploads/2026/02/119e52e2a36f652215a32c3ccc5f9c66.pdf,LOCKED_OFFICIAL_SERVICE_RELATIONSHIP,The official notification and application page require startup recognition before 80-IAC certification.

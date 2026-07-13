@@ -1,0 +1,43 @@
+{
+  "version": "3.4.3.0",
+  "phase": "MeitY Department-Wide Automated Discovery and Classification",
+  "generated_at": "2026-07-13T06:33:50+00:00",
+  "outputs": [
+    {
+      "path": "data/departments/meity/v3_4_3_0/meity_call_instances_v3_4_3_0.csv",
+      "sha256": "054facbf8f70a30df5d0a6f226eea8a783a7aa1b25c518002933144ec1d59651",
+      "size_bytes": 414
+    },
+    {
+      "path": "data/departments/meity/v3_4_3_0/meity_discovered_pages_v3_4_3_0.csv",
+      "sha256": "6f44d30e8136474dc5ef75bb5bb48c111e6d6aaaccc633b813f59b847c268ed6",
+      "size_bytes": 2768
+    },
+    {
+      "path": "data/departments/meity/v3_4_3_0/meity_discovery_summary_v3_4_3_0.json",
+      "sha256": "bcb2c3b1a3b1f8103277fb4c94b2eec958191297067ab6f267ae2e698f9bb02b",
+      "size_bytes": 1805
+    },
+    {
+      "path": "data/departments/meity/v3_4_3_0/meity_evidence_only_pages_v3_4_3_0.csv",
+      "sha256": "86494728916d729b1bb60219bb42e2017c9b3c1283f27e90f5aec27a91f4beac",
+      "size_bytes": 219
+    },
+    {
+      "path": "data/departments/meity/v3_4_3_0/meity_manual_review_queue_v3_4_3_0.csv",
+      "sha256": "383fe107fa40880a3acc64b92eb5d6a9dcef3ef94865aa797a3384f591279d55",
+      "size_bytes": 209
+    },
+    {
+      "path": "data/departments/meity/v3_4_3_0/meity_programme_master_candidates_v3_4_3_0.csv",
+      "sha256": "86494728916d729b1bb60219bb42e2017c9b3c1283f27e90f5aec27a91f4beac",
+      "size_bytes": 219
+    },
+    {
+      "path": "data/departments/meity/v3_4_3_0/meity_scheme_master_candidates_v3_4_3_0.csv",
+      "sha256": "c2a23283a3da00283bf9771eabef273cf45d03b9dc8e03564a431451daa25c72",
+      "size_bytes": 939
+    }
+  ],
+  "publication_status": "NOT_PUBLISHED"
+}

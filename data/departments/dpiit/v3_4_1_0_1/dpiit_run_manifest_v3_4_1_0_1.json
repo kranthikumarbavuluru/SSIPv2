@@ -1,0 +1,21 @@
+{
+  "as_of": "2026-07-12",
+  "deterministic_ordering": true,
+  "dst_outputs_modified": false,
+  "mode": "GOVERNED_PREVIEW",
+  "network_enabled": false,
+  "outputs": {
+    "dpiit_discovery_candidates_v3_4_1_0_1.csv": "06e1cb247a70be12fd93d67039579a9846b05c7d05181d8341c90cc9f212726f",
+    "dpiit_discovery_summary_v3_4_1_0_1.json": "ae927e485a99f6f951aa45fb7b40b5ca45489dc9a5b28ba89b5393147a15ccb6",
+    "dpiit_discovery_validation_v3_4_1_0_1.json": "b4c0c8f58bace76f69914e2bf5779204a4607db0709af8a0c3ead4f9c965ff3b",
+    "dpiit_identity_review_queue_v3_4_1_0_1.csv": "5c8ce125a24aca483a69653014f0794e7f949121734c22175db7019629bfc203",
+    "dpiit_page_role_classification_v3_4_1_0_1.csv": "06e1cb247a70be12fd93d67039579a9846b05c7d05181d8341c90cc9f212726f",
+    "dpiit_rejected_candidates_v3_4_1_0_1.csv": "e2f71b01a2a3b54aee0a8060daa926554cd418917d5906da888a8ea11ad3dbc2",
+    "dpiit_source_registry_v3_4_1_0_1.csv": "f8bf748b9608b4710efc33c393db73b6dc7b6284870e1c767f561f7abf8bf197"
+  },
+  "public_dashboard_modified": false,
+  "publication_current_modified": false,
+  "run_id": "dpiit_run_218e2f0a677d3dcfa9d0",
+  "validation_passed": true,
+  "version": "3.4.1.0.1"
+}

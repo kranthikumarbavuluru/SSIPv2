@@ -1,0 +1,103 @@
+{
+  "package_version": "3.4.0.6d",
+  "package_name": "Complete Sector Repair",
+  "validation": {
+    "python_compile": "PASSED",
+    "pytest": "5 passed",
+    "self_test": "PASSED",
+    "missing_test_restored": true,
+    "preflight_checks_added": true
+  },
+  "files": [
+    {
+      "path": ".pytest_cache/.gitignore",
+      "sha256": "3ed731b65d06150c138e2dadb0be0697550888a6b47eb8c45ecc9adba8b8e9bd",
+      "size_bytes": 37
+    },
+    {
+      "path": ".pytest_cache/CACHEDIR.TAG",
+      "sha256": "37dc88ef9a0abeddbe81053a6dd8fdfb13afb613045ea1eb4a5c815a74a3bde4",
+      "size_bytes": 191
+    },
+    {
+      "path": ".pytest_cache/README.md",
+      "sha256": "73fd6fccdd802c419a6b2d983d6c3173b7da97558ac4b589edec2dfe443db9ad",
+      "size_bytes": 302
+    },
+    {
+      "path": ".pytest_cache/v/cache/lastfailed",
+      "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "size_bytes": 2
+    },
+    {
+      "path": ".pytest_cache/v/cache/nodeids",
+      "sha256": "69cbb390617cdedfe1f662ce49f00fdedf8a7afd0a80f38ef7d716f3b5a112d6",
+      "size_bytes": 333
+    },
+    {
+      "path": "PACKAGE_VALIDATION_v3_4_0_6b.json",
+      "sha256": "3db2dc8829c29b1a02854cff76c44e988d4e1ee9e8356fe634b6ab47ece5586e",
+      "size_bytes": 3120
+    },
+    {
+      "path": "README_v3_4_0_6b.md",
+      "sha256": "a77f607e003a1f3146dcae1d384d91569352c3fc2b1cac32c4e2e0b42136edb4",
+      "size_bytes": 1294
+    },
+    {
+      "path": "README_v3_4_0_6d.md",
+      "sha256": "773d7f1d3c407b2e76b6392032483dc8498fdb982f33a83b31f304f4c98e34c5",
+      "size_bytes": 757
+    },
+    {
+      "path": "RUN_SECTOR_REPAIR_v3_4_0_6b.ps1",
+      "sha256": "8579bc9293a0ff9964cf7a9995cc7dd0c643a31872329ac59ea16937bf979cbd",
+      "size_bytes": 4230
+    },
+    {
+      "path": "config/sector_rules_v3_4_0_6b.json",
+      "sha256": "4b3fd514c16dad45446b72c65d3969d564967e44300e7c7c859b3bf04775bee7",
+      "size_bytes": 5293
+    },
+    {
+      "path": "requirements-v3_4_0_6b.txt",
+      "sha256": "2899f82bee41846d2e3b445001d33fec545fa4b69dc5d1c06f0e80736c941f52",
+      "size_bytes": 56
+    },
+    {
+      "path": "scripts/sector_catalogue_repair_v3_4_0_6b.py",
+      "sha256": "9afd708833c3af18fbf70a4356b310af8400c53a595521a443c2ef0da206e9f3",
+      "size_bytes": 18767
+    },
+    {
+      "path": "scripts/verify_dashboard_sector_source_v3_4_0_6b.py",
+      "sha256": "bcedb20c34b1d3028d17c61a0b6538c9b890b6f76a5581d044b5a512bf221484",
+      "size_bytes": 1074
+    },
+    {
+      "path": "tests/.pytest_cache/.gitignore",
+      "sha256": "3ed731b65d06150c138e2dadb0be0697550888a6b47eb8c45ecc9adba8b8e9bd",
+      "size_bytes": 37
+    },
+    {
+      "path": "tests/.pytest_cache/CACHEDIR.TAG",
+      "sha256": "37dc88ef9a0abeddbe81053a6dd8fdfb13afb613045ea1eb4a5c815a74a3bde4",
+      "size_bytes": 191
+    },
+    {
+      "path": "tests/.pytest_cache/README.md",
+      "sha256": "73fd6fccdd802c419a6b2d983d6c3173b7da97558ac4b589edec2dfe443db9ad",
+      "size_bytes": 302
+    },
+    {
+      "path": "tests/.pytest_cache/v/cache/nodeids",
+      "sha256": "df17359b15ee3cd1efd942b10da0792f7ee63a2d2589d248395d9688628aea80",
+      "size_bytes": 303
+    },
+    {
+      "path": "tests/test_sector_catalogue_repair_v3_4_0_6b.py",
+      "sha256": "9eb2c890e9d343229fe8159d7ed07b6c2b45dc18f236d51b05a04219bbb2f65e",
+      "size_bytes": 1090
+    }
+  ]
+}

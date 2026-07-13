@@ -1,0 +1,59 @@
+{
+  "service_version": "3.4.0.3",
+  "department_code": "DST",
+  "department_name": "Department of Science and Technology",
+  "completed_at": "2026-07-10T10:12:30+00:00",
+  "input_dir": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\departments\\dst\\v3_4_0_2",
+  "link_graph": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\departments\\dst\\v3_4_0_1\\crawl\\dst_link_graph_v3_4_0_1.csv",
+  "output_dir": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\departments\\dst\\v3_4_0_3",
+  "network_access_used": false,
+  "recrawl_performed": false,
+  "identity_safeguard": {
+    "identity_state": "PROVISIONAL_NOT_LOCKED",
+    "call_pages_used_as_entity_seeds": false,
+    "call_titles_promoted_to_scheme_names": false,
+    "temporal_call_tokens_allowed_in_identity": false,
+    "description": "Permanent identities are proposed for curation only; v3.4.0.4 must approve and lock them."
+  },
+  "counts": {
+    "classified_pages_read": 418,
+    "classified_documents_read": 681,
+    "link_graph_rows_read": 41086,
+    "scheme_master_page_candidates": 6,
+    "programme_master_page_candidates": 27,
+    "provisional_schemes": 6,
+    "provisional_programmes": 27,
+    "provisional_entities_total": 33,
+    "alias_candidates": 20,
+    "hierarchy_candidates": 11,
+    "master_source_evidence_rows": 116,
+    "rejected_or_merged_candidates": 0,
+    "identity_review_rows": 476
+  },
+  "provisional_subtype_counts": {
+    "HISTORICAL_PROGRAMME": 1,
+    "SCHEME_COMPONENT": 1,
+    "STANDARD_PROGRAMME": 15,
+    "STANDARD_SCHEME": 5,
+    "UMBRELLA_PROGRAMME": 11
+  },
+  "review_type_counts": {
+    "CATEGORY_INDEX_DISCOVERY_GAP": 443,
+    "PROVISIONAL_IDENTITY": 33
+  },
+  "rejection_reason_counts": {},
+  "inventory_validation_passed": true,
+  "ready_for_v3_4_0_4": true,
+  "outputs": {
+    "schemes": "dst_provisional_scheme_inventory_v3_4_0_3.csv",
+    "programmes": "dst_provisional_programme_inventory_v3_4_0_3.csv",
+    "aliases": "dst_scheme_alias_candidates_v3_4_0_3.csv",
+    "hierarchy": "dst_programme_hierarchy_candidates_v3_4_0_3.csv",
+    "evidence": "dst_master_source_evidence_v3_4_0_3.csv",
+    "rejected": "dst_rejected_master_candidates_v3_4_0_3.csv",
+    "review": "dst_identity_review_queue_v3_4_0_3.csv",
+    "audit": "dst_inventory_audit_v3_4_0_3.csv",
+    "validation": "dst_inventory_validation_v3_4_0_3.json",
+    "summary": "dst_inventory_summary_v3_4_0_3.json"
+  }
+}

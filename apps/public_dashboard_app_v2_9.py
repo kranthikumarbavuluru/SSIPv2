@@ -1,12 +1,17 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 import csv
 import html
+import re
+
+from copy import copy
+from dataclasses import is_dataclass, replace
 
 from collections import Counter
 from datetime import date
 import sys
 from pathlib import Path
+from urllib.parse import quote
 
 import streamlit as st
 
@@ -20,7 +25,6 @@ from ssip_dashboard.components import (
     esc,
     horizontal_bars,
     metric_card,
-    nav_header,
     scheme_card,
     warning_box,
 )
@@ -32,6 +36,7 @@ from ssip_dashboard.metrics import (
     compute_metrics,
     department_coverage,
     government_level,
+    grant_support_distribution,
     latest_records,
     open_records,
     resource_counts,
@@ -65,26 +70,26 @@ from ssip_dashboard.dst_history import (
 )
 
 
-APP_VERSION = "3.4.0.13"
+APP_VERSION = "3.4.0.23-ui-final"
 PAGE_NAMES = [
     "Home",
     "Scheme Explorer",
-    "DST Schemes",
     "Calls & Opportunities",
+    "DST Schemes",
     "Incubators & Ecosystem",
-    "Official Sources",
     "Directory",
+    "Official Sources",
     "Scheme Details",
 ]
 NAV_LABELS = {
-    "Home": "Overview",
-    "Scheme Explorer": "Scheme Finder",
-    "DST Schemes": "DST Programmes",
+    "Home": "Home",
+    "Scheme Explorer": "Find Schemes",
     "Calls & Opportunities": "Live Calls",
+    "DST Schemes": "DST",
     "Incubators & Ecosystem": "Ecosystem",
-    "Official Sources": "Official Sources",
     "Directory": "Resources",
-    "Scheme Details": "Scheme Profiles",
+    "Official Sources": "Sources",
+    "Scheme Details": "Profiles",
 }
 PAGE_SLUGS = {
     "Home": "overview",
@@ -98,17 +103,112 @@ PAGE_SLUGS = {
 }
 
 
-def load_css() -> str:
-    path = PROJECT_ROOT / "ssip_dashboard" / "assets" / "styles.css"
-    return path.read_text(encoding="utf-8")
+# Public organisation identity aliases.
+#
+# These aliases affect only the in-memory public view. The governed source
+# catalogue remains untouched. Add new aliases here only after confirming that
+# they represent the same legal/administrative organisation.
+CANONICAL_ORGANISATION_BY_KEY = {
+    "dst": "Department of Science and Technology (DST)",
+    "department of science and technology": "Department of Science and Technology (DST)",
+    "department science and technology": "Department of Science and Technology (DST)",
+    "department of science technology": "Department of Science and Technology (DST)",
+    "department of science ad technology": "Department of Science and Technology (DST)",
+}
 
 
-def load_dashboard_theme_css() -> str:
-    path = PROJECT_ROOT / "assets" / "dashboard_theme.css"
-    try:
-        return path.read_text(encoding="utf-8")
-    except OSError:
+def organisation_identity_key(value: object) -> str:
+    """Return a stable comparison key for department/agency aliases."""
+    text = html.unescape(str(value or "")).strip().casefold()
+    if not text:
         return ""
+
+    # Remove a trailing/embedded abbreviation such as "(DST)" before comparing.
+    text = re.sub(r"\([^)]*\)", " ", text)
+    text = text.replace("&", " and ")
+    text = re.sub(r"[^a-z0-9]+", " ", text)
+    return " ".join(text.split())
+
+
+def canonical_organisation_name(value: object) -> str:
+    """Map a known alias to its governed public-facing organisation name."""
+    original = str(value or "").strip()
+    if not original:
+        return ""
+    return CANONICAL_ORGANISATION_BY_KEY.get(
+        organisation_identity_key(original),
+        original,
+    )
+
+
+def copy_with_updates(value: object, **updates: object) -> object:
+    """Safely copy dataclass, Pydantic, namedtuple or mutable model objects."""
+    if not updates:
+        return value
+    if is_dataclass(value):
+        return replace(value, **updates)
+    if hasattr(value, "model_copy"):
+        return value.model_copy(update=updates)
+    if hasattr(value, "_replace"):
+        return value._replace(**updates)
+
+    clone = copy(value)
+    for field_name, field_value in updates.items():
+        setattr(clone, field_name, field_value)
+    return clone
+
+
+def canonicalize_catalogue_organisations(bundle: CatalogueBundle) -> CatalogueBundle:
+    """
+    Consolidate known department/agency aliases before public calculations.
+
+    This makes filters, department counts, analytics, cards and profiles use
+    one canonical organisation identity while preserving the source files.
+    """
+    normalized_records: list[CatalogueRecord] = []
+
+    for record in bundle.records:
+        department_before = str(getattr(record, "department", "") or "").strip()
+        agency_before = str(getattr(record, "implementing_agency", "") or "").strip()
+
+        department_after = canonical_organisation_name(department_before)
+        agency_after = canonical_organisation_name(agency_before)
+
+        updates: dict[str, object] = {}
+        if department_after != department_before:
+            updates["department"] = department_after
+        if agency_after != agency_before:
+            updates["implementing_agency"] = agency_after
+
+        normalized_records.append(
+            copy_with_updates(record, **updates) if updates else record
+        )
+
+    return copy_with_updates(bundle, records=normalized_records)
+
+
+def read_stylesheet(path: Path, *, required: bool = False) -> str:
+    """Read a CSS file without allowing an optional theme file to stop the app."""
+    try:
+        return path.read_text(encoding="utf-8-sig")
+    except OSError:
+        if required:
+            raise
+        return ""
+
+
+def load_stylesheets() -> list[str]:
+    """Load SSIP styles from general rules to final public-dashboard overrides."""
+    stylesheet_paths = [
+        (PROJECT_ROOT / "ssip_dashboard" / "assets" / "styles.css", True),
+        (PROJECT_ROOT / "assets" / "dashboard_theme.css", False),
+        (PROJECT_ROOT / "assets" / "styles" / "ssip_public_dashboard.css", False),
+    ]
+    return [
+        css
+        for path, required in stylesheet_paths
+        if (css := read_stylesheet(path, required=required))
+    ]
 
 
 st.set_page_config(
@@ -117,15 +217,14 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="collapsed",
 )
-st.markdown(f"<style>{load_css()}</style>", unsafe_allow_html=True)
-dashboard_theme_css = load_dashboard_theme_css()
-if dashboard_theme_css:
-    st.markdown(f"<style>{dashboard_theme_css}</style>", unsafe_allow_html=True)
+for stylesheet in load_stylesheets():
+    st.markdown(f"<style>{stylesheet}</style>", unsafe_allow_html=True)
 
 
 @st.cache_data(ttl=45, show_spinner=False)
 def cached_catalogue() -> CatalogueBundle:
-    return load_catalogue(DashboardConfig.from_env(PROJECT_ROOT))
+    loaded = load_catalogue(DashboardConfig.from_env(PROJECT_ROOT))
+    return canonicalize_catalogue_organisations(loaded)
 
 
 @st.cache_data(ttl=300, show_spinner=False)
@@ -178,6 +277,259 @@ def display_token(value: object) -> str:
     return text
 
 
+PUBLIC_LABELS = {
+    "SCHEME_OR_PROGRAMME": "Scheme / Programme",
+    "SCHEME": "Scheme",
+    "PROGRAMME": "Programme",
+    "PROGRAM": "Programme",
+    "APPLICATION_CALL": "Application Call",
+    "CALL": "Application Call",
+    "CHALLENGE": "Challenge",
+    "PROGRAMME_COMPONENT": "Programme component",
+    "PROGRAM_COMPONENT": "Programme component",
+    "SECTOR_AGNOSTIC_MULTI_SECTOR": "Multi-sector",
+    "SECTOR_AGNOSTIC_/_MULTI_SECTOR": "Multi-sector",
+    "CALL_FOR_APPLICATIONS": "Call for applications",
+    "OPEN_FUNDING_CALL": "Open funding call",
+    "REFERENCE": "Reference",
+    "FUND": "Fund",
+}
+
+
+def public_label(value: object, *, fallback: str = "") -> str:
+    """Convert governed/internal tokens into concise public-facing language."""
+    raw = str(value or "").strip()
+    if not raw:
+        return fallback
+    token = raw.upper().replace("-", "_").replace(" ", "_")
+    if token in PUBLIC_LABELS:
+        return PUBLIC_LABELS[token]
+    return raw.replace("_", " ").strip().title()
+
+
+def optional_text(value: object) -> str:
+    text = str(value or "").strip()
+    if not text:
+        return ""
+    if text.casefold() in {
+        "none", "null", "nan", "not available", "not recorded",
+        "closing date not recorded", "date not recorded",
+    }:
+        return ""
+    return text
+
+
+def concise_text(value: str, *, limit: int = 190) -> str:
+    """Return a readable card summary that avoids cutting off mid-sentence."""
+    cleaned = " ".join(str(value or "").split())
+    if len(cleaned) <= limit:
+        return cleaned
+
+    candidate = cleaned[:limit].rstrip()
+    minimum = int(limit * 0.52)
+
+    # Prefer a complete sentence when one is available within the card limit.
+    sentence_end = max(candidate.rfind(mark) for mark in (".", "?", "!"))
+    if sentence_end >= minimum:
+        return candidate[: sentence_end + 1].strip()
+
+    # Long official statements are often one sentence. A comma or semicolon can
+    # still provide a complete, natural summary without a dangling fragment.
+    clause_end = max(candidate.rfind(mark) for mark in (";", ",", ":"))
+    if clause_end >= int(limit * 0.42):
+        return candidate[:clause_end].rstrip(" ,;:") + "."
+
+    # Final fallback: finish on a word boundary and make the continuation clear.
+    word_end = candidate.rfind(" ")
+    shortened = candidate[:word_end if word_end > 0 else limit].rstrip(" ,;:-")
+    return f"{shortened}…"
+
+
+def public_record_kind(record: CatalogueRecord) -> str:
+    kind = public_label(record.record_kind, fallback="Scheme / Programme")
+    if kind == "Reference" and str(record.record_kind or "").upper() not in {"REFERENCE"}:
+        return "Scheme / Programme"
+    return kind
+
+
+def record_details_href(record: CatalogueRecord) -> str:
+    return (
+        f"?page={PAGE_SLUGS['Scheme Details']}"
+        f"&scheme={quote(str(record.master_id or ''))}"
+    )
+
+
+def public_status_text(record: CatalogueRecord) -> str:
+    """Return a plain-language public status without exposing internal catalogue tokens."""
+    bucket = status_bucket(record)
+    labels = {
+        "OPEN": "Open now",
+        "CLOSING_SOON": "Closing soon",
+        "UPCOMING": "Upcoming",
+        "VERIFICATION_REQUIRED": "Check current status",
+        "CLOSED": "Closed",
+        "HISTORICAL": "Historical",
+    }
+    if bucket in labels:
+        return labels[bucket]
+    kind = str(record.record_kind or "").upper()
+    if kind in {"APPLICATION_CALL", "CALL", "CHALLENGE"}:
+        return "Call information"
+    return "Scheme information"
+
+
+def verified_scheme_details_action(
+    record: CatalogueRecord,
+) -> dict[str, str] | None:
+    # Return the first governed Scheme Details action, if present.
+    for action in getattr(record, "verified_public_actions", []) or []:
+        if not isinstance(action, dict):
+            continue
+        if str(action.get("action_type", "")).upper() != "SCHEME_DETAILS":
+            continue
+        if str(action.get("link_role", "")).upper() != "SCHEME_MASTER":
+            continue
+        if str(action.get("verification_status", "")).upper() != (
+            "VERIFIED_INFORMATION_PAGE"
+        ):
+            continue
+        if action.get("is_active") is not True:
+            continue
+        if action.get("is_time_bound") is not False:
+            continue
+        resolved_url = str(action.get("resolved_url", "") or "").strip()
+        if not resolved_url.startswith(("https://", "http://")):
+            continue
+        return {
+            "label": "Scheme Details",
+            "resolved_url": resolved_url,
+        }
+    return None
+
+
+def public_record_card(
+    record: CatalogueRecord,
+    *,
+    compact: bool = True,
+    include_details_link: bool = True,
+) -> str:
+    """Render a public-first scheme/call card without exposing internal tokens."""
+    agency = (
+        record.department
+        or record.implementing_agency
+        or record.source
+        or "Government department / agency"
+    )
+    description_source = " ".join(
+        (record.objectives or record.benefits or ["Information is available on the official source."])[:1]
+    )
+    description = concise_text(description_source, limit=175 if compact else 240)
+    kind = public_record_kind(record)
+    status = public_status_text(record)
+
+    tag_values = [*record.sectors[:1], *record.scheme_types[:1]]
+    tags = "".join(
+        f'<span class="public-chip">{esc(public_label(value))}</span>'
+        for value in tag_values
+        if optional_text(value)
+    )
+
+    facts: list[str] = []
+    closing = optional_text(record.closing_date)
+    if closing:
+        facts.append(f'<span><b>Closes</b> {esc(closing)}</span>')
+    if record.funding_maximum not in (None, "", 0, 0.0):
+        facts.append(f'<span><b>Support up to</b> {esc(format_inr(record.funding_maximum))}</span>')
+    elif record.funding_minimum not in (None, "", 0, 0.0):
+        facts.append(f'<span><b>Support from</b> {esc(format_inr(record.funding_minimum))}</span>')
+    fact_html = f'<div class="public-record-facts">{"".join(facts)}</div>' if facts else ""
+
+    actions: list[str] = []
+    governed_details = verified_scheme_details_action(record)
+    if record.application_url:
+        actions.append(
+            f'<a class="public-action public-action-primary" target="_blank" rel="noopener noreferrer" '
+            f'href="{esc(record.application_url)}">Apply now</a>'
+        )
+    if include_details_link and record.master_id:
+        actions.append(
+            f'<a class="public-action public-action-secondary" target="_top" '
+            f'href="{html.escape(record_details_href(record), quote=True)}">View details</a>'
+        )
+    if governed_details:
+        actions.append(
+            f'<a class="public-action public-action-quiet" target="_blank" rel="noopener noreferrer" '
+            f'href="{html.escape(governed_details["resolved_url"], quote=True)}">Scheme Details <span aria-hidden="true">&#8599;</span></a>'
+        )
+    elif record.official_page_url:
+        actions.append(
+            f'<a class="public-action public-action-quiet" target="_blank" rel="noopener noreferrer" '
+            f'href="{esc(record.official_page_url)}">Official page <span aria-hidden="true">&#8599;</span></a>'
+        )
+    if record.guideline_urls:
+        actions.append(
+            f'<a class="public-action public-action-quiet" target="_blank" rel="noopener noreferrer" '
+            f'href="{esc(record.guideline_urls[0])}">Guideline <span aria-hidden="true">↗</span></a>'
+        )
+
+    empty_note = ""
+    if not facts:
+        empty_note = '<div class="public-record-note">More details are available on the official page.</div>'
+
+    return (
+        '<article class="public-record-card">'
+        '<div class="public-record-card-top">'
+        f'<span class="status-badge {status_css_class(record)}">{esc(status)}</span>'
+        f'<span class="public-kind">{esc(kind)}</span>'
+        '</div>'
+        f'<h3>{esc(record.scheme_name)}</h3>'
+        f'<div class="public-record-agency">{esc(agency)}</div>'
+        f'<p>{esc(description)}</p>'
+        f'{fact_html}{empty_note}'
+        f'<div class="public-chip-row">{tags}</div>'
+        f'<div class="public-record-actions">{"".join(actions)}</div>'
+        '</article>'
+    )
+
+
+def site_header(active_page: str) -> str:
+    """Render a compact website-style header with query-parameter navigation."""
+    primary_pages = [
+        "Home",
+        "Scheme Explorer",
+        "Calls & Opportunities",
+        "DST Schemes",
+        "Directory",
+        "Official Sources",
+    ]
+    links = []
+    for page_name in primary_pages:
+        active = " is-active" if active_page == page_name else ""
+        links.append(
+            f'<a class="ssip-nav-link{active}" target="_top" href="?page={PAGE_SLUGS[page_name]}">'
+            f'{esc(NAV_LABELS[page_name])}</a>'
+        )
+    more_active = active_page in {"Incubators & Ecosystem", "Scheme Details"}
+    more_class = " is-active" if more_active else ""
+    more_links = (
+        f'<a target="_top" href="?page={PAGE_SLUGS["Incubators & Ecosystem"]}">Ecosystem</a>'
+        f'<a target="_top" href="?page={PAGE_SLUGS["Scheme Details"]}">Scheme profiles</a>'
+    )
+    return (
+        '<header class="ssip-site-header">'
+        '<div class="ssip-header-main">'
+        '<a class="ssip-brand-lockup" target="_top" href="?page=overview" aria-label="SSIP home">'
+        '<span class="ssip-brand-mark">SSIP</span>'
+        '<span class="ssip-brand-copy"><strong>SSIP</strong>'
+        '<small>Startup Scheme Intelligence Platform</small></span></a>'
+        f'<nav class="ssip-primary-nav" aria-label="Primary navigation">{" ".join(links)}'
+        f'<details class="ssip-nav-more{more_class}"><summary>More</summary>'
+        f'<div class="ssip-nav-more-menu">{more_links}</div></details></nav>'
+        '<div class="ssip-header-trust"><i></i><span>Official-source catalogue</span></div>'
+        '</div></header>'
+    )
+
+
 def page_intro(eyebrow: str, title: str, description: str, *, badge: str = "") -> str:
     badge_html = f'<span class="finder-badge">{esc(badge)}</span>' if badge else ""
     return (
@@ -191,7 +543,10 @@ def page_intro(eyebrow: str, title: str, description: str, *, badge: str = "") -
 def render_scheme_row(record: CatalogueRecord, lookup: dict[str, str] | None = None) -> str:
     agency = record.department or record.implementing_agency or record.source or "Agency / Source not recorded"
     description = " ".join((record.objectives or record.benefits or ["Information available in official sources."])[:1])
-    tags = "".join(f'<span class="tag">{esc(tag)}</span>' for tag in [*record.sectors[:2], *record.scheme_types[:1]])
+    tags = "".join(
+        f'<span class="tag">{esc(public_label(tag))}</span>'
+        for tag in [*record.sectors[:2], *record.scheme_types[:1]]
+    )
     level = government_level(record, lookup or {})
     links = []
     if record.official_page_url:
@@ -211,7 +566,7 @@ def render_scheme_row(record: CatalogueRecord, lookup: dict[str, str] | None = N
         f'<div class="opportunity-icon">{esc((record.scheme_name or "S")[:2].upper())}</div>'
         '<div class="opportunity-main">'
         f'<div class="scheme-card-head"><span class="status-badge {status_css_class(record)}">{esc(status_label(record))}</span>'
-        f'<span class="record-kind">{esc(record.record_kind or "Catalogue Record")}</span>'
+        f'<span class="record-kind">{esc(public_record_kind(record))}</span>'
         f'<span class="record-kind">{esc(level)}</span></div>'
         f'<h3>{esc(record.scheme_name)}</h3>'
         f'<div class="agency-line">Ministry: {esc(not_available(record.ministry))}</div>'
@@ -460,9 +815,18 @@ def clear_home_filter_state() -> None:
         st.session_state[key] = value
 
 
+def navigate_to(page_name: str) -> None:
+    """Move between public pages without mutating a rendered widget mid-run."""
+    st.session_state["ssip_primary_navigation"] = page_name
+    if "focus" in st.query_params:
+        del st.query_params["focus"]
+    st.query_params["page"] = PAGE_SLUGS[page_name]
+
+
 def render_home(bundle: CatalogueBundle, official_sources: list[OfficialSource]) -> None:
     populations = split_catalogue_populations(bundle.records)
     records = populations.main_scheme_records
+    calls = populations.application_call_records
     metrics = compute_metrics(bundle.records)
     source_stats = source_summary(official_sources)
     lookup = source_scope_lookup(official_sources)
@@ -470,43 +834,128 @@ def render_home(bundle: CatalogueBundle, official_sources: list[OfficialSource])
     sector_ready = next((item.complete for item in analytics.readiness if item.label == "Sector evidenced"), 0)
 
     st.markdown(
-        '<section class="public-hero" aria-labelledby="public-hero-title">'
+        '<section class="public-hero public-hero-compact" aria-labelledby="public-hero-title">'
         '<div class="public-hero-copy">'
-        '<span class="public-hero-kicker">Government startup opportunity intelligence</span>'
-        '<h1 id="public-hero-title">Find Startup Support with Clear Evidence</h1>'
-        '<p>Search curated schemes and programmes, monitor live application calls separately, and use official sources to make informed application decisions.</p>'
+        '<span class="public-hero-kicker">Official government startup support</span>'
+        '<h1 id="public-hero-title">Find government support for your startup</h1>'
+        '<p>Search verified schemes, grants, programmes and live calls from official government sources.</p>'
         '<div class="public-hero-scope" aria-label="Catalogue scope">'
-        '<span>Central Government</span><span>Andhra Pradesh</span><span>Startup &amp; Innovator Focus</span>'
+        '<span>Central Government</span><span>Andhra Pradesh</span><span>Startups &amp; Innovators</span>'
         '</div></div>'
         '<aside class="public-hero-summary" aria-label="Current catalogue summary">'
-        '<div class="public-hero-summary-label">Current catalogue</div>'
+        '<div class="public-hero-summary-label">Catalogue at a glance</div>'
         '<div class="public-hero-summary-grid">'
         f'<div><strong>{analytics.scheme_count}</strong><span>Schemes &amp;<br>programmes</span></div>'
-        f'<div><strong>{analytics.call_count}</strong><span>Calls &amp;<br>challenges</span></div>'
         f'<div><strong>{analytics.open_call_windows}</strong><span>Open call<br>windows</span></div>'
+        f'<div><strong>{metrics.total_explicit_departments}</strong><span>Departments<br>mapped</span></div>'
         '</div>'
         f'<div class="public-hero-verified"><span>Latest verification</span><strong>{esc(analytics.latest_verification_signal)}</strong></div>'
         '</aside></section>',
         unsafe_allow_html=True,
     )
 
-    catalogue_snapshot_html = (
-        '<div class="section-band intelligence-snapshot"><h2 class="section-title">Current Catalogue Snapshot</h2>'
-        '<div class="snapshot-lead">Schemes describe durable government support. Calls and challenges are separate, time-bound application opportunities. All figures below are calculated from the currently loaded governed catalogue.</div>'
-        '<div class="kpi-strip">'
-        + metric_card("Schemes & Programmes", analytics.scheme_count, "Durable support identities", "blue")
-        + metric_card("Calls & Challenges", analytics.call_count, "Time-bound application records", "purple")
-        + metric_card("Open Call Windows", analytics.open_call_windows, f"{analytics.closing_soon_calls} closing within 30 days", "green")
-        + metric_card("Ministries", metrics.total_explicit_ministries, "Explicit ministry values", "blue")
-        + metric_card("Departments", metrics.total_explicit_departments, f"{metrics.total_implementing_agencies} agencies tagged", "purple")
-        + metric_card("Latest Verification", analytics.latest_verification_signal, "Most recent scheme/call signal", "green")
-        + "</div>"
-        + '<div class="snapshot-note">Open status is shown only where governed status evidence exists. Closed and historical records remain searchable for reference and trend analysis.</div>'
-        + "</div>"
+    st.markdown(
+        '<section class="home-search-heading">'
+        '<div><span class="page-eyebrow">Start here</span><h2>Search verified startup support</h2>'
+        '<p>Search by scheme, department, sector, benefit, eligibility or support type.</p></div>'
+        '</section>',
+        unsafe_allow_html=True,
+    )
+    search_col, action_col = st.columns([5.2, 1])
+    keyword = search_col.text_input(
+        "Search the SSIP catalogue",
+        placeholder="Try: seed funding, women entrepreneurs, biotechnology, DST…",
+        key="home_primary_search",
+        label_visibility="collapsed",
+    ).strip()
+    with action_col:
+        st.markdown(
+            '<a class="home-advanced-search-link" target="_top" '
+            'href="?page=scheme-finder&amp;focus=filters#scheme-filters">'
+            'Advanced search</a>',
+            unsafe_allow_html=True,
+        )
+
+    if keyword:
+        needle = keyword.casefold()
+        featured = [record for record in records if needle in record.search_blob.casefold()]
+        match_count = len(featured)
+        featured = sort_records(featured, "Recently Updated")[:3]
+        section_title = f"Matching schemes ({match_count})"
+        section_note = "Results are drawn from governed scheme and programme identities."
+    else:
+        featured = latest_records(records, limit=3)
+        section_title = "Recently verified schemes"
+        section_note = "A quick starting point from the latest governed catalogue signals."
+
+    st.markdown(
+        f'<div class="home-section-heading"><div><span class="page-eyebrow">Explore support</span>'
+        f'<h2>{esc(section_title)}</h2><p>{esc(section_note)}</p></div>'
+        f'<a class="home-section-action" target="_top" href="?page={PAGE_SLUGS["Scheme Explorer"]}">View all schemes →</a></div>',
+        unsafe_allow_html=True,
+    )
+    if featured:
+        st.markdown(
+            '<div class="scheme-results-grid home-featured-grid">'
+            + "".join(public_record_card(record, compact=True) for record in featured)
+            + '</div>',
+            unsafe_allow_html=True,
+        )
+    else:
+        st.info("No schemes match this search. Try a broader keyword or use Advanced search.")
+
+    current_calls = [
+        item for item in calls
+        if status_bucket(item) in {"OPEN", "CLOSING_SOON", "UPCOMING"}
+    ]
+    current_calls = sorted(
+        current_calls,
+        key=lambda item: (parse_date(item.closing_date) or date.max, item.scheme_name.casefold()),
+    )[:4]
+    st.markdown(
+        '<div class="home-section-heading home-section-heading-spaced"><div>'
+        '<span class="page-eyebrow">Time-bound opportunities</span>'
+        '<h2>Open and upcoming calls</h2>'
+        '<p>Calls, cohorts and challenges remain separate from their permanent parent schemes.</p>'
+        '</div><span class="home-section-action">Check the official deadline before applying</span></div>',
+        unsafe_allow_html=True,
+    )
+    if current_calls:
+        st.markdown(
+            '<div class="scheme-results-grid home-call-grid">'
+            + "".join(public_record_card(record, compact=True) for record in current_calls)
+            + '</div>',
+            unsafe_allow_html=True,
+        )
+    else:
+        st.markdown(
+            '<div class="home-empty-state"><strong>No verified open call is currently highlighted.</strong>'
+            '<span>Use Live Calls to review all published and verification-required opportunities.</span></div>',
+            unsafe_allow_html=True,
+        )
+
+    st.markdown(
+        '<div class="home-pair-grid home-pair-grid-balanced home-support-grid">'
+        '<section class="section-band home-journey-card"><span class="page-eyebrow">Simple journey</span>'
+        '<h2 class="section-title">From discovery to application</h2>'
+        '<div class="how-grid how-grid-compact">'
+        '<div class="how-step"><strong>1. Search</strong><br>Find support by need, sector or agency.</div>'
+        '<div class="how-step"><strong>2. Compare</strong><br>Review eligibility, benefit and status.</div>'
+        '<div class="how-step"><strong>3. Verify</strong><br>Open official pages and guidelines.</div>'
+        '<div class="how-step"><strong>4. Apply</strong><br>Use the verified application route.</div>'
+        '</div></section>'
+        '<section class="section-band home-trust-card"><span class="page-eyebrow">Trust &amp; transparency</span>'
+        '<h2 class="section-title">Evidence before assumptions</h2>'
+        '<div class="trust-list">'
+        '<span>Permanent schemes and temporary calls are stored separately.</span>'
+        '<span>Missing eligibility or funding is shown as missing—not inferred.</span>'
+        '<span>Every application decision should be confirmed on the official source.</span>'
+        '</div></section></div>',
+        unsafe_allow_html=True,
     )
 
     analytics_grid_html = (
-        '<div class="analytics-dashboard">'
+        '<div class="analytics-dashboard compact-analytics-dashboard">'
         '<div class="analytics-primary-grid">'
         + render_composition_chart(
             "Application Call Status",
@@ -523,13 +972,13 @@ def render_home(bundle: CatalogueBundle, official_sources: list[OfficialSource])
         + render_ranked_bars(
             "Schemes by Department or Agency",
             analytics.departments,
-            note="Sorted by governed scheme/programme identities; calls are excluded from this comparison.",
+            note="Calls are excluded from this scheme comparison.",
             limit=6,
         )
         + render_ranked_bars(
             "Verified Sector Coverage",
             analytics.structured_sectors,
-            note=f"Only {sector_ready} of {analytics.scheme_count} schemes currently have structured sector evidence.",
+            note=f"{sector_ready} of {analytics.scheme_count} schemes currently have structured sector evidence.",
             limit=6,
         )
         + "</div>"
@@ -537,85 +986,60 @@ def render_home(bundle: CatalogueBundle, official_sources: list[OfficialSource])
         + render_composition_chart(
             "Government Level Coverage",
             analytics.government_levels,
-            note="Central and state scope is mapped from explicit fields or the governed official-source registry.",
+            note="Mapped from explicit fields or the official-source registry.",
             order=("Central Government", "State Government", "Unspecified"),
         )
         + render_ranked_bars(
             "Verified Support Types",
             analytics.structured_support_types,
-            note="One governed primary support type per scheme; unspecified types are excluded from the bars.",
+            note="Unspecified support types are excluded from the bars.",
             limit=6,
         )
         + "</div>"
         + '<div class="data-quality-callout"><strong>Coverage context</strong>'
         + f'<span>{metrics.records_missing_sector} scheme(s) still need sector evidence and {metrics.records_missing_funding_information} need structured funding. '
-        + f'The official-source registry currently tracks {source_stats["central_sources"]} Central and {source_stats["state_sources"]} State/UT source entries.</span></div>'
+        + f'The official-source registry tracks {source_stats["central_sources"]} Central and {source_stats["state_sources"]} State/UT source entries.</span></div>'
         + "</div>"
     )
+    with st.expander("Catalogue insights and data readiness", expanded=False):
+        st.markdown(analytics_grid_html, unsafe_allow_html=True)
 
-    quick_links_html = (
-        '<div class="section-band"><h2 class="section-title">Quick Links</h2>'
-        + render_quick_links(official_sources)
-        + "</div>"
+    source_names = "".join(
+        f'<span>{esc(source.name)}</span>' for source in official_sources[:3]
     )
-
-    latest_schemes_html = (
-        '<div class="section-band"><h2 class="section-title">Latest Schemes</h2>'
-        + render_latest_list(records)
-        + "</div>"
-    )
-
-    st.markdown(catalogue_snapshot_html, unsafe_allow_html=True)
-    st.markdown(analytics_grid_html, unsafe_allow_html=True)
     st.markdown(
-        '<div class="home-pair-grid home-pair-grid-balanced">'
-        + quick_links_html
-        + latest_schemes_html
-        + "</div>",
+        '<section class="official-source-summary">'
+        '<div><span class="page-eyebrow">Official evidence</span>'
+        f'<h2>Verified across {len(official_sources)} government portals</h2>'
+        '<p>SSIP uses authoritative government sources for discovery and verification.</p>'
+        f'<div class="official-source-chips">{source_names}</div></div>'
+        f'<a class="public-action public-action-secondary" target="_top" href="?page={PAGE_SLUGS["Official Sources"]}">Browse official sources</a>'
+        '</section>',
         unsafe_allow_html=True,
     )
 
     st.markdown(
-        '<div class="section-band"><h2 class="section-title">Priority Official Sources to Expand</h2>'
-        + '<div class="source-grid">'
-        + "".join(render_source_card(source) for source in official_sources[:4])
-        + "</div>"
-        + "</div>",
+        '<div class="notice-panel home-final-notice"><strong>Before you apply</strong>'
+        '<span>Confirm current eligibility, deadlines and application instructions on the linked official government website.</span></div>',
         unsafe_allow_html=True,
     )
-
+    latest_signal = latest_records(records, limit=1)[0].last_updated[:10] if records else "Not available"
     st.markdown(
-        """
-        <div class="section-band">
-          <h2 class="section-title">How It Works</h2>
-          <div class="how-grid">
-            <div class="how-step"><strong>1. Search</strong><br>Find schemes by keyword, agency, sector or eligibility.</div>
-            <div class="how-step"><strong>2. Explore</strong><br>Review eligibility, benefits, funding, dates and official documents.</div>
-            <div class="how-step"><strong>3. Apply</strong><br>Follow verified application processes and official portals.</div>
-            <div class="how-step"><strong>4. Track</strong><br>Check updates, opening dates, closing dates and new calls.</div>
-          </div>
-        </div>
-        <div class="notice-panel"><strong>Important Notice</strong><span>SSIP compiles information from official government websites and documents. Applicants must confirm current eligibility, deadlines and application instructions on the linked official website before applying.</span></div>
-        """,
+        '<footer class="public-footer">'
+        f'<span>Last catalogue update: {esc(latest_signal)}</span>'
+        '<span>Official-source catalogue · Read-only public access</span>'
+        '</footer>',
         unsafe_allow_html=True,
     )
-    st.markdown(
-        '<div class="footer-note">'
-        f'Catalogue refresh signal: {esc(latest_records(records, limit=1)[0].last_updated[:10] if records else "Not available")}. '
-        f'{metrics.verification_required_records} record(s) require verification. '
-        f'{metrics.records_missing_funding_information} record(s) are missing structured funding information. '
-        f'{metrics.records_missing_ministry} record(s) are missing ministry, {metrics.records_missing_department} missing department and {metrics.records_missing_sector} missing sector. '
-        'Official-source entries are discovery targets for the later backend crawler and are not counted as published schemes until extraction, validation, admin review and publication are complete.'
-        "</div>",
-        unsafe_allow_html=True,
-    )
-
-
 def render_filters(records: list[CatalogueRecord], *, keyword: str) -> FilterState:
     with st.container():
         c1, c2, c3, c4 = st.columns(4)
         ministries = c1.multiselect("Ministry", unique_options(records, "ministry"))
-        departments = c2.multiselect("Department", unique_options(records, "department"))
+        departments = c2.multiselect(
+            "Department",
+            unique_options(records, "department"),
+            key="explorer_department_filter_v2",
+        )
         agencies = c3.multiselect("Implementing Agency", unique_options(records, "implementing_agency"))
         sectors = c4.multiselect("Sector", unique_options(records, "sectors"))
         c5, c6, c7, c8 = st.columns(4)
@@ -653,58 +1077,91 @@ def render_explorer(bundle: CatalogueBundle) -> None:
     populations = split_catalogue_populations(bundle.records)
     records = populations.main_scheme_records
     st.markdown(
-        '<div class="finder-heading finder-heading-main explorer-search-panel">'
-        '<div><h1 class="finder-title">Find Schemes, Grants, Challenges &amp; Startup Programmes</h1>'
-        '<p>Search the complete catalogue by scheme name, ministry, department, sector, eligibility, benefit, application portal or support type.</p></div>'
-        '<span class="finder-badge">Scheme Explorer</span>'
-        "</div>",
+        page_intro(
+            "Scheme finder",
+            "Find the right government support",
+            "Search schemes and programmes by agency, sector, eligibility, benefit, startup stage or support type.",
+            badge=f"{len(records)} schemes",
+        ),
         unsafe_allow_html=True,
     )
-    search_col, action_col = st.columns([5, 1])
-    keyword = search_col.text_input(
-        "Search schemes, grants, challenges and programmes",
-        placeholder="Search schemes, grants, challenges, departments, sectors, eligibility…",
+    keyword = st.text_input(
+        "Search schemes and programmes",
+        placeholder="Search by scheme, department, sector, eligibility or support type…",
         key="explorer_search",
         label_visibility="collapsed",
     )
-    action_col.markdown('<div class="finder-button-visual">Search</div>', unsafe_allow_html=True)
-    with st.expander("Advanced Search", expanded=False):
-        state = render_filters(records, keyword=keyword)
-        sort_by = st.selectbox("Sort by", ["Recently Updated", "Scheme Name", "Status", "Department"])
+    focus_filters = str(st.query_params.get("focus", "") or "").strip().casefold() == "filters"
+    st.markdown(
+        '<span id="scheme-filters" class="scheme-filter-anchor" '
+        'aria-hidden="true"></span>',
+        unsafe_allow_html=True,
+    )
+    with st.container(key="explorer_filters_panel"):
+        with st.expander("Filters", expanded=focus_filters):
+            state = render_filters(records, keyword=keyword)
+
+    toolbar_left, toolbar_sort, toolbar_show = st.columns([4.2, 1.3, 1.05])
+    sort_by = toolbar_sort.selectbox(
+        "Sort by",
+        ["Recently Updated", "Scheme Name", "Status", "Department"],
+        key="explorer_sort",
+    )
+    display_limit = toolbar_show.selectbox(
+        "Show",
+        [24, 48, 0],
+        format_func=lambda value: "All" if value == 0 else str(value),
+        key="explorer_display_limit",
+    )
+
     filtered = apply_filters(records, state)
     if sort_by == "Scheme Name":
         filtered = sorted(filtered, key=lambda record: record.scheme_name.casefold())
     elif sort_by == "Status":
         filtered = sorted(filtered, key=lambda record: (status_bucket(record), record.scheme_name.casefold()))
     elif sort_by == "Department":
-        filtered = sorted(filtered, key=lambda record: (record.department.casefold(), record.scheme_name.casefold()))
+        filtered = sorted(filtered, key=lambda record: ((record.department or "").casefold(), record.scheme_name.casefold()))
     else:
         filtered = sorted(filtered, key=lambda record: record.last_updated, reverse=True)
-    display_limit = st.selectbox(
-        "Results displayed",
-        [24, 48, 0],
-        format_func=lambda value: "All results" if value == 0 else f"First {value} results",
-        key="explorer_display_limit",
-    )
+
     displayed = filtered if display_limit == 0 else filtered[:display_limit]
-    st.markdown(
-        f'<div class="filter-summary"><strong>{len(filtered)}</strong> matching record(s)<span>Showing {len(displayed)} below</span></div>',
-        unsafe_allow_html=True,
-    )
+    with toolbar_left:
+        st.markdown(
+            f'<div class="explorer-result-count"><strong>{len(filtered)}</strong>'
+            f'<span>scheme and programme result(s)</span><small>Showing {len(displayed)}</small></div>',
+            unsafe_allow_html=True,
+        )
+
+    filter_tokens: list[str] = []
+    if keyword.strip():
+        filter_tokens.append(f'Search: {keyword.strip()}')
+    for values in (state.ministries, state.departments, state.agencies, state.sectors, state.statuses, state.applicant_types, state.startup_stages, state.scheme_types):
+        filter_tokens.extend(str(value) for value in values[:3])
+    if filter_tokens:
+        st.markdown(
+            '<div class="active-filter-chips"><span>Active filters</span>'
+            + ''.join(f'<b>{esc(public_label(value))}</b>' for value in filter_tokens[:8])
+            + '</div>',
+            unsafe_allow_html=True,
+        )
+
     result_cards = []
     for record in displayed:
         warnings = []
         if record.current_decision == "REJECTED":
-            warnings.append("This record is retained only because the normalization plan classifies it as closed, historical, archived or pending revalidation.")
+            warnings.append("This record is retained only for historical or revalidation context.")
         if status_bucket(record) == "VERIFICATION_REQUIRED":
-            warnings.append("Status or deadline requires verification before use.")
+            warnings.append("Confirm the current status on the official source before acting.")
         result_cards.append(
             '<div class="scheme-result-item">'
-            + scheme_card(record)
-            + warning_box("Evidence warning", warnings)
+            + public_record_card(record, compact=False)
+            + warning_box("Evidence note", warnings)
             + "</div>"
         )
-    st.markdown('<div class="scheme-results-grid">' + "".join(result_cards) + "</div>", unsafe_allow_html=True)
+    if result_cards:
+        st.markdown('<div class="scheme-results-grid">' + "".join(result_cards) + "</div>", unsafe_allow_html=True)
+    else:
+        st.info("No schemes match the selected filters. Try removing one or more filters.")
 
 
 def render_departments(bundle: CatalogueBundle) -> None:
@@ -1002,11 +1459,62 @@ def _published_call_card(
     parent_names: dict[str, str],
     ecosystem: bool = False,
 ) -> str:
+    """Render a governed published call using the standard scheme card."""
     parent = (
         item.parent_scheme_name
-        or parent_names.get(item.parent_master_id, "")
+        or parent_names.get(
+            item.parent_master_id,
+            "",
+        )
         or "Parent scheme requires curation"
     )
+
+    card_html = scheme_card(
+        item,
+        compact=False,
+    )
+
+    if (
+        not isinstance(card_html, str)
+        or not card_html.strip()
+    ):
+        identifier = (
+            item.master_id
+            or item.scheme_name
+            or "unknown call"
+        )
+
+        raise TypeError(
+            "scheme_card returned no HTML for "
+            + str(identifier)
+        )
+
+    audience = (
+        "Institutional or ecosystem opportunity"
+        if ecosystem
+        else "Startup application opportunity"
+    )
+
+    call_context = (
+        '<div class="agency-line">'
+        '<b>Parent programme:</b> '
+        + esc(parent)
+        + " - "
+        + esc(audience)
+        + "</div>"
+    )
+
+    closing_tag = "</article>"
+
+    if closing_tag in card_html:
+        return card_html.replace(
+            closing_tag,
+            call_context + closing_tag,
+            1,
+        )
+
+    return card_html + call_context
+
 
 
 def _historical_relevance_label(value: str) -> str:
@@ -1233,7 +1741,36 @@ def render_calls_and_opportunities() -> None:
     )
     visible = _render_published_call_filters(calls, key_prefix=f"published_direct_{call_view.casefold()}", parent_names=parent_names)
     st.markdown(f"**{len(visible)} matching published direct/review call(s)**")
-    st.markdown('<div class="call-grid">' + "".join(_published_call_card(item, parent_names=parent_names) for item in visible) + '</div>', unsafe_allow_html=True)
+    raw_published_call_cards = [
+        _published_call_card(
+            item,
+            parent_names=parent_names,
+        )
+        for item in visible
+    ]
+
+    valid_published_call_cards = [
+        card
+        for card in raw_published_call_cards
+        if isinstance(card, str)
+        and card.strip()
+    ]
+
+    st.markdown(
+        '<div class="call-grid">'
+        + "".join(valid_published_call_cards)
+        + "</div>",
+        unsafe_allow_html=True,
+    )
+
+    if len(valid_published_call_cards) != len(
+        raw_published_call_cards
+    ):
+        st.warning(
+            "One or more published call records could not "
+            "be displayed because the card renderer returned "
+            "no HTML. The underlying records remain available."
+        )
 
 
 def render_startup_ecosystem() -> None:
@@ -1246,107 +1783,244 @@ def render_startup_ecosystem() -> None:
         return
     visible = _render_published_call_filters(calls, key_prefix="published_ecosystem", parent_names=parent_names)
     st.markdown(f"**{len(visible)} matching published intermediary call(s)**")
-    st.markdown('<div class="call-grid">' + "".join(_published_call_card(item, parent_names=parent_names, ecosystem=True) for item in visible) + '</div>', unsafe_allow_html=True)
+    raw_ecosystem_call_cards = [
+        _published_call_card(
+            item,
+            parent_names=parent_names,
+            ecosystem=True,
+        )
+        for item in visible
+    ]
+
+    valid_ecosystem_call_cards = [
+        card
+        for card in raw_ecosystem_call_cards
+        if isinstance(card, str)
+        and card.strip()
+    ]
+
+    st.markdown(
+        '<div class="call-grid">'
+        + "".join(valid_ecosystem_call_cards)
+        + "</div>",
+        unsafe_allow_html=True,
+    )
+
+    if len(valid_ecosystem_call_cards) != len(
+        raw_ecosystem_call_cards
+    ):
+        st.warning(
+            "One or more published call records could not "
+            "be displayed because the card renderer returned "
+            "no HTML. The underlying records remain available."
+        )
+
+
+def _detail_panel(title: str, items: list[str], *, empty_message: str = "Not yet available in structured catalogue data.") -> str:
+    if items:
+        body = ''.join(f'<li>{esc(item)}</li>' for item in items)
+        content = f'<ul>{body}</ul>'
+    else:
+        content = f'<p class="profile-empty">{esc(empty_message)}</p>'
+    return f'<section class="profile-detail-panel"><h2>{esc(title)}</h2>{content}</section>'
 
 
 def render_scheme_details(bundle: CatalogueBundle) -> None:
+    populations = split_catalogue_populations(bundle.records)
     records = sorted(
-        split_catalogue_populations(
-            bundle.records
-        ).main_scheme_records,
+        populations.main_scheme_records,
         key=lambda record: (
             0 if record.publication_status.upper() == "PUBLISHED" else 1,
             1 if status_bucket(record) == "VERIFICATION_REQUIRED" else 0,
-            1 if record.scheme_name.casefold().endswith((".html", ".aspx")) else 0,
             record.scheme_name.casefold(),
-            (
-                record.department
-                or record.implementing_agency
-                or record.source
-                or ""
-            ).casefold(),
         ),
     )
-
     if not records:
         st.info("No eligible scheme or programme records are available.")
         return
 
-    st.markdown(page_intro("Scheme profile", "Scheme Details", "Review structured eligibility, benefits, application steps, documents and official links for one scheme or programme.", badge=f"{len(records)} profiles"), unsafe_allow_html=True)
-
     records_by_id = {record.master_id: record for record in records}
-    record_labels = {}
-    for item in records:
-        agency = (
-            item.department
-            or item.implementing_agency
-            or item.source
-            or "Agency not recorded"
-        )
-        record_labels[item.master_id] = f"{item.scheme_name} — {agency}"
+    record_labels = {
+        item.master_id: f'{item.scheme_name} — {item.department or item.implementing_agency or item.source or "Agency not recorded"}'
+        for item in records
+    }
+    record_ids = [record.master_id for record in records]
+    requested_scheme = str(st.query_params.get("scheme", "") or "").strip()
+    selected_index = record_ids.index(requested_scheme) if requested_scheme in record_ids else 0
 
-    selected_id = st.selectbox(
-        "Select scheme",
-        options=[record.master_id for record in records],
-        format_func=lambda item_id: record_labels[item_id],
+    st.markdown(
+        '<nav class="profile-breadcrumb" aria-label="Breadcrumb">'
+        f'<a target="_top" href="?page={PAGE_SLUGS["Scheme Explorer"]}">Find schemes</a><span>/</span><b>Scheme profile</b></nav>',
+        unsafe_allow_html=True,
     )
+    with st.expander("Choose another scheme or programme", expanded=not bool(requested_scheme)):
+        selected_id = st.selectbox(
+            "Scheme or programme",
+            options=record_ids,
+            index=selected_index,
+            format_func=lambda item_id: record_labels[item_id],
+            key="scheme_profile_selector",
+            label_visibility="collapsed",
+        )
+    if str(st.query_params.get("scheme", "") or "") != selected_id:
+        st.query_params["scheme"] = selected_id
     record = records_by_id[selected_id]
 
-    st.markdown(scheme_card(record), unsafe_allow_html=True)
-    c1, c2, c3 = st.columns(3)
-    c1.write(f"**Ministry**  \n{record.ministry or 'Not recorded'}")
-    c2.write(
-        f"**Department / Agency**  \n"
-        f"{record.department or record.implementing_agency or record.source or 'Not recorded'}"
-    )
-    c3.write(
-        f"**Record Type**  \n"
-        f"{record.record_kind.replace('_', ' ').title()}"
+    agency = record.department or record.implementing_agency or record.source or "Government department / agency"
+    summary = concise_text(" ".join((record.objectives or record.benefits or ["Official scheme information is available."])[:1]), limit=330)
+    actions: list[str] = []
+    governed_details = verified_scheme_details_action(record)
+    if record.application_url:
+        actions.append(
+            f'<a class="public-action public-action-primary" target="_blank" rel="noopener" '
+            f'href="{esc(record.application_url)}">Apply now</a>'
+        )
+    if governed_details:
+        actions.append(
+            f'<a class="public-action public-action-secondary" target="_blank" rel="noopener" '
+            f'href="{html.escape(governed_details["resolved_url"], quote=True)}">Scheme Details &#8599;</a>'
+        )
+    elif record.official_page_url:
+        actions.append(
+            f'<a class="public-action public-action-secondary" target="_blank" rel="noopener" '
+            f'href="{esc(record.official_page_url)}">Official page &#8599;</a>'
+        )
+    if record.guideline_urls:
+        actions.append(
+            f'<a class="public-action public-action-quiet" target="_blank" rel="noopener" '
+            f'href="{esc(record.guideline_urls[0])}">Guideline &#8599;</a>'
+        )
+
+    verified_on = optional_text(record.last_updated[:10] if record.last_updated else "") or "Date not recorded"
+    st.markdown(
+        '<section class="scheme-profile-hero">'
+        '<div class="scheme-profile-copy">'
+        f'<div class="public-record-card-top"><span class="status-badge {status_css_class(record)}">{esc(public_status_text(record))}</span>'
+        f'<span class="public-kind">{esc(public_record_kind(record))}</span></div>'
+        f'<h1>{esc(record.scheme_name)}</h1><p class="scheme-profile-agency">{esc(agency)}</p>'
+        f'<p class="scheme-profile-summary">{esc(summary)}</p>'
+        f'<div class="scheme-profile-actions">{"".join(actions)}</div></div>'
+        '<aside class="scheme-profile-trust">'
+        '<span>Catalogue verification</span>'
+        f'<strong>{esc(verified_on)}</strong>'
+        '<small>Confirm current terms on the linked official source.</small>'
+        '</aside></section>',
+        unsafe_allow_html=True,
     )
 
-    detail_sections = [
-        ("Objectives", record.objectives),
-        ("Eligibility", record.eligibility),
-        ("Benefits", record.benefits),
-        ("Application Process", record.application_process),
-        ("Required Documents", record.required_documents),
-        ("Contacts", record.contacts),
+    funding_text = "Not structured"
+    if record.funding_maximum not in (None, "", 0, 0.0):
+        funding_text = f'Up to {format_inr(record.funding_maximum)}'
+    elif record.funding_minimum not in (None, "", 0, 0.0):
+        funding_text = f'From {format_inr(record.funding_minimum)}'
+    meta_items = [
+        ("Ministry", record.ministry or "Not recorded"),
+        ("Department / agency", agency),
+        ("Support", funding_text),
+        ("Record type", public_record_kind(record)),
     ]
+    st.markdown(
+        '<div class="profile-meta-grid">'
+        + ''.join(f'<div><span>{esc(label)}</span><strong>{esc(value)}</strong></div>' for label, value in meta_items)
+        + '</div>',
+        unsafe_allow_html=True,
+    )
 
-    for title, items in detail_sections:
-        with st.expander(title, expanded=title in {"Objectives", "Eligibility"}):
-            if items:
-                for item in items:
-                    st.markdown(f"- {item}")
-            else:
-                st.caption("Not recorded in structured catalogue data.")
+    st.markdown(
+        '<div class="profile-detail-grid profile-detail-grid-two">'
+        + _detail_panel("Overview", record.objectives)
+        + _detail_panel("Benefits", record.benefits)
+        + '</div>'
+        + '<div class="profile-detail-grid">'
+        + _detail_panel("Eligibility", record.eligibility)
+        + '</div>'
+        + '<div class="profile-detail-grid profile-detail-grid-two">'
+        + _detail_panel("How to apply", record.application_process, empty_message="Use the official page for current application instructions.")
+        + _detail_panel("Required documents", record.required_documents)
+        + '</div>',
+        unsafe_allow_html=True,
+    )
+
+    profile_tags = [*record.target_beneficiaries[:3], *record.startup_stage[:3], *record.sectors[:3], *record.scheme_types[:2]]
+    if profile_tags:
+        st.markdown(
+            '<section class="profile-tag-panel"><h2>Who and what it supports</h2><div class="public-chip-row">'
+            + ''.join(f'<span class="public-chip">{esc(public_label(value))}</span>' for value in profile_tags if optional_text(value))
+            + '</div></section>',
+            unsafe_allow_html=True,
+        )
+
+    related_calls = []
+    scheme_name_key = record.scheme_name.casefold().strip()
+    for call in populations.application_call_records:
+        parent_id = str(getattr(call, "parent_master_id", "") or "").strip()
+        parent_name = str(getattr(call, "parent_scheme_name", "") or getattr(call, "parent_name", "") or "").casefold().strip()
+        if parent_id == record.master_id or (parent_name and parent_name == scheme_name_key):
+            related_calls.append(call)
+    if related_calls:
+        related_calls = sorted(related_calls, key=lambda item: parse_date(item.closing_date) or date.max)[:4]
+        st.markdown(
+            '<div class="profile-section-heading"><span class="page-eyebrow">Application opportunities</span>'
+            '<h2>Current and related calls</h2><p>Time-bound calls remain separate from this permanent scheme identity.</p></div>'
+            '<div class="scheme-results-grid home-call-grid">'
+            + ''.join(public_record_card(item, compact=True) for item in related_calls)
+            + '</div>',
+            unsafe_allow_html=True,
+        )
 
     detail_links: list[tuple[str, str]] = []
-    if record.official_page_url:
-        detail_links.append(("Official scheme/programme page", record.official_page_url))
+    governed_details = verified_scheme_details_action(record)
+    governed_url = (
+        governed_details["resolved_url"]
+        if governed_details
+        else ""
+    )
+    if governed_url:
+        detail_links.append(("Scheme Details", governed_url))
+    if record.official_page_url and (
+        record.official_page_url.casefold().rstrip("/")
+        != governed_url.casefold().rstrip("/")
+    ):
+        detail_links.append(
+            ("Official scheme page", record.official_page_url)
+        )
     if record.application_url:
-        detail_links.append(("Application portal", record.application_url))
+        detail_links.append(
+            ("Application portal", record.application_url)
+        )
     detail_links.extend(
-        (f"Guideline / manual {index}", url)
-        for index, url in enumerate(record.guideline_urls or [], start=1)
+        (f"Guideline or manual {index}", url)
+        for index, url in enumerate(
+            record.guideline_urls or [],
+            start=1,
+        )
     )
     detail_links.extend(
         (f"Official reference {index}", url)
-        for index, url in enumerate(record.reference_urls or [], start=1)
+        for index, url in enumerate(
+            record.reference_urls or [],
+            start=1,
+        )
     )
+
+    deduped_detail_links: list[tuple[str, str]] = []
+    seen_detail_urls: set[str] = set()
+    for label, url in detail_links:
+        normalized_url = str(url or "").strip().casefold().rstrip("/")
+        if not normalized_url or normalized_url in seen_detail_urls:
+            continue
+        seen_detail_urls.add(normalized_url)
+        deduped_detail_links.append((label, url))
+    detail_links = deduped_detail_links
     if detail_links:
         st.markdown(
-            '<div class="section-band"><h2 class="section-title">All Official Resources</h2>'
+            '<section class="profile-resource-panel"><div><span class="page-eyebrow">Official evidence</span>'
+            '<h2>Official links and documents</h2><p>Open the authoritative source before making an application decision.</p></div>'
             '<div class="resource-actions">'
-            + "".join(
-                f'<a target="_blank" rel="noopener" href="{html.escape(url, quote=True)}">{esc(label)}</a>'
-                for label, url in detail_links
-            )
-            + '</div></div>',
+            + ''.join(f'<a target="_blank" rel="noopener" href="{html.escape(url, quote=True)}">{esc(label)} ↗</a>' for label, url in detail_links)
+            + '</div></section>',
             unsafe_allow_html=True,
         )
-    else:
-        st.caption("No official resource links are recorded.")
 
 
 def main() -> None:
@@ -1366,32 +2040,22 @@ def main() -> None:
         '<a class="skip-link" href="#ssip-main-content">Skip to main content</a>',
         unsafe_allow_html=True,
     )
-    st.markdown(nav_header(), unsafe_allow_html=True)
-    st.markdown(
-        '<div class="primary-nav-heading"><strong>Explore SSIP</strong>'
-        '<span>Government startup-support intelligence</span></div>',
-        unsafe_allow_html=True,
-    )
-    page = st.radio(
-        "Navigation",
-        PAGE_NAMES,
-        horizontal=True,
-        label_visibility="collapsed",
-        format_func=lambda value: NAV_LABELS[value],
-        key="ssip_primary_navigation",
-    )
+    page = requested_page or st.session_state.get("ssip_primary_navigation", "Home")
+    if page not in PAGE_NAMES:
+        page = "Home"
+    st.session_state["ssip_primary_navigation"] = page
     active_slug = PAGE_SLUGS[page]
     if str(st.query_params.get("page", "") or "") != active_slug:
         st.query_params["page"] = active_slug
 
-    utility_column, appearance_column = st.columns([6, 1.35])
-    with utility_column:
-        st.markdown('<div class="nav-context">Evidence-based catalogue · Calls and schemes are maintained as separate populations</div>', unsafe_allow_html=True)
+    header_column, appearance_column = st.columns([8.75, 1.25])
+    with header_column:
+        st.markdown(site_header(page), unsafe_allow_html=True)
     with appearance_column:
         st.toggle(
             "Dark mode",
             key="ssip_dark_mode",
-            help="Switch between the light and dark dashboard appearance.",
+            help="Switch between light and dark appearance.",
         )
     st.markdown(
         '<span id="ssip-main-content" class="main-content-anchor" tabindex="-1"></span>',
@@ -1425,7 +2089,7 @@ def main() -> None:
     elif page == "Scheme Details":
         render_scheme_details(bundle)
 
-    st.caption(f"SSIP Public Dashboard v{APP_VERSION}. SQLite access is read-only. Current mode: {bundle.mode.value}.")
+    st.caption("SSIP · Information sourced from official government portals.")
 
 
 if __name__ == "__main__":

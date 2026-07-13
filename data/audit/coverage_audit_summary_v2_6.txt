@@ -1,0 +1,33 @@
+============================================================================
+SSIP Full Multi-Source Coverage Audit v2.6
+============================================================================
+
+Source                     Discovered  Masters  Terminal  Missing  Coverage
+----------------------------------------------------------------------------
+Startup India                      94        3         3       73   100.00%
+MSME                                0        0         0        0     0.00%
+DST                               132        8         5      105    62.50%
+BIRAC                             287       17         2      281    11.76%
+MeitY Startup Hub                   8        6         6        2   100.00%
+
+Overall Terminal Master Coverage: 47.06%
+Publication Coverage:             26.47%
+Master Candidates:                34
+Extracted / Validated:            16 / 16
+Staged / Rejected:                9 / 7
+
+Fully Processed URLs:             15
+Awaiting Extraction URLs:         98
+Awaiting Validation URLs:         0
+Awaiting Admin Review URLs:       0
+Missing from Master URLs:         4
+Missing from Staging URLs:        0
+Fetch Failed URLs:                0
+Blocked/Login Required URLs:      0
+Browser Render Required URLs:     0
+Classification Uncertain URLs:    359
+Non-Scheme Content URLs:          38
+Rejected URLs:                    7
+Duplicate Occurrences:            27
+
+Audit completed successfully in read-only mode.

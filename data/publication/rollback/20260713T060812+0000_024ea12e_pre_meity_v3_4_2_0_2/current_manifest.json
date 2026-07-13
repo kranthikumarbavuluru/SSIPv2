@@ -1,0 +1,36 @@
+{
+  "run_id": "20260710T162806+0000_f4936983",
+  "published_at": "2026-07-10T16:28:08+00:00",
+  "catalogue_path": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\catalogue_preview\\v3_3_2\\catalogue_preview_v3_3_2.csv",
+  "versioned_catalogue_path": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\publication\\20260710T162806+0000_f4936983\\catalogue.csv",
+  "row_count": 137,
+  "catalogue_sha256": "838ca86cde4b2ceebd4325850c783823c931a3e42ef5c4ef74b7ae54a4596e4d",
+  "validation": {
+    "passed": true,
+    "checks": {
+      "row_count_preserved": true,
+      "identity_order_preserved": true,
+      "zero_blank_sector": true,
+      "all_sectors_in_taxonomy": true,
+      "review_policy_satisfied": true,
+      "one_output_per_input": true
+    },
+    "errors": []
+  },
+  "summary": {
+    "service_version": "3.4.1.0",
+    "run_id": "20260710T162806+0000_f4936983",
+    "input_rows": 137,
+    "mapped_rows": 137,
+    "review_rows": 131,
+    "lm_studio_available": true,
+    "sector_distribution": {
+      "Cross-sector Innovation & Entrepreneurship": 44,
+      "Cross-sector MSME & Startup Finance": 7,
+      "Healthcare & MedTech": 2,
+      "Sector Agnostic / Multi-sector": 84
+    },
+    "active_catalogue": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\catalogue_preview\\v3_3_2\\catalogue_preview_v3_3_2.csv",
+    "dry_run": false
+  }
+}

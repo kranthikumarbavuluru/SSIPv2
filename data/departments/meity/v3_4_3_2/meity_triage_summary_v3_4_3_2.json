@@ -1,0 +1,84 @@
+{
+  "version": "3.4.3.2",
+  "phase": "MeitY Candidate Normalization, Identity Deduplication and Classification Triage",
+  "validation_status": "PASS",
+  "completed_at": "2026-07-13T07:15:42+00:00",
+  "counts": {
+    "input_scheme_candidates": 4,
+    "input_programme_candidates": 17,
+    "normalized_master_candidates": 21,
+    "verified_permanent_schemes": 4,
+    "corporate_partnerships": 11,
+    "international_events_or_delegations": 4,
+    "incubator_or_ecosystem_resources": 2,
+    "master_manual_review": 0,
+    "input_call_candidates": 7,
+    "verified_call_or_cohort_instances": 0,
+    "call_false_positives_excluded": 7,
+    "call_manual_review": 0,
+    "fetch_errors_quarantined": 23,
+    "triage_review_rows": 0,
+    "existing_identity_matches": 2,
+    "new_permanent_identity_candidates": 2
+  },
+  "master_classification_counts": {
+    "CORPORATE_PARTNERSHIP": 11,
+    "INCUBATOR_OR_ECOSYSTEM_RESOURCE": 2,
+    "INTERNATIONAL_EVENT_OR_DELEGATION": 4,
+    "VERIFIED_PERMANENT_SCHEME": 4
+  },
+  "call_classification_counts": {
+    "NON_CATALOGUE": 7
+  },
+  "checks": [
+    {
+      "name": "input_master_candidates_21",
+      "passed": true,
+      "details": "actual=21"
+    },
+    {
+      "name": "verified_permanent_schemes_4",
+      "passed": true,
+      "details": "actual=4"
+    },
+    {
+      "name": "existing_ids_preserved",
+      "passed": true,
+      "details": "{\"147173e17ea741687247\": \"SAMRIDH\", \"6af79cf6c8a213dddce8\": \"TIDE 2.0\"}"
+    },
+    {
+      "name": "new_scheme_candidates_require_identity_validation",
+      "passed": true,
+      "details": "SASACT and GENESIS must not receive permanent IDs automatically."
+    },
+    {
+      "name": "generic_titles_replaced",
+      "passed": true,
+      "details": "No normalized candidate may retain MeityStartupHub as its name."
+    },
+    {
+      "name": "no_duplicate_verified_identity_names",
+      "passed": true,
+      "details": "duplicate_groups=0"
+    },
+    {
+      "name": "fetch_errors_quarantined",
+      "passed": true,
+      "details": "actual=23"
+    },
+    {
+      "name": "all_outputs_not_published",
+      "passed": true,
+      "details": "All triage outputs must remain preview-only."
+    },
+    {
+      "name": "v3_4_3_1_inputs_unchanged",
+      "passed": true,
+      "details": "{\"calls\": true, \"pages\": true, \"programmes\": true, \"reviews\": true, \"schemes\": true, \"summary\": true}"
+    }
+  ],
+  "failed_checks": [],
+  "publication_performed": false,
+  "database_modified": false,
+  "dashboard_modified": false
+}

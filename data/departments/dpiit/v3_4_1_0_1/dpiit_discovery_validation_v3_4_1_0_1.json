@@ -1,0 +1,71 @@
+{
+  "checks": {
+    "award_editions_separate": true,
+    "calls_not_scheme_masters": true,
+    "candidate_ids_unique": true,
+    "candidate_schema_complete": true,
+    "challenge_instances_separate": true,
+    "dst_outputs_unchanged": true,
+    "exactly_one_valid_primary_page_role": true,
+    "no_publication_or_extraction": true,
+    "normalized_urls_unique": true,
+    "only_official_allowed_domains": true,
+    "ownership_unresolved_held_for_review": true,
+    "public_dashboard_unchanged": true,
+    "publication_current_unchanged": true,
+    "rejected_candidates_retained": true,
+    "review_queue_exact": true,
+    "source_registry_schema_complete": true,
+    "startup_india_host_not_automatic_ownership": true
+  },
+  "counts": {
+    "candidates": 28,
+    "identity_review": 10,
+    "rejected": 1,
+    "sources": 20
+  },
+  "duplicate_normalized_urls": {},
+  "preservation": {
+    "files": {
+      "apps/public_dashboard_app_v2_9.py": {
+        "after": "77bd6cff08353e9587459b8f507ef5399b3c508fd514d73bdb87f8cc97ca14cd",
+        "before": "77bd6cff08353e9587459b8f507ef5399b3c508fd514d73bdb87f8cc97ca14cd",
+        "unchanged": true
+      },
+      "assets/dashboard_theme.css": {
+        "after": "2841d412db0c4f1f4c5800b5bfc71860217f6427a62855b2560004e5af946524",
+        "before": "2841d412db0c4f1f4c5800b5bfc71860217f6427a62855b2560004e5af946524",
+        "unchanged": true
+      },
+      "data/publication/current_manifest.json": {
+        "after": "193e0d37a296662d9ed124d5847a27749f4c7bb64118b11294ea650264949a5a",
+        "before": "193e0d37a296662d9ed124d5847a27749f4c7bb64118b11294ea650264949a5a",
+        "unchanged": true
+      },
+      "ssip_dashboard/assets/styles.css": {
+        "after": "ea9fadec7c9f29aa54b4ebbaa25ce64d1484e4941b90075f1160e97d31a803be",
+        "before": "ea9fadec7c9f29aa54b4ebbaa25ce64d1484e4941b90075f1160e97d31a803be",
+        "unchanged": true
+      }
+    },
+    "trees": {
+      "data/departments/dst": {
+        "after": "7cbc42c792d0555116c0943c6b78574a9a175623ddfb066e6f7fe5a48e40c2ff",
+        "before": "7cbc42c792d0555116c0943c6b78574a9a175623ddfb066e6f7fe5a48e40c2ff",
+        "unchanged": true
+      },
+      "data/departments/dst/v3_4_0_5": {
+        "after": "3188c77cf32f0531874c736c00324abb5121bb4f19aadbdf118ec007c4351017",
+        "before": "3188c77cf32f0531874c736c00324abb5121bb4f19aadbdf118ec007c4351017",
+        "unchanged": true
+      },
+      "data/publication/current": {
+        "after": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "before": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "unchanged": true
+      }
+    }
+  },
+  "validation_passed": true,
+  "version": "3.4.1.0.1"
+}

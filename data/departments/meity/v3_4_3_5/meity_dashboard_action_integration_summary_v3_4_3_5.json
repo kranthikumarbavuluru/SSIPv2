@@ -1,0 +1,84 @@
+{
+  "version": "3.4.3.5",
+  "stage": "DASHBOARD_GOVERNED_ACTION_INTEGRATION",
+  "execution_mode": "PREVIEW_ONLY",
+  "release_readiness_status": "PASS",
+  "catalogue_loader_modified": false,
+  "dashboard_app_modified": false,
+  "already_patched_before_run": true,
+  "verified_scheme_details_actions": 4,
+  "apply_now_actions_added": 0,
+  "open_call_actions_added": 0,
+  "loaded_records": 168,
+  "main_scheme_records": 55,
+  "application_call_records": 38,
+  "backup_location": "",
+  "catalogue_pre_sha256": "8b0b2dd5cca5d5d4ddbc6d9b312a247904ad7adee9ab7debbd89fe9470652344",
+  "catalogue_post_sha256": "8b0b2dd5cca5d5d4ddbc6d9b312a247904ad7adee9ab7debbd89fe9470652344",
+  "app_pre_sha256": "3d47c6e86ff888cf676cc2c63de7099e498c4575f613ed6d2174cb6f46e67c47",
+  "app_post_sha256": "3d47c6e86ff888cf676cc2c63de7099e498c4575f613ed6d2174cb6f46e67c47",
+  "runtime_validation": {
+    "checks": {
+      "v3434_loaded_records_168": true,
+      "v3435_loaded_records_168": true,
+      "main_scheme_population_unchanged": true,
+      "application_call_population_unchanged": true,
+      "exactly_four_targets": true,
+      "expected_scheme_names": true,
+      "one_governed_action_each": true,
+      "all_scheme_details": true,
+      "all_action_urls_match": true,
+      "all_application_urls_blank": true,
+      "v3434_has_no_governed_actions": true
+    },
+    "targets": [
+      {
+        "master_id": "147173e17ea741687247",
+        "scheme_name": "SAMRIDH",
+        "action_count": 1,
+        "action_type": "SCHEME_DETAILS",
+        "action_url": "https://msh.meity.gov.in/schemes/samridh",
+        "expected_url": "https://msh.meity.gov.in/schemes/samridh",
+        "application_url": ""
+      },
+      {
+        "master_id": "194b7ba77d6b53f30b91",
+        "scheme_name": "SASACT",
+        "action_count": 1,
+        "action_type": "SCHEME_DETAILS",
+        "action_url": "https://msh.meity.gov.in/schemes/sasact",
+        "expected_url": "https://msh.meity.gov.in/schemes/sasact",
+        "application_url": ""
+      },
+      {
+        "master_id": "6af79cf6c8a213dddce8",
+        "scheme_name": "TIDE 2.0",
+        "action_count": 1,
+        "action_type": "SCHEME_DETAILS",
+        "action_url": "https://msh.meity.gov.in/schemes/tide",
+        "expected_url": "https://msh.meity.gov.in/schemes/tide",
+        "application_url": ""
+      },
+      {
+        "master_id": "94f8ab0a070a6ff15fce",
+        "scheme_name": "GENESIS",
+        "action_count": 1,
+        "action_type": "SCHEME_DETAILS",
+        "action_url": "https://msh.meity.gov.in/schemes/genesis",
+        "expected_url": "https://msh.meity.gov.in/schemes/genesis",
+        "application_url": ""
+      }
+    ],
+    "passed": true
+  },
+  "safety": {
+    "frozen_source_catalogue_unchanged": true,
+    "verified_actions_unchanged": true,
+    "preview_catalogue_unchanged": true,
+    "database_files_unchanged": true,
+    "publication_files_unchanged": true
+  },
+  "publication_performed": false,
+  "database_writes": 0,
+  "generated_at_utc": "2026-07-13T09:45:42+00:00"
+}

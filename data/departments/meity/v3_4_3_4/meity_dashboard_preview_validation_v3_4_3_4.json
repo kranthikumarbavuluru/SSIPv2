@@ -1,0 +1,125 @@
+{
+  "version": "3.4.3.4",
+  "phase": "MeitY SASACT and GENESIS Publication Candidate, Dashboard Preview and Release Readiness",
+  "validation_status": "PASS",
+  "generated_at": "2026-07-13T08:35:06+00:00",
+  "counts": {
+    "active_raw_rows": 139,
+    "candidate_raw_rows": 141,
+    "active_loaded_records": 166,
+    "candidate_loaded_records": 168,
+    "active_main_visible": 53,
+    "candidate_main_visible": 55,
+    "new_meity_records": 2
+  },
+  "active_snapshot": {
+    "loaded_records": 166,
+    "main_visible_records": 53,
+    "targets": {
+      "94f8ab0a070a6ff15fce": {
+        "loaded": false,
+        "main_visible": false,
+        "scheme_name": "",
+        "application_url": "",
+        "application_status": "",
+        "programme_status": ""
+      },
+      "194b7ba77d6b53f30b91": {
+        "loaded": false,
+        "main_visible": false,
+        "scheme_name": "",
+        "application_url": "",
+        "application_status": "",
+        "programme_status": ""
+      }
+    }
+  },
+  "candidate_snapshot": {
+    "loaded_records": 168,
+    "main_visible_records": 55,
+    "targets": {
+      "94f8ab0a070a6ff15fce": {
+        "loaded": true,
+        "main_visible": true,
+        "scheme_name": "GENESIS",
+        "application_url": "",
+        "application_status": "APPLICATION_STATUS_REQUIRES_VERIFICATION",
+        "programme_status": "UMBRELLA_SCHEME_INFORMATION_AVAILABLE"
+      },
+      "194b7ba77d6b53f30b91": {
+        "loaded": true,
+        "main_visible": true,
+        "scheme_name": "SASACT",
+        "application_url": "",
+        "application_status": "NO_CURRENT_APPLICATION_ROUTE_CONFIRMED",
+        "programme_status": "HISTORICAL_SCHEME_INFORMATION_AVAILABLE"
+      }
+    }
+  },
+  "checks": [
+    {
+      "name": "active_rows_139",
+      "passed": true,
+      "details": "actual=139"
+    },
+    {
+      "name": "candidate_rows_141",
+      "passed": true,
+      "details": "actual=141"
+    },
+    {
+      "name": "active_bytes_preserved",
+      "passed": true,
+      "details": "candidate begins with exact active bytes"
+    },
+    {
+      "name": "existing_rows_preserved",
+      "passed": true,
+      "details": "first 139 rows unchanged"
+    },
+    {
+      "name": "master_ids_unique",
+      "passed": true,
+      "details": "unique=141"
+    },
+    {
+      "name": "active_dashboard_53",
+      "passed": true,
+      "details": "actual=53"
+    },
+    {
+      "name": "candidate_dashboard_55",
+      "passed": true,
+      "details": "actual=55"
+    },
+    {
+      "name": "targets_loaded",
+      "passed": true,
+      "details": "{\"194b7ba77d6b53f30b91\": {\"application_status\": \"NO_CURRENT_APPLICATION_ROUTE_CONFIRMED\", \"application_url\": \"\", \"loaded\": true, \"main_visible\": true, \"programme_status\": \"HISTORICAL_SCHEME_INFORMATION_AVAILABLE\", \"scheme_name\": \"SASACT\"}, \"94f8ab0a070a6ff15fce\": {\"application_status\": \"APPLICATION_STATUS_REQUIRES_VERIFICATION\", \"application_url\": \"\", \"loaded\": true, \"main_visible\": true, \"programme_status\": \"UMBRELLA_SCHEME_INFORMATION_AVAILABLE\", \"scheme_name\": \"GENESIS\"}}"
+    },
+    {
+      "name": "targets_main_visible",
+      "passed": true,
+      "details": "{\"194b7ba77d6b53f30b91\": {\"application_status\": \"NO_CURRENT_APPLICATION_ROUTE_CONFIRMED\", \"application_url\": \"\", \"loaded\": true, \"main_visible\": true, \"programme_status\": \"HISTORICAL_SCHEME_INFORMATION_AVAILABLE\", \"scheme_name\": \"SASACT\"}, \"94f8ab0a070a6ff15fce\": {\"application_status\": \"APPLICATION_STATUS_REQUIRES_VERIFICATION\", \"application_url\": \"\", \"loaded\": true, \"main_visible\": true, \"programme_status\": \"UMBRELLA_SCHEME_INFORMATION_AVAILABLE\", \"scheme_name\": \"GENESIS\"}}"
+    },
+    {
+      "name": "no_public_application_urls",
+      "passed": true,
+      "details": "{\"194b7ba77d6b53f30b91\": {\"application_status\": \"NO_CURRENT_APPLICATION_ROUTE_CONFIRMED\", \"application_url\": \"\", \"loaded\": true, \"main_visible\": true, \"programme_status\": \"HISTORICAL_SCHEME_INFORMATION_AVAILABLE\", \"scheme_name\": \"SASACT\"}, \"94f8ab0a070a6ff15fce\": {\"application_status\": \"APPLICATION_STATUS_REQUIRES_VERIFICATION\", \"application_url\": \"\", \"loaded\": true, \"main_visible\": true, \"programme_status\": \"UMBRELLA_SCHEME_INFORMATION_AVAILABLE\", \"scheme_name\": \"GENESIS\"}}"
+    },
+    {
+      "name": "frozen_files_unchanged",
+      "passed": true,
+      "details": "{\"apps/public_dashboard_app_v2_9.py\": true, \"data/catalogue_preview/v3_3_2/catalogue_preview_v3_3_2.csv\": true, \"data/departments/meity/v3_4_3_3/meity_new_scheme_application_status_v3_4_3_3.csv\": true, \"data/departments/meity/v3_4_3_3/meity_new_scheme_field_evidence_v3_4_3_3.csv\": true, \"data/departments/meity/v3_4_3_3/meity_new_scheme_identity_validation_v3_4_3_3.csv\": true, \"data/departments/meity/v3_4_3_3/meity_new_scheme_validation_v3_4_3_3.json\": true, \"data/publication/current_manifest.json\": true, \"database/ssip_staging_v1.db\": true}"
+    },
+    {
+      "name": "publication_not_performed",
+      "passed": true,
+      "details": "preview only"
+    }
+  ],
+  "failed_checks": [],
+  "publication_performed": false,
+  "database_modified": false,
+  "dashboard_modified": false
+}

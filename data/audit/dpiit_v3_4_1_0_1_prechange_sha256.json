@@ -1,0 +1,24 @@
+{
+  "version": "3.4.1.0.1",
+  "recorded_date": "2026-07-12",
+  "git_status": "UNAVAILABLE_EMPTY_GIT_DIRECTORY",
+  "trees": {
+    "data/publication/current": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "data/departments/dst": "7cbc42c792d0555116c0943c6b78574a9a175623ddfb066e6f7fe5a48e40c2ff",
+    "data/departments/dst/v3_4_0_5": "3188c77cf32f0531874c736c00324abb5121bb4f19aadbdf118ec007c4351017"
+  },
+  "powershell_prechange_tree_hashes": {
+    "data/publication/current": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "data/departments/dst": "a3b33f86feb3dbafc46b6de61a8e3529b6883d3e902e425b1c38214cfebc6242",
+    "data/departments/dst/v3_4_0_5": "3188c77cf32f0531874c736c00324abb5121bb4f19aadbdf118ec007c4351017"
+  },
+  "tree_hash_note": "The trees map uses Python ordinal relative-path serialization for automated reruns. powershell_prechange_tree_hashes preserves the hashes recorded by the required first-action PowerShell command; its DST value was rechecked unchanged after implementation.",
+  "frozen_files": {
+    "apps/public_dashboard_app_v2_9.py": "77bd6cff08353e9587459b8f507ef5399b3c508fd514d73bdb87f8cc97ca14cd",
+    "assets/dashboard_theme.css": "2841d412db0c4f1f4c5800b5bfc71860217f6427a62855b2560004e5af946524",
+    "ssip_dashboard/assets/styles.css": "ea9fadec7c9f29aa54b4ebbaa25ce64d1484e4941b90075f1160e97d31a803be",
+    "data/publication/current_manifest.json": "193e0d37a296662d9ed124d5847a27749f4c7bb64118b11294ea650264949a5a"
+  },
+  "shared_existing_files_to_modify": [],
+  "backup_status": "No existing file is scheduled for modification; all implementation files are new."
+}

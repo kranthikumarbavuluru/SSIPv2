@@ -1,0 +1,71 @@
+{
+  "as_of_date": "2026-07-08",
+  "input_record_count": 162,
+  "deduplicated_record_count": 161,
+  "master_candidate_count": 34,
+  "records_by_source": {
+    "BIRAC": 100,
+    "DST": 34,
+    "MeitY Startup Hub": 6,
+    "Startup India": 21
+  },
+  "records_by_classification": {
+    "CALL": 97,
+    "DIRECTORY_PAGE": 5,
+    "GUIDELINE": 27,
+    "RESULT_LIST": 9,
+    "SCHEME": 10,
+    "PROGRAMME": 1,
+    "FELLOWSHIP": 2,
+    "REFERENCE_DOCUMENT": 2,
+    "ARCHIVE_INDEX": 2,
+    "POLICY": 3,
+    "REFERENCE_DIRECTORY": 2,
+    "AWARD": 1
+  },
+  "records_by_lifecycle": {
+    "CLOSED": 78,
+    "UNKNOWN": 10,
+    "ACTIVE_OR_UNVERIFIED": 2,
+    "ACTIVE": 3,
+    "NOT_APPLICABLE": 6,
+    "REFERENCE": 34,
+    "HISTORICAL_RESULT": 9,
+    "CURRENT_UNVERIFIED": 14,
+    "HISTORICAL_OR_EXPIRED": 1,
+    "CURRENT_YEAR_UNVERIFIED": 2,
+    "ARCHIVED": 2
+  },
+  "records_by_review_decision": {
+    "HISTORICAL_CALL": 78,
+    "MANUAL_REVIEW": 13,
+    "PRIORITY_REVIEW": 19,
+    "USE_FOR_FURTHER_DISCOVERY": 5,
+    "ATTACH_AS_SUPPORTING_EVIDENCE": 34,
+    "EXCLUDE_FROM_SCHEME_MASTER": 12
+  },
+  "records_by_dashboard_relevance": {
+    "MEDIUM": 76,
+    "HIGH": 17,
+    "LOW": 49,
+    "OUT_OF_SCOPE_OR_UNCLEAR": 19
+  },
+  "masters_by_source": {
+    "DST": 8,
+    "BIRAC": 17,
+    "MeitY Startup Hub": 6,
+    "Startup India": 3
+  },
+  "masters_by_status": {
+    "ACTIVE_CALL_OPEN": 7,
+    "SCHEME_INFORMATION_AVAILABLE": 10,
+    "HISTORICAL_EVIDENCE_ONLY": 17
+  },
+  "generated_at": "2026-07-09T05:44:40.393638+00:00",
+  "classifier_version": "1.0.0+meity-hotfix-2.2",
+  "meity_classification_hotfix": {
+    "version": "2.2.0",
+    "resolved_record_count": 6,
+    "separate_master_count": 6
+  }
+}

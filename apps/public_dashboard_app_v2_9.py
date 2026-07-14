@@ -70,6 +70,12 @@ from ssip_dashboard.dst_history import (
 )
 
 
+from ssip_dashboard.meity_history import (
+    MeitYHistoricalArchive,
+    MeitYHistoricalRecord,
+    load_meity_historical_archive,
+)
+
 APP_VERSION = "3.4.0.23-ui-final"
 PAGE_NAMES = [
     "Home",
@@ -2028,6 +2034,250 @@ def render_scheme_details(bundle: CatalogueBundle) -> None:
 
 
 
+
+@st.cache_data(ttl=300, show_spinner=False)
+def cached_meity_historical_archive() -> MeitYHistoricalArchive:
+    return load_meity_historical_archive(PROJECT_ROOT)
+
+
+def _meity_history_chart(
+    records: tuple[MeitYHistoricalRecord, ...],
+) -> str:
+    counts = Counter(
+        record.historical_year or "Unknown"
+        for record in records
+    )
+    if not counts:
+        return (
+            '<div class="empty-note">'
+            'No qualified MeitY historical calls are available.'
+            '</div>'
+        )
+    ordered = sorted(
+        counts,
+        key=lambda value: (
+            value == "Unknown",
+            value,
+        ),
+    )
+    maximum = max(counts.values()) or 1
+    rows = []
+    for label in ordered:
+        width = (counts[label] / maximum) * 100
+        rows.append(
+            '<div class="history-row">'
+            f'<strong>{esc(label)}</strong>'
+            '<div class="history-track">'
+            '<span class="history-segment history-startup-relevant" '
+            f'style="width:{width:.3f}%"></span>'
+            '</div>'
+            f'<b>{counts[label]}</b></div>'
+        )
+    return (
+        '<div class="history-chart">'
+        '<div class="history-legend">'
+        '<span><i class="history-segment '
+        'history-startup-relevant"></i>'
+        'Qualified historical call</span>'
+        '</div>'
+        + "".join(rows)
+        + '</div>'
+    )
+
+
+def _meity_historical_card(
+    record: MeitYHistoricalRecord,
+) -> str:
+    year = record.historical_year or "Year not recorded"
+    programme_type = record.programme_type.replace(
+        "_",
+        " ",
+    ).title()
+    official_link = (
+        '<a target="_blank" rel="noopener noreferrer" '
+        f'href="{html.escape(record.official_page_url, quote=True)}">'
+        'Official historical source &#8599;</a>'
+        if record.official_page_url
+        else ""
+    )
+    return (
+        '<article class="historical-call-card">'
+        '<div class="scheme-card-head">'
+        '<span class="status-badge status-history">Historical</span>'
+        f'<span class="record-kind">{esc(programme_type)}</span>'
+        f'<span class="record-kind">{esc(year)}</span>'
+        '</div>'
+        f'<h3>{esc(record.canonical_title)}</h3>'
+        '<div class="archive-note">'
+        'Historical reference only — no active Apply action is shown.'
+        '</div>'
+        f'<p><b>Startup relevance:</b> '
+        f'{esc(record.startup_relevance.replace("_", " ").title())}</p>'
+        f'<p><b>Sector:</b> {esc(record.sector or "Not assessed")}</p>'
+        f'<p><b>Historical basis:</b> '
+        f'{esc(record.historical_basis)}</p>'
+        '<div class="resource-actions">'
+        f'{official_link}</div>'
+        '</article>'
+    )
+
+
+def render_meity_historical_archive() -> None:
+    archive = cached_meity_historical_archive()
+    records = archive.records
+    manifest = archive.manifest
+
+    st.markdown(
+        '<div class="archive-governance">'
+        '<strong>Governed MeitY historical reconstruction</strong>'
+        f'<span>{len(records)} official-source call identities passed '
+        'historical page-role and past-activity evidence gates. '
+        f'{manifest.get("historical_review_queue_count", 0)} additional '
+        'identities remain under reconstruction and are not displayed '
+        'as public calls.</span></div>',
+        unsafe_allow_html=True,
+    )
+
+    st.markdown(
+        '<div class="metric-grid archive-metrics">'
+        + metric_card(
+            "Historical Calls",
+            len(records),
+            "Qualified official MeitY references",
+            "blue",
+        )
+        + metric_card(
+            "Startup Direct",
+            manifest.get("startup_direct_count", 0),
+            "Explicit startup participation",
+            "green",
+        )
+        + metric_card(
+            "Year Evidenced",
+            manifest.get("year_evidenced_count", 0),
+            "Year explicitly recorded",
+            "purple",
+        )
+        + metric_card(
+            "Under Review",
+            manifest.get(
+                "historical_review_queue_count",
+                0,
+            ),
+            "Not exposed as public calls",
+            "orange",
+        )
+        + '</div>',
+        unsafe_allow_html=True,
+    )
+
+    st.markdown(
+        '<div class="section-band">'
+        '<h2 class="section-title">'
+        'MeitY Historical Calls by Year</h2>'
+        + _meity_history_chart(records)
+        + '</div>',
+        unsafe_allow_html=True,
+    )
+
+    c1, c2, c3 = st.columns([2, 1, 1])
+    keyword = c1.text_input(
+        "Search MeitY historical calls",
+        placeholder="DRISHTI, Appscale, tolling…",
+        key="meity_history_keyword",
+    ).strip().casefold()
+    years = sorted(
+        {
+            record.historical_year
+            for record in records
+            if record.historical_year
+        },
+        reverse=True,
+    )
+    selected_year = c2.selectbox(
+        "Historical year",
+        ["ALL", *years, "UNKNOWN"],
+        format_func=lambda value: {
+            "ALL": "All years",
+            "UNKNOWN": "Year not recorded",
+        }.get(value, value),
+        key="meity_history_year",
+    )
+    types = sorted(
+        {record.programme_type for record in records}
+    )
+    selected_type = c3.selectbox(
+        "Programme type",
+        ["ALL", *types],
+        format_func=lambda value: (
+            "All types"
+            if value == "ALL"
+            else value.replace("_", " ").title()
+        ),
+        key="meity_history_type",
+    )
+
+    visible = []
+    for record in records:
+        haystack = " ".join(
+            (
+                record.canonical_title,
+                record.programme_type,
+                record.sector,
+                record.historical_basis,
+                record.evidence_excerpt,
+            )
+        ).casefold()
+        if keyword and keyword not in haystack:
+            continue
+        if (
+            selected_year not in {"ALL", "UNKNOWN"}
+            and record.historical_year != selected_year
+        ):
+            continue
+        if (
+            selected_year == "UNKNOWN"
+            and record.historical_year
+        ):
+            continue
+        if (
+            selected_type != "ALL"
+            and record.programme_type != selected_type
+        ):
+            continue
+        visible.append(record)
+
+    st.markdown(
+        f'<div class="filter-summary"><strong>{len(visible)}</strong> '
+        'qualified MeitY historical call(s) match'
+        '<span>No application action is displayed</span></div>',
+        unsafe_allow_html=True,
+    )
+
+    if visible:
+        st.markdown(
+            '<div class="historical-call-grid">'
+            + "".join(
+                _meity_historical_card(record)
+                for record in visible
+            )
+            + '</div>',
+            unsafe_allow_html=True,
+        )
+    else:
+        st.info(
+            "No qualified MeitY historical calls match the filters."
+        )
+
+    st.caption(
+        "Archive manifest: "
+        + str(manifest.get("signature", ""))[:16]
+        + "… · Excluded non-call pages: "
+        + str(manifest.get("excluded_non_call_count", 0))
+        + " · Apply actions: 0"
+    )
+
+
 def render_meity_page(bundle: CatalogueBundle) -> None:
     meity_records = [
         record
@@ -2065,17 +2315,28 @@ def render_meity_page(bundle: CatalogueBundle) -> None:
         if record.application_status.upper()
         in {"OPEN", "UPCOMING", "CLOSED"}
     ]
+    current_calls = [
+        record
+        for record in verified_calls
+        if record.application_status.upper()
+        in {"OPEN", "UPCOMING"}
+    ]
+    history = cached_meity_historical_archive()
 
     st.markdown(
         page_intro(
             "MeitY intelligence",
             "MeitY Schemes & Calls",
             (
-                "Permanent MeitY schemes and governed time-bound calls "
-                "are shown separately. Unverified or withdrawn calls are "
-                "not exposed to the public catalogue."
+                "Permanent MeitY schemes, verified current calls and "
+                "qualified historical call references are maintained "
+                "as separate governed views."
             ),
-            badge=f"{len(schemes)} schemes · {len(verified_calls)} verified calls",
+            badge=(
+                f"{len(schemes)} schemes · "
+                f"{len(current_calls)} current calls · "
+                f"{len(history.records)} historical"
+            ),
         ),
         unsafe_allow_html=True,
     )
@@ -2092,7 +2353,7 @@ def render_meity_page(bundle: CatalogueBundle) -> None:
             "Open calls",
             sum(
                 record.application_status.upper() == "OPEN"
-                for record in verified_calls
+                for record in current_calls
             ),
             "Verified current application windows",
             "green",
@@ -2101,26 +2362,27 @@ def render_meity_page(bundle: CatalogueBundle) -> None:
             "Upcoming",
             sum(
                 record.application_status.upper() == "UPCOMING"
-                for record in verified_calls
+                for record in current_calls
             ),
             "Verified future windows",
             "purple",
         )
         + metric_card(
-            "Closed calls",
-            sum(
-                record.application_status.upper() == "CLOSED"
-                for record in verified_calls
-            ),
-            "Published historical references",
+            "Historical calls",
+            len(history.records),
+            "Qualified official-source references",
             "orange",
         )
         + '</div>',
         unsafe_allow_html=True,
     )
 
-    tab_schemes, tab_calls = st.tabs(
-        ["MeitY Schemes", "MeitY Calls"]
+    tab_schemes, tab_calls, tab_history = st.tabs(
+        [
+            "MeitY Schemes",
+            "Current MeitY Calls",
+            "MeitY Historical Archive",
+        ]
     )
 
     with tab_schemes:
@@ -2144,52 +2406,41 @@ def render_meity_page(bundle: CatalogueBundle) -> None:
             )
 
     with tab_calls:
-        if not verified_calls:
+        if not current_calls:
             st.info(
-                "No verified MeitY calls are currently published. "
-                "Calls under revalidation remain hidden until the "
-                "governed publication checks are completed."
+                "No verified open or upcoming MeitY calls are currently "
+                "published. Unverified calls remain hidden."
             )
-            return
-
-        status_counts = Counter(
-            record.application_status.upper()
-            for record in verified_calls
-        )
-        chart_data = pd.DataFrame(
-            {
-                "Status": ["OPEN", "UPCOMING", "CLOSED"],
-                "Calls": [
-                    status_counts.get("OPEN", 0),
-                    status_counts.get("UPCOMING", 0),
-                    status_counts.get("CLOSED", 0),
-                ],
-            }
-        ).set_index("Status")
-        st.bar_chart(chart_data)
-
-        parent_names = {
-            record.master_id: record.scheme_name
-            for record in bundle.records
-        }
-        visible = _render_published_call_filters(
-            verified_calls,
-            key_prefix="meity_calls",
-            parent_names=parent_names,
-        )
-        if not visible:
-            st.info("No MeitY calls match the selected filters.")
         else:
-            st.markdown(
-                '<div class="scheme-results-grid home-call-grid">'
-                + "".join(
-                    _call_card(record, parent_names)
-                    for record in visible
-                )
-                + '</div>',
-                unsafe_allow_html=True,
+            parent_names = {
+                record.master_id: record.scheme_name
+                for record in bundle.records
+            }
+            visible = _render_published_call_filters(
+                current_calls,
+                key_prefix="meity_calls",
+                parent_names=parent_names,
             )
+            if not visible:
+                st.info(
+                    "No MeitY calls match the selected filters."
+                )
+            else:
+                st.markdown(
+                    '<div class="call-grid">'
+                    + "".join(
+                        _published_call_card(
+                            record,
+                            parent_names=parent_names,
+                        )
+                        for record in visible
+                    )
+                    + '</div>',
+                    unsafe_allow_html=True,
+                )
 
+    with tab_history:
+        render_meity_historical_archive()
 
 def main() -> None:
     requested_slug = str(st.query_params.get("page", "") or "").strip().lower()

@@ -1,0 +1,87 @@
+{
+  "version": "3.4.3.8.0",
+  "source": "MeitY Startup Hub",
+  "ministry": "Ministry of Electronics and Information Technology (MeitY)",
+  "official_domains": [
+    "msh.meity.gov.in",
+    "meity.gov.in",
+    "www.meity.gov.in"
+  ],
+  "seed_urls": [
+    "https://msh.meity.gov.in/",
+    "https://msh.meity.gov.in/schemes",
+    "https://msh.meity.gov.in/whatsnew",
+    "https://msh.meity.gov.in/challenges"
+  ],
+  "api_probe_paths": [
+    "/api/schemes",
+    "/api/whatsnew",
+    "/api/challenges",
+    "/api/v1/schemes",
+    "/api/v1/whatsnew",
+    "/api/v1/challenges",
+    "/backend/api/schemes",
+    "/backend/api/whatsnew",
+    "/backend/api/challenges"
+  ],
+  "relevant_path_terms": [
+    "scheme",
+    "program",
+    "programme",
+    "challenge",
+    "hackathon",
+    "whatsnew",
+    "startup",
+    "cohort",
+    "samridh",
+    "tide",
+    "genesis",
+    "sasact",
+    "application",
+    "announcement",
+    "result",
+    "winner",
+    "eoi",
+    "rfp",
+    "grant",
+    "accelerator",
+    "incubat"
+  ],
+  "directory_titles": [
+    "schemes",
+    "challenges",
+    "what's new",
+    "whats new",
+    "whatsnew",
+    "press release all",
+    "event partner",
+    "organisation profile",
+    "organisationprofile"
+  ],
+  "known_programme_aliases": {
+    "GENESIS": [
+      "genesis",
+      "gen-next support for innovative startups"
+    ],
+    "SASACT": [
+      "sasact"
+    ],
+    "SAMRIDH": [
+      "samridh",
+      "startup accelerator of meity for product innovation development and growth"
+    ],
+    "TIDE 2.0": [
+      "tide 2.0",
+      "technology incubation and development of entrepreneurs 2.0"
+    ]
+  },
+  "max_pages": 240,
+  "max_documents": 80,
+  "max_javascript_files": 30,
+  "max_depth": 4,
+  "request_timeout_seconds": 35,
+  "browser_timeout_seconds": 75,
+  "snapshot_text_limit": 120000,
+  "max_pdf_pages": 20,
+  "ocr_page_limit": 5
+}

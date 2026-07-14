@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import csv
 import hashlib
@@ -231,7 +231,7 @@ class MeitYCallsAdminBridge:
             "sector_scope": clean(row.get("sector_scope")) or "UNKNOWN",
             "status_basis": clean(row.get("status_basis")),
             "status_evidence": clean(row.get("status_evidence")),
-            "last_verified_at": utc_now(),
+            "last_verified_at": None,
             "validation": {
                 "decision": "NEEDS_ADMIN_REVIEW",
                 "validation_score": float(
@@ -557,3 +557,4 @@ class MeitYCallsAdminBridge:
             json.dumps(report, indent=2, ensure_ascii=False) + "\n",
             encoding="utf-8",
         )
+

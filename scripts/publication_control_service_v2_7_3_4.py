@@ -1,6 +1,6 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """
-SSIP v2.7.3.4 — Publication Control Service
+SSIP v2.7.3.4 â€” Publication Control Service
 
 Provides explicit, audited state transitions for scheme publication.
 
@@ -536,7 +536,7 @@ def write_audit(
         "mark-ready": "MARK_READY",
         "publish": "PUBLISH",
         "unpublish": "UNPUBLISH",
-        "withdraw-publication": "WITHDRAW_PUBLICATION",
+        "withdraw-publication": "UNPUBLISH",
         "archive": "ARCHIVE",
         "restore": "RESTORE",
     }
@@ -1225,3 +1225,4 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
+

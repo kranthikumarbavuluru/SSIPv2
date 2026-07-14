@@ -5,6 +5,7 @@ from pathlib import Path
 from typing import Any, Protocol
 
 from ssip_agents.dst_pilot.admin_bridge import BridgePaths, DSTAdminBridge
+from services.meity_admin_bridge_v3_4_3_7_1 import MeitYAdminBridge, MeitYBridgePaths
 
 
 class IntakeProvider(Protocol):
@@ -22,26 +23,52 @@ class IntakeDescriptor:
 
 
 def available_intakes(project_root: Path, database_path: Path) -> list[IntakeDescriptor]:
-    pilot = project_root / "data/departments/dst/pilot_v1/dst_curation_queue_v1.csv"
     output: list[IntakeDescriptor] = []
+
+    pilot = project_root / "data/departments/dst/pilot_v1/dst_curation_queue_v1.csv"
     if pilot.exists():
-        output.append(IntakeDescriptor(
-            provider_id="dst_pilot_v1",
-            department="Department of Science and Technology",
-            version="DST Pilot v1",
-            source_path=str(pilot),
-            description="Permanent DST identities plus startup-relevant direct, review and ecosystem calls.",
-        ))
+        output.append(
+            IntakeDescriptor(
+                provider_id="dst_pilot_v1",
+                department="Department of Science and Technology",
+                version="DST Pilot v1",
+                source_path=str(pilot),
+                description="Permanent DST identities plus startup-relevant direct, review and ecosystem calls.",
+            )
+        )
+
+    meity_queue = (
+        project_root
+        / "data/departments/meity/v3_4_3_7/meity_admin_review_queue_v3_4_3_7.csv"
+    )
+    if meity_queue.exists():
+        output.append(
+            IntakeDescriptor(
+                provider_id="meity_v3_4_3_7",
+                department="Ministry of Electronics and Information Technology",
+                version="MeitY v3.4.3.7 Admin Gate",
+                source_path=str(meity_queue),
+                description=(
+                    "Governed permanent-scheme review for SASACT and GENESIS. "
+                    "No current MeitY call or public Apply route is asserted in this package."
+                ),
+            )
+        )
+
     return output
 
 
 def get_intake(provider_id: str, project_root: Path, database_path: Path) -> IntakeProvider:
     if provider_id == "dst_pilot_v1":
         defaults = BridgePaths.defaults(project_root)
-        return DSTAdminBridge(BridgePaths(
-            project_root=defaults.project_root,
-            pilot_dir=defaults.pilot_dir,
-            database_path=database_path,
-            report_dir=defaults.report_dir,
-        ))
+        return DSTAdminBridge(
+            BridgePaths(
+                project_root=defaults.project_root,
+                pilot_dir=defaults.pilot_dir,
+                database_path=database_path,
+                report_dir=defaults.report_dir,
+            )
+        )
+    if provider_id == "meity_v3_4_3_7":
+        return MeitYAdminBridge(MeitYBridgePaths.defaults(project_root, database_path))
     raise KeyError(f"Unknown department intake provider: {provider_id}")

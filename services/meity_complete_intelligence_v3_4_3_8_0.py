@@ -276,10 +276,11 @@ class DiscoveryHTMLParser(HTMLParser):
         if tag == "title":
             self._in_title = True
         if tag == "meta":
-            key = (
+            key = clean(
                 attr.get("property")
                 or attr.get("name")
                 or attr.get("itemprop")
+                or ""
             ).casefold()
             value = attr.get("content", "")
             if key and value:

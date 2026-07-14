@@ -1,0 +1,31 @@
+{
+  "version": "3.4.3.8.0.1",
+  "source_version": "3.4.3.8.0",
+  "generated_at": "2026-07-14T11:04:47+00:00",
+  "signature": "7051cc9d75cc95ac2240ec754db7781fc836e66938cc763434b0093f7baf1879",
+  "source_manifest_signature": "00b4af50941d93ae1a7e6a94af27d9996cae4c995520e8c90a9c5cf1850ad8b1",
+  "source_candidate_count": 222,
+  "source_evidence_count": 328,
+  "partition_total": 222,
+  "partition_complete": true,
+  "disposition_counts": {
+    "EXCLUDED_ERROR_OR_NAVIGATION": 109,
+    "IDENTITY_OR_ROLE_REVIEW": 28,
+    "PURIFIED_CALL_OR_CHALLENGE": 22,
+    "PURIFIED_HISTORICAL_EVENT": 4,
+    "PURIFIED_PROGRAMME_FAMILY": 12,
+    "SUPPORTING_DOCUMENT": 47
+  },
+  "purified_programme_family_count": 7,
+  "purified_call_challenge_count": 11,
+  "purified_historical_event_count": 4,
+  "supporting_document_count": 47,
+  "excluded_error_page_count": 109,
+  "identity_role_review_count": 28,
+  "admin_review_count": 50,
+  "verified_open_count": 0,
+  "apply_action_allowed_count": 0,
+  "unsafe_programme_identity_count": 0,
+  "database_write_performed": false,
+  "publication_performed": false
+}

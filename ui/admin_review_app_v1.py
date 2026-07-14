@@ -24,6 +24,13 @@ from services.department_review_intake_v1 import (  # noqa: E402
     available_intakes,
     get_intake,
 )
+from services.admin_workflow_navigation_v3_4_3_7_3 import (  # noqa: E402
+    guidance_for_route,
+    phase_for_route,
+    route_for_label,
+    workflow_snapshot,
+    workspace_labels,
+)
 from ssip_dashboard.dst_history import (  # noqa: E402
     RELEVANCE_ORDER,
     load_dst_historical_archive,
@@ -75,10 +82,11 @@ def source_evidence_to_lines(value: Any) -> str:
 
 
 def _render_agent_intake(st: Any, service: AdminReviewService) -> None:
-    st.subheader("Department Agent Intake")
+    st.subheader("Step 1 — Agent Intake & Dry Run")
     st.caption(
-        "Run a non-writing comparison first, inspect duplicates and exact queue changes, "
-        "then import only into admin_review_queue. Approval and publication remain separate."
+        "Start with the department agent. Run a non-writing comparison, inspect exact "
+        "queue changes and duplicates, then import only reviewed candidates as PENDING. "
+        "Human verification and publication remain separate later steps."
     )
     descriptors = available_intakes(PROJECT_ROOT, service.database_path)
     if not descriptors:
@@ -410,10 +418,10 @@ def _render_historical_archive(st: Any, service: AdminReviewService) -> None:
 def _render_publication_queue(st: Any, service: AdminReviewService) -> None:
     publication = AdminPublicationService(service.database_path)
     counts = publication.status_counts()
-    st.subheader("Publication Queue")
+    st.subheader("Step 3 — Staging & Publication Control")
     st.caption(
-        "Curator approval and public publication are separate. Prepare approved staging records, "
-        "then publish only records that pass a fresh bulk preflight."
+        "Only human-approved records reach staging. Prepare them for release, run a fresh "
+        "bulk preflight and publish only through a separate confirmed decision."
     )
     metrics = st.columns(4)
     metrics[0].metric("Staged", counts.get("STAGED", 0))
@@ -685,25 +693,56 @@ def main() -> None:
     counts = service.dashboard_counts()
     options = service.filter_options()
 
+    with st.sidebar:
+        st.header("Admin workflow")
+        st.caption(
+            "Follow the numbered sequence. Agent intake comes first; human verification "
+            "comes next; staging and publication are separate final controls."
+        )
+        workspace_label = st.radio(
+            "Workspace",
+            workspace_labels(),
+            index=0,
+        )
+        workspace = route_for_label(workspace_label)
+        st.caption(guidance_for_route(workspace))
+
     st.title("SSIP Scheme & Call Admin Verification")
     st.caption(
-        "Verify department-agent evidence, relationships and application status; "
-        "then approve records into staging before a separate publication decision."
+        "Governed sequence: agent dry run → import pending candidates → human verification "
+        "→ non-public staging → separate publication decision."
     )
+
+    st.markdown("### Governed workflow")
+    phase_columns = st.columns(4)
+    for column, phase in zip(
+        phase_columns,
+        workflow_snapshot(workspace, counts),
+        strict=True,
+    ):
+        marker = "▶" if phase["active"] else str(phase["step"])
+        column.markdown(f"**{marker}. {phase['title']}**")
+        column.caption(phase["description"])
+        column.write(phase["status"])
+
+    current_phase = phase_for_route(workspace)
+    if current_phase is None:
+        st.info(
+            "This is a supporting oversight workspace. Return to Step 1 for a new agent "
+            "package, Step 2 for verification or Step 3 for staging/publication."
+        )
+    else:
+        st.info(
+            f"Current governed stage: {workspace_label}. "
+            f"{guidance_for_route(workspace)}"
+        )
 
     metric_columns = st.columns(5)
     metric_columns[0].metric("Staged records", counts["staged_schemes"])
-    metric_columns[1].metric("Pending", counts["pending_reviews"])
+    metric_columns[1].metric("Pending verification", counts["pending_reviews"])
     metric_columns[2].metric("Approved reviews", counts["approved_reviews"])
     metric_columns[3].metric("Rejected reviews", counts["rejected_reviews"])
     metric_columns[4].metric("Audit actions", counts["review_actions"])
-
-    with st.sidebar:
-        st.header("Admin workspace")
-        workspace = st.radio(
-            "Workspace",
-            ["Review Inbox", "Publication Queue", "Historical Archive", "Department Agent Intake", "Ingestion Runs", "Audit Trail"],
-        )
 
     if workspace == "Department Agent Intake":
         _render_agent_intake(st, service)
@@ -764,7 +803,16 @@ def main() -> None:
         search=search,
     )
     if not reviews:
-        st.info("No records match the selected filters.")
+        if status_filter == "PENDING" and counts["pending_reviews"] == 0:
+            st.success(
+                "Verification queue complete: there are no pending records."
+            )
+            st.info(
+                "Next governed step: open 3. Stage & Publish Approved Records. "
+                "Approved records remain non-public until the separate publication controls are completed."
+            )
+        else:
+            st.info("No records match the selected filters.")
         return
 
     st.markdown(f"**{len(reviews)} review record(s) match the current controls.**")

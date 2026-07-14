@@ -1,0 +1,3 @@
+legacy_master_id,canonical_master_id,canonical_name,official_page_url,required_legacy_table,required_legacy_status,reconciliation_reason
+190830c31088c57ffdbc,94f8ab0a070a6ff15fce,GENESIS,https://msh.meity.gov.in/schemes/genesis,admin_review_queue,REJECTED,Replace the legacy rejected discovery identity with the governed permanent-scheme canonical identity while preserving the original rejection and audit history.
+e3abff4124f05a31f188,194b7ba77d6b53f30b91,SASACT,https://msh.meity.gov.in/schemes/sasact,admin_review_queue,REJECTED,Replace the legacy rejected discovery identity with the governed permanent-scheme canonical identity while preserving the original rejection and audit history.

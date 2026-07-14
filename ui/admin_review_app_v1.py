@@ -11,7 +11,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from services.admin_review_service_v1 import AdminReviewService  # noqa: E402
+from services.admin_review_service_v3_4_3_7_2 import AdminReviewService  # noqa: E402
 from services.admin_publication_service_v1 import AdminPublicationService  # noqa: E402
 from services.dst_historical_archive_approval_v1 import (  # noqa: E402
     DSTHistoricalArchiveApprovalService,
@@ -795,6 +795,7 @@ def main() -> None:
     record = item["validated_record"]
     assessment = verification_assessment(record)
     duplicate_candidates = service.duplicate_candidates(selected_id, record)
+    reconciled_aliases = service.reconciled_aliases(selected_id)
 
     st.subheader(record.get("scheme_name") or item["scheme_name"])
     status_columns = st.columns(5)
@@ -828,6 +829,10 @@ def main() -> None:
         st.warning(
             f"{len(duplicate_candidates)} possible duplicate record(s) found. Review them before deciding."
         )
+    if reconciled_aliases:
+        st.info(
+            f"{len(reconciled_aliases)} legacy rejected identity record(s) are explicitly reconciled to this canonical ID. Their rejection and audit history remain preserved."
+        )
 
     overview_tab, edit_tab, evidence_tab, history_tab = st.tabs(
         ["Overview", "Edit & Decide", "Evidence", "Audit history"]
@@ -851,6 +856,9 @@ def main() -> None:
         if duplicate_candidates:
             st.markdown("#### Possible duplicates")
             st.dataframe(duplicate_candidates, use_container_width=True, hide_index=True)
+        if reconciled_aliases:
+            st.markdown("#### Reconciled legacy identities")
+            st.dataframe(reconciled_aliases, use_container_width=True, hide_index=True)
         left, right = st.columns(2)
         with left:
             st.markdown("#### Decision reasons")

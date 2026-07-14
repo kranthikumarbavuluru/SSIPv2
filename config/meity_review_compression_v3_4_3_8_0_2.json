@@ -1,0 +1,91 @@
+{
+  "version": "3.4.3.8.0.2",
+  "source_version": "3.4.3.8.0.1",
+  "source_dir": "data/departments/meity/v3_4_3_8_0_1",
+  "output_dir": "data/departments/meity/v3_4_3_8_0_2",
+  "max_admin_decision_bundles": 20,
+  "max_deep_review_bundles": 8,
+  "auto_resolve_entity_types": [
+    "EVENT_OR_CONFERENCE",
+    "PRESS_RELEASE_OR_NEWS",
+    "DIRECTORY_OR_LISTING",
+    "ORGANISATION_PROFILE",
+    "NAVIGATION_PAGE",
+    "UNRESOLVED_NON_CALL"
+  ],
+  "auto_resolve_title_markers": [
+    "click on the tabs to know more",
+    "conference",
+    "exhibition",
+    "expo",
+    "agenda",
+    "summit",
+    "message by",
+    "tags",
+    "strategic",
+    "partners with",
+    "delegation",
+    "vivatech",
+    "brussels"
+  ],
+  "potential_programme_types": [
+    "PERMANENT_SCHEME",
+    "PERMANENT_PROGRAMME",
+    "ACCELERATOR_PROGRAMME",
+    "GRANT_PROGRAMME",
+    "INCUBATION_PROGRAMME",
+    "ECOSYSTEM_PROGRAMME",
+    "IMPLEMENTATION_PROGRAMME"
+  ],
+  "potential_call_types": [
+    "APPLICATION_CALL",
+    "CHALLENGE_CALL",
+    "GRAND_CHALLENGE",
+    "HACKATHON",
+    "ACCELERATOR_COHORT",
+    "EOI",
+    "RFP",
+    "IMPLEMENTATION_PARTNER_CALL"
+  ],
+  "current_statuses": [
+    "OPEN",
+    "UPCOMING"
+  ],
+  "family_keywords": {
+    "GENESIS": [
+      "genesis",
+      "gen-next support"
+    ],
+    "SASACT": [
+      "sasact"
+    ],
+    "SAMRIDH": [
+      "samridh"
+    ],
+    "TIDE 2.0": [
+      "tide 2.0",
+      "tide2.0"
+    ],
+    "XR Startup Program": [
+      "xr startup program",
+      "xr startup programme"
+    ],
+    "CREST Semiconductor Accelerator": [
+      "crest semiconductor accelerator",
+      "semiconductor accelerator",
+      "micron"
+    ],
+    "MathWorks Startup Program": [
+      "mathworks startup program",
+      "mathworks"
+    ],
+    "BHUMI – BSF Border Security Hackathon": [
+      "bhumi",
+      "bsf border security hackathon"
+    ],
+    "DRISHTI – SSB Grand Challenge on Strengthening Border Security": [
+      "drishti",
+      "ssb grand challenge"
+    ]
+  }
+}

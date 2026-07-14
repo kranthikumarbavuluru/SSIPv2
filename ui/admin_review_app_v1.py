@@ -11,7 +11,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from services.admin_review_service_v3_4_3_7_2 import AdminReviewService  # noqa: E402
+from services.admin_review_service_v3_4_3_7_4 import AdminReviewService  # noqa: E402
 from services.admin_publication_service_v1 import AdminPublicationService  # noqa: E402
 from services.dst_historical_archive_approval_v1 import (  # noqa: E402
     DSTHistoricalArchiveApprovalService,

@@ -1,0 +1,84 @@
+﻿locator,reason,source_file,title,url
+csv_row:2,NO_OFFICIAL_MEITY_EVIDENCE_URL,data\departments\meity\v3_4_2_0_1\meity_current_status_adjudication_v3_4_2_0_1.csv,SAMRIDH,
+csv_row:3,NO_OFFICIAL_MEITY_EVIDENCE_URL,data\departments\meity\v3_4_2_0_1\meity_current_status_adjudication_v3_4_2_0_1.csv,TIDE 2.0,
+csv_row:2,NO_OFFICIAL_MEITY_EVIDENCE_URL,data\departments\meity\v3_4_2_0_1\meity_extraction_pilot_records_v3_4_2_0_1.csv,SAMRIDH,
+csv_row:3,NO_OFFICIAL_MEITY_EVIDENCE_URL,data\departments\meity\v3_4_2_0_1\meity_extraction_pilot_records_v3_4_2_0_1.csv,TIDE 2.0,
+csv_row:2,NO_OFFICIAL_MEITY_EVIDENCE_URL,data\departments\meity\v3_4_2_0_1\meity_extraction_review_queue_v3_4_2_0_1.csv,SAMRIDH,
+csv_row:3,NO_OFFICIAL_MEITY_EVIDENCE_URL,data\departments\meity\v3_4_2_0_1\meity_extraction_review_queue_v3_4_2_0_1.csv,SAMRIDH,
+csv_row:5,NO_OFFICIAL_MEITY_EVIDENCE_URL,data\departments\meity\v3_4_2_0_1\meity_extraction_review_queue_v3_4_2_0_1.csv,SAMRIDH,
+csv_row:2,NO_OFFICIAL_MEITY_EVIDENCE_URL,data\departments\meity\v3_4_2_0_1\meity_field_evidence_registry_v3_4_2_0_1.csv,SAMRIDH,
+csv_row:3,NO_OFFICIAL_MEITY_EVIDENCE_URL,data\departments\meity\v3_4_2_0_1\meity_field_evidence_registry_v3_4_2_0_1.csv,SAMRIDH,
+csv_row:5,NO_OFFICIAL_MEITY_EVIDENCE_URL,data\departments\meity\v3_4_2_0_1\meity_field_evidence_registry_v3_4_2_0_1.csv,SAMRIDH,
+csv_row:8,NO_OFFICIAL_MEITY_EVIDENCE_URL,data\departments\meity\v3_4_2_0_1\meity_field_evidence_registry_v3_4_2_0_1.csv,SAMRIDH,
+csv_row:9,NO_OFFICIAL_MEITY_EVIDENCE_URL,data\departments\meity\v3_4_2_0_1\meity_field_evidence_registry_v3_4_2_0_1.csv,SAMRIDH,
+csv_row:19,NO_OFFICIAL_MEITY_EVIDENCE_URL,data\departments\meity\v3_4_2_0_1\meity_field_evidence_registry_v3_4_2_0_1.csv,SAMRIDH,
+csv_row:20,NO_OFFICIAL_MEITY_EVIDENCE_URL,data\departments\meity\v3_4_2_0_1\meity_field_evidence_registry_v3_4_2_0_1.csv,SAMRIDH,
+csv_row:28,NO_OFFICIAL_MEITY_EVIDENCE_URL,data\departments\meity\v3_4_2_0_1\meity_field_evidence_registry_v3_4_2_0_1.csv,TIDE 2.0,
+csv_row:42,NO_OFFICIAL_MEITY_EVIDENCE_URL,data\departments\meity\v3_4_2_0_1\meity_field_evidence_registry_v3_4_2_0_1.csv,TIDE 2.0,
+csv_row:6,NO_OFFICIAL_MEITY_EVIDENCE_URL,data\departments\meity\v3_4_2_0_1\meity_official_evidence_registry_v3_4_2_0_1.csv,SAMRIDH,
+csv_row:7,NO_OFFICIAL_MEITY_EVIDENCE_URL,data\departments\meity\v3_4_2_0_1\meity_official_evidence_registry_v3_4_2_0_1.csv,SAMRIDH,
+csv_row:12,NO_OFFICIAL_MEITY_EVIDENCE_URL,data\departments\meity\v3_4_2_0_1\meity_official_evidence_registry_v3_4_2_0_1.csv,TIDE 2.0,
+csv_row:2,NO_OFFICIAL_MEITY_EVIDENCE_URL,data\departments\meity\v3_4_2_0_1\meity_scheme_master_registry_v3_4_2_0_1.csv,SAMRIDH,
+csv_row:3,NO_OFFICIAL_MEITY_EVIDENCE_URL,data\departments\meity\v3_4_2_0_1\meity_scheme_master_registry_v3_4_2_0_1.csv,TIDE 2.0,
+csv_row:2,NO_OFFICIAL_MEITY_EVIDENCE_URL,data\departments\meity\v3_4_2_0_2\catalogue_candidate_v3_4_2_0_2.csv,Bio-AI / BioE3 Mulankur Hubs,
+csv_row:5,NO_OFFICIAL_MEITY_EVIDENCE_URL,data\departments\meity\v3_4_2_0_2\catalogue_candidate_v3_4_2_0_2.csv,Grand Challenges India (GCI),
+csv_row:11,NO_OFFICIAL_MEITY_EVIDENCE_URL,data\departments\meity\v3_4_2_0_2\catalogue_candidate_v3_4_2_0_2.csv,Sitemap.Xml,
+csv_row:12,NO_OFFICIAL_MEITY_EVIDENCE_URL,data\departments\meity\v3_4_2_0_2\catalogue_candidate_v3_4_2_0_2.csv,myScheme,
+csv_row:16,NO_OFFICIAL_MEITY_EVIDENCE_URL,data\departments\meity\v3_4_2_0_2\catalogue_candidate_v3_4_2_0_2.csv,NTSC Aligarh | NSIC Technical Services Centres | NTSC |TIC | LBI | testing laboratories accredited by NABL / BIS | NSIC Services | NSIC - NSIC : National Small Industries Corporati,
+csv_row:17,NO_OFFICIAL_MEITY_EVIDENCE_URL,data\departments\meity\v3_4_2_0_2\catalogue_candidate_v3_4_2_0_2.csv,NTSC Chennai | NSIC Technical Services Centres | NTSC |TIC | LBI | testing laboratories accredited by NABL / BIS | NSIC Services | NSIC - NSIC : National Small Industries Corporati,
+csv_row:18,NO_OFFICIAL_MEITY_EVIDENCE_URL,data\departments\meity\v3_4_2_0_2\catalogue_candidate_v3_4_2_0_2.csv,"NTSC Neemka, Faridabad | NSIC Technical Services Centres | NTSC |TIC | LBI | testing laboratories accredited by NABL / BIS | NSIC Services | NSIC - NSIC : National Small Industries",
+csv_row:19,NO_OFFICIAL_MEITY_EVIDENCE_URL,data\departments\meity\v3_4_2_0_2\catalogue_candidate_v3_4_2_0_2.csv,"NTSC Howrah, West Bengal | NSIC Technical Services Centres | NTSC |TIC | LBI | testing laboratories accredited by NABL / BIS | NSIC Services | NSIC - NSIC : National Small Industri",
+csv_row:20,NO_OFFICIAL_MEITY_EVIDENCE_URL,data\departments\meity\v3_4_2_0_2\catalogue_candidate_v3_4_2_0_2.csv,"NTSC Hyderabad, Telangana | NSIC Technical Services Centres | NTSC |TIC | LBI | testing laboratories accredited by NABL / BIS | NSIC Services | NSIC - NSIC : National Small Industr",
+csv_row:21,NO_OFFICIAL_MEITY_EVIDENCE_URL,data\departments\meity\v3_4_2_0_2\catalogue_candidate_v3_4_2_0_2.csv,Material Testing Labs | NSIC Technical Services Centres | NTSC |TIC | LBI | testing laboratories accredited by NABL / BIS | NSIC Services | NSIC - NSIC : National Small Industries,
+csv_row:22,NO_OFFICIAL_MEITY_EVIDENCE_URL,data\departments\meity\v3_4_2_0_2\catalogue_candidate_v3_4_2_0_2.csv,"NTSC Okhla, New Delhi | NSIC Technical Services Centres | NTSC |TIC | LBI | testing laboratories accredited by NABL / BIS | NSIC Services | NSIC - NSIC : National Small Industries",
+csv_row:23,NO_OFFICIAL_MEITY_EVIDENCE_URL,data\departments\meity\v3_4_2_0_2\catalogue_candidate_v3_4_2_0_2.csv,"NTSC Rajkot, Gujarat | NSIC Technical Services Centres | NTSC |TIC | LBI | testing laboratories accredited by NABL / BIS | NSIC Services | NSIC - NSIC : National Small Industries C",
+csv_row:24,NO_OFFICIAL_MEITY_EVIDENCE_URL,data\departments\meity\v3_4_2_0_2\catalogue_candidate_v3_4_2_0_2.csv,"NTSC Rajpura, Punjab |NSIC Technical Services Centres | NTSC |TIC | LBI | testing laboratories accredited by NABL / BIS | NSIC Services | NSIC - NSIC : National Small Industries Co",
+csv_row:52,NO_OFFICIAL_MEITY_EVIDENCE_URL,data\departments\meity\v3_4_2_0_2\catalogue_candidate_v3_4_2_0_2.csv,View Challenge.Aspx,
+csv_row:53,NO_OFFICIAL_MEITY_EVIDENCE_URL,data\departments\meity\v3_4_2_0_2\catalogue_candidate_v3_4_2_0_2.csv,Register Challenge.Aspx,
+csv_row:71,NO_OFFICIAL_MEITY_EVIDENCE_URL,data\departments\meity\v3_4_2_0_2\catalogue_candidate_v3_4_2_0_2.csv,Innovation Challenge.Html,
+csv_row:104,NO_OFFICIAL_MEITY_EVIDENCE_URL,data\departments\meity\v3_4_2_0_2\catalogue_candidate_v3_4_2_0_2.csv,Eodb%20Grand%20Challenge%20Details V6.Pdf,
+csv_row:121,NO_OFFICIAL_MEITY_EVIDENCE_URL,data\departments\meity\v3_4_2_0_2\catalogue_candidate_v3_4_2_0_2.csv,Bharat Startup Grand Challenge | Startup India,
+csv_row:132,NO_OFFICIAL_MEITY_EVIDENCE_URL,data\departments\meity\v3_4_2_0_2\catalogue_candidate_v3_4_2_0_2.csv,NIDHI – PRAYAS,
+csv_row:133,NO_OFFICIAL_MEITY_EVIDENCE_URL,data\departments\meity\v3_4_2_0_2\catalogue_candidate_v3_4_2_0_2.csv,NIDHI – Entrepreneur-in-Residence,
+csv_row:134,NO_OFFICIAL_MEITY_EVIDENCE_URL,data\departments\meity\v3_4_2_0_2\catalogue_candidate_v3_4_2_0_2.csv,NIDHI Seed Support Program,
+csv_row:135,NO_OFFICIAL_MEITY_EVIDENCE_URL,data\departments\meity\v3_4_2_0_2\catalogue_candidate_v3_4_2_0_2.csv,NIDHI – Technology Business Incubators,
+csv_row:136,NO_OFFICIAL_MEITY_EVIDENCE_URL,data\departments\meity\v3_4_2_0_2\catalogue_candidate_v3_4_2_0_2.csv,NIDHI – Inclusive Technology Business Incubators,
+csv_row:137,NO_OFFICIAL_MEITY_EVIDENCE_URL,data\departments\meity\v3_4_2_0_2\catalogue_candidate_v3_4_2_0_2.csv,NIDHI – Accelerator,
+csv_row:138,NO_OFFICIAL_MEITY_EVIDENCE_URL,data\departments\meity\v3_4_2_0_2\catalogue_candidate_v3_4_2_0_2.csv,Technology Development Board Core Funding,
+csv_row:139,NO_OFFICIAL_MEITY_EVIDENCE_URL,data\departments\meity\v3_4_2_0_2\catalogue_candidate_v3_4_2_0_2.csv,SAMRIDH,
+csv_row:140,NO_OFFICIAL_MEITY_EVIDENCE_URL,data\departments\meity\v3_4_2_0_2\catalogue_candidate_v3_4_2_0_2.csv,TIDE 2.0,
+csv_row:2,NO_OFFICIAL_MEITY_EVIDENCE_URL,data\departments\meity\v3_4_2_0_2\meity_catalogue_additions_v3_4_2_0_2.csv,SAMRIDH,
+csv_row:3,NO_OFFICIAL_MEITY_EVIDENCE_URL,data\departments\meity\v3_4_2_0_2\meity_catalogue_additions_v3_4_2_0_2.csv,TIDE 2.0,
+csv_row:2,NO_OFFICIAL_MEITY_EVIDENCE_URL,data\departments\meity\v3_4_2_0_2\meity_publication_ready_records_v3_4_2_0_2.csv,SAMRIDH,
+csv_row:3,NO_OFFICIAL_MEITY_EVIDENCE_URL,data\departments\meity\v3_4_2_0_2\meity_publication_ready_records_v3_4_2_0_2.csv,TIDE 2.0,
+csv_row:2,NO_OFFICIAL_MEITY_EVIDENCE_URL,data\departments\meity\v3_4_2_0_2\meity_resolved_review_queue_v3_4_2_0_2.csv,SAMRIDH,
+csv_row:3,NO_OFFICIAL_MEITY_EVIDENCE_URL,data\departments\meity\v3_4_2_0_2\meity_resolved_review_queue_v3_4_2_0_2.csv,SAMRIDH,
+csv_row:4,NO_OFFICIAL_MEITY_EVIDENCE_URL,data\departments\meity\v3_4_2_0_2\meity_resolved_review_queue_v3_4_2_0_2.csv,SAMRIDH,
+csv_row:5,NO_OFFICIAL_MEITY_EVIDENCE_URL,data\departments\meity\v3_4_2_0_2\meity_resolved_review_queue_v3_4_2_0_2.csv,SAMRIDH,
+csv_row:2,GENERIC_OR_MISSING_CALL_TITLE,data\departments\meity\v3_4_3_0\meity_call_instances_v3_4_3_0.csv,MeityStartupHub,https://msh.meity.gov.in/whatsnew
+csv_row:2,GENERIC_OR_MISSING_CALL_TITLE,data\departments\meity\v3_4_3_0\meity_discovered_pages_v3_4_3_0.csv,MeityStartupHub,https://msh.meity.gov.in/
+csv_row:7,GENERIC_OR_MISSING_CALL_TITLE,data\departments\meity\v3_4_3_0\meity_discovered_pages_v3_4_3_0.csv,MeityStartupHub,https://msh.meity.gov.in/whatsnew
+csv_row:2,GENERIC_OR_MISSING_CALL_TITLE,data\departments\meity\v3_4_3_1\meity_call_instances_v3_4_3_1.csv,MeityStartupHub,https://msh.meity.gov.in/
+csv_row:25,GENERIC_OR_MISSING_CALL_TITLE,data\departments\meity\v3_4_3_1\meity_discovered_pages_v3_4_3_1.csv,MeityStartupHub,https://msh.meity.gov.in/
+csv_row:99,GENERIC_OR_MISSING_CALL_TITLE,data\departments\meity\v3_4_3_1\meity_discovered_pages_v3_4_3_1.csv,MeityStartupHub,https://msh.meity.gov.in/schemes/tide
+csv_row:103,GENERIC_OR_MISSING_CALL_TITLE,data\departments\meity\v3_4_3_1\meity_discovered_pages_v3_4_3_1.csv,MeityStartupHub,https://msh.meity.gov.in/whatsnew
+csv_row:2,NO_OFFICIAL_MEITY_EVIDENCE_URL,data\departments\meity\v3_4_3_3\meity_new_scheme_application_status_v3_4_3_3.csv,SASACT,
+csv_row:3,NO_OFFICIAL_MEITY_EVIDENCE_URL,data\departments\meity\v3_4_3_3\meity_new_scheme_application_status_v3_4_3_3.csv,GENESIS,
+csv_row:3,NO_OFFICIAL_MEITY_EVIDENCE_URL,data\departments\meity\v3_4_3_3\meity_new_scheme_review_queue_v3_4_3_3.csv,GENESIS,
+csv_row:4,NO_OFFICIAL_MEITY_EVIDENCE_URL,data\departments\meity\v3_4_3_5\dashboard_code_preintegration_sha256_v3_4_3_5.csv,,
+csv_row:5,NO_OFFICIAL_MEITY_EVIDENCE_URL,data\departments\meity\v3_4_3_5\dashboard_code_preintegration_sha256_v3_4_3_5.csv,,
+csv_row:6,NO_OFFICIAL_MEITY_EVIDENCE_URL,data\departments\meity\v3_4_3_5\dashboard_code_preintegration_sha256_v3_4_3_5.csv,,
+,NOT_QUEUE_ELIGIBLE_AFTER_GOVERNED_CLASSIFICATION,,6 1 4 9 +,https://msh.meity.gov.in/
+,NOT_QUEUE_ELIGIBLE_AFTER_GOVERNED_CLASSIFICATION,,842D78Cb C09E 4002 Afe8 690A435703F7,https://api.meity.gov.in/whatsnew-docs/842d78cb-c09e-4002-afe8-690a435703f7.pdf
+,NOT_QUEUE_ELIGIBLE_AFTER_GOVERNED_CLASSIFICATION,,A0Faffb5 Ffd9 4448 A936 1936143Bd8A3,https://api.meity.gov.in/whatsnew-docs/a0faffb5-ffd9-4448-a936-1936143bd8a3.pdf
+,NOT_QUEUE_ELIGIBLE_AFTER_GOVERNED_CLASSIFICATION,,Access Denied,https://www.meity.gov.in/
+,NOT_QUEUE_ELIGIBLE_AFTER_GOVERNED_CLASSIFICATION,,Archives,https://www.meity.gov.in/archives?page=schemes_and_services
+,NOT_QUEUE_ELIGIBLE_AFTER_GOVERNED_CLASSIFICATION,,Conference,https://msh.meity.gov.in/g20dia/the-summit
+,NOT_QUEUE_ELIGIBLE_AFTER_GOVERNED_CLASSIFICATION,,Exhibition,https://msh.meity.gov.in/g20dia/exhibition
+,NOT_QUEUE_ELIGIBLE_AFTER_GOVERNED_CLASSIFICATION,,G20 DIA EXPO,https://msh.meity.gov.in/g20dia/exhibition
+,NOT_QUEUE_ELIGIBLE_AFTER_GOVERNED_CLASSIFICATION,,Offerings,https://www.meity.gov.in/offerings?page=0
+,NOT_QUEUE_ELIGIBLE_AFTER_GOVERNED_CLASSIFICATION,,SAMRIDH,https://msh.meity.gov.in/schemes/assets/samridh2ndcohrot/SAMRIDH%202nd%20Cohort%20OM%20Final.pdf
+,NOT_QUEUE_ELIGIBLE_AFTER_GOVERNED_CLASSIFICATION,,Schemes And Services,https://www.meity.gov.in/offerings/schemes-and-services
+,NOT_QUEUE_ELIGIBLE_AFTER_GOVERNED_CLASSIFICATION,,"The Ministry of Electronics and Information Technology (MeitY) launched MeitY Mitra, India’s first-ever AI chatbot integrated into a government website, enhancing accessibility and user support.",https://msh.meity.gov.in/media/press-release-all
+,NOT_QUEUE_ELIGIBLE_AFTER_GOVERNED_CLASSIFICATION,,TIDE 2.0,https://msh.meity.gov.in/schemes/tide
+,NOT_QUEUE_ELIGIBLE_AFTER_GOVERNED_CLASSIFICATION,,Welcome to the G20 Digital Innovation Alliance Summit!,https://msh.meity.gov.in/g20dia/g20diaoverview

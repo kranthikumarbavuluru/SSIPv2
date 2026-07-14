@@ -1,8 +1,10 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Protocol
+
+from services.meity_calls_admin_bridge_v3_4_3_7_5 import MeitYCallsAdminBridge, MeitYCallsBridgePaths
 
 from ssip_agents.dst_pilot.admin_bridge import BridgePaths, DSTAdminBridge
 from services.meity_admin_bridge_v3_4_3_7_1 import MeitYAdminBridge, MeitYBridgePaths
@@ -84,6 +86,30 @@ def available_intakes(project_root: Path, database_path: Path) -> list[IntakeDes
                 ),
             )
         )
+
+    meity_calls_queue = (
+        project_root
+        / "data/departments/meity/v3_4_3_7_5/"
+        "meity_admin_review_queue_v3_4_3_7_5.csv"
+    )
+    if meity_calls_queue.exists():
+        output.append(
+            IntakeDescriptor(
+                provider_id="meity_calls_v3_4_3_7_5",
+                department=(
+                    "Ministry of Electronics and Information "
+                    "Technology (MeitY)"
+                ),
+                version="MeitY v3.4.3.7.5 Calls Recovery",
+                source_path=str(meity_calls_queue),
+                description=(
+                    "Recovered time-bound MeitY calls, challenges, "
+                    "cohorts and application windows. Permanent "
+                    "scheme identities remain separate. OPEN and "
+                    "Apply require current official evidence."
+                ),
+            )
+        )
     return output
 
 
@@ -103,6 +129,14 @@ def get_intake(provider_id: str, project_root: Path, database_path: Path) -> Int
     if provider_id == "meity_v3_4_3_7_2":
         return MeitYLegacyIdentityReconciliationBridge(
             MeitYReconciliationPaths.defaults(project_root, database_path)
+        )
+
+    if provider_id == "meity_calls_v3_4_3_7_5":
+        return MeitYCallsAdminBridge(
+            MeitYCallsBridgePaths.defaults(
+                project_root,
+                database_path,
+            )
         )
     raise KeyError(f"Unknown department intake provider: {provider_id}")
 

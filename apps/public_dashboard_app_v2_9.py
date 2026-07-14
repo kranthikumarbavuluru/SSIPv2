@@ -76,6 +76,7 @@ PAGE_NAMES = [
     "Scheme Explorer",
     "Calls & Opportunities",
     "DST Schemes",
+    "MeitY",
     "Incubators & Ecosystem",
     "Directory",
     "Official Sources",
@@ -86,6 +87,7 @@ NAV_LABELS = {
     "Scheme Explorer": "Find Schemes",
     "Calls & Opportunities": "Live Calls",
     "DST Schemes": "DST",
+    "MeitY": "MeitY",
     "Incubators & Ecosystem": "Ecosystem",
     "Directory": "Resources",
     "Official Sources": "Sources",
@@ -95,6 +97,7 @@ PAGE_SLUGS = {
     "Home": "overview",
     "Scheme Explorer": "scheme-finder",
     "DST Schemes": "dst-programmes",
+    "MeitY": "meity-programmes",
     "Calls & Opportunities": "live-calls",
     "Incubators & Ecosystem": "ecosystem",
     "Official Sources": "official-sources",
@@ -499,6 +502,7 @@ def site_header(active_page: str) -> str:
         "Scheme Explorer",
         "Calls & Opportunities",
         "DST Schemes",
+        "MeitY",
         "Directory",
         "Official Sources",
     ]
@@ -1424,7 +1428,7 @@ def _dst_call_card(item: DSTCall, *, ecosystem: bool = False) -> str:
 
 def _render_dst_call_filters(calls: list[DSTCall], *, key_prefix: str) -> list[DSTCall]:
     counts = Counter(item.application_status for item in calls)
-    status_options = ["OPEN", "UPCOMING", "CLOSED", "STATUS_UNVERIFIED", "ALL"]
+    status_options = ["OPEN", "UPCOMING", "CLOSED", "VERIFICATION_REQUIRED", "STATUS_UNVERIFIED", "ALL"]
     default_status = next((value for value in status_options[:-1] if counts.get(value, 0)), "ALL")
     selected = st.radio(
         "Call status",
@@ -2023,6 +2027,170 @@ def render_scheme_details(bundle: CatalogueBundle) -> None:
         )
 
 
+
+def render_meity_page(bundle: CatalogueBundle) -> None:
+    meity_records = [
+        record
+        for record in bundle.records
+        if (
+            "meity" in (
+                " ".join(
+                    (
+                        record.source,
+                        record.ministry,
+                        record.department,
+                        record.implementing_agency,
+                    )
+                ).casefold()
+            )
+            and record.publication_status.upper() == "PUBLISHED"
+            and int(record.is_public or 0) == 1
+        )
+    ]
+    schemes = [
+        record
+        for record in meity_records
+        if record.record_kind.upper()
+        not in {"APPLICATION_CALL", "CHALLENGE"}
+    ]
+    calls = [
+        record
+        for record in meity_records
+        if record.record_kind.upper()
+        in {"APPLICATION_CALL", "CHALLENGE"}
+    ]
+    verified_calls = [
+        record
+        for record in calls
+        if record.application_status.upper()
+        in {"OPEN", "UPCOMING", "CLOSED"}
+    ]
+
+    st.markdown(
+        page_intro(
+            "MeitY intelligence",
+            "MeitY Schemes & Calls",
+            (
+                "Permanent MeitY schemes and governed time-bound calls "
+                "are shown separately. Unverified or withdrawn calls are "
+                "not exposed to the public catalogue."
+            ),
+            badge=f"{len(schemes)} schemes · {len(verified_calls)} verified calls",
+        ),
+        unsafe_allow_html=True,
+    )
+
+    st.markdown(
+        '<div class="metric-grid call-metrics">'
+        + metric_card(
+            "Published schemes",
+            len(schemes),
+            "Permanent MeitY scheme identities",
+            "blue",
+        )
+        + metric_card(
+            "Open calls",
+            sum(
+                record.application_status.upper() == "OPEN"
+                for record in verified_calls
+            ),
+            "Verified current application windows",
+            "green",
+        )
+        + metric_card(
+            "Upcoming",
+            sum(
+                record.application_status.upper() == "UPCOMING"
+                for record in verified_calls
+            ),
+            "Verified future windows",
+            "purple",
+        )
+        + metric_card(
+            "Closed calls",
+            sum(
+                record.application_status.upper() == "CLOSED"
+                for record in verified_calls
+            ),
+            "Published historical references",
+            "orange",
+        )
+        + '</div>',
+        unsafe_allow_html=True,
+    )
+
+    tab_schemes, tab_calls = st.tabs(
+        ["MeitY Schemes", "MeitY Calls"]
+    )
+
+    with tab_schemes:
+        if schemes:
+            st.markdown(
+                '<div class="scheme-results-grid">'
+                + "".join(
+                    public_record_card(record)
+                    for record in sorted(
+                        schemes,
+                        key=lambda item: item.scheme_name.casefold(),
+                    )
+                )
+                + '</div>',
+                unsafe_allow_html=True,
+            )
+        else:
+            st.info(
+                "No published permanent MeitY schemes are available "
+                "in the current public catalogue."
+            )
+
+    with tab_calls:
+        if not verified_calls:
+            st.info(
+                "No verified MeitY calls are currently published. "
+                "Calls under revalidation remain hidden until the "
+                "governed publication checks are completed."
+            )
+            return
+
+        status_counts = Counter(
+            record.application_status.upper()
+            for record in verified_calls
+        )
+        chart_data = pd.DataFrame(
+            {
+                "Status": ["OPEN", "UPCOMING", "CLOSED"],
+                "Calls": [
+                    status_counts.get("OPEN", 0),
+                    status_counts.get("UPCOMING", 0),
+                    status_counts.get("CLOSED", 0),
+                ],
+            }
+        ).set_index("Status")
+        st.bar_chart(chart_data)
+
+        parent_names = {
+            record.master_id: record.scheme_name
+            for record in bundle.records
+        }
+        visible = _render_published_call_filters(
+            verified_calls,
+            key_prefix="meity_calls",
+            parent_names=parent_names,
+        )
+        if not visible:
+            st.info("No MeitY calls match the selected filters.")
+        else:
+            st.markdown(
+                '<div class="scheme-results-grid home-call-grid">'
+                + "".join(
+                    _call_card(record, parent_names)
+                    for record in visible
+                )
+                + '</div>',
+                unsafe_allow_html=True,
+            )
+
+
 def main() -> None:
     requested_slug = str(st.query_params.get("page", "") or "").strip().lower()
     requested_page = next(
@@ -2078,6 +2246,8 @@ def main() -> None:
         render_explorer(bundle)
     elif page == "DST Schemes":
         render_dst_schemes()
+    elif page == "MeitY":
+        render_meity_page(bundle)
     elif page == "Official Sources":
         render_official_sources(official_sources, bundle)
     elif page == "Calls & Opportunities":

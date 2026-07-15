@@ -1,0 +1,38 @@
+{
+  "version": "3.4.3.8.0.8",
+  "source_version": "3.4.3.8.0.7",
+  "source_dir": "data/departments/meity/v3_4_3_8_0_4",
+  "preview_dir": "data/departments/meity/v3_4_3_8_0_8",
+  "confirmation_phrase": "PROJECT TO STAGING",
+  "catalogue_entity_types": [
+    "PERMANENT_PROGRAMME",
+    "PERMANENT_SCHEME",
+    "APPLICATION_CALL",
+    "CHALLENGE_CALL",
+    "ACCELERATOR_COHORT",
+    "HISTORICAL_REFERENCE",
+    "RESULT_ANNOUNCEMENT"
+  ],
+  "excluded_entity_types": [
+    "SUPPORTING_DOCUMENT",
+    "INVALID_NON_CATALOGUE"
+  ],
+  "programme_entity_types": [
+    "PERMANENT_PROGRAMME",
+    "PERMANENT_SCHEME"
+  ],
+  "call_entity_types": [
+    "APPLICATION_CALL",
+    "CHALLENGE_CALL",
+    "ACCELERATOR_COHORT"
+  ],
+  "historical_entity_types": [
+    "HISTORICAL_REFERENCE",
+    "RESULT_ANNOUNCEMENT"
+  ],
+  "current_call_temporal_state": "CURRENT_STATUS_EVIDENCE_COMPLETE",
+  "required_current_application_integrity": true,
+  "allow_unresolved_parent_in_projection": false,
+  "projection_table": "meity_classification_staging_projection_v3_4_3_8_0_8",
+  "projection_audit_table": "meity_classification_staging_projection_audit_v3_4_3_8_0_8"
+}

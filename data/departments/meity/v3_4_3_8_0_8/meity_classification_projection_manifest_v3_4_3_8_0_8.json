@@ -1,0 +1,27 @@
+{
+  "version": "3.4.3.8.0.8",
+  "generated_at": "2026-07-15T08:40:37+00:00",
+  "record_count": 22,
+  "override_count": 22,
+  "type_correction_count": 12,
+  "programme_count": 7,
+  "call_challenge_count": 9,
+  "historical_count": 6,
+  "excluded_supporting_count": 0,
+  "classification_review_count": 0,
+  "projection_eligible_count": 7,
+  "projection_blocked_count": 15,
+  "effective_entity_type_counts": {
+    "ACCELERATOR_COHORT": 2,
+    "CHALLENGE_CALL": 7,
+    "HISTORICAL_REFERENCE": 3,
+    "PERMANENT_PROGRAMME": 7,
+    "RESULT_ANNOUNCEMENT": 3
+  },
+  "source_link_integrity_signature": "144dfc14b201292dfc7a09a594eab30d24df01108ea2f6736cfb537ca833274e",
+  "database_write_performed": false,
+  "publication_performed": false,
+  "public_visibility_changed": false,
+  "apply_action_allowed_count": 0,
+  "projection_signature": "6f94b6bdf48c11df2a13d85cdeed3fb1a7e78764926042ee96ed127b94f69753"
+}

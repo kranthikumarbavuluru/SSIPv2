@@ -51,6 +51,63 @@ def _current_status(record: dict[str, Any], category: str) -> str:
     )
 
 
+def _record_multi(
+    record: dict[str, Any],
+    key: str,
+    allowed: list[str],
+) -> list[str]:
+    raw = record.get(key) or (record.get("raw_record") or {}).get(key)
+    if isinstance(raw, str):
+        raw = [item for item in raw.replace(",", ";").split(";")]
+    values = {clean(item).upper().replace(" ", "_") for item in (raw or [])}
+    selected = [value for value in allowed if value in values]
+    return selected or list(allowed)
+
+
+def _multi_checkboxes(
+    st: Any,
+    *,
+    title: str,
+    options: list[str],
+    labels: dict[str, str],
+    current: list[str],
+    key_prefix: str,
+) -> list[str]:
+    st.markdown(f"#### {title}")
+    all_key = f"{key_prefix}_all"
+    child_keys = {
+        option: f"{key_prefix}_{option}"
+        for option in options
+    }
+
+    if all_key not in st.session_state:
+        st.session_state[all_key] = set(current) == set(options)
+    for option, child_key in child_keys.items():
+        if child_key not in st.session_state:
+            st.session_state[child_key] = option in current
+
+    def sync_all() -> None:
+        checked = bool(st.session_state.get(all_key))
+        for child_key in child_keys.values():
+            st.session_state[child_key] = checked
+
+    all_selected = st.checkbox(
+        "All",
+        key=all_key,
+        on_change=sync_all,
+    )
+    selected: list[str] = []
+    for option, child_key in child_keys.items():
+        checked = st.checkbox(
+            labels.get(option, option.replace("_", " ").title()),
+            key=child_key,
+            disabled=all_selected,
+        )
+        if all_selected or checked:
+            selected.append(option)
+    return selected
+
+
 def render_admin_quick_editor(
     st: Any,
     project_root: Path,
@@ -63,7 +120,7 @@ def render_admin_quick_editor(
     st.subheader("Quick Scheme, Programme & Call Editor")
     st.caption(
         "Filter by ministry or department, select one record and update only "
-        "its category, status and funding values."
+        "its category, status, applicant type, startup stage and funding values."
     )
     st.warning(
         "Published records are never changed live by this editor. "
@@ -99,7 +156,16 @@ def render_admin_quick_editor(
         st.info("No records match the selected ministry or department.")
         return
 
-    st.write(f"**{len(records)} record(s) available**")
+    count_col, download_col = st.columns([2.4, 1.0])
+    count_col.write(f"**{len(records)} record(s) available**")
+    download_col.download_button(
+        "Download filtered CSV",
+        data=service.export_csv(records),
+        file_name=f"SSIP_Quick_Editor_{len(records)}_Records.csv",
+        mime="text/csv",
+        use_container_width=True,
+        key="quick_editor_csv_download",
+    )
     labels_by_index = {
         index: (
             f"{record.get('scheme_name') or 'Unnamed'} — "
@@ -115,7 +181,7 @@ def render_admin_quick_editor(
     )
     record = records[selected_index]
 
-    summary = st.columns(4)
+    summary = st.columns(6)
     summary[0].metric(
         "Current category",
         clean(record.get("record_kind")).replace("_", " ").title()
@@ -141,6 +207,32 @@ def render_admin_quick_editor(
         record.get("funding_maximum")
         if record.get("funding_maximum") not in (None, "")
         else "Not recorded",
+    )
+    applicant_options = config.get("applicant_types", [])
+    stage_options = config.get("startup_stages", [])
+    current_applicant_types = _record_multi(
+        record, "applicant_types", applicant_options
+    )
+    current_startup_stages = _record_multi(
+        record, "startup_stages", stage_options
+    )
+    summary[4].metric(
+        "Type",
+        "All"
+        if set(current_applicant_types) == set(applicant_options)
+        else ", ".join(
+            config.get("applicant_type_labels", {}).get(value, value)
+            for value in current_applicant_types
+        ),
+    )
+    summary[5].metric(
+        "Stage",
+        "All"
+        if set(current_startup_stages) == set(stage_options)
+        else ", ".join(
+            config.get("startup_stage_labels", {}).get(value, value)
+            for value in current_startup_stages
+        ),
     )
 
     left, middle, right = st.columns([1.25, 1.0, 1.0])
@@ -234,7 +326,28 @@ def render_admin_quick_editor(
         minimum_value = None if no_minimum else funding_minimum
         maximum_value = None if no_maximum else funding_maximum
 
-    st.markdown("### 4. Preview and save")
+    st.markdown("### 4. Select applicant type and startup stage")
+    type_col, stage_col = st.columns(2)
+    with type_col:
+        selected_applicant_types = _multi_checkboxes(
+            st,
+            title="TYPE",
+            options=applicant_options,
+            labels=config.get("applicant_type_labels", {}),
+            current=current_applicant_types,
+            key_prefix=f"quick_type_{record['master_id']}",
+        )
+    with stage_col:
+        selected_startup_stages = _multi_checkboxes(
+            st,
+            title="STAGE",
+            options=stage_options,
+            labels=config.get("startup_stage_labels", {}),
+            current=current_startup_stages,
+            key_prefix=f"quick_stage_{record['master_id']}",
+        )
+
+    st.markdown("### 5. Preview and save")
     editor_col, note_col = st.columns([1, 2])
     editor = editor_col.text_input(
         "Admin name",
@@ -257,6 +370,8 @@ def render_admin_quick_editor(
             source_table=record["source_table"],
             selected_categories=selected_categories,
             selected_statuses=selected_statuses,
+            selected_applicant_types=selected_applicant_types,
+            selected_startup_stages=selected_startup_stages,
             funding_minimum=minimum_value,
             funding_maximum=maximum_value,
             editor=editor,
@@ -287,6 +402,14 @@ def render_admin_quick_editor(
                     "Maximum fund": preview["columns"][
                         "funding_maximum"
                     ],
+                    "Type": "; ".join(
+                        config.get("applicant_type_labels", {}).get(value, value)
+                        for value in preview["applicant_types"]
+                    ),
+                    "Stage": "; ".join(
+                        config.get("startup_stage_labels", {}).get(value, value)
+                        for value in preview["startup_stages"]
+                    ),
                     "Public action": "None",
                 }
             ],
@@ -295,7 +418,7 @@ def render_admin_quick_editor(
         )
 
     acknowledgement = st.checkbox(
-        "I reviewed this category, status and funding update.",
+        "I reviewed this category, status, type, stage and funding update.",
         key=f"quick_ack_{record['master_id']}",
     )
     confirmation = st.text_input(

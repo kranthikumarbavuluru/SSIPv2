@@ -1,5 +1,5 @@
 {
-  "version": "3.4.3.8.1",
+  "version": "3.4.3.8.1.2",
   "confirmation_phrase": "SAVE QUICK EDIT",
   "categories": [
     "SCHEME",
@@ -41,5 +41,25 @@
     "CLOSED",
     "VERIFICATION_REQUIRED"
   ],
-  "currency": "INR"
+  "currency": "INR",
+  "applicant_types": [
+    "INDIVIDUAL",
+    "STARTUP"
+  ],
+  "applicant_type_labels": {
+    "INDIVIDUAL": "Individual",
+    "STARTUP": "Startup"
+  },
+  "startup_stages": [
+    "IDEATION",
+    "VALIDATION",
+    "SCALING",
+    "EARLY_TRACTION"
+  ],
+  "startup_stage_labels": {
+    "IDEATION": "Ideation",
+    "VALIDATION": "Validation",
+    "SCALING": "Scaling",
+    "EARLY_TRACTION": "Early Traction"
+  }
 }

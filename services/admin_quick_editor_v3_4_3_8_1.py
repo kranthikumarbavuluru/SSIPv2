@@ -1,8 +1,11 @@
 from __future__ import annotations
 
 import copy
+import csv
 import hashlib
+import io
 import json
+import re
 import sqlite3
 from dataclasses import dataclass
 from datetime import datetime, timezone
@@ -10,7 +13,7 @@ from pathlib import Path
 from typing import Any
 
 
-VERSION = "3.4.3.8.1"
+VERSION = "3.4.3.8.1.2"
 EDIT_TABLE = "admin_quick_edit_requests_v3_4_3_8_1"
 AUDIT_TABLE = "admin_quick_edit_audit_v3_4_3_8_1"
 
@@ -66,6 +69,39 @@ def column_names(connection: sqlite3.Connection, table: str) -> set[str]:
             f'PRAGMA table_info("{table}")'
         ).fetchall()
     }
+
+
+def normalized_list(value: Any) -> list[str]:
+    if isinstance(value, list):
+        raw = value
+    elif isinstance(value, tuple):
+        raw = list(value)
+    elif value in (None, ""):
+        raw = []
+    else:
+        text = clean(value)
+        if text.startswith("["):
+            raw = loads(text, [])
+        else:
+            raw = [item for item in re.split(r"[;,|]", text)]
+    output: list[str] = []
+    for item in raw:
+        token = clean(item).upper().replace(" ", "_")
+        if token and token not in output:
+            output.append(token)
+    return output
+
+
+def ensure_column(
+    connection: sqlite3.Connection,
+    table: str,
+    column: str,
+    declaration: str,
+) -> None:
+    if column not in column_names(connection, table):
+        connection.execute(
+            f'ALTER TABLE "{table}" ADD COLUMN "{column}" {declaration}'
+        )
 
 
 def create_consistent_backup(
@@ -152,6 +188,18 @@ class AdminQuickEditorService:
             )
             """
         )
+        ensure_column(
+            connection,
+            EDIT_TABLE,
+            "applicant_types_json",
+            "TEXT NOT NULL DEFAULT '[]'",
+        )
+        ensure_column(
+            connection,
+            EDIT_TABLE,
+            "startup_stages_json",
+            "TEXT NOT NULL DEFAULT '[]'",
+        )
         connection.execute(
             f"""
             CREATE TABLE IF NOT EXISTS {AUDIT_TABLE} (
@@ -203,6 +251,16 @@ class AdminQuickEditorService:
                     "currency": (
                         (record.get("funding_amount") or {}).get("currency")
                         or "INR"
+                    ),
+                    "applicant_types": normalized_list(
+                        record.get("applicant_types")
+                        or record.get("applicant_type")
+                        or record.get("beneficiary_types")
+                    ),
+                    "startup_stages": normalized_list(
+                        record.get("startup_stages")
+                        or record.get("startup_stage")
+                        or record.get("stages")
                     ),
                     "raw_record": record,
                 }
@@ -256,6 +314,16 @@ class AdminQuickEditorService:
                     **item,
                     "source_table": "scheme_staging",
                     "review_status": "",
+                    "applicant_types": normalized_list(
+                        record.get("applicant_types")
+                        or record.get("applicant_type")
+                        or record.get("beneficiary_types")
+                    ),
+                    "startup_stages": normalized_list(
+                        record.get("startup_stages")
+                        or record.get("startup_stage")
+                        or record.get("stages")
+                    ),
                     "raw_record": record,
                 }
             )
@@ -298,6 +366,8 @@ class AdminQuickEditorService:
                     clean(row.get("ministry")),
                     clean(row.get("department")),
                     clean(row.get("record_kind")),
+                    " ".join(row.get("applicant_types") or []),
+                    " ".join(row.get("startup_stages") or []),
                 ]
             ).casefold()
             if keyword_key and keyword_key not in haystack:
@@ -323,6 +393,59 @@ class AdminQuickEditorService:
                 {clean(row.get("department")) for row in rows if clean(row.get("department"))}
             ),
         }
+
+    def export_csv(self, records: list[dict[str, Any]]) -> bytes:
+        output = io.StringIO(newline="")
+        fields = [
+            "master_id",
+            "scheme_name",
+            "ministry",
+            "department",
+            "source",
+            "record_kind",
+            "status",
+            "applicant_types",
+            "startup_stages",
+            "funding_minimum",
+            "funding_maximum",
+            "currency",
+            "review_status",
+            "publication_status",
+            "source_table",
+        ]
+        writer = csv.DictWriter(output, fieldnames=fields)
+        writer.writeheader()
+        for record in records:
+            writer.writerow(
+                {
+                    "master_id": clean(record.get("master_id")),
+                    "scheme_name": clean(record.get("scheme_name")),
+                    "ministry": clean(record.get("ministry")),
+                    "department": clean(record.get("department")),
+                    "source": clean(record.get("source")),
+                    "record_kind": clean(record.get("record_kind")),
+                    "status": clean(
+                        record.get("scheme_status")
+                        or record.get("application_status")
+                        or record.get("programme_status")
+                    ),
+                    "applicant_types": ";".join(
+                        normalized_list(record.get("applicant_types"))
+                    ),
+                    "startup_stages": ";".join(
+                        normalized_list(record.get("startup_stages"))
+                    ),
+                    "funding_minimum": record.get("funding_minimum"),
+                    "funding_maximum": record.get("funding_maximum"),
+                    "currency": clean(record.get("currency")) or "INR",
+                    "review_status": clean(record.get("review_status")),
+                    "publication_status": clean(
+                        record.get("publication_status")
+                    ),
+                    "source_table": clean(record.get("source_table")),
+                }
+            )
+        return output.getvalue().encode("utf-8-sig")
 
     def _current_record(
         self,
@@ -363,10 +486,12 @@ class AdminQuickEditorService:
         source_table: str,
         selected_categories: list[str],
         selected_statuses: list[str],
-        funding_minimum: float | None,
-        funding_maximum: float | None,
-        editor: str,
-        note: str,
+        selected_applicant_types: list[str] | None = None,
+        selected_startup_stages: list[str] | None = None,
+        funding_minimum: float | None = None,
+        funding_maximum: float | None = None,
+        editor: str = "",
+        note: str = "",
     ) -> dict[str, Any]:
         allowed_categories = set(self.config.get("categories", []))
         categories = [
@@ -400,6 +525,35 @@ class AdminQuickEditorService:
         )
         if status_value not in allowed_statuses:
             raise ValueError("The selected status does not match the category.")
+
+        applicant_order = list(self.config.get("applicant_types", []))
+        stage_order = list(self.config.get("startup_stages", []))
+        applicant_selection = (
+            applicant_order
+            if selected_applicant_types is None
+            else normalized_list(selected_applicant_types)
+        )
+        stage_selection = (
+            stage_order
+            if selected_startup_stages is None
+            else normalized_list(selected_startup_stages)
+        )
+        applicant_types = [
+            value for value in applicant_order
+            if value in applicant_selection
+        ]
+        startup_stages = [
+            value for value in stage_order
+            if value in stage_selection
+        ]
+        if not applicant_types:
+            raise ValueError(
+                "Select All, Individual or Startup under Type."
+            )
+        if not startup_stages:
+            raise ValueError(
+                "Select All or at least one startup stage."
+            )
 
         if funding_minimum is not None and funding_minimum < 0:
             raise ValueError("Funding minimum cannot be negative.")
@@ -461,6 +615,14 @@ class AdminQuickEditorService:
             or "INR"
         )
         after["funding_amount"] = funding
+        after["applicant_types"] = applicant_types
+        after["applicant_type_scope"] = (
+            "ALL" if applicant_types == applicant_order else "SELECTED"
+        )
+        after["startup_stages"] = startup_stages
+        after["startup_stage_scope"] = (
+            "ALL" if startup_stages == stage_order else "SELECTED"
+        )
 
         columns = {
             "master_id": clean(master_id),
@@ -472,6 +634,8 @@ class AdminQuickEditorService:
             "funding_minimum": funding_minimum,
             "funding_maximum": funding_maximum,
             "currency": funding["currency"],
+            "applicant_types_json": stable_json(applicant_types),
+            "startup_stages_json": stable_json(startup_stages),
         }
         payload = {
             "version": VERSION,
@@ -479,6 +643,8 @@ class AdminQuickEditorService:
             "source_table": clean(source_table),
             "category": category,
             "status_value": status_value,
+            "applicant_types": applicant_types,
+            "startup_stages": startup_stages,
             "editor": clean(editor),
             "note": clean(note),
             "before": before,
@@ -580,6 +746,24 @@ class AdminQuickEditorService:
             if key in columns_available:
                 assignments.append(f"{key}=?")
                 values.append(columns[key])
+        for candidate in (
+            "applicant_types_json",
+            "applicant_type_json",
+            "beneficiary_types_json",
+        ):
+            if candidate in columns_available:
+                assignments.append(f"{candidate}=?")
+                values.append(columns["applicant_types_json"])
+                break
+        for candidate in (
+            "startup_stages_json",
+            "startup_stage_json",
+            "stages_json",
+        ):
+            if candidate in columns_available:
+                assignments.append(f"{candidate}=?")
+                values.append(columns["startup_stages_json"])
+                break
         if "raw_record_json" in columns_available:
             assignments.append("raw_record_json=?")
             values.append(stable_json(after))
@@ -622,6 +806,8 @@ class AdminQuickEditorService:
             source_table=payload["source_table"],
             selected_categories=[payload["category"]],
             selected_statuses=[payload["status_value"]],
+            selected_applicant_types=payload["applicant_types"],
+            selected_startup_stages=payload["startup_stages"],
             funding_minimum=payload["columns"]["funding_minimum"],
             funding_maximum=payload["columns"]["funding_maximum"],
             editor=payload["editor"],
@@ -681,10 +867,11 @@ class AdminQuickEditorService:
                     edit_id,master_id,scheme_name,source_table,
                     category,record_kind,status_value,
                     funding_minimum,funding_maximum,currency,
+                    applicant_types_json,startup_stages_json,
                     editor,note,before_json,after_json,
                     write_result,created_at,backup_path,
                     publication_action
-                ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,'NONE')
+                ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,'NONE')
                 """,
                 (
                     current["edit_id"],
@@ -697,6 +884,8 @@ class AdminQuickEditorService:
                     current["columns"]["funding_minimum"],
                     current["columns"]["funding_maximum"],
                     current["columns"]["currency"],
+                    stable_json(current["applicant_types"]),
+                    stable_json(current["startup_stages"]),
                     current["editor"],
                     current["note"],
                     stable_json(current["before"]),
@@ -756,6 +945,7 @@ class AdminQuickEditorService:
                 f"""
                 SELECT edit_id,master_id,scheme_name,category,
                        status_value,funding_minimum,funding_maximum,
+                       applicant_types_json,startup_stages_json,
                        editor,write_result,created_at
                 FROM {EDIT_TABLE}
                 ORDER BY created_at DESC

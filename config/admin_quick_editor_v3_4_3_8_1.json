@@ -1,0 +1,45 @@
+{
+  "version": "3.4.3.8.1",
+  "confirmation_phrase": "SAVE QUICK EDIT",
+  "categories": [
+    "SCHEME",
+    "PROGRAMME",
+    "APPLICATION_CALL",
+    "CHALLENGE",
+    "COHORT",
+    "HISTORICAL_REFERENCE",
+    "SUPPORTING_DOCUMENT",
+    "NON_CATALOGUE"
+  ],
+  "category_labels": {
+    "SCHEME": "Scheme",
+    "PROGRAMME": "Programme",
+    "APPLICATION_CALL": "Application call",
+    "CHALLENGE": "Challenge / hackathon",
+    "COHORT": "Cohort / application window",
+    "HISTORICAL_REFERENCE": "Historical reference",
+    "SUPPORTING_DOCUMENT": "Supporting document",
+    "NON_CATALOGUE": "Not a catalogue record"
+  },
+  "record_kind_map": {
+    "SCHEME": "SCHEME",
+    "PROGRAMME": "PROGRAMME",
+    "APPLICATION_CALL": "APPLICATION_CALL",
+    "CHALLENGE": "CHALLENGE",
+    "COHORT": "APPLICATION_CALL",
+    "HISTORICAL_REFERENCE": "HISTORICAL_REFERENCE",
+    "SUPPORTING_DOCUMENT": "SUPPORTING_DOCUMENT",
+    "NON_CATALOGUE": "NON_CATALOGUE"
+  },
+  "scheme_programme_statuses": [
+    "OPEN",
+    "CLOSED"
+  ],
+  "call_statuses": [
+    "OPEN",
+    "UPCOMING",
+    "CLOSED",
+    "VERIFICATION_REQUIRED"
+  ],
+  "currency": "INR"
+}

@@ -24,7 +24,7 @@ from services.department_review_intake_v1 import (  # noqa: E402
     available_intakes,
     get_intake,
 )
-from services.admin_workflow_navigation_v3_4_3_7_3 import (  # noqa: E402
+from services.admin_workflow_navigation_v3_4_3_8_1 import (  # noqa: E402
     guidance_for_route,
     phase_for_route,
     route_for_label,
@@ -34,6 +34,13 @@ from services.admin_workflow_navigation_v3_4_3_7_3 import (  # noqa: E402
 from ssip_dashboard.dst_history import (  # noqa: E402
     RELEVANCE_ORDER,
     load_dst_historical_archive,
+)
+
+from ui.components.admin_quick_editor_v3_4_3_8_1 import (  # noqa: E402
+    render_admin_quick_editor,
+)
+from ui.components.meity_admin_intelligence_v3_4_3_8_1 import (  # noqa: E402
+    render_meity_admin_intelligence,
 )
 
 
@@ -1322,6 +1329,12 @@ def main() -> None:
 
     if workspace == "Department Agent Intake":
         _render_agent_intake(st, service)
+        return
+    if workspace == "Quick Editor":
+        render_admin_quick_editor(st, PROJECT_ROOT)
+        return
+    if workspace == "MeitY Intelligence Review":
+        render_meity_admin_intelligence(st, PROJECT_ROOT)
         return
     if workspace == "Publication Queue":
         _render_publication_queue(st, service)

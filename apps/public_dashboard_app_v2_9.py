@@ -76,7 +76,11 @@ from ssip_dashboard.meity_history import (
     load_meity_historical_archive,
 )
 
-APP_VERSION = "3.4.0.23-ui-final"
+from ssip_dashboard.meity_public_integrated_v3_4_3_8_1 import (
+    render_integrated_meity_public_page,
+)
+
+APP_VERSION = "3.4.3.8.1-unified-meity"
 PAGE_NAMES = [
     "Home",
     "Scheme Explorer",
@@ -2689,6 +2693,18 @@ def render_meity_historical_archive() -> None:
 
 
 def render_meity_page(bundle: CatalogueBundle) -> None:
+    return render_integrated_meity_public_page(
+        st=st,
+        bundle=bundle,
+        historical_archive=cached_meity_historical_archive(),
+        page_intro=page_intro,
+        metric_card=metric_card,
+        public_record_card=public_record_card,
+        published_call_filters=_render_published_call_filters,
+        published_call_card=_published_call_card,
+        render_historical_archive=render_meity_historical_archive,
+    )
+
     meity_records = [
         record
         for record in bundle.records

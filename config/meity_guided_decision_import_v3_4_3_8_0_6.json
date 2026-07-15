@@ -1,0 +1,41 @@
+{
+  "version": "3.4.3.8.0.6",
+  "source_version": "3.4.3.8.0.4",
+  "guided_ui_version": "3.4.3.8.0.5",
+  "source_dir": "data/departments/meity/v3_4_3_8_0_4",
+  "output_dir": "data/departments/meity/v3_4_3_8_0_6",
+  "required_headers": [
+    "bundle_id",
+    "bundle_title",
+    "link_integrity_signature",
+    "admin_decision",
+    "admin_decision_label",
+    "selected_child_ids",
+    "admin_note"
+  ],
+  "decision_to_bridge_action": {
+    "CONFIRM_HISTORICAL": "PROPOSE_HISTORICAL_REFERENCE",
+    "CONFIRM_PROGRAMME_IDENTITY": "PROPOSE_PROGRAMME_IDENTITY",
+    "CONFIRM_NEW_PROGRAMME_FOR_STAGING_REVIEW": "PROPOSE_NEW_PROGRAMME_STAGING_REVIEW",
+    "CONFIRM_CALL_AND_PARENT": "PROPOSE_CALL_AND_PARENT",
+    "CONFIRM_CURRENT_CALL_EVIDENCE_COMPLETE": "PROPOSE_CURRENT_CALL_STAGING_REVIEW",
+    "CONFIRM_REVIEW_CLASSIFICATION": "PROPOSE_CLASSIFICATION_CONFIRMATION",
+    "NEEDS_MORE_EVIDENCE": "PROPOSE_NEEDS_MORE_EVIDENCE",
+    "DEFER": "NO_OPERATION_DEFERRED",
+    "REJECT_CLASSIFICATION": "PROPOSE_CLASSIFICATION_REJECTION"
+  },
+  "positive_decisions": [
+    "CONFIRM_HISTORICAL",
+    "CONFIRM_PROGRAMME_IDENTITY",
+    "CONFIRM_NEW_PROGRAMME_FOR_STAGING_REVIEW",
+    "CONFIRM_CALL_AND_PARENT",
+    "CONFIRM_CURRENT_CALL_EVIDENCE_COMPLETE",
+    "CONFIRM_REVIEW_CLASSIFICATION"
+  ],
+  "note_required_decisions": [
+    "NEEDS_MORE_EVIDENCE",
+    "REJECT_CLASSIFICATION"
+  ],
+  "current_call_decision": "CONFIRM_CURRENT_CALL_EVIDENCE_COMPLETE",
+  "deferred_decision": "DEFER"
+}

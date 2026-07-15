@@ -1,0 +1,142 @@
+{
+  "version": "3.4.3.8.0.4",
+  "source_version": "3.4.3.8.0.3",
+  "source_dir": "data/departments/meity/v3_4_3_8_0_3",
+  "ledger_dir": "data/departments/meity/v3_4_3_8_0_2",
+  "output_dir": "data/departments/meity/v3_4_3_8_0_4",
+  "request_timeout_seconds": 20,
+  "maximum_links_per_child": 8,
+  "official_domains": [
+    "msh.meity.gov.in",
+    "meity.gov.in",
+    "www.meity.gov.in"
+  ],
+  "blocked_application_path_markers": [
+    "/about",
+    "/contact",
+    "/logo",
+    "applyforthelogo",
+    "apply-for-the-logo",
+    "/login",
+    "/signin",
+    "/sign-in",
+    "/register-login",
+    "/privacy",
+    "/terms",
+    "/disclaimer",
+    "/sitemap",
+    "/search"
+  ],
+  "navigation_paths": [
+    "/",
+    "/about",
+    "/schemes",
+    "/program",
+    "/programs",
+    "/programme",
+    "/programmes",
+    "/challenges",
+    "/whatsnew",
+    "/resource",
+    "/resources",
+    "/media",
+    "/network",
+    "/networks"
+  ],
+  "application_markers": [
+    "apply now",
+    "apply online",
+    "submit application",
+    "submit your application",
+    "application form",
+    "start application",
+    "applications are invited",
+    "register now",
+    "registration form"
+  ],
+  "registration_markers": [
+    "register now",
+    "registration form",
+    "complete registration",
+    "sign up to apply"
+  ],
+  "about_markers": [
+    "about us",
+    "about meity startup hub",
+    "apply for the logo",
+    "logo usage",
+    "brand guidelines"
+  ],
+  "contact_markers": [
+    "contact us",
+    "get in touch",
+    "contact details"
+  ],
+  "login_markers": [
+    "login",
+    "sign in",
+    "forgot password"
+  ],
+  "result_markers": [
+    "result",
+    "results",
+    "winner",
+    "winners",
+    "selected startups",
+    "shortlisted startups",
+    "awardees"
+  ],
+  "guideline_markers": [
+    "guideline",
+    "guidelines",
+    "administrative approval",
+    "sanction order",
+    "scheme document"
+  ],
+  "call_markers": [
+    "challenge",
+    "hackathon",
+    "call for applications",
+    "applications invited",
+    "cohort",
+    "expression of interest",
+    "request for proposal"
+  ],
+  "scheme_markers": [
+    "scheme",
+    "programme",
+    "program",
+    "accelerator",
+    "incubation",
+    "startup support"
+  ],
+  "entity_stopwords": [
+    "the",
+    "and",
+    "for",
+    "of",
+    "to",
+    "in",
+    "on",
+    "with",
+    "meity",
+    "startup",
+    "startups",
+    "program",
+    "programme",
+    "scheme",
+    "academy",
+    "challenge",
+    "call",
+    "india",
+    "2020",
+    "2021",
+    "2022",
+    "2023",
+    "2024",
+    "2025",
+    "2026"
+  ],
+  "minimum_information_entity_match": 0.25,
+  "minimum_application_entity_match": 0.55
+}

@@ -1,6 +1,6 @@
 {
   "version": "3.4.3.8.0.8",
-  "generated_at": "2026-07-15T10:10:44+00:00",
+  "generated_at": "2026-07-15T10:13:13+00:00",
   "record_count": 22,
   "override_count": 22,
   "type_correction_count": 12,
@@ -23,5 +23,5 @@
   "publication_performed": false,
   "public_visibility_changed": false,
   "apply_action_allowed_count": 0,
-  "projection_signature": "a32f09b1627f9cc02981bf02f8ff43020c60cdd5b0455a46e24b30dd4ed50764"
+  "projection_signature": "90fd83a20e960fb5b763c1d764fac8298dbc3fea4d77b146f7f9e5d9d28696e1"
 }

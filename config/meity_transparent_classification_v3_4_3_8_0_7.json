@@ -1,0 +1,85 @@
+{
+  "version": "3.4.3.8.0.7",
+  "source_version": "3.4.3.8.0.4",
+  "guided_version": "3.4.3.8.0.5",
+  "source_dir": "data/departments/meity/v3_4_3_8_0_4",
+  "output_dir": "data/departments/meity/v3_4_3_8_0_7",
+  "confirmation_phrase": "WRITE CLASSIFICATION",
+  "allowed_entity_types": [
+    "PERMANENT_PROGRAMME",
+    "PERMANENT_SCHEME",
+    "APPLICATION_CALL",
+    "CHALLENGE_CALL",
+    "ACCELERATOR_COHORT",
+    "HISTORICAL_REFERENCE",
+    "RESULT_ANNOUNCEMENT",
+    "SUPPORTING_DOCUMENT",
+    "INVALID_NON_CATALOGUE"
+  ],
+  "entity_type_labels": {
+    "PERMANENT_PROGRAMME": "Permanent programme",
+    "PERMANENT_SCHEME": "Permanent scheme",
+    "APPLICATION_CALL": "Application call",
+    "CHALLENGE_CALL": "Challenge or hackathon",
+    "ACCELERATOR_COHORT": "Cohort or application window",
+    "HISTORICAL_REFERENCE": "Historical reference",
+    "RESULT_ANNOUNCEMENT": "Result announcement",
+    "SUPPORTING_DOCUMENT": "Supporting document",
+    "INVALID_NON_CATALOGUE": "Not a valid SSIP catalogue record"
+  },
+  "record_kind_map": {
+    "PERMANENT_PROGRAMME": "SCHEME_PROGRAMME",
+    "PERMANENT_SCHEME": "SCHEME_PROGRAMME",
+    "APPLICATION_CALL": "CALL_INSTANCE",
+    "CHALLENGE_CALL": "CALL_INSTANCE",
+    "ACCELERATOR_COHORT": "CALL_INSTANCE",
+    "HISTORICAL_REFERENCE": "HISTORICAL_REFERENCE",
+    "RESULT_ANNOUNCEMENT": "HISTORICAL_REFERENCE",
+    "SUPPORTING_DOCUMENT": "SUPPORTING_DOCUMENT",
+    "INVALID_NON_CATALOGUE": "NON_CATALOGUE"
+  },
+  "programme_title_markers": [
+    "programme",
+    "program",
+    "scheme",
+    "accelerator",
+    "incubation",
+    "support",
+    "platform",
+    "mission",
+    "initiative"
+  ],
+  "call_title_markers": [
+    "applications invited",
+    "inviting applications",
+    "apply now",
+    "call for applications",
+    "expression of interest",
+    "eoi",
+    "request for proposal",
+    "rfp",
+    "cohort"
+  ],
+  "challenge_title_markers": [
+    "challenge",
+    "grand challenge",
+    "hackathon",
+    "competition"
+  ],
+  "historical_markers": [
+    "result",
+    "results",
+    "selected",
+    "winner",
+    "winners",
+    "awardees",
+    "closed",
+    "concluded",
+    "2020",
+    "2021",
+    "2022",
+    "2023",
+    "2024",
+    "2025"
+  ]
+}

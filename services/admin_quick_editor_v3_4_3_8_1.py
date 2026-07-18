@@ -13,9 +13,34 @@ from pathlib import Path
 from typing import Any
 
 
-VERSION = "3.4.3.8.1.2"
+VERSION = "3.4.3.8.2"
 EDIT_TABLE = "admin_quick_edit_requests_v3_4_3_8_1"
 AUDIT_TABLE = "admin_quick_edit_audit_v3_4_3_8_1"
+READINESS_STATUSES = (
+    "COMPLETE",
+    "PARTIALLY_COMPLETE",
+    "NEEDS_OFFICIAL_EVIDENCE",
+    "NEEDS_PARENT_PROGRAMME",
+    "NEEDS_FUNDING_REVIEW",
+    "READY_FOR_PUBLICATION_REVIEW",
+)
+CSV_EDITABLE_FIELDS = {
+    "category",
+    "status",
+    "applicant_types",
+    "startup_stages",
+    "funding_minimum",
+    "funding_maximum",
+    "admin_note",
+}
+CSV_IDENTITY_FIELDS = {
+    "master_id",
+    "scheme_name",
+    "official_source",
+    "department",
+    "publication_status",
+    "application_url",
+}
 
 
 def clean(value: Any) -> str:
@@ -90,6 +115,116 @@ def normalized_list(value: Any) -> list[str]:
         if token and token not in output:
             output.append(token)
     return output
+
+
+def truthy(value: Any) -> bool:
+    if isinstance(value, bool):
+        return value
+    return clean(value).upper() in {"1", "TRUE", "YES", "APPROVED", "VERIFIED"}
+
+
+def record_value(record: dict[str, Any], *keys: str) -> Any:
+    raw = record.get("raw_record") or {}
+    for key in keys:
+        value = record.get(key)
+        if value not in (None, "", [], {}):
+            return value
+        value = raw.get(key)
+        if value not in (None, "", [], {}):
+            return value
+    return None
+
+
+def completeness(record: dict[str, Any]) -> dict[str, Any]:
+    """Fail-closed metadata and publication-readiness assessment."""
+    category = clean(record_value(record, "admin_category", "record_kind")).upper()
+    status = clean(
+        record_value(
+            record,
+            "scheme_status",
+            "application_status",
+            "programme_status",
+        )
+    ).upper()
+    applicant_types = normalized_list(record_value(record, "applicant_types"))
+    startup_stages = normalized_list(record_value(record, "startup_stages"))
+    minimum = record_value(record, "funding_minimum")
+    maximum = record_value(record, "funding_maximum")
+    funding_reviewed = truthy(record_value(record, "funding_reviewed")) or (
+        minimum not in (None, "") or maximum not in (None, "")
+    )
+    official_source = clean(
+        record_value(
+            record,
+            "official_page_url",
+            "official_source_url",
+            "official_source",
+            "source_url",
+        )
+    )
+    review_status = clean(record_value(record, "review_status")).upper()
+    admin_approved = truthy(record_value(record, "admin_approval_complete")) or review_status in {
+        "APPROVED",
+        "VERIFIED",
+        "APPROVED_FOR_DATABASE",
+    }
+    critical_flags = normalized_list(
+        record_value(record, "critical_flags", "unresolved_critical_flags")
+    )
+    is_call = category in {"APPLICATION_CALL", "CALL", "CHALLENGE", "COHORT"}
+    parent = clean(record_value(record, "parent_master_id", "parent_programme_id"))
+    deadline_verified = truthy(record_value(record, "deadline_verified")) or (
+        status in {"CLOSED", "VERIFICATION_REQUIRED"}
+    )
+    application_url = clean(record_value(record, "application_url"))
+    blockers: list[str] = []
+    if not category:
+        blockers.append("CATEGORY_MISSING")
+    if not status:
+        blockers.append("STATUS_MISSING")
+    if not applicant_types:
+        blockers.append("TYPE_MISSING")
+    if not startup_stages:
+        blockers.append("STAGE_MISSING")
+    if not funding_reviewed:
+        blockers.append("FUNDING_REVIEW_REQUIRED")
+    if not official_source:
+        blockers.append("OFFICIAL_SOURCE_MISSING")
+    if not admin_approved:
+        blockers.append("ADMIN_APPROVAL_REQUIRED")
+    if critical_flags:
+        blockers.append("CRITICAL_FLAGS_UNRESOLVED")
+    if is_call:
+        if not parent:
+            blockers.append("PARENT_PROGRAMME_MISSING")
+        if not deadline_verified:
+            blockers.append("DEADLINE_STATUS_UNVERIFIED")
+        if status == "OPEN" and not application_url:
+            blockers.append("OPEN_APPLICATION_ROUTE_MISSING")
+    if not blockers:
+        readiness = "READY_FOR_PUBLICATION_REVIEW"
+    elif "OFFICIAL_SOURCE_MISSING" in blockers:
+        readiness = "NEEDS_OFFICIAL_EVIDENCE"
+    elif "PARENT_PROGRAMME_MISSING" in blockers:
+        readiness = "NEEDS_PARENT_PROGRAMME"
+    elif "FUNDING_REVIEW_REQUIRED" in blockers:
+        readiness = "NEEDS_FUNDING_REVIEW"
+    elif len(blockers) == 1 and blockers[0] == "ADMIN_APPROVAL_REQUIRED":
+        readiness = "COMPLETE"
+    else:
+        readiness = "PARTIALLY_COMPLETE"
+    return {
+        "readiness_status": readiness,
+        "blockers": blockers,
+        "category_missing": not bool(category),
+        "status_missing": not bool(status),
+        "type_missing": not bool(applicant_types),
+        "stage_missing": not bool(startup_stages),
+        "funding_missing": not funding_reviewed,
+        "official_source_missing": not bool(official_source),
+        "parent_programme_missing": is_call and not bool(parent),
+        "ready_for_publication_review": not blockers,
+    }
 
 
 def ensure_column(
@@ -335,6 +470,7 @@ class AdminQuickEditorService:
         ministry: str = "",
         department: str = "",
         keyword: str = "",
+        completeness_filter: str = "ALL",
     ) -> list[dict[str, Any]]:
         connection = self._connect()
         try:
@@ -372,6 +508,25 @@ class AdminQuickEditorService:
             ).casefold()
             if keyword_key and keyword_key not in haystack:
                 continue
+            assessment = completeness(row)
+            row = {**row, **assessment}
+            mode = clean(completeness_filter).upper() or "ALL"
+            if mode == "INCOMPLETE" and assessment["ready_for_publication_review"]:
+                continue
+            filter_map = {
+                "MISSING_CATEGORY": "category_missing",
+                "MISSING_STATUS": "status_missing",
+                "MISSING_TYPE": "type_missing",
+                "MISSING_STAGE": "stage_missing",
+                "MISSING_FUNDING": "funding_missing",
+            }
+            if mode in filter_map and not assessment[filter_map[mode]]:
+                continue
+            if mode == "PUBLISHED_PENDING" and not (
+                clean(row.get("publication_status")).upper() == "PUBLISHED"
+                and self._has_pending_publication_review(clean(row.get("master_id")))
+            ):
+                continue
             filtered.append(row)
 
         filtered.sort(
@@ -382,6 +537,33 @@ class AdminQuickEditorService:
             )
         )
         return filtered
+
+    def _has_pending_publication_review(self, master_id: str) -> bool:
+        connection = self._connect()
+        try:
+            if not table_exists(connection, EDIT_TABLE):
+                return False
+            return connection.execute(
+                f"SELECT 1 FROM {EDIT_TABLE} WHERE master_id=? AND write_result='PENDING_PUBLICATION_REVIEW' LIMIT 1",
+                (master_id,),
+            ).fetchone() is not None
+        finally:
+            connection.close()
+
+    def completeness_dashboard(self, records: list[dict[str, Any]] | None = None) -> dict[str, int]:
+        rows = records if records is not None else self.list_records()
+        assessed = [row if "readiness_status" in row else {**row, **completeness(row)} for row in rows]
+        return {
+            "total_records": len(assessed),
+            "category_missing": sum(bool(row["category_missing"]) for row in assessed),
+            "status_missing": sum(bool(row["status_missing"]) for row in assessed),
+            "type_missing": sum(bool(row["type_missing"]) for row in assessed),
+            "stage_missing": sum(bool(row["stage_missing"]) for row in assessed),
+            "funding_missing": sum(bool(row["funding_missing"]) for row in assessed),
+            "official_source_missing": sum(bool(row["official_source_missing"]) for row in assessed),
+            "parent_programme_missing": sum(bool(row["parent_programme_missing"]) for row in assessed),
+            "ready_for_publication_review": sum(bool(row["ready_for_publication_review"]) for row in assessed),
+        }
 
     def filter_options(self) -> dict[str, list[str]]:
         rows = self.list_records()
@@ -402,7 +584,7 @@ class AdminQuickEditorService:
             "ministry",
             "department",
             "source",
-            "record_kind",
+            "category",
             "status",
             "applicant_types",
             "startup_stages",
@@ -412,6 +594,7 @@ class AdminQuickEditorService:
             "review_status",
             "publication_status",
             "source_table",
+            "admin_note",
         ]
         writer = csv.DictWriter(output, fieldnames=fields)
         writer.writeheader()
@@ -423,7 +606,7 @@ class AdminQuickEditorService:
                     "ministry": clean(record.get("ministry")),
                     "department": clean(record.get("department")),
                     "source": clean(record.get("source")),
-                    "record_kind": clean(record.get("record_kind")),
+                    "category": clean(record_value(record, "admin_category", "record_kind")),
                     "status": clean(
                         record.get("scheme_status")
                         or record.get("application_status")
@@ -443,9 +626,92 @@ class AdminQuickEditorService:
                         record.get("publication_status")
                     ),
                     "source_table": clean(record.get("source_table")),
+                    "admin_note": clean(record_value(record, "admin_note")),
                 }
             )
         return output.getvalue().encode("utf-8-sig")
+
+    def preview_csv_import(self, data: bytes) -> dict[str, Any]:
+        text = data.decode("utf-8-sig")
+        rows = list(csv.DictReader(io.StringIO(text)))
+        current = {
+            clean(row.get("master_id")): row
+            for row in self.list_records()
+        }
+        errors: list[str] = []
+        previews: list[dict[str, Any]] = []
+        seen: set[str] = set()
+        for number, row in enumerate(rows, 2):
+            master_id = clean(row.get("master_id"))
+            if not master_id or master_id not in current:
+                errors.append(f"Row {number}: unknown master_id.")
+                continue
+            if master_id in seen:
+                errors.append(f"Row {number}: duplicate master_id {master_id}.")
+                continue
+            seen.add(master_id)
+            existing = current[master_id]
+            immutable_checks = {
+                "scheme_name": clean(existing.get("scheme_name")),
+                "department": clean(existing.get("department")),
+                "publication_status": clean(existing.get("publication_status")),
+                "application_url": clean(record_value(existing, "application_url")),
+                "official_source": clean(record_value(existing, "official_page_url", "official_source_url", "official_source")),
+            }
+            changed_immutable = [key for key, value in immutable_checks.items() if key in row and clean(row.get(key)) != value]
+            if changed_immutable:
+                errors.append(f"Row {number}: immutable field changed: {', '.join(changed_immutable)}.")
+                continue
+            try:
+                preview = self.preview(
+                    master_id=master_id,
+                    source_table=clean(existing.get("source_table")),
+                    selected_categories=[clean(row.get("category"))],
+                    selected_statuses=[clean(row.get("status"))],
+                    selected_applicant_types=normalized_list(row.get("applicant_types")),
+                    selected_startup_stages=normalized_list(row.get("startup_stages")),
+                    funding_minimum=self._csv_number(row.get("funding_minimum")),
+                    funding_maximum=self._csv_number(row.get("funding_maximum")),
+                    editor="CSV Admin",
+                    note=clean(row.get("admin_note")),
+                )
+                previews.append(preview)
+            except Exception as exc:
+                errors.append(f"Row {number}: {exc}")
+        return {"row_count": len(rows), "previews": previews, "errors": errors, "valid": bool(rows) and not errors}
+
+    @staticmethod
+    def _csv_number(value: Any) -> float | None:
+        text = clean(value)
+        if not text:
+            return None
+        return float(text.replace(",", ""))
+
+    def apply_csv_import(self, import_preview: dict[str, Any], *, confirmation: str) -> list[dict[str, Any]]:
+        if not import_preview.get("valid") or import_preview.get("errors"):
+            raise ValueError("CSV import contains validation errors.")
+        return [self.apply(payload, confirmation=confirmation) for payload in import_preview["previews"]]
+
+    def public_dashboard_preview(self, record: dict[str, Any]) -> dict[str, Any]:
+        assessment = completeness(record)
+        minimum = record_value(record, "funding_minimum")
+        maximum = record_value(record, "funding_maximum")
+        application_status = clean(record_value(record, "application_status", "scheme_status", "programme_status")).upper()
+        application_url = clean(record_value(record, "application_url"))
+        return {
+            "title": clean(record.get("scheme_name")),
+            "department": clean(record.get("department") or record.get("ministry") or record.get("source")),
+            "category": clean(record_value(record, "admin_category", "record_kind")),
+            "status": application_status,
+            "type": "; ".join(normalized_list(record_value(record, "applicant_types"))),
+            "stage": "; ".join(normalized_list(record_value(record, "startup_stages"))),
+            "funding_range": {"minimum": minimum, "maximum": maximum, "currency": clean(record.get("currency")) or "INR"},
+            "official_reference_url": clean(record_value(record, "official_page_url", "official_source_url", "official_source")),
+            "apply_button_eligible": application_status == "OPEN" and bool(application_url) and assessment["ready_for_publication_review"],
+            "application_url": application_url if application_status == "OPEN" else "",
+            "preview_only": True,
+            "publication_action": "NONE",
+        }
 
     def _current_record(
         self,
@@ -592,6 +858,7 @@ class AdminQuickEditorService:
         )
         after["record_kind"] = record_kind
         after["admin_category"] = category
+        after["category_confirmed"] = True
 
         if permanent:
             after["programme_status"] = status_value
@@ -615,14 +882,19 @@ class AdminQuickEditorService:
             or "INR"
         )
         after["funding_amount"] = funding
+        after["funding_reviewed"] = True
+        after["status_confirmed"] = True
         after["applicant_types"] = applicant_types
+        after["type_confirmed"] = True
         after["applicant_type_scope"] = (
             "ALL" if applicant_types == applicant_order else "SELECTED"
         )
         after["startup_stages"] = startup_stages
+        after["stage_confirmed"] = True
         after["startup_stage_scope"] = (
             "ALL" if startup_stages == stage_order else "SELECTED"
         )
+        after["admin_note"] = clean(note)
 
         columns = {
             "master_id": clean(master_id),

@@ -127,8 +127,26 @@ def render_admin_quick_editor(
         "Their edits are saved as pending publication review."
     )
 
+    all_records = service.list_records()
+    counters = service.completeness_dashboard(all_records)
+    metric_labels = [
+        ("total_records", "Total records"),
+        ("category_missing", "Category missing"),
+        ("status_missing", "Status missing"),
+        ("type_missing", "Type missing"),
+        ("stage_missing", "Stage missing"),
+        ("funding_missing", "Funding missing"),
+        ("official_source_missing", "Official source missing"),
+        ("parent_programme_missing", "Parent programme missing"),
+        ("ready_for_publication_review", "Ready for publication review"),
+    ]
+    for start in range(0, len(metric_labels), 3):
+        columns = st.columns(3)
+        for column, (key, label) in zip(columns, metric_labels[start:start + 3]):
+            column.metric(label, counters[key])
+
     options = service.filter_options()
-    filter_1, filter_2, filter_3 = st.columns([1.2, 1.2, 1.8])
+    filter_1, filter_2, filter_3, filter_4 = st.columns([1.1, 1.1, 1.5, 1.4])
     ministry = filter_1.selectbox(
         "Ministry",
         ["", *options["ministries"]],
@@ -146,11 +164,31 @@ def render_admin_quick_editor(
         placeholder="Scheme, programme, challenge or call name",
         key="quick_editor_search",
     )
+    completeness_filter = filter_4.selectbox(
+        "Completion filter",
+        [
+            "ALL", "INCOMPLETE", "MISSING_CATEGORY", "MISSING_STATUS",
+            "MISSING_TYPE", "MISSING_STAGE", "MISSING_FUNDING",
+            "PUBLISHED_PENDING",
+        ],
+        format_func=lambda value: {
+            "ALL": "All records",
+            "INCOMPLETE": "Only incomplete records",
+            "MISSING_CATEGORY": "Missing category",
+            "MISSING_STATUS": "Missing status",
+            "MISSING_TYPE": "Missing Type",
+            "MISSING_STAGE": "Missing Stage",
+            "MISSING_FUNDING": "Missing funding",
+            "PUBLISHED_PENDING": "Published changes pending",
+        }[value],
+        key="quick_editor_completion_filter",
+    )
 
     records = service.list_records(
         ministry=ministry,
         department=department,
         keyword=keyword,
+        completeness_filter=completeness_filter,
     )
     if not records:
         st.info("No records match the selected ministry or department.")
@@ -166,6 +204,44 @@ def render_admin_quick_editor(
         use_container_width=True,
         key="quick_editor_csv_download",
     )
+    uploaded_csv = st.file_uploader(
+        "Upload completed Quick Editor CSV",
+        type=["csv"],
+        help="Only category, status, Type, Stage, funding and Admin note may change.",
+        key="quick_editor_csv_upload",
+    )
+    if uploaded_csv is not None:
+        import_preview = service.preview_csv_import(uploaded_csv.getvalue())
+        if import_preview["errors"]:
+            for error in import_preview["errors"]:
+                st.error(error)
+        else:
+            st.success(f"Validated {len(import_preview['previews'])} CSV change(s).")
+            st.dataframe(
+                [
+                    {
+                        "Master ID": item["master_id"],
+                        "Record": item["columns"]["scheme_name"],
+                        "Category": item["category"],
+                        "Status": item["status_value"],
+                        "Publication action": "NONE",
+                    }
+                    for item in import_preview["previews"]
+                ],
+                use_container_width=True,
+                hide_index=True,
+            )
+            csv_confirmation = st.text_input(
+                'Confirm CSV import by typing "SAVE QUICK EDIT"',
+                key="quick_editor_csv_confirmation",
+            )
+            if st.button(
+                "Apply validated CSV changes",
+                disabled=csv_confirmation != config.get("confirmation_phrase"),
+                key="quick_editor_csv_apply",
+            ):
+                results = service.apply_csv_import(import_preview, confirmation=csv_confirmation)
+                st.success(f"Applied {len(results)} governed change(s); publication action: NONE.")
     labels_by_index = {
         index: (
             f"{record.get('scheme_name') or 'Unnamed'} — "
@@ -180,6 +256,9 @@ def render_admin_quick_editor(
         key="quick_editor_record",
     )
     record = records[selected_index]
+    st.caption(
+        "Metadata status: " + clean(record.get("readiness_status")).replace("_", " ").title()
+    )
 
     summary = st.columns(6)
     summary[0].metric(
@@ -416,6 +495,12 @@ def render_admin_quick_editor(
             use_container_width=True,
             hide_index=True,
         )
+
+        with st.expander("Preview in Main Dashboard", expanded=False):
+            projected = {**record, "raw_record": preview["after"]}
+            public_preview = service.public_dashboard_preview(projected)
+            st.dataframe([public_preview], use_container_width=True, hide_index=True)
+            st.caption("Preview only. No publication action is performed.")
 
     acknowledgement = st.checkbox(
         "I reviewed this category, status, type, stage and funding update.",

@@ -1,0 +1,44 @@
+{
+  "run_id": "20260713T060812+0000_024ea12e",
+  "published_at": "2026-07-13T06:08:12+00:00",
+  "catalogue_path": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\catalogue_preview\\v3_3_2\\catalogue_preview_v3_3_2.csv",
+  "versioned_catalogue_path": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\publication\\20260713T060812+0000_024ea12e\\catalogue.csv",
+  "row_count": 139,
+  "catalogue_sha256": "e6eda5af5e2287d28119baabee90fc71fcebb264bb580c90f1ebc0d1ca36b6f6",
+  "validation": {
+    "passed": true,
+    "checks": {
+      "candidate_validation_passed": true,
+      "active_row_count_before_137": true,
+      "active_row_count_after_139": true,
+      "existing_137_rows_preserved": true,
+      "identity_order_preserved_for_existing_rows": true,
+      "master_ids_unique": true,
+      "both_meity_ids_present": true,
+      "dashboard_visible_53": true,
+      "both_meity_ids_dashboard_visible": true,
+      "dashboard_code_unchanged": true,
+      "database_unchanged": true,
+      "immutable_release_matches_active": true
+    },
+    "errors": []
+  },
+  "summary": {
+    "service_version": "3.4.2.0.2",
+    "phase": "MeitY Governed Catalogue Promotion — SAMRIDH and TIDE 2.0",
+    "run_id": "20260713T060812+0000_024ea12e",
+    "input_rows": 137,
+    "published_rows": 139,
+    "added_rows": 2,
+    "added_master_ids": [
+      "147173e17ea741687247",
+      "6af79cf6c8a213dddce8"
+    ],
+    "dashboard_visible_before": 51,
+    "dashboard_visible_after": 53,
+    "publication_mode": "GOVERNED_EXPLICIT_PREVIEW_PROMOTION",
+    "database_modified": false,
+    "dashboard_modified": false,
+    "active_catalogue": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\catalogue_preview\\v3_3_2\\catalogue_preview_v3_3_2.csv"
+  }
+}

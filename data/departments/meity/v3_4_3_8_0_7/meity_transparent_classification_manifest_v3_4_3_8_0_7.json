@@ -1,0 +1,14 @@
+{
+  "version": "3.4.3.8.0.7",
+  "record_count": 22,
+  "suggested_counts": {
+    "PERMANENT_PROGRAMME": 7,
+    "HISTORICAL_REFERENCE": 1,
+    "ACCELERATOR_COHORT": 2,
+    "CHALLENGE_CALL": 8,
+    "RESULT_ANNOUNCEMENT": 4
+  },
+  "database_write_performed": false,
+  "publication_performed": false,
+  "inventory_signature": "d1cafaa14a30cc5482b54fb463aeddd7549d40f25ad8aea80984a946b50ff2f9"
+}

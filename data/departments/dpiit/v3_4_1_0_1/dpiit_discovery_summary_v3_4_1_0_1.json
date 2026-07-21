@@ -1,0 +1,55 @@
+{
+  "as_of": "2026-07-12",
+  "candidate_count_by_official_domain": {
+    "egazette.nic.in": 1,
+    "investorconnect.startupindia.gov.in": 1,
+    "maarg.startupindia.gov.in": 1,
+    "seedfund.startupindia.gov.in": 4,
+    "www.dpiit.gov.in": 5,
+    "www.ncgtc.in": 1,
+    "www.nsws.gov.in": 1,
+    "www.startupindia.gov.in": 14
+  },
+  "candidate_count_by_ownership_status": {
+    "NEEDS_VERIFICATION": 5,
+    "VERIFIED_DPIIT": 23
+  },
+  "candidate_count_by_page_role": {
+    "APPLICATION_CALL": 1,
+    "APPLICATION_PORTAL": 1,
+    "ARCHIVED_PAGE": 1,
+    "AWARD_EDITION": 1,
+    "CHALLENGE_INSTANCE": 1,
+    "ECOSYSTEM_PLATFORM": 3,
+    "FAQ": 1,
+    "GUIDELINE": 3,
+    "NON_SCHEME": 1,
+    "NOTIFICATION": 2,
+    "OWNERSHIP_UNRESOLVED": 3,
+    "SCHEME_MASTER": 5,
+    "SOURCE_DIRECTORY": 2,
+    "UMBRELLA_PROGRAMME": 3
+  },
+  "candidate_identity_group_count": 0,
+  "duplicate_url_group_count": 1,
+  "fetch_failures": [],
+  "full_scheme_extraction_performed": false,
+  "identity_review_queue_count": 10,
+  "mode": "GOVERNED_PREVIEW",
+  "publication_performed": false,
+  "rejected_candidate_count": 1,
+  "rejection_reasons": {
+    "EXPLICIT_NON_SCHEME_PAGE": 1
+  },
+  "source_count_by_type": {
+    "APPLICATION_PORTAL": 2,
+    "DEPARTMENT_PORTAL": 1,
+    "GAZETTE_DIRECTORY": 2,
+    "GUIDELINE_DIRECTORY": 1,
+    "IMPLEMENTING_AGENCY_PORTAL": 1,
+    "NOTIFICATION_DIRECTORY": 1,
+    "OFFICIAL_SOURCE_DIRECTORY": 4,
+    "PROGRAMME_PORTAL": 8
+  },
+  "version": "3.4.1.0.1"
+}

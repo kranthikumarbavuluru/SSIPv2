@@ -65,6 +65,7 @@ class CatalogueRecord:
     startup_stage: list[str] = field(default_factory=list)
     guideline_urls: list[str] = field(default_factory=list)
     reference_urls: list[str] = field(default_factory=list)
+    verified_public_actions: list[dict[str, Any]] = field(default_factory=list)
     contacts: list[str] = field(default_factory=list)
     warnings: list[str] = field(default_factory=list)
     recommended_actions: list[str] = field(default_factory=list)
@@ -316,6 +317,85 @@ def payload_from_rows(*rows: dict[str, Any]) -> dict[str, Any]:
     return payload
 
 
+def parse_verified_public_actions(
+    raw_value: Any,
+    schema_version: Any = "",
+) -> list[dict[str, Any]]:
+    # Return only governed, verified, non-application scheme-detail actions.
+    if as_text(schema_version) != "3.4.3.5" or is_blank(raw_value):
+        return []
+
+    parsed = safe_json(raw_value)
+    if not isinstance(parsed, list):
+        return []
+
+    verified: list[dict[str, Any]] = []
+    seen_urls: set[str] = set()
+
+    for item in parsed:
+        if not isinstance(item, dict):
+            continue
+
+        action_type = as_text(item.get("action_type")).upper()
+        link_role = as_text(item.get("link_role")).upper()
+        verification_status = as_text(
+            item.get("verification_status")
+        ).upper()
+        is_active = str(item.get("is_active", "")).strip().lower() in {
+            "true",
+            "1",
+            "yes",
+        }
+        is_time_bound = str(
+            item.get("is_time_bound", "")
+        ).strip().lower() in {
+            "true",
+            "1",
+            "yes",
+        }
+        resolved_url = safe_url(item.get("resolved_url"))
+
+        if action_type != "SCHEME_DETAILS":
+            continue
+        if link_role != "SCHEME_MASTER":
+            continue
+        if verification_status != "VERIFIED_INFORMATION_PAGE":
+            continue
+        if not is_active or is_time_bound or not resolved_url:
+            continue
+
+        normalized_url = resolved_url.casefold().rstrip("/")
+        if normalized_url in seen_urls:
+            continue
+        seen_urls.add(normalized_url)
+
+        verified.append(
+            {
+                "action_id": as_text(item.get("action_id")),
+                "action_type": "SCHEME_DETAILS",
+                "link_role": "SCHEME_MASTER",
+                "label": "Scheme Details",
+                "resolved_url": resolved_url,
+                "verification_status": "VERIFIED_INFORMATION_PAGE",
+                "confidence": as_float(item.get("confidence")),
+                "is_active": True,
+                "is_time_bound": False,
+                "deadline_status": as_text(
+                    item.get("deadline_status")
+                )
+                or "NOT_APPLICABLE",
+                "last_verified_at": as_text(
+                    item.get("last_verified_at")
+                ),
+                "verification_source": as_text(
+                    item.get("verification_source")
+                ),
+            }
+        )
+
+    return verified
+
+
 def build_record(
     master_id: str,
     *,
@@ -383,7 +463,7 @@ def build_record(
         implementation_role=as_text(direct("implementation_role")),
         status_basis=as_text(direct("status_basis")),
         status_evidence=as_text(direct("status_evidence")),
-        last_verified_at=as_text(direct("last_verified_at")),
+        last_verified_at=as_text(direct("last_verified_at", "last_verified_date")),
         record_kind=as_text(first_value(plan_row.get("normalized_record_kind"), direct("record_kind"))),
         programme_status=as_text(direct("programme_status")),
         application_status=as_text(direct("application_status", "scheme_status")),
@@ -418,6 +498,10 @@ def build_record(
         startup_stage=dedupe(to_list(deep_find(payload, ["startup_stage", "startup_stages"])) + values_for(attributes, master_id, ["startup_stage"])),
         guideline_urls=guideline_urls,
         reference_urls=all_urls,
+        verified_public_actions=parse_verified_public_actions(
+            plan_row.get("verified_public_actions_json"),
+            plan_row.get("verified_public_action_schema_version"),
+        ),
         contacts=dedupe(to_list(deep_find(payload, ["contact_details", "contacts", "contact"])) + contacts.get(master_id, [])),
         warnings=warning_values,
         recommended_actions=to_list(first_value(plan_row.get("recommended_actions"), review_row.get("recommended_actions_json"), payload.get("recommended_actions"))),

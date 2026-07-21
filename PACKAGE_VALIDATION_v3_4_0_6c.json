@@ -1,0 +1,11 @@
+{
+  "package_version": "3.4.0.6c",
+  "fix": "PowerShell parser error and robust Python argument handling",
+  "checks": {
+    "invalid_LASTEXITCODE_colon_removed": true,
+    "format_operator_used": true,
+    "python_arguments_array_based": true,
+    "native_exit_code_checked": true
+  },
+  "sha256": "13b4482331759c5aedb6e65f6b55051b7b8ef6f99984f1355797be74c541fbe0"
+}

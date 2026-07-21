@@ -1,0 +1,224 @@
+{
+  "package": "SSIP v3.4.1.0 Governed Nightly Agent Platform",
+  "created_at": "2026-07-10",
+  "python_compile_passed": true,
+  "pytest": "5 passed",
+  "self_test_passed": true,
+  "files": [
+    {
+      "path": ".pytest_cache/.gitignore",
+      "sha256": "3ed731b65d06150c138e2dadb0be0697550888a6b47eb8c45ecc9adba8b8e9bd",
+      "size": 37
+    },
+    {
+      "path": ".pytest_cache/CACHEDIR.TAG",
+      "sha256": "37dc88ef9a0abeddbe81053a6dd8fdfb13afb613045ea1eb4a5c815a74a3bde4",
+      "size": 191
+    },
+    {
+      "path": ".pytest_cache/README.md",
+      "sha256": "73fd6fccdd802c419a6b2d983d6c3173b7da97558ac4b589edec2dfe443db9ad",
+      "size": 302
+    },
+    {
+      "path": ".pytest_cache/v/cache/lastfailed",
+      "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "size": 2
+    },
+    {
+      "path": ".pytest_cache/v/cache/nodeids",
+      "sha256": "cc9875974a470c4b7710a0a8406887eef332ac1c14e913d1dde3cf0b722b96a6",
+      "size": 344
+    },
+    {
+      "path": "INSTALL_MIDNIGHT_TASK_v3_4_1_0.ps1",
+      "sha256": "c83a069d2e4fd658113081f6b7a28a1c13b671aa2e91e05324f8ab04047c2349",
+      "size": 1267
+    },
+    {
+      "path": "README_v3_4_1_0.md",
+      "sha256": "1a0ca9107e64db3589e5de9e8291ae1cac9641e5ca18b444a0bc1a2189dca681",
+      "size": 2662
+    },
+    {
+      "path": "REMOVE_MIDNIGHT_TASK_v3_4_1_0.ps1",
+      "sha256": "03f22b4dabd42a834975df76621c5e2a429bd8c0112797d188c91704bd0b720b",
+      "size": 181
+    },
+    {
+      "path": "RUN_AGENTS_NOW_v3_4_1_0.ps1",
+      "sha256": "cb5f3d0a85e5ef066886936a3544e9cc999ced5f3b2c04a525f598242300a720",
+      "size": 1334
+    },
+    {
+      "path": "RUN_NIGHTLY_AGENTS_v3_4_1_0.ps1",
+      "sha256": "5562be8d8a5bb4807c7a6478c72212a043f71642cb016c28bb3d05b93f237024",
+      "size": 604
+    },
+    {
+      "path": "agents/__init__.py",
+      "sha256": "40d478b6a3602e96e06d97effd927c2a2d1fa943e0260bc578a42a3813c0001b",
+      "size": 68
+    },
+    {
+      "path": "agents/__pycache__/__init__.cpython-313.pyc",
+      "sha256": "546e7736b7ed36ceffd6d0a0bf8f650787b17825ac924b4804471f3cdad69fb2",
+      "size": 198
+    },
+    {
+      "path": "agents/__pycache__/call_agent.cpython-313.pyc",
+      "sha256": "3a5774432e16baec192469326b74d2e3004e693c579150053fab3a1cd2905545",
+      "size": 3152
+    },
+    {
+      "path": "agents/__pycache__/common.cpython-313.pyc",
+      "sha256": "485a703dee65f2299d15bf1dec03746df41306a05967d94f75e2ef59f43f04ff",
+      "size": 21853
+    },
+    {
+      "path": "agents/__pycache__/orchestrator.cpython-313.pyc",
+      "sha256": "1e127d562078e8f508d5d07ee8ddb34f9aec6077cf2cfe7674c2c72c8d2045b6",
+      "size": 12080
+    },
+    {
+      "path": "agents/__pycache__/publication_agent.cpython-313.pyc",
+      "sha256": "e50373b0af72d42f83e369df28fd8cc01ad887ce4911b97627eaa5e4cadbe28c",
+      "size": 2582
+    },
+    {
+      "path": "agents/__pycache__/relevance_agent.cpython-313.pyc",
+      "sha256": "18b6d8f3f47dcc378c1d7e13e5b5d03ccba2e3a38d1dfc78a1e19bfd5256ae9a",
+      "size": 3119
+    },
+    {
+      "path": "agents/__pycache__/sector_agent.cpython-313.pyc",
+      "sha256": "40ea3b10bf20858eb8965511e3c18f52293c5b5122d47f6d51a74be955811b30",
+      "size": 12873
+    },
+    {
+      "path": "agents/__pycache__/taxonomy.cpython-313.pyc",
+      "sha256": "dd4d79fe743fb967d3adaa3d9c16ca46761b8dc1bdb40e3d8b6f8b5538bf5a60",
+      "size": 4795
+    },
+    {
+      "path": "agents/__pycache__/validation_agent.cpython-313.pyc",
+      "sha256": "7a319da5ac9d7a4aa0a1b479f202f36a2aceebfd933fa4e0de63c41e1e1aa8a5",
+      "size": 3212
+    },
+    {
+      "path": "agents/call_agent.py",
+      "sha256": "682a4729cd97983c71fc785bdf8405a9c3e6d912c3241496c80f1e634321fe83",
+      "size": 1955
+    },
+    {
+      "path": "agents/common.py",
+      "sha256": "6146da4fe1bee3793772e917744ea58fa34ea2807e120e3c21b8f7df2f8f3a19",
+      "size": 13572
+    },
+    {
+      "path": "agents/orchestrator.py",
+      "sha256": "9edc03cbf07a3b64afe97ae0846be3b87dd597ed6caff5129744ce1c250384bf",
+      "size": 9736
+    },
+    {
+      "path": "agents/publication_agent.py",
+      "sha256": "e33f52ea0274a1f48db232ad9100b4bd8b44e646dcec1c8d5689e9c38fa75cfd",
+      "size": 1853
+    },
+    {
+      "path": "agents/relevance_agent.py",
+      "sha256": "1e36dcf2f5dba22082dc565df96d32b0af990834525486fd97c7fad541ce8b6d",
+      "size": 2134
+    },
+    {
+      "path": "agents/sector_agent.py",
+      "sha256": "1ab07e1543abbc68f9142d7ea33c0c39ae869502af58c54d4489899c11decd89",
+      "size": 9834
+    },
+    {
+      "path": "agents/taxonomy.py",
+      "sha256": "df885c0b29b0334a966af255f78bb2fbaaf4275ca50ba16bfce6bee3caeefcce",
+      "size": 2790
+    },
+    {
+      "path": "agents/validation_agent.py",
+      "sha256": "6e45b90fdf99a753f8f480a3b7d2e480cac8959f7cbc8aafd3ed3b35a4b2fe1d",
+      "size": 1579
+    },
+    {
+      "path": "config/agent_platform_v3_4_1_0.json",
+      "sha256": "522465732219cd09e94bcc1e6e4e803acd72d6857e7628ba9c1401a651a25a1b",
+      "size": 1160
+    },
+    {
+      "path": "config/sector_taxonomy_v3_4_1_0.json",
+      "sha256": "a2793fd37d11430c25a95647c40b5ea08c5e590b7dc0c83e81947b684cd7de2b",
+      "size": 11472
+    },
+    {
+      "path": "requirements-v3_4_1_0.txt",
+      "sha256": "d46cb964c145977e8fc15c8649ea98afdbcb74917ebf0f221014dce4d41a4535",
+      "size": 72
+    },
+    {
+      "path": "scripts/__pycache__/preflight_agents_v3_4_1_0.cpython-313.pyc",
+      "sha256": "8c3c1bf0d17570e4813f330f251c96cae2d38fc562dd14fddb47c62d5b09d88b",
+      "size": 1723
+    },
+    {
+      "path": "scripts/__pycache__/verify_active_catalogue_v3_4_1_0.cpython-313.pyc",
+      "sha256": "67112c37e3aba7496cc4e8696cdce5444378ce640a26289489e0bcef437a20ed",
+      "size": 2701
+    },
+    {
+      "path": "scripts/preflight_agents_v3_4_1_0.py",
+      "sha256": "1976cf2a074dbe9f95861e7c5b399258e434c470f63042654335b47f380682fa",
+      "size": 867
+    },
+    {
+      "path": "scripts/verify_active_catalogue_v3_4_1_0.py",
+      "sha256": "4f775df1618cfe39f94b4d78ce440259659772575f290008ae50d8c36b941d70",
+      "size": 1312
+    },
+    {
+      "path": "tests/.pytest_cache/.gitignore",
+      "sha256": "3ed731b65d06150c138e2dadb0be0697550888a6b47eb8c45ecc9adba8b8e9bd",
+      "size": 37
+    },
+    {
+      "path": "tests/.pytest_cache/CACHEDIR.TAG",
+      "sha256": "37dc88ef9a0abeddbe81053a6dd8fdfb13afb613045ea1eb4a5c815a74a3bde4",
+      "size": 191
+    },
+    {
+      "path": "tests/.pytest_cache/README.md",
+      "sha256": "73fd6fccdd802c419a6b2d983d6c3173b7da97558ac4b589edec2dfe443db9ad",
+      "size": 302
+    },
+    {
+      "path": "tests/.pytest_cache/v/cache/lastfailed",
+      "sha256": "bbb46042c27559d9e6bbc3c753beb159cd3424132312287ee7cc4c7b2e403d7a",
+      "size": 45
+    },
+    {
+      "path": "tests/.pytest_cache/v/cache/nodeids",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "size": 2
+    },
+    {
+      "path": "tests/__pycache__/test_agent_platform_v3_4_1_0.cpython-313-pytest-9.0.2.pyc",
+      "sha256": "a53fd72b960d25d7ca02701fe535e0bcccf3224177255c818a6b050ff100b425",
+      "size": 9279
+    },
+    {
+      "path": "tests/__pycache__/test_agent_platform_v3_4_1_0.cpython-313.pyc",
+      "sha256": "a2ddbc7273bc513999f10449cc742dac405456cbbb5712b259636812c9139af5",
+      "size": 3350
+    },
+    {
+      "path": "tests/test_agent_platform_v3_4_1_0.py",
+      "sha256": "eb5d0015b9301f9d129f95008d080b6fab9476b9c6d303f4e0ace26544d8a4b2",
+      "size": 2140
+    }
+  ]
+}

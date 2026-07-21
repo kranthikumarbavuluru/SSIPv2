@@ -1,0 +1,42 @@
+{
+  "service_version": "3.4.0.4a",
+  "generated_at": "2026-07-10T12:01:49+00:00",
+  "base_preview": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\catalogue_preview\\v3_3_2\\catalogue_preview_v3_3_2.csv",
+  "dst_publication": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\departments\\dst\\v3_4_0_4\\dst_publication_catalogue_v3_4_0_4.csv",
+  "versioned_merged_output": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\catalogue_preview\\v3_4_0_4\\catalogue_preview_v3_4_0_4.csv",
+  "backup": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\backups\\v3_4_0_4a_dashboard_integration\\catalogue_preview_v3_3_2_before_dst_merge_20260710_173149.csv",
+  "counts": {
+    "base_rows_before": 135,
+    "old_dst_rows_removed": 5,
+    "non_dst_rows_preserved": 130,
+    "dst_rows_added": 23,
+    "merged_rows_after": 153,
+    "validated_dst_rows_after": 23
+  },
+  "removed_dst_names": [
+    "INSPIRE Scheme",
+    "Mega Facilities for Basic Research Scheme",
+    "Building U.S.-India Partnerships to Drive Innovation",
+    "Indo-Japan Cooperative Science Programme (IJCSP)",
+    "India-Austria Science & Technology Cooperation"
+  ],
+  "dst_entity_types": {
+    "SCHEME": 3,
+    "PROGRAMME": 20
+  },
+  "app_patch": {
+    "app_exists": true,
+    "patched": true,
+    "backup": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\apps\\public_dashboard_app_v2_9_before_v3_4_0_4a_20260710_173149.py",
+    "path": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\apps\\public_dashboard_app_v2_9.py"
+  },
+  "checks": {
+    "exactly_23_dst_rows_loaded": true,
+    "all_dst_ids_unique": true,
+    "old_dst_rows_replaced": true,
+    "non_dst_rows_preserved": true,
+    "merged_file_written": true,
+    "active_preview_replaced": true
+  },
+  "integration_passed": true
+}

@@ -1,0 +1,44 @@
+{
+  "version": "3.4.3.2",
+  "phase": "MeitY Candidate Normalization, Identity Deduplication and Classification Triage",
+  "generated_at": "2026-07-13T07:15:42+00:00",
+  "validation_status": "PASS",
+  "outputs": [
+    {
+      "path": "data/departments/meity/v3_4_3_2/meity_call_triage_v3_4_3_2.csv",
+      "sha256": "6ef0055b3e84c57d881841f96f432542d7393d2bd7029bf5f081ccf337c31472",
+      "size_bytes": 2345
+    },
+    {
+      "path": "data/departments/meity/v3_4_3_2/meity_candidate_identity_register_v3_4_3_2.csv",
+      "sha256": "62cd640260d28697ec156b5001e02ee1c15e90901d6386de2b66c62f9156cb7b",
+      "size_bytes": 738
+    },
+    {
+      "path": "data/departments/meity/v3_4_3_2/meity_fetch_error_queue_v3_4_3_2.csv",
+      "sha256": "b66c2d6b22d4b54eb637fc698bbe900654e3ab6c9a4cc40eefba90decbe1c57d",
+      "size_bytes": 5592
+    },
+    {
+      "path": "data/departments/meity/v3_4_3_2/meity_normalized_master_triage_v3_4_3_2.csv",
+      "sha256": "0f2e96d582bf7511b1a457cea324d4bfde79e53fb2dc0f7741f13a2e44fc22ba",
+      "size_bytes": 7019
+    },
+    {
+      "path": "data/departments/meity/v3_4_3_2/meity_triage_review_queue_v3_4_3_2.csv",
+      "sha256": "faa1837f6a76677254b6ead211365fd85a05775619e17a003172c4dc3341dca8",
+      "size_bytes": 115
+    },
+    {
+      "path": "data/departments/meity/v3_4_3_2/meity_triage_summary_v3_4_3_2.json",
+      "sha256": "7d6f72f38e74c8df5978a1e0097d49ad5577fe6613506909f80dec6dadac6050",
+      "size_bytes": 2525
+    },
+    {
+      "path": "data/departments/meity/v3_4_3_2/meity_triage_validation_v3_4_3_2.json",
+      "sha256": "c5ded94364515e766437160fb5a3e62d10ee547e049be8ddd54177b8d0d77d82",
+      "size_bytes": 2190
+    }
+  ],
+  "publication_status": "NOT_PUBLISHED"
+}

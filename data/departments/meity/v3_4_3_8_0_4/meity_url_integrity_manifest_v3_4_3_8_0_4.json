@@ -1,0 +1,35 @@
+{
+  "version": "3.4.3.8.0.4",
+  "generated_at": "2026-07-15T06:23:06+00:00",
+  "source_manifest_signature": "61a5055d8b6c89a9608b0e756811455f7595aab195330059c0aa6a14dc62d68e",
+  "links_inspected": 25,
+  "unique_requested_urls": 17,
+  "verified_information_links": 11,
+  "verified_application_routes": 0,
+  "withheld_application_routes": 3,
+  "broken_or_unverified_links": 0,
+  "role_counts": {
+    "ABOUT_PAGE": 3,
+    "CALL_INFORMATION_PAGE": 1,
+    "HISTORICAL_SOURCE": 1,
+    "SCHEME_INFORMATION_PAGE": 18,
+    "UNRELATED_ROUTE": 2
+  },
+  "integrity_status_counts": {
+    "VERIFIED": 11,
+    "WITHHELD": 14
+  },
+  "current_status_evidence_complete_count": 0,
+  "global_application_routes_withheld": true,
+  "historical_application_links_exposed": 0,
+  "about_page_application_links_exposed": 0,
+  "cross_entity_link_contamination_count": 0,
+  "safe_bundle_count": 17,
+  "safe_child_count": 22,
+  "apply_action_allowed_count": 0,
+  "publication_eligible_count": 0,
+  "database_write_performed": false,
+  "publication_performed": false,
+  "link_integrity_signature": "144dfc14b201292dfc7a09a594eab30d24df01108ea2f6736cfb537ca833274e",
+  "session_state_signature": "5c633cc6abdef5efc92683ec6b8b4907289e8ca1e8e45da0190ea4b19d98d845"
+}

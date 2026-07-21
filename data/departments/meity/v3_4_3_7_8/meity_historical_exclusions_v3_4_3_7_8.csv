@@ -1,0 +1,10 @@
+﻿source_master_id,current_title,official_page_url,exclusion_class,exclusion_reason,public_call_eligible
+meitycall_98f3c3720f15dae91ade,Brussels,https://msh.meity.gov.in/program/mshinternational/brussels,EVENT_OR_DELEGATION,Brussels page describes an international delegation and ecosystem engagement.,False
+meitycall_cbb7e8cd8fe24b00afd9,Challenges,https://msh.meity.gov.in/challenges,NAVIGATION_OR_DIRECTORY,Challenges is a listing page and not an individual call identity.,False
+meitycall_37a5f7055e19110989f3,Event Partner,https://msh.meity.gov.in/event-partner,NAVIGATION_OR_DIRECTORY,Event Partner is an events listing rather than a call.,False
+meitycall_056b139f54fba2e7a8b3,G20Diaoverview,https://msh.meity.gov.in/g20dia/g20diaoverview,EVENT_OR_CONFERENCE,"G20 DIA overview is a summit overview, not an application call.",False
+meitycall_c53a5b2578e3b03d7291,Mathworks,https://msh.meity.gov.in/program/mshcorporate/mathworks,PERMANENT_PARTNERSHIP_PROGRAMME,MathWorks page describes an ongoing partnership benefit without a dated call instance.,False
+meitycall_11ee67b180d2f208f8ef,Organisationprofile,https://msh.meity.gov.in/about/organisationprofile,ORGANISATION_PROFILE,Organisation profile is not a call or programme instance.,False
+meitycall_ba1e7d64714d21401ed3,Press Release All,https://msh.meity.gov.in/media/press-release-all,PRESS_RELEASE_LISTING,Press Release All is a news listing and only a discovery source.,False
+meitycall_8d44c653724d98cb049d,The Summit,https://msh.meity.gov.in/g20dia/the-summit,EVENT_OR_CONFERENCE,The Summit is a conference page rather than an application call.,False
+meitycall_f76675fa4a424f58ed0b,Vivatech,https://msh.meity.gov.in/program/mshinternational/vivatech,EVENT_OR_CONFERENCE,"VivaTech 2022 describes participation in an event, not a call.",False

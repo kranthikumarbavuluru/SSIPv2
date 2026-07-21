@@ -1,0 +1,70 @@
+{
+  "version": "3.4.2.0.1",
+  "phase": "MeitY Manual Master Register Pilot - SAMRIDH and TIDE 2.0",
+  "execution_mode": "MANUAL_PREVIEW_ONLY",
+  "baseline_recorded_at": "2026-07-12T22:08:28.9016571+05:30",
+  "validation_status": "PASS",
+  "publication_status": "NOT_PUBLISHED",
+  "governed_output_count": 11,
+  "governed_outputs": [
+    {
+      "path": "data/departments/meity/v3_4_2_0_1/meity_scheme_master_registry_v3_4_2_0_1.csv",
+      "sha256": "73db48cadb2e75813c94e9bc68b6c1012a07847d5140784fd43ebde3045935c1",
+      "row_count": 2
+    },
+    {
+      "path": "data/departments/meity/v3_4_2_0_1/meity_legacy_status_adjudication_v3_4_2_0_1.csv",
+      "sha256": "45f1892a9e819009c9189e39fc0da6a6a99c5d2d31dedad1998497bc59fe5786",
+      "row_count": 2
+    },
+    {
+      "path": "data/departments/meity/v3_4_2_0_1/meity_call_instance_review_queue_v3_4_2_0_1.csv",
+      "sha256": "34acae921df02107d7e1bd864c8adcd455b2ae51724053db01c0cc934714caf6",
+      "row_count": 4
+    },
+    {
+      "path": "data/departments/meity/v3_4_2_0_1/meity_official_evidence_registry_v3_4_2_0_1.csv",
+      "sha256": "e50428aa01253ee0e47281fadc3026d87465d54bd16c906687791652dc58619f",
+      "row_count": 13
+    },
+    {
+      "path": "data/departments/meity/v3_4_2_0_1/meity_current_status_adjudication_v3_4_2_0_1.csv",
+      "sha256": "727ff1855f5e44df74475e992200e459e2dcf9c32bdc0b7d2140cbe24cf3cbbc",
+      "row_count": 2
+    },
+    {
+      "path": "data/departments/meity/v3_4_2_0_1/meity_extraction_pilot_records_v3_4_2_0_1.csv",
+      "sha256": "ddb07a47aa8098a355dacbfe140abecfbd23bc32ae6690047ad0e6e6229f893f",
+      "row_count": 2
+    },
+    {
+      "path": "data/departments/meity/v3_4_2_0_1/meity_extraction_review_queue_v3_4_2_0_1.csv",
+      "sha256": "5838930d4f2e8f7e82cd327c0f28829ba2cf4cc7e2773eedbfc3466b768721f4",
+      "row_count": 7
+    },
+    {
+      "path": "data/departments/meity/v3_4_2_0_1/meity_field_evidence_registry_v3_4_2_0_1.csv",
+      "sha256": "91b59ab1be0cd9564d2ba6230925981b98491fdb650f44b844ed529daf779189",
+      "row_count": 42
+    },
+    {
+      "path": "data/departments/meity/v3_4_2_0_1/meity_extraction_validation_v3_4_2_0_1.json",
+      "sha256": "40fe9609db1f29e34253e5e5d1ac7b11be817c2fef4effe52e19a16d828a2d16",
+      "row_count": null
+    },
+    {
+      "path": "data/departments/meity/v3_4_2_0_1/meity_extraction_summary_v3_4_2_0_1.json",
+      "sha256": "4bf801568c35d8e8ffcbbaedc0b9473fb548739557a2aad62c594bbfecf33a58",
+      "row_count": null
+    }
+  ],
+  "auxiliary_outputs": [
+    {
+      "path": "data/departments/meity/v3_4_2_0_1/meity_existing_identity_lookup_v3_4_2_0_1.csv",
+      "sha256": "2d833006eb222951b15a1912162a661a322086bd6e1144bcd5285a6e51680411",
+      "purpose": "Working identity lookup used to confirm existing master IDs."
+    }
+  ],
+  "frozen_source_audit": "data/audit/meity_v3_4_2_0_1_manual_prechange_sha256.json",
+  "postchange_audit": "data/audit/meity_v3_4_2_0_1_manual_postchange_sha256.json"
+}

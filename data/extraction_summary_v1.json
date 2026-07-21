@@ -1,0 +1,37 @@
+{
+  "input_master_count": 28,
+  "selected_for_extraction_count": 10,
+  "extracted_record_count": 10,
+  "failure_count": 0,
+  "records_by_source": {
+    "BIRAC": 2,
+    "DST": 5,
+    "Startup India": 3
+  },
+  "records_by_scheme_status": {
+    "OPEN_FOR_APPLICATIONS": 2,
+    "OPEN_STATUS_REQUIRES_DEADLINE_VERIFICATION": 2,
+    "SCHEME_INFORMATION_AVAILABLE_STATUS_UNVERIFIED": 4,
+    "CLOSED_OR_DEADLINE_PASSED": 2
+  },
+  "quality_flags": {
+    "ELIGIBILITY_NOT_FOUND": 4,
+    "REQUIRED_DOCUMENTS_NOT_FOUND": 9,
+    "EXPLICIT_FUNDING_AMOUNT_NOT_FOUND": 4,
+    "ACTIVE_CALL_DEADLINE_NOT_VERIFIED": 2,
+    "BENEFITS_NOT_FOUND": 4,
+    "APPLICATION_PROCESS_NOT_FOUND": 2
+  },
+  "average_extraction_confidence": 0.875,
+  "fetch_statistics": {
+    "cache_hits": 1,
+    "network_fetches": 14,
+    "browser_renders": 2,
+    "pdf_documents": 4,
+    "html_documents": 10,
+    "fetch_failures": 0
+  },
+  "input_path": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\scheme_master_candidates_v1.json",
+  "generated_at": "2026-07-08T12:06:57.748131+00:00",
+  "extractor_version": "1.0.0"
+}

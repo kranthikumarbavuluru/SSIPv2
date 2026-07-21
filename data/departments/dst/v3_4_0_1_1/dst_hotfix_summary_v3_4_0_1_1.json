@@ -1,0 +1,70 @@
+{
+  "service_version": "3.4.0.1.1",
+  "department_code": "DST",
+  "department_name": "Department of Science and Technology",
+  "started_from": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\departments\\dst\\v3_4_0_1\\crawl",
+  "output_dir": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\departments\\dst\\v3_4_0_1_1",
+  "completed_at": "2026-07-10T09:49:25+00:00",
+  "network_access_used": false,
+  "recrawl_performed": false,
+  "identity_safeguard": {
+    "canonical_scheme_identity_created": false,
+    "call_titles_promoted_to_scheme_names": false,
+    "description": "This hotfix enriches source evidence only; scheme identity remains reserved for later phases."
+  },
+  "counts": {
+    "pages": 418,
+    "documents": 681,
+    "external_link_occurrences": 11038,
+    "external_domains": 118,
+    "call_candidates_audited": 342,
+    "text_extraction_failures": 0
+  },
+  "text_extraction_status_counts": {
+    "HTTP_ERROR_PAGE": 2,
+    "SUCCESS_BODY_FALLBACK": 299,
+    "SUCCESS_MAIN_CONTENT": 117
+  },
+  "document_role_counts": {
+    "APPLICATION_FORMAT": 16,
+    "BROCHURE_OR_FLYER": 3,
+    "CALL_DOCUMENT": 335,
+    "CORRIGENDUM": 1,
+    "DEADLINE_EXTENSION": 15,
+    "GUIDELINE": 70,
+    "OFFICE_MEMORANDUM": 1,
+    "RESULT": 8,
+    "SANCTION_ORDER": 51,
+    "UNKNOWN_DOCUMENT": 181
+  },
+  "call_pattern_counts": {
+    "APPLICATION_INVITATION": 12,
+    "CALL_FOR_PROPOSALS": 165,
+    "DEADLINE_EXTENSION": 21,
+    "EVENT_RELATED": 1,
+    "EXPRESSION_OF_INTEREST": 3,
+    "OTHER_CALL_PATTERN": 137,
+    "RESULT_OR_SELECTION": 3
+  },
+  "external_authority_counts": {
+    "ACADEMIC_INSTITUTION": 12,
+    "APPLICATION_PORTAL": 1,
+    "DST_RELATED_PORTAL": 498,
+    "GOVERNMENT_PORTAL": 7923,
+    "INTERNATIONAL_GOVERNMENT": 5,
+    "SOCIAL_MEDIA": 1257,
+    "UNCLASSIFIED_EXTERNAL": 1342
+  },
+  "schema_validation_passed": true,
+  "ready_for_v3_4_0_2": true,
+  "outputs": {
+    "pages": "dst_crawled_pages_enriched_v3_4_0_1_1.csv",
+    "documents": "dst_documents_enriched_v3_4_0_1_1.csv",
+    "external_links": "dst_external_links_enriched_v3_4_0_1_1.csv",
+    "external_domains": "dst_external_domains_v3_4_0_1_1.csv",
+    "call_pattern_audit": "dst_call_pattern_audit_v3_4_0_1_1.csv",
+    "text_extraction_failures": "dst_text_extraction_failures_v3_4_0_1_1.csv",
+    "schema_validation": "dst_schema_validation_v3_4_0_1_1.json",
+    "summary": "dst_hotfix_summary_v3_4_0_1_1.json"
+  }
+}

@@ -1,0 +1,4 @@
+﻿relationship_id,parent_record_id,child_record_id,relationship_type,evidence_url,status
+dpiit_rel_8d3d198e8846b2edb2d9,dpiit_master_fddaf83d1941468aa810,dpiit_call_7d5cea5e1b0af96bf961,HAS_CALL_OR_CHALLENGE,https://www.startupindia.gov.in/content/sih/en/nsa2025.html,EVIDENCE_LINKED
+dpiit_rel_fc2210fe755bfa03c1e6,dpiit_master_8f5e33c59d19edc0e12e,dpiit_call_be7d531209cdc2838400,HAS_CALL_OR_CHALLENGE,https://seedfund.startupindia.gov.in/final-notice-2026,EVIDENCE_LINKED
+dpiit_rel_9cb4f46f87b72dcd30cf,dpiit_master_8314bd560187bd1f0e75,dpiit_call_d101c6f3f93c937dd896,HAS_CALL_OR_CHALLENGE,https://www.startupindia.gov.in/content/sih/en/bharat-startup-grand-challenge/gaming-for-good.html,EVIDENCE_LINKED

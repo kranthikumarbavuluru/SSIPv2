@@ -1,0 +1,33 @@
+{
+  "service_version": "3.4.2.1",
+  "run_id": "20260710T164709+0000_061be334",
+  "input_rows": 137,
+  "public_scheme_rows": 8,
+  "call_rows": 7,
+  "manual_review_rows": 78,
+  "quarantine_rows": 44,
+  "role_distribution": {
+    "MANUAL_ROLE_REVIEW": 2,
+    "SCHEME_OR_PROGRAMME": 30,
+    "CALL_INSTANCE": 6,
+    "CATEGORY_OR_INDEX_PAGE": 2,
+    "SUPPORTING_DOCUMENT": 65,
+    "NAVIGATION_OR_UTILITY": 12,
+    "FACILITY_OR_DIRECTORY": 11,
+    "GENERIC_WEB_PAGE": 1,
+    "SUPPORT_SCHEME_OR_SERVICE": 8
+  },
+  "sector_distribution": {
+    "Cross-sector MSME & Startup Finance": 3,
+    "Cross-sector Innovation & Entrepreneurship": 5
+  },
+  "governance_distribution": {
+    "QUARANTINE": 116,
+    "MANUAL_REVIEW": 3,
+    "PUBLISH_SCHEME": 8,
+    "PUBLISH_CALL_SEPARATELY": 7,
+    "QUARANTINE_DUPLICATE": 3
+  },
+  "lm_studio_used": false,
+  "dry_run": false
+}

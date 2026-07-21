@@ -1,0 +1,15 @@
+{
+  "package": "SSIP_v3_4_0_6_Sector_Verification_Agent",
+  "version": "3.4.0.6",
+  "purpose": "Evidence-based sector verification and dashboard catalogue enrichment",
+  "files": [
+    "scripts/sector_verification_agent_v3_4_0_6.py",
+    "scripts/patch_dashboard_sector_taxonomy_v3_4_0_6.py",
+    "config/sector_taxonomy_v3_4_0_6.json",
+    "tests/test_sector_verification_agent_v3_4_0_6.py",
+    "tests/test_dashboard_sector_patch_v3_4_0_6.py",
+    "requirements-v3_4_0_6.txt",
+    "RUN_SECTOR_VERIFICATION_v3_4_0_6.ps1",
+    "README_v3_4_0_6.md"
+  ]
+}

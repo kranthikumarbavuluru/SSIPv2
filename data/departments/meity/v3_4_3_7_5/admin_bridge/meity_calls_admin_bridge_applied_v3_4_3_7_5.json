@@ -1,0 +1,2314 @@
+{
+  "version": "3.4.3.7.5",
+  "provider_id": "meity_calls_v3_4_3_7_5",
+  "generated_at": "2026-07-14T07:55:26+00:00",
+  "source_queue_count": 18,
+  "proposed_insert_count": 16,
+  "proposed_update_count": 0,
+  "skipped_semantic_duplicate_count": 2,
+  "skipped_existing_decision_count": 0,
+  "application_call_count": 18,
+  "verified_current_call_count": 0,
+  "public_application_route_count": 0,
+  "database_modified": true,
+  "publication_performed": false,
+  "actions": [
+    {
+      "master_id": "meitycall_a95e53af41b5c53999cf",
+      "scheme_name": "Bhumi",
+      "record_kind": "APPLICATION_CALL",
+      "application_status": "VERIFICATION_REQUIRED",
+      "action": "INSERT_PENDING_CALL_REVIEW",
+      "matches": [],
+      "item": {
+        "master_id": "meitycall_a95e53af41b5c53999cf",
+        "scheme_name": "Bhumi",
+        "source": "MeitY Startup Hub",
+        "record_kind": "APPLICATION_CALL",
+        "programme_status": "CALL_INFORMATION_AVAILABLE",
+        "application_status": "VERIFICATION_REQUIRED",
+        "official_page_url": "https://msh.meity.gov.in/program/mshcorporate/bhumi",
+        "application_url": null,
+        "decision": "NEEDS_ADMIN_REVIEW",
+        "validation_score": 0.6,
+        "priority": "NORMAL",
+        "decision_reasons": [
+          "Verify this time-bound call separately from its permanent parent scheme.",
+          "Confirm the parent, applicant layer, deadline and current application status."
+        ],
+        "warnings": [
+          "DEADLINE_REQUIRES_VERIFICATION",
+          "NO_PUBLIC_APPLY_ROUTE",
+          "No public Apply action until current dated evidence and an official application route are verified."
+        ],
+        "critical_flags": [],
+        "recommended_admin_actions": [
+          "Open the official MeitY evidence.",
+          "Confirm the call-to-parent relationship or approve as a standalone official call.",
+          "Do not expose Apply unless current dated evidence and route are verified."
+        ],
+        "validated_record": {
+          "master_id": "meitycall_a95e53af41b5c53999cf",
+          "scheme_name": "Bhumi",
+          "short_name": "",
+          "source": "MeitY Startup Hub",
+          "ministry": "Ministry of Electronics and Information Technology (MeitY)",
+          "department": null,
+          "implementing_agency": "MeitY Startup Hub",
+          "record_kind": "APPLICATION_CALL",
+          "programme_status": "CALL_INFORMATION_AVAILABLE",
+          "application_status": "VERIFICATION_REQUIRED",
+          "scheme_status": "CALL_INSTANCE",
+          "geographic_scope": "National (India)",
+          "official_page_url": "https://msh.meity.gov.in/program/mshcorporate/bhumi",
+          "application_url": null,
+          "opening_date": null,
+          "closing_date": null,
+          "scheme_type": [
+            "Time-bound MeitY call"
+          ],
+          "target_beneficiaries": [],
+          "startup_stage": [],
+          "sector": [],
+          "states_or_uts": [],
+          "objectives": [
+            "Skip to main content meity-sthub@gov.in Contact : +91-11-24301244 ABOUT US SCHEMES PROGRAM NETWORKS RESOURCE MEDIA REGISTER LOGIN PROGRAMS > MSH CORPORATE > BHUMI – BSF BHUMI – BSF Background: To leverage the innovations created by the Indian entrepreneurs and to build on the mission of Atmanirbhar Bharat, Border Security Forces (BSF) seeks to organize Hackathons with Indian startups and premier Institutions for cost effective solutions to strengthen the border security scenario. In compliance to the directions, Ministry of Electronics & IT Startup Hub (MeitY Startup Hub) is collaborating with BSF to provide access to the platform, resources, startups, and institutions which can be engaged in this process of solution identification based on problem statements as provided by BSF. Read More >> Get to Know Terms & Conditions Sitemap Careers Feedback About Us Contact Us Grievance Blogs Forum Privacy Policy Faqs Stay Connected Number of Users Visited MSH 2.0 Portal: 606323 Useful Links MyGov MeitY MeitY Dashboard Digital India Corporation Open Government Data National e-Governance Division India Semiconductor Mission Digital India Bhashini Startup India NITI Aayog Subscribe MeitY Startu"
+          ],
+          "eligibility": [],
+          "benefits": [],
+          "funding_amount": {
+            "minimum": null,
+            "maximum": null,
+            "currency": "INR",
+            "funding_types": [],
+            "amount_mentions": [],
+            "beneficiary_support": {
+              "minimum": null,
+              "maximum": null
+            },
+            "intermediary_support_maximum": null,
+            "scheme_corpus": null
+          },
+          "application_process": [],
+          "selection_process": [],
+          "required_documents": [],
+          "guideline_urls": [],
+          "contact_details": [],
+          "source_evidence": [
+            {
+              "url": "https://msh.meity.gov.in/program/mshcorporate/bhumi",
+              "title": "Bhumi",
+              "content_kind": "html",
+              "evidence_text": "Skip to main content meity-sthub@gov.in Contact : +91-11-24301244 ABOUT US SCHEMES PROGRAM NETWORKS RESOURCE MEDIA REGISTER LOGIN PROGRAMS > MSH CORPORATE > BHUMI – BSF BHUMI – BSF Background: To leverage the innovations created by the Indian entrepreneurs and to build on the mission of Atmanirbhar Bharat, Border Security Forces (BSF) seeks to organize Hackathons with Indian startups and premier Institutions for cost effective solutions to strengthen the border security scenario. In compliance to the directions, Ministry of Electronics & IT Startup Hub (MeitY Startup Hub) is collaborating with BSF to provide access to the platform, resources, startups, and institutions which can be engaged in this process of solution identification based on problem statements as provided by BSF. Read More >> Get to Know Terms & Conditions Sitemap Careers Feedback About Us Contact Us Grievance Blogs Forum Privacy Policy Faqs Stay Connected Number of Users Visited MSH 2.0 Portal: 606323 Useful Links MyGov MeitY MeitY Dashboard Digital India Corporation Open Government Data National e-Governance Division India Semiconductor Mission Digital India Bhashini Startup India NITI Aayog Subscribe MeitY Startu"
+            }
+          ],
+          "field_evidence": {
+            "identity": "https://msh.meity.gov.in/program/mshcorporate/bhumi",
+            "application_status": "No verified current deadline and official application route were established.",
+            "status_basis": "INSUFFICIENT_CURRENT_STATUS_EVIDENCE",
+            "evidence_hash": "76c3ca90db34e5a101115146c47916d677ab0749518996dbf8207aa28dd4142f"
+          },
+          "quality_flags": [
+            "DEADLINE_REQUIRES_VERIFICATION",
+            "NO_PUBLIC_APPLY_ROUTE",
+            "No public Apply action until current dated evidence and an official application route are verified."
+          ],
+          "parent_master_id": "147173e17ea741687247",
+          "parent_scheme_name": "SAMRIDH",
+          "parent_resolution": "CURATED_OFFICIAL_RELATIONSHIP",
+          "entity_type": "CALL_INSTANCE",
+          "permanent_scheme_or_call": "CALL_INSTANCE",
+          "startup_relevance": "DIRECT_OR_REVIEW_REQUIRED",
+          "applicant_layer": "REQUIRES_ADMIN_VERIFICATION",
+          "sector_scope": "UNKNOWN",
+          "status_basis": "INSUFFICIENT_CURRENT_STATUS_EVIDENCE",
+          "status_evidence": "No verified current deadline and official application route were established.",
+          "last_verified_at": null,
+          "validation": {
+            "decision": "NEEDS_ADMIN_REVIEW",
+            "validation_score": 0.6,
+            "warnings": [
+              "DEADLINE_REQUIRES_VERIFICATION",
+              "NO_PUBLIC_APPLY_ROUTE",
+              "No public Apply action until current dated evidence and an official application route are verified."
+            ],
+            "critical_flags": [],
+            "corrections": []
+          },
+          "organization_level": "MINISTRY"
+        }
+      }
+    },
+    {
+      "master_id": "meitycall_98f3c3720f15dae91ade",
+      "scheme_name": "Brussels",
+      "record_kind": "APPLICATION_CALL",
+      "application_status": "VERIFICATION_REQUIRED",
+      "action": "INSERT_PENDING_CALL_REVIEW",
+      "matches": [],
+      "item": {
+        "master_id": "meitycall_98f3c3720f15dae91ade",
+        "scheme_name": "Brussels",
+        "source": "MeitY Startup Hub",
+        "record_kind": "APPLICATION_CALL",
+        "programme_status": "CALL_INFORMATION_AVAILABLE",
+        "application_status": "VERIFICATION_REQUIRED",
+        "official_page_url": "https://msh.meity.gov.in/program/mshinternational/brussels",
+        "application_url": null,
+        "decision": "NEEDS_ADMIN_REVIEW",
+        "validation_score": 0.6,
+        "priority": "NORMAL",
+        "decision_reasons": [
+          "Verify this time-bound call separately from its permanent parent scheme.",
+          "Confirm the parent, applicant layer, deadline and current application status."
+        ],
+        "warnings": [
+          "DEADLINE_REQUIRES_VERIFICATION",
+          "NO_PUBLIC_APPLY_ROUTE",
+          "No public Apply action until current dated evidence and an official application route are verified."
+        ],
+        "critical_flags": [],
+        "recommended_admin_actions": [
+          "Open the official MeitY evidence.",
+          "Confirm the call-to-parent relationship or approve as a standalone official call.",
+          "Do not expose Apply unless current dated evidence and route are verified."
+        ],
+        "validated_record": {
+          "master_id": "meitycall_98f3c3720f15dae91ade",
+          "scheme_name": "Brussels",
+          "short_name": "",
+          "source": "MeitY Startup Hub",
+          "ministry": "Ministry of Electronics and Information Technology (MeitY)",
+          "department": null,
+          "implementing_agency": "MeitY Startup Hub",
+          "record_kind": "APPLICATION_CALL",
+          "programme_status": "CALL_INFORMATION_AVAILABLE",
+          "application_status": "VERIFICATION_REQUIRED",
+          "scheme_status": "CALL_INSTANCE",
+          "geographic_scope": "National (India)",
+          "official_page_url": "https://msh.meity.gov.in/program/mshinternational/brussels",
+          "application_url": null,
+          "opening_date": null,
+          "closing_date": null,
+          "scheme_type": [
+            "Time-bound MeitY call"
+          ],
+          "target_beneficiaries": [],
+          "startup_stage": [],
+          "sector": [],
+          "states_or_uts": [],
+          "objectives": [
+            "Skip to main content meity-sthub@gov.in Contact : +91-11-24301244 ABOUT US SCHEMES PROGRAM NETWORKS RESOURCE MEDIA REGISTER LOGIN As part of its mission to accelerate international market access and foster long-term global partnerships, MeitY Startup Hub led a high-impact delegation of Indian deep-tech startups to Brussels from May 26–29, 2025, under the MeitY Global Startup Bridge Program. This edition aimed to connect Indian startups with the European innovation ecosystem through cross-border collaboration, policy engagement, and knowledge exchange.The program focused on enabling market access, forging corporate and government partnerships, unlocking investment opportunities, facilitating technology exchange, and deepening ecosystem engagement. The Brussels edition reaffirmed MeitY Startup Hub’s vision of enabling Indian startups to scale globally through strategic partnerships, international exposure, and ecosystem-level collaboration. With the MeitY Global Startup Bridge initiative, MeitY Startup Hub positions itself as a strategic facilitator, bridging Indian deep-tech startups with the global market. The initiative addresses core startup needs such as international market acc"
+          ],
+          "eligibility": [],
+          "benefits": [],
+          "funding_amount": {
+            "minimum": null,
+            "maximum": null,
+            "currency": "INR",
+            "funding_types": [],
+            "amount_mentions": [],
+            "beneficiary_support": {
+              "minimum": null,
+              "maximum": null
+            },
+            "intermediary_support_maximum": null,
+            "scheme_corpus": null
+          },
+          "application_process": [],
+          "selection_process": [],
+          "required_documents": [],
+          "guideline_urls": [],
+          "contact_details": [],
+          "source_evidence": [
+            {
+              "url": "https://msh.meity.gov.in/program/mshinternational/brussels",
+              "title": "Brussels",
+              "content_kind": "html",
+              "evidence_text": "Skip to main content meity-sthub@gov.in Contact : +91-11-24301244 ABOUT US SCHEMES PROGRAM NETWORKS RESOURCE MEDIA REGISTER LOGIN As part of its mission to accelerate international market access and foster long-term global partnerships, MeitY Startup Hub led a high-impact delegation of Indian deep-tech startups to Brussels from May 26–29, 2025, under the MeitY Global Startup Bridge Program. This edition aimed to connect Indian startups with the European innovation ecosystem through cross-border collaboration, policy engagement, and knowledge exchange.The program focused on enabling market access, forging corporate and government partnerships, unlocking investment opportunities, facilitating technology exchange, and deepening ecosystem engagement. The Brussels edition reaffirmed MeitY Startup Hub’s vision of enabling Indian startups to scale globally through strategic partnerships, international exposure, and ecosystem-level collaboration. With the MeitY Global Startup Bridge initiative, MeitY Startup Hub positions itself as a strategic facilitator, bridging Indian deep-tech startups with the global market. The initiative addresses core startup needs such as international market acc"
+            }
+          ],
+          "field_evidence": {
+            "identity": "https://msh.meity.gov.in/program/mshinternational/brussels",
+            "application_status": "No verified current deadline and official application route were established.",
+            "status_basis": "INSUFFICIENT_CURRENT_STATUS_EVIDENCE",
+            "evidence_hash": "6da007965443018ffa4086f880c56db3d3fce0daf14f2ee1881867b8f5b239ba"
+          },
+          "quality_flags": [
+            "DEADLINE_REQUIRES_VERIFICATION",
+            "NO_PUBLIC_APPLY_ROUTE",
+            "No public Apply action until current dated evidence and an official application route are verified."
+          ],
+          "parent_master_id": "147173e17ea741687247",
+          "parent_scheme_name": "SAMRIDH",
+          "parent_resolution": "CURATED_OFFICIAL_RELATIONSHIP",
+          "entity_type": "CALL_INSTANCE",
+          "permanent_scheme_or_call": "CALL_INSTANCE",
+          "startup_relevance": "DIRECT_OR_REVIEW_REQUIRED",
+          "applicant_layer": "REQUIRES_ADMIN_VERIFICATION",
+          "sector_scope": "UNKNOWN",
+          "status_basis": "INSUFFICIENT_CURRENT_STATUS_EVIDENCE",
+          "status_evidence": "No verified current deadline and official application route were established.",
+          "last_verified_at": null,
+          "validation": {
+            "decision": "NEEDS_ADMIN_REVIEW",
+            "validation_score": 0.6,
+            "warnings": [
+              "DEADLINE_REQUIRES_VERIFICATION",
+              "NO_PUBLIC_APPLY_ROUTE",
+              "No public Apply action until current dated evidence and an official application route are verified."
+            ],
+            "critical_flags": [],
+            "corrections": []
+          },
+          "organization_level": "MINISTRY"
+        }
+      }
+    },
+    {
+      "master_id": "meitycall_cbb7e8cd8fe24b00afd9",
+      "scheme_name": "Challenges",
+      "record_kind": "APPLICATION_CALL",
+      "application_status": "VERIFICATION_REQUIRED",
+      "action": "INSERT_PENDING_CALL_REVIEW",
+      "matches": [],
+      "item": {
+        "master_id": "meitycall_cbb7e8cd8fe24b00afd9",
+        "scheme_name": "Challenges",
+        "source": "MeitY Startup Hub",
+        "record_kind": "APPLICATION_CALL",
+        "programme_status": "CALL_INFORMATION_AVAILABLE",
+        "application_status": "VERIFICATION_REQUIRED",
+        "official_page_url": "https://msh.meity.gov.in/challenges",
+        "application_url": null,
+        "decision": "NEEDS_ADMIN_REVIEW",
+        "validation_score": 0.8,
+        "priority": "NORMAL",
+        "decision_reasons": [
+          "Verify this time-bound call separately from its permanent parent scheme.",
+          "Confirm the parent, applicant layer, deadline and current application status."
+        ],
+        "warnings": [
+          "DEADLINE_REQUIRES_VERIFICATION",
+          "NO_PUBLIC_APPLY_ROUTE",
+          "No public Apply action until current dated evidence and an official application route are verified."
+        ],
+        "critical_flags": [],
+        "recommended_admin_actions": [
+          "Open the official MeitY evidence.",
+          "Confirm the call-to-parent relationship or approve as a standalone official call.",
+          "Do not expose Apply unless current dated evidence and route are verified."
+        ],
+        "validated_record": {
+          "master_id": "meitycall_cbb7e8cd8fe24b00afd9",
+          "scheme_name": "Challenges",
+          "short_name": "",
+          "source": "MeitY Startup Hub",
+          "ministry": "Ministry of Electronics and Information Technology (MeitY)",
+          "department": null,
+          "implementing_agency": "MeitY Startup Hub",
+          "record_kind": "APPLICATION_CALL",
+          "programme_status": "CALL_INFORMATION_AVAILABLE",
+          "application_status": "VERIFICATION_REQUIRED",
+          "scheme_status": "CALL_INSTANCE",
+          "geographic_scope": "National (India)",
+          "official_page_url": "https://msh.meity.gov.in/challenges",
+          "application_url": null,
+          "opening_date": null,
+          "closing_date": null,
+          "scheme_type": [
+            "Time-bound MeitY call"
+          ],
+          "target_beneficiaries": [],
+          "startup_stage": [],
+          "sector": [],
+          "states_or_uts": [],
+          "objectives": [
+            "MeityStartupHub"
+          ],
+          "eligibility": [],
+          "benefits": [],
+          "funding_amount": {
+            "minimum": null,
+            "maximum": null,
+            "currency": "INR",
+            "funding_types": [],
+            "amount_mentions": [],
+            "beneficiary_support": {
+              "minimum": null,
+              "maximum": null
+            },
+            "intermediary_support_maximum": null,
+            "scheme_corpus": null
+          },
+          "application_process": [],
+          "selection_process": [],
+          "required_documents": [],
+          "guideline_urls": [],
+          "contact_details": [],
+          "source_evidence": [
+            {
+              "url": "https://msh.meity.gov.in/challenges",
+              "title": "Challenges",
+              "content_kind": "html",
+              "evidence_text": "MeityStartupHub"
+            }
+          ],
+          "field_evidence": {
+            "identity": "https://msh.meity.gov.in/challenges",
+            "application_status": "No verified current deadline and official application route were established.",
+            "status_basis": "INSUFFICIENT_CURRENT_STATUS_EVIDENCE",
+            "evidence_hash": "dbd42fbf00275c5cf21752b6ec0ca0786e4d59caa94908196e5255a5ea09547c"
+          },
+          "quality_flags": [
+            "DEADLINE_REQUIRES_VERIFICATION",
+            "NO_PUBLIC_APPLY_ROUTE",
+            "No public Apply action until current dated evidence and an official application route are verified."
+          ],
+          "parent_master_id": null,
+          "parent_scheme_name": "",
+          "parent_resolution": "STANDALONE_OFFICIAL_CALL",
+          "entity_type": "CALL_INSTANCE",
+          "permanent_scheme_or_call": "CALL_INSTANCE",
+          "startup_relevance": "DIRECT_OR_REVIEW_REQUIRED",
+          "applicant_layer": "REQUIRES_ADMIN_VERIFICATION",
+          "sector_scope": "UNKNOWN",
+          "status_basis": "INSUFFICIENT_CURRENT_STATUS_EVIDENCE",
+          "status_evidence": "No verified current deadline and official application route were established.",
+          "last_verified_at": null,
+          "validation": {
+            "decision": "NEEDS_ADMIN_REVIEW",
+            "validation_score": 0.8,
+            "warnings": [
+              "DEADLINE_REQUIRES_VERIFICATION",
+              "NO_PUBLIC_APPLY_ROUTE",
+              "No public Apply action until current dated evidence and an official application route are verified."
+            ],
+            "critical_flags": [],
+            "corrections": []
+          },
+          "organization_level": "MINISTRY"
+        }
+      }
+    },
+    {
+      "master_id": "meitycall_533fd1397d9885d223d2",
+      "scheme_name": "Drishti",
+      "record_kind": "APPLICATION_CALL",
+      "application_status": "VERIFICATION_REQUIRED",
+      "action": "INSERT_PENDING_CALL_REVIEW",
+      "matches": [],
+      "item": {
+        "master_id": "meitycall_533fd1397d9885d223d2",
+        "scheme_name": "Drishti",
+        "source": "MeitY Startup Hub",
+        "record_kind": "APPLICATION_CALL",
+        "programme_status": "CALL_INFORMATION_AVAILABLE",
+        "application_status": "VERIFICATION_REQUIRED",
+        "official_page_url": "https://msh.meity.gov.in/program/mshcorporate/drishti",
+        "application_url": null,
+        "decision": "NEEDS_ADMIN_REVIEW",
+        "validation_score": 0.6,
+        "priority": "NORMAL",
+        "decision_reasons": [
+          "Verify this time-bound call separately from its permanent parent scheme.",
+          "Confirm the parent, applicant layer, deadline and current application status."
+        ],
+        "warnings": [
+          "DEADLINE_REQUIRES_VERIFICATION",
+          "NO_PUBLIC_APPLY_ROUTE",
+          "No public Apply action until current dated evidence and an official application route are verified."
+        ],
+        "critical_flags": [],
+        "recommended_admin_actions": [
+          "Open the official MeitY evidence.",
+          "Confirm the call-to-parent relationship or approve as a standalone official call.",
+          "Do not expose Apply unless current dated evidence and route are verified."
+        ],
+        "validated_record": {
+          "master_id": "meitycall_533fd1397d9885d223d2",
+          "scheme_name": "Drishti",
+          "short_name": "",
+          "source": "MeitY Startup Hub",
+          "ministry": "Ministry of Electronics and Information Technology (MeitY)",
+          "department": null,
+          "implementing_agency": "MeitY Startup Hub",
+          "record_kind": "APPLICATION_CALL",
+          "programme_status": "CALL_INFORMATION_AVAILABLE",
+          "application_status": "VERIFICATION_REQUIRED",
+          "scheme_status": "CALL_INSTANCE",
+          "geographic_scope": "National (India)",
+          "official_page_url": "https://msh.meity.gov.in/program/mshcorporate/drishti",
+          "application_url": null,
+          "opening_date": null,
+          "closing_date": null,
+          "scheme_type": [
+            "Time-bound MeitY call"
+          ],
+          "target_beneficiaries": [],
+          "startup_stage": [],
+          "sector": [],
+          "states_or_uts": [],
+          "objectives": [
+            "Skip to main content meity-sthub@gov.in Contact : +91-11-24301244 ABOUT US SCHEMES PROGRAM NETWORKS RESOURCE MEDIA REGISTER LOGIN PROGRAMS > MSH CORPORATE > DRISHTI - SSB DRISHTI - SSB Background: MeitY in partnership with Sashastra Seema Bal (SSB) had undertaken a Grand Challenge on Strengthening Border Security entitled 'DRISHTI' (Development of Researched Indigenous Solutions – Hackathon for Technological Innovations) through MSH platform to identify impactful solutions from startups to address the problem statements identified by SSB with an overall outlay of Rs. 65 Lakh. It was envisaged to use the solutions developed by the start-ups to augment, improve and scale the Border security scenario. The Grand Challenge was categorized into the below mentioned thrust/ focal areas, viz. Read More >> Get to Know Terms & Conditions Sitemap Careers Feedback About Us Contact Us Grievance Blogs Forum Privacy Policy Faqs Stay Connected Number of Users Visited MSH 2.0 Portal: 606324 Useful Links MyGov MeitY MeitY Dashboard Digital India Corporation Open Government Data National e-Governance Division India Semiconductor Mission Digital India Bhashini Startup India NITI Aayog Subscribe MeitY S"
+          ],
+          "eligibility": [],
+          "benefits": [],
+          "funding_amount": {
+            "minimum": null,
+            "maximum": null,
+            "currency": "INR",
+            "funding_types": [],
+            "amount_mentions": [],
+            "beneficiary_support": {
+              "minimum": null,
+              "maximum": null
+            },
+            "intermediary_support_maximum": null,
+            "scheme_corpus": null
+          },
+          "application_process": [],
+          "selection_process": [],
+          "required_documents": [],
+          "guideline_urls": [],
+          "contact_details": [],
+          "source_evidence": [
+            {
+              "url": "https://msh.meity.gov.in/program/mshcorporate/drishti",
+              "title": "Drishti",
+              "content_kind": "html",
+              "evidence_text": "Skip to main content meity-sthub@gov.in Contact : +91-11-24301244 ABOUT US SCHEMES PROGRAM NETWORKS RESOURCE MEDIA REGISTER LOGIN PROGRAMS > MSH CORPORATE > DRISHTI - SSB DRISHTI - SSB Background: MeitY in partnership with Sashastra Seema Bal (SSB) had undertaken a Grand Challenge on Strengthening Border Security entitled 'DRISHTI' (Development of Researched Indigenous Solutions – Hackathon for Technological Innovations) through MSH platform to identify impactful solutions from startups to address the problem statements identified by SSB with an overall outlay of Rs. 65 Lakh. It was envisaged to use the solutions developed by the start-ups to augment, improve and scale the Border security scenario. The Grand Challenge was categorized into the below mentioned thrust/ focal areas, viz. Read More >> Get to Know Terms & Conditions Sitemap Careers Feedback About Us Contact Us Grievance Blogs Forum Privacy Policy Faqs Stay Connected Number of Users Visited MSH 2.0 Portal: 606324 Useful Links MyGov MeitY MeitY Dashboard Digital India Corporation Open Government Data National e-Governance Division India Semiconductor Mission Digital India Bhashini Startup India NITI Aayog Subscribe MeitY S"
+            }
+          ],
+          "field_evidence": {
+            "identity": "https://msh.meity.gov.in/program/mshcorporate/drishti",
+            "application_status": "No verified current deadline and official application route were established.",
+            "status_basis": "INSUFFICIENT_CURRENT_STATUS_EVIDENCE",
+            "evidence_hash": "ac9c2fd1799f459ef93b982ad16f225c8340489bebe8a5ecebdd64f5ef36c85e"
+          },
+          "quality_flags": [
+            "DEADLINE_REQUIRES_VERIFICATION",
+            "NO_PUBLIC_APPLY_ROUTE",
+            "No public Apply action until current dated evidence and an official application route are verified."
+          ],
+          "parent_master_id": "147173e17ea741687247",
+          "parent_scheme_name": "SAMRIDH",
+          "parent_resolution": "CURATED_OFFICIAL_RELATIONSHIP",
+          "entity_type": "CALL_INSTANCE",
+          "permanent_scheme_or_call": "CALL_INSTANCE",
+          "startup_relevance": "DIRECT_OR_REVIEW_REQUIRED",
+          "applicant_layer": "REQUIRES_ADMIN_VERIFICATION",
+          "sector_scope": "UNKNOWN",
+          "status_basis": "INSUFFICIENT_CURRENT_STATUS_EVIDENCE",
+          "status_evidence": "No verified current deadline and official application route were established.",
+          "last_verified_at": null,
+          "validation": {
+            "decision": "NEEDS_ADMIN_REVIEW",
+            "validation_score": 0.6,
+            "warnings": [
+              "DEADLINE_REQUIRES_VERIFICATION",
+              "NO_PUBLIC_APPLY_ROUTE",
+              "No public Apply action until current dated evidence and an official application route are verified."
+            ],
+            "critical_flags": [],
+            "corrections": []
+          },
+          "organization_level": "MINISTRY"
+        }
+      }
+    },
+    {
+      "master_id": "meitycall_37a5f7055e19110989f3",
+      "scheme_name": "Event Partner",
+      "record_kind": "APPLICATION_CALL",
+      "application_status": "VERIFICATION_REQUIRED",
+      "action": "INSERT_PENDING_CALL_REVIEW",
+      "matches": [],
+      "item": {
+        "master_id": "meitycall_37a5f7055e19110989f3",
+        "scheme_name": "Event Partner",
+        "source": "MeitY Startup Hub",
+        "record_kind": "APPLICATION_CALL",
+        "programme_status": "CALL_INFORMATION_AVAILABLE",
+        "application_status": "VERIFICATION_REQUIRED",
+        "official_page_url": "https://msh.meity.gov.in/event-partner",
+        "application_url": null,
+        "decision": "NEEDS_ADMIN_REVIEW",
+        "validation_score": 0.6,
+        "priority": "NORMAL",
+        "decision_reasons": [
+          "Verify this time-bound call separately from its permanent parent scheme.",
+          "Confirm the parent, applicant layer, deadline and current application status."
+        ],
+        "warnings": [
+          "DEADLINE_REQUIRES_VERIFICATION",
+          "NO_PUBLIC_APPLY_ROUTE",
+          "No public Apply action until current dated evidence and an official application route are verified."
+        ],
+        "critical_flags": [],
+        "recommended_admin_actions": [
+          "Open the official MeitY evidence.",
+          "Confirm the call-to-parent relationship or approve as a standalone official call.",
+          "Do not expose Apply unless current dated evidence and route are verified."
+        ],
+        "validated_record": {
+          "master_id": "meitycall_37a5f7055e19110989f3",
+          "scheme_name": "Event Partner",
+          "short_name": "",
+          "source": "MeitY Startup Hub",
+          "ministry": "Ministry of Electronics and Information Technology (MeitY)",
+          "department": null,
+          "implementing_agency": "MeitY Startup Hub",
+          "record_kind": "APPLICATION_CALL",
+          "programme_status": "CALL_INFORMATION_AVAILABLE",
+          "application_status": "VERIFICATION_REQUIRED",
+          "scheme_status": "CALL_INSTANCE",
+          "geographic_scope": "National (India)",
+          "official_page_url": "https://msh.meity.gov.in/event-partner",
+          "application_url": null,
+          "opening_date": null,
+          "closing_date": null,
+          "scheme_type": [
+            "Time-bound MeitY call"
+          ],
+          "target_beneficiaries": [],
+          "startup_stage": [],
+          "sector": [],
+          "states_or_uts": [],
+          "objectives": [
+            "Skip to main content meity-sthub@gov.in Contact : +91-11-24301244 ABOUT US SCHEMES PROGRAM NETWORKS RESOURCE MEDIA REGISTER LOGIN Events List Title : 𝗠𝗲𝗶𝘁𝗬 𝗦𝘁𝗮𝗿�... Description : MeitY Startup Hub has signed an MoU with HCLTech to jointly strengthen youth entrepreneurship and digital empowerment under the ARISE initiative. The MoU was signed by Srimathi Shivashankar, Corporate Vice President, HCLTech, and Dr.Panneerselvam ( PS ) Madanagopal, CEO, MeitY Startup Hub. Date : July 22, 2025 - July 22, 2025 Posted On : July 24, 2025 Title : 𝗜𝗻𝗱𝗶𝗮–𝗚𝗲𝗿𝗺�... Description : MeitY Startup Hub had the privilege of hosting a high-level delegation from Germany led by Senator Franziska Giffey, Deputy Governing Mayor of Berlin & Senator for Economic Affairs at Electronics Niketan, MeitY. The delegation comprised senior policymakers and key stakeholders from Germany’s innovation ecosystem. Date : July 11, 2025 - July 11, 2025 Posted On : July 14, 2025 Title : SBIxMSH Description : MeitY Startup Hub partners with State Bank of India to Catalyze Startup Growth Across India Drive Awareness – positioning SBI not just as a banking institution, but as a committed growth partner to startups. This includes"
+          ],
+          "eligibility": [],
+          "benefits": [],
+          "funding_amount": {
+            "minimum": null,
+            "maximum": null,
+            "currency": "INR",
+            "funding_types": [],
+            "amount_mentions": [],
+            "beneficiary_support": {
+              "minimum": null,
+              "maximum": null
+            },
+            "intermediary_support_maximum": null,
+            "scheme_corpus": null
+          },
+          "application_process": [],
+          "selection_process": [],
+          "required_documents": [],
+          "guideline_urls": [],
+          "contact_details": [],
+          "source_evidence": [
+            {
+              "url": "https://msh.meity.gov.in/event-partner",
+              "title": "Event Partner",
+              "content_kind": "html",
+              "evidence_text": "Skip to main content meity-sthub@gov.in Contact : +91-11-24301244 ABOUT US SCHEMES PROGRAM NETWORKS RESOURCE MEDIA REGISTER LOGIN Events List Title : 𝗠𝗲𝗶𝘁𝗬 𝗦𝘁𝗮𝗿�... Description : MeitY Startup Hub has signed an MoU with HCLTech to jointly strengthen youth entrepreneurship and digital empowerment under the ARISE initiative. The MoU was signed by Srimathi Shivashankar, Corporate Vice President, HCLTech, and Dr.Panneerselvam ( PS ) Madanagopal, CEO, MeitY Startup Hub. Date : July 22, 2025 - July 22, 2025 Posted On : July 24, 2025 Title : 𝗜𝗻𝗱𝗶𝗮–𝗚𝗲𝗿𝗺�... Description : MeitY Startup Hub had the privilege of hosting a high-level delegation from Germany led by Senator Franziska Giffey, Deputy Governing Mayor of Berlin & Senator for Economic Affairs at Electronics Niketan, MeitY. The delegation comprised senior policymakers and key stakeholders from Germany’s innovation ecosystem. Date : July 11, 2025 - July 11, 2025 Posted On : July 14, 2025 Title : SBIxMSH Description : MeitY Startup Hub partners with State Bank of India to Catalyze Startup Growth Across India Drive Awareness – positioning SBI not just as a banking institution, but as a committed growth partner to startups. This includes"
+            }
+          ],
+          "field_evidence": {
+            "identity": "https://msh.meity.gov.in/event-partner",
+            "application_status": "No verified current deadline and official application route were established.",
+            "status_basis": "INSUFFICIENT_CURRENT_STATUS_EVIDENCE",
+            "evidence_hash": "ccc9091cad2a300c2ad05e21a0170999d529b3f4ba3afc0943832bb1e2a1ecd3"
+          },
+          "quality_flags": [
+            "DEADLINE_REQUIRES_VERIFICATION",
+            "NO_PUBLIC_APPLY_ROUTE",
+            "No public Apply action until current dated evidence and an official application route are verified."
+          ],
+          "parent_master_id": "147173e17ea741687247",
+          "parent_scheme_name": "SAMRIDH",
+          "parent_resolution": "CURATED_OFFICIAL_RELATIONSHIP",
+          "entity_type": "CALL_INSTANCE",
+          "permanent_scheme_or_call": "CALL_INSTANCE",
+          "startup_relevance": "DIRECT_OR_REVIEW_REQUIRED",
+          "applicant_layer": "REQUIRES_ADMIN_VERIFICATION",
+          "sector_scope": "UNKNOWN",
+          "status_basis": "INSUFFICIENT_CURRENT_STATUS_EVIDENCE",
+          "status_evidence": "No verified current deadline and official application route were established.",
+          "last_verified_at": null,
+          "validation": {
+            "decision": "NEEDS_ADMIN_REVIEW",
+            "validation_score": 0.6,
+            "warnings": [
+              "DEADLINE_REQUIRES_VERIFICATION",
+              "NO_PUBLIC_APPLY_ROUTE",
+              "No public Apply action until current dated evidence and an official application route are verified."
+            ],
+            "critical_flags": [],
+            "corrections": []
+          },
+          "organization_level": "MINISTRY"
+        }
+      }
+    },
+    {
+      "master_id": "meitycall_056b139f54fba2e7a8b3",
+      "scheme_name": "G20Diaoverview",
+      "record_kind": "APPLICATION_CALL",
+      "application_status": "VERIFICATION_REQUIRED",
+      "action": "INSERT_PENDING_CALL_REVIEW",
+      "matches": [],
+      "item": {
+        "master_id": "meitycall_056b139f54fba2e7a8b3",
+        "scheme_name": "G20Diaoverview",
+        "source": "MeitY Startup Hub",
+        "record_kind": "APPLICATION_CALL",
+        "programme_status": "CALL_INFORMATION_AVAILABLE",
+        "application_status": "VERIFICATION_REQUIRED",
+        "official_page_url": "https://msh.meity.gov.in/g20dia/g20diaoverview",
+        "application_url": null,
+        "decision": "NEEDS_ADMIN_REVIEW",
+        "validation_score": 0.6,
+        "priority": "NORMAL",
+        "decision_reasons": [
+          "Verify this time-bound call separately from its permanent parent scheme.",
+          "Confirm the parent, applicant layer, deadline and current application status."
+        ],
+        "warnings": [
+          "DEADLINE_REQUIRES_VERIFICATION",
+          "NO_PUBLIC_APPLY_ROUTE",
+          "No public Apply action until current dated evidence and an official application route are verified."
+        ],
+        "critical_flags": [],
+        "recommended_admin_actions": [
+          "Open the official MeitY evidence.",
+          "Confirm the call-to-parent relationship or approve as a standalone official call.",
+          "Do not expose Apply unless current dated evidence and route are verified."
+        ],
+        "validated_record": {
+          "master_id": "meitycall_056b139f54fba2e7a8b3",
+          "scheme_name": "G20Diaoverview",
+          "short_name": "",
+          "source": "MeitY Startup Hub",
+          "ministry": "Ministry of Electronics and Information Technology (MeitY)",
+          "department": null,
+          "implementing_agency": "MeitY Startup Hub",
+          "record_kind": "APPLICATION_CALL",
+          "programme_status": "CALL_INFORMATION_AVAILABLE",
+          "application_status": "VERIFICATION_REQUIRED",
+          "scheme_status": "CALL_INSTANCE",
+          "geographic_scope": "National (India)",
+          "official_page_url": "https://msh.meity.gov.in/g20dia/g20diaoverview",
+          "application_url": null,
+          "opening_date": null,
+          "closing_date": null,
+          "scheme_type": [
+            "Time-bound MeitY call"
+          ],
+          "target_beneficiaries": [],
+          "startup_stage": [],
+          "sector": [],
+          "states_or_uts": [],
+          "objectives": [
+            "Skip to main content meity-sthub@gov.in Contact : +91-11-24301244 ABOUT US SCHEMES PROGRAM NETWORKS RESOURCE MEDIA REGISTER LOGIN G20 DIA > G20 DIA OVERVIEW G20- Digital Innovation Alliance Welcome to the G20 Digital Innovation Alliance Summit! India's presidency of the G20 Summit is a source of immense pride. As part of this presidency, the Ministry of Electronics and Information Technology (MeitY), Government of India, and the MeitY Start-up Hub are organizing the G20 Digital Innovation Alliance Summit in Bengaluru at the Bangalore Palace, from August 17th to 19th, 2023. With the focal theme, 'Driving Digital Innovation for World Economies', the Summit anticipates substantial participation from delegates representing the G20 countries and 9 guest countries, including policymakers, business leaders, technocrats, young innovators, and investors. Event Theme: Driving Digital Innovation for World Economies This theme highlights the importance of harnessing the power of Digital Innovation to propel economic growth, foster sustainable development and address global challenges. By driving digital innovation, the summit aims to facilitate collaboration, knowledge sharing, and policy disc"
+          ],
+          "eligibility": [],
+          "benefits": [],
+          "funding_amount": {
+            "minimum": null,
+            "maximum": null,
+            "currency": "INR",
+            "funding_types": [],
+            "amount_mentions": [],
+            "beneficiary_support": {
+              "minimum": null,
+              "maximum": null
+            },
+            "intermediary_support_maximum": null,
+            "scheme_corpus": null
+          },
+          "application_process": [],
+          "selection_process": [],
+          "required_documents": [],
+          "guideline_urls": [],
+          "contact_details": [],
+          "source_evidence": [
+            {
+              "url": "https://msh.meity.gov.in/g20dia/g20diaoverview",
+              "title": "G20Diaoverview",
+              "content_kind": "html",
+              "evidence_text": "Skip to main content meity-sthub@gov.in Contact : +91-11-24301244 ABOUT US SCHEMES PROGRAM NETWORKS RESOURCE MEDIA REGISTER LOGIN G20 DIA > G20 DIA OVERVIEW G20- Digital Innovation Alliance Welcome to the G20 Digital Innovation Alliance Summit! India's presidency of the G20 Summit is a source of immense pride. As part of this presidency, the Ministry of Electronics and Information Technology (MeitY), Government of India, and the MeitY Start-up Hub are organizing the G20 Digital Innovation Alliance Summit in Bengaluru at the Bangalore Palace, from August 17th to 19th, 2023. With the focal theme, 'Driving Digital Innovation for World Economies', the Summit anticipates substantial participation from delegates representing the G20 countries and 9 guest countries, including policymakers, business leaders, technocrats, young innovators, and investors. Event Theme: Driving Digital Innovation for World Economies This theme highlights the importance of harnessing the power of Digital Innovation to propel economic growth, foster sustainable development and address global challenges. By driving digital innovation, the summit aims to facilitate collaboration, knowledge sharing, and policy disc"
+            }
+          ],
+          "field_evidence": {
+            "identity": "https://msh.meity.gov.in/g20dia/g20diaoverview",
+            "application_status": "No verified current deadline and official application route were established.",
+            "status_basis": "INSUFFICIENT_CURRENT_STATUS_EVIDENCE",
+            "evidence_hash": "9df10e4fb086437bfbc71eb7f329522d033b8b80cf4bbe3f66b6901a799b2b93"
+          },
+          "quality_flags": [
+            "DEADLINE_REQUIRES_VERIFICATION",
+            "NO_PUBLIC_APPLY_ROUTE",
+            "No public Apply action until current dated evidence and an official application route are verified."
+          ],
+          "parent_master_id": "147173e17ea741687247",
+          "parent_scheme_name": "SAMRIDH",
+          "parent_resolution": "CURATED_OFFICIAL_RELATIONSHIP",
+          "entity_type": "CALL_INSTANCE",
+          "permanent_scheme_or_call": "CALL_INSTANCE",
+          "startup_relevance": "DIRECT_OR_REVIEW_REQUIRED",
+          "applicant_layer": "REQUIRES_ADMIN_VERIFICATION",
+          "sector_scope": "UNKNOWN",
+          "status_basis": "INSUFFICIENT_CURRENT_STATUS_EVIDENCE",
+          "status_evidence": "No verified current deadline and official application route were established.",
+          "last_verified_at": null,
+          "validation": {
+            "decision": "NEEDS_ADMIN_REVIEW",
+            "validation_score": 0.6,
+            "warnings": [
+              "DEADLINE_REQUIRES_VERIFICATION",
+              "NO_PUBLIC_APPLY_ROUTE",
+              "No public Apply action until current dated evidence and an official application route are verified."
+            ],
+            "critical_flags": [],
+            "corrections": []
+          },
+          "organization_level": "MINISTRY"
+        }
+      }
+    },
+    {
+      "master_id": "meitycall_863547c4002930420eca",
+      "scheme_name": "Genesis",
+      "record_kind": "APPLICATION_CALL",
+      "application_status": "VERIFICATION_REQUIRED",
+      "action": "SKIP_SEMANTIC_DUPLICATE",
+      "matches": [
+        {
+          "master_id": "190830c31088c57ffdbc",
+          "scheme_name": "GENESIS",
+          "table": "admin_review_queue",
+          "status": "REJECTED"
+        },
+        {
+          "master_id": "94f8ab0a070a6ff15fce",
+          "scheme_name": "GENESIS",
+          "table": "admin_review_queue",
+          "status": "APPROVED"
+        },
+        {
+          "master_id": "94f8ab0a070a6ff15fce",
+          "scheme_name": "GENESIS",
+          "table": "scheme_staging",
+          "status": "STAGED"
+        }
+      ],
+      "item": {
+        "master_id": "meitycall_863547c4002930420eca",
+        "scheme_name": "Genesis",
+        "source": "MeitY Startup Hub",
+        "record_kind": "APPLICATION_CALL",
+        "programme_status": "CALL_INFORMATION_AVAILABLE",
+        "application_status": "VERIFICATION_REQUIRED",
+        "official_page_url": "https://msh.meity.gov.in/schemes/genesis",
+        "application_url": null,
+        "decision": "NEEDS_ADMIN_REVIEW",
+        "validation_score": 0.6,
+        "priority": "NORMAL",
+        "decision_reasons": [
+          "Verify this time-bound call separately from its permanent parent scheme.",
+          "Confirm the parent, applicant layer, deadline and current application status."
+        ],
+        "warnings": [
+          "DEADLINE_REQUIRES_VERIFICATION",
+          "NO_PUBLIC_APPLY_ROUTE",
+          "No public Apply action until current dated evidence and an official application route are verified."
+        ],
+        "critical_flags": [],
+        "recommended_admin_actions": [
+          "Open the official MeitY evidence.",
+          "Confirm the call-to-parent relationship or approve as a standalone official call.",
+          "Do not expose Apply unless current dated evidence and route are verified."
+        ],
+        "validated_record": {
+          "master_id": "meitycall_863547c4002930420eca",
+          "scheme_name": "Genesis",
+          "short_name": "",
+          "source": "MeitY Startup Hub",
+          "ministry": "Ministry of Electronics and Information Technology (MeitY)",
+          "department": null,
+          "implementing_agency": "MeitY Startup Hub",
+          "record_kind": "APPLICATION_CALL",
+          "programme_status": "CALL_INFORMATION_AVAILABLE",
+          "application_status": "VERIFICATION_REQUIRED",
+          "scheme_status": "CALL_INSTANCE",
+          "geographic_scope": "National (India)",
+          "official_page_url": "https://msh.meity.gov.in/schemes/genesis",
+          "application_url": null,
+          "opening_date": null,
+          "closing_date": null,
+          "scheme_type": [
+            "Time-bound MeitY call"
+          ],
+          "target_beneficiaries": [],
+          "startup_stage": [],
+          "sector": [],
+          "states_or_uts": [],
+          "objectives": [
+            "Skip to main content meity-sthub@gov.in Contact : +91-11-24301244 ABOUT US SCHEMES PROGRAM NETWORKS RESOURCE MEDIA REGISTER LOGIN SCHEMES > GENESIS Gen-Next Support for Innovative Startups (GENESIS) With an aim to boost the startup ecosystem in Tier-II & Tier-III cities in the country, Ministry of Electronics and Information Technology (MeitY) has approved implementation of the ‘Gen-Next Support for Innovative Startups (GENESIS)’ Scheme with a budgetary outlay of Rs. 490 Crore for a duration of 5 years. The scheme envisages further scaling up and sustaining the startup ecosystem especially to discover, grow and nurture technology startups. The scheme aims to support approx. 1600 tech start-ups over the course of next 5 years List of selected Implementing Agencies Major objectives of the Scheme: Consolidation of startup related schemes and assets of MeitY for greater efficiency, asset utilization and enhanced support for startups. Provide Tier-II/ III cities focused funding to critically support Pilot/ Investment, Early-stage and deep-tech startups. Strengthening Incubators, building stronger startup ecosystem via capacity building initiatives in Tier II/ III cities. Major component"
+          ],
+          "eligibility": [],
+          "benefits": [],
+          "funding_amount": {
+            "minimum": null,
+            "maximum": null,
+            "currency": "INR",
+            "funding_types": [],
+            "amount_mentions": [],
+            "beneficiary_support": {
+              "minimum": null,
+              "maximum": null
+            },
+            "intermediary_support_maximum": null,
+            "scheme_corpus": null
+          },
+          "application_process": [],
+          "selection_process": [],
+          "required_documents": [],
+          "guideline_urls": [],
+          "contact_details": [],
+          "source_evidence": [
+            {
+              "url": "https://msh.meity.gov.in/schemes/genesis",
+              "title": "Genesis",
+              "content_kind": "html",
+              "evidence_text": "Skip to main content meity-sthub@gov.in Contact : +91-11-24301244 ABOUT US SCHEMES PROGRAM NETWORKS RESOURCE MEDIA REGISTER LOGIN SCHEMES > GENESIS Gen-Next Support for Innovative Startups (GENESIS) With an aim to boost the startup ecosystem in Tier-II & Tier-III cities in the country, Ministry of Electronics and Information Technology (MeitY) has approved implementation of the ‘Gen-Next Support for Innovative Startups (GENESIS)’ Scheme with a budgetary outlay of Rs. 490 Crore for a duration of 5 years. The scheme envisages further scaling up and sustaining the startup ecosystem especially to discover, grow and nurture technology startups. The scheme aims to support approx. 1600 tech start-ups over the course of next 5 years List of selected Implementing Agencies Major objectives of the Scheme: Consolidation of startup related schemes and assets of MeitY for greater efficiency, asset utilization and enhanced support for startups. Provide Tier-II/ III cities focused funding to critically support Pilot/ Investment, Early-stage and deep-tech startups. Strengthening Incubators, building stronger startup ecosystem via capacity building initiatives in Tier II/ III cities. Major component"
+            }
+          ],
+          "field_evidence": {
+            "identity": "https://msh.meity.gov.in/schemes/genesis",
+            "application_status": "No verified current deadline and official application route were established.",
+            "status_basis": "INSUFFICIENT_CURRENT_STATUS_EVIDENCE",
+            "evidence_hash": "6e61597f2e9933ee800ffe7b674af7a58f06f5d9c23034333b2ab08ebc303210"
+          },
+          "quality_flags": [
+            "DEADLINE_REQUIRES_VERIFICATION",
+            "NO_PUBLIC_APPLY_ROUTE",
+            "No public Apply action until current dated evidence and an official application route are verified."
+          ],
+          "parent_master_id": "94f8ab0a070a6ff15fce",
+          "parent_scheme_name": "GENESIS",
+          "parent_resolution": "CURATED_OFFICIAL_RELATIONSHIP",
+          "entity_type": "CALL_INSTANCE",
+          "permanent_scheme_or_call": "CALL_INSTANCE",
+          "startup_relevance": "DIRECT_OR_REVIEW_REQUIRED",
+          "applicant_layer": "REQUIRES_ADMIN_VERIFICATION",
+          "sector_scope": "UNKNOWN",
+          "status_basis": "INSUFFICIENT_CURRENT_STATUS_EVIDENCE",
+          "status_evidence": "No verified current deadline and official application route were established.",
+          "last_verified_at": null,
+          "validation": {
+            "decision": "NEEDS_ADMIN_REVIEW",
+            "validation_score": 0.6,
+            "warnings": [
+              "DEADLINE_REQUIRES_VERIFICATION",
+              "NO_PUBLIC_APPLY_ROUTE",
+              "No public Apply action until current dated evidence and an official application route are verified."
+            ],
+            "critical_flags": [],
+            "corrections": []
+          },
+          "organization_level": "MINISTRY"
+        }
+      }
+    },
+    {
+      "master_id": "meitycall_a4a05a783de6e3478e54",
+      "scheme_name": "Googleappscale",
+      "record_kind": "APPLICATION_CALL",
+      "application_status": "VERIFICATION_REQUIRED",
+      "action": "INSERT_PENDING_CALL_REVIEW",
+      "matches": [],
+      "item": {
+        "master_id": "meitycall_a4a05a783de6e3478e54",
+        "scheme_name": "Googleappscale",
+        "source": "MeitY Startup Hub",
+        "record_kind": "APPLICATION_CALL",
+        "programme_status": "CALL_INFORMATION_AVAILABLE",
+        "application_status": "VERIFICATION_REQUIRED",
+        "official_page_url": "https://msh.meity.gov.in/program/mshcorporate/googleappscale",
+        "application_url": null,
+        "decision": "NEEDS_ADMIN_REVIEW",
+        "validation_score": 0.6,
+        "priority": "NORMAL",
+        "decision_reasons": [
+          "Verify this time-bound call separately from its permanent parent scheme.",
+          "Confirm the parent, applicant layer, deadline and current application status."
+        ],
+        "warnings": [
+          "DEADLINE_REQUIRES_VERIFICATION",
+          "NO_PUBLIC_APPLY_ROUTE",
+          "No public Apply action until current dated evidence and an official application route are verified."
+        ],
+        "critical_flags": [],
+        "recommended_admin_actions": [
+          "Open the official MeitY evidence.",
+          "Confirm the call-to-parent relationship or approve as a standalone official call.",
+          "Do not expose Apply unless current dated evidence and route are verified."
+        ],
+        "validated_record": {
+          "master_id": "meitycall_a4a05a783de6e3478e54",
+          "scheme_name": "Googleappscale",
+          "short_name": "",
+          "source": "MeitY Startup Hub",
+          "ministry": "Ministry of Electronics and Information Technology (MeitY)",
+          "department": null,
+          "implementing_agency": "MeitY Startup Hub",
+          "record_kind": "APPLICATION_CALL",
+          "programme_status": "CALL_INFORMATION_AVAILABLE",
+          "application_status": "VERIFICATION_REQUIRED",
+          "scheme_status": "CALL_INSTANCE",
+          "geographic_scope": "National (India)",
+          "official_page_url": "https://msh.meity.gov.in/program/mshcorporate/googleappscale",
+          "application_url": null,
+          "opening_date": null,
+          "closing_date": null,
+          "scheme_type": [
+            "Time-bound MeitY call"
+          ],
+          "target_beneficiaries": [],
+          "startup_stage": [],
+          "sector": [],
+          "states_or_uts": [],
+          "objectives": [
+            "Skip to main content meity-sthub@gov.in Contact : +91-11-24301244 ABOUT US SCHEMES PROGRAM NETWORKS RESOURCE MEDIA REGISTER LOGIN PROGRAMS > MSH CORPORATE > GOOGLE APPSCALE ACADEMY 2023 IMPACT GOOGLE APPSCALE ACADEMY 2023 IMPACT Google Appscale Academy the Class of 2023, was executed with 100 startups selected from over 950 applications, represents a diverse range of sectors, including education, health, social impact, gaming, agriculture, and more. These innovative startups have harnessed technology to address critical needs, making a tangible impact on society. Appscale Academy has been instrumental in training and mentoring early to mid-stage startups, empowering them to build high-quality apps for both local and global markets. A comprehensive Google Appscale Academy 2023 VC Handbook showcasing the success stories of the program. The VC handbook serves as a consolidated repository, featuring details of all the selected startups. Indian developers continue to push boundaries by building innovative solutions for many complex challenges. Be it apps supporting diverse communities or global games emerging from beyond metro cities, we’re seeing inspiring local developers across the c"
+          ],
+          "eligibility": [],
+          "benefits": [],
+          "funding_amount": {
+            "minimum": null,
+            "maximum": null,
+            "currency": "INR",
+            "funding_types": [],
+            "amount_mentions": [],
+            "beneficiary_support": {
+              "minimum": null,
+              "maximum": null
+            },
+            "intermediary_support_maximum": null,
+            "scheme_corpus": null
+          },
+          "application_process": [],
+          "selection_process": [],
+          "required_documents": [],
+          "guideline_urls": [],
+          "contact_details": [],
+          "source_evidence": [
+            {
+              "url": "https://msh.meity.gov.in/program/mshcorporate/googleappscale",
+              "title": "Googleappscale",
+              "content_kind": "html",
+              "evidence_text": "Skip to main content meity-sthub@gov.in Contact : +91-11-24301244 ABOUT US SCHEMES PROGRAM NETWORKS RESOURCE MEDIA REGISTER LOGIN PROGRAMS > MSH CORPORATE > GOOGLE APPSCALE ACADEMY 2023 IMPACT GOOGLE APPSCALE ACADEMY 2023 IMPACT Google Appscale Academy the Class of 2023, was executed with 100 startups selected from over 950 applications, represents a diverse range of sectors, including education, health, social impact, gaming, agriculture, and more. These innovative startups have harnessed technology to address critical needs, making a tangible impact on society. Appscale Academy has been instrumental in training and mentoring early to mid-stage startups, empowering them to build high-quality apps for both local and global markets. A comprehensive Google Appscale Academy 2023 VC Handbook showcasing the success stories of the program. The VC handbook serves as a consolidated repository, featuring details of all the selected startups. Indian developers continue to push boundaries by building innovative solutions for many complex challenges. Be it apps supporting diverse communities or global games emerging from beyond metro cities, we’re seeing inspiring local developers across the c"
+            }
+          ],
+          "field_evidence": {
+            "identity": "https://msh.meity.gov.in/program/mshcorporate/googleappscale",
+            "application_status": "No verified current deadline and official application route were established.",
+            "status_basis": "INSUFFICIENT_CURRENT_STATUS_EVIDENCE",
+            "evidence_hash": "1cfae86d64592987f6962aa18cadb424eab0014acc3641f1484b99400ec18db1"
+          },
+          "quality_flags": [
+            "DEADLINE_REQUIRES_VERIFICATION",
+            "NO_PUBLIC_APPLY_ROUTE",
+            "No public Apply action until current dated evidence and an official application route are verified."
+          ],
+          "parent_master_id": "147173e17ea741687247",
+          "parent_scheme_name": "SAMRIDH",
+          "parent_resolution": "CURATED_OFFICIAL_RELATIONSHIP",
+          "entity_type": "CALL_INSTANCE",
+          "permanent_scheme_or_call": "CALL_INSTANCE",
+          "startup_relevance": "DIRECT_OR_REVIEW_REQUIRED",
+          "applicant_layer": "REQUIRES_ADMIN_VERIFICATION",
+          "sector_scope": "UNKNOWN",
+          "status_basis": "INSUFFICIENT_CURRENT_STATUS_EVIDENCE",
+          "status_evidence": "No verified current deadline and official application route were established.",
+          "last_verified_at": null,
+          "validation": {
+            "decision": "NEEDS_ADMIN_REVIEW",
+            "validation_score": 0.6,
+            "warnings": [
+              "DEADLINE_REQUIRES_VERIFICATION",
+              "NO_PUBLIC_APPLY_ROUTE",
+              "No public Apply action until current dated evidence and an official application route are verified."
+            ],
+            "critical_flags": [],
+            "corrections": []
+          },
+          "organization_level": "MINISTRY"
+        }
+      }
+    },
+    {
+      "master_id": "meitycall_b2b15a80eaf08c64193e",
+      "scheme_name": "Ihmcl",
+      "record_kind": "APPLICATION_CALL",
+      "application_status": "VERIFICATION_REQUIRED",
+      "action": "INSERT_PENDING_CALL_REVIEW",
+      "matches": [],
+      "item": {
+        "master_id": "meitycall_b2b15a80eaf08c64193e",
+        "scheme_name": "Ihmcl",
+        "source": "MeitY Startup Hub",
+        "record_kind": "APPLICATION_CALL",
+        "programme_status": "CALL_INFORMATION_AVAILABLE",
+        "application_status": "VERIFICATION_REQUIRED",
+        "official_page_url": "https://msh.meity.gov.in/program/mshcorporate/ihmcl",
+        "application_url": null,
+        "decision": "NEEDS_ADMIN_REVIEW",
+        "validation_score": 0.6,
+        "priority": "NORMAL",
+        "decision_reasons": [
+          "Verify this time-bound call separately from its permanent parent scheme.",
+          "Confirm the parent, applicant layer, deadline and current application status."
+        ],
+        "warnings": [
+          "DEADLINE_REQUIRES_VERIFICATION",
+          "NO_PUBLIC_APPLY_ROUTE",
+          "No public Apply action until current dated evidence and an official application route are verified."
+        ],
+        "critical_flags": [],
+        "recommended_admin_actions": [
+          "Open the official MeitY evidence.",
+          "Confirm the call-to-parent relationship or approve as a standalone official call.",
+          "Do not expose Apply unless current dated evidence and route are verified."
+        ],
+        "validated_record": {
+          "master_id": "meitycall_b2b15a80eaf08c64193e",
+          "scheme_name": "Ihmcl",
+          "short_name": "",
+          "source": "MeitY Startup Hub",
+          "ministry": "Ministry of Electronics and Information Technology (MeitY)",
+          "department": null,
+          "implementing_agency": "MeitY Startup Hub",
+          "record_kind": "APPLICATION_CALL",
+          "programme_status": "CALL_INFORMATION_AVAILABLE",
+          "application_status": "VERIFICATION_REQUIRED",
+          "scheme_status": "CALL_INSTANCE",
+          "geographic_scope": "National (India)",
+          "official_page_url": "https://msh.meity.gov.in/program/mshcorporate/ihmcl",
+          "application_url": null,
+          "opening_date": null,
+          "closing_date": null,
+          "scheme_type": [
+            "Time-bound MeitY call"
+          ],
+          "target_beneficiaries": [],
+          "startup_stage": [],
+          "sector": [],
+          "states_or_uts": [],
+          "objectives": [
+            "Skip to main content meity-sthub@gov.in Contact : +91-11-24301244 ABOUT US SCHEMES PROGRAM NETWORKS RESOURCE MEDIA REGISTER LOGIN PROGRAMS > MSH CORPORATE > IHMCL BARRIER-LESS FREE-FLOW TOLLING SYSTEM AND INTELLIGENT TRAFFIC MANAGEMENT SYSTEM FOR IHMCL Background: With a view to leveraging the innovations by the Indian entrepreneurs and in line with mission of Digital India, Indian Highways Management Company Limited (IHMCL) in collaboration with MeitY Startup Hub (MSH) organized a Hackathon with Indian start-ups for cost effective smart tolling solutions-based Barrier-less Free-flow Tolling System and Intelligent Traffic Management System. Read More >> Get to Know Terms & Conditions Sitemap Careers Feedback About Us Contact Us Grievance Blogs Forum Privacy Policy Faqs Stay Connected Number of Users Visited MSH 2.0 Portal: 606325 Useful Links MyGov MeitY MeitY Dashboard Digital India Corporation Open Government Data National e-Governance Division India Semiconductor Mission Digital India Bhashini Startup India NITI Aayog Subscribe MeitY Startup Hub is legally registered as Independent Business Division(IBD) of Digital India Corporation. ©2023. All Rights Reserved. MeitY Startup Hub"
+          ],
+          "eligibility": [],
+          "benefits": [],
+          "funding_amount": {
+            "minimum": null,
+            "maximum": null,
+            "currency": "INR",
+            "funding_types": [],
+            "amount_mentions": [],
+            "beneficiary_support": {
+              "minimum": null,
+              "maximum": null
+            },
+            "intermediary_support_maximum": null,
+            "scheme_corpus": null
+          },
+          "application_process": [],
+          "selection_process": [],
+          "required_documents": [],
+          "guideline_urls": [],
+          "contact_details": [],
+          "source_evidence": [
+            {
+              "url": "https://msh.meity.gov.in/program/mshcorporate/ihmcl",
+              "title": "Ihmcl",
+              "content_kind": "html",
+              "evidence_text": "Skip to main content meity-sthub@gov.in Contact : +91-11-24301244 ABOUT US SCHEMES PROGRAM NETWORKS RESOURCE MEDIA REGISTER LOGIN PROGRAMS > MSH CORPORATE > IHMCL BARRIER-LESS FREE-FLOW TOLLING SYSTEM AND INTELLIGENT TRAFFIC MANAGEMENT SYSTEM FOR IHMCL Background: With a view to leveraging the innovations by the Indian entrepreneurs and in line with mission of Digital India, Indian Highways Management Company Limited (IHMCL) in collaboration with MeitY Startup Hub (MSH) organized a Hackathon with Indian start-ups for cost effective smart tolling solutions-based Barrier-less Free-flow Tolling System and Intelligent Traffic Management System. Read More >> Get to Know Terms & Conditions Sitemap Careers Feedback About Us Contact Us Grievance Blogs Forum Privacy Policy Faqs Stay Connected Number of Users Visited MSH 2.0 Portal: 606325 Useful Links MyGov MeitY MeitY Dashboard Digital India Corporation Open Government Data National e-Governance Division India Semiconductor Mission Digital India Bhashini Startup India NITI Aayog Subscribe MeitY Startup Hub is legally registered as Independent Business Division(IBD) of Digital India Corporation. ©2023. All Rights Reserved. MeitY Startup Hub"
+            }
+          ],
+          "field_evidence": {
+            "identity": "https://msh.meity.gov.in/program/mshcorporate/ihmcl",
+            "application_status": "No verified current deadline and official application route were established.",
+            "status_basis": "INSUFFICIENT_CURRENT_STATUS_EVIDENCE",
+            "evidence_hash": "04c432eb3b804223346f9fad89c2ce031ea27f64fdf360e743db55a9b8d97831"
+          },
+          "quality_flags": [
+            "DEADLINE_REQUIRES_VERIFICATION",
+            "NO_PUBLIC_APPLY_ROUTE",
+            "No public Apply action until current dated evidence and an official application route are verified."
+          ],
+          "parent_master_id": "147173e17ea741687247",
+          "parent_scheme_name": "SAMRIDH",
+          "parent_resolution": "CURATED_OFFICIAL_RELATIONSHIP",
+          "entity_type": "CALL_INSTANCE",
+          "permanent_scheme_or_call": "CALL_INSTANCE",
+          "startup_relevance": "DIRECT_OR_REVIEW_REQUIRED",
+          "applicant_layer": "REQUIRES_ADMIN_VERIFICATION",
+          "sector_scope": "UNKNOWN",
+          "status_basis": "INSUFFICIENT_CURRENT_STATUS_EVIDENCE",
+          "status_evidence": "No verified current deadline and official application route were established.",
+          "last_verified_at": null,
+          "validation": {
+            "decision": "NEEDS_ADMIN_REVIEW",
+            "validation_score": 0.6,
+            "warnings": [
+              "DEADLINE_REQUIRES_VERIFICATION",
+              "NO_PUBLIC_APPLY_ROUTE",
+              "No public Apply action until current dated evidence and an official application route are verified."
+            ],
+            "critical_flags": [],
+            "corrections": []
+          },
+          "organization_level": "MINISTRY"
+        }
+      }
+    },
+    {
+      "master_id": "meitycall_c53a5b2578e3b03d7291",
+      "scheme_name": "Mathworks",
+      "record_kind": "APPLICATION_CALL",
+      "application_status": "VERIFICATION_REQUIRED",
+      "action": "INSERT_PENDING_CALL_REVIEW",
+      "matches": [],
+      "item": {
+        "master_id": "meitycall_c53a5b2578e3b03d7291",
+        "scheme_name": "Mathworks",
+        "source": "MeitY Startup Hub",
+        "record_kind": "APPLICATION_CALL",
+        "programme_status": "CALL_INFORMATION_AVAILABLE",
+        "application_status": "VERIFICATION_REQUIRED",
+        "official_page_url": "https://msh.meity.gov.in/program/mshcorporate/mathworks",
+        "application_url": null,
+        "decision": "NEEDS_ADMIN_REVIEW",
+        "validation_score": 0.6,
+        "priority": "NORMAL",
+        "decision_reasons": [
+          "Verify this time-bound call separately from its permanent parent scheme.",
+          "Confirm the parent, applicant layer, deadline and current application status."
+        ],
+        "warnings": [
+          "DEADLINE_REQUIRES_VERIFICATION",
+          "NO_PUBLIC_APPLY_ROUTE",
+          "No public Apply action until current dated evidence and an official application route are verified."
+        ],
+        "critical_flags": [],
+        "recommended_admin_actions": [
+          "Open the official MeitY evidence.",
+          "Confirm the call-to-parent relationship or approve as a standalone official call.",
+          "Do not expose Apply unless current dated evidence and route are verified."
+        ],
+        "validated_record": {
+          "master_id": "meitycall_c53a5b2578e3b03d7291",
+          "scheme_name": "Mathworks",
+          "short_name": "",
+          "source": "MeitY Startup Hub",
+          "ministry": "Ministry of Electronics and Information Technology (MeitY)",
+          "department": null,
+          "implementing_agency": "MeitY Startup Hub",
+          "record_kind": "APPLICATION_CALL",
+          "programme_status": "CALL_INFORMATION_AVAILABLE",
+          "application_status": "VERIFICATION_REQUIRED",
+          "scheme_status": "CALL_INSTANCE",
+          "geographic_scope": "National (India)",
+          "official_page_url": "https://msh.meity.gov.in/program/mshcorporate/mathworks",
+          "application_url": null,
+          "opening_date": null,
+          "closing_date": null,
+          "scheme_type": [
+            "Time-bound MeitY call"
+          ],
+          "target_beneficiaries": [],
+          "startup_stage": [],
+          "sector": [],
+          "states_or_uts": [],
+          "objectives": [
+            "Skip to main content meity-sthub@gov.in Contact : +91-11-24301244 ABOUT US SCHEMES PROGRAM NETWORKS RESOURCE MEDIA REGISTER LOGIN PROGRAMS > MSH CORPORATE > MATHWORKS MEITY STARTUP HUB AND MATHWORKS PARTNER TO ACCELERATE DEEP TECH INNOVATION MeitY Startup Hub (MSH) has signed a Statement of Intent (SoI) with MathWorks to bolster India’s deep tech startup ecosystem, providing access to state-of-the-art computational tools, advanced simulation models, and world-class training resources. As part of this partnership, MathWorks will provide complimentary access to over 100 products under its Accelerator Program, including MATLAB® and Simulink, for 12 months to all MeitY associated startups. This invaluable resource will empower startups to develop and refine their innovations with powerful computational capabilities. Beyond software access, participating startups will benefit from Technical Mentorship: Expert guidance to navigate complex technical challenges. Specialized Training: Tailored programs to maximize the utilization of MathWorks tools. Discounted Professional Access: Continued access to MathWorks products at preferential rates post-program. To further enhance industry engageme"
+          ],
+          "eligibility": [],
+          "benefits": [],
+          "funding_amount": {
+            "minimum": null,
+            "maximum": null,
+            "currency": "INR",
+            "funding_types": [],
+            "amount_mentions": [],
+            "beneficiary_support": {
+              "minimum": null,
+              "maximum": null
+            },
+            "intermediary_support_maximum": null,
+            "scheme_corpus": null
+          },
+          "application_process": [],
+          "selection_process": [],
+          "required_documents": [],
+          "guideline_urls": [],
+          "contact_details": [],
+          "source_evidence": [
+            {
+              "url": "https://msh.meity.gov.in/program/mshcorporate/mathworks",
+              "title": "Mathworks",
+              "content_kind": "html",
+              "evidence_text": "Skip to main content meity-sthub@gov.in Contact : +91-11-24301244 ABOUT US SCHEMES PROGRAM NETWORKS RESOURCE MEDIA REGISTER LOGIN PROGRAMS > MSH CORPORATE > MATHWORKS MEITY STARTUP HUB AND MATHWORKS PARTNER TO ACCELERATE DEEP TECH INNOVATION MeitY Startup Hub (MSH) has signed a Statement of Intent (SoI) with MathWorks to bolster India’s deep tech startup ecosystem, providing access to state-of-the-art computational tools, advanced simulation models, and world-class training resources. As part of this partnership, MathWorks will provide complimentary access to over 100 products under its Accelerator Program, including MATLAB® and Simulink, for 12 months to all MeitY associated startups. This invaluable resource will empower startups to develop and refine their innovations with powerful computational capabilities. Beyond software access, participating startups will benefit from Technical Mentorship: Expert guidance to navigate complex technical challenges. Specialized Training: Tailored programs to maximize the utilization of MathWorks tools. Discounted Professional Access: Continued access to MathWorks products at preferential rates post-program. To further enhance industry engageme"
+            }
+          ],
+          "field_evidence": {
+            "identity": "https://msh.meity.gov.in/program/mshcorporate/mathworks",
+            "application_status": "No verified current deadline and official application route were established.",
+            "status_basis": "INSUFFICIENT_CURRENT_STATUS_EVIDENCE",
+            "evidence_hash": "fb0d8d76f277ca60361dc3aaab0f3386cc5e5fbfa61b625570a96eb1a6cb2097"
+          },
+          "quality_flags": [
+            "DEADLINE_REQUIRES_VERIFICATION",
+            "NO_PUBLIC_APPLY_ROUTE",
+            "No public Apply action until current dated evidence and an official application route are verified."
+          ],
+          "parent_master_id": "147173e17ea741687247",
+          "parent_scheme_name": "SAMRIDH",
+          "parent_resolution": "CURATED_OFFICIAL_RELATIONSHIP",
+          "entity_type": "CALL_INSTANCE",
+          "permanent_scheme_or_call": "CALL_INSTANCE",
+          "startup_relevance": "DIRECT_OR_REVIEW_REQUIRED",
+          "applicant_layer": "REQUIRES_ADMIN_VERIFICATION",
+          "sector_scope": "UNKNOWN",
+          "status_basis": "INSUFFICIENT_CURRENT_STATUS_EVIDENCE",
+          "status_evidence": "No verified current deadline and official application route were established.",
+          "last_verified_at": null,
+          "validation": {
+            "decision": "NEEDS_ADMIN_REVIEW",
+            "validation_score": 0.6,
+            "warnings": [
+              "DEADLINE_REQUIRES_VERIFICATION",
+              "NO_PUBLIC_APPLY_ROUTE",
+              "No public Apply action until current dated evidence and an official application route are verified."
+            ],
+            "critical_flags": [],
+            "corrections": []
+          },
+          "organization_level": "MINISTRY"
+        }
+      }
+    },
+    {
+      "master_id": "meitycall_0c7011d0b31e008b13b8",
+      "scheme_name": "Micron",
+      "record_kind": "APPLICATION_CALL",
+      "application_status": "VERIFICATION_REQUIRED",
+      "action": "INSERT_PENDING_CALL_REVIEW",
+      "matches": [],
+      "item": {
+        "master_id": "meitycall_0c7011d0b31e008b13b8",
+        "scheme_name": "Micron",
+        "source": "MeitY Startup Hub",
+        "record_kind": "APPLICATION_CALL",
+        "programme_status": "CALL_INFORMATION_AVAILABLE",
+        "application_status": "VERIFICATION_REQUIRED",
+        "official_page_url": "https://msh.meity.gov.in/program/mshcorporate/micron",
+        "application_url": null,
+        "decision": "NEEDS_ADMIN_REVIEW",
+        "validation_score": 0.6,
+        "priority": "NORMAL",
+        "decision_reasons": [
+          "Verify this time-bound call separately from its permanent parent scheme.",
+          "Confirm the parent, applicant layer, deadline and current application status."
+        ],
+        "warnings": [
+          "DEADLINE_REQUIRES_VERIFICATION",
+          "NO_PUBLIC_APPLY_ROUTE",
+          "No public Apply action until current dated evidence and an official application route are verified."
+        ],
+        "critical_flags": [],
+        "recommended_admin_actions": [
+          "Open the official MeitY evidence.",
+          "Confirm the call-to-parent relationship or approve as a standalone official call.",
+          "Do not expose Apply unless current dated evidence and route are verified."
+        ],
+        "validated_record": {
+          "master_id": "meitycall_0c7011d0b31e008b13b8",
+          "scheme_name": "Micron",
+          "short_name": "",
+          "source": "MeitY Startup Hub",
+          "ministry": "Ministry of Electronics and Information Technology (MeitY)",
+          "department": null,
+          "implementing_agency": "MeitY Startup Hub",
+          "record_kind": "APPLICATION_CALL",
+          "programme_status": "CALL_INFORMATION_AVAILABLE",
+          "application_status": "VERIFICATION_REQUIRED",
+          "scheme_status": "CALL_INSTANCE",
+          "geographic_scope": "National (India)",
+          "official_page_url": "https://msh.meity.gov.in/program/mshcorporate/micron",
+          "application_url": null,
+          "opening_date": null,
+          "closing_date": null,
+          "scheme_type": [
+            "Time-bound MeitY call"
+          ],
+          "target_beneficiaries": [],
+          "startup_stage": [],
+          "sector": [],
+          "states_or_uts": [],
+          "objectives": [
+            "Skip to main content meity-sthub@gov.in Contact : +91-11-24301244 ABOUT US SCHEMES PROGRAM NETWORKS RESOURCE MEDIA REGISTER LOGIN PROGRAMS > MSH CORPORATE > MICRON MEITY STARTUP HUB (MSH), MICRON AND PIEDS, CREST (BITS PILANI), LAUNCH A SEMICONDUCTOR ACCELERATOR FOR EARLY-STAGE STARTUPS MeitY Startup Hub (MSH) an independent division of the Ministry of Electronics & Information Technology (MeitY), Government of India in partnership with Micron and PIEDS, the Technology Business Incubator and Center for Research Excellence in Semiconductor Technologies (CREST) of BITS Pilani announced today the launch of CREST accelerator program for startups in Semiconductor domain. The accelerator program will curate a cohort of startups and provide each with funding of up to Rs. 10 Lacs, with an opportunity to raise further investment at the end of the program. Mentors and advisors from Micron, MSH, and BITS Pilani shall guide the startups. The accelerator is being launched on the heels of the government’s big push to make India a semiconductor hub and an ambitious India Semiconductor Mission (ISM) by MeitY. The startups shall be able to use tools, labs, and facilities at Micron facilities and at"
+          ],
+          "eligibility": [],
+          "benefits": [],
+          "funding_amount": {
+            "minimum": null,
+            "maximum": null,
+            "currency": "INR",
+            "funding_types": [],
+            "amount_mentions": [],
+            "beneficiary_support": {
+              "minimum": null,
+              "maximum": null
+            },
+            "intermediary_support_maximum": null,
+            "scheme_corpus": null
+          },
+          "application_process": [],
+          "selection_process": [],
+          "required_documents": [],
+          "guideline_urls": [],
+          "contact_details": [],
+          "source_evidence": [
+            {
+              "url": "https://msh.meity.gov.in/program/mshcorporate/micron",
+              "title": "Micron",
+              "content_kind": "html",
+              "evidence_text": "Skip to main content meity-sthub@gov.in Contact : +91-11-24301244 ABOUT US SCHEMES PROGRAM NETWORKS RESOURCE MEDIA REGISTER LOGIN PROGRAMS > MSH CORPORATE > MICRON MEITY STARTUP HUB (MSH), MICRON AND PIEDS, CREST (BITS PILANI), LAUNCH A SEMICONDUCTOR ACCELERATOR FOR EARLY-STAGE STARTUPS MeitY Startup Hub (MSH) an independent division of the Ministry of Electronics & Information Technology (MeitY), Government of India in partnership with Micron and PIEDS, the Technology Business Incubator and Center for Research Excellence in Semiconductor Technologies (CREST) of BITS Pilani announced today the launch of CREST accelerator program for startups in Semiconductor domain. The accelerator program will curate a cohort of startups and provide each with funding of up to Rs. 10 Lacs, with an opportunity to raise further investment at the end of the program. Mentors and advisors from Micron, MSH, and BITS Pilani shall guide the startups. The accelerator is being launched on the heels of the government’s big push to make India a semiconductor hub and an ambitious India Semiconductor Mission (ISM) by MeitY. The startups shall be able to use tools, labs, and facilities at Micron facilities and at"
+            }
+          ],
+          "field_evidence": {
+            "identity": "https://msh.meity.gov.in/program/mshcorporate/micron",
+            "application_status": "No verified current deadline and official application route were established.",
+            "status_basis": "INSUFFICIENT_CURRENT_STATUS_EVIDENCE",
+            "evidence_hash": "9e2f059a72e789d3171c17826c9daabfed163143904b31753c05c59ebd780821"
+          },
+          "quality_flags": [
+            "DEADLINE_REQUIRES_VERIFICATION",
+            "NO_PUBLIC_APPLY_ROUTE",
+            "No public Apply action until current dated evidence and an official application route are verified."
+          ],
+          "parent_master_id": "147173e17ea741687247",
+          "parent_scheme_name": "SAMRIDH",
+          "parent_resolution": "CURATED_OFFICIAL_RELATIONSHIP",
+          "entity_type": "CALL_INSTANCE",
+          "permanent_scheme_or_call": "CALL_INSTANCE",
+          "startup_relevance": "DIRECT_OR_REVIEW_REQUIRED",
+          "applicant_layer": "REQUIRES_ADMIN_VERIFICATION",
+          "sector_scope": "UNKNOWN",
+          "status_basis": "INSUFFICIENT_CURRENT_STATUS_EVIDENCE",
+          "status_evidence": "No verified current deadline and official application route were established.",
+          "last_verified_at": null,
+          "validation": {
+            "decision": "NEEDS_ADMIN_REVIEW",
+            "validation_score": 0.6,
+            "warnings": [
+              "DEADLINE_REQUIRES_VERIFICATION",
+              "NO_PUBLIC_APPLY_ROUTE",
+              "No public Apply action until current dated evidence and an official application route are verified."
+            ],
+            "critical_flags": [],
+            "corrections": []
+          },
+          "organization_level": "MINISTRY"
+        }
+      }
+    },
+    {
+      "master_id": "meitycall_11ee67b180d2f208f8ef",
+      "scheme_name": "Organisationprofile",
+      "record_kind": "APPLICATION_CALL",
+      "application_status": "VERIFICATION_REQUIRED",
+      "action": "INSERT_PENDING_CALL_REVIEW",
+      "matches": [],
+      "item": {
+        "master_id": "meitycall_11ee67b180d2f208f8ef",
+        "scheme_name": "Organisationprofile",
+        "source": "MeitY Startup Hub",
+        "record_kind": "APPLICATION_CALL",
+        "programme_status": "CALL_INFORMATION_AVAILABLE",
+        "application_status": "VERIFICATION_REQUIRED",
+        "official_page_url": "https://msh.meity.gov.in/about/organisationprofile",
+        "application_url": null,
+        "decision": "NEEDS_ADMIN_REVIEW",
+        "validation_score": 0.6,
+        "priority": "NORMAL",
+        "decision_reasons": [
+          "Verify this time-bound call separately from its permanent parent scheme.",
+          "Confirm the parent, applicant layer, deadline and current application status."
+        ],
+        "warnings": [
+          "DEADLINE_REQUIRES_VERIFICATION",
+          "NO_PUBLIC_APPLY_ROUTE",
+          "No public Apply action until current dated evidence and an official application route are verified."
+        ],
+        "critical_flags": [],
+        "recommended_admin_actions": [
+          "Open the official MeitY evidence.",
+          "Confirm the call-to-parent relationship or approve as a standalone official call.",
+          "Do not expose Apply unless current dated evidence and route are verified."
+        ],
+        "validated_record": {
+          "master_id": "meitycall_11ee67b180d2f208f8ef",
+          "scheme_name": "Organisationprofile",
+          "short_name": "",
+          "source": "MeitY Startup Hub",
+          "ministry": "Ministry of Electronics and Information Technology (MeitY)",
+          "department": null,
+          "implementing_agency": "MeitY Startup Hub",
+          "record_kind": "APPLICATION_CALL",
+          "programme_status": "CALL_INFORMATION_AVAILABLE",
+          "application_status": "VERIFICATION_REQUIRED",
+          "scheme_status": "CALL_INSTANCE",
+          "geographic_scope": "National (India)",
+          "official_page_url": "https://msh.meity.gov.in/about/organisationprofile",
+          "application_url": null,
+          "opening_date": null,
+          "closing_date": null,
+          "scheme_type": [
+            "Time-bound MeitY call"
+          ],
+          "target_beneficiaries": [],
+          "startup_stage": [],
+          "sector": [],
+          "states_or_uts": [],
+          "objectives": [
+            "Skip to main content meity-sthub@gov.in Contact : +91-11-24301244 ABOUT US SCHEMES PROGRAM NETWORKS RESOURCE MEDIA REGISTER LOGIN MeitY Startup Hub India is among top 3 startup ecosystems in the world. In order to boost the Indian economy, innovation and entrepreneurship in the emerging focus area that is being aggressively promoted to give fillip to the Indian economy. A variety of innovation and IPR-related activities are being led and facilitated nationwide by the Ministry of Electronics and Information Technology (MeitY), Government of India, in an effort to grow this ecosystem. In order to facilitate MeitY’s vision of promoting technology innovation, start-ups and creation of Intellectual Properties, a nodal entity called ‘MeitY Start-up Hub’ (MSH) has been setup under its aegis. MeitY Startup Hub (MSH), is a unique, high-impact, digitally-driven scheme which seeks to strengthen the startup ecosystem by integrating the resources, upskilling the entrepreneurs, leveraging the experts, facilitating the knowledge transactions, and promoting the investments in deep-tech startups to support inclusive & sustainable techno-socio-economic development across India and international expa"
+          ],
+          "eligibility": [],
+          "benefits": [],
+          "funding_amount": {
+            "minimum": null,
+            "maximum": null,
+            "currency": "INR",
+            "funding_types": [],
+            "amount_mentions": [],
+            "beneficiary_support": {
+              "minimum": null,
+              "maximum": null
+            },
+            "intermediary_support_maximum": null,
+            "scheme_corpus": null
+          },
+          "application_process": [],
+          "selection_process": [],
+          "required_documents": [],
+          "guideline_urls": [],
+          "contact_details": [],
+          "source_evidence": [
+            {
+              "url": "https://msh.meity.gov.in/about/organisationprofile",
+              "title": "Organisationprofile",
+              "content_kind": "html",
+              "evidence_text": "Skip to main content meity-sthub@gov.in Contact : +91-11-24301244 ABOUT US SCHEMES PROGRAM NETWORKS RESOURCE MEDIA REGISTER LOGIN MeitY Startup Hub India is among top 3 startup ecosystems in the world. In order to boost the Indian economy, innovation and entrepreneurship in the emerging focus area that is being aggressively promoted to give fillip to the Indian economy. A variety of innovation and IPR-related activities are being led and facilitated nationwide by the Ministry of Electronics and Information Technology (MeitY), Government of India, in an effort to grow this ecosystem. In order to facilitate MeitY’s vision of promoting technology innovation, start-ups and creation of Intellectual Properties, a nodal entity called ‘MeitY Start-up Hub’ (MSH) has been setup under its aegis. MeitY Startup Hub (MSH), is a unique, high-impact, digitally-driven scheme which seeks to strengthen the startup ecosystem by integrating the resources, upskilling the entrepreneurs, leveraging the experts, facilitating the knowledge transactions, and promoting the investments in deep-tech startups to support inclusive & sustainable techno-socio-economic development across India and international expa"
+            }
+          ],
+          "field_evidence": {
+            "identity": "https://msh.meity.gov.in/about/organisationprofile",
+            "application_status": "No verified current deadline and official application route were established.",
+            "status_basis": "INSUFFICIENT_CURRENT_STATUS_EVIDENCE",
+            "evidence_hash": "57e7da8befc31efd3ac031453debef8bb926beb1c34c916ed570302c164bd142"
+          },
+          "quality_flags": [
+            "DEADLINE_REQUIRES_VERIFICATION",
+            "NO_PUBLIC_APPLY_ROUTE",
+            "No public Apply action until current dated evidence and an official application route are verified."
+          ],
+          "parent_master_id": "147173e17ea741687247",
+          "parent_scheme_name": "SAMRIDH",
+          "parent_resolution": "CURATED_OFFICIAL_RELATIONSHIP",
+          "entity_type": "CALL_INSTANCE",
+          "permanent_scheme_or_call": "CALL_INSTANCE",
+          "startup_relevance": "DIRECT_OR_REVIEW_REQUIRED",
+          "applicant_layer": "REQUIRES_ADMIN_VERIFICATION",
+          "sector_scope": "UNKNOWN",
+          "status_basis": "INSUFFICIENT_CURRENT_STATUS_EVIDENCE",
+          "status_evidence": "No verified current deadline and official application route were established.",
+          "last_verified_at": null,
+          "validation": {
+            "decision": "NEEDS_ADMIN_REVIEW",
+            "validation_score": 0.6,
+            "warnings": [
+              "DEADLINE_REQUIRES_VERIFICATION",
+              "NO_PUBLIC_APPLY_ROUTE",
+              "No public Apply action until current dated evidence and an official application route are verified."
+            ],
+            "critical_flags": [],
+            "corrections": []
+          },
+          "organization_level": "MINISTRY"
+        }
+      }
+    },
+    {
+      "master_id": "meitycall_ba1e7d64714d21401ed3",
+      "scheme_name": "Press Release All",
+      "record_kind": "APPLICATION_CALL",
+      "application_status": "VERIFICATION_REQUIRED",
+      "action": "INSERT_PENDING_CALL_REVIEW",
+      "matches": [],
+      "item": {
+        "master_id": "meitycall_ba1e7d64714d21401ed3",
+        "scheme_name": "Press Release All",
+        "source": "MeitY Startup Hub",
+        "record_kind": "APPLICATION_CALL",
+        "programme_status": "CALL_INFORMATION_AVAILABLE",
+        "application_status": "VERIFICATION_REQUIRED",
+        "official_page_url": "https://msh.meity.gov.in/media/press-release-all",
+        "application_url": null,
+        "decision": "NEEDS_ADMIN_REVIEW",
+        "validation_score": 0.6,
+        "priority": "NORMAL",
+        "decision_reasons": [
+          "Verify this time-bound call separately from its permanent parent scheme.",
+          "Confirm the parent, applicant layer, deadline and current application status."
+        ],
+        "warnings": [
+          "DEADLINE_REQUIRES_VERIFICATION",
+          "NO_PUBLIC_APPLY_ROUTE",
+          "No public Apply action until current dated evidence and an official application route are verified."
+        ],
+        "critical_flags": [],
+        "recommended_admin_actions": [
+          "Open the official MeitY evidence.",
+          "Confirm the call-to-parent relationship or approve as a standalone official call.",
+          "Do not expose Apply unless current dated evidence and route are verified."
+        ],
+        "validated_record": {
+          "master_id": "meitycall_ba1e7d64714d21401ed3",
+          "scheme_name": "Press Release All",
+          "short_name": "",
+          "source": "MeitY Startup Hub",
+          "ministry": "Ministry of Electronics and Information Technology (MeitY)",
+          "department": null,
+          "implementing_agency": "MeitY Startup Hub",
+          "record_kind": "APPLICATION_CALL",
+          "programme_status": "CALL_INFORMATION_AVAILABLE",
+          "application_status": "VERIFICATION_REQUIRED",
+          "scheme_status": "CALL_INSTANCE",
+          "geographic_scope": "National (India)",
+          "official_page_url": "https://msh.meity.gov.in/media/press-release-all",
+          "application_url": null,
+          "opening_date": null,
+          "closing_date": null,
+          "scheme_type": [
+            "Time-bound MeitY call"
+          ],
+          "target_beneficiaries": [],
+          "startup_stage": [],
+          "sector": [],
+          "states_or_uts": [],
+          "objectives": [
+            "Skip to main content meity-sthub@gov.in Contact : +91-11-24301244 ABOUT US SCHEMES PROGRAM NETWORKS RESOURCE MEDIA REGISTER LOGIN MEDIA > PRESS RELEASE Press Releases Startup Mahakumbh day 1 showcases cutting-edge innovations across thematic pavilions Aug 2025 Read More AI & DeepTech Pavilion Takes Center Stage at Startup Mahakumbh, Showcasing India’s Tech Prowess Aug 2025 Read More MSH Startup policy forum to collaborate to support startup ecosystem. Aug 2025 Read More MeitY Startup Hub Partners SPF To Foster Deeptech Innovation Aug 2025 Read More MeitY Startup Hub throws open innovation challenge to build open-source consent systems for data protection law Aug 2025 Read More Investor Connect Programme in Shillong Fosters Startup Growth Aug 2024 Read More Meet The 10 Startups That Made Ripples At MSH ‘Investor Connect Programme’ In Bhubaneswar May 2024 Read More MSH Investor Connect Programme Reaches Chennai To Unlock Funding Opportunities For Tamil Nadu Startups May 2024 Read More Meet The 10 Startups That Gained Spotlight At The Mumbai Edition Of MSH Investor Connect Programme May 2024 Read More MeitY Startup Hub Investor Connect Programme Brings Together 10 Startups, 25+ Invest"
+          ],
+          "eligibility": [],
+          "benefits": [],
+          "funding_amount": {
+            "minimum": null,
+            "maximum": null,
+            "currency": "INR",
+            "funding_types": [],
+            "amount_mentions": [],
+            "beneficiary_support": {
+              "minimum": null,
+              "maximum": null
+            },
+            "intermediary_support_maximum": null,
+            "scheme_corpus": null
+          },
+          "application_process": [],
+          "selection_process": [],
+          "required_documents": [],
+          "guideline_urls": [],
+          "contact_details": [],
+          "source_evidence": [
+            {
+              "url": "https://msh.meity.gov.in/media/press-release-all",
+              "title": "Press Release All",
+              "content_kind": "html",
+              "evidence_text": "Skip to main content meity-sthub@gov.in Contact : +91-11-24301244 ABOUT US SCHEMES PROGRAM NETWORKS RESOURCE MEDIA REGISTER LOGIN MEDIA > PRESS RELEASE Press Releases Startup Mahakumbh day 1 showcases cutting-edge innovations across thematic pavilions Aug 2025 Read More AI & DeepTech Pavilion Takes Center Stage at Startup Mahakumbh, Showcasing India’s Tech Prowess Aug 2025 Read More MSH Startup policy forum to collaborate to support startup ecosystem. Aug 2025 Read More MeitY Startup Hub Partners SPF To Foster Deeptech Innovation Aug 2025 Read More MeitY Startup Hub throws open innovation challenge to build open-source consent systems for data protection law Aug 2025 Read More Investor Connect Programme in Shillong Fosters Startup Growth Aug 2024 Read More Meet The 10 Startups That Made Ripples At MSH ‘Investor Connect Programme’ In Bhubaneswar May 2024 Read More MSH Investor Connect Programme Reaches Chennai To Unlock Funding Opportunities For Tamil Nadu Startups May 2024 Read More Meet The 10 Startups That Gained Spotlight At The Mumbai Edition Of MSH Investor Connect Programme May 2024 Read More MeitY Startup Hub Investor Connect Programme Brings Together 10 Startups, 25+ Invest"
+            }
+          ],
+          "field_evidence": {
+            "identity": "https://msh.meity.gov.in/media/press-release-all",
+            "application_status": "No verified current deadline and official application route were established.",
+            "status_basis": "INSUFFICIENT_CURRENT_STATUS_EVIDENCE",
+            "evidence_hash": "52ace9316beb5ba6d2f859f69885fdc0caa630be8dacf5d0583274cdd242323d"
+          },
+          "quality_flags": [
+            "DEADLINE_REQUIRES_VERIFICATION",
+            "NO_PUBLIC_APPLY_ROUTE",
+            "No public Apply action until current dated evidence and an official application route are verified."
+          ],
+          "parent_master_id": "147173e17ea741687247",
+          "parent_scheme_name": "SAMRIDH",
+          "parent_resolution": "CURATED_OFFICIAL_RELATIONSHIP",
+          "entity_type": "CALL_INSTANCE",
+          "permanent_scheme_or_call": "CALL_INSTANCE",
+          "startup_relevance": "DIRECT_OR_REVIEW_REQUIRED",
+          "applicant_layer": "REQUIRES_ADMIN_VERIFICATION",
+          "sector_scope": "UNKNOWN",
+          "status_basis": "INSUFFICIENT_CURRENT_STATUS_EVIDENCE",
+          "status_evidence": "No verified current deadline and official application route were established.",
+          "last_verified_at": null,
+          "validation": {
+            "decision": "NEEDS_ADMIN_REVIEW",
+            "validation_score": 0.6,
+            "warnings": [
+              "DEADLINE_REQUIRES_VERIFICATION",
+              "NO_PUBLIC_APPLY_ROUTE",
+              "No public Apply action until current dated evidence and an official application route are verified."
+            ],
+            "critical_flags": [],
+            "corrections": []
+          },
+          "organization_level": "MINISTRY"
+        }
+      }
+    },
+    {
+      "master_id": "meitycall_336d407b1286d6719bfe",
+      "scheme_name": "Samridh",
+      "record_kind": "APPLICATION_CALL",
+      "application_status": "VERIFICATION_REQUIRED",
+      "action": "SKIP_SEMANTIC_DUPLICATE",
+      "matches": [
+        {
+          "master_id": "147173e17ea741687247",
+          "scheme_name": "SAMRIDH",
+          "table": "admin_review_queue",
+          "status": "REJECTED"
+        }
+      ],
+      "item": {
+        "master_id": "meitycall_336d407b1286d6719bfe",
+        "scheme_name": "Samridh",
+        "source": "MeitY Startup Hub",
+        "record_kind": "APPLICATION_CALL",
+        "programme_status": "CALL_INFORMATION_AVAILABLE",
+        "application_status": "VERIFICATION_REQUIRED",
+        "official_page_url": "https://msh.meity.gov.in/schemes/samridh",
+        "application_url": null,
+        "decision": "NEEDS_ADMIN_REVIEW",
+        "validation_score": 0.6,
+        "priority": "NORMAL",
+        "decision_reasons": [
+          "Verify this time-bound call separately from its permanent parent scheme.",
+          "Confirm the parent, applicant layer, deadline and current application status."
+        ],
+        "warnings": [
+          "DEADLINE_REQUIRES_VERIFICATION",
+          "NO_PUBLIC_APPLY_ROUTE",
+          "No public Apply action until current dated evidence and an official application route are verified."
+        ],
+        "critical_flags": [],
+        "recommended_admin_actions": [
+          "Open the official MeitY evidence.",
+          "Confirm the call-to-parent relationship or approve as a standalone official call.",
+          "Do not expose Apply unless current dated evidence and route are verified."
+        ],
+        "validated_record": {
+          "master_id": "meitycall_336d407b1286d6719bfe",
+          "scheme_name": "Samridh",
+          "short_name": "",
+          "source": "MeitY Startup Hub",
+          "ministry": "Ministry of Electronics and Information Technology (MeitY)",
+          "department": null,
+          "implementing_agency": "MeitY Startup Hub",
+          "record_kind": "APPLICATION_CALL",
+          "programme_status": "CALL_INFORMATION_AVAILABLE",
+          "application_status": "VERIFICATION_REQUIRED",
+          "scheme_status": "CALL_INSTANCE",
+          "geographic_scope": "National (India)",
+          "official_page_url": "https://msh.meity.gov.in/schemes/samridh",
+          "application_url": null,
+          "opening_date": null,
+          "closing_date": null,
+          "scheme_type": [
+            "Time-bound MeitY call"
+          ],
+          "target_beneficiaries": [],
+          "startup_stage": [],
+          "sector": [],
+          "states_or_uts": [],
+          "objectives": [
+            "Skip to main content meity-sthub@gov.in Contact : +91-11-24301244 ABOUT US SCHEMES PROGRAM NETWORKS RESOURCE MEDIA REGISTER LOGIN SCHEMES > SAMRIDH RESULT OF SAMRIDH COHORT 2 Startup Accelerator of MeitY for Product Innovation, Development, and Growth (SAMRIDH) The Government of India has launched a comprehensive initiative to foster innovation and support start-ups through its Startup Accelerator of MeitY for Product Innovation, Development, and Growth (SAMRIDH) program, addressing the need for an accelerator program that drives social impact and scales solutions for India's challenges. The program aims to support 300 tech Start-Ups in 3-year duration with cohort size of 5-10 Start-Ups. SAMRIDH Program is conceptualized and being implemented to provide support to selected accelerators for extending acceleration services to start-ups along with one-to-one matching funding support of up to ₹40 lakh. In the first round of cohort, 22 Accelerators spread across 12 states are supporting 175 startups, selected through a multilevel screening process. Success Stories of SAMRIDH supported Startups Major Objective: The SAMRIDH scheme aims to support existing and upcoming Accelerators to sele"
+          ],
+          "eligibility": [],
+          "benefits": [],
+          "funding_amount": {
+            "minimum": null,
+            "maximum": null,
+            "currency": "INR",
+            "funding_types": [],
+            "amount_mentions": [],
+            "beneficiary_support": {
+              "minimum": null,
+              "maximum": null
+            },
+            "intermediary_support_maximum": null,
+            "scheme_corpus": null
+          },
+          "application_process": [],
+          "selection_process": [],
+          "required_documents": [],
+          "guideline_urls": [],
+          "contact_details": [],
+          "source_evidence": [
+            {
+              "url": "https://msh.meity.gov.in/schemes/samridh",
+              "title": "Samridh",
+              "content_kind": "html",
+              "evidence_text": "Skip to main content meity-sthub@gov.in Contact : +91-11-24301244 ABOUT US SCHEMES PROGRAM NETWORKS RESOURCE MEDIA REGISTER LOGIN SCHEMES > SAMRIDH RESULT OF SAMRIDH COHORT 2 Startup Accelerator of MeitY for Product Innovation, Development, and Growth (SAMRIDH) The Government of India has launched a comprehensive initiative to foster innovation and support start-ups through its Startup Accelerator of MeitY for Product Innovation, Development, and Growth (SAMRIDH) program, addressing the need for an accelerator program that drives social impact and scales solutions for India's challenges. The program aims to support 300 tech Start-Ups in 3-year duration with cohort size of 5-10 Start-Ups. SAMRIDH Program is conceptualized and being implemented to provide support to selected accelerators for extending acceleration services to start-ups along with one-to-one matching funding support of up to ₹40 lakh. In the first round of cohort, 22 Accelerators spread across 12 states are supporting 175 startups, selected through a multilevel screening process. Success Stories of SAMRIDH supported Startups Major Objective: The SAMRIDH scheme aims to support existing and upcoming Accelerators to sele"
+            }
+          ],
+          "field_evidence": {
+            "identity": "https://msh.meity.gov.in/schemes/samridh",
+            "application_status": "No verified current deadline and official application route were established.",
+            "status_basis": "INSUFFICIENT_CURRENT_STATUS_EVIDENCE",
+            "evidence_hash": "65680a92fae49be3847552a56fd8c1d897e3410a3ebc9604d2c54cc3a6836188"
+          },
+          "quality_flags": [
+            "DEADLINE_REQUIRES_VERIFICATION",
+            "NO_PUBLIC_APPLY_ROUTE",
+            "No public Apply action until current dated evidence and an official application route are verified."
+          ],
+          "parent_master_id": "147173e17ea741687247",
+          "parent_scheme_name": "SAMRIDH",
+          "parent_resolution": "CURATED_OFFICIAL_RELATIONSHIP",
+          "entity_type": "CALL_INSTANCE",
+          "permanent_scheme_or_call": "CALL_INSTANCE",
+          "startup_relevance": "DIRECT_OR_REVIEW_REQUIRED",
+          "applicant_layer": "REQUIRES_ADMIN_VERIFICATION",
+          "sector_scope": "UNKNOWN",
+          "status_basis": "INSUFFICIENT_CURRENT_STATUS_EVIDENCE",
+          "status_evidence": "No verified current deadline and official application route were established.",
+          "last_verified_at": null,
+          "validation": {
+            "decision": "NEEDS_ADMIN_REVIEW",
+            "validation_score": 0.6,
+            "warnings": [
+              "DEADLINE_REQUIRES_VERIFICATION",
+              "NO_PUBLIC_APPLY_ROUTE",
+              "No public Apply action until current dated evidence and an official application route are verified."
+            ],
+            "critical_flags": [],
+            "corrections": []
+          },
+          "organization_level": "MINISTRY"
+        }
+      }
+    },
+    {
+      "master_id": "meitycall_f6f817622dfc3035cf72",
+      "scheme_name": "samridh%202nd%20cohort%20om%20final.pdf",
+      "record_kind": "APPLICATION_CALL",
+      "application_status": "VERIFICATION_REQUIRED",
+      "action": "INSERT_PENDING_CALL_REVIEW",
+      "matches": [],
+      "item": {
+        "master_id": "meitycall_f6f817622dfc3035cf72",
+        "scheme_name": "samridh%202nd%20cohort%20om%20final.pdf",
+        "source": "MeitY Startup Hub",
+        "record_kind": "APPLICATION_CALL",
+        "programme_status": "CALL_INFORMATION_AVAILABLE",
+        "application_status": "VERIFICATION_REQUIRED",
+        "official_page_url": "https://msh.meity.gov.in/assets/samridh2ndcohrot/SAMRIDH%202nd%20Cohort%20OM%20Final.pdf",
+        "application_url": null,
+        "decision": "NEEDS_ADMIN_REVIEW",
+        "validation_score": 0.8,
+        "priority": "NORMAL",
+        "decision_reasons": [
+          "Verify this time-bound call separately from its permanent parent scheme.",
+          "Confirm the parent, applicant layer, deadline and current application status."
+        ],
+        "warnings": [
+          "DEADLINE_REQUIRES_VERIFICATION",
+          "NO_PUBLIC_APPLY_ROUTE",
+          "No public Apply action until current dated evidence and an official application route are verified."
+        ],
+        "critical_flags": [],
+        "recommended_admin_actions": [
+          "Open the official MeitY evidence.",
+          "Confirm the call-to-parent relationship or approve as a standalone official call.",
+          "Do not expose Apply unless current dated evidence and route are verified."
+        ],
+        "validated_record": {
+          "master_id": "meitycall_f6f817622dfc3035cf72",
+          "scheme_name": "samridh%202nd%20cohort%20om%20final.pdf",
+          "short_name": "",
+          "source": "MeitY Startup Hub",
+          "ministry": "Ministry of Electronics and Information Technology (MeitY)",
+          "department": null,
+          "implementing_agency": "MeitY Startup Hub",
+          "record_kind": "APPLICATION_CALL",
+          "programme_status": "CALL_INFORMATION_AVAILABLE",
+          "application_status": "VERIFICATION_REQUIRED",
+          "scheme_status": "CALL_INSTANCE",
+          "geographic_scope": "National (India)",
+          "official_page_url": "https://msh.meity.gov.in/assets/samridh2ndcohrot/SAMRIDH%202nd%20Cohort%20OM%20Final.pdf",
+          "application_url": null,
+          "opening_date": null,
+          "closing_date": null,
+          "scheme_type": [
+            "Time-bound MeitY call"
+          ],
+          "target_beneficiaries": [],
+          "startup_stage": [],
+          "sector": [],
+          "states_or_uts": [],
+          "objectives": [],
+          "eligibility": [],
+          "benefits": [],
+          "funding_amount": {
+            "minimum": null,
+            "maximum": null,
+            "currency": "INR",
+            "funding_types": [],
+            "amount_mentions": [],
+            "beneficiary_support": {
+              "minimum": null,
+              "maximum": null
+            },
+            "intermediary_support_maximum": null,
+            "scheme_corpus": null
+          },
+          "application_process": [],
+          "selection_process": [],
+          "required_documents": [],
+          "guideline_urls": [
+            "https://msh.meity.gov.in/assets/samridh2ndcohrot/SAMRIDH%202nd%20Cohort%20OM%20Final.pdf"
+          ],
+          "contact_details": [],
+          "source_evidence": [
+            {
+              "url": "https://msh.meity.gov.in/assets/samridh2ndcohrot/SAMRIDH%202nd%20Cohort%20OM%20Final.pdf",
+              "title": "samridh%202nd%20cohort%20om%20final.pdf",
+              "content_kind": "pdf",
+              "evidence_text": ""
+            }
+          ],
+          "field_evidence": {
+            "identity": "https://msh.meity.gov.in/assets/samridh2ndcohrot/SAMRIDH%202nd%20Cohort%20OM%20Final.pdf",
+            "application_status": "No verified current deadline and official application route were established.",
+            "status_basis": "INSUFFICIENT_CURRENT_STATUS_EVIDENCE",
+            "evidence_hash": "7b6f9839064eca04ac9741757a7ab6b22496f56c9982d69c2f4b4266040c3bd9"
+          },
+          "quality_flags": [
+            "DEADLINE_REQUIRES_VERIFICATION",
+            "NO_PUBLIC_APPLY_ROUTE",
+            "No public Apply action until current dated evidence and an official application route are verified."
+          ],
+          "parent_master_id": "147173e17ea741687247",
+          "parent_scheme_name": "SAMRIDH",
+          "parent_resolution": "CURATED_OFFICIAL_RELATIONSHIP",
+          "entity_type": "CALL_INSTANCE",
+          "permanent_scheme_or_call": "CALL_INSTANCE",
+          "startup_relevance": "DIRECT_OR_REVIEW_REQUIRED",
+          "applicant_layer": "REQUIRES_ADMIN_VERIFICATION",
+          "sector_scope": "UNKNOWN",
+          "status_basis": "INSUFFICIENT_CURRENT_STATUS_EVIDENCE",
+          "status_evidence": "No verified current deadline and official application route were established.",
+          "last_verified_at": null,
+          "validation": {
+            "decision": "NEEDS_ADMIN_REVIEW",
+            "validation_score": 0.8,
+            "warnings": [
+              "DEADLINE_REQUIRES_VERIFICATION",
+              "NO_PUBLIC_APPLY_ROUTE",
+              "No public Apply action until current dated evidence and an official application route are verified."
+            ],
+            "critical_flags": [],
+            "corrections": []
+          },
+          "organization_level": "MINISTRY"
+        }
+      }
+    },
+    {
+      "master_id": "meitycall_8d44c653724d98cb049d",
+      "scheme_name": "The Summit",
+      "record_kind": "APPLICATION_CALL",
+      "application_status": "VERIFICATION_REQUIRED",
+      "action": "INSERT_PENDING_CALL_REVIEW",
+      "matches": [],
+      "item": {
+        "master_id": "meitycall_8d44c653724d98cb049d",
+        "scheme_name": "The Summit",
+        "source": "MeitY Startup Hub",
+        "record_kind": "APPLICATION_CALL",
+        "programme_status": "CALL_INFORMATION_AVAILABLE",
+        "application_status": "VERIFICATION_REQUIRED",
+        "official_page_url": "https://msh.meity.gov.in/g20dia/the-summit",
+        "application_url": null,
+        "decision": "NEEDS_ADMIN_REVIEW",
+        "validation_score": 0.6,
+        "priority": "NORMAL",
+        "decision_reasons": [
+          "Verify this time-bound call separately from its permanent parent scheme.",
+          "Confirm the parent, applicant layer, deadline and current application status."
+        ],
+        "warnings": [
+          "DEADLINE_REQUIRES_VERIFICATION",
+          "NO_PUBLIC_APPLY_ROUTE",
+          "No public Apply action until current dated evidence and an official application route are verified."
+        ],
+        "critical_flags": [],
+        "recommended_admin_actions": [
+          "Open the official MeitY evidence.",
+          "Confirm the call-to-parent relationship or approve as a standalone official call.",
+          "Do not expose Apply unless current dated evidence and route are verified."
+        ],
+        "validated_record": {
+          "master_id": "meitycall_8d44c653724d98cb049d",
+          "scheme_name": "The Summit",
+          "short_name": "",
+          "source": "MeitY Startup Hub",
+          "ministry": "Ministry of Electronics and Information Technology (MeitY)",
+          "department": null,
+          "implementing_agency": "MeitY Startup Hub",
+          "record_kind": "APPLICATION_CALL",
+          "programme_status": "CALL_INFORMATION_AVAILABLE",
+          "application_status": "VERIFICATION_REQUIRED",
+          "scheme_status": "CALL_INSTANCE",
+          "geographic_scope": "National (India)",
+          "official_page_url": "https://msh.meity.gov.in/g20dia/the-summit",
+          "application_url": null,
+          "opening_date": null,
+          "closing_date": null,
+          "scheme_type": [
+            "Time-bound MeitY call"
+          ],
+          "target_beneficiaries": [],
+          "startup_stage": [],
+          "sector": [],
+          "states_or_uts": [],
+          "objectives": [
+            "Skip to main content meity-sthub@gov.in Contact : +91-11-24301244 ABOUT US SCHEMES PROGRAM NETWORKS RESOURCE MEDIA REGISTER LOGIN G20 DIA > The Summit Conference The 3-day Conference at the G20 Digital Innovation Alliance Summit is set to be a convergence of innovation, collaboration, and transformative ideas under the central event theme- 'Driving Digital Innovation for World Economies'. Bringing together start-ups, Central & State government agencies, corporates, research and development institutions, and academia from G20 member countries and 9 guest countries, the conference will serve as a platform for global digital advancements. Key Focus Sectors Winner of G20-DIA Global Pitching Edtech Sector Startup Rank Country Startup Name Founder Name Description Winner Republic of Korea Mathpresso Jose Jeong Mathpresso is an edtech startup running an educational platform called “Qanda”, an AI-based learning app that allows students of all levels to receive instant answers and customized learning sources where students can upload pictures of math problems when they need help and mobile tutors send them solutions. It aims to create a platform for personalized education by collecting big"
+          ],
+          "eligibility": [],
+          "benefits": [],
+          "funding_amount": {
+            "minimum": null,
+            "maximum": null,
+            "currency": "INR",
+            "funding_types": [],
+            "amount_mentions": [],
+            "beneficiary_support": {
+              "minimum": null,
+              "maximum": null
+            },
+            "intermediary_support_maximum": null,
+            "scheme_corpus": null
+          },
+          "application_process": [],
+          "selection_process": [],
+          "required_documents": [],
+          "guideline_urls": [],
+          "contact_details": [],
+          "source_evidence": [
+            {
+              "url": "https://msh.meity.gov.in/g20dia/the-summit",
+              "title": "The Summit",
+              "content_kind": "html",
+              "evidence_text": "Skip to main content meity-sthub@gov.in Contact : +91-11-24301244 ABOUT US SCHEMES PROGRAM NETWORKS RESOURCE MEDIA REGISTER LOGIN G20 DIA > The Summit Conference The 3-day Conference at the G20 Digital Innovation Alliance Summit is set to be a convergence of innovation, collaboration, and transformative ideas under the central event theme- 'Driving Digital Innovation for World Economies'. Bringing together start-ups, Central & State government agencies, corporates, research and development institutions, and academia from G20 member countries and 9 guest countries, the conference will serve as a platform for global digital advancements. Key Focus Sectors Winner of G20-DIA Global Pitching Edtech Sector Startup Rank Country Startup Name Founder Name Description Winner Republic of Korea Mathpresso Jose Jeong Mathpresso is an edtech startup running an educational platform called “Qanda”, an AI-based learning app that allows students of all levels to receive instant answers and customized learning sources where students can upload pictures of math problems when they need help and mobile tutors send them solutions. It aims to create a platform for personalized education by collecting big"
+            }
+          ],
+          "field_evidence": {
+            "identity": "https://msh.meity.gov.in/g20dia/the-summit",
+            "application_status": "No verified current deadline and official application route were established.",
+            "status_basis": "INSUFFICIENT_CURRENT_STATUS_EVIDENCE",
+            "evidence_hash": "e85346a01430cbf4d9ca5b36a1efd38d220c72119b320709534abd21db98fae7"
+          },
+          "quality_flags": [
+            "DEADLINE_REQUIRES_VERIFICATION",
+            "NO_PUBLIC_APPLY_ROUTE",
+            "No public Apply action until current dated evidence and an official application route are verified."
+          ],
+          "parent_master_id": "147173e17ea741687247",
+          "parent_scheme_name": "SAMRIDH",
+          "parent_resolution": "CURATED_OFFICIAL_RELATIONSHIP",
+          "entity_type": "CALL_INSTANCE",
+          "permanent_scheme_or_call": "CALL_INSTANCE",
+          "startup_relevance": "DIRECT_OR_REVIEW_REQUIRED",
+          "applicant_layer": "REQUIRES_ADMIN_VERIFICATION",
+          "sector_scope": "UNKNOWN",
+          "status_basis": "INSUFFICIENT_CURRENT_STATUS_EVIDENCE",
+          "status_evidence": "No verified current deadline and official application route were established.",
+          "last_verified_at": null,
+          "validation": {
+            "decision": "NEEDS_ADMIN_REVIEW",
+            "validation_score": 0.6,
+            "warnings": [
+              "DEADLINE_REQUIRES_VERIFICATION",
+              "NO_PUBLIC_APPLY_ROUTE",
+              "No public Apply action until current dated evidence and an official application route are verified."
+            ],
+            "critical_flags": [],
+            "corrections": []
+          },
+          "organization_level": "MINISTRY"
+        }
+      }
+    },
+    {
+      "master_id": "meitycall_f76675fa4a424f58ed0b",
+      "scheme_name": "Vivatech",
+      "record_kind": "APPLICATION_CALL",
+      "application_status": "VERIFICATION_REQUIRED",
+      "action": "INSERT_PENDING_CALL_REVIEW",
+      "matches": [],
+      "item": {
+        "master_id": "meitycall_f76675fa4a424f58ed0b",
+        "scheme_name": "Vivatech",
+        "source": "MeitY Startup Hub",
+        "record_kind": "APPLICATION_CALL",
+        "programme_status": "CALL_INFORMATION_AVAILABLE",
+        "application_status": "VERIFICATION_REQUIRED",
+        "official_page_url": "https://msh.meity.gov.in/program/mshinternational/vivatech",
+        "application_url": null,
+        "decision": "NEEDS_ADMIN_REVIEW",
+        "validation_score": 0.6,
+        "priority": "NORMAL",
+        "decision_reasons": [
+          "Verify this time-bound call separately from its permanent parent scheme.",
+          "Confirm the parent, applicant layer, deadline and current application status."
+        ],
+        "warnings": [
+          "DEADLINE_REQUIRES_VERIFICATION",
+          "NO_PUBLIC_APPLY_ROUTE",
+          "No public Apply action until current dated evidence and an official application route are verified."
+        ],
+        "critical_flags": [],
+        "recommended_admin_actions": [
+          "Open the official MeitY evidence.",
+          "Confirm the call-to-parent relationship or approve as a standalone official call.",
+          "Do not expose Apply unless current dated evidence and route are verified."
+        ],
+        "validated_record": {
+          "master_id": "meitycall_f76675fa4a424f58ed0b",
+          "scheme_name": "Vivatech",
+          "short_name": "",
+          "source": "MeitY Startup Hub",
+          "ministry": "Ministry of Electronics and Information Technology (MeitY)",
+          "department": null,
+          "implementing_agency": "MeitY Startup Hub",
+          "record_kind": "APPLICATION_CALL",
+          "programme_status": "CALL_INFORMATION_AVAILABLE",
+          "application_status": "VERIFICATION_REQUIRED",
+          "scheme_status": "CALL_INSTANCE",
+          "geographic_scope": "National (India)",
+          "official_page_url": "https://msh.meity.gov.in/program/mshinternational/vivatech",
+          "application_url": null,
+          "opening_date": null,
+          "closing_date": null,
+          "scheme_type": [
+            "Time-bound MeitY call"
+          ],
+          "target_beneficiaries": [],
+          "startup_stage": [],
+          "sector": [],
+          "states_or_uts": [],
+          "objectives": [
+            "Skip to main content meity-sthub@gov.in Contact : +91-11-24301244 ABOUT US SCHEMES PROGRAM NETWORKS RESOURCE MEDIA REGISTER LOGIN PROGRAMS > Global Startup Bridge > VIVATECH VIVATECH 2022 VIVATECH is Europe’s biggest startup and tech event which accelerates innovation by connecting startups, tech leaders, major corporations, and investors responding to the world’s biggest challenges. From keynote speakers and exhibits to labs and live experiences, VIVATECH 2022 was a celebration of today’s innovative technologies that have the power to transform the future. India was the “Country of the Year” partner of VIVATECH 2022 in Paris. MeitY Startup Hub delegation participated in the 4-day event and the startups were showcased at the India’s pavilion. The pavilion highlighted the Indian startup ecosystem, partnership ecosystem, and provided the platform for startups to engage with investors, corporates, and other prospective partners.The conference was inaugurated by Shri. Ashwini Vaishnaw, Minister of Railways, Communication, Electronics and Information Technology. Get to Know Terms & Conditions Sitemap Careers Feedback About Us Contact Us Grievance Blogs Forum Privacy Policy Faqs Stay Con"
+          ],
+          "eligibility": [],
+          "benefits": [],
+          "funding_amount": {
+            "minimum": null,
+            "maximum": null,
+            "currency": "INR",
+            "funding_types": [],
+            "amount_mentions": [],
+            "beneficiary_support": {
+              "minimum": null,
+              "maximum": null
+            },
+            "intermediary_support_maximum": null,
+            "scheme_corpus": null
+          },
+          "application_process": [],
+          "selection_process": [],
+          "required_documents": [],
+          "guideline_urls": [],
+          "contact_details": [],
+          "source_evidence": [
+            {
+              "url": "https://msh.meity.gov.in/program/mshinternational/vivatech",
+              "title": "Vivatech",
+              "content_kind": "html",
+              "evidence_text": "Skip to main content meity-sthub@gov.in Contact : +91-11-24301244 ABOUT US SCHEMES PROGRAM NETWORKS RESOURCE MEDIA REGISTER LOGIN PROGRAMS > Global Startup Bridge > VIVATECH VIVATECH 2022 VIVATECH is Europe’s biggest startup and tech event which accelerates innovation by connecting startups, tech leaders, major corporations, and investors responding to the world’s biggest challenges. From keynote speakers and exhibits to labs and live experiences, VIVATECH 2022 was a celebration of today’s innovative technologies that have the power to transform the future. India was the “Country of the Year” partner of VIVATECH 2022 in Paris. MeitY Startup Hub delegation participated in the 4-day event and the startups were showcased at the India’s pavilion. The pavilion highlighted the Indian startup ecosystem, partnership ecosystem, and provided the platform for startups to engage with investors, corporates, and other prospective partners.The conference was inaugurated by Shri. Ashwini Vaishnaw, Minister of Railways, Communication, Electronics and Information Technology. Get to Know Terms & Conditions Sitemap Careers Feedback About Us Contact Us Grievance Blogs Forum Privacy Policy Faqs Stay Con"
+            }
+          ],
+          "field_evidence": {
+            "identity": "https://msh.meity.gov.in/program/mshinternational/vivatech",
+            "application_status": "No verified current deadline and official application route were established.",
+            "status_basis": "INSUFFICIENT_CURRENT_STATUS_EVIDENCE",
+            "evidence_hash": "0245a1753accfd5d9e02a700b995f677ee338b0fe42142848dbfc06661c4d146"
+          },
+          "quality_flags": [
+            "DEADLINE_REQUIRES_VERIFICATION",
+            "NO_PUBLIC_APPLY_ROUTE",
+            "No public Apply action until current dated evidence and an official application route are verified."
+          ],
+          "parent_master_id": "147173e17ea741687247",
+          "parent_scheme_name": "SAMRIDH",
+          "parent_resolution": "CURATED_OFFICIAL_RELATIONSHIP",
+          "entity_type": "CALL_INSTANCE",
+          "permanent_scheme_or_call": "CALL_INSTANCE",
+          "startup_relevance": "DIRECT_OR_REVIEW_REQUIRED",
+          "applicant_layer": "REQUIRES_ADMIN_VERIFICATION",
+          "sector_scope": "UNKNOWN",
+          "status_basis": "INSUFFICIENT_CURRENT_STATUS_EVIDENCE",
+          "status_evidence": "No verified current deadline and official application route were established.",
+          "last_verified_at": null,
+          "validation": {
+            "decision": "NEEDS_ADMIN_REVIEW",
+            "validation_score": 0.6,
+            "warnings": [
+              "DEADLINE_REQUIRES_VERIFICATION",
+              "NO_PUBLIC_APPLY_ROUTE",
+              "No public Apply action until current dated evidence and an official application route are verified."
+            ],
+            "critical_flags": [],
+            "corrections": []
+          },
+          "organization_level": "MINISTRY"
+        }
+      }
+    },
+    {
+      "master_id": "meitycall_2f886d6194cb0b281a16",
+      "scheme_name": "Xr Startup Program",
+      "record_kind": "APPLICATION_CALL",
+      "application_status": "VERIFICATION_REQUIRED",
+      "action": "INSERT_PENDING_CALL_REVIEW",
+      "matches": [],
+      "item": {
+        "master_id": "meitycall_2f886d6194cb0b281a16",
+        "scheme_name": "Xr Startup Program",
+        "source": "MeitY Startup Hub",
+        "record_kind": "APPLICATION_CALL",
+        "programme_status": "CALL_INFORMATION_AVAILABLE",
+        "application_status": "VERIFICATION_REQUIRED",
+        "official_page_url": "https://msh.meity.gov.in/program/mshcorporate/xr-startup-program",
+        "application_url": null,
+        "decision": "NEEDS_ADMIN_REVIEW",
+        "validation_score": 0.6,
+        "priority": "NORMAL",
+        "decision_reasons": [
+          "Verify this time-bound call separately from its permanent parent scheme.",
+          "Confirm the parent, applicant layer, deadline and current application status."
+        ],
+        "warnings": [
+          "DEADLINE_REQUIRES_VERIFICATION",
+          "NO_PUBLIC_APPLY_ROUTE",
+          "No public Apply action until current dated evidence and an official application route are verified."
+        ],
+        "critical_flags": [],
+        "recommended_admin_actions": [
+          "Open the official MeitY evidence.",
+          "Confirm the call-to-parent relationship or approve as a standalone official call.",
+          "Do not expose Apply unless current dated evidence and route are verified."
+        ],
+        "validated_record": {
+          "master_id": "meitycall_2f886d6194cb0b281a16",
+          "scheme_name": "Xr Startup Program",
+          "short_name": "",
+          "source": "MeitY Startup Hub",
+          "ministry": "Ministry of Electronics and Information Technology (MeitY)",
+          "department": null,
+          "implementing_agency": "MeitY Startup Hub",
+          "record_kind": "APPLICATION_CALL",
+          "programme_status": "CALL_INFORMATION_AVAILABLE",
+          "application_status": "VERIFICATION_REQUIRED",
+          "scheme_status": "CALL_INSTANCE",
+          "geographic_scope": "National (India)",
+          "official_page_url": "https://msh.meity.gov.in/program/mshcorporate/xr-startup-program",
+          "application_url": null,
+          "opening_date": null,
+          "closing_date": null,
+          "scheme_type": [
+            "Time-bound MeitY call"
+          ],
+          "target_beneficiaries": [],
+          "startup_stage": [],
+          "sector": [],
+          "states_or_uts": [],
+          "objectives": [
+            "Skip to main content meity-sthub@gov.in Contact : +91-11-24301244 ABOUT US SCHEMES PROGRAM NETWORKS RESOURCE MEDIA REGISTER LOGIN Shortlisted Startups XR Startup Program A program to discover, nurture, and accelerate XR technology startups across India. About the program XR Startup Program is a collaboration between Meta and MeitY Startup Hub (MSH). The program aims to accelerate India’s contribution towards building the foundations of the metaverse and nurturing the development of Extended Reality (XR) technologies in India. The metaverse is the next generation of the internet. It will be a set of digital spaces, including 3D experiences that are all interconnected so people can easily move between them and will let people do things they could not do in the physical world. While the defining quality of the metaverse will be a feeling of presence, the defining technologies of the metaverse will be Extended Reality (XR), including Augmented Reality (AR), Virtual Reality (VR) and Mixed Reality (MR). Click here to read more Accelerator About the Accelerator The Accelerator will nurture and foster 40 early-stage startups working with XR technologies through a well-designed 6-month prog"
+          ],
+          "eligibility": [],
+          "benefits": [],
+          "funding_amount": {
+            "minimum": null,
+            "maximum": null,
+            "currency": "INR",
+            "funding_types": [],
+            "amount_mentions": [],
+            "beneficiary_support": {
+              "minimum": null,
+              "maximum": null
+            },
+            "intermediary_support_maximum": null,
+            "scheme_corpus": null
+          },
+          "application_process": [],
+          "selection_process": [],
+          "required_documents": [],
+          "guideline_urls": [],
+          "contact_details": [],
+          "source_evidence": [
+            {
+              "url": "https://msh.meity.gov.in/program/mshcorporate/xr-startup-program",
+              "title": "Xr Startup Program",
+              "content_kind": "html",
+              "evidence_text": "Skip to main content meity-sthub@gov.in Contact : +91-11-24301244 ABOUT US SCHEMES PROGRAM NETWORKS RESOURCE MEDIA REGISTER LOGIN Shortlisted Startups XR Startup Program A program to discover, nurture, and accelerate XR technology startups across India. About the program XR Startup Program is a collaboration between Meta and MeitY Startup Hub (MSH). The program aims to accelerate India’s contribution towards building the foundations of the metaverse and nurturing the development of Extended Reality (XR) technologies in India. The metaverse is the next generation of the internet. It will be a set of digital spaces, including 3D experiences that are all interconnected so people can easily move between them and will let people do things they could not do in the physical world. While the defining quality of the metaverse will be a feeling of presence, the defining technologies of the metaverse will be Extended Reality (XR), including Augmented Reality (AR), Virtual Reality (VR) and Mixed Reality (MR). Click here to read more Accelerator About the Accelerator The Accelerator will nurture and foster 40 early-stage startups working with XR technologies through a well-designed 6-month prog"
+            }
+          ],
+          "field_evidence": {
+            "identity": "https://msh.meity.gov.in/program/mshcorporate/xr-startup-program",
+            "application_status": "No verified current deadline and official application route were established.",
+            "status_basis": "INSUFFICIENT_CURRENT_STATUS_EVIDENCE",
+            "evidence_hash": "96cde3699c132c315db8c0db3e044900608f73f34d106ad92ba41002681ee749"
+          },
+          "quality_flags": [
+            "DEADLINE_REQUIRES_VERIFICATION",
+            "NO_PUBLIC_APPLY_ROUTE",
+            "No public Apply action until current dated evidence and an official application route are verified."
+          ],
+          "parent_master_id": "147173e17ea741687247",
+          "parent_scheme_name": "SAMRIDH",
+          "parent_resolution": "CURATED_OFFICIAL_RELATIONSHIP",
+          "entity_type": "CALL_INSTANCE",
+          "permanent_scheme_or_call": "CALL_INSTANCE",
+          "startup_relevance": "DIRECT_OR_REVIEW_REQUIRED",
+          "applicant_layer": "REQUIRES_ADMIN_VERIFICATION",
+          "sector_scope": "UNKNOWN",
+          "status_basis": "INSUFFICIENT_CURRENT_STATUS_EVIDENCE",
+          "status_evidence": "No verified current deadline and official application route were established.",
+          "last_verified_at": null,
+          "validation": {
+            "decision": "NEEDS_ADMIN_REVIEW",
+            "validation_score": 0.6,
+            "warnings": [
+              "DEADLINE_REQUIRES_VERIFICATION",
+              "NO_PUBLIC_APPLY_ROUTE",
+              "No public Apply action until current dated evidence and an official application route are verified."
+            ],
+            "critical_flags": [],
+            "corrections": []
+          },
+          "organization_level": "MINISTRY"
+        }
+      }
+    }
+  ],
+  "plan_signature": "2f77b827b675840045e930a4db4e6d51fa2a46a4658242d8851fd5c9e101dfd2",
+  "run_id": "meity_calls_v34375_20260714T075526Z",
+  "applied_count": 16
+}

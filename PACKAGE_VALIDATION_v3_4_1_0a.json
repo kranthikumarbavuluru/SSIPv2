@@ -1,0 +1,174 @@
+{
+  "package_version": "3.4.1.0a",
+  "python_compile_passed": true,
+  "compile_errors": [],
+  "required_missing_file_restored": "scripts/preflight_agents_v3_4_1_0.py",
+  "file_count": 33,
+  "files": [
+    {
+      "path": ".pytest_cache/.gitignore",
+      "sha256": "3ed731b65d06150c138e2dadb0be0697550888a6b47eb8c45ecc9adba8b8e9bd",
+      "size_bytes": 37
+    },
+    {
+      "path": ".pytest_cache/CACHEDIR.TAG",
+      "sha256": "37dc88ef9a0abeddbe81053a6dd8fdfb13afb613045ea1eb4a5c815a74a3bde4",
+      "size_bytes": 191
+    },
+    {
+      "path": ".pytest_cache/README.md",
+      "sha256": "73fd6fccdd802c419a6b2d983d6c3173b7da97558ac4b589edec2dfe443db9ad",
+      "size_bytes": 302
+    },
+    {
+      "path": ".pytest_cache/v/cache/lastfailed",
+      "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "size_bytes": 2
+    },
+    {
+      "path": ".pytest_cache/v/cache/nodeids",
+      "sha256": "cc9875974a470c4b7710a0a8406887eef332ac1c14e913d1dde3cf0b722b96a6",
+      "size_bytes": 344
+    },
+    {
+      "path": "INSTALL_MIDNIGHT_TASK_v3_4_1_0.ps1",
+      "sha256": "c83a069d2e4fd658113081f6b7a28a1c13b671aa2e91e05324f8ab04047c2349",
+      "size_bytes": 1267
+    },
+    {
+      "path": "PACKAGE_MANIFEST_v3_4_1_0.json",
+      "sha256": "5251a39aac6cd8797a5a6d8da82ef2bb214c3ba445411aeb9757974c35230906",
+      "size_bytes": 7470
+    },
+    {
+      "path": "README_v3_4_1_0.md",
+      "sha256": "1a0ca9107e64db3589e5de9e8291ae1cac9641e5ca18b444a0bc1a2189dca681",
+      "size_bytes": 2662
+    },
+    {
+      "path": "README_v3_4_1_0a.md",
+      "sha256": "e74572290a3de5435b5e4a0d7f814da3c04ace19852c9f407bf4e977c45adee9",
+      "size_bytes": 477
+    },
+    {
+      "path": "REMOVE_MIDNIGHT_TASK_v3_4_1_0.ps1",
+      "sha256": "03f22b4dabd42a834975df76621c5e2a429bd8c0112797d188c91704bd0b720b",
+      "size_bytes": 181
+    },
+    {
+      "path": "RUN_AGENTS_NOW_v3_4_1_0.ps1",
+      "sha256": "e2d1fde1884a7570fc7583fa35b8ca98f0bcec6367aa7de52ab8bfb825bf7599",
+      "size_bytes": 2879
+    },
+    {
+      "path": "RUN_NIGHTLY_AGENTS_v3_4_1_0.ps1",
+      "sha256": "5562be8d8a5bb4807c7a6478c72212a043f71642cb016c28bb3d05b93f237024",
+      "size_bytes": 604
+    },
+    {
+      "path": "VERIFY_AGENT_INSTALL_v3_4_1_0a.ps1",
+      "sha256": "7663153cb229b6a0bbcb3fef1ad66d684ef76e8229d3c3fb0f7b2b65c1493a83",
+      "size_bytes": 769
+    },
+    {
+      "path": "agents/__init__.py",
+      "sha256": "40d478b6a3602e96e06d97effd927c2a2d1fa943e0260bc578a42a3813c0001b",
+      "size_bytes": 68
+    },
+    {
+      "path": "agents/call_agent.py",
+      "sha256": "682a4729cd97983c71fc785bdf8405a9c3e6d912c3241496c80f1e634321fe83",
+      "size_bytes": 1955
+    },
+    {
+      "path": "agents/common.py",
+      "sha256": "6146da4fe1bee3793772e917744ea58fa34ea2807e120e3c21b8f7df2f8f3a19",
+      "size_bytes": 13572
+    },
+    {
+      "path": "agents/orchestrator.py",
+      "sha256": "9edc03cbf07a3b64afe97ae0846be3b87dd597ed6caff5129744ce1c250384bf",
+      "size_bytes": 9736
+    },
+    {
+      "path": "agents/publication_agent.py",
+      "sha256": "e33f52ea0274a1f48db232ad9100b4bd8b44e646dcec1c8d5689e9c38fa75cfd",
+      "size_bytes": 1853
+    },
+    {
+      "path": "agents/relevance_agent.py",
+      "sha256": "1e36dcf2f5dba22082dc565df96d32b0af990834525486fd97c7fad541ce8b6d",
+      "size_bytes": 2134
+    },
+    {
+      "path": "agents/sector_agent.py",
+      "sha256": "1ab07e1543abbc68f9142d7ea33c0c39ae869502af58c54d4489899c11decd89",
+      "size_bytes": 9834
+    },
+    {
+      "path": "agents/taxonomy.py",
+      "sha256": "df885c0b29b0334a966af255f78bb2fbaaf4275ca50ba16bfce6bee3caeefcce",
+      "size_bytes": 2790
+    },
+    {
+      "path": "agents/validation_agent.py",
+      "sha256": "6e45b90fdf99a753f8f480a3b7d2e480cac8959f7cbc8aafd3ed3b35a4b2fe1d",
+      "size_bytes": 1579
+    },
+    {
+      "path": "config/agent_platform_v3_4_1_0.json",
+      "sha256": "522465732219cd09e94bcc1e6e4e803acd72d6857e7628ba9c1401a651a25a1b",
+      "size_bytes": 1160
+    },
+    {
+      "path": "config/sector_taxonomy_v3_4_1_0.json",
+      "sha256": "a2793fd37d11430c25a95647c40b5ea08c5e590b7dc0c83e81947b684cd7de2b",
+      "size_bytes": 11472
+    },
+    {
+      "path": "requirements-v3_4_1_0.txt",
+      "sha256": "d46cb964c145977e8fc15c8649ea98afdbcb74917ebf0f221014dce4d41a4535",
+      "size_bytes": 72
+    },
+    {
+      "path": "scripts/preflight_agents_v3_4_1_0.py",
+      "sha256": "1976cf2a074dbe9f95861e7c5b399258e434c470f63042654335b47f380682fa",
+      "size_bytes": 867
+    },
+    {
+      "path": "scripts/verify_active_catalogue_v3_4_1_0.py",
+      "sha256": "4f775df1618cfe39f94b4d78ce440259659772575f290008ae50d8c36b941d70",
+      "size_bytes": 1312
+    },
+    {
+      "path": "tests/.pytest_cache/.gitignore",
+      "sha256": "3ed731b65d06150c138e2dadb0be0697550888a6b47eb8c45ecc9adba8b8e9bd",
+      "size_bytes": 37
+    },
+    {
+      "path": "tests/.pytest_cache/CACHEDIR.TAG",
+      "sha256": "37dc88ef9a0abeddbe81053a6dd8fdfb13afb613045ea1eb4a5c815a74a3bde4",
+      "size_bytes": 191
+    },
+    {
+      "path": "tests/.pytest_cache/README.md",
+      "sha256": "73fd6fccdd802c419a6b2d983d6c3173b7da97558ac4b589edec2dfe443db9ad",
+      "size_bytes": 302
+    },
+    {
+      "path": "tests/.pytest_cache/v/cache/lastfailed",
+      "sha256": "bbb46042c27559d9e6bbc3c753beb159cd3424132312287ee7cc4c7b2e403d7a",
+      "size_bytes": 45
+    },
+    {
+      "path": "tests/.pytest_cache/v/cache/nodeids",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "size_bytes": 2
+    },
+    {
+      "path": "tests/test_agent_platform_v3_4_1_0.py",
+      "sha256": "eb5d0015b9301f9d129f95008d080b6fab9476b9c6d303f4e0ace26544d8a4b2",
+      "size_bytes": 2140
+    }
+  ]
+}

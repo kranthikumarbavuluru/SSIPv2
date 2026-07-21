@@ -1,0 +1,8 @@
+﻿source_id,requested_url,final_url,http_status,content_type,page_title,redirected,link_count,retrieved_at,error
+DPIIT-SRC-001,https://www.dpiit.gov.in/offerings,https://www.dpiit.gov.in/offerings,FETCH_FAILED,,,0,0,2026-07-21T00:00:00+05:30,HTTPError:HTTP Error 403: Forbidden
+DPIIT-SRC-002,https://www.dpiit.gov.in/documents/orders-and-notices,https://www.dpiit.gov.in/documents/orders-and-notices,FETCH_FAILED,,,0,0,2026-07-21T00:00:00+05:30,HTTPError:HTTP Error 403: Forbidden
+DPIIT-SRC-003,https://www.dpiit.gov.in/documents/gazettes-notifications,https://www.dpiit.gov.in/documents/gazettes-notifications,FETCH_FAILED,,,0,0,2026-07-21T00:00:00+05:30,HTTPError:HTTP Error 403: Forbidden
+DPIIT-SRC-012,https://www.dpiit.gov.in/offerings/schemes-and-services/details/sipp-gTM1UDNtQWa,https://www.dpiit.gov.in/offerings/schemes-and-services/details/sipp-gTM1UDNtQWa,FETCH_FAILED,,,0,0,2026-07-21T00:00:00+05:30,HTTPError:HTTP Error 403: Forbidden
+DPIIT-SRC-017,https://investorconnect.startupindia.gov.in/,https://investorconnect.startupindia.gov.in/,FETCH_FAILED,,,0,0,2026-07-21T00:00:00+05:30,URLError:<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1032)>
+DPIIT-SRC-018,https://www.dpiit.gov.in/offerings/schemes-and-services/details/startup-india-initiative-MTMzYDNtQWa,https://www.dpiit.gov.in/offerings/schemes-and-services/details/startup-india-initiative-MTMzYDNtQWa,FETCH_FAILED,,,0,0,2026-07-21T00:00:00+05:30,HTTPError:HTTP Error 403: Forbidden
+DPIIT-SRC-020,https://egazette.nic.in/,https://egazette.nic.in/,FETCH_FAILED,,,0,0,2026-07-21T00:00:00+05:30,URLError:<urlopen error [Errno 11001] getaddrinfo failed>

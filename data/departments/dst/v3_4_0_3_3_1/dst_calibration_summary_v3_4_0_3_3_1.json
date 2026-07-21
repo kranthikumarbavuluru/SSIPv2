@@ -1,0 +1,60 @@
+{
+  "service_version": "3.4.0.3.3.1",
+  "department_code": "DST",
+  "department_name": "Department of Science and Technology",
+  "generated_at": "2026-07-10T11:48:28+00:00",
+  "mode": "SELECTIVE_CRAWL",
+  "network_access_used": true,
+  "counts": {
+    "input_gap_context_rows": 114,
+    "input_review_rows": 64,
+    "input_corrected_schemes": 3,
+    "input_corrected_programmes": 20,
+    "unresolved_targets_scored": 59,
+    "offline_closures": 55,
+    "selective_crawl_queue": 1,
+    "processed_selective_targets": 1,
+    "manual_entity_reviews": 4,
+    "possible_new_schemes": 0,
+    "possible_new_programmes": 0,
+    "final_corrected_schemes": 3,
+    "final_corrected_programmes": 20,
+    "final_unresolved": 0
+  },
+  "rates": {
+    "final_unresolved_rate": 0.0,
+    "gap_resolution_rate": 1.0,
+    "maximum_final_unresolved_rate": 0.05,
+    "minimum_gap_resolution_rate": 0.95
+  },
+  "classification_counts": {
+    "ACCESSIBILITY_LINK": 2,
+    "GLOBAL_NAVIGATION": 36,
+    "CATEGORY_OR_INDEX_PAGE": 7,
+    "SUPPORTING_INFORMATION": 23,
+    "BROKEN_OFFICIAL_LINK": 1,
+    "POLICY_REPORT_OR_DOCUMENT": 12,
+    "NEWS_EVENT_OR_RECRUITMENT": 14,
+    "INSTITUTION_OR_RESOURCE": 15,
+    "MANUAL_ENTITY_REVIEW": 4
+  },
+  "calibration_validation_passed": true,
+  "ready_for_v3_4_0_4": true,
+  "outputs": {
+    "scores": "dst_unresolved_target_scores_v3_4_0_3_3_1.csv",
+    "selective_queue": "dst_calibrated_selective_crawl_queue_v3_4_0_3_3_1.csv",
+    "offline_closures": "dst_low_value_gap_closures_v3_4_0_3_3_1.csv",
+    "crawled_targets": "dst_selectively_crawled_targets_v3_4_0_3_3_1.csv",
+    "possible_new_schemes": "dst_possible_new_scheme_pages_v3_4_0_3_3_1.csv",
+    "possible_new_programmes": "dst_possible_new_programme_pages_v3_4_0_3_3_1.csv",
+    "manual_entity_reviews": "dst_manual_entity_review_candidates_v3_4_0_3_3_1.csv",
+    "final_gap_context": "dst_final_gap_context_v3_4_0_3_3_1.csv",
+    "final_review_queue": "dst_final_unresolved_review_queue_v3_4_0_3_3_1.csv",
+    "final_corrected_schemes": "dst_final_corrected_schemes_v3_4_0_3_3_1.csv",
+    "final_corrected_programmes": "dst_final_corrected_programmes_v3_4_0_3_3_1.csv",
+    "audit": "dst_calibration_audit_v3_4_0_3_3_1.csv",
+    "validation": "dst_calibration_validation_v3_4_0_3_3_1.json",
+    "summary": "dst_calibration_summary_v3_4_0_3_3_1.json"
+  },
+  "output_directory": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\departments\\dst\\v3_4_0_3_3_1"
+}

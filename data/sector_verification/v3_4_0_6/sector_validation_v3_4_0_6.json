@@ -1,0 +1,31 @@
+{
+  "service_version": "3.4.0.6",
+  "validated_at": "2026-07-10T14:36:56+00:00",
+  "counts": {
+    "input_rows": 137,
+    "output_rows": 137,
+    "visible_main_records": 119,
+    "records_missing_sector": 0,
+    "invalid_sector_values": 0,
+    "manual_review_records": 8,
+    "network_enriched_records": 137,
+    "lm_verified_records": 0
+  },
+  "checks": {
+    "row_count_preserved": true,
+    "master_id_order_preserved": true,
+    "all_visible_main_records_have_sector": true,
+    "all_sector_values_in_taxonomy": true,
+    "no_support_type_used_as_sector": true,
+    "one_result_per_input_row": true
+  },
+  "missing_sector_scheme_names": [],
+  "invalid_sectors": [],
+  "support_type_errors": [],
+  "validation_passed": true,
+  "input_catalogue": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\catalogue_preview\\v3_3_2\\catalogue_preview_v3_3_2.csv",
+  "enriched_catalogue": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\sector_verification\\v3_4_0_6\\catalogue_with_verified_sectors_v3_4_0_6.csv",
+  "network_allowed": true,
+  "lm_studio_mode": "auto",
+  "lm_studio_used": false
+}

@@ -1,0 +1,44 @@
+{
+  "version": "3.4.3.7.4",
+  "ministries": {
+    "Ministry of Science and Technology": [
+      "Ministry of Science and Technology",
+      "Ministry of Science & Technology"
+    ],
+    "Ministry of Electronics and Information Technology (MeitY)": [
+      "Ministry of Electronics and Information Technology",
+      "Ministry of Electronics and Information Technology (MeitY)",
+      "MeitY"
+    ],
+    "Ministry of Commerce and Industry": [
+      "Ministry of Commerce and Industry",
+      "Ministry of Commerce & Industry"
+    ]
+  },
+  "departments": {
+    "Department of Science and Technology (DST)": [
+      "Department of Science and Technology",
+      "Department of Science and Technology (DST)",
+      "Department of Science ad Technology",
+      "DST"
+    ],
+    "Department for Promotion of Industry and Internal Trade (DPIIT)": [
+      "Department for Promotion of Industry and Internal Trade",
+      "Department for Promotion of Industry and Internal Trade (DPIIT)",
+      "Department of Industrial Policy and Promotion",
+      "DPIIT"
+    ],
+    "Department of Biotechnology (DBT)": [
+      "Department of Biotechnology",
+      "Department of Biotechnology (DBT)",
+      "DBT"
+    ]
+  },
+  "display_only_department_label": "Ministry-level programme",
+  "rules": [
+    "MeitY ministry-level records store department as null.",
+    "The Admin filter displays null ministry-level departments as Ministry-level programme.",
+    "DST records use Ministry of Science and Technology plus Department of Science and Technology (DST).",
+    "Unknown organizations are not inferred or renamed."
+  ]
+}

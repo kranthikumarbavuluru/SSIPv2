@@ -1,0 +1,8 @@
+﻿candidate_id,existing_master_id,classification,confidence,title,heading,canonical_url,discovered_from,discovery_method,parent_hint,status_hint,published_date_signal,money_signals,rendered_used,reasons,llm_classification,llm_confidence,llm_reason
+meity_f295c61d6fdd00bb5182,,DISCOVERY_INDEX,0.99,Access Denied,Access Denied,https://www.meity.gov.in/offerings/schemes-and-services,,seed,,,,,True,LISTING_OR_INDEX_PAGE,,0.0,
+meity_a08e2f7c36d1c8c69a51,,DISCOVERY_INDEX,0.99,Access Denied,Access Denied,https://www.meity.gov.in/offerings?page=0,,seed,,,,,True,LISTING_OR_INDEX_PAGE,,0.0,
+meity_876038097d2605970542,,DISCOVERY_INDEX,0.99,Access Denied,Access Denied,https://www.meity.gov.in/archives?page=schemes_and_services,,seed,,,,,True,LISTING_OR_INDEX_PAGE,,0.0,
+meity_b054ebba9fe4ed25337e,,DISCOVERY_INDEX,0.99,MeityStartupHub,,https://msh.meity.gov.in/whatsnew,,seed,,,,,True,LISTING_OR_INDEX_PAGE,,0.0,
+meity_d1c2239305c4652c8d30,,DISCOVERY_INDEX,0.99,Access Denied,Access Denied,https://www.meity.gov.in/sitemap.xml,,seed,,,,,True,SITEMAP_OR_XML_INDEX,,0.0,
+meity_5079812108c0c97f5c11,,DISCOVERY_INDEX,0.99,MeityStartupHub,Page Not Found,https://msh.meity.gov.in/sitemap.xml,,seed,,,,,True,SITEMAP_OR_XML_INDEX,,0.0,
+meity_2b9017c3d8151f2cfa0c,,DISCOVERY_INDEX,0.99,MeityStartupHub,G20-DIA Agenda,https://msh.meity.gov.in/g20dia/programs-at-glance,https://msh.meity.gov.in/schemes/samridh,rendered_dom,,,,,True,LISTING_OR_INDEX_PAGE,,0.0,

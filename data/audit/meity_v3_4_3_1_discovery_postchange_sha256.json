@@ -1,0 +1,31 @@
+{
+  "version": "3.4.3.1",
+  "phase": "MeitY Discovery Expansion Hotfix",
+  "recorded_at": "2026-07-13T07:08:23+00:00",
+  "coverage_status": "PASS",
+  "frozen_file_results": {
+    "data/catalogue_preview/v3_3_2/catalogue_preview_v3_3_2.csv": {
+      "before": "0181012e52125ffb646c89ff86b39ac0136277aa76750e527e2870de7aaf43ba",
+      "after": "0181012e52125ffb646c89ff86b39ac0136277aa76750e527e2870de7aaf43ba",
+      "unchanged": true
+    },
+    "data/publication/current_manifest.json": {
+      "before": "189d1f363db367080dd7117640f717527707e1d86e089f151f0f58adca53ccb0",
+      "after": "189d1f363db367080dd7117640f717527707e1d86e089f151f0f58adca53ccb0",
+      "unchanged": true
+    },
+    "database/ssip_staging_v1.db": {
+      "before": "41862a0fadd78ac2238153fec50af7136619eaf6a5c22951f57ba42a2ee101c3",
+      "after": "41862a0fadd78ac2238153fec50af7136619eaf6a5c22951f57ba42a2ee101c3",
+      "unchanged": true
+    },
+    "apps/public_dashboard_app_v2_9.py": {
+      "before": "77bd6cff08353e9587459b8f507ef5399b3c508fd514d73bdb87f8cc97ca14cd",
+      "after": "77bd6cff08353e9587459b8f507ef5399b3c508fd514d73bdb87f8cc97ca14cd",
+      "unchanged": true
+    }
+  },
+  "publication_performed": false,
+  "database_modified": false,
+  "dashboard_modified": false
+}

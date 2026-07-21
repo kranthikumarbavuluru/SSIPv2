@@ -1,0 +1,42 @@
+{
+  "version": "3.4.3.5",
+  "stage": "OFFLINE_CLASSIFICATION_ONLY",
+  "execution_mode": "PREVIEW_ONLY",
+  "input_inventory_row_count": 5,
+  "input_quarantine_row_count": 5,
+  "classified_row_count": 5,
+  "review_queue_row_count": 10,
+  "action_counts": {
+    "SCHEME_DETAILS": 4,
+    "OFFICIAL_NOTIFICATION": 1
+  },
+  "link_role_counts": {
+    "SCHEME_MASTER": 4,
+    "OFFICIAL_NOTIFICATION": 1
+  },
+  "verification_status_counts": {
+    "UNVERIFIED": 5
+  },
+  "public_button_eligible_count": 0,
+  "apply_now_button_count": 0,
+  "network_requests": 0,
+  "database_writes": 0,
+  "dashboard_code_changes": 0,
+  "publication_performed": false,
+  "classified_at_utc": "2026-07-13T08:57:40+00:00",
+  "source_sha256": "ef43bd7e27df2ead5fe88ab8bf2751a80eac6c4e13e8894173a6625b57650a8c",
+  "inventory_sha256": "cef5c394608624ce543debdf6bf16f65360bee9ece4c44dcaf59b156db2c36b0",
+  "quarantine_sha256": "7caf52148156172d292fb72d45e25e92bbe15e6ac548858a0dd3474b7cfcc876",
+  "classification_path": "data/departments/meity/v3_4_3_5/meity_action_link_offline_classification_v3_4_3_5.csv",
+  "review_queue_path": "data/departments/meity/v3_4_3_5/meity_action_link_review_queue_v3_4_3_5.csv",
+  "classification_sha256": "d11465dc9d2885096a770c9aecc938f3b436f0fe11d366b8cbf13144ae4e2f71",
+  "review_queue_sha256": "f4129abfb48d29504ec4220786d8530d982e7f54984cff5eddb93fb428b0d8bb",
+  "safety": {
+    "source_candidate_unchanged": true,
+    "clean_inventory_unchanged": true,
+    "quarantine_inventory_unchanged": true,
+    "database_files_unchanged": true,
+    "dashboard_python_files_unchanged": true,
+    "publication_current_unchanged": true
+  }
+}

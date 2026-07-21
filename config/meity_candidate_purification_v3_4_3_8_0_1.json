@@ -1,0 +1,225 @@
+{
+  "version": "3.4.3.8.0.1",
+  "source_version": "3.4.3.8.0",
+  "source_dir": "data/departments/meity/v3_4_3_8_0",
+  "output_dir": "data/departments/meity/v3_4_3_8_0_1",
+  "generic_titles": [
+    "meitystartuphub",
+    "meity startup hub",
+    "msh",
+    "home",
+    "schemes",
+    "schemes and services",
+    "challenges",
+    "what's new",
+    "whats new",
+    "whatsnew",
+    "archives",
+    "access denied",
+    "page not found",
+    "not found",
+    "error",
+    "press release all",
+    "organisation profile",
+    "organisationprofile",
+    "event partner"
+  ],
+  "error_markers": [
+    "page not found",
+    "access denied",
+    "403 forbidden",
+    "forbidden",
+    "404 not found",
+    "error 404",
+    "generic_or_navigation_page",
+    "invalid route",
+    "route not found"
+  ],
+  "footer_date_markers": [
+    "last updated on",
+    "last updated",
+    "page updated",
+    "website updated",
+    "portal updated",
+    "all rights reserved",
+    "number of users visited",
+    "copyright"
+  ],
+  "deadline_markers": [
+    "last date to apply",
+    "application deadline",
+    "closing date",
+    "applications close",
+    "application closes",
+    "deadline for application",
+    "deadline for submission",
+    "submit by",
+    "apply by",
+    "last date for submission"
+  ],
+  "opening_markers": [
+    "applications open",
+    "application opens",
+    "opening date",
+    "application starts",
+    "applications invited from",
+    "commencement of application"
+  ],
+  "document_roles": {
+    "ADMINISTRATIVE_APPROVAL": [
+      "administrative approval",
+      "admin approval",
+      "sanction order",
+      "approval order"
+    ],
+    "PROGRAMME_GUIDELINE": [
+      "guideline",
+      "guidelines",
+      "scheme guideline",
+      "operational guideline"
+    ],
+    "BROCHURE": [
+      "brochure",
+      "one pager",
+      "one-pager"
+    ],
+    "SELECTED_STARTUPS_LIST": [
+      "list of selected startups",
+      "list of selected start-ups",
+      "selected startups",
+      "selected start-ups",
+      "awardees"
+    ],
+    "INCUBATION_CENTRE_LIST": [
+      "list of incubation centres",
+      "list of incubation centers"
+    ],
+    "SUCCESS_STORY": [
+      "success story",
+      "success stories"
+    ],
+    "IMPLEMENTATION_REPORT": [
+      "closure report",
+      "final report",
+      "implementation report",
+      "scheme report",
+      "evaluation report"
+    ],
+    "RESULT_NOTICE": [
+      "results of",
+      "result announcement",
+      "winner",
+      "runner-up",
+      "runner up"
+    ],
+    "CALL_DOCUMENT": [
+      "call for applications",
+      "applications invited",
+      "challenge",
+      "hackathon",
+      "cohort",
+      "expression of interest",
+      "request for proposal"
+    ]
+  },
+  "programme_families": [
+    {
+      "canonical_name": "GENESIS",
+      "family_kind": "PERMANENT_PROGRAMME",
+      "aliases": [
+        "genesis",
+        "gen-next support for innovative startups",
+        "gen next support for innovative startups"
+      ]
+    },
+    {
+      "canonical_name": "SASACT",
+      "family_kind": "PERMANENT_PROGRAMME",
+      "aliases": [
+        "sasact"
+      ]
+    },
+    {
+      "canonical_name": "SAMRIDH",
+      "family_kind": "ACCELERATOR_PROGRAMME",
+      "aliases": [
+        "samridh",
+        "startup accelerator of meity for product innovation development and growth"
+      ]
+    },
+    {
+      "canonical_name": "TIDE 2.0",
+      "family_kind": "INCUBATION_PROGRAMME",
+      "aliases": [
+        "tide 2.0",
+        "tide2.0",
+        "technology incubation and development of entrepreneurs 2.0",
+        "technology incubation and development of entrepreneurs"
+      ]
+    },
+    {
+      "canonical_name": "XR Startup Program",
+      "family_kind": "ACCELERATOR_PROGRAMME",
+      "aliases": [
+        "xr startup program",
+        "xr startup programme"
+      ]
+    },
+    {
+      "canonical_name": "CREST Semiconductor Accelerator",
+      "family_kind": "ACCELERATOR_PROGRAMME",
+      "aliases": [
+        "crest semiconductor accelerator",
+        "micron",
+        "semiconductor accelerator for early-stage startups",
+        "semiconductor accelerator for early stage startups"
+      ]
+    },
+    {
+      "canonical_name": "MathWorks Startup Program",
+      "family_kind": "ACCELERATOR_PROGRAMME",
+      "aliases": [
+        "mathworks startup program",
+        "mathworks"
+      ]
+    }
+  ],
+  "call_families": [
+    {
+      "canonical_name": "BHUMI – BSF Border Security Hackathon",
+      "entity_type": "HACKATHON",
+      "aliases": [
+        "bhumi",
+        "bhumi bsf",
+        "bsf border security hackathon"
+      ]
+    },
+    {
+      "canonical_name": "DRISHTI – SSB Grand Challenge on Strengthening Border Security",
+      "entity_type": "GRAND_CHALLENGE",
+      "aliases": [
+        "drishti",
+        "drishti ssb",
+        "ssb grand challenge"
+      ]
+    },
+    {
+      "canonical_name": "Google Appscale Academy 2023",
+      "entity_type": "ACCELERATOR_COHORT",
+      "aliases": [
+        "google appscale",
+        "googleappscale",
+        "appscale academy 2023"
+      ]
+    },
+    {
+      "canonical_name": "IHMCL Barrier-less Free-flow Tolling and Intelligent Traffic Management Hackathon",
+      "entity_type": "HACKATHON",
+      "aliases": [
+        "ihmcl",
+        "barrier-less free-flow tolling",
+        "intelligent traffic management hackathon"
+      ]
+    }
+  ]
+}

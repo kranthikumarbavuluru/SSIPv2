@@ -1,0 +1,106 @@
+{
+  "package": "SSIP v3.4.2.1 Intelligent Catalogue Governance",
+  "python_compile_passed": true,
+  "compile_errors": [],
+  "tests_passed": true,
+  "test_output": ".........                                                                [100%]\n9 passed in 0.11s\n",
+  "lm_studio_required": false,
+  "runner": "RUN_GOVERNANCE_AGENTS_v3_4_2_1.ps1",
+  "files": [
+    {
+      "path": "INSTALL_NIGHTLY_GOVERNANCE_TASK_v3_4_2_1.ps1",
+      "sha256": "3d60f8c36deb3c58f1ca7c05d351b1fd7008df9ac038afeb492b2ba005ac4caf",
+      "size_bytes": 1000
+    },
+    {
+      "path": "PACKAGE_VALIDATION_v3_4_2_1.json",
+      "sha256": "d01af3d5b1c44871d17660c1ac4d8ed3f2519135e4dc7eafa81c3a7095e7c980",
+      "size_bytes": 3707
+    },
+    {
+      "path": "README_v3_4_2_1.md",
+      "sha256": "10a23f05eed7d3d7ea7a302df446cfdd5d3f7cdac79baf04c4792a19b0b929c1",
+      "size_bytes": 2399
+    },
+    {
+      "path": "RUN_GOVERNANCE_AGENTS_v3_4_2_1.ps1",
+      "sha256": "47b9d58ee36a44cc9c871fed4db75a97e95ab8683eac7a097370263172731272",
+      "size_bytes": 2421
+    },
+    {
+      "path": "RUN_NIGHTLY_GOVERNANCE_v3_4_2_1.ps1",
+      "sha256": "77bf9b63f2835f65aa115d25f5352d097319ac5e08f8aa8f3bef4a80b53c8cbe",
+      "size_bytes": 435
+    },
+    {
+      "path": "agents/__init__.py",
+      "sha256": "ad3f06b9df365e433fa924d36513466adb4b4a75544aec0fc13499929f76afb8",
+      "size_bytes": 27
+    },
+    {
+      "path": "agents/v3420/__init__.py",
+      "sha256": "a06c4ecf3c191996d182332846507556bfd86102ef3a93bb96a0e83f9a9bfc6d",
+      "size_bytes": 24
+    },
+    {
+      "path": "agents/v3420/call_agent.py",
+      "sha256": "2f50b08abbd824b281cc6d12cf1b98c79b19e691019bd7e4ff613a33d054382a",
+      "size_bytes": 852
+    },
+    {
+      "path": "agents/v3420/common.py",
+      "sha256": "f12fda09f9b6cdf9b0c247ef5bec4a5b8eb95b621a10279894317332c8d72cd9",
+      "size_bytes": 4193
+    },
+    {
+      "path": "agents/v3420/governance.py",
+      "sha256": "8ace0c80e897dfe5a1e5d3c16c8b5a5bb4383b95131b32816264317c6a1cd2f3",
+      "size_bytes": 1191
+    },
+    {
+      "path": "agents/v3420/orchestrator.py",
+      "sha256": "1fbaf122f0f1ec06d2466685a4ac9de9f1384725ced2a41eaedd619e2e40c61e",
+      "size_bytes": 10160
+    },
+    {
+      "path": "agents/v3420/relevance_agent.py",
+      "sha256": "f3d9e6cba09f9b926fde70c3464ef1703b00fc41847e9466c89c3fa8bc21e3df",
+      "size_bytes": 2702
+    },
+    {
+      "path": "agents/v3420/role_agent.py",
+      "sha256": "160ea290801e6ded37a8d1ff3aa27112ede8920cd3c071c7111f59238646ab6a",
+      "size_bytes": 4054
+    },
+    {
+      "path": "agents/v3420/sector_agent.py",
+      "sha256": "119b1ee39f4407bf322ba10b94a05048f1cbff1b69cf0375c5100f1978d45adb",
+      "size_bytes": 3089
+    },
+    {
+      "path": "config/catalogue_governance_v3_4_2_1.json",
+      "sha256": "8d095433e6611897960430c8d1b3c4e7dbf16591a57b1b6e84d847c7d66cbcdb",
+      "size_bytes": 435
+    },
+    {
+      "path": "config/sector_taxonomy_v3_4_2_1.json",
+      "sha256": "b5684391305d60e1574666a58f871585200e722b64d0abf0c163448355edda77",
+      "size_bytes": 7384
+    },
+    {
+      "path": "requirements-v3_4_2_1.txt",
+      "sha256": "03690eb5f4aed75c3339ef4a25fdb295bc3dd42ff3bee5dc3f66120e560994a1",
+      "size_bytes": 30
+    },
+    {
+      "path": "scripts/verify_governance_v3_4_2_1.py",
+      "sha256": "db6236074a6fc7dce2c08f81b29a5f4b4c15ef725d173b31389ae4618b16ea24",
+      "size_bytes": 1088
+    },
+    {
+      "path": "tests/test_governance_agents_v3_4_2_1.py",
+      "sha256": "8f300c3458d58db51343d42571dbeec982fa722d90be48d8d6e5fc62093f3644",
+      "size_bytes": 1958
+    }
+  ]
+}

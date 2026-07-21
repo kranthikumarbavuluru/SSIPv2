@@ -1,0 +1,5 @@
+﻿candidate_id,existing_master_id,classification,confidence,title,heading,canonical_url,discovered_from,discovery_method,parent_hint,status_hint,published_date_signal,money_signals,rendered_used,reasons,llm_classification,llm_confidence,llm_reason
+147173e17ea741687247,147173e17ea741687247,SCHEME_MASTER_CANDIDATE,0.96,MeityStartupHub,,https://msh.meity.gov.in/schemes/samridh,,seed,,STATUS_REQUIRES_VALIDATION,,,True,OFFICIAL_SCHEME_PATH,,0.0,
+6af79cf6c8a213dddce8,6af79cf6c8a213dddce8,SCHEME_MASTER_CANDIDATE,0.96,MeityStartupHub,,https://msh.meity.gov.in/schemes/tide,,seed,,STATUS_REQUIRES_VALIDATION,,,True,OFFICIAL_SCHEME_PATH,,0.0,
+meity_1c5c50d5e86fc876d0b3,,SCHEME_MASTER_CANDIDATE,0.96,MeityStartupHub,Scheme for Accelerating Startups around Post COVID Technology Opportunities (SASACT),https://msh.meity.gov.in/schemes/sasact,,seed,,STATUS_REQUIRES_VALIDATION,,,True,OFFICIAL_SCHEME_PATH,,0.0,
+meity_28ac6fb921386a6968c7,,SCHEME_MASTER_CANDIDATE,0.96,MeityStartupHub,,https://msh.meity.gov.in/schemes/genesis,,seed,,STATUS_REQUIRES_VALIDATION,,,True,OFFICIAL_SCHEME_PATH,,0.0,

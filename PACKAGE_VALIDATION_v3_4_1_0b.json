@@ -1,0 +1,27 @@
+{
+  "package_version": "3.4.1.0b",
+  "purpose": "PowerShell native stderr/logging compatibility",
+  "python_compile_passed": true,
+  "changes": [
+    "Python console logs routed to stdout",
+    "Runner validates native process exit codes",
+    "Harmless stderr no longer terminates Windows PowerShell 5.1"
+  ],
+  "files": [
+    {
+      "path": "README_v3_4_1_0b.md",
+      "sha256": "214ba37813c8169e030693a4c5cdd2a8a799c769b110ddf245e73fa7c211c2d8",
+      "size_bytes": 833
+    },
+    {
+      "path": "RUN_AGENTS_NOW_v3_4_1_0.ps1",
+      "sha256": "2858b4ed0431c85c07afbdc86aafede8dfe80159e7f861082f6104788bc9ae13",
+      "size_bytes": 3937
+    },
+    {
+      "path": "agents/common.py",
+      "sha256": "e722a1afb2dd237793eb1c24642d621b3e9b57a915ef4ccf9a255c190fa7e6b6",
+      "size_bytes": 13593
+    }
+  ]
+}

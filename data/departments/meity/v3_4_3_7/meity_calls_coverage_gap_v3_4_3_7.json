@@ -1,0 +1,202 @@
+{
+  "call_or_challenge_evidence": [
+    {
+      "application_url": "https://birac.nic.in/login.php",
+      "deadline": "",
+      "locator": "csv_row:5",
+      "parent_master_id": "",
+      "path": "data/departments/meity/v3_4_2_0_2/catalogue_candidate_v3_4_2_0_2.csv",
+      "status": "OPEN",
+      "title": "Grand Challenges India (GCI)",
+      "verified_current": false
+    },
+    {
+      "application_url": "Not specified on the verified official source",
+      "deadline": "Not specified on the verified official source",
+      "locator": "csv_row:11",
+      "parent_master_id": "",
+      "path": "data/departments/meity/v3_4_2_0_2/catalogue_candidate_v3_4_2_0_2.csv",
+      "status": "VERIFICATION_REQUIRED",
+      "title": "Sitemap.Xml",
+      "verified_current": false
+    },
+    {
+      "application_url": "Not specified on the verified official source",
+      "deadline": "Not specified on the verified official source",
+      "locator": "csv_row:12",
+      "parent_master_id": "",
+      "path": "data/departments/meity/v3_4_2_0_2/catalogue_candidate_v3_4_2_0_2.csv",
+      "status": "VERIFICATION_REQUIRED",
+      "title": "myScheme",
+      "verified_current": false
+    },
+    {
+      "application_url": "Not specified on the verified official source",
+      "deadline": "Not specified on the verified official source",
+      "locator": "csv_row:16",
+      "parent_master_id": "",
+      "path": "data/departments/meity/v3_4_2_0_2/catalogue_candidate_v3_4_2_0_2.csv",
+      "status": "VERIFICATION_REQUIRED",
+      "title": "NTSC Aligarh | NSIC Technical Services Centres | NTSC |TIC | LBI | testing laboratories accredited by NABL / BIS | NSIC Services | NSIC - NSIC : National Small Industries Corporati",
+      "verified_current": false
+    },
+    {
+      "application_url": "Not specified on the verified official source",
+      "deadline": "Not specified on the verified official source",
+      "locator": "csv_row:17",
+      "parent_master_id": "",
+      "path": "data/departments/meity/v3_4_2_0_2/catalogue_candidate_v3_4_2_0_2.csv",
+      "status": "VERIFICATION_REQUIRED",
+      "title": "NTSC Chennai | NSIC Technical Services Centres | NTSC |TIC | LBI | testing laboratories accredited by NABL / BIS | NSIC Services | NSIC - NSIC : National Small Industries Corporati",
+      "verified_current": false
+    },
+    {
+      "application_url": "Not specified on the verified official source",
+      "deadline": "Not specified on the verified official source",
+      "locator": "csv_row:18",
+      "parent_master_id": "",
+      "path": "data/departments/meity/v3_4_2_0_2/catalogue_candidate_v3_4_2_0_2.csv",
+      "status": "VERIFICATION_REQUIRED",
+      "title": "NTSC Neemka, Faridabad | NSIC Technical Services Centres | NTSC |TIC | LBI | testing laboratories accredited by NABL / BIS | NSIC Services | NSIC - NSIC : National Small Industries",
+      "verified_current": false
+    },
+    {
+      "application_url": "Not specified on the verified official source",
+      "deadline": "Not specified on the verified official source",
+      "locator": "csv_row:19",
+      "parent_master_id": "",
+      "path": "data/departments/meity/v3_4_2_0_2/catalogue_candidate_v3_4_2_0_2.csv",
+      "status": "VERIFICATION_REQUIRED",
+      "title": "NTSC Howrah, West Bengal | NSIC Technical Services Centres | NTSC |TIC | LBI | testing laboratories accredited by NABL / BIS | NSIC Services | NSIC - NSIC : National Small Industri",
+      "verified_current": false
+    },
+    {
+      "application_url": "Not specified on the verified official source",
+      "deadline": "Not specified on the verified official source",
+      "locator": "csv_row:20",
+      "parent_master_id": "",
+      "path": "data/departments/meity/v3_4_2_0_2/catalogue_candidate_v3_4_2_0_2.csv",
+      "status": "VERIFICATION_REQUIRED",
+      "title": "NTSC Hyderabad, Telangana | NSIC Technical Services Centres | NTSC |TIC | LBI | testing laboratories accredited by NABL / BIS | NSIC Services | NSIC - NSIC : National Small Industr",
+      "verified_current": false
+    },
+    {
+      "application_url": "Not specified on the verified official source",
+      "deadline": "Not specified on the verified official source",
+      "locator": "csv_row:21",
+      "parent_master_id": "",
+      "path": "data/departments/meity/v3_4_2_0_2/catalogue_candidate_v3_4_2_0_2.csv",
+      "status": "VERIFICATION_REQUIRED",
+      "title": "Material Testing Labs | NSIC Technical Services Centres | NTSC |TIC | LBI | testing laboratories accredited by NABL / BIS | NSIC Services | NSIC - NSIC : National Small Industries",
+      "verified_current": false
+    },
+    {
+      "application_url": "Not specified on the verified official source",
+      "deadline": "Not specified on the verified official source",
+      "locator": "csv_row:22",
+      "parent_master_id": "",
+      "path": "data/departments/meity/v3_4_2_0_2/catalogue_candidate_v3_4_2_0_2.csv",
+      "status": "VERIFICATION_REQUIRED",
+      "title": "NTSC Okhla, New Delhi | NSIC Technical Services Centres | NTSC |TIC | LBI | testing laboratories accredited by NABL / BIS | NSIC Services | NSIC - NSIC : National Small Industries",
+      "verified_current": false
+    },
+    {
+      "application_url": "Not specified on the verified official source",
+      "deadline": "Not specified on the verified official source",
+      "locator": "csv_row:23",
+      "parent_master_id": "",
+      "path": "data/departments/meity/v3_4_2_0_2/catalogue_candidate_v3_4_2_0_2.csv",
+      "status": "VERIFICATION_REQUIRED",
+      "title": "NTSC Rajkot, Gujarat | NSIC Technical Services Centres | NTSC |TIC | LBI | testing laboratories accredited by NABL / BIS | NSIC Services | NSIC - NSIC : National Small Industries C",
+      "verified_current": false
+    },
+    {
+      "application_url": "Not specified on the verified official source",
+      "deadline": "Not specified on the verified official source",
+      "locator": "csv_row:24",
+      "parent_master_id": "",
+      "path": "data/departments/meity/v3_4_2_0_2/catalogue_candidate_v3_4_2_0_2.csv",
+      "status": "VERIFICATION_REQUIRED",
+      "title": "NTSC Rajpura, Punjab |NSIC Technical Services Centres | NTSC |TIC | LBI | testing laboratories accredited by NABL / BIS | NSIC Services | NSIC - NSIC : National Small Industries Co",
+      "verified_current": false
+    },
+    {
+      "application_url": "Not specified on the verified official source",
+      "deadline": "Not specified on the verified official source",
+      "locator": "csv_row:52",
+      "parent_master_id": "",
+      "path": "data/departments/meity/v3_4_2_0_2/catalogue_candidate_v3_4_2_0_2.csv",
+      "status": "VERIFICATION_REQUIRED",
+      "title": "View Challenge.Aspx",
+      "verified_current": false
+    },
+    {
+      "application_url": "Not specified on the verified official source",
+      "deadline": "Not specified on the verified official source",
+      "locator": "csv_row:53",
+      "parent_master_id": "",
+      "path": "data/departments/meity/v3_4_2_0_2/catalogue_candidate_v3_4_2_0_2.csv",
+      "status": "VERIFICATION_REQUIRED",
+      "title": "Register Challenge.Aspx",
+      "verified_current": false
+    },
+    {
+      "application_url": "Not specified on the verified official source",
+      "deadline": "Not specified on the verified official source",
+      "locator": "csv_row:71",
+      "parent_master_id": "",
+      "path": "data/departments/meity/v3_4_2_0_2/catalogue_candidate_v3_4_2_0_2.csv",
+      "status": "VERIFICATION_REQUIRED",
+      "title": "Innovation Challenge.Html",
+      "verified_current": false
+    },
+    {
+      "application_url": "Not specified on the verified official source",
+      "deadline": "Not specified on the verified official source",
+      "locator": "csv_row:104",
+      "parent_master_id": "",
+      "path": "data/departments/meity/v3_4_2_0_2/catalogue_candidate_v3_4_2_0_2.csv",
+      "status": "VERIFICATION_REQUIRED",
+      "title": "Eodb%20Grand%20Challenge%20Details V6.Pdf",
+      "verified_current": false
+    },
+    {
+      "application_url": "",
+      "deadline": "Not specified on the verified official source",
+      "locator": "csv_row:121",
+      "parent_master_id": "",
+      "path": "data/departments/meity/v3_4_2_0_2/catalogue_candidate_v3_4_2_0_2.csv",
+      "status": "VERIFICATION_REQUIRED",
+      "title": "Bharat Startup Grand Challenge | Startup India",
+      "verified_current": false
+    },
+    {
+      "application_url": "",
+      "deadline": "",
+      "locator": "csv_row:59",
+      "parent_master_id": "",
+      "path": "data/departments/meity/v3_4_3_1/meity_discovered_pages_v3_4_3_1.csv",
+      "status": "",
+      "title": "samridh%202nd%20cohort%20om%20final.pdf",
+      "verified_current": false
+    },
+    {
+      "application_url": "",
+      "deadline": "",
+      "locator": "csv_row:4",
+      "parent_master_id": "",
+      "path": "data/departments/meity/v3_4_3_1/meity_evidence_only_pages_v3_4_3_1.csv",
+      "status": "",
+      "title": "samridh%202nd%20cohort%20om%20final.pdf",
+      "verified_current": false
+    }
+  ],
+  "call_or_challenge_evidence_count": 19,
+  "coverage_status": "INCOMPLETE",
+  "network_requests_performed": false,
+  "phase": "MeitY calls coverage gap declaration",
+  "required_follow_up": "Run MeitY Calls, Challenges and Application Windows Recovery; verify parent identity, opening date, deadline and application route before any OPEN status or Apply button.",
+  "verified_current_call_count": 0,
+  "verified_current_calls": [],
+  "version": "3.4.3.7"
+}

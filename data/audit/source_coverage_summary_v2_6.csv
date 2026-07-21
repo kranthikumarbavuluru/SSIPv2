@@ -1,0 +1,6 @@
+﻿source,total_discovered_urls,unique_urls,duplicate_urls,current_v2_urls,legacy_only_urls,successful_fetches,failed_fetches,browser_render_required_pages,scheme_programme_pages,non_scheme_pages,classification_uncertain_pages,master_candidates,extracted_records,validated_records,validation_approved_records,staged_records,admin_review_records,awaiting_admin_review_records,rejected_records,missing_or_unprocessed_records,terminal_master_records,coverage_percentage,publication_coverage_percentage,coverage_status
+Startup India,104,94,10,21,73,23,0,0,8,14,73,3,3,3,2,2,1,0,1,73,3,100.0,66.67,COMPLETE_OR_NEAR_COMPLETE
+MSME,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0.0,0.0,SOURCE_NOT_DISCOVERED
+DST,136,132,4,34,98,35,0,0,19,22,98,8,5,5,1,5,4,0,0,105,5,62.5,62.5,PARTIAL
+BIRAC,300,287,13,101,186,103,0,0,99,2,186,17,2,2,1,2,1,0,0,281,2,11.76,11.76,LOW_COVERAGE
+MeitY Startup Hub,8,8,0,6,2,7,0,6,6,0,2,6,6,6,0,0,6,0,6,2,6,100.0,0.0,COMPLETE_OR_NEAR_COMPLETE

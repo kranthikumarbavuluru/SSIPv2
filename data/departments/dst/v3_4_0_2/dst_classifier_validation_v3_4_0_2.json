@@ -1,0 +1,37 @@
+{
+  "service_version": "3.4.0.2",
+  "department_code": "DST",
+  "generated_at": "2026-07-10T09:59:23+00:00",
+  "counts": {
+    "input_pages": 418,
+    "output_pages": 418,
+    "input_documents": 681,
+    "output_documents": 681,
+    "unknown_pages": 5,
+    "missing_page_role": 0,
+    "invalid_page_role": 0,
+    "missing_page_confidence": 0,
+    "documents_missing_role": 0,
+    "call_candidates_promoted_to_master": 0
+  },
+  "quality": {
+    "unknown_rate": 0.011962,
+    "maximum_unknown_rate": 0.2,
+    "forbidden_identity_fields_found": []
+  },
+  "checks": {
+    "page_rows_preserved": true,
+    "document_rows_preserved": true,
+    "page_role_complete": true,
+    "page_roles_valid": true,
+    "page_confidence_complete": true,
+    "unknown_rate_within_limit": true,
+    "document_role_complete": true,
+    "forbidden_identity_fields_absent": true,
+    "call_candidates_not_promoted_to_master": true,
+    "canonical_scheme_identity_created": false,
+    "call_titles_promoted_to_scheme_names": false
+  },
+  "classifier_validation_passed": true,
+  "ready_for_v3_4_0_3": true
+}

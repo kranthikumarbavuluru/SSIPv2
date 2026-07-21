@@ -1,0 +1,13 @@
+{
+  "version": "3.4.4.0",
+  "mode": "LIVE_BOUNDED",
+  "started_from_registry": true,
+  "page_limit": 40,
+  "pages_attempted": 20,
+  "pages_fetched": 13,
+  "pages_failed": 7,
+  "redirects": 0,
+  "unsupported_documents": 0,
+  "retrieval_timestamp": "2026-07-21T00:00:00+05:30",
+  "resumable_key": "dpiit_crawl_35d0fe00bcc0982143dd"
+}

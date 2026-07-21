@@ -76,9 +76,9 @@ class GovernedAgentsEndToEndTests(unittest.TestCase):
         self.assertIn("RUN_GOVERNED_AGENTS_PREVIEW_v1.ps1", text)
         self.assertNotIn("PUBLISH_APPROVED_AGENT_RUN_v1.ps1", text)
 
-    def test_current_47_record_population_is_recoverable(self) -> None:
+    def test_current_51_record_population_is_recoverable(self) -> None:
         active = ROOT / "data/catalogue_preview/v3_3_2/catalogue_preview_v3_3_2.csv"
-        self.assertEqual(len(dashboard_public_ids(ROOT, active)), 47)
+        self.assertEqual(len(dashboard_public_ids(ROOT, active)), 51)
         backups = sorted((ROOT / "backups/codex_governed_agents").glob("*/data/catalogue_preview/v3_3_2/catalogue_preview_v3_3_2.csv"))
         self.assertTrue(backups)
         self.assertEqual(sha256_file(backups[-1]), sha256_file(active))

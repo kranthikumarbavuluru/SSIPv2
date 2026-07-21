@@ -1,0 +1,19 @@
+{
+  "package": "SSIP_v3_4_0_4_DST_Canonical_Dashboard",
+  "service_version": "3.4.0.4",
+  "validated_at": "2026-07-10",
+  "checks": {
+    "python_builder_compile": true,
+    "python_dashboard_compile": true,
+    "internal_self_test": true,
+    "automated_tests_passed": 7,
+    "synthetic_production_counts": {
+      "schemes": 3,
+      "programmes": 20,
+      "publication_records": 23
+    },
+    "sqlite_integrity_check": true,
+    "manual_review_excluded_from_publication": true,
+    "call_and_generic_identity_blocking": true
+  }
+}

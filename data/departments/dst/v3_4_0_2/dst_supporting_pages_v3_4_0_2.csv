@@ -1,0 +1,442 @@
+﻿page_id,requested_url,normalized_url,final_url,canonical_url,parent_url,depth,source_role_hint,page_role_hint,http_status,content_type,charset,title,language,fetched_at,last_modified_header,etag,last_updated_text,content_length_header,bytes_received,content_sha256,text_sha256,word_count,link_count,text_excerpt,snapshot_path,duplicate_of_page_id,robots_decision,fetch_duration_ms,error,page_title,discovered_from_url,crawl_depth,error_message,main_text,main_text_length,text_extraction_status,text_extraction_method,text_selected_selector,text_candidate_count,text_extraction_error,url_resolution_status,replacement_url,url_resolution_note,classified_page_id,page_role,page_role_confidence,page_role_score,second_best_role,second_best_score,scheme_evidence_score,call_evidence_score,possible_parent_name_text,classification_reasons,review_flags,requires_admin_review,identity_safeguard,classified_at
+dst_page_3856718e27375c3b9590,https://dst.gov.in/schemes-programmes,https://dst.gov.in/schemes-programmes,https://dst.gov.in/schemes-programmes,https://dst.gov.in/schemes-programmes,,0,SCHEME_PROGRAMME_INDEX,SCHEME_PROGRAMME_CANDIDATE,200,text/html,utf-8,Schemes/ Programmes,en,2026-07-10T09:24:14+00:00,"Fri, 10 Jul 2026 09:24:13 GMT",,01 Sep 2023,11413,55587,5d4d65f9ed960a8799901fa21383178b3a45443eb57b6737b258ccea383b04f0,8359d305124d95365f850ba4ecb2c7e446d0937c8bd9df82fdea4bdb4e2c48d5,118,94,"Schemes/ Programmes
+The Department of Science and Technology under the Ministry of Science and Technology acts as the nodal department for organising, coordinating, and promoting S&T activities in the country. One of the major activities of DST has been to support Grants-in-aid to Scientific Research Institutions, Scientific Associations, and bodies and fellowships to students & research scholars towards promoting research and innovation activities in the country. This is being fulfilled through the implementation of wide range of schemes/ programmes covering human and institutional capacity building, research and development, technology development, innovation & entrepreneurship, science & society linkage, etc. These schemes are designed with specific objectives to promote research and innovation in specific domain/field(s) for target stakeholders.",snapshots\html\schemes-programmes_3856718e27375c3b.html.gz,,UNAVAILABLE_HTTP_404_CONSERVATIVE_ALLOW,348,,Schemes/ Programmes,,0,,"Schemes/ Programmes
+The Department of Science and Technology under the Ministry of Science and Technology acts as the nodal department for organising, coordinating, and promoting S&T activities in the country. One of the major activities of DST has been to support Grants-in-aid to Scientific Research Institutions, Scientific Associations, and bodies and fellowships to students & research scholars towards promoting research and innovation activities in the country. This is being fulfilled through the implementation of wide range of schemes/ programmes covering human and institutional capacity building, research and development, technology development, innovation & entrepreneurship, science & society linkage, etc. These schemes are designed with specific objectives to promote research and innovation in specific domain/field(s) for target stakeholders.",861,SUCCESS_BODY_FALLBACK,BEAUTIFULSOUP_REGION_SCORING,body_fallback,7,,CURRENT_OR_UNRESOLVED,,,dst_page_3856718e27375c3b9590,SCHEME_CATEGORY_INDEX,0.9900,100.000,UNKNOWN,0.000,0.000,0.000,,SCHEME_PROGRAMME_ROOT_INDEX,,0,NO_CANONICAL_SCHEME_IDENTITY_CREATED,2026-07-10T09:59:23+00:00
+dst_page_27f908658d740a1a73b7,https://dst.gov.in/,https://dst.gov.in/,https://dst.gov.in/,,,0,DEPARTMENT_HOME,UNCLASSIFIED_SOURCE_PAGE,200,text/html,utf-8,Home Page,en,2026-07-10T09:24:15+00:00,"Fri, 10 Jul 2026 09:24:14 GMT",,10 Jul 2026,16179,80259,7594d21c1dfffef57c7b7537353cd76cd96b8c610390a0dc99936fd1feee4720,e17d8cf1dd09b6420e758cd3af47ee1296d0c69da006713a069e16f67f4a2555,299,156,"Home Page
+About Us
+India is one of the top-ranking countries in the field of basic research. Indian Science has come to be regarded as one of the most powerful instruments of growth and development, especially in the emerging scenario and competitive economy. In the wake of the recent developments and the new demands that are being placed on the S&T system, it is necessary for us to embark on some major science projects which have relevance to national needs and which will also be relevant for tomorrow's technology. The Department of Science & Technology plays a pivotal role in promotion of science & technology in the country.
+Reports/Documents
+Important Links
+Press Releases
+Quantum-Safe Ecosystem in India
+Annual Report 2025-26
+Detailed Demands for Grants 2026-27
+Vision Document ESTIC 2025
+Coffee Table Book ESTIC 2025
+Activity Guidebook for NCSC 2026-27
+DST-CCUS Roadmap 2025
+Detailed Demands For Grants 2024-2025
+More
+S&T Awards Information Retrieval System (STAIRS)
+Indian Origin Academicians Abroad
+India Science, Technology and Innovation Portal (ISTI)
+E-Journal Resources
+Electronic Project Management System (e-PMS)
+Achievements of Ministry of Science & Technology And Earth Science...
+R&D Statistics at a Glance
+Indian Science Congress
+Read More
+India Maps the 21st Century 15/02/2021
+TDB invites technology proposals for fighting COVID 19 21/03/2020
+NSM: a transformative approach in supercomputing 20/03/2020
+ARCI develops technology to improve fuel efficiency of internal... 20/03/2020
+BARC INSPIRE fellow enhancing sensitivity of magnetic resonance... 19/03/2020
+IIT Bombay INSPIRE fellow explores how lipids play critical roles in... 18/03/2020
+Vegetation & pollen records show climate fluctuations due to... 17/03/2020
+The flight from plant microbes to rural womens benefits 16/03/2020
+Open Press Release
+Related Organization
+Miscellaneous
+Photo Gallery",snapshots\html\home_27f908658d740a1a.html.gz,,UNAVAILABLE_HTTP_404_CONSERVATIVE_ALLOW,411,,Home Page,,0,,"Home Page
+About Us
+India is one of the top-ranking countries in the field of basic research. Indian Science has come to be regarded as one of the most powerful instruments of growth and development, especially in the emerging scenario and competitive economy. In the wake of the recent developments and the new demands that are being placed on the S&T system, it is necessary for us to embark on some major science projects which have relevance to national needs and which will also be relevant for tomorrow's technology. The Department of Science & Technology plays a pivotal role in promotion of science & technology in the country.
+Reports/Documents
+Important Links
+Press Releases
+Quantum-Safe Ecosystem in India
+Annual Report 2025-26
+Detailed Demands for Grants 2026-27
+Vision Document ESTIC 2025
+Coffee Table Book ESTIC 2025
+Activity Guidebook for NCSC 2026-27
+DST-CCUS Roadmap 2025
+Detailed Demands For Grants 2024-2025
+More
+S&T Awards Information Retrieval System (STAIRS)
+Indian Origin Academicians Abroad
+India Science, Technology and Innovation Portal (ISTI)
+E-Journal Resources
+Electronic Project Management System (e-PMS)
+Achievements of Ministry of Science & Technology And Earth Science...
+R&D Statistics at a Glance
+Indian Science Congress
+Read More
+India Maps the 21st Century 15/02/2021
+TDB invites technology proposals for fighting COVID 19 21/03/2020
+NSM: a transformative approach in supercomputing 20/03/2020
+ARCI develops technology to improve fuel efficiency of internal... 20/03/2020
+BARC INSPIRE fellow enhancing sensitivity of magnetic resonance... 19/03/2020
+IIT Bombay INSPIRE fellow explores how lipids play critical roles in... 18/03/2020
+Vegetation & pollen records show climate fluctuations due to... 17/03/2020
+The flight from plant microbes to rural womens benefits 16/03/2020
+Open Press Release
+Related Organization
+Miscellaneous
+Photo Gallery",1878,SUCCESS_BODY_FALLBACK,BEAUTIFULSOUP_REGION_SCORING,body_fallback,13,,CURRENT_OR_UNRESOLVED,,,dst_page_27f908658d740a1a73b7,PROGRAMME_CATEGORY_INDEX,0.4900,28.000,SCHEME_CATEGORY_INDEX,28.000,14.000,10.000,,RELEVANT_INTERNAL_LINKS_34,LOW_CONFIDENCE | SMALL_SCORE_MARGIN,1,NO_CANONICAL_SCHEME_IDENTITY_CREATED,2026-07-10T09:59:23+00:00
+dst_page_8325ba2fba506d3e39b6,https://dst.gov.in/oms-and-guidelines,https://dst.gov.in/oms-and-guidelines,https://dst.gov.in/oms-and-guidelines,https://dst.gov.in/oms-and-guidelines,,0,GUIDELINES_INDEX,GUIDELINE_OR_MANUAL_CANDIDATE,200,text/html,utf-8,OMs and Guidelines,en,2026-07-10T09:24:59+00:00,"Fri, 10 Jul 2026 09:24:58 GMT",,26 May 2026,11746,57925,e38b44c948735def03b5b0a6ea6c8979f69ffb6eddc754ef720bb411bab7f112,57be698cd7290050d8a0aed4c5b40b9f5c5bbedf560a7a5396c29c2089135257,146,107,"OMs and Guidelines
+OM on Empanelment of retired officers as Inquiry Officers for conducting Department Inquiries in the Department of Science & Technology
+OM on Good practices in public Administration
+OM dated 09.03.2026
+Gazette Notification AO
+Gazette Notification_COO_CFO
+SFR RDI FUND Gazzette Notification
+Publication of Special Financial Rules 2026 for utilization of the amounts in the Research Development and Innovation(RDI) Fund in the official Gazette - reg.
+OM ""Paripoorna Mediclaim Ayush Bima for CGHS beneficiaries""
+OM ""Revised guidelines of project implementation and manpower emoluments under societal programmes of DST""
+Seeking comments from the stakeholders on draft recruitment rules for the post of Estate Officer in DST
+OM on Revision of Fellowship under different Programmes of WISE-KIRAN Division
+Fellowship Hike WISE-PhD 20231018
+Revision of emoluments and guidelines on service conditions for research personnel engaged in R&D programme of the Central Government Departments/Agencies",snapshots\html\oms-and-guidelines_8325ba2fba506d3e.html.gz,,UNAVAILABLE_HTTP_404_CONSERVATIVE_ALLOW,567,,OMs and Guidelines,,0,,"OMs and Guidelines
+OM on Empanelment of retired officers as Inquiry Officers for conducting Department Inquiries in the Department of Science & Technology
+OM on Good practices in public Administration
+OM dated 09.03.2026
+Gazette Notification AO
+Gazette Notification_COO_CFO
+SFR RDI FUND Gazzette Notification
+Publication of Special Financial Rules 2026 for utilization of the amounts in the Research Development and Innovation(RDI) Fund in the official Gazette - reg.
+OM ""Paripoorna Mediclaim Ayush Bima for CGHS beneficiaries""
+OM ""Revised guidelines of project implementation and manpower emoluments under societal programmes of DST""
+Seeking comments from the stakeholders on draft recruitment rules for the post of Estate Officer in DST
+OM on Revision of Fellowship under different Programmes of WISE-KIRAN Division
+Fellowship Hike WISE-PhD 20231018
+Revision of emoluments and guidelines on service conditions for research personnel engaged in R&D programme of the Central Government Departments/Agencies",1006,SUCCESS_BODY_FALLBACK,BEAUTIFULSOUP_REGION_SCORING,body_fallback,7,,CURRENT_OR_UNRESOLVED,,,dst_page_8325ba2fba506d3e39b6,GUIDELINE_PAGE,0.9900,112.000,OFFICE_MEMORANDUM,54.000,14.000,0.000,,CRAWLER_GUIDELINE_HINT | GUIDELINE_TITLE | GUIDELINE_BODY,,0,NO_CANONICAL_SCHEME_IDENTITY_CREATED,2026-07-10T09:59:23+00:00
+dst_page_a7ea364fa3923e1b26d6,https://dst.gov.in/vision-mission,https://dst.gov.in/vision-mission,https://dst.gov.in/vision-mission,https://dst.gov.in/vision-mission,https://dst.gov.in/schemes-programmes,1,SCHEME_PROGRAMME_SUPPORTING_PAGE,UNCLASSIFIED_SOURCE_PAGE,200,text/html,utf-8,Vision & Mission,en,2026-07-10T09:25:00+00:00,"Fri, 10 Jul 2026 09:24:59 GMT",,10 Jul 2025,11367,54839,f30f9a48c8553d40d941a6b1e767f3964b791196d79bff0db538e9499400d31f,2ffc56d97ab382fd3392207c8e6b740f8718eae7e45d0313806e4102a12d8ab5,98,94,"Vision & Mission
+Vision:
+To continuously shape a seamless science, technology and innovation ecosystem, which is cutting-edge, collaborative, inclusive, relevant and aligned to our national aspirations and priorities and build a vision for a Viksit Bharat by 2047.
+Mission:
+Within the mandates of DST in the creation of S&T infrastructure and manpower, support to basic science research along with S&T led innovation and startups, technology development and seed the cutting-edge, futuristic areas of S&T, by devising suitable programs, schemes and technology missions to address socio-economic challenges and create opportunities to empower its stakeholders.",snapshots\html\vision-mission_a7ea364fa3923e1b.html.gz,,UNAVAILABLE_HTTP_404_CONSERVATIVE_ALLOW,392,,Vision & Mission,https://dst.gov.in/schemes-programmes,1,,"Vision & Mission
+Vision:
+To continuously shape a seamless science, technology and innovation ecosystem, which is cutting-edge, collaborative, inclusive, relevant and aligned to our national aspirations and priorities and build a vision for a Viksit Bharat by 2047.
+Mission:
+Within the mandates of DST in the creation of S&T infrastructure and manpower, support to basic science research along with S&T led innovation and startups, technology development and seed the cutting-edge, futuristic areas of S&T, by devising suitable programs, schemes and technology missions to address socio-economic challenges and create opportunities to empower its stakeholders.",659,SUCCESS_BODY_FALLBACK,BEAUTIFULSOUP_REGION_SCORING,body_fallback,7,,CURRENT_OR_UNRESOLVED,,,dst_page_a7ea364fa3923e1b26d6,PROGRAMME_CATEGORY_INDEX,0.4900,28.000,SCHEME_CATEGORY_INDEX,28.000,0.000,0.000,,RELEVANT_INTERNAL_LINKS_21,LOW_CONFIDENCE | SMALL_SCORE_MARGIN,1,NO_CANONICAL_SCHEME_IDENTITY_CREATED,2026-07-10T09:59:23+00:00
+dst_page_f7e0fcfc0157f2f226b1,https://dst.gov.in/ethical-guidelines,https://dst.gov.in/ethical-guidelines,https://dst.gov.in/ethical-guidelines,https://dst.gov.in/ethical-guidelines,https://dst.gov.in/schemes-programmes,1,GUIDELINE_OR_MANUAL_CANDIDATE,GUIDELINE_OR_MANUAL_CANDIDATE,200,text/html,utf-8,Ethical Guidelines,en,2026-07-10T09:25:02+00:00,"Fri, 10 Jul 2026 09:25:01 GMT",,28 Apr 2025,11022,54017,13e799df3e96e0f1c5019f1fc9ceb22276f8133c08c446260dbd6c32390927f0,4cf85383f7232239ae5cf078763fd8d8ea1e62155cd3e50053fbeaf5edf92d11,7,95,"Ethical Guidelines
+Policy on Conflict of Interest",snapshots\html\ethical-guidelines_f7e0fcfc0157f2f2.html.gz,,UNAVAILABLE_HTTP_404_CONSERVATIVE_ALLOW,390,,Ethical Guidelines,https://dst.gov.in/schemes-programmes,1,,"Ethical Guidelines
+Policy on Conflict of Interest",49,SUCCESS_BODY_FALLBACK,BEAUTIFULSOUP_REGION_SCORING,body_fallback,7,,CURRENT_OR_UNRESOLVED,,,dst_page_f7e0fcfc0157f2f226b1,GUIDELINE_PAGE,0.9900,112.000,PROGRAMME_CATEGORY_INDEX,28.000,0.000,0.000,,CRAWLER_GUIDELINE_HINT | GUIDELINE_TITLE | GUIDELINE_BODY,LOW_TEXT_BODY_FALLBACK,1,NO_CANONICAL_SCHEME_IDENTITY_CREATED,2026-07-10T09:59:23+00:00
+dst_page_84ab411978e6f5a6d506,https://dst.gov.in/science-and-technology-training-cell,https://dst.gov.in/science-and-technology-training-cell,https://dst.gov.in/science-and-technology-training-cell,https://dst.gov.in/science-and-technology-training-cell,https://dst.gov.in/schemes-programmes,1,SCHEME_PROGRAMME_SUPPORTING_PAGE,UNCLASSIFIED_SOURCE_PAGE,200,text/html,utf-8,Science and Technology Training Cell,en,2026-07-10T09:25:03+00:00,"Fri, 10 Jul 2026 09:25:02 GMT",,02 Jul 2025,11448,56582,44dc811c50be5d65056419cd10af21f63dcd5837eba78223ba60baf2e90fab90,a276fa3ce442b1b7f648d14f74e780cdfb4d896af09a5e407d3492699c968c78,73,99,"Science and Technology Training Cell
+The department in close consultation with the Department of Personnel and Training and Planning Commission conducts training programmes for scientists and technologists working in Govt. sector.
+National Programme for Training of Scientists & Technologists working in Govt. Sector
+Training Calendar 2025-26
+Nomination Proforma (New)
+Letter - Uploading of UC in PFMS website-reg.
+UC Manual for Agencies - Utilisation Certificate Module
+Annual Capacity Building Plan Scientists and Officers of DST",snapshots\html\science-and-technology-training-cell_84ab411978e6f5a6.html.gz,,UNAVAILABLE_HTTP_404_CONSERVATIVE_ALLOW,552,,Science and Technology Training Cell,https://dst.gov.in/schemes-programmes,1,,"Science and Technology Training Cell
+The department in close consultation with the Department of Personnel and Training and Planning Commission conducts training programmes for scientists and technologists working in Govt. sector.
+National Programme for Training of Scientists & Technologists working in Govt. Sector
+Training Calendar 2025-26
+Nomination Proforma (New)
+Letter - Uploading of UC in PFMS website-reg.
+UC Manual for Agencies - Utilisation Certificate Module
+Annual Capacity Building Plan Scientists and Officers of DST",531,SUCCESS_BODY_FALLBACK,BEAUTIFULSOUP_REGION_SCORING,body_fallback,7,,CURRENT_OR_UNRESOLVED,,,dst_page_84ab411978e6f5a6d506,PROGRAMME_CATEGORY_INDEX,0.4900,28.000,SCHEME_CATEGORY_INDEX,28.000,14.000,0.000,,RELEVANT_INTERNAL_LINKS_21,LOW_CONFIDENCE | LOW_TEXT_BODY_FALLBACK | SMALL_SCORE_MARGIN,1,NO_CANONICAL_SCHEME_IDENTITY_CREATED,2026-07-10T09:59:23+00:00
+dst_page_8e14cd0e2b07daac6817,https://dst.gov.in/covid-19-oms-and-guidelines,https://dst.gov.in/covid-19-oms-and-guidelines,https://dst.gov.in/covid-19-oms-and-guidelines,https://dst.gov.in/covid-19-oms-and-guidelines,https://dst.gov.in/schemes-programmes,1,GUIDELINE_OR_MANUAL_CANDIDATE,GUIDELINE_OR_MANUAL_CANDIDATE,200,text/html,utf-8,COVID 19- OMs and Guidelines,en,2026-07-10T09:25:05+00:00,"Fri, 10 Jul 2026 09:25:03 GMT",,25 Oct 2024,12625,64392,e0b2f68cf0e3b7fa908c12c752ff605e6f65d355975afd38d734f9ccca4e452f,51bc1a2554ec8f4b6c66c8cad285a678d1447c04432d1753a4d671fafe783058,342,116,"COVID 19- OMs and Guidelines
+COVID-19 Related Initiatives and Activities of DST & Its Autonomous Institutions 3.66 MB
+Guidance for evaluation of novel applications for COVID-19 by the Indian Council of Medical Research, Department of Health Research 474.8 KB
+Disinfection services for prevention of corona COVID 10 Virus (letter to Secy. Central Ministries, GOI) 407.56 KB
+MHA Order Dt. 29.3.2020 on Disaster Management Act 2005 2.11 MB
+DOletter_ Home Secretary Dt 24.3.2020 409.81 KB
+DOPT Guidelines for Workplaces reg COVID-19 Dt 26.03.2020 346.02 KB
+Annexure_MHA Order Dt 24.03.2020 2.67 MB
+DOPT OM Dt 25.03.2020 reg Preventive Measures to contain the spread of COVID-19 420.32 KB
+DOPT OM Dt 22.03.2020 reg Preventive Measures to contain the spread of COVID-19 348.14 KB
+DOPT OM Dt 17.03.2020 reg Preventive Measures to contain the spread of COVID-19 91.48 KB
+DOE OM Dt 23.3.2020 Functioning of Government Expenditure_23.03.2020_0 46.18 KB
+DOE OM Dt 23.3.3020 Payment of Wages to Outsourced_Contractual Staff - COVID 19_1 2.67 MB
+DO letter to CSs of all States and UTs on 30 3 1.1 MB
+order dated 28 3 2020 511.01 KB
+Do Letter of Cabinet Secretary dated 30.3.2020 for measures to prevent COVID-19 429.81 KB
+Home Secretary's Letter (29.3.2020) on consolidated guidelines to contain the spread of COVID-19 1.09 MB
+Home Secretay's DO letter regarding directions of Hon'ble Supreme Court on preventing the spread of COVID-19 564.77 KB
+MHA Order Dated (10.4.2020) along with 5th Addendum giving exemption to Fishing (Marine) and Aquaculture Industry 1 MB
+Ministry of Home Affairs Consolidated Guideline on Lockdown 150.85 KB
+MHA order dated 15.04.2020, with Revised Consolidated Guidelines 5.12 MB
+Booklet on 'COVID-19-Safe Workplace Guidelines for Industry and Establishment' ( English 8.99 MB | Hindi 12.48 MB )",snapshots\html\covid-19-oms-and-guidelines_8e14cd0e2b07daac.html.gz,,UNAVAILABLE_HTTP_404_CONSERVATIVE_ALLOW,971,,COVID 19- OMs and Guidelines,https://dst.gov.in/schemes-programmes,1,,"COVID 19- OMs and Guidelines
+COVID-19 Related Initiatives and Activities of DST & Its Autonomous Institutions 3.66 MB
+Guidance for evaluation of novel applications for COVID-19 by the Indian Council of Medical Research, Department of Health Research 474.8 KB
+Disinfection services for prevention of corona COVID 10 Virus (letter to Secy. Central Ministries, GOI) 407.56 KB
+MHA Order Dt. 29.3.2020 on Disaster Management Act 2005 2.11 MB
+DOletter_ Home Secretary Dt 24.3.2020 409.81 KB
+DOPT Guidelines for Workplaces reg COVID-19 Dt 26.03.2020 346.02 KB
+Annexure_MHA Order Dt 24.03.2020 2.67 MB
+DOPT OM Dt 25.03.2020 reg Preventive Measures to contain the spread of COVID-19 420.32 KB
+DOPT OM Dt 22.03.2020 reg Preventive Measures to contain the spread of COVID-19 348.14 KB
+DOPT OM Dt 17.03.2020 reg Preventive Measures to contain the spread of COVID-19 91.48 KB
+DOE OM Dt 23.3.2020 Functioning of Government Expenditure_23.03.2020_0 46.18 KB
+DOE OM Dt 23.3.3020 Payment of Wages to Outsourced_Contractual Staff - COVID 19_1 2.67 MB
+DO letter to CSs of all States and UTs on 30 3 1.1 MB
+order dated 28 3 2020 511.01 KB
+Do Letter of Cabinet Secretary dated 30.3.2020 for measures to prevent COVID-19 429.81 KB
+Home Secretary's Letter (29.3.2020) on consolidated guidelines to contain the spread of COVID-19 1.09 MB
+Home Secretay's DO letter regarding directions of Hon'ble Supreme Court on preventing the spread of COVID-19 564.77 KB
+MHA Order Dated (10.4.2020) along with 5th Addendum giving exemption to Fishing (Marine) and Aquaculture Industry 1 MB
+Ministry of Home Affairs Consolidated Guideline on Lockdown 150.85 KB
+MHA order dated 15.04.2020, with Revised Consolidated Guidelines 5.12 MB
+Booklet on 'COVID-19-Safe Workplace Guidelines for Industry and Establishment' ( English 8.99 MB | Hindi 12.48 MB )",1810,SUCCESS_BODY_FALLBACK,BEAUTIFULSOUP_REGION_SCORING,body_fallback,7,,CURRENT_OR_UNRESOLVED,,,dst_page_8e14cd0e2b07daac6817,GUIDELINE_PAGE,0.9900,112.000,OFFICE_MEMORANDUM,54.000,14.000,0.000,,CRAWLER_GUIDELINE_HINT | GUIDELINE_TITLE | GUIDELINE_BODY,,0,NO_CANONICAL_SCHEME_IDENTITY_CREATED,2026-07-10T09:59:23+00:00
+dst_page_5e89be224854c4d57cc6,https://dst.gov.in/callforproposals/format-and-guidelines-scheme-science-technology-women-0,https://dst.gov.in/callforproposals/format-and-guidelines-scheme-science-technology-women-0,https://dst.gov.in/callforproposals/format-and-guidelines-scheme-science-technology-women-0,https://dst.gov.in/callforproposals/format-and-guidelines-scheme-science-technology-women-0,https://dst.gov.in/archive-call-for-proposals?page=6,2,CALL_CANDIDATE,CALL_CANDIDATE,200,text/html,utf-8,"Format and guidelines for the scheme, ""Science & Technology for Women"".",en,2026-07-10T09:28:46+00:00,"Fri, 10 Jul 2026 09:28:46 GMT",,25 Jul 2019,11147,53494,fb64d2939bee4a72c06154c5bfb19c21e2f716a52f85af27da4d550b6ecdecfc,e7a98cdfc77ddf811a670c923ee03a898e80c3fe1a567ebfbcaab8287469ecae,24,95,"Language English Attachment File: Format and guidelines for the scheme, ""Science & Technology for Women"". Date: Thursday, July 25, 2019 to Friday, August 16, 2019",snapshots\html\callforproposals-format-and-guidelines-scheme-science-technology-women_5e89be224854c4d5.html.gz,,UNAVAILABLE_HTTP_404_CONSERVATIVE_ALLOW,335,,"Format and guidelines for the scheme, ""Science & Technology for Women"".",https://dst.gov.in/archive-call-for-proposals?page=6,2,,"Language English Attachment File: Format and guidelines for the scheme, ""Science & Technology for Women"". Date: Thursday, July 25, 2019 to Friday, August 16, 2019",162,SUCCESS_MAIN_CONTENT,BEAUTIFULSOUP_REGION_SCORING,article,7,,CURRENT_OR_UNRESOLVED,,,dst_page_5e89be224854c4d57cc6,GUIDELINE_PAGE,0.7029,66.000,CALL_FOR_PROPOSALS,62.000,0.000,62.000,,GUIDELINE_TITLE | GUIDELINE_BODY,LOW_CONFIDENCE | SMALL_SCORE_MARGIN,1,NO_CANONICAL_SCHEME_IDENTITY_CREATED,2026-07-10T09:59:23+00:00
+dst_page_9800ef2b79f116873cf0,https://dst.gov.in/technical-research-centres,https://dst.gov.in/technical-research-centres,https://dst.gov.in/technical-research-centres,https://dst.gov.in/technical-research-centres,https://dst.gov.in/innovation-and-technology-development-programmes,1,SCHEME_PROGRAMME_SUPPORTING_PAGE,UNCLASSIFIED_SOURCE_PAGE,200,text/html,utf-8,Technical Research Centres,en,2026-07-10T09:31:01+00:00,"Fri, 10 Jul 2026 09:31:01 GMT",,13 Mar 2024,12175,57344,02647784ba29dcecb35315404da416dff1069ccf48092d4a0cf15250cf8ede2e,be19a2b60d6f114b95cb7cdbef5622512bdf3aa898f92a662fc6d946dd80d318,278,94,"Technical Research Centres
+This programme was launched as a follow-up of the budget announcement made by the Hon’ble Finance Minister of India in his Budget Speech in FY 2014-15. Five Technical Research Centres (TRCs) were established with a mission to provide techno-legal-commercial and financial support to scientists, entrepreneurs, and business fraternity to achieve translation of research into products and processes for greater economic and societal benefits in 5 DST institutions at a total cost of Rs.467.00 Crores.
+The following Technical Research Centres (TRCs) are established in the DST institutions during FY 2015-16:
+1. SreeChitraTirunal Institute for Medical Sciences and Technology (SCTIMST), Trivandrum
+2. International Advanced Research Centre for Powder Metallurgy and New Materials (ARCI), Hyderabad
+3. Jawaharlal Nehru Centre for Advanced Scientific Research (JNCASR), Bengaluru
+4. Indian Association for the Cultivation of Science (IACS), Kolkata
+5. S.N. Bose National Centre for Basic Sciences, Kolkata.
+The TRC programme is translating scientific discoveries and technological inventions into products and services of societal and industrial relevance. TRCs have been instrumental in building R&D translation ecosystem by supporting advancements in technology readiness levels of background R&D capabilities and intellectual properties, streamlining multi-stakeholder involvement (including industry-academia partnerships), technology out-licensing, setting-up platforms for start-ups, and strengthening state-of-the-art R&D infrastructure. Around a dozen of technologies have been transferred to the industries and many of them are at different stages of developments for transfer to the industries. The first phase (5 years) of the above programme has already been completed and it is proposed to continue the programme for another 5 years i.e. second phase.",snapshots\html\technical-research-centres_9800ef2b79f11687.html.gz,,UNAVAILABLE_HTTP_404_CONSERVATIVE_ALLOW,322,,Technical Research Centres,https://dst.gov.in/innovation-and-technology-development-programmes,1,,"Technical Research Centres
+This programme was launched as a follow-up of the budget announcement made by the Hon’ble Finance Minister of India in his Budget Speech in FY 2014-15. Five Technical Research Centres (TRCs) were established with a mission to provide techno-legal-commercial and financial support to scientists, entrepreneurs, and business fraternity to achieve translation of research into products and processes for greater economic and societal benefits in 5 DST institutions at a total cost of Rs.467.00 Crores.
+The following Technical Research Centres (TRCs) are established in the DST institutions during FY 2015-16:
+1. SreeChitraTirunal Institute for Medical Sciences and Technology (SCTIMST), Trivandrum
+2. International Advanced Research Centre for Powder Metallurgy and New Materials (ARCI), Hyderabad
+3. Jawaharlal Nehru Centre for Advanced Scientific Research (JNCASR), Bengaluru
+4. Indian Association for the Cultivation of Science (IACS), Kolkata
+5. S.N. Bose National Centre for Basic Sciences, Kolkata.
+The TRC programme is translating scientific discoveries and technological inventions into products and services of societal and industrial relevance. TRCs have been instrumental in building R&D translation ecosystem by supporting advancements in technology readiness levels of background R&D capabilities and intellectual properties, streamlining multi-stakeholder involvement (including industry-academia partnerships), technology out-licensing, setting-up platforms for start-ups, and strengthening state-of-the-art R&D infrastructure. Around a dozen of technologies have been transferred to the industries and many of them are at different stages of developments for transfer to the industries. The first phase (5 years) of the above programme has already been completed and it is proposed to continue the programme for another 5 years i.e. second phase.",1886,SUCCESS_BODY_FALLBACK,BEAUTIFULSOUP_REGION_SCORING,body_fallback,7,,CURRENT_OR_UNRESOLVED,,,dst_page_9800ef2b79f116873cf0,PROGRAMME_CATEGORY_INDEX,0.4900,28.000,SCHEME_CATEGORY_INDEX,28.000,28.000,0.000,,RELEVANT_INTERNAL_LINKS_21,LOW_CONFIDENCE | SMALL_SCORE_MARGIN,1,NO_CANONICAL_SCHEME_IDENTITY_CREATED,2026-07-10T09:59:23+00:00
+dst_page_824660a371103de5f789,https://dst.gov.in/programmes-innitiatives,https://dst.gov.in/programmes-innitiatives,https://dst.gov.in/programmes-innitiatives,https://dst.gov.in/programmes-innitiatives,,0,PROGRAMME_CATEGORY,SCHEME_PROGRAMME_CANDIDATE,200,text/html,utf-8,Programmes & Initiatives,en,2026-07-10T09:31:15+00:00,"Fri, 10 Jul 2026 09:31:14 GMT",,16 Apr 2026,17715,78620,25081bb46db66b8b06ea38d0d96da0360cacdaf0b7d9a50ea63273f3205dae69,0931082c1df0a1b26d1c5459ccb408c4b2c98f385a9475f726c3a11f880f8a0a,1694,133,"Programmes & Initiatives
+1. Strengthening, Upscaling & Nurturing Local Innovations for Livelihood (SUNIL) programme
+SUNIL programme aims to strengthen the livelihood efficiency of Economically Weaker Section (EWS) of society through technology delivery & social enterprise creation. Focus of the programme is not only limited to the deployment of many field-tested models and location-specific technologies to meet the needs of citizens, it also encourages improving their S&T knowledge, skill enhancement, capacity building and socio-economic conditions. The programme covers majorly (but not limited to) the areas of Natural Resource Management; Drinking Water & Sanitation; Education; Health & Nutrition; Social Security; Local transport & Development; Electricity & Clean Energy; Entertainment; Integrated-farming & best practices; Linking people to financial services; Phone & Internet facilities; Livelihood & skill development etc.
+Objectives
+To identify the strengths & weaknesses of existing livelihood system of EWS community and implement S&T based local/ systemic solutions at community level;
+To provide emerging & locally appropriate STI solutions to strengthen weakest link of livelihood system and improve the S&T capacity, skills, forward & backward linkages and socio-economic conditions of community-based organizations;
+To utilize strongest link of local livelihood system for encouraging social entrepreneurship development for EWS.
+Project implementation model
+The programme encourages ‘Land-Lab-Land’ Model of implementation and cross-bridge collaboration with involvement of multiple organizations in a network-like structure (eg. ‘Hub & Spoke’, ‘Peer-to-peer’).
+It is mandatory to include at least one Knowledge Institute (KI) and one Non-Governmental Organization (NGO) to ensure a balanced approach between research, development and participation of community in project implementation.
+The involvement of Knowledge Institutes (KI), NGOs, target community, local Govt., and",snapshots\html\programmes-innitiatives_824660a371103de5.html.gz,,UNAVAILABLE_HTTP_404_CONSERVATIVE_ALLOW,693,,Programmes & Initiatives,,0,,"Programmes & Initiatives
+1. Strengthening, Upscaling & Nurturing Local Innovations for Livelihood (SUNIL) programme
+SUNIL programme aims to strengthen the livelihood efficiency of Economically Weaker Section (EWS) of society through technology delivery & social enterprise creation. Focus of the programme is not only limited to the deployment of many field-tested models and location-specific technologies to meet the needs of citizens, it also encourages improving their S&T knowledge, skill enhancement, capacity building and socio-economic conditions. The programme covers majorly (but not limited to) the areas of Natural Resource Management; Drinking Water & Sanitation; Education; Health & Nutrition; Social Security; Local transport & Development; Electricity & Clean Energy; Entertainment; Integrated-farming & best practices; Linking people to financial services; Phone & Internet facilities; Livelihood & skill development etc.
+Objectives
+To identify the strengths & weaknesses of existing livelihood system of EWS community and implement S&T based local/ systemic solutions at community level;
+To provide emerging & locally appropriate STI solutions to strengthen weakest link of livelihood system and improve the S&T capacity, skills, forward & backward linkages and socio-economic conditions of community-based organizations;
+To utilize strongest link of local livelihood system for encouraging social entrepreneurship development for EWS.
+Project implementation model
+The programme encourages ‘Land-Lab-Land’ Model of implementation and cross-bridge collaboration with involvement of multiple organizations in a network-like structure (eg. ‘Hub & Spoke’, ‘Peer-to-peer’).
+It is mandatory to include at least one Knowledge Institute (KI) and one Non-Governmental Organization (NGO) to ensure a balanced approach between research, development and participation of community in project implementation.
+The involvement of Knowledge Institutes (KI), NGOs, target community, local Govt., and other Community based organizations viz. Community Interest Groups (CIG), Self-Help Groups (SHGs), Farmer Producer Organizations (FPOs), Social entrepreneurs, Start-ups and community will be encouraged.
+The total financial grant proposed under project will be released to Lead/ Hub agency from KO or NGO (a signed MoU/ consent mentioning role of each partner in the project will be required for all shortlisted proposals).
+Principal Investigator (PI) & Co-PI ( Scientist/Researcher/Engineer/Technologist )
+Type -1: From Knowledge Institutions (KI) such as IITs, NITs, Autonomous Bodies/Aided Institutions and other educational institutions/ Universities under Central/State Governments, R&D institutions, laboratories having adequate infrastructure and project implementation experience at societal level.
+Type -2: From Non-Governmental Organization (NGO) /private institutions with minimum 3 years of relevant field level experience in S&T interventions and delivery of proven technology on field level applications.
+Duration of Project support: The duration of project support will be for a period of 3-5 years based on the proposed activities and deliverables.
+List of projects supported in last 5 years:
+2019-2020 228.09 KB
+2020-2021 223.45 KB
+2021-2022 395.12 KB
+2023-2024 479.59 KB
+2024-2025 390.1 KB
+* Details on Funding Pattern, Shortlisting & Selection Criteria, Operation of Programme, Monitoring & Evaluation Indicators and Proforma of Project Proposal is available in “Guidelines of SUNIL programme” [ https://dst.gov.in/sites/default/files/Guidelines-SUNIL-English.pdf 624.42 KB].
+Proposal submission guidelines 505.84 KB
+year of call for proposals
+Number of proposals received
+Number of proposals sanctioned
+Number of proposals not-recommended/rejected*
+2023-24
+326
+08
+318
+2025-26
+539
+Under process
+*The applicants whose proposals have not been recommended were communicated of the outcome of their proposals and decision through epms portal of DST ( https://onlinedst.gov.in/ ).
+2. Technology Interventions for Disabled and Elderly (TIDE)
+TIDE programme is a unique initiative of DST to create inclusiveness and universal accessibility for Divyangjan and the Elderly, through promotion and development of various assistive tools, technologies, techniques, affordable & adaptable to the Indian milieu. Proposals are supported under six (6) different broad thematic areas as mentioned below.
+Elderly/Geriatric Sector
+Visual Disability (including low vision)
+Intellectual Disabilities (including Learning Disabilities)
+Hearing & Speech Disabilities
+Locomotor Disability
+Multiple Disabilities
+Some of the notable technologies developed under the TIDE programme in different categories are as follows:
+Elderly:
+Hip protection devices, automatic pill box, medicine recognition and alerting systems, fall detectors, dental attachments, walkers and wheelchairs.
+Divyangjan: Cognition based Intelligent Mobility Device (Wheel Chair), Apex Locating, Anti-microbial and Adaptive Gutta Percha (GP) Points for Root Canal Applications
+Children with Special Ability : Speech-Input Speech–Output Communication Aid (SISOCA), Intelligent Tutoring System and Interactive Teaching Aid for Autistic Children (ITAAC), Artificial Intelligence Based Non-Invasive System for the Identification and Assessment of Children with Autism Spectrum Disorders (ASD).
+Visually Impaired: Dotbook and Interline Braille Slate for education for Children with intellectual and visual disabilities, Blind Assistive Device.
+Hearing and Speech Disability: Speech- Input Speech–Output Communication Aid (SISOCA),
+3. Scheme for Young Scientists and Technologists (SYST)
+Scheme for Young Scientist & Technologist (SYST) programme of Department of Science and Technology (DST) aims to motivate and nurture young scientist & technologists who have adequate background and training in fields of science and technology and inclined to undertake application oriented socially relevant research projects. Young Scientists are supported for finding affordable and adaptable Science and Technological (S&T) solutions for identi­fied socio-economic challenges and strengthening the livelihood of marginalized communities for sustainable and inclusive development of society. The programme focusses on the development/demonstration of technologies, techniques and processes for societal problems through Science and Technology (S&T) interventions. The themes covered for innovative S&T solutions for societal issues include livelihood, health, hygiene, sanitation, waste valorisation etc.
+ELIGIBILITY
+Quali­fication: Ph.D. in Basic and Applied Sciences/MD/MS/Engineering. Those who have submitted PhD thesis will also be considered.
+Age: Less than 40 years on the last date of submission of the application.
+Age relaxation of 5 years for Women/ Differently-abled (Divyangjan) /SC/ST/OBC/EWS.
+For young scientists who don’t have regular employment
+Young Scientists should align himself/herself with Academic (Govt/Pvt) S&T departments or S&T Institutions.
+The host organization must agree to facilitate smooth execution of the project and provide necessary infrastructure/ facilities for this purpose.
+Mentor: Mentor should hold a Permanent/Regular position and possess expertise in proposed area of intervention.
+Compendium of Technologies developed 2.91 MB
+Keys points for submitting proposals under SYST programme 0 bytes
+Projects supported (in last 5 years):
+2020-2021 256.9 KB
+2021-2022 263.11 KB
+2022-2023 35.7 KB
+2023-2024 83.99 KB
+2024-2025 226.81 KB
+Success Stories:
+https://pib.gov.in/PressReleasePage.aspx?PRID=2086502
+https://dst.gov.in/foldscope-microscopy-empowering-farmers-chhattisgarh-...
+https://dst.gov.in/herbal-remedy-gout-can-improve-lifestyle-elderly-people
+https://pib.gov.in/PressReleasePage.aspx?PRID=2043237
+4. Scheduled Caste Sub Plan (SCSP) and Tribal Sub Plan (TSP)
+Special Component Plan for Scheduled Castes (SCSP) and Tribal Sub Plan (TSP) Schemes empowers SC and ST population through the input of Science and Technology and create their sustainable livelihoods and holistic development. The SEED Division had supported around 500 S&T projects under the TSP and SCSP Schemes during the last two decades in different states in diverse areas of agriculture, resource management, microenterprise development, art & craft, post-harvest technologies, health and nutrition, engineering and allied aspects, training and skill development, drinking water and sanitation, and energy to improve the quality of life of SC/ST communities and bring them into the mainstream of development with an improvement in knowledge, attitude and practices. A coordinated programme on People and Protected Areas (PPA) has been implemented for development of 30,000 tribal in the forest fringe areas and around protected areas/wild life sanctuaries in 13 states and 1 UT through a network 16 NGOs by promoting site-specific interventions and use of affordable and viable technologies for livelihood augmentation, as well as conservation of natural resources.
+i) Science Technology and Innovation (STI) Hubs
+Science Technology and Innovation (STI) Hubs have been established in different regions of the country for holistic development of Scheduled Caste (SC) and Scheduled Tribe (ST) Communities through systemic interventions. These STI Hubs develop, nurture and ensure the development, improvement and delivery of appropriate and relevant STI approaches for equitable inclusive growth of the SC and ST population through creation of sustainable livelihoods and improving the quality of life in tune to their growing aspirations. 20 STI Hubs (13 for SC and 7 for ST) have been established in different regions of the country to address the weakest linkages in the predominant livelihood systems through S&T interventions and for creation of social enterprises based on the livelihood strengths.
+5. Science and Technology for Women (S&T for Women) (Guidelines) 622.76 KB
+The scheme ‘Science and Technology for Women’, initiated in 1982, with the aim to promote gender equality, empower women with inputs of science and technology has nearly benefitted more than 50,000 women across the country. About 1500 projects in diverse fields aimed at improving the livelihoods of women at grassroots level had been supported. About 46 women technology parks established as single-window hubs for convergence of diversified technologies, integrated with forward and backward linkages had benefitted more than 20,000 women to build capacities in new trades and skills with scientific knowledge leading to development of women entrepreneurs also. Under this programme, projects related to establishment of women technology parks, drudgery reduction, Health & Nutrition, minimizing occupational hazards and livelihood status improvement are supported with prime women beneficiaries.
+i). Women Technology Parks
+Women Technology Parks (WTP) aim to improve the weakest link of the predominant livelihood system of women in an area and promote social entrepreneurship and women employment based on the strongest link of the livelihood system through interventions of Science, Technology and Innovations. Efforts are done that women in rural and peri-urban areas receive training in WTPs for skill development and capacity building as per National Skill Qualification Framework through S&T based interventions, using area specific resources, with goal of achieving local self- reliance for economic re-growth. Currently 25 Women Technology Parks are operational at various locations in the country. Nearly 1500 women were trained during the last year through online /offline training programmes in these WTPs. Some case success stories have been given under at https://dst.gov.in/success-stories-dst .",11752,SUCCESS_BODY_FALLBACK,BEAUTIFULSOUP_REGION_SCORING,body_fallback,7,,CURRENT_OR_UNRESOLVED,,,dst_page_824660a371103de5f789,PROGRAMME_CATEGORY_INDEX,0.9900,100.000,UNKNOWN,0.000,0.000,0.000,,PROGRAMME_INITIATIVES_INDEX,,0,NO_CANONICAL_SCHEME_IDENTITY_CREATED,2026-07-10T09:59:23+00:00
+dst_page_e15a35430063a0d0175f,https://dst.gov.in/how-apply-project-support,https://dst.gov.in/how-apply-project-support,https://dst.gov.in/how-apply-project-support,https://dst.gov.in/how-apply-project-support,,0,APPLICATION_GUIDANCE,UNCLASSIFIED_SOURCE_PAGE,200,text/html,utf-8,How to Apply for Project Support,en,2026-07-10T09:31:15+00:00,"Fri, 10 Jul 2026 09:31:15 GMT",,31 May 2022,11578,55254,b2d0be5c2b8c43609807f64627ce16c93acd273227079463f245969e62239e45,42692a5f485bd830ef524b0c6b2bd898faf259cd5202f0f3a62bf021093c94b0,81,108,"How to Apply for Project Support
+The call for proposal under the schemes and programs of SEED division is primarily an annual call. The priorities and commitments of the advertised call are articulated in the Call for Proposals on DST’s website. The format and call guidelines detailing eligibility conditions, criteria for evaluation and evaluation procedure are part of call document. Applicants are required to submit a soft copy of the proposal through http://onlinedst.gov.in in the prescribed format.",snapshots\html\how-apply-project-support_e15a35430063a0d0.html.gz,,UNAVAILABLE_HTTP_404_CONSERVATIVE_ALLOW,364,,How to Apply for Project Support,,0,,"How to Apply for Project Support
+The call for proposal under the schemes and programs of SEED division is primarily an annual call. The priorities and commitments of the advertised call are articulated in the Call for Proposals on DST’s website. The format and call guidelines detailing eligibility conditions, criteria for evaluation and evaluation procedure are part of call document. Applicants are required to submit a soft copy of the proposal through http://onlinedst.gov.in in the prescribed format.",506,SUCCESS_BODY_FALLBACK,BEAUTIFULSOUP_REGION_SCORING,body_fallback,7,,CURRENT_OR_UNRESOLVED,,,dst_page_e15a35430063a0d0175f,APPLICATION_GUIDANCE,0.6914,50.000,CALL_FOR_PROPOSALS,34.000,28.000,34.000,,APPLICATION_GUIDANCE_TITLE,LOW_CONFIDENCE,1,NO_CANONICAL_SCHEME_IDENTITY_CREATED,2026-07-10T09:59:23+00:00
+dst_page_33d65148544def46d3c9,https://dst.gov.in/sanctioned-projects,https://dst.gov.in/sanctioned-projects,https://dst.gov.in/sanctioned-projects,https://dst.gov.in/sanctioned-projects,,0,SANCTIONED_PROJECTS_INDEX,SANCTIONED_PROJECTS_EVIDENCE,200,text/html,utf-8,Sanctioned Projects,en,2026-07-10T09:31:18+00:00,"Fri, 10 Jul 2026 09:31:16 GMT",,13 Apr 2026,12972,72632,6feded908fd52a9084af9a9c2bb5da13a63f7c9bdf17a892a607b9b4cdf4e108,8a8175e8820f070f07f2acb85a57f97d1c2a012eacf1c1b04380074e7b540cde,282,148,"Sanctioned Projects
+SANCTIONED PROJECTS (2011-2024)
+S&T for Women
+2017-18 15.62 KB
+2018-19 125.49 KB
+2019-20 385.35 KB
+2020-21 164.46 KB
+2021-22 144.69 KB
+2023-24 390.52 KB
+STAWS scheme
+TIASN and SYSP
+2017-18 105.02 KB
+2018-19 583.99 KB
+2019-20 587.42 KB
+SCSP Scheme
+2016-17 173.04 KB
+2017-18 22.57 KB
+2018-19 88.21 KB
+2019-20 140.23 KB
+2020-21 299.66 KB
+2021-22 0 bytes
+2022-23 400.08 KB
+2023-24 436 KB
+TSP Scheme
+2017-18 19.75 KB
+2018-19 139.33 KB
+2019-20 304.21 KB
+2020-21 406.68 KB
+2021-22 344.74 KB
+2022-23 283.91 KB
+2023-24 436.24 KB
+* STARD
+----
+SUNIL (Earlier TARA) **(core support)
+2017-18 13.18 KB
+2018-19 86.22 KB
+2019-20
+2020-21 14.74 KB
+2021-22 180.89 KB
+2023-24 493.48 KB
+2024-25 369.54 KB
+DISHA-SRF
+TIDE
+2021-22 169.19 KB
+2022-23 329.16 KB
+2023-24 466.94 KB
+SYST
+2020-21 489.1 KB
+2022-23 240.19 KB
+2023-24 508.05 KB
+ASACODER
+SUTRA-PIC
+2021-22 135.06 KB
+* Since 2009-2010 to 2010-11, STARD scheme was tapered off and restructured as TIASN SCHEME
+**Earlier core support was provided under STARD scheme. Since 2011-12, core support is provided under TARA as individual scheme. In 2022, TARA programme renamed as SUNIL programme.
+*** Since 2014-15, proposals related to Science and Technology Application for Weaker Section (STAWS) scheme are being considered under TISAN Scheme",snapshots\html\sanctioned-projects_33d65148544def46.html.gz,,UNAVAILABLE_HTTP_404_CONSERVATIVE_ALLOW,2427,,Sanctioned Projects,,0,,"Sanctioned Projects
+SANCTIONED PROJECTS (2011-2024)
+S&T for Women
+2017-18 15.62 KB
+2018-19 125.49 KB
+2019-20 385.35 KB
+2020-21 164.46 KB
+2021-22 144.69 KB
+2023-24 390.52 KB
+STAWS scheme
+TIASN and SYSP
+2017-18 105.02 KB
+2018-19 583.99 KB
+2019-20 587.42 KB
+SCSP Scheme
+2016-17 173.04 KB
+2017-18 22.57 KB
+2018-19 88.21 KB
+2019-20 140.23 KB
+2020-21 299.66 KB
+2021-22 0 bytes
+2022-23 400.08 KB
+2023-24 436 KB
+TSP Scheme
+2017-18 19.75 KB
+2018-19 139.33 KB
+2019-20 304.21 KB
+2020-21 406.68 KB
+2021-22 344.74 KB
+2022-23 283.91 KB
+2023-24 436.24 KB
+* STARD
+----
+SUNIL (Earlier TARA) **(core support)
+2017-18 13.18 KB
+2018-19 86.22 KB
+2019-20
+2020-21 14.74 KB
+2021-22 180.89 KB
+2023-24 493.48 KB
+2024-25 369.54 KB
+DISHA-SRF
+TIDE
+2021-22 169.19 KB
+2022-23 329.16 KB
+2023-24 466.94 KB
+SYST
+2020-21 489.1 KB
+2022-23 240.19 KB
+2023-24 508.05 KB
+ASACODER
+SUTRA-PIC
+2021-22 135.06 KB
+* Since 2009-2010 to 2010-11, STARD scheme was tapered off and restructured as TIASN SCHEME
+**Earlier core support was provided under STARD scheme. Since 2011-12, core support is provided under TARA as individual scheme. In 2022, TARA programme renamed as SUNIL programme.
+*** Since 2014-15, proposals related to Science and Technology Application for Weaker Section (STAWS) scheme are being considered under TISAN Scheme",1289,SUCCESS_BODY_FALLBACK,BEAUTIFULSOUP_REGION_SCORING,body_fallback,7,,CURRENT_OR_UNRESOLVED,,,dst_page_33d65148544def46d3c9,SANCTIONED_PROJECT_EVIDENCE,0.9900,128.000,PROGRAMME_CATEGORY_INDEX,28.000,0.000,0.000,,CRAWLER_SANCTIONED_PROJECT_HINT | SANCTIONED_PROJECT_TITLE,,0,NO_CANONICAL_SCHEME_IDENTITY_CREATED,2026-07-10T09:59:23+00:00
+dst_page_bfcd9c3626c6356291f2,https://dst.gov.in/long-term-core-support-technological-advancement-rural-areas-tara,https://dst.gov.in/long-term-core-support-technological-advancement-rural-areas-tara,https://dst.gov.in/long-term-core-support-technological-advancement-rural-areas-tara,https://dst.gov.in/long-term-core-support-technological-advancement-rural-areas-tara,https://dst.gov.in/about-schemes,1,SCHEME_PROGRAMME_SUPPORTING_PAGE,UNCLASSIFIED_SOURCE_PAGE,200,text/html,utf-8,Long Term Core Support - Technological Advancement for Rural Areas (TARA),en,2026-07-10T09:31:21+00:00,"Fri, 10 Jul 2026 09:31:20 GMT",,24 Sep 2018,12601,57699,b5ec2456b42a3524008869f86c7c5f4e4c42363f8fa47191d2875a07b9d89a32,286085b284acfd173e059a25e703fbee2f995fe9ca35fe32f774348db95fa054,777,95,"Long Term Core Support - Technological Advancement for Rural Areas (TARA)
+This scheme under SEED Division is essentially to provide long term Core Support to Science and Technology (S&T) based NGOs to promote and nurture them as “S&T Incubators” / “Active Field Laboratories” in rural and other disadvantaged areas to work and provide technological solutions and effective delivery of technologies for livelihood generation & societal benefits.
+Programme Focus:
+Focus to support for innovation (i.e. technology evelopment/adaptation) & working technology system with multiplication. Long-term Action Research Programmes with defined goals for development, field testing and adoption of appropriate technologies to address location specific needs rather than “institutional support”.. Focus sharply on demonstrable replicability and enterprise models: shift to non farm and service sectors. Especially to support core S&T manpower otherwise difficult to retain in grassroot organizations. Strengthen a network of S&T capable organizations in the country for application and propagation of appropriate technologies to address location-specific user needs through participatory approach.
+Focus to support for innovation (i.e. technology evelopment/adaptation) & working technology system with multiplication.
+Long-term Action Research Programmes with defined goals for development, field testing and adoption of appropriate technologies to address location specific needs rather than “institutional support”..
+Focus sharply on demonstrable replicability and enterprise models: shift to non farm and service sectors.
+Especially to support core S&T manpower otherwise difficult to retain in grassroot organizations.
+Strengthen a network of S&T capable organizations in the country for application and propagation of appropriate technologies to address location-specific user needs through participatory approach.
+Eligibility Conditions & Selection Mechanism:
+Organizations with minimum 10 years field leve",snapshots\html\long-term-core-support-technological-advancement-rural-areas-tara_bfcd9c3626c63562.html.gz,,UNAVAILABLE_HTTP_404_CONSERVATIVE_ALLOW,341,,Long Term Core Support - Technological Advancement for Rural Areas (TARA),https://dst.gov.in/about-schemes,1,,"Long Term Core Support - Technological Advancement for Rural Areas (TARA)
+This scheme under SEED Division is essentially to provide long term Core Support to Science and Technology (S&T) based NGOs to promote and nurture them as “S&T Incubators” / “Active Field Laboratories” in rural and other disadvantaged areas to work and provide technological solutions and effective delivery of technologies for livelihood generation & societal benefits.
+Programme Focus:
+Focus to support for innovation (i.e. technology evelopment/adaptation) & working technology system with multiplication. Long-term Action Research Programmes with defined goals for development, field testing and adoption of appropriate technologies to address location specific needs rather than “institutional support”.. Focus sharply on demonstrable replicability and enterprise models: shift to non farm and service sectors. Especially to support core S&T manpower otherwise difficult to retain in grassroot organizations. Strengthen a network of S&T capable organizations in the country for application and propagation of appropriate technologies to address location-specific user needs through participatory approach.
+Focus to support for innovation (i.e. technology evelopment/adaptation) & working technology system with multiplication.
+Long-term Action Research Programmes with defined goals for development, field testing and adoption of appropriate technologies to address location specific needs rather than “institutional support”..
+Focus sharply on demonstrable replicability and enterprise models: shift to non farm and service sectors.
+Especially to support core S&T manpower otherwise difficult to retain in grassroot organizations.
+Strengthen a network of S&T capable organizations in the country for application and propagation of appropriate technologies to address location-specific user needs through participatory approach.
+Eligibility Conditions & Selection Mechanism:
+Organizations with minimum 10 years field level experience in rural technology development and management with proven capability of delivering technology model(s) through adaptive R & D for field level application. Having minimum infrastructure to work as core supported group (CSG), like land and demonstrate working relations with Panchayats/State Govt. from long-term sustainability point of view. The organization should have experience in handling projects having focus on S &T with support from scientific departments of Govt. of India. Selection is based on initial scrutiny at the department level/presentation of proposal before the expert committee (1st level of screening). Based on the recommendation of the expert committee, proposal is further evaluated (2nd level of screening) by a on-site evaluation by expert team to assess need, capability and delivery potential of the organization for proposed programme/activities. After on the spot evaluation, the proposal along with assessment report of the visiting expert team is examined by the expert committee for final recommendation Funding of Projects : If approved , core funding is provided initially for a period of five to ten years subject to periodic review which may be extendable upto fifteen years and more. Submission of Application : Separate format may be obtained (ensuring the fulfillment of above mentioned eligibility criterion) on a request to
+Organizations with minimum 10 years field level experience in rural technology development and management with proven capability of delivering technology model(s) through adaptive R & D for field level application.
+Having minimum infrastructure to work as core supported group (CSG), like land and demonstrate working relations with Panchayats/State Govt. from long-term sustainability point of view.
+The organization should have experience in handling projects having focus on S &T with support from scientific departments of Govt. of India.
+Selection is based on initial scrutiny at the department level/presentation of proposal before the expert committee (1st level of screening). Based on the recommendation of the expert committee, proposal is further evaluated (2nd level of screening) by a on-site evaluation by expert team to assess need, capability and delivery potential of the organization for proposed programme/activities. After on the spot evaluation, the proposal along with assessment report of the visiting expert team is examined by the expert committee for final recommendation
+Funding of Projects : If approved , core funding is provided initially for a period of five to ten years subject to periodic review which may be extendable upto fifteen years and more. Submission of Application : Separate format may be obtained (ensuring the fulfillment of above mentioned eligibility criterion) on a request to
+Funding of Projects : If approved , core funding is provided initially for a period of five to ten years subject to periodic review which may be extendable upto fifteen years and more.
+Submission of Application : Separate format may be obtained (ensuring the fulfillment of above mentioned eligibility criterion) on a request to
+Head , Science for Equity, Empowerment & Development (SEED) Division, Department of Science and Technology, Technology Bhavan, New Mehrauli Road, New Delhi – 110 016 Email: ddutta[at]nic[dot]in
+List of Core Support Groups",5358,SUCCESS_BODY_FALLBACK,BEAUTIFULSOUP_REGION_SCORING,body_fallback,7,,CURRENT_OR_UNRESOLVED,,,dst_page_bfcd9c3626c6356291f2,PROGRAMME_CATEGORY_INDEX,0.4900,28.000,SCHEME_CATEGORY_INDEX,28.000,28.000,10.000,,RELEVANT_INTERNAL_LINKS_21,LOW_CONFIDENCE | SMALL_SCORE_MARGIN,1,NO_CANONICAL_SCHEME_IDENTITY_CREATED,2026-07-10T09:59:23+00:00
+dst_page_b532de15ce003731615b,https://dst.gov.in/ngcma,https://dst.gov.in/ngcma,https://dst.gov.in/ngcma,https://dst.gov.in/ngcma,,0,PROGRAMME_CATEGORY,SCHEME_PROGRAMME_SUPPORTING_PAGE,200,text/html,utf-8,NGCMA Home,en,2026-07-10T09:31:27+00:00,"Fri, 10 Jul 2026 09:31:26 GMT",,04 Jun 2025,11768,55384,9ac0d8edde4009a8e4ecb1df0770e912a274349f266f604d51b054055b0fd96f,b1a51078e68cb904d377f63edc52372a1a2071919c2c7c56dbc9c0eaf060629c,159,104,"NGCMA Home
+A number of countries require manufacturers of chemicals viz. Industrial chemicals, Pharmaceuticals (Human and Veterinary), Agrochemicals, Cosmetics Products, Food/ Feed Additives and Medical devices, etc., to establish through data that use of these chemicals does not pose any hazards to human health and the environment. Non-hazardous nature needs to be established through studies and data, which will be examined by the regulatory authorities of the concerned countries. Good Laboratory Practice (GLP) is a system, which has been evolved by Organisation for Economic Co-operation and Development (OECD) used for achieving the above goals.
+National GLP Compliance Monitoring Authority (NGCMA) was established by the Department of Science & Technology (DST) , Government of India , with the approval of the Union Cabinet on April 24, 2002.
+GLP-compliance certification is voluntary in nature. Industries/ test facilities/laboratories dealing with above chemicals and looking for approval from regulatory authorities before marketing them, may apply to the NGCMA for obtaining GLP Certification.",snapshots\html\ngcma_b532de15ce003731.html.gz,,UNAVAILABLE_HTTP_404_CONSERVATIVE_ALLOW,295,,NGCMA Home,,0,,"NGCMA Home
+A number of countries require manufacturers of chemicals viz. Industrial chemicals, Pharmaceuticals (Human and Veterinary), Agrochemicals, Cosmetics Products, Food/ Feed Additives and Medical devices, etc., to establish through data that use of these chemicals does not pose any hazards to human health and the environment. Non-hazardous nature needs to be established through studies and data, which will be examined by the regulatory authorities of the concerned countries. Good Laboratory Practice (GLP) is a system, which has been evolved by Organisation for Economic Co-operation and Development (OECD) used for achieving the above goals.
+National GLP Compliance Monitoring Authority (NGCMA) was established by the Department of Science & Technology (DST) , Government of India , with the approval of the Union Cabinet on April 24, 2002.
+GLP-compliance certification is voluntary in nature. Industries/ test facilities/laboratories dealing with above chemicals and looking for approval from regulatory authorities before marketing them, may apply to the NGCMA for obtaining GLP Certification.",1108,SUCCESS_BODY_FALLBACK,BEAUTIFULSOUP_REGION_SCORING,body_fallback,7,,CURRENT_OR_UNRESOLVED,,,dst_page_b532de15ce003731615b,PROGRAMME_CATEGORY_INDEX,0.4900,28.000,SCHEME_CATEGORY_INDEX,28.000,0.000,0.000,,RELEVANT_INTERNAL_LINKS_99,LOW_CONFIDENCE | SMALL_SCORE_MARGIN,1,NO_CANONICAL_SCHEME_IDENTITY_CREATED,2026-07-10T09:59:23+00:00
+dst_page_2724bbad35f4f5d35f11,https://dst.gov.in/oecd-test-guidelines-testing-chemicals,https://dst.gov.in/oecd-test-guidelines-testing-chemicals,https://dst.gov.in/oecd-test-guidelines-testing-chemicals,https://dst.gov.in/oecd-test-guidelines-testing-chemicals,https://dst.gov.in/ngcma,1,GUIDELINE_OR_MANUAL_CANDIDATE,GUIDELINE_OR_MANUAL_CANDIDATE,200,text/html,utf-8,OECD Test Guidelines,en,2026-07-10T09:31:28+00:00,"Fri, 10 Jul 2026 09:31:27 GMT",,27 Aug 2019,11454,54922,91fa2aa11e6258f10819ad826ac64e8421e16c525db5a1fc2be7d394cffa679c,982e84d614fccc977c6696e03979c9d6d116ae1c99694f50bc27650a310c7d2e,39,105,"OECD Test Guidelines
+OECD Guidelines for Testing of Chemicals
+To procure the OECD Test Guidelines may please contact :-
+OECD Environment Directorate, Environmental Health and Safety Divison 2 rue Andre` - Pascal 75775 Paris Cedex 16 France
+Website :- www.oecd.org",snapshots\html\oecd-test-guidelines-testing-chemicals_2724bbad35f4f5d3.html.gz,,UNAVAILABLE_HTTP_404_CONSERVATIVE_ALLOW,318,,OECD Test Guidelines,https://dst.gov.in/ngcma,1,,"OECD Test Guidelines
+OECD Guidelines for Testing of Chemicals
+To procure the OECD Test Guidelines may please contact :-
+OECD Environment Directorate, Environmental Health and Safety Divison 2 rue Andre` - Pascal 75775 Paris Cedex 16 France
+Website :- www.oecd.org",263,SUCCESS_BODY_FALLBACK,BEAUTIFULSOUP_REGION_SCORING,body_fallback,7,,CURRENT_OR_UNRESOLVED,,,dst_page_2724bbad35f4f5d35f11,GUIDELINE_PAGE,0.9900,112.000,PROGRAMME_CATEGORY_INDEX,28.000,0.000,0.000,,CRAWLER_GUIDELINE_HINT | GUIDELINE_TITLE | GUIDELINE_BODY,LOW_TEXT_BODY_FALLBACK,1,NO_CANONICAL_SCHEME_IDENTITY_CREATED,2026-07-10T09:59:23+00:00

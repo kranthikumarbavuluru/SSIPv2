@@ -1,6 +1,6 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """
-SSIP v2.7.3.4 — Publication Control Service
+SSIP v2.7.3.4 â€” Publication Control Service
 
 Provides explicit, audited state transitions for scheme publication.
 
@@ -26,6 +26,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import os
 import sqlite3
 import sys
@@ -50,6 +51,7 @@ WRITE_ACTIONS = {
     "mark-ready",
     "publish",
     "unpublish",
+    "withdraw-publication",
     "archive",
     "restore",
 }
@@ -219,6 +221,152 @@ def valid_http_url(value: Any) -> bool:
     return parsed.scheme.lower() in {"http", "https"} and bool(parsed.netloc)
 
 
+
+def call_specific_quality_gate(row: sqlite3.Row) -> GateResult:
+    blockers: list[str] = []
+    warnings: list[str] = []
+
+    keys = set(row.keys())
+    record_kind = str(
+        row["record_kind"] if "record_kind" in keys else ""
+    ).strip().upper()
+    if record_kind not in {"APPLICATION_CALL", "CHALLENGE"}:
+        return GateResult(True, [], [])
+
+    title = str(row["scheme_name"] or "").strip()
+    title_key = " ".join(
+        re.sub(r"[^a-z0-9]+", " ", title.casefold()).split()
+    )
+    official_url = str(row["official_page_url"] or "").strip()
+    application_status = str(
+        row["application_status"]
+        if "application_status" in keys
+        else ""
+    ).strip().upper()
+
+    try:
+        payload = json.loads(str(row["raw_record_json"] or "{}"))
+        if not isinstance(payload, dict):
+            payload = {}
+    except json.JSONDecodeError:
+        payload = {}
+
+    if application_status in {
+        "",
+        "VERIFICATION_REQUIRED",
+        "STATUS_UNVERIFIED",
+        "OPEN_STATUS_REQUIRES_DEADLINE_VERIFICATION",
+    }:
+        blockers.append(
+            "application call status is not sufficiently verified for publication"
+        )
+
+    generic_titles = {
+        "challenges",
+        "event partner",
+        "organisationprofile",
+        "organisation profile",
+        "press release all",
+        "g20diaoverview",
+        "g20 dia overview",
+    }
+    if (
+        title_key in generic_titles
+        or ".pdf" in title.casefold()
+        or "%20" in title.casefold()
+    ):
+        blockers.append(
+            "application call identity is generic, encoded or filename-derived"
+        )
+
+    path = urlparse(official_url).path.casefold().rstrip("/")
+    if path in {
+        "/challenges",
+        "/event-partner",
+        "/organisationprofile",
+        "/press-release-all",
+    }:
+        blockers.append(
+            "official_page_url is a directory or listing page, not an individual call"
+        )
+
+    parent_resolution = str(
+        payload.get("parent_resolution") or ""
+    ).strip().upper()
+    parent_id = str(payload.get("parent_master_id") or "").strip()
+    if (
+        parent_resolution in {"", "UNRESOLVED", "UMBRELLA_ONLY_REVIEW"}
+        and not parent_id
+    ):
+        blockers.append(
+            "call parent relationship is unresolved and not approved as standalone"
+        )
+
+    applicant_layer = str(
+        payload.get("applicant_layer") or ""
+    ).strip().upper()
+    if applicant_layer in {
+        "",
+        "REQUIRES_ADMIN_VERIFICATION",
+        "UNKNOWN",
+    }:
+        blockers.append(
+            "call applicant layer is not verified"
+        )
+
+    status_basis = str(payload.get("status_basis") or "").strip()
+    status_evidence = str(
+        payload.get("status_evidence") or ""
+    ).strip()
+    if not status_basis or not status_evidence:
+        blockers.append(
+            "call status basis and evidence are required"
+        )
+
+    closing_date = str(
+        payload.get("closing_date")
+        or (row["closing_date"] if "closing_date" in keys else "")
+    ).strip()
+
+    if application_status == "OPEN":
+        if not valid_http_url(row["application_url"]):
+            blockers.append(
+                "open call requires a verified application_url"
+            )
+        if not closing_date:
+            blockers.append(
+                "open call requires a verified closing date"
+            )
+    elif application_status == "UPCOMING":
+        opening_date = str(
+            payload.get("opening_date")
+            or (row["opening_date"] if "opening_date" in keys else "")
+        ).strip()
+        if not opening_date or not closing_date:
+            blockers.append(
+                "upcoming call requires verified opening and closing dates"
+            )
+    elif application_status == "CLOSED":
+        if not closing_date and not status_evidence:
+            blockers.append(
+                "closed call requires historical deadline or closure evidence"
+            )
+    elif application_status not in {
+        "OPEN",
+        "UPCOMING",
+        "CLOSED",
+    }:
+        blockers.append(
+            "application call has an unsupported publication status"
+        )
+
+    return GateResult(
+        passed=not blockers,
+        blockers=list(dict.fromkeys(blockers)),
+        warnings=list(dict.fromkeys(warnings)),
+    )
+
+
 def quality_gate(row: sqlite3.Row) -> GateResult:
     blockers: list[str] = []
     warnings: list[str] = []
@@ -247,6 +395,11 @@ def quality_gate(row: sqlite3.Row) -> GateResult:
         warnings.append("application_url is unavailable")
     elif not valid_http_url(application_url):
         blockers.append("application_url is present but invalid")
+
+
+    call_gate = call_specific_quality_gate(row)
+    blockers.extend(call_gate.blockers)
+    warnings.extend(call_gate.warnings)
 
     if str(row["publication_status"] or "") != "READY_FOR_PUBLICATION":
         blockers.append("publication_status is not READY_FOR_PUBLICATION")
@@ -290,6 +443,9 @@ def transition_for(action: str, current_status: str) -> tuple[str, int]:
         "unpublish": {
             "PUBLISHED": ("UNPUBLISHED", 0),
         },
+        "withdraw-publication": {
+            "PUBLISHED": ("UNPUBLISHED", 0),
+        },
         "archive": {
             "STAGED": ("ARCHIVED", 0),
             "READY_FOR_PUBLICATION": ("ARCHIVED", 0),
@@ -314,7 +470,7 @@ def transition_for(action: str, current_status: str) -> tuple[str, int]:
 def expected_public_delta(action: str) -> int:
     if action == "publish":
         return 1
-    if action == "unpublish":
+    if action in {"unpublish", "withdraw-publication"}:
         return -1
     return 0
 
@@ -345,7 +501,7 @@ def build_update_values(
                 "unpublished_by": None,
             }
         )
-    elif action == "unpublish":
+    elif action in {"unpublish", "withdraw-publication"}:
         values.update(
             {
                 "unpublished_at": now,
@@ -380,6 +536,7 @@ def write_audit(
         "mark-ready": "MARK_READY",
         "publish": "PUBLISH",
         "unpublish": "UNPUBLISH",
+        "withdraw-publication": "UNPUBLISH",
         "archive": "ARCHIVE",
         "restore": "RESTORE",
     }
@@ -1068,3 +1225,4 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
+

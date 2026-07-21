@@ -1,0 +1,32 @@
+﻿sector,aliases,is_cross_sector
+Agriculture & AgriTech,agriculture; agritech; agri-tech; farming; farm; horticulture; aquaculture; fisheries; dairy; livestock; post-harvest; crop; rural agriculture,False
+Food Processing & FoodTech,food processing; foodtech; food tech; food technology; cold chain; food safety; nutraceutical; packaged food,False
+Biotechnology & Life Sciences,biotechnology; biotech; life sciences; bioe3; bio-ai; genomics; synthetic biology; biomanufacturing; bioscience; bioeconomy,False
+Healthcare & MedTech,healthcare; health tech; healthtech; medtech; medical device; diagnostic; hospital; public health; digital health; clinical,False
+Pharmaceuticals & Drug Discovery,pharmaceutical; pharma; drug discovery; drug development; therapeutic; vaccine; active pharmaceutical ingredient; api manufacturing,False
+Artificial Intelligence & Data,artificial intelligence; machine learning; deep learning; data science; big data; generative ai; computer vision; natural language processing; ai/;  ai ,False
+Digital Technology & Software,software; digital technology; information technology; it services; saas; cloud computing; platform technology; digital solution; mobile application; web technology,False
+Cybersecurity,cybersecurity; cyber security; information security; data security; privacy technology; cryptography; secure computing,False
+Electronics & Semiconductors,electronics; semiconductor; chip design; microelectronics; embedded system; electronic system design; esdm; sensor; vlsi,False
+Telecommunications & Connectivity,telecommunication; telecom; 5g; 6g; broadband; connectivity; wireless communication; optical communication; network technology,False
+Deep Technology,deep tech; deeptech; cyber-physical; quantum technology; quantum computing; advanced materials; frontier technology; emerging technology; disruptive technology,False
+Robotics & Automation,robotics; robot; automation; autonomous system; industrial automation; mechatronics; unmanned system; cyber-physical system,False
+Manufacturing & Industry 4.0,manufacturing; industry 4.0; smart factory; advanced manufacturing; industrial technology; production technology; tooling; capital goods,False
+Automotive & Mobility,automotive; automobile; electric vehicle; ev; mobility; vehicle technology; transport technology; battery vehicle,False
+Aerospace & Defence,aerospace; aviation; defence; defense; drone; unmanned aerial; aircraft; military technology,False
+Space Technology,space technology; spacetech; satellite; launch vehicle; earth observation; remote sensing; space application,False
+ClimateTech & Clean Energy,climate tech; climatetech; climate change; clean energy; clean technology; cleantech; decarbonization; carbon capture; net zero; green technology; energy transition,False
+Renewable Energy & Energy Storage,renewable energy; solar; wind energy; hydrogen; bioenergy; energy storage; battery technology; fuel cell; smart grid,False
+Environment & Circular Economy,environment; circular economy; waste management; recycling; pollution control; air quality; sustainability; biodegradable; resource efficiency,False
+Water & Sanitation,water technology; water treatment; wastewater; sanitation; drinking water; water conservation; sewage; desalination,False
+Financial Services & FinTech,fintech; financial technology; digital payment; banking technology; insurance technology; insurtech; lending platform; wealthtech,False
+Logistics & Supply Chain,logistics; supply chain; warehousing; freight; last mile; transportation logistics; inventory management,False
+Education & EdTech,edtech; education technology; digital learning; e-learning; skill technology; learning platform; education innovation,False
+"Textiles, Apparel & Handicrafts",textile; apparel; garment; handloom; handicraft; fashion technology; technical textile,False
+"Tourism, Travel & Hospitality",tourism; travel technology; traveltech; hospitality; hotel technology; destination management,False
+"Media, Gaming & Creative Industries",gaming; animation; visual effects; avgc; media technology; creative industry; film technology; music technology; immersive media,False
+"Retail, Commerce & Consumer Technology",retail tech; retail technology; e-commerce; ecommerce; consumer internet; direct to consumer; d2c; commerce platform,False
+Social Impact & Rural Innovation,social impact; social innovation; rural innovation; inclusive innovation; livelihood; grassroots innovation; assistive technology; development sector,False
+Cross-sector Innovation & Entrepreneurship,sector agnostic; all sectors; across sectors; multi-sector; multiple sectors; innovation and entrepreneurship; science and technology entrepreneurship; technology entrepreneurship; startup ecosystem; incubation support; accelerator; prototype support; proof of concept; entrepreneur in residence; nidhi; prayas; technology business incubator,True
+Cross-sector MSME & Startup Finance,credit guarantee; fund of funds; seed fund; startup fund; venture fund; working capital; bill discounting; loan scheme; credit support; financial assistance to startups; financial assistance to msmes; equity support; risk capital,True
+Sector Agnostic / Multi-sector,general startup support; general msme support; all industries; eligible sectors; sector-neutral; sector neutral,True

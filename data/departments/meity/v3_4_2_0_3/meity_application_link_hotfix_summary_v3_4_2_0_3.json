@@ -1,0 +1,13 @@
+{
+  "version": "3.4.2.0.3",
+  "phase": "MeitY Invalid Application-Link Suppression Hotfix",
+  "publication_status": "PASS",
+  "run_id": "20260713T062214+0000_meity_app_link_hotfix",
+  "problem": "Legacy database application_url values pointed SAMRIDH and TIDE 2.0 to the unrelated MeitY Startup Hub logo-application page.",
+  "resolution": "The governed catalogue now explicitly suppresses application_url fallback for both schemes. Their official scheme-information pages remain available, but no Apply Now link is exposed.",
+  "active_catalogue_rows": 139,
+  "dashboard_visible_records": 53,
+  "rollback_catalogue": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\publication\\backups\\20260713T062214+0000_meity_app_link_hotfix\\catalogue_before.csv",
+  "rollback_manifest": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\publication\\backups\\20260713T062214+0000_meity_app_link_hotfix\\current_manifest_before.json",
+  "release_catalogue": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\publication\\20260713T062214+0000_meity_app_link_hotfix\\catalogue.csv"
+}

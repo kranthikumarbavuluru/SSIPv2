@@ -1,0 +1,55 @@
+{
+  "version": "3.4.3.0",
+  "phase": "MeitY Department-Wide Automated Discovery and Classification",
+  "execution_mode": "DISCOVERY_PREVIEW_ONLY",
+  "started_from_seeds": [
+    "https://www.meity.gov.in/offerings/schemes-and-services",
+    "https://www.meity.gov.in/offerings?page=0",
+    "https://www.meity.gov.in/archives?page=schemes_and_services",
+    "https://msh.meity.gov.in/",
+    "https://msh.meity.gov.in/whatsnew",
+    "https://msh.meity.gov.in/schemes/samridh",
+    "https://msh.meity.gov.in/schemes/tide",
+    "https://msh.meity.gov.in/schemes/sasact",
+    "https://msh.meity.gov.in/schemes/genesis"
+  ],
+  "completed_at": "2026-07-13T06:33:50+00:00",
+  "settings": {
+    "max_pages": 300,
+    "max_depth": 4,
+    "delay": 0.25,
+    "timeout": 25,
+    "use_llm": "auto",
+    "llm_available": true,
+    "llm_model": "qwen2.5-7b-instruct",
+    "llm_max": 40
+  },
+  "counts": {
+    "pages_fetched_or_attempted": 9,
+    "unique_urls_visited": 9,
+    "queued_urls_remaining": 0,
+    "existing_identity_matches": 2,
+    "manual_review_rows": 0,
+    "CALL_INSTANCE_CANDIDATE": 1,
+    "NON_CATALOGUE": 4,
+    "SCHEME_MASTER_CANDIDATE": 4
+  },
+  "fetch_errors": {},
+  "governance": {
+    "calls_and_cohorts_separate_from_permanent_schemes": true,
+    "official_domains_only": true,
+    "application_status_not_inferred_from_scheme_page": true,
+    "invalid_msh_logo_application_excluded": true,
+    "publication_performed": false,
+    "database_modified": false,
+    "dashboard_modified": false
+  },
+  "outputs": [
+    "meity_call_instances_v3_4_3_0.csv",
+    "meity_discovered_pages_v3_4_3_0.csv",
+    "meity_evidence_only_pages_v3_4_3_0.csv",
+    "meity_manual_review_queue_v3_4_3_0.csv",
+    "meity_programme_master_candidates_v3_4_3_0.csv",
+    "meity_scheme_master_candidates_v3_4_3_0.csv"
+  ]
+}

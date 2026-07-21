@@ -1,0 +1,19 @@
+{
+  "service_version": "3.4.0.5",
+  "tests": {
+    "startup_scheme_detected": true,
+    "institution_only_rejected": true,
+    "call_separated": true,
+    "mission_not_direct_scheme": true,
+    "seven_curated_startup_records": true,
+    "all_curated_records_have_sector": true,
+    "all_curated_records_have_access_route": true
+  },
+  "classifications": {
+    "startup_scheme": "DIRECT_STARTUP_SCHEME",
+    "institution_only": "REJECTED_NON_STARTUP",
+    "startup_call": "STARTUP_CALL_INSTANCE",
+    "mission": "ECOSYSTEM_REVIEW_REQUIRED"
+  },
+  "self_test_passed": true
+}

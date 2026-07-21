@@ -1,0 +1,3 @@
+﻿resolution_id,record_id,compared_identity,resolution,relationship_type,merge_allowed
+dpiit_version_fof_2,dpiit_master_c89f3d410e746f1594dc,Fund of Funds for Startups 1.0,SEPARATE_VERSION_IDENTITY,VERSION_LINEAGE_FROM,0
+dpiit_service_boundary_80iac,dpiit_master_3b767c3b91080149015f,dpiit_master_6c1afb477ef37cd6acaa,SEPARATE_SERVICE_IDENTITY,REQUIRES_DPIIT_RECOGNITION,0

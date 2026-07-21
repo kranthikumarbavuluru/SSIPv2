@@ -1,0 +1,58 @@
+{
+  "hotfix_version": "2.2.0",
+  "source": "MeitY Startup Hub",
+  "classified_record_count_before": 161,
+  "classified_record_count_after": 161,
+  "meity_classified_record_count": 6,
+  "master_candidate_count_before": 34,
+  "master_candidate_count_after": 34,
+  "meity_master_count_before": 6,
+  "meity_master_count_after": 6,
+  "non_meity_classified_records_preserved": 155,
+  "non_meity_masters_preserved": 28,
+  "meity_candidates": [
+    {
+      "master_id": "147173e17ea741687247",
+      "canonical_name": "SAMRIDH",
+      "master_type": "SCHEME_OR_PROGRAMME",
+      "current_status": "SCHEME_INFORMATION_AVAILABLE",
+      "best_available_url": "https://msh.meity.gov.in/schemes/samridh"
+    },
+    {
+      "master_id": "6af79cf6c8a213dddce8",
+      "canonical_name": "TIDE 2.0",
+      "master_type": "SCHEME_OR_PROGRAMME",
+      "current_status": "SCHEME_INFORMATION_AVAILABLE",
+      "best_available_url": "https://msh.meity.gov.in/schemes/tide"
+    },
+    {
+      "master_id": "e3abff4124f05a31f188",
+      "canonical_name": "SASACT",
+      "master_type": "SCHEME_OR_PROGRAMME",
+      "current_status": "SCHEME_INFORMATION_AVAILABLE",
+      "best_available_url": "https://msh.meity.gov.in/schemes/sasact"
+    },
+    {
+      "master_id": "190830c31088c57ffdbc",
+      "canonical_name": "GENESIS",
+      "master_type": "SCHEME_OR_PROGRAMME",
+      "current_status": "SCHEME_INFORMATION_AVAILABLE",
+      "best_available_url": "https://msh.meity.gov.in/schemes/genesis"
+    },
+    {
+      "master_id": "ee7270f0f7d3d581c623",
+      "canonical_name": "SITAA - Contactless Fingerprint Authentication",
+      "master_type": "ACTIVE_CALL_FAMILY",
+      "current_status": "ACTIVE_CALL_OPEN",
+      "best_available_url": "https://msh.meity.gov.in/challenges/home/5f56490b-947e-4893-b9da-fe11f15251ec"
+    },
+    {
+      "master_id": "8434e0f45cca386fc5e5",
+      "canonical_name": "SITAA - Presentation Attack Detection",
+      "master_type": "ACTIVE_CALL_FAMILY",
+      "current_status": "ACTIVE_CALL_OPEN",
+      "best_available_url": "https://msh.meity.gov.in/challenges/home/35ed1bc3-26e1-4aef-99ee-3f759a530f55"
+    }
+  ],
+  "generated_at": "2026-07-09T05:44:40.393638+00:00"
+}

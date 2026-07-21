@@ -1,0 +1,626 @@
+﻿
+============================================================
+catalogue.py — imports and CatalogueRecord
+============================================================
+    1: from __future__ import annotations
+    2: 
+    3: from dataclasses import dataclass, field
+    4: import ast
+    5: import json
+    6: import math
+    7: import re
+    8: from typing import Any
+    9: 
+   10: import pandas as pd
+   11: 
+   12: from .config import CatalogueMode, DashboardConfig
+   13: from .data_access import read_dashboard_tables, read_normalization_plan
+   14: 
+   15: 
+   16: URL_RE = re.compile(r"https?://[^\s\"'<>\]\)]+", re.IGNORECASE)
+   17: 
+   18: 
+   19: @dataclass
+   20: class CatalogueRecord:
+   21:     master_id: str
+   22:     scheme_name: str
+   23:     source: str = ""
+   24:     ministry: str = ""
+   25:     department: str = ""
+   26:     implementing_agency: str = ""
+   27:     parent_master_id: str = ""
+   28:     parent_scheme_name: str = ""
+   29:     applicant_layer: str = ""
+   30:     implementation_role: str = ""
+   31:     status_basis: str = ""
+   32:     status_evidence: str = ""
+   33:     last_verified_at: str = ""
+   34:     record_kind: str = ""
+   35:     programme_status: str = ""
+   36:     application_status: str = ""
+   37:     geographic_scope: str = ""
+   38:     catalogue_inclusion: str = ""
+   39:     catalogue_section: str = ""
+   40:     publication_status: str = ""
+   41:     is_public: int = 0
+   42:     current_location: str = ""
+   43:     current_review_status: str = ""
+   44:     current_decision: str = ""
+   45:     official_page_url: str = ""
+   46:     application_url: str = ""
+   47:     opening_date: str = ""
+   48:     closing_date: str = ""
+   49:     validation_score: float | None = None
+   50:     currency: str = "INR"
+   51:     funding_minimum: int | None = None
+   52:     funding_maximum: int | None = None
+   53:     beneficiary_support_minimum: int | None = None
+   54:     beneficiary_support_maximum: int | None = None
+   55:     intermediary_support_maximum: int | None = None
+   56:     scheme_corpus: int | None = None
+   57:     objectives: list[str] = field(default_factory=list)
+   58:     eligibility: list[str] = field(default_factory=list)
+   59:     benefits: list[str] = field(default_factory=list)
+   60:     application_process: list[str] = field(default_factory=list)
+   61:     required_documents: list[str] = field(default_factory=list)
+   62:     sectors: list[str] = field(default_factory=list)
+   63:     scheme_types: list[str] = field(default_factory=list)
+   64:     target_beneficiaries: list[str] = field(default_factory=list)
+   65:     startup_stage: list[str] = field(default_factory=list)
+   66:     guideline_urls: list[str] = field(default_factory=list)
+   67:     reference_urls: list[str] = field(default_factory=list)
+   68:     contacts: list[str] = field(default_factory=list)
+   69:     warnings: list[str] = field(default_factory=list)
+   70:     recommended_actions: list[str] = field(default_factory=list)
+   71:     decision_reasons: list[str] = field(default_factory=list)
+   72:     last_updated: str = ""
+   73:     search_blob: str = ""
+   74: 
+   75: 
+   76: @dataclass
+   77: class CatalogueBundle:
+   78:     records: list[CatalogueRecord]
+   79:     mode: CatalogueMode
+   80:     metadata: dict[str, Any]
+   81: 
+   82: 
+   83: def is_blank(value: Any) -> bool:
+   84:     if value is None:
+   85:         return True
+   86:     if isinstance(value, float) and math.isnan(value):
+   87:         return True
+   88:     text = str(value).strip()
+   89:     return text == "" or text.lower() in {"none", "nan", "nat", "null"}
+   90: 
+
+============================================================
+catalogue.py — record construction and URL mapping
+============================================================
+  300: def explicit_preview_record_allowed(plan_row: dict[str, Any]) -> bool:
+  301:     inclusion = as_text(plan_row.get("catalogue_inclusion")).upper()
+  302:     decision = as_text(plan_row.get("current_decision")).upper()
+  303:     return inclusion == "INCLUDED" and decision != "REJECTED"
+  304: 
+  305: 
+  306: def payload_from_rows(*rows: dict[str, Any]) -> dict[str, Any]:
+  307:     payload: dict[str, Any] = {}
+  308:     for row in rows:
+  309:         for key in ("raw_record_json", "validated_record_json"):
+  310:             parsed = safe_json(row.get(key))
+  311:             if isinstance(parsed, dict):
+  312:                 payload.update({k: v for k, v in parsed.items() if k not in payload or is_blank(payload[k])})
+  313:     nested = deep_find(payload, ["validated_record", "record", "scheme_record", "data"])
+  314:     if isinstance(nested, dict):
+  315:         payload.update({k: v for k, v in nested.items() if k not in payload or is_blank(payload[k])})
+  316:     return payload
+  317: 
+  318: 
+  319: def build_record(
+  320:     master_id: str,
+  321:     *,
+  322:     plan_row: dict[str, Any],
+  323:     data_row: dict[str, Any],
+  324:     review_row: dict[str, Any],
+  325:     rejected_row: dict[str, Any],
+  326:     attributes: dict[str, dict[str, list[str]]],
+  327:     contacts: dict[str, list[str]],
+  328:     source_urls: dict[str, list[str]],
+  329: ) -> CatalogueRecord:
+  330:     payload = payload_from_rows(data_row, review_row, rejected_row)
+  331: 
+  332:     def direct(*names: str) -> Any:
+  333:         candidates: list[Any] = []
+  334:         for name in names:
+  335:             candidates.extend(
+  336:                 [
+  337:                     plan_row.get(name),
+  338:                     data_row.get(name),
+  339:                     review_row.get(name),
+  340:                     rejected_row.get(name),
+  341:                     payload.get(name),
+  342:                 ]
+  343:             )
+  344:         candidates.append(deep_find(payload, list(names)))
+  345:         return first_value(*candidates)
+  346: 
+  347:     objective_values = to_list(deep_find(payload, ["objectives", "objective", "purpose", "description", "overview"]))
+  348:     eligibility_values = to_list(deep_find(payload, ["eligibility", "eligibility_criteria", "who_can_apply"]))
+  349:     benefits_values = to_list(deep_find(payload, ["benefits", "support", "assistance", "financial_assistance"]))
+  350:     process_values = to_list(deep_find(payload, ["application_process", "how_to_apply", "application_steps"]))
+  351:     document_values = to_list(deep_find(payload, ["required_documents", "documents_required", "documents"]))
+  352:     warning_values = to_list(first_value(plan_row.get("warnings"), review_row.get("warnings_json"), payload.get("validation_warnings"), payload.get("quality_flags")))
+  353: 
+  354:     guideline_urls = dedupe(
+  355:         collect_urls(deep_find(payload, ["guideline_urls", "guidelines", "manual_urls", "scheme_guidelines"]))
+  356:         + values_for(attributes, master_id, ["guideline_urls"])
+  357:     )
+  358:     all_urls = dedupe(
+  359:         [
+  360:             url
+  361:             for url in [
+  362:                 safe_url(direct("official_page_url", "final_url", "best_available_url")),
+  363:                 safe_url(direct("application_url", "apply_url")),
+  364:             ]
+  365:             if url
+  366:         ]
+  367:         + guideline_urls
+  368:         + source_urls.get(master_id, [])
+  369:         + collect_urls(deep_find(payload, ["source_evidence", "sources", "references"]))
+  370:     )
+  371:     guideline_urls = dedupe(guideline_urls + [url for url in all_urls if ".pdf" in url.casefold()])
+  372: 
+  373:     record = CatalogueRecord(
+  374:         master_id=master_id,
+  375:         scheme_name=as_text(first_value(direct("scheme_name", "canonical_name", "title"), f"Unnamed record {master_id}")),
+  376:         source=as_text(direct("source")),
+  377:         ministry=as_text(direct("ministry")),
+  378:         department=as_text(direct("department")),
+  379:         implementing_agency=as_text(direct("implementing_agency")),
+  380:         parent_master_id=as_text(direct("parent_master_id")),
+  381:         parent_scheme_name=as_text(direct("parent_scheme_name")),
+  382:         applicant_layer=as_text(direct("applicant_layer")),
+  383:         implementation_role=as_text(direct("implementation_role")),
+  384:         status_basis=as_text(direct("status_basis")),
+  385:         status_evidence=as_text(direct("status_evidence")),
+  386:         last_verified_at=as_text(direct("last_verified_at")),
+  387:         record_kind=as_text(first_value(plan_row.get("normalized_record_kind"), direct("record_kind"))),
+  388:         programme_status=as_text(direct("programme_status")),
+  389:         application_status=as_text(direct("application_status", "scheme_status")),
+  390:         geographic_scope=as_text(direct("geographic_scope")),
+  391:         catalogue_inclusion=as_text(first_value(plan_row.get("catalogue_inclusion"), "INCLUDED")),
+  392:         catalogue_section=as_text(first_value(plan_row.get("catalogue_section"), "SCHEMES_AND_PROGRAMMES")),
+  393:         publication_status=as_text(first_value(data_row.get("publication_status"), plan_row.get("current_publication_status"))),
+  394:         is_public=as_int(first_value(data_row.get("is_public"), plan_row.get("current_is_public"))) or 0,
+  395:         current_location=as_text(plan_row.get("current_location")),
+  396:         current_review_status=as_text(first_value(plan_row.get("current_review_status"), review_row.get("review_status"))),
+  397:         current_decision=as_text(first_value(plan_row.get("current_decision"), review_row.get("decision"), rejected_row.get("decision"))),
+  398:         official_page_url=safe_url(direct("official_page_url", "final_url", "best_available_url")),
+  399:         application_url=safe_url(direct("application_url", "apply_url")),
+  400:         opening_date=as_text(direct("opening_date")),
+  401:         closing_date=as_text(direct("closing_date", "deadline")),
+  402:         validation_score=as_float(direct("validation_score", "confidence")),
+  403:         currency=as_text(first_value(direct("currency"), "INR")),
+  404:         funding_minimum=as_int(direct("funding_minimum", "funding_min")),
+  405:         funding_maximum=as_int(direct("funding_maximum", "funding_max")),
+  406:         beneficiary_support_minimum=as_int(direct("beneficiary_support_minimum")),
+  407:         beneficiary_support_maximum=as_int(direct("beneficiary_support_maximum")),
+  408:         intermediary_support_maximum=as_int(direct("intermediary_support_maximum")),
+  409:         scheme_corpus=as_int(direct("scheme_corpus")),
+  410:         objectives=dedupe(objective_values + values_for(attributes, master_id, ["objectives"])),
+  411:         eligibility=dedupe(eligibility_values + values_for(attributes, master_id, ["eligibility"])),
+  412:         benefits=dedupe(benefits_values + values_for(attributes, master_id, ["benefits"])),
+  413:         application_process=dedupe(process_values + values_for(attributes, master_id, ["application_process"])),
+  414:         required_documents=dedupe(document_values + values_for(attributes, master_id, ["required_documents"])),
+  415:         sectors=dedupe(to_list(deep_find(payload, ["sector", "sectors"])) + values_for(attributes, master_id, ["sector"])),
+  416:         scheme_types=dedupe(to_list(deep_find(payload, ["scheme_type", "grant_type", "support_type"])) + values_for(attributes, master_id, ["scheme_type"])),
+  417:         target_beneficiaries=dedupe(to_list(deep_find(payload, ["target_beneficiaries", "beneficiaries", "applicant_type"])) + values_for(attributes, master_id, ["target_beneficiaries"])),
+  418:         startup_stage=dedupe(to_list(deep_find(payload, ["startup_stage", "startup_stages"])) + values_for(attributes, master_id, ["startup_stage"])),
+  419:         guideline_urls=guideline_urls,
+  420:         reference_urls=all_urls,
+  421:         contacts=dedupe(to_list(deep_find(payload, ["contact_details", "contacts", "contact"])) + contacts.get(master_id, [])),
+  422:         warnings=warning_values,
+  423:         recommended_actions=to_list(first_value(plan_row.get("recommended_actions"), review_row.get("recommended_actions_json"), payload.get("recommended_actions"))),
+  424:         decision_reasons=to_list(first_value(plan_row.get("decision_reasons"), review_row.get("decision_reasons_json"), rejected_row.get("rejection_reasons_json"))),
+  425:         last_updated=as_text(first_value(data_row.get("updated_at"), data_row.get("last_loaded_at"), review_row.get("updated_at"), rejected_row.get("updated_at"), payload.get("validation_timestamp"))),
+  426:     )
+  427:     if not record.application_status:
+  428:         if "CLOSED" in record.catalogue_section.upper():
+  429:             record.application_status = "CLOSED"
+  430:         elif "VERIFICATION" in record.catalogue_section.upper() or record.catalogue_inclusion.upper() == "PENDING_REVALIDATION":
+
+============================================================
+catalogue.py — load_catalogue pipeline
+============================================================
+  490:         return True
+  491:     # Shared directory pages can legitimately describe several programmes.
+  492:     # Require at least one distinctive name token before treating a URL match
+  493:     # as the same identity.
+  494:     return bool(left_tokens & right_tokens)
+  495: 
+  496: 
+  497: def load_catalogue(config: DashboardConfig) -> CatalogueBundle:
+  498:     if getattr(config, "preview_path_configured", False) and not config.normalization_path.exists():
+  499:         raise FileNotFoundError(f"Configured catalogue preview file not found: {config.normalization_path}")
+  500:     tables = read_dashboard_tables(
+  501:         config.database_path,
+  502:         timeout_seconds=config.sqlite_timeout_seconds,
+  503:     )
+  504:     plan = read_normalization_plan(config.normalization_path)
+  505: 
+  506:     staging_by_id = frame_by_master_id(tables["scheme_staging"])
+  507:     public_by_id = frame_by_master_id(tables["public_schemes"])
+  508:     review_by_id = frame_by_master_id(tables["admin_review_queue"])
+  509:     rejected_by_id = frame_by_master_id(tables["rejected_scheme_records"])
+  510:     attributes = attributes_by_master_id(tables["scheme_attributes"])
+  511:     contacts = contacts_by_master_id(tables["scheme_contacts"])
+  512:     source_urls = source_urls_by_master_id(tables["scheme_sources"])
+  513: 
+  514:     records: list[CatalogueRecord] = []
+  515:     included_ids: set[str] = set()
+  516:     published_appended_count = 0
+  517:     published_merged_count = 0
+  518: 
+  519:     if config.mode == CatalogueMode.PUBLISHED_ONLY:
+  520:         for master_id, row in public_by_id.items():
+  521:             plan_row = {}
+  522:             if not plan.empty and "master_id" in plan.columns:
+  523:                 matches = plan[plan["master_id"].astype(str) == master_id]
+  524:                 if not matches.empty:
+  525:                     plan_row = matches.iloc[0].to_dict()
+  526:             records.append(
+  527:                 build_record(
+  528:                     master_id,
+  529:                     plan_row=plan_row,
+  530:                     data_row=row,
+  531:                     review_row=review_by_id.get(master_id, {}),
+  532:                     rejected_row=rejected_by_id.get(master_id, {}),
+  533:                     attributes=attributes,
+  534:                     contacts=contacts,
+  535:                     source_urls=source_urls,
+  536:                 )
+  537:             )
+  538:             included_ids.add(master_id)
+  539:     else:
+  540:         if plan.empty:
+  541:             plan = tables["scheme_staging"].copy()
+  542:             plan["master_id"] = plan.get("master_id", "")
+  543:             plan["catalogue_inclusion"] = "INCLUDED"
+  544:             plan["catalogue_section"] = "SCHEMES_AND_PROGRAMMES"
+  545:             plan["normalized_record_kind"] = plan.get("record_kind", "SCHEME_OR_PROGRAMME")
+  546:             plan["current_location"] = "SCHEME_STAGING"
+  547: 
+  548:         for plan_row in plan.to_dict(orient="records"):
+  549:             master_id = as_text(plan_row.get("master_id"))
+  550:             if not master_id:
+  551:                 continue
+  552:             data_row = staging_by_id.get(master_id, {})
+  553:             review_row = review_by_id.get(master_id, {})
+  554:             rejected_row = rejected_by_id.get(master_id, {})
+  555:             is_review_only = not data_row
+  556:             is_explicit_preview_file = "catalogue_preview" in {part.lower() for part in config.normalization_path.parts}
+  557:             is_rejected = as_text(
+  558:                 first_value(plan_row.get("current_decision"), review_row.get("decision"), rejected_row.get("decision"))
+  559:             ).upper() == "REJECTED"
+  560:             is_rejected_or_review_only = is_review_only or is_rejected
+  561:             if is_rejected_or_review_only and not review_record_allowed(plan_row):
+  562:                 if is_explicit_preview_file and is_review_only and not is_rejected and explicit_preview_record_allowed(plan_row):
+  563:                     pass
+  564:                 else:
+  565:                     continue
+  566:             records.append(
+  567:                 build_record(
+  568:                     master_id,
+  569:                     plan_row=plan_row,
+  570:                     data_row=data_row,
+  571:                     review_row=review_row,
+  572:                     rejected_row=rejected_row,
+  573:                     attributes=attributes,
+  574:                     contacts=contacts,
+  575:                     source_urls=source_urls,
+  576:                 )
+  577:             )
+  578:             included_ids.add(master_id)
+  579: 
+  580:         # A configured preview CSV supplies curated normalization metadata, but
+  581:         # it must not hide records that have subsequently completed the explicit
+  582:         # publication workflow. Published records supersede semantic preview
+  583:         # duplicates even when an older import assigned a different master ID;
+  584:         # never append merely staged or review-only records.
+  585:         for master_id, row in public_by_id.items():
+  586:             if master_id in included_ids:
+  587:                 continue
+  588:             record_kind = as_text(row.get("record_kind")) or "SCHEME_OR_PROGRAMME"
+  589:             plan_row = {
+  590:                 "master_id": master_id,
+  591:                 "catalogue_inclusion": "INCLUDED",
+  592:                 "catalogue_section": (
+  593:                     "APPLICATION_CALLS"
+  594:                     if record_kind.upper() in {"APPLICATION_CALL", "CHALLENGE"}
+  595:                     else "SCHEMES_AND_PROGRAMMES"
+  596:                 ),
+  597:                 "normalized_record_kind": record_kind,
+  598:                 "current_location": "PUBLIC_SCHEMES",
+  599:                 "current_review_status": "APPROVED",
+  600:                 "current_decision": "APPROVED_FOR_DATABASE",
+  601:                 "current_publication_status": "PUBLISHED",
+  602:                 "current_is_public": "1",
+  603:             }
+  604:             published_record = build_record(
+  605:                 master_id,
+  606:                 plan_row=plan_row,
+  607:                 data_row=row,
+  608:                 review_row=review_by_id.get(master_id, {}),
+  609:                 rejected_row=rejected_by_id.get(master_id, {}),
+  610:                 attributes=attributes,
+  611:                 contacts=contacts,
+  612:                 source_urls=source_urls,
+  613:             )
+  614:             matching_indexes = [
+  615:                 index for index, existing in enumerate(records)
+  616:                 if _same_catalogue_identity(existing, published_record)
+  617:             ]
+  618:             if matching_indexes:
+  619:                 records[matching_indexes[0]] = published_record
+  620:                 for index in reversed(matching_indexes[1:]):
+  621:                     del records[index]
+  622:                 published_merged_count += 1
+  623:             else:
+  624:                 records.append(published_record)
+  625:                 published_appended_count += 1
+  626:             included_ids.add(master_id)
+  627: 
+  628:     records = sorted(records, key=lambda item: (item.catalogue_section, item.scheme_name))
+  629:     metadata = {
+  630:         "mode": config.mode.value,
+  631:         "database_path": str(config.database_path),
+  632:         "normalization_path": str(config.normalization_path),
+  633:         "normalization_available": config.normalization_path.exists(),
+  634:         "staging_count": len(tables["scheme_staging"]),
+  635:         "public_count": len(tables["public_schemes"]),
+  636:         "review_count": len(tables["admin_review_queue"]),
+  637:         "rejected_count": len(tables["rejected_scheme_records"]),
+  638:         "record_count": len(records),
+  639:         "published_appended_count": published_appended_count,
+  640:         "published_merged_count": published_merged_count,
+  641:     }
+  642:     return CatalogueBundle(records=records, mode=config.mode, metadata=metadata)
+
+============================================================
+public_dashboard_app — scheme-card action renderer
+============================================================
+  380: 
+  381: def public_record_card(
+  382:     record: CatalogueRecord,
+  383:     *,
+  384:     compact: bool = True,
+  385:     include_details_link: bool = True,
+  386: ) -> str:
+  387:     """Render a public-first scheme/call card without exposing internal tokens."""
+  388:     agency = (
+  389:         record.department
+  390:         or record.implementing_agency
+  391:         or record.source
+  392:         or "Government department / agency"
+  393:     )
+  394:     description_source = " ".join(
+  395:         (record.objectives or record.benefits or ["Information is available on the official source."])[:1]
+  396:     )
+  397:     description = concise_text(description_source, limit=175 if compact else 240)
+  398:     kind = public_record_kind(record)
+  399:     status = public_status_text(record)
+  400: 
+  401:     tag_values = [*record.sectors[:1], *record.scheme_types[:1]]
+  402:     tags = "".join(
+  403:         f'<span class="public-chip">{esc(public_label(value))}</span>'
+  404:         for value in tag_values
+  405:         if optional_text(value)
+  406:     )
+  407: 
+  408:     facts: list[str] = []
+  409:     closing = optional_text(record.closing_date)
+  410:     if closing:
+  411:         facts.append(f'<span><b>Closes</b> {esc(closing)}</span>')
+  412:     if record.funding_maximum not in (None, "", 0, 0.0):
+  413:         facts.append(f'<span><b>Support up to</b> {esc(format_inr(record.funding_maximum))}</span>')
+  414:     elif record.funding_minimum not in (None, "", 0, 0.0):
+  415:         facts.append(f'<span><b>Support from</b> {esc(format_inr(record.funding_minimum))}</span>')
+  416:     fact_html = f'<div class="public-record-facts">{"".join(facts)}</div>' if facts else ""
+  417: 
+  418:     actions: list[str] = []
+  419:     if record.application_url:
+  420:         actions.append(
+  421:             f'<a class="public-action public-action-primary" target="_blank" rel="noopener noreferrer" '
+  422:             f'href="{esc(record.application_url)}">Apply now</a>'
+  423:         )
+  424:     if include_details_link and record.master_id:
+  425:         actions.append(
+  426:             f'<a class="public-action public-action-secondary" target="_top" '
+  427:             f'href="{html.escape(record_details_href(record), quote=True)}">View details</a>'
+  428:         )
+  429:     if record.official_page_url:
+  430:         actions.append(
+  431:             f'<a class="public-action public-action-quiet" target="_blank" rel="noopener noreferrer" '
+  432:             f'href="{esc(record.official_page_url)}">Official page <span aria-hidden="true">â†—</span></a>'
+  433:         )
+  434:     if record.guideline_urls:
+  435:         actions.append(
+  436:             f'<a class="public-action public-action-quiet" target="_blank" rel="noopener noreferrer" '
+  437:             f'href="{esc(record.guideline_urls[0])}">Guideline <span aria-hidden="true">â†—</span></a>'
+  438:         )
+  439: 
+  440:     empty_note = ""
+  441:     if not facts:
+  442:         empty_note = '<div class="public-record-note">More details are available on the official page.</div>'
+  443: 
+  444:     return (
+  445:         '<article class="public-record-card">'
+  446:         '<div class="public-record-card-top">'
+  447:         f'<span class="status-badge {status_css_class(record)}">{esc(status)}</span>'
+  448:         f'<span class="public-kind">{esc(kind)}</span>'
+  449:         '</div>'
+  450:         f'<h3>{esc(record.scheme_name)}</h3>'
+  451:         f'<div class="public-record-agency">{esc(agency)}</div>'
+  452:         f'<p>{esc(description)}</p>'
+  453:         f'{fact_html}{empty_note}'
+  454:         f'<div class="public-chip-row">{tags}</div>'
+  455:         f'<div class="public-record-actions">{"".join(actions)}</div>'
+
+============================================================
+public_dashboard_app — compact/public action renderer
+============================================================
+ 1800:             record.scheme_name.casefold(),
+ 1801:         ),
+ 1802:     )
+ 1803:     if not records:
+ 1804:         st.info("No eligible scheme or programme records are available.")
+ 1805:         return
+ 1806: 
+ 1807:     records_by_id = {record.master_id: record for record in records}
+ 1808:     record_labels = {
+ 1809:         item.master_id: f'{item.scheme_name} â€” {item.department or item.implementing_agency or item.source or "Agency not recorded"}'
+ 1810:         for item in records
+ 1811:     }
+ 1812:     record_ids = [record.master_id for record in records]
+ 1813:     requested_scheme = str(st.query_params.get("scheme", "") or "").strip()
+ 1814:     selected_index = record_ids.index(requested_scheme) if requested_scheme in record_ids else 0
+ 1815: 
+ 1816:     st.markdown(
+ 1817:         '<nav class="profile-breadcrumb" aria-label="Breadcrumb">'
+ 1818:         f'<a target="_top" href="?page={PAGE_SLUGS["Scheme Explorer"]}">Find schemes</a><span>/</span><b>Scheme profile</b></nav>',
+ 1819:         unsafe_allow_html=True,
+ 1820:     )
+ 1821:     with st.expander("Choose another scheme or programme", expanded=not bool(requested_scheme)):
+ 1822:         selected_id = st.selectbox(
+ 1823:             "Scheme or programme",
+ 1824:             options=record_ids,
+ 1825:             index=selected_index,
+ 1826:             format_func=lambda item_id: record_labels[item_id],
+ 1827:             key="scheme_profile_selector",
+ 1828:             label_visibility="collapsed",
+ 1829:         )
+ 1830:     if str(st.query_params.get("scheme", "") or "") != selected_id:
+ 1831:         st.query_params["scheme"] = selected_id
+ 1832:     record = records_by_id[selected_id]
+ 1833: 
+ 1834:     agency = record.department or record.implementing_agency or record.source or "Government department / agency"
+ 1835:     summary = concise_text(" ".join((record.objectives or record.benefits or ["Official scheme information is available."])[:1]), limit=330)
+ 1836:     actions: list[str] = []
+ 1837:     if record.application_url:
+ 1838:         actions.append(f'<a class="public-action public-action-primary" target="_blank" rel="noopener" href="{esc(record.application_url)}">Apply now</a>')
+ 1839:     if record.official_page_url:
+ 1840:         actions.append(f'<a class="public-action public-action-secondary" target="_blank" rel="noopener" href="{esc(record.official_page_url)}">Official page â†—</a>')
+ 1841:     if record.guideline_urls:
+ 1842:         actions.append(f'<a class="public-action public-action-quiet" target="_blank" rel="noopener" href="{esc(record.guideline_urls[0])}">Guideline â†—</a>')
+ 1843: 
+ 1844:     verified_on = optional_text(record.last_updated[:10] if record.last_updated else "") or "Date not recorded"
+ 1845:     st.markdown(
+ 1846:         '<section class="scheme-profile-hero">'
+ 1847:         '<div class="scheme-profile-copy">'
+ 1848:         f'<div class="public-record-card-top"><span class="status-badge {status_css_class(record)}">{esc(public_status_text(record))}</span>'
+ 1849:         f'<span class="public-kind">{esc(public_record_kind(record))}</span></div>'
+ 1850:         f'<h1>{esc(record.scheme_name)}</h1><p class="scheme-profile-agency">{esc(agency)}</p>'
+ 1851:         f'<p class="scheme-profile-summary">{esc(summary)}</p>'
+ 1852:         f'<div class="scheme-profile-actions">{"".join(actions)}</div></div>'
+ 1853:         '<aside class="scheme-profile-trust">'
+ 1854:         '<span>Catalogue verification</span>'
+ 1855:         f'<strong>{esc(verified_on)}</strong>'
+ 1856:         '<small>Confirm current terms on the linked official source.</small>'
+ 1857:         '</aside></section>',
+ 1858:         unsafe_allow_html=True,
+ 1859:     )
+ 1860: 
+ 1861:     funding_text = "Not structured"
+ 1862:     if record.funding_maximum not in (None, "", 0, 0.0):
+ 1863:         funding_text = f'Up to {format_inr(record.funding_maximum)}'
+ 1864:     elif record.funding_minimum not in (None, "", 0, 0.0):
+ 1865:         funding_text = f'From {format_inr(record.funding_minimum)}'
+ 1866:     meta_items = [
+ 1867:         ("Ministry", record.ministry or "Not recorded"),
+ 1868:         ("Department / agency", agency),
+ 1869:         ("Support", funding_text),
+ 1870:         ("Record type", public_record_kind(record)),
+
+============================================================
+public_dashboard_app — scheme detail links
+============================================================
+ 1880:         '<div class="profile-detail-grid profile-detail-grid-two">'
+ 1881:         + _detail_panel("Overview", record.objectives)
+ 1882:         + _detail_panel("Benefits", record.benefits)
+ 1883:         + '</div>'
+ 1884:         + '<div class="profile-detail-grid">'
+ 1885:         + _detail_panel("Eligibility", record.eligibility)
+ 1886:         + '</div>'
+ 1887:         + '<div class="profile-detail-grid profile-detail-grid-two">'
+ 1888:         + _detail_panel("How to apply", record.application_process, empty_message="Use the official page for current application instructions.")
+ 1889:         + _detail_panel("Required documents", record.required_documents)
+ 1890:         + '</div>',
+ 1891:         unsafe_allow_html=True,
+ 1892:     )
+ 1893: 
+ 1894:     profile_tags = [*record.target_beneficiaries[:3], *record.startup_stage[:3], *record.sectors[:3], *record.scheme_types[:2]]
+ 1895:     if profile_tags:
+ 1896:         st.markdown(
+ 1897:             '<section class="profile-tag-panel"><h2>Who and what it supports</h2><div class="public-chip-row">'
+ 1898:             + ''.join(f'<span class="public-chip">{esc(public_label(value))}</span>' for value in profile_tags if optional_text(value))
+ 1899:             + '</div></section>',
+ 1900:             unsafe_allow_html=True,
+ 1901:         )
+ 1902: 
+ 1903:     related_calls = []
+ 1904:     scheme_name_key = record.scheme_name.casefold().strip()
+ 1905:     for call in populations.application_call_records:
+ 1906:         parent_id = str(getattr(call, "parent_master_id", "") or "").strip()
+ 1907:         parent_name = str(getattr(call, "parent_scheme_name", "") or getattr(call, "parent_name", "") or "").casefold().strip()
+ 1908:         if parent_id == record.master_id or (parent_name and parent_name == scheme_name_key):
+ 1909:             related_calls.append(call)
+ 1910:     if related_calls:
+ 1911:         related_calls = sorted(related_calls, key=lambda item: parse_date(item.closing_date) or date.max)[:4]
+ 1912:         st.markdown(
+ 1913:             '<div class="profile-section-heading"><span class="page-eyebrow">Application opportunities</span>'
+ 1914:             '<h2>Current and related calls</h2><p>Time-bound calls remain separate from this permanent scheme identity.</p></div>'
+ 1915:             '<div class="scheme-results-grid home-call-grid">'
+ 1916:             + ''.join(public_record_card(item, compact=True) for item in related_calls)
+ 1917:             + '</div>',
+ 1918:             unsafe_allow_html=True,
+ 1919:         )
+ 1920: 
+ 1921:     detail_links: list[tuple[str, str]] = []
+ 1922:     if record.official_page_url:
+ 1923:         detail_links.append(("Official scheme page", record.official_page_url))
+ 1924:     if record.application_url:
+ 1925:         detail_links.append(("Application portal", record.application_url))
+ 1926:     detail_links.extend((f"Guideline or manual {index}", url) for index, url in enumerate(record.guideline_urls or [], start=1))
+ 1927:     detail_links.extend((f"Official reference {index}", url) for index, url in enumerate(record.reference_urls or [], start=1))
+ 1928:     if detail_links:
+ 1929:         st.markdown(
+ 1930:             '<section class="profile-resource-panel"><div><span class="page-eyebrow">Official evidence</span>'
+ 1931:             '<h2>Official links and documents</h2><p>Open the authoritative source before making an application decision.</p></div>'
+ 1932:             '<div class="resource-actions">'
+ 1933:             + ''.join(f'<a target="_blank" rel="noopener" href="{html.escape(url, quote=True)}">{esc(label)} â†—</a>' for label, url in detail_links)
+ 1934:             + '</div></section>',
+ 1935:             unsafe_allow_html=True,
+ 1936:         )
+ 1937: 
+ 1938: 
+ 1939: def main() -> None:
+ 1940:     requested_slug = str(st.query_params.get("page", "") or "").strip().lower()
+ 1941:     requested_page = next(
+ 1942:         (page_name for page_name, slug in PAGE_SLUGS.items() if slug == requested_slug),
+ 1943:         None,
+ 1944:     )
+ 1945:     if "ssip_primary_navigation" not in st.session_state and requested_page:
+ 1946:         st.session_state["ssip_primary_navigation"] = requested_page
+ 1947: 
+ 1948:     dark_mode = st.session_state.get("ssip_dark_mode", False)
+ 1949:     if dark_mode:
+ 1950:         st.markdown('<span id="ssip-dark-mode" aria-hidden="true"></span>', unsafe_allow_html=True)
+ 1951: 
+ 1952:     st.markdown(
+ 1953:         '<a class="skip-link" href="#ssip-main-content">Skip to main content</a>',
+ 1954:         unsafe_allow_html=True,
+ 1955:     )
+ 1956:     page = requested_page or st.session_state.get("ssip_primary_navigation", "Home")
+ 1957:     if page not in PAGE_NAMES:
+ 1958:         page = "Home"
+ 1959:     st.session_state["ssip_primary_navigation"] = page
+ 1960:     active_slug = PAGE_SLUGS[page]

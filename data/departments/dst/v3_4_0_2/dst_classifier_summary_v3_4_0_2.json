@@ -1,0 +1,82 @@
+{
+  "service_version": "3.4.0.2",
+  "department_code": "DST",
+  "department_name": "Department of Science and Technology",
+  "completed_at": "2026-07-10T09:59:23+00:00",
+  "input_dir": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\departments\\dst\\v3_4_0_1_1",
+  "link_graph": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\departments\\dst\\v3_4_0_1\\crawl\\dst_link_graph_v3_4_0_1.csv",
+  "output_dir": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\departments\\dst\\v3_4_0_2",
+  "network_access_used": false,
+  "recrawl_performed": false,
+  "identity_safeguard": {
+    "canonical_scheme_identity_created": false,
+    "call_titles_promoted_to_scheme_names": false,
+    "forbidden_identity_fields": [
+      "canonical_programme_name",
+      "canonical_scheme_name",
+      "locked_scheme_name",
+      "programme_id",
+      "scheme_id"
+    ],
+    "description": "Page and document roles only; permanent DST scheme identity remains reserved for v3.4.0.3/v3.4.0.4."
+  },
+  "counts": {
+    "classified_pages": 418,
+    "classified_documents": 681,
+    "scheme_master_page_candidates": 6,
+    "programme_master_page_candidates": 27,
+    "call_pages": 359,
+    "supporting_pages": 15,
+    "non_scheme_pages": 6,
+    "unknown_pages": 5,
+    "pages_requiring_admin_review": 345,
+    "documents_requiring_admin_review": 234
+  },
+  "page_role_counts": {
+    "APPLICATION_GUIDANCE": 1,
+    "APPLICATION_INVITATION": 10,
+    "BROKEN_OFFICIAL_LINK": 2,
+    "CALL_ARCHIVE_INDEX": 18,
+    "CALL_FOR_PROPOSALS": 303,
+    "CALL_RESULT": 3,
+    "CURRENT_CALL_INDEX": 1,
+    "DEADLINE_EXTENSION": 21,
+    "EVENT": 1,
+    "EXPRESSION_OF_INTEREST": 3,
+    "GUIDELINE_PAGE": 5,
+    "NEWS": 3,
+    "PROGRAMME_CATEGORY_INDEX": 7,
+    "PROGRAMME_MASTER_CANDIDATE": 27,
+    "SANCTIONED_PROJECT_EVIDENCE": 1,
+    "SCHEME_CATEGORY_INDEX": 1,
+    "SCHEME_MASTER_CANDIDATE": 6,
+    "UNKNOWN": 5
+  },
+  "document_role_counts": {
+    "APPLICATION_FORMAT": 17,
+    "BROCHURE_OR_FLYER": 3,
+    "CALL_CORRIGENDUM": 1,
+    "CALL_DOCUMENT": 343,
+    "CALL_RESULT": 8,
+    "DEADLINE_EXTENSION": 15,
+    "GUIDELINE": 70,
+    "OFFICE_MEMORANDUM": 1,
+    "SANCTION_ORDER": 51,
+    "UNKNOWN_DOCUMENT": 172
+  },
+  "classifier_validation_passed": true,
+  "ready_for_v3_4_0_3": true,
+  "outputs": {
+    "classified_pages": "dst_classified_pages_v3_4_0_2.csv",
+    "classified_documents": "dst_classified_documents_v3_4_0_2.csv",
+    "scheme_candidates": "dst_scheme_master_page_candidates_v3_4_0_2.csv",
+    "programme_candidates": "dst_programme_master_page_candidates_v3_4_0_2.csv",
+    "call_pages": "dst_call_pages_v3_4_0_2.csv",
+    "supporting_pages": "dst_supporting_pages_v3_4_0_2.csv",
+    "non_scheme_pages": "dst_non_scheme_pages_v3_4_0_2.csv",
+    "unknown_review_queue": "dst_unknown_review_queue_v3_4_0_2.csv",
+    "classifier_audit": "dst_classifier_audit_v3_4_0_2.csv",
+    "validation": "dst_classifier_validation_v3_4_0_2.json",
+    "summary": "dst_classifier_summary_v3_4_0_2.json"
+  }
+}

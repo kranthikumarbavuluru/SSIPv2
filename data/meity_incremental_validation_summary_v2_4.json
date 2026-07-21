@@ -1,0 +1,68 @@
+{
+  "hotfix_version": "2.4.1",
+  "run_id": "fc326b4cc2b14a899eb0dbd755fb5963",
+  "source": "MeitY Startup Hub",
+  "as_of_date": "2026-07-09",
+  "input_extracted_record_count": 16,
+  "meity_extracted_record_count": 6,
+  "existing_validation_record_count": 16,
+  "existing_meity_validation_count": 6,
+  "existing_non_meity_validation_count": 10,
+  "processed_meity_validation_count": 6,
+  "actionable_meity_validation_count": 0,
+  "unchanged_meity_loader_suppressed_count": 6,
+  "output_validation_record_count": 16,
+  "output_meity_validation_count": 6,
+  "non_meity_validation_records_preserved": 10,
+  "orphaned_meity_validation_records_preserved": 0,
+  "failure_count": 0,
+  "actions": {
+    "REUSED_UNCHANGED": 6
+  },
+  "decisions": {
+    "NEEDS_ADMIN_REVIEW": 5,
+    "NEEDS_MORE_EVIDENCE": 1
+  },
+  "programme_status": {
+    "SCHEME_INFORMATION_AVAILABLE": 4,
+    "CALL_STATUS_CONFLICT_REQUIRES_REVIEW": 2
+  },
+  "quality_flags": {
+    "ELIGIBILITY_NOT_FOUND": 3,
+    "REQUIRED_DOCUMENTS_NOT_FOUND": 6,
+    "BENEFITS_NOT_FOUND": 4,
+    "EXPLICIT_FUNDING_AMOUNT_NOT_FOUND": 3
+  },
+  "approved_for_database_count": 0,
+  "admin_review_queue_count": 0,
+  "rejected_count": 0,
+  "meity_approved_for_database_count": 0,
+  "meity_admin_review_queue_count": 0,
+  "meity_rejected_count": 0,
+  "merged_approved_for_database_count": 4,
+  "merged_admin_review_queue_count": 12,
+  "merged_rejected_count": 0,
+  "incremental_loader_input_is_meity_only": true,
+  "average_meity_validation_score": 0.855,
+  "input_path": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\extracted_scheme_records_v1.json",
+  "existing_validation_paths": {
+    "unified": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\validated_scheme_records_v1.json",
+    "approved": null,
+    "review": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\admin_review_queue_v1.json",
+    "rejected": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\rejected_scheme_records_v1.json",
+    "audit": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\validation_audit_v1.json"
+  },
+  "versioned_output_paths": {
+    "validated": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\validated_scheme_records_v2_4.json",
+    "approved": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\approved_for_database_v2_4.json",
+    "review": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\admin_review_queue_v2_4.json",
+    "rejected": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\rejected_scheme_records_v2_4.json",
+    "audit": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\meity_incremental_validation_audit_v2_4.json",
+    "failures": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\meity_incremental_validation_failures_v2_4.json",
+    "summary": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\meity_incremental_validation_summary_v2_4.json"
+  },
+  "canonical_output_paths": {},
+  "legacy_category_files_published": false,
+  "generated_at": "2026-07-09T05:46:20.328082+00:00",
+  "canonical_published": false
+}

@@ -2562,8 +2562,8 @@ def render_meity_historical_archive() -> None:
     st.markdown(
         '<div class="archive-governance">'
         '<strong>Governed MeitY historical reconstruction</strong>'
-        f'<span>{len(records)} official-source call identities passed '
-        'historical page-role and past-activity evidence gates. '
+        f'<span>{len(records)} official-source call identities are published '
+        'as historical references. Optional metadata may be shown as not specified. '
         f'{manifest.get("historical_review_queue_count", 0)} additional '
         'identities remain under reconstruction and are not displayed '
         'as public calls.</span></div>',

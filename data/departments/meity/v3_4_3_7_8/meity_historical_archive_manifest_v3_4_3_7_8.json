@@ -1,23 +1,25 @@
 {
   "version": "3.4.3.7.8",
   "phase": "MeitY Historical Call Reconstruction and Archive",
-  "generated_at": "2026-07-14T09:10:39+00:00",
-  "signature": "5796d4f41793797705b32f789058b88eb7877519415960e6e4b0aa04df01c8a8",
+  "generated_at": "2026-07-21T07:12:30+00:00",
+  "signature": "67a5cb2361efdc91e61b0caac3c938e4a5267434b6f9d180a1cbbd3aa414f452",
   "withdrawn_target_count": 16,
   "current_public_count": 37,
-  "qualified_historical_calls": 3,
-  "historical_review_queue_count": 4,
+  "qualified_historical_calls": 7,
+  "historical_review_queue_count": 0,
   "excluded_non_call_count": 9,
-  "startup_direct_count": 3,
+  "startup_direct_count": 7,
   "year_evidenced_count": 1,
   "year_counts": {
     "2023": 1,
-    "Unknown": 2
+    "Unknown": 6
   },
   "apply_actions_allowed": 0,
   "database_modified": false,
-  "publication_performed": false,
-  "archive_path": "data\\departments\\meity\\v3_4_3_7_8\\meity_historical_archive_v3_4_3_7_8.csv",
-  "review_queue_path": "data\\departments\\meity\\v3_4_3_7_8\\meity_historical_review_queue_v3_4_3_7_8.csv",
-  "exclusions_path": "data\\departments\\meity\\v3_4_3_7_8\\meity_historical_exclusions_v3_4_3_7_8.csv"
+  "publication_performed": true,
+  "publication_scope": "MEITY_HISTORICAL_ARCHIVE_ONLY",
+  "publication_authority": "ADMIN_EXPLICIT_APPROVAL",
+  "archive_path": "data/departments/meity/v3_4_3_7_8/meity_historical_archive_v3_4_3_7_8.csv",
+  "review_queue_path": "data/departments/meity/v3_4_3_7_8/meity_historical_review_queue_v3_4_3_7_8.csv",
+  "exclusions_path": "data/departments/meity/v3_4_3_7_8/meity_historical_exclusions_v3_4_3_7_8.csv"
 }

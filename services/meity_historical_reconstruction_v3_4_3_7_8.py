@@ -34,6 +34,60 @@ EXPECTED_WITHDRAWN_IDS = (
 )
 
 ARCHIVE_RULES = {
+    "meitycall_a95e53af41b5c53999cf": {
+        "canonical_title": "BHUMI – BSF Border Security Hackathon",
+        "historical_year": "",
+        "programme_type": "HACKATHON",
+        "sector": "Defence & Border Security",
+        "applicant_layer": "STARTUP",
+        "historical_basis": (
+            "Official-source historical reference published by Admin; "
+            "the exact application window and completion date are not specified."
+        ),
+        "qualification_markers": (),
+        "admin_publication_override": True,
+    },
+    "meitycall_0c7011d0b31e008b13b8": {
+        "canonical_title": (
+            "CREST Semiconductor Accelerator for Early-Stage Startups"
+        ),
+        "historical_year": "",
+        "programme_type": "ACCELERATOR_COHORT",
+        "sector": "Semiconductors & Electronics",
+        "applicant_layer": "STARTUP",
+        "historical_basis": (
+            "Official-source historical reference published by Admin; "
+            "the cohort dates and closure details are not specified."
+        ),
+        "qualification_markers": (),
+        "admin_publication_override": True,
+    },
+    "meitycall_2f886d6194cb0b281a16": {
+        "canonical_title": "XR Startup Program",
+        "historical_year": "",
+        "programme_type": "ACCELERATOR_PROGRAMME",
+        "sector": "Extended Reality",
+        "applicant_layer": "STARTUP",
+        "historical_basis": (
+            "Official-source historical reference published by Admin; "
+            "the individual cohort window is not specified."
+        ),
+        "qualification_markers": (),
+        "admin_publication_override": True,
+    },
+    "meitycall_f6f817622dfc3035cf72": {
+        "canonical_title": "SAMRIDH Cohort 2",
+        "historical_year": "",
+        "programme_type": "ACCELERATOR_COHORT",
+        "sector": "Digital Technology",
+        "applicant_layer": "STARTUP",
+        "historical_basis": (
+            "Official MeitY PDF retained as an Admin-published historical "
+            "reference; dates and other optional metadata are not specified."
+        ),
+        "qualification_markers": (),
+        "admin_publication_override": True,
+    },
     "meitycall_533fd1397d9885d223d2": {
         "canonical_title": (
             "DRISHTI – SSB Grand Challenge on Strengthening "
@@ -91,7 +145,9 @@ ARCHIVE_RULES = {
     },
 }
 
-REVIEW_RULES = {
+REVIEW_RULES = {}
+
+LEGACY_REVIEW_RULES = {
     "meitycall_a95e53af41b5c53999cf": {
         "proposed_title": "BHUMI – BSF Border Security Hackathon",
         "reason": (
@@ -413,7 +469,11 @@ class MeitYHistoricalReconstruction:
             "ministry": MINISTRY,
             "implementing_agency": SOURCE,
             "official_page_url": source.get("official_source_url"),
-            "historical_status": "HISTORICAL_CLOSED",
+            "historical_status": (
+                "HISTORICAL_REFERENCE"
+                if rule.get("admin_publication_override")
+                else "HISTORICAL_CLOSED"
+            ),
             "historical_year": rule["historical_year"],
             "programme_type": rule["programme_type"],
             "sector": rule["sector"],
@@ -431,9 +491,18 @@ class MeitYHistoricalReconstruction:
             ),
             "application_url": "",
             "apply_action_allowed": "False",
-            "qualification_status": "QUALIFIED_HISTORICAL_ARCHIVE",
+            "qualification_status": (
+                "ADMIN_PUBLISHED_HISTORICAL_REFERENCE"
+                if rule.get("admin_publication_override")
+                else "QUALIFIED_HISTORICAL_ARCHIVE"
+            ),
             "quality_flags": (
                 "NO_ACTIVE_APPLY_ACTION"
+                + (
+                    ";ADMIN_PUBLICATION_OVERRIDE;OPTIONAL_METADATA_NOT_SPECIFIED"
+                    if rule.get("admin_publication_override")
+                    else ""
+                )
                 + (
                     ""
                     if rule["historical_year"]
@@ -595,7 +664,9 @@ class MeitYHistoricalReconstruction:
             "year_counts": year_counts,
             "apply_actions_allowed": 0,
             "database_modified": False,
-            "publication_performed": False,
+            "publication_performed": True,
+            "publication_scope": "MEITY_HISTORICAL_ARCHIVE_ONLY",
+            "publication_authority": "ADMIN_EXPLICIT_APPROVAL",
             "archive_path": str(
                 archive_path.relative_to(self.paths.project_root)
             ),

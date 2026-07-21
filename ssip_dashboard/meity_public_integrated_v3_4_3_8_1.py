@@ -116,6 +116,46 @@ def partition_published_meity(
     }
 
 
+def partition_meity_department_view(
+    records: list[Any],
+) -> dict[str, list[Any]]:
+    """Project the complete curated MeitY catalogue for its dedicated page.
+
+    Department pages are verification views, so they may show curated preview
+    records that are not yet published.  Those records must never acquire a
+    public Apply action merely by appearing in the preview.
+    """
+    meity_records: list[Any] = []
+    for record in records:
+        if not is_meity_record(record):
+            continue
+        safe = public_safe_record(record)
+        if not is_public_record(record):
+            safe = clone_with(safe, application_url="")
+        meity_records.append(safe)
+
+    programmes: list[Any] = []
+    calls: list[Any] = []
+    historical: list[Any] = []
+    for record in meity_records:
+        kind = clean(getattr(record, "record_kind", "")).upper()
+        if kind in HISTORICAL_KINDS:
+            historical.append(record)
+        elif kind in CALL_KINDS:
+            calls.append(record)
+        else:
+            programmes.append(record)
+
+    key = lambda item: clean(getattr(item, "scheme_name", "")).casefold()
+    for population in (programmes, calls, historical):
+        population.sort(key=key)
+    return {
+        "programmes": programmes,
+        "calls": calls,
+        "historical": historical,
+    }
+
+
 def render_integrated_meity_public_page(
     *,
     st: Any,
@@ -128,7 +168,7 @@ def render_integrated_meity_public_page(
     published_call_card: Callable[..., str],
     render_historical_archive: Callable[[], None],
 ) -> None:
-    populations = partition_published_meity(
+    populations = partition_meity_department_view(
         list(getattr(bundle, "records", []) or [])
     )
     programmes = populations["programmes"]
@@ -142,9 +182,9 @@ def render_integrated_meity_public_page(
             "MeitY intelligence",
             "MeitY Schemes, Programmes & Calls",
             (
-                "Published permanent MeitY identities, verified current calls "
-                "and governed historical references are available here in "
-                "the main SSIP dashboard."
+                "Curated MeitY schemes, calls and governed historical "
+                "references are available here for independent verification. "
+                "Records awaiting publication are clearly non-actionable."
             ),
             badge=(
                 f"{len(programmes)} schemes/programmes · "
@@ -207,9 +247,8 @@ def render_integrated_meity_public_page(
 
     with programme_tab:
         st.info(
-            "Permanent schemes and programmes are shown without a public "
-            "Apply button. Temporary cohorts, calls and challenges remain "
-            "separate."
+            "Permanent schemes and programmes are shown independently of the "
+            "Home page. Preview records remain non-actionable until published."
         )
         if programmes:
             st.markdown(
@@ -229,9 +268,8 @@ def render_integrated_meity_public_page(
 
     with call_tab:
         st.info(
-            "Only published OPEN or UPCOMING records appear here. "
-            "Unverified, closed and historical records never expose an "
-            "Apply action."
+            "Curated calls are shown for verification. Unpublished, unverified, "
+            "closed and historical records never expose an Apply action."
         )
         if current_calls:
             parent_names = {

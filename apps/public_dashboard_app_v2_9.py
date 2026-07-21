@@ -77,10 +77,12 @@ from ssip_dashboard.meity_history import (
 )
 
 from ssip_dashboard.meity_public_integrated_v3_4_3_8_1 import (
+    is_public_record,
+    public_safe_record,
     render_integrated_meity_public_page,
 )
 
-APP_VERSION = "3.4.3.8.1-unified-meity"
+APP_VERSION = "3.4.3.8.2-separate-page-projection"
 PAGE_NAMES = [
     "Home",
     "Scheme Explorer",
@@ -1646,6 +1648,21 @@ def _published_calls(bundle: CatalogueBundle) -> list[CatalogueRecord]:
     ]
 
 
+def _calls_for_separate_verification_page(
+    bundle: CatalogueBundle,
+) -> list[CatalogueRecord]:
+    """Return curated calls without changing the Home catalogue projection."""
+    calls = split_catalogue_populations(
+        bundle.records
+    ).application_call_records
+    return [
+        public_safe_record(item)
+        if is_public_record(item)
+        else replace(item, application_url="")
+        for item in calls
+    ]
+
+
 def _published_call_card(
     item: CatalogueRecord,
     *,
@@ -2048,7 +2065,7 @@ def _render_published_call_filters(
 
 def render_calls_and_opportunities() -> None:
     bundle = cached_catalogue()
-    all_calls = _published_calls(bundle)
+    all_calls = _calls_for_separate_verification_page(bundle)
     calls = [
         item
         for item in all_calls
@@ -2065,11 +2082,12 @@ def render_calls_and_opportunities() -> None:
             "Calls intelligence",
             "Calls & Opportunities",
             (
-                "Open, upcoming and published closed startup calls are "
-                "shown here across departments. Detailed historical "
+                "Curated open, upcoming and closed startup calls are shown "
+                "here across departments for independent verification. "
+                "Unpublished records remain non-actionable. Detailed historical "
                 "archives are maintained in the DST and MeitY pages."
             ),
-            badge=f"{len(calls)} published startup-scope calls",
+            badge=f"{len(calls)} curated startup-scope calls",
         ),
         unsafe_allow_html=True,
     )
@@ -2108,7 +2126,7 @@ def render_calls_and_opportunities() -> None:
     ]
     if not calls:
         st.info(
-            "No published direct or applicant-layer-unverified "
+            "No curated direct or applicant-layer-unverified "
             "calls are available."
         )
         return
@@ -2941,5 +2959,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
-

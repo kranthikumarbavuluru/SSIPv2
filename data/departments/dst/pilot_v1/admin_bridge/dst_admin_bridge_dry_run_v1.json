@@ -1,8 +1,8 @@
 ﻿{
   "bridge_version": "1.0.0",
-  "generated_at": "2026-07-11T10:30:04+00:00",
+  "generated_at": "2026-07-15T11:13:56+00:00",
   "dry_run": true,
-  "database_path": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\database\\ssip_staging_v1.db",
+  "database_path": "D:\\WebSite\\DASHBOARD\\Code\\SSIP_GitHub\\database\\ssip_staging_v1.db",
   "source_queue_count": 37,
   "proposed_insert_count": 0,
   "proposed_update_count": 0,
@@ -4265,7 +4265,7 @@
           "master_id": "a56767dbf672793e0cab",
           "scheme_name": "Building U.S.-India Partnerships to Drive Innovation",
           "table": "scheme_staging",
-          "status": "STAGED"
+          "status": "PUBLISHED"
         }
       ],
       "item": {

@@ -1,0 +1,304 @@
+﻿{
+  "bridge_version": "3.4.3.7.2",
+  "provider_id": "meity_v3_4_3_7_2",
+  "generated_at": "2026-07-14T06:08:30+00:00",
+  "dry_run": false,
+  "database_path": "D:\\WebSite\\DASHBOARD\\Code\\SSIP_GitHub\\database\\ssip_staging_v1.db",
+  "source_queue_path": "D:\\WebSite\\DASHBOARD\\Code\\SSIP_GitHub\\data\\departments\\meity\\v3_4_3_7\\meity_admin_review_queue_v3_4_3_7.csv",
+  "reconciliation_map_path": "D:\\WebSite\\DASHBOARD\\Code\\SSIP_GitHub\\data\\departments\\meity\\v3_4_3_7_2\\meity_legacy_identity_reconciliation_v3_4_3_7_2.csv",
+  "source_queue_count": 2,
+  "permanent_scheme_count": 2,
+  "application_call_count": 0,
+  "verified_current_call_count": 0,
+  "proposed_insert_count": 0,
+  "proposed_update_count": 2,
+  "skipped_existing_decision_count": 0,
+  "legacy_rejection_history_protected_count": 0,
+  "reconciliation_count": 0,
+  "skipped_semantic_duplicate_count": 0,
+  "database_modified": true,
+  "publication_performed": false,
+  "actions": [
+    {
+      "master_id": "94f8ab0a070a6ff15fce",
+      "scheme_name": "GENESIS",
+      "record_kind": "SCHEME_OR_PROGRAMME",
+      "application_status": "APPLICATION_STATUS_REQUIRES_VERIFICATION",
+      "action": "UPDATE_EXISTING_PENDING",
+      "matches": [
+        {
+          "master_id": "94f8ab0a070a6ff15fce",
+          "scheme_name": "GENESIS",
+          "table": "admin_review_queue",
+          "status": "PENDING",
+          "reason": ""
+        }
+      ],
+      "reconciliation": null,
+      "item": {
+        "master_id": "94f8ab0a070a6ff15fce",
+        "scheme_name": "GENESIS",
+        "source": "MeitY Startup Hub",
+        "record_kind": "SCHEME_OR_PROGRAMME",
+        "programme_status": "UMBRELLA_SCHEME_INFORMATION_AVAILABLE",
+        "application_status": "APPLICATION_STATUS_REQUIRES_VERIFICATION",
+        "official_page_url": "https://msh.meity.gov.in/schemes/genesis",
+        "application_url": null,
+        "decision": "NEEDS_ADMIN_REVIEW",
+        "validation_score": null,
+        "priority": "HIGH",
+        "decision_reasons": [
+          "Verify permanent scheme identity, official evidence, beneficiary layer and application status.",
+          "Keep time-bound calls, cohorts and application windows separate from this permanent scheme record.",
+          "Upstream governed recommendation: APPROVE."
+        ],
+        "warnings": [
+          "Current application status requires curator verification; no Apply action is permitted.",
+          "Objective summary is not yet populated in the governed review queue.",
+          "Sector evidence remains unknown and must not be inferred during admin review."
+        ],
+        "critical_flags": [],
+        "recommended_admin_actions": [
+          "Review the official MeitY scheme page and stored evidence.",
+          "Confirm whether the record is current, historical or umbrella information.",
+          "Do not add an Apply action without a separately verified current call or application window."
+        ],
+        "validated_record": {
+          "master_id": "94f8ab0a070a6ff15fce",
+          "scheme_name": "GENESIS",
+          "short_name": "GENESIS",
+          "source": "MeitY Startup Hub",
+          "ministry": "Ministry of Electronics and Information Technology (MeitY)",
+          "department": "Ministry of Electronics and Information Technology (MeitY)",
+          "implementing_agency": "MeitY Startup Hub",
+          "record_kind": "SCHEME_OR_PROGRAMME",
+          "programme_status": "UMBRELLA_SCHEME_INFORMATION_AVAILABLE",
+          "application_status": "APPLICATION_STATUS_REQUIRES_VERIFICATION",
+          "scheme_status": "SCHEME_INFORMATION_AVAILABLE",
+          "geographic_scope": "National (India)",
+          "official_page_url": "https://msh.meity.gov.in/schemes/genesis",
+          "application_url": null,
+          "opening_date": null,
+          "closing_date": null,
+          "scheme_type": [
+            "Permanent Scheme"
+          ],
+          "target_beneficiaries": [
+            "DPIIT-registered startup; at least 51% Indian promoter shareholding at application; additional component-specific selection requirements apply."
+          ],
+          "startup_stage": [],
+          "sector": [],
+          "states_or_uts": [],
+          "objectives": [],
+          "eligibility": [
+            "DPIIT-registered startup; at least 51% Indian promoter shareholding at application; additional component-specific selection requirements apply."
+          ],
+          "benefits": [
+            "Support may include early-stage funding up to INR 10 lakh, pilot/investment support up to INR 50 lakh, and deep-tech support up to INR 1 crore, subject to component rules."
+          ],
+          "funding_amount": {
+            "minimum": null,
+            "maximum": null,
+            "currency": "INR",
+            "funding_types": [],
+            "amount_mentions": [
+              "Support may include early-stage funding up to INR 10 lakh, pilot/investment support up to INR 50 lakh, and deep-tech support up to INR 1 crore, subject to component rules."
+            ],
+            "beneficiary_support": {
+              "minimum": null,
+              "maximum": null
+            },
+            "intermediary_support_maximum": null,
+            "scheme_corpus": null
+          },
+          "application_process": [],
+          "selection_process": [],
+          "required_documents": [],
+          "guideline_urls": [],
+          "contact_details": [],
+          "source_evidence": [
+            {
+              "url": "https://msh.meity.gov.in/schemes/genesis",
+              "title": "Official MeitY scheme page",
+              "content_kind": "html",
+              "evidence_text": "DPIIT-registered startup; at least 51% Indian promoter shareholding at application; additional component-specific selection requirements apply."
+            }
+          ],
+          "field_evidence": {
+            "identity": "https://msh.meity.gov.in/schemes/genesis",
+            "programme_status": "APPLICATION_STATUS_REQUIRES_VERIFICATION",
+            "evidence_hash": "cae05b8ed60836fe3813daa36ff7fb3398b79be844aa3c78f97325ca8903240c",
+            "candidate_row_hash": "a5e591ff4c6961af2aa20a3bb0f9a47b31b18156be5274543e22b4be92469773"
+          },
+          "quality_flags": [
+            "Current application status requires curator verification; no Apply action is permitted.",
+            "Objective summary is not yet populated in the governed review queue.",
+            "Sector evidence remains unknown and must not be inferred during admin review."
+          ],
+          "parent_master_id": null,
+          "parent_scheme_name": "",
+          "entity_type": "SCHEME",
+          "permanent_scheme_or_call": "PERMANENT_SCHEME",
+          "startup_relevance": "REVIEW_REQUIRED",
+          "applicant_layer": "REQUIRES_ADMIN_VERIFICATION",
+          "sector_scope": "UNKNOWN",
+          "last_verified_at": null,
+          "review_id": "MEITY-94f8ab0a070a6ff15fce-a5e591ff4c69",
+          "upstream_review_recommendation": "APPROVE",
+          "validation": {
+            "decision": "NEEDS_ADMIN_REVIEW",
+            "validation_score": null,
+            "warnings": [
+              "Current application status requires curator verification; no Apply action is permitted.",
+              "Objective summary is not yet populated in the governed review queue.",
+              "Sector evidence remains unknown and must not be inferred during admin review."
+            ],
+            "critical_flags": [],
+            "corrections": []
+          }
+        }
+      }
+    },
+    {
+      "master_id": "194b7ba77d6b53f30b91",
+      "scheme_name": "SASACT",
+      "record_kind": "SCHEME_OR_PROGRAMME",
+      "application_status": "NO_CURRENT_APPLICATION_ROUTE_CONFIRMED",
+      "action": "UPDATE_EXISTING_PENDING",
+      "matches": [
+        {
+          "master_id": "194b7ba77d6b53f30b91",
+          "scheme_name": "SASACT",
+          "table": "admin_review_queue",
+          "status": "PENDING",
+          "reason": ""
+        }
+      ],
+      "reconciliation": null,
+      "item": {
+        "master_id": "194b7ba77d6b53f30b91",
+        "scheme_name": "SASACT",
+        "source": "MeitY Startup Hub",
+        "record_kind": "SCHEME_OR_PROGRAMME",
+        "programme_status": "HISTORICAL_SCHEME_INFORMATION_AVAILABLE",
+        "application_status": "NO_CURRENT_APPLICATION_ROUTE_CONFIRMED",
+        "official_page_url": "https://msh.meity.gov.in/schemes/sasact",
+        "application_url": null,
+        "decision": "NEEDS_ADMIN_REVIEW",
+        "validation_score": null,
+        "priority": "NORMAL",
+        "decision_reasons": [
+          "Verify permanent scheme identity, official evidence, beneficiary layer and application status.",
+          "Keep time-bound calls, cohorts and application windows separate from this permanent scheme record.",
+          "Upstream governed recommendation: APPROVE."
+        ],
+        "warnings": [
+          "Historical scheme reference only; no current application route is asserted.",
+          "Objective summary is not yet populated in the governed review queue.",
+          "Sector evidence remains unknown and must not be inferred during admin review."
+        ],
+        "critical_flags": [],
+        "recommended_admin_actions": [
+          "Review the official MeitY scheme page and stored evidence.",
+          "Confirm whether the record is current, historical or umbrella information.",
+          "Do not add an Apply action without a separately verified current call or application window."
+        ],
+        "validated_record": {
+          "master_id": "194b7ba77d6b53f30b91",
+          "scheme_name": "SASACT",
+          "short_name": "SASACT",
+          "source": "MeitY Startup Hub",
+          "ministry": "Ministry of Electronics and Information Technology (MeitY)",
+          "department": "Ministry of Electronics and Information Technology (MeitY)",
+          "implementing_agency": "MeitY Startup Hub",
+          "record_kind": "SCHEME_OR_PROGRAMME",
+          "programme_status": "HISTORICAL_SCHEME_INFORMATION_AVAILABLE",
+          "application_status": "NO_CURRENT_APPLICATION_ROUTE_CONFIRMED",
+          "scheme_status": "HISTORICAL_INFORMATION_ONLY",
+          "geographic_scope": "National (India)",
+          "official_page_url": "https://msh.meity.gov.in/schemes/sasact",
+          "application_url": null,
+          "opening_date": null,
+          "closing_date": null,
+          "scheme_type": [
+            "Permanent Scheme"
+          ],
+          "target_beneficiaries": [
+            "Startup beneficiary details require curator verification"
+          ],
+          "startup_stage": [],
+          "sector": [],
+          "states_or_uts": [],
+          "objectives": [],
+          "eligibility": [],
+          "benefits": [
+            "Official grant-release evidence records implementation funding for SASACT through STPI."
+          ],
+          "funding_amount": {
+            "minimum": null,
+            "maximum": null,
+            "currency": "INR",
+            "funding_types": [],
+            "amount_mentions": [
+              "Official grant-release evidence records implementation funding for SASACT through STPI."
+            ],
+            "beneficiary_support": {
+              "minimum": null,
+              "maximum": null
+            },
+            "intermediary_support_maximum": null,
+            "scheme_corpus": null
+          },
+          "application_process": [],
+          "selection_process": [],
+          "required_documents": [],
+          "guideline_urls": [],
+          "contact_details": [],
+          "source_evidence": [
+            {
+              "url": "https://msh.meity.gov.in/schemes/sasact",
+              "title": "Official MeitY scheme page",
+              "content_kind": "html",
+              "evidence_text": "Official grant-release evidence records implementation funding for SASACT through STPI."
+            }
+          ],
+          "field_evidence": {
+            "identity": "https://msh.meity.gov.in/schemes/sasact",
+            "programme_status": "NO_CURRENT_APPLICATION_ROUTE_CONFIRMED",
+            "evidence_hash": "b5be262a2c2917bf1efa2f48f9fa7be228de2c2e1c7808125e1136640eeb76d1",
+            "candidate_row_hash": "e7fa41735689ee519a2e9e4087f13ed0c6a2dbd8330b90268e9351f5fb67c498"
+          },
+          "quality_flags": [
+            "Historical scheme reference only; no current application route is asserted.",
+            "Objective summary is not yet populated in the governed review queue.",
+            "Sector evidence remains unknown and must not be inferred during admin review."
+          ],
+          "parent_master_id": null,
+          "parent_scheme_name": "",
+          "entity_type": "SCHEME",
+          "permanent_scheme_or_call": "PERMANENT_SCHEME",
+          "startup_relevance": "REVIEW_REQUIRED",
+          "applicant_layer": "REQUIRES_ADMIN_VERIFICATION",
+          "sector_scope": "UNKNOWN",
+          "last_verified_at": null,
+          "review_id": "MEITY-194b7ba77d6b53f30b91-e7fa41735689",
+          "upstream_review_recommendation": "APPROVE",
+          "validation": {
+            "decision": "NEEDS_ADMIN_REVIEW",
+            "validation_score": null,
+            "warnings": [
+              "Historical scheme reference only; no current application route is asserted.",
+              "Objective summary is not yet populated in the governed review queue.",
+              "Sector evidence remains unknown and must not be inferred during admin review."
+            ],
+            "critical_flags": [],
+            "corrections": []
+          }
+        }
+      }
+    }
+  ],
+  "plan_signature": "ece9d5029276080bee7ee6d713320ac514d74c77833ca9cd9148486821ab45d7",
+  "run_id": "meity_identity_reconciliation_20260714T060830Z",
+  "completed_at": "2026-07-14T06:08:30+00:00"
+}

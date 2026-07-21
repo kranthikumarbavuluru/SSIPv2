@@ -1,16 +1,16 @@
 {
   "version": "3.4.3.7.5",
   "provider_id": "meity_calls_v3_4_3_7_5",
-  "generated_at": "2026-07-15T11:11:24+00:00",
+  "generated_at": "2026-07-14T07:55:26+00:00",
   "source_queue_count": 18,
-  "proposed_insert_count": 0,
+  "proposed_insert_count": 16,
   "proposed_update_count": 0,
   "skipped_semantic_duplicate_count": 2,
-  "skipped_existing_decision_count": 16,
+  "skipped_existing_decision_count": 0,
   "application_call_count": 18,
   "verified_current_call_count": 0,
   "public_application_route_count": 0,
-  "database_modified": false,
+  "database_modified": true,
   "publication_performed": false,
   "actions": [
     {
@@ -18,16 +18,8 @@
       "scheme_name": "Bhumi",
       "record_kind": "APPLICATION_CALL",
       "application_status": "VERIFICATION_REQUIRED",
-      "action": "SKIP_EXISTING_DECISION",
-      "matches": [
-        {
-          "master_id": "meitycall_a95e53af41b5c53999cf",
-          "scheme_name": "Bhumi",
-          "official_page_url": "https://msh.meity.gov.in/program/mshcorporate/bhumi",
-          "status": "APPROVED",
-          "table": "admin_review_queue"
-        }
-      ],
+      "action": "INSERT_PENDING_CALL_REVIEW",
+      "matches": [],
       "item": {
         "master_id": "meitycall_a95e53af41b5c53999cf",
         "scheme_name": "Bhumi",
@@ -152,16 +144,8 @@
       "scheme_name": "Brussels",
       "record_kind": "APPLICATION_CALL",
       "application_status": "VERIFICATION_REQUIRED",
-      "action": "SKIP_EXISTING_DECISION",
-      "matches": [
-        {
-          "master_id": "meitycall_98f3c3720f15dae91ade",
-          "scheme_name": "Brussels",
-          "official_page_url": "https://msh.meity.gov.in/program/mshinternational/brussels",
-          "status": "APPROVED",
-          "table": "admin_review_queue"
-        }
-      ],
+      "action": "INSERT_PENDING_CALL_REVIEW",
+      "matches": [],
       "item": {
         "master_id": "meitycall_98f3c3720f15dae91ade",
         "scheme_name": "Brussels",
@@ -286,16 +270,8 @@
       "scheme_name": "Challenges",
       "record_kind": "APPLICATION_CALL",
       "application_status": "VERIFICATION_REQUIRED",
-      "action": "SKIP_EXISTING_DECISION",
-      "matches": [
-        {
-          "master_id": "meitycall_cbb7e8cd8fe24b00afd9",
-          "scheme_name": "Challenges",
-          "official_page_url": "https://msh.meity.gov.in/challenges",
-          "status": "APPROVED",
-          "table": "admin_review_queue"
-        }
-      ],
+      "action": "INSERT_PENDING_CALL_REVIEW",
+      "matches": [],
       "item": {
         "master_id": "meitycall_cbb7e8cd8fe24b00afd9",
         "scheme_name": "Challenges",
@@ -420,16 +396,8 @@
       "scheme_name": "Drishti",
       "record_kind": "APPLICATION_CALL",
       "application_status": "VERIFICATION_REQUIRED",
-      "action": "SKIP_EXISTING_DECISION",
-      "matches": [
-        {
-          "master_id": "meitycall_533fd1397d9885d223d2",
-          "scheme_name": "Drishti",
-          "official_page_url": "https://msh.meity.gov.in/program/mshcorporate/drishti",
-          "status": "APPROVED",
-          "table": "admin_review_queue"
-        }
-      ],
+      "action": "INSERT_PENDING_CALL_REVIEW",
+      "matches": [],
       "item": {
         "master_id": "meitycall_533fd1397d9885d223d2",
         "scheme_name": "Drishti",
@@ -554,16 +522,8 @@
       "scheme_name": "Event Partner",
       "record_kind": "APPLICATION_CALL",
       "application_status": "VERIFICATION_REQUIRED",
-      "action": "SKIP_EXISTING_DECISION",
-      "matches": [
-        {
-          "master_id": "meitycall_37a5f7055e19110989f3",
-          "scheme_name": "Event Partner",
-          "official_page_url": "https://msh.meity.gov.in/event-partner",
-          "status": "APPROVED",
-          "table": "admin_review_queue"
-        }
-      ],
+      "action": "INSERT_PENDING_CALL_REVIEW",
+      "matches": [],
       "item": {
         "master_id": "meitycall_37a5f7055e19110989f3",
         "scheme_name": "Event Partner",
@@ -688,16 +648,8 @@
       "scheme_name": "G20Diaoverview",
       "record_kind": "APPLICATION_CALL",
       "application_status": "VERIFICATION_REQUIRED",
-      "action": "SKIP_EXISTING_DECISION",
-      "matches": [
-        {
-          "master_id": "meitycall_056b139f54fba2e7a8b3",
-          "scheme_name": "G20Diaoverview",
-          "official_page_url": "https://msh.meity.gov.in/g20dia/g20diaoverview",
-          "status": "APPROVED",
-          "table": "admin_review_queue"
-        }
-      ],
+      "action": "INSERT_PENDING_CALL_REVIEW",
+      "matches": [],
       "item": {
         "master_id": "meitycall_056b139f54fba2e7a8b3",
         "scheme_name": "G20Diaoverview",
@@ -840,7 +792,7 @@
           "master_id": "94f8ab0a070a6ff15fce",
           "scheme_name": "GENESIS",
           "table": "scheme_staging",
-          "status": "PUBLISHED"
+          "status": "STAGED"
         }
       ],
       "item": {
@@ -967,16 +919,8 @@
       "scheme_name": "Googleappscale",
       "record_kind": "APPLICATION_CALL",
       "application_status": "VERIFICATION_REQUIRED",
-      "action": "SKIP_EXISTING_DECISION",
-      "matches": [
-        {
-          "master_id": "meitycall_a4a05a783de6e3478e54",
-          "scheme_name": "Googleappscale",
-          "official_page_url": "https://msh.meity.gov.in/program/mshcorporate/googleappscale",
-          "status": "APPROVED",
-          "table": "admin_review_queue"
-        }
-      ],
+      "action": "INSERT_PENDING_CALL_REVIEW",
+      "matches": [],
       "item": {
         "master_id": "meitycall_a4a05a783de6e3478e54",
         "scheme_name": "Googleappscale",
@@ -1101,16 +1045,8 @@
       "scheme_name": "Ihmcl",
       "record_kind": "APPLICATION_CALL",
       "application_status": "VERIFICATION_REQUIRED",
-      "action": "SKIP_EXISTING_DECISION",
-      "matches": [
-        {
-          "master_id": "meitycall_b2b15a80eaf08c64193e",
-          "scheme_name": "Ihmcl",
-          "official_page_url": "https://msh.meity.gov.in/program/mshcorporate/ihmcl",
-          "status": "APPROVED",
-          "table": "admin_review_queue"
-        }
-      ],
+      "action": "INSERT_PENDING_CALL_REVIEW",
+      "matches": [],
       "item": {
         "master_id": "meitycall_b2b15a80eaf08c64193e",
         "scheme_name": "Ihmcl",
@@ -1235,16 +1171,8 @@
       "scheme_name": "Mathworks",
       "record_kind": "APPLICATION_CALL",
       "application_status": "VERIFICATION_REQUIRED",
-      "action": "SKIP_EXISTING_DECISION",
-      "matches": [
-        {
-          "master_id": "meitycall_c53a5b2578e3b03d7291",
-          "scheme_name": "Mathworks",
-          "official_page_url": "https://msh.meity.gov.in/program/mshcorporate/mathworks",
-          "status": "APPROVED",
-          "table": "admin_review_queue"
-        }
-      ],
+      "action": "INSERT_PENDING_CALL_REVIEW",
+      "matches": [],
       "item": {
         "master_id": "meitycall_c53a5b2578e3b03d7291",
         "scheme_name": "Mathworks",
@@ -1369,16 +1297,8 @@
       "scheme_name": "Micron",
       "record_kind": "APPLICATION_CALL",
       "application_status": "VERIFICATION_REQUIRED",
-      "action": "SKIP_EXISTING_DECISION",
-      "matches": [
-        {
-          "master_id": "meitycall_0c7011d0b31e008b13b8",
-          "scheme_name": "Micron",
-          "official_page_url": "https://msh.meity.gov.in/program/mshcorporate/micron",
-          "status": "APPROVED",
-          "table": "admin_review_queue"
-        }
-      ],
+      "action": "INSERT_PENDING_CALL_REVIEW",
+      "matches": [],
       "item": {
         "master_id": "meitycall_0c7011d0b31e008b13b8",
         "scheme_name": "Micron",
@@ -1503,16 +1423,8 @@
       "scheme_name": "Organisationprofile",
       "record_kind": "APPLICATION_CALL",
       "application_status": "VERIFICATION_REQUIRED",
-      "action": "SKIP_EXISTING_DECISION",
-      "matches": [
-        {
-          "master_id": "meitycall_11ee67b180d2f208f8ef",
-          "scheme_name": "Organisationprofile",
-          "official_page_url": "https://msh.meity.gov.in/about/organisationprofile",
-          "status": "APPROVED",
-          "table": "admin_review_queue"
-        }
-      ],
+      "action": "INSERT_PENDING_CALL_REVIEW",
+      "matches": [],
       "item": {
         "master_id": "meitycall_11ee67b180d2f208f8ef",
         "scheme_name": "Organisationprofile",
@@ -1637,16 +1549,8 @@
       "scheme_name": "Press Release All",
       "record_kind": "APPLICATION_CALL",
       "application_status": "VERIFICATION_REQUIRED",
-      "action": "SKIP_EXISTING_DECISION",
-      "matches": [
-        {
-          "master_id": "meitycall_ba1e7d64714d21401ed3",
-          "scheme_name": "Press Release All",
-          "official_page_url": "https://msh.meity.gov.in/media/press-release-all",
-          "status": "APPROVED",
-          "table": "admin_review_queue"
-        }
-      ],
+      "action": "INSERT_PENDING_CALL_REVIEW",
+      "matches": [],
       "item": {
         "master_id": "meitycall_ba1e7d64714d21401ed3",
         "scheme_name": "Press Release All",
@@ -1904,16 +1808,8 @@
       "scheme_name": "samridh%202nd%20cohort%20om%20final.pdf",
       "record_kind": "APPLICATION_CALL",
       "application_status": "VERIFICATION_REQUIRED",
-      "action": "SKIP_EXISTING_DECISION",
-      "matches": [
-        {
-          "master_id": "meitycall_f6f817622dfc3035cf72",
-          "scheme_name": "samridh%202nd%20cohort%20om%20final.pdf",
-          "official_page_url": "https://msh.meity.gov.in/assets/samridh2ndcohrot/SAMRIDH%202nd%20Cohort%20OM%20Final.pdf",
-          "status": "APPROVED",
-          "table": "admin_review_queue"
-        }
-      ],
+      "action": "INSERT_PENDING_CALL_REVIEW",
+      "matches": [],
       "item": {
         "master_id": "meitycall_f6f817622dfc3035cf72",
         "scheme_name": "samridh%202nd%20cohort%20om%20final.pdf",
@@ -2038,16 +1934,8 @@
       "scheme_name": "The Summit",
       "record_kind": "APPLICATION_CALL",
       "application_status": "VERIFICATION_REQUIRED",
-      "action": "SKIP_EXISTING_DECISION",
-      "matches": [
-        {
-          "master_id": "meitycall_8d44c653724d98cb049d",
-          "scheme_name": "The Summit",
-          "official_page_url": "https://msh.meity.gov.in/g20dia/the-summit",
-          "status": "APPROVED",
-          "table": "admin_review_queue"
-        }
-      ],
+      "action": "INSERT_PENDING_CALL_REVIEW",
+      "matches": [],
       "item": {
         "master_id": "meitycall_8d44c653724d98cb049d",
         "scheme_name": "The Summit",
@@ -2172,16 +2060,8 @@
       "scheme_name": "Vivatech",
       "record_kind": "APPLICATION_CALL",
       "application_status": "VERIFICATION_REQUIRED",
-      "action": "SKIP_EXISTING_DECISION",
-      "matches": [
-        {
-          "master_id": "meitycall_f76675fa4a424f58ed0b",
-          "scheme_name": "Vivatech",
-          "official_page_url": "https://msh.meity.gov.in/program/mshinternational/vivatech",
-          "status": "APPROVED",
-          "table": "admin_review_queue"
-        }
-      ],
+      "action": "INSERT_PENDING_CALL_REVIEW",
+      "matches": [],
       "item": {
         "master_id": "meitycall_f76675fa4a424f58ed0b",
         "scheme_name": "Vivatech",
@@ -2306,16 +2186,8 @@
       "scheme_name": "Xr Startup Program",
       "record_kind": "APPLICATION_CALL",
       "application_status": "VERIFICATION_REQUIRED",
-      "action": "SKIP_EXISTING_DECISION",
-      "matches": [
-        {
-          "master_id": "meitycall_2f886d6194cb0b281a16",
-          "scheme_name": "Xr Startup Program",
-          "official_page_url": "https://msh.meity.gov.in/program/mshcorporate/xr-startup-program",
-          "status": "APPROVED",
-          "table": "admin_review_queue"
-        }
-      ],
+      "action": "INSERT_PENDING_CALL_REVIEW",
+      "matches": [],
       "item": {
         "master_id": "meitycall_2f886d6194cb0b281a16",
         "scheme_name": "Xr Startup Program",
@@ -2436,5 +2308,7 @@
       }
     }
   ],
-  "plan_signature": "02db4b5f174ee91575fac96c658433a9a0acd9951dd147a7b79c580d63e9301a"
+  "plan_signature": "2f77b827b675840045e930a4db4e6d51fa2a46a4658242d8851fd5c9e101dfd2",
+  "run_id": "meity_calls_v34375_20260714T075526Z",
+  "applied_count": 16
 }

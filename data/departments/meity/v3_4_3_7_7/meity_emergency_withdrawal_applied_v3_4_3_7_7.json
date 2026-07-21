@@ -1,0 +1,129 @@
+{
+  "version": "3.4.3.7.7",
+  "action_at": "2026-07-14T08:42:06+00:00",
+  "actor": "Admin",
+  "reason": "Emergency withdrawal of 16 MeitY records published with VERIFICATION_REQUIRED status; preserve for governed reclassification.",
+  "plan_signature": "b2997097d5304881923b5e820b5cd100721c55901115adf5f89bc1297be5a48d",
+  "withdrawn_count": 16,
+  "public_count_before": 53,
+  "public_count_after": 37,
+  "remaining_public_target_count": 0,
+  "master_ids_preserved": true,
+  "admin_decisions_modified": false,
+  "records_deleted": false,
+  "publication_performed": false,
+  "records": [
+    {
+      "master_id": "meitycall_a95e53af41b5c53999cf",
+      "scheme_name": "Bhumi",
+      "previous_status": "PUBLISHED",
+      "new_status": "UNPUBLISHED",
+      "classification": "VALID_CALL_INSTANCE"
+    },
+    {
+      "master_id": "meitycall_98f3c3720f15dae91ade",
+      "scheme_name": "Brussels",
+      "previous_status": "PUBLISHED",
+      "new_status": "UNPUBLISHED",
+      "classification": "EVENT_OR_CONFERENCE"
+    },
+    {
+      "master_id": "meitycall_cbb7e8cd8fe24b00afd9",
+      "scheme_name": "Challenges",
+      "previous_status": "PUBLISHED",
+      "new_status": "UNPUBLISHED",
+      "classification": "NAVIGATION_OR_DIRECTORY"
+    },
+    {
+      "master_id": "meitycall_533fd1397d9885d223d2",
+      "scheme_name": "Drishti",
+      "previous_status": "PUBLISHED",
+      "new_status": "UNPUBLISHED",
+      "classification": "VALID_CALL_INSTANCE"
+    },
+    {
+      "master_id": "meitycall_37a5f7055e19110989f3",
+      "scheme_name": "Event Partner",
+      "previous_status": "PUBLISHED",
+      "new_status": "UNPUBLISHED",
+      "classification": "NAVIGATION_OR_DIRECTORY"
+    },
+    {
+      "master_id": "meitycall_056b139f54fba2e7a8b3",
+      "scheme_name": "G20Diaoverview",
+      "previous_status": "PUBLISHED",
+      "new_status": "UNPUBLISHED",
+      "classification": "EVENT_OR_CONFERENCE"
+    },
+    {
+      "master_id": "meitycall_a4a05a783de6e3478e54",
+      "scheme_name": "Googleappscale",
+      "previous_status": "PUBLISHED",
+      "new_status": "UNPUBLISHED",
+      "classification": "VALID_CALL_INSTANCE"
+    },
+    {
+      "master_id": "meitycall_b2b15a80eaf08c64193e",
+      "scheme_name": "Ihmcl",
+      "previous_status": "PUBLISHED",
+      "new_status": "UNPUBLISHED",
+      "classification": "VALID_CALL_INSTANCE"
+    },
+    {
+      "master_id": "meitycall_c53a5b2578e3b03d7291",
+      "scheme_name": "Mathworks",
+      "previous_status": "PUBLISHED",
+      "new_status": "UNPUBLISHED",
+      "classification": "VALID_CALL_INSTANCE"
+    },
+    {
+      "master_id": "meitycall_0c7011d0b31e008b13b8",
+      "scheme_name": "Micron",
+      "previous_status": "PUBLISHED",
+      "new_status": "UNPUBLISHED",
+      "classification": "UNRESOLVED"
+    },
+    {
+      "master_id": "meitycall_11ee67b180d2f208f8ef",
+      "scheme_name": "Organisationprofile",
+      "previous_status": "PUBLISHED",
+      "new_status": "UNPUBLISHED",
+      "classification": "NAVIGATION_OR_DIRECTORY"
+    },
+    {
+      "master_id": "meitycall_ba1e7d64714d21401ed3",
+      "scheme_name": "Press Release All",
+      "previous_status": "PUBLISHED",
+      "new_status": "UNPUBLISHED",
+      "classification": "PRESS_RELEASE_OR_NEWS"
+    },
+    {
+      "master_id": "meitycall_8d44c653724d98cb049d",
+      "scheme_name": "The Summit",
+      "previous_status": "PUBLISHED",
+      "new_status": "UNPUBLISHED",
+      "classification": "EVENT_OR_CONFERENCE"
+    },
+    {
+      "master_id": "meitycall_f76675fa4a424f58ed0b",
+      "scheme_name": "Vivatech",
+      "previous_status": "PUBLISHED",
+      "new_status": "UNPUBLISHED",
+      "classification": "EVENT_OR_CONFERENCE"
+    },
+    {
+      "master_id": "meitycall_2f886d6194cb0b281a16",
+      "scheme_name": "Xr Startup Program",
+      "previous_status": "PUBLISHED",
+      "new_status": "UNPUBLISHED",
+      "classification": "VALID_CALL_INSTANCE"
+    },
+    {
+      "master_id": "meitycall_f6f817622dfc3035cf72",
+      "scheme_name": "samridh%202nd%20cohort%20om%20final.pdf",
+      "previous_status": "PUBLISHED",
+      "new_status": "UNPUBLISHED",
+      "classification": "RAW_DOCUMENT"
+    }
+  ]
+}

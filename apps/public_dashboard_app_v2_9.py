@@ -1277,38 +1277,42 @@ def render_sectors(bundle: CatalogueBundle) -> None:
 def render_resources(bundle: CatalogueBundle, official_sources: list[OfficialSource]) -> None:
     populations = split_catalogue_populations(bundle.records)
     records = [*populations.main_scheme_records, *populations.application_call_records]
+    dbt_documents = list(cached_dbt_birac_preview().documents)
     resource_records = [
         item for item in records
         if item.official_page_url or item.application_url or item.guideline_urls or item.reference_urls
     ]
+    resource_total = len(resource_records) + len(dbt_documents)
     st.markdown(
         page_intro(
             "Application resources",
             "Official Links & Documents",
             "Open verified scheme pages, application portals, manuals and reference documents without searching across multiple government websites.",
-            badge=f"{len(resource_records)} records",
+            badge=f"{resource_total} records",
         ),
         unsafe_allow_html=True,
     )
     application_count = sum(bool(item.application_url) for item in resource_records)
-    guideline_count = sum(bool(item.guideline_urls) for item in resource_records)
+    document_count = sum(bool(item.guideline_urls) for item in resource_records) + len(dbt_documents)
     st.markdown(
         '<div class="metric-grid resource-metrics">'
-        + metric_card("Resource Records", len(resource_records), "Schemes and calls with official links", "blue")
+        + metric_card("Resource Records", resource_total, "Schemes, calls and official documents", "blue")
         + metric_card("Application Portals", application_count, "Direct official application routes", "green")
-        + metric_card("Manuals & Guidelines", guideline_count, "Structured official documents", "orange")
+        + metric_card("Manuals & Documents", document_count, "Structured official resources", "orange")
         + metric_card("Source Registry", len(official_sources), "Discovery portals maintained", "purple")
         + '</div>',
         unsafe_allow_html=True,
     )
     c1, c2, c3, c4 = st.columns([2, 1, 1, .75])
     keyword = c1.text_input("Search resources", placeholder="Scheme, call, department or document", key="resource_keyword").strip().casefold()
-    population = c2.selectbox("Record population", ["ALL", "SCHEME", "CALL"], format_func=lambda value: {"ALL":"All records","SCHEME":"Schemes & programmes","CALL":"Application calls"}[value])
-    resource_type = c3.selectbox("Resource type", ["ALL", "APPLICATION", "GUIDELINE", "OFFICIAL"], format_func=lambda value: {"ALL":"All resources","APPLICATION":"Application portals","GUIDELINE":"Manuals & guidelines","OFFICIAL":"Official pages"}[value])
+    population = c2.selectbox("Record population", ["ALL", "SCHEME", "CALL", "DOCUMENT"], format_func=lambda value: {"ALL":"All records","SCHEME":"Schemes & programmes","CALL":"Application calls","DOCUMENT":"Documents"}[value])
+    resource_type = c3.selectbox("Resource type", ["ALL", "APPLICATION", "GUIDELINE", "OFFICIAL"], format_func=lambda value: {"ALL":"All resources","APPLICATION":"Application portals","GUIDELINE":"Manuals & documents","OFFICIAL":"Official pages"}[value])
     display_limit = c4.selectbox("Show", [24, 48, 0], format_func=lambda value: "All" if value == 0 else str(value), key="resource_display_limit")
     visible = []
     for item in resource_records:
         is_call = item.record_kind.upper() in {"APPLICATION_CALL", "CHALLENGE"}
+        if population == "DOCUMENT":
+            continue
         if population == "CALL" and not is_call:
             continue
         if population == "SCHEME" and is_call:
@@ -1322,9 +1326,19 @@ def render_resources(bundle: CatalogueBundle, official_sources: list[OfficialSou
         if keyword and keyword not in " ".join([item.scheme_name, item.department, item.implementing_agency, item.source, item.search_blob]).casefold():
             continue
         visible.append(item)
-    displayed = visible if display_limit == 0 else visible[:display_limit]
+    visible_documents = []
+    if population in {"ALL", "DOCUMENT"} and resource_type in {"ALL", "GUIDELINE", "OFFICIAL"}:
+        for document in dbt_documents:
+            searchable = " ".join((
+                document.get("title", ""),
+                document.get("document_type", ""),
+                "DBT BIRAC Department of Biotechnology",
+            )).casefold()
+            if keyword and keyword not in searchable:
+                continue
+            visible_documents.append(document)
     cards = []
-    for item in displayed:
+    for item in visible:
         kind = "Application call" if item.record_kind.upper() in {"APPLICATION_CALL", "CHALLENGE"} else "Scheme / programme"
         agency = item.department or item.implementing_agency or item.source or "Agency not recorded"
         links = _dst_links(
@@ -1340,8 +1354,22 @@ def render_resources(bundle: CatalogueBundle, official_sources: list[OfficialSou
             f'<h3>{esc(item.scheme_name)}</h3><div class="agency-line">{esc(agency)}</div>'
             f'<div class="resource-actions">{links}</div></article>'
         )
-    st.markdown(f'<div class="filter-summary"><strong>{len(visible)}</strong> resource record(s)<span>Showing {len(displayed)} · official links open in a new tab</span></div>', unsafe_allow_html=True)
-    st.markdown('<div class="resource-grid">' + "".join(cards) + '</div>', unsafe_allow_html=True)
+    for document in visible_documents:
+        cards.append(
+            '<article class="resource-card">'
+            '<div class="scheme-card-head">'
+            f'<span class="record-kind">{esc(display_token(document.get("document_type", "DOCUMENT")))}</span>'
+            '<span class="status-badge status-reference">Official source</span></div>'
+            f'<h3>{esc(document.get("title", "DBT–BIRAC document"))}</h3>'
+            '<div class="agency-line">Department of Biotechnology / BIRAC</div>'
+            '<div class="resource-actions">'
+            f'<a target="_blank" rel="noopener noreferrer" href="{esc(document.get("official_url", ""))}">Open document</a>'
+            '</div></article>'
+        )
+    displayed_cards = cards if display_limit == 0 else cards[:display_limit]
+    visible_total = len(visible) + len(visible_documents)
+    st.markdown(f'<div class="filter-summary"><strong>{visible_total}</strong> resource record(s)<span>Showing {len(displayed_cards)} · official links open in a new tab</span></div>', unsafe_allow_html=True)
+    st.markdown('<div class="resource-grid">' + "".join(displayed_cards) + '</div>', unsafe_allow_html=True)
     st.markdown(
         '<div class="section-band resource-source-band"><h2 class="section-title">Priority Government Portals</h2>'
         + '<div class="source-link-grid">'
@@ -3191,24 +3219,28 @@ def render_dbt_birac_page() -> None:
     parent_names = {row.record_id: row.canonical_name for row in bundle.records}
     groups = (
         ("Schemes & Programmes", {"SCHEME", "PROGRAMME"}, None),
-        ("Current Calls", {"APPLICATION_CALL", "FUNDING_ROUND", "COHORT"}, {"OPEN", "UPCOMING"}),
-        ("Challenges & Competitions", {"CHALLENGE", "COMPETITION"}, None),
-        ("Incubator & Intermediary", {"INCUBATOR_OPPORTUNITY", "ACCELERATOR_OPPORTUNITY", "ECOSYSTEM_OPPORTUNITY", "IMPLEMENTATION_PARTNER_OPPORTUNITY"}, None),
-        ("Historical Archive", {"HISTORICAL_CALL", "APPLICATION_CALL", "FUNDING_ROUND", "COHORT"}, {"CLOSED"}),
-        ("Guidelines & Evidence", set(), None),
+        (
+            "Current Calls & Challenges",
+            {
+                "APPLICATION_CALL", "FUNDING_ROUND", "COHORT", "CHALLENGE", "COMPETITION",
+                "INCUBATOR_OPPORTUNITY", "ACCELERATOR_OPPORTUNITY", "ECOSYSTEM_OPPORTUNITY",
+                "IMPLEMENTATION_PARTNER_OPPORTUNITY",
+            },
+            {"OPEN", "UPCOMING"},
+        ),
+        (
+            "Historical Archive",
+            {
+                "HISTORICAL_CALL", "APPLICATION_CALL", "FUNDING_ROUND", "COHORT", "CHALLENGE", "COMPETITION",
+                "INCUBATOR_OPPORTUNITY", "ACCELERATOR_OPPORTUNITY", "ECOSYSTEM_OPPORTUNITY",
+                "IMPLEMENTATION_PARTNER_OPPORTUNITY",
+            },
+            {"CLOSED"},
+        ),
     )
     tabs = st.tabs([label for label, _, _ in groups])
     for tab, (label, types, allowed_statuses) in zip(tabs, groups):
         with tab:
-            if label == "Guidelines & Evidence":
-                if not bundle.documents:
-                    st.info("No verified supporting resources are available.")
-                for document in bundle.documents:
-                    st.markdown(
-                        f'<a target="_blank" rel="noopener noreferrer" href="{esc(document["official_url"])}">{esc(document["title"])} <span aria-hidden="true">↗</span></a> · {esc(display_token(document["document_type"]))}',
-                        unsafe_allow_html=True,
-                    )
-                continue
             records = [row for row in visible if row.record_type in types and (allowed_statuses is None or row.application_status in allowed_statuses)]
             if not records:
                 st.info(f"No {label.lower()} match the selected filters.")

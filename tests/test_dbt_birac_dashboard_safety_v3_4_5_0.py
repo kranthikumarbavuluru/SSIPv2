@@ -18,7 +18,7 @@ def function_hash(path: Path, name: str) -> str:
 
 
 class DBTBIRACDashboardSafetyTests(unittest.TestCase):
-    def test_route_top_level_navigation_and_six_public_views_are_wired(self) -> None:
+    def test_route_top_level_navigation_and_three_public_views_are_wired(self) -> None:
         source = APP.read_text(encoding="utf-8-sig")
         self.assertIn('"DBT–BIRAC": "dbt-birac-programmes"', source)
         self.assertIn('elif page == "DBT–BIRAC":', source)
@@ -30,13 +30,20 @@ class DBTBIRACDashboardSafetyTests(unittest.TestCase):
         self.assertIn('>Resources</a>', header)
         self.assertIn('>Sources</a>', header)
         section = source[source.index("def render_dbt_birac_page"):source.index("def main()")]
-        for label in (
-            "Schemes & Programmes", "Current Calls", "Challenges & Competitions",
-            "Incubator & Intermediary", "Historical Archive", "Guidelines & Evidence",
-        ):
+        for label in ("Schemes & Programmes", "Current Calls & Challenges", "Historical Archive"):
             self.assertIn(label, section)
+        for removed_label in ("Challenges & Competitions", "Incubator & Intermediary", "Guidelines & Evidence"):
+            self.assertNotIn(removed_label, section)
         self.assertNotIn("Admin Review", section)
         self.assertNotIn("Preview · Not published", section)
+
+    def test_dbt_documents_are_available_from_shared_resources(self) -> None:
+        source = APP.read_text(encoding="utf-8-sig")
+        section = source[source.index("def render_resources"):source.index("def _dst_preview_notice")]
+        self.assertIn("cached_dbt_birac_preview().documents", section)
+        self.assertIn('"DOCUMENT":"Documents"', section)
+        self.assertIn("Department of Biotechnology / BIRAC", section)
+        self.assertIn('rel="noopener noreferrer"', section)
 
     def test_public_page_has_accessible_safe_links_and_governed_ownership(self) -> None:
         source = APP.read_text(encoding="utf-8-sig")

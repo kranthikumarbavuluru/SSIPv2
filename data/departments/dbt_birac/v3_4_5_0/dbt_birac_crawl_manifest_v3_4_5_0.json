@@ -1,0 +1,14 @@
+{
+  "attempted": 40,
+  "database_writes": 0,
+  "failed": 5,
+  "fetched": 35,
+  "max_depth": 1,
+  "max_pages": 40,
+  "mode": "RESUMED_LIVE_SNAPSHOT",
+  "publication_writes": 0,
+  "redirected": 1,
+  "resumable_from": "dbt_birac_raw_discovery_v3_4_5_0.json",
+  "retrieval_timestamp": "2026-07-21T00:00:00+05:30",
+  "version": "3.4.5.0"
+}

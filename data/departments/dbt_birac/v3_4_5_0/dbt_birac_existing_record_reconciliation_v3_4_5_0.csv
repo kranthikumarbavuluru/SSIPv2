@@ -1,0 +1,3 @@
+﻿existing_master_id,existing_scheme_name,existing_record_type,existing_stored_status,existing_closing_date,existing_publication_status,existing_admin_review_status,preview_record_id,preview_status,resolution,mutation_performed
+2fcf4cfd53ae3826cf8c,Bio-AI / BioE3 Mulankur Hubs,APPLICATION_CALL,OPEN,2026-07-15,STAGED,APPROVED,dbt_birac_call_a34e83aadd81b682b5f3,CLOSED,MATCHED_WITHOUT_MUTATION,0
+f60669191ee8384cbb3f,Grand Challenges India (GCI),APPLICATION_CALL,OPEN,2026-07-15,STAGED,,,,UNMATCHED_REVIEW_REQUIRED,0

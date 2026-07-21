@@ -1,0 +1,26 @@
+﻿record_id,startup_relevance,reason,evidence_url
+dbt_birac_call_0133ddc540a4dd13928f,INTERMEDIARY_OR_INSTITUTION_LAYER,"Past infrastructure-partner call, separated from direct startup opportunities.",https://birac.nic.in/desc_new.php?id=1120
+dbt_birac_call_18b2dc64727b68193481,STARTUP_RELEVANT,Official challenge deadline was extended to 15 July 2026 and has passed.,https://birac.nic.in/cfp_view.php?id=118&scheme_type=6
+dbt_birac_call_681ccfe095c3b52a8c56,STARTUP_RELEVANT,Official individual round with a past deadline.,https://birac.nic.in/cfp_view.php?id=31&scheme_type=5
+dbt_birac_call_6c70aaef78171b0e6160,STARTUP_RELEVANT,Official call page and programme page state the call is closed.,https://birac.nic.in/cfp_view.php?id=117&scheme_type=29
+dbt_birac_call_7dc37268d6fe86663d26,INTERMEDIARY_OR_INSTITUTION_LAYER,"Institution/implementation-partner opportunity, not a direct startup scheme.",https://birac.nic.in/cfp_view.php?id=84&scheme_type=4
+dbt_birac_call_955614b1bbf7c71695f7,STARTUP_RELEVANT,Official individual round with a past deadline.,https://birac.nic.in/cfp.php/portal/desc_new.php?id=443
+dbt_birac_call_a34e83aadd81b682b5f3,STARTUP_RELEVANT,Later official extension evidence supersedes the earlier 30 June date; deadline has passed.,https://birac.nic.in/cfp_view.php?id=114&scheme_type=46
+dbt_birac_call_bbdac5ae0c028e41f098,INTERMEDIARY_OR_INSTITUTION_LAYER,Institution-only centre call; official extension to 17 August retained on the same call.,https://birac.nic.in/cfp_view.php?id=82&scheme_type=31
+dbt_birac_call_cac53f6c55087373dede,STARTUP_RELEVANT,Official BIRAC call with a past deadline.,https://birac.nic.in/cfp_view.php?id=116&scheme_type=52
+dbt_birac_programme_0cc102270251adbfdb3f,STARTUP_RELEVANT,Industry partnership support for high-risk biotechnology research and development.,https://birac.nic.in/desc_new.php?id=216
+dbt_birac_programme_12f6f212327a46765c5b,INTERMEDIARY_OR_INSTITUTION_LAYER,"DBT programme for women researchers, managed by the DBT-HRD PMU at RCB; not attributed to BIRAC.",https://dbtindia.gov.in/biotechnology-career-advancement-and-re-orientation-biocare-programmes
+dbt_birac_programme_19b25856e1c150ca834c,STARTUP_RELEVANT,Equity support for startups delivered through selected BioNEST incubator partners.,https://birac.nic.in/seedFundNew.php
+dbt_birac_programme_19b87ac5ecb1afe2d7f3,INTERMEDIARY_OR_INSTITUTION_LAYER,Academic translation programme with AIR and CRS components.,https://birac.nic.in/desc_new.php?id=286
+dbt_birac_programme_2a0b6287a0e65cff2844,INTERMEDIARY_OR_INSTITUTION_LAYER,Fund-of-funds style support delivered through SEBI-registered daughter funds; not a direct startup application window.,https://birac.nic.in/aceFundNew.php
+dbt_birac_programme_2a21fe6d592a19b7de89,STARTUP_RELEVANT,Flagship early-stage biotechnology grant programme; official page states support up to INR 50 lakh for 18 months.,https://birac.nic.in/big.php
+dbt_birac_programme_37cee8b1f4918e65e71e,INTERMEDIARY_OR_INSTITUTION_LAYER,BIRAC bio-incubator network programme; beneficiary and incubator-partner layers are kept distinct.,https://birac.nic.in/bionest.php
+dbt_birac_programme_6ed5045938d710d07514,STARTUP_RELEVANT,"BIRAC umbrella for industry innovation support, including SBIRI and BIPP.",https://birac.nic.in/birac_i4.php
+dbt_birac_programme_8394e6f426a8d1ccfe1c,STARTUP_RELEVANT,BIRAC social innovation programme under the aegis of DBT.,https://birac.nic.in/desc_new.php?id=58
+dbt_birac_programme_85cb10362c7f8eab552a,STARTUP_RELEVANT,Entrepreneurship and innovation support for students and researchers through E-YUVA Centres.,https://birac.nic.in/e_yuva.php
+dbt_birac_programme_920294c17d4689850646,INTERMEDIARY_OR_INSTITUTION_LAYER,DBT human-resource programme managed by RCB; not attributed to BIRAC.,https://pgt.dbtindia.gov.in/
+dbt_birac_programme_950e8371679bc4771790,STARTUP_RELEVANT,PACE component supporting academia-industry technology validation.,https://birac.nic.in/desc_new.php?id=286
+dbt_birac_programme_96f0cfcbe5b77792d7ec,STARTUP_RELEVANT,Early-stage industry innovation support under BIRAC's i4 portfolio.,https://birac.nic.in/desc_new.php?id=217
+dbt_birac_programme_9fe430e5274621be5189,INTERMEDIARY_OR_INSTITUTION_LAYER,PACE component supporting proof-of-concept validation by academic researchers.,https://birac.nic.in/desc_new.php?id=286
+dbt_birac_programme_a76f47a688f22080c2f5,STARTUP_RELEVANT,Later-stage equity support delivered through selected implementation partners.,https://birac.nic.in/leapFund.php
+dbt_birac_review_8b674da63a197fa42809,REVIEW_REQUIRED,Monitoring candidate only; it is not a current call and has no Apply action.,https://birac.nic.in/big.php

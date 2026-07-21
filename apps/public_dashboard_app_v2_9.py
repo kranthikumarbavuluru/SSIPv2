@@ -87,8 +87,14 @@ from ssip_dashboard.dpiit_preview import (
     filter_dpiit_preview,
     load_dpiit_preview,
 )
+from ssip_dashboard.dbt_birac_preview import (
+    DBTBIRACPreviewBundle,
+    DBTBIRACPreviewRecord,
+    filter_dbt_birac_preview,
+    load_dbt_birac_preview,
+)
 
-APP_VERSION = "3.4.4.0-dpiit-governed-preview"
+APP_VERSION = "3.4.5.0-dbt-birac-governed-preview"
 PAGE_NAMES = [
     "Home",
     "Scheme Explorer",
@@ -96,6 +102,7 @@ PAGE_NAMES = [
     "DST Schemes",
     "MeitY",
     "DPIIT",
+    "DBT–BIRAC",
     "Incubators & Ecosystem",
     "Directory",
     "Official Sources",
@@ -108,6 +115,7 @@ NAV_LABELS = {
     "DST Schemes": "DST",
     "MeitY": "MeitY",
     "DPIIT": "DPIIT",
+    "DBT–BIRAC": "DBT–BIRAC",
     "Incubators & Ecosystem": "Ecosystem",
     "Directory": "Resources",
     "Official Sources": "Sources",
@@ -119,6 +127,7 @@ PAGE_SLUGS = {
     "DST Schemes": "dst-programmes",
     "MeitY": "meity-programmes",
     "DPIIT": "dpiit-programmes",
+    "DBT–BIRAC": "dbt-birac-programmes",
     "Calls & Opportunities": "live-calls",
     "Incubators & Ecosystem": "ecosystem",
     "Official Sources": "official-sources",
@@ -535,9 +544,10 @@ def site_header(active_page: str) -> str:
             f'<a class="ssip-nav-link{active}" target="_top" href="?page={PAGE_SLUGS[page_name]}">'
             f'{esc(NAV_LABELS[page_name])}</a>'
         )
-    more_active = active_page in {"Incubators & Ecosystem", "Scheme Details"}
+    more_active = active_page in {"DBT–BIRAC", "Incubators & Ecosystem", "Scheme Details"}
     more_class = " is-active" if more_active else ""
     more_links = (
+        f'<a target="_top" href="?page={PAGE_SLUGS["DBT–BIRAC"]}">DBT–BIRAC preview</a>'
         f'<a target="_top" href="?page={PAGE_SLUGS["Incubators & Ecosystem"]}">Ecosystem</a>'
         f'<a target="_top" href="?page={PAGE_SLUGS["Scheme Details"]}">Scheme profiles</a>'
     )
@@ -3083,6 +3093,151 @@ def render_dpiit_page() -> None:
                     unsafe_allow_html=True,
                 )
 
+
+@st.cache_data(ttl=300, show_spinner=False)
+def cached_dbt_birac_preview() -> DBTBIRACPreviewBundle:
+    return load_dbt_birac_preview(PROJECT_ROOT)
+
+
+def _dbt_birac_preview_card(record: DBTBIRACPreviewRecord, parent_names: dict[str, str]) -> str:
+    parent = parent_names.get(record.parent_record_id, "")
+    facts = []
+    if parent:
+        facts.append(f'<div><span>Parent programme</span><strong>{esc(parent)}</strong></div>')
+    facts.extend((
+        f'<div><span>Direct applicant</span><strong>{esc(display_token(record.direct_applicant_layer))}</strong></div>',
+        f'<div><span>Status</span><strong>{esc(display_token(record.application_status))}</strong></div>',
+        f'<div><span>Closing date</span><strong>{esc(record.closing_date or "Not specified")}</strong></div>',
+    ))
+    links = []
+    if record.official_url:
+        links.append(f'<a target="_blank" rel="noopener noreferrer" href="{esc(record.official_url)}">Official evidence <span aria-hidden="true">↗</span></a>')
+    if record.guideline_url:
+        links.append(f'<a target="_blank" rel="noopener noreferrer" href="{esc(record.guideline_url)}">Guidelines <span aria-hidden="true">↗</span></a>')
+    note = "Preview only · Admin review required · No public Apply action" if record.review_required else "Governed preview · Not published · No public Apply action"
+    chips = [item for item in (record.sector.split(";") + record.support_type.split(";")) if item][:4]
+    return (
+        '<article class="public-record-card">'
+        '<div class="public-record-card-top">'
+        f'<span class="status-badge">{esc(display_token(record.application_status))}</span>'
+        f'<span class="public-kind">{esc(display_token(record.record_type))}</span></div>'
+        f'<h3>{esc(record.canonical_name)}</h3>'
+        f'<div class="public-record-agency">{esc(record.implementing_agency or "Department of Biotechnology")}</div>'
+        f'<p>{esc(record.summary or "Details are preserved in the official evidence package.")}</p>'
+        f'<div class="public-record-facts">{"".join(facts)}</div>'
+        f'<div class="public-chip-row">{"".join(f"<span>{esc(display_token(item))}</span>" for item in chips)}</div>'
+        f'<div class="public-record-note">{esc(note)}</div>'
+        f'<div class="public-record-actions">{"".join(links)}</div>'
+        '</article>'
+    )
+
+
+def render_dbt_birac_page() -> None:
+    bundle = cached_dbt_birac_preview()
+    counts = bundle.manifest.get("counts", {})
+    st.markdown(
+        """
+        <style>
+        .dbt-evidence-chain { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:.65rem; margin:.85rem 0 1rem; }
+        .dbt-evidence-chain > div { position:relative; min-width:0; padding:.8rem 1rem; border:1px solid #cbdced; border-radius:12px; background:#f6faff; color:#17324d; }
+        .dbt-evidence-chain small { display:block; color:#60758a; margin-bottom:.2rem; }
+        .dbt-evidence-chain strong { display:block; overflow-wrap:anywhere; }
+        .dbt-preview-metrics { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:.7rem; margin:0 0 1.1rem; }
+        .dbt-preview-metric { min-width:0; padding:.85rem 1rem; border:1px solid #d7e3ef; border-radius:12px; background:#fff; }
+        .dbt-preview-metric strong { display:block; color:#123d66; font-size:1.65rem; font-variant-numeric:tabular-nums; line-height:1; }
+        .dbt-preview-metric span { display:block; margin-top:.45rem; color:#52697f; }
+        @media (max-width:760px) { .dbt-evidence-chain { grid-template-columns:1fr; } .dbt-preview-metrics { grid-template-columns:1fr 1fr; } }
+        @media (max-width:430px) { .dbt-preview-metrics { grid-template-columns:1fr; } }
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
+    st.markdown(
+        page_intro(
+            "Governed department preview",
+            "DBT–BIRAC Schemes, Calls & Archive",
+            "Permanent programmes, dated calls, challenges, intermediary opportunities and historical evidence are kept as separate governed identities.",
+            badge="Preview · Not published",
+        ),
+        unsafe_allow_html=True,
+    )
+    st.markdown(
+        '<div class="dbt-evidence-chain" aria-label="Governed ownership chain">'
+        '<div><small>Ministry</small><strong>Ministry of Science and Technology</strong></div>'
+        '<div><small>Department</small><strong>Department of Biotechnology</strong></div>'
+        '<div><small>Implementing agency where evidenced</small><strong>Biotechnology Industry Research Assistance Council (BIRAC)</strong></div>'
+        '</div>',
+        unsafe_allow_html=True,
+    )
+    metrics = (
+        ("Permanent programmes", int(counts.get("permanent", 0))),
+        ("Verified current calls", int(counts.get("current_calls", 0))),
+        ("Historical calls", int(counts.get("historical_calls", 0))),
+        ("Evidence resources", int(counts.get("supporting_documents", 0))),
+        ("Admin review", int(counts.get("review_queue", 0))),
+    )
+    st.markdown(
+        '<div class="dbt-preview-metrics">' + "".join(
+            f'<div class="dbt-preview-metric"><strong>{value}</strong><span>{esc(label)}</span></div>'
+            for label, value in metrics
+        ) + '</div>',
+        unsafe_allow_html=True,
+    )
+    st.caption(
+        f'Official-source snapshot: {bundle.manifest.get("generated_at", "")[:10]} · '
+        f'{int(counts.get("pages_fetched", 0))} of {int(counts.get("pages_attempted", 0))} pages fetched · '
+        'All records remain unpublished.'
+    )
+
+    keyword_column, type_column, status_column = st.columns([2.2, 1.25, 1.25])
+    with keyword_column:
+        keyword = st.text_input("Search DBT–BIRAC preview", placeholder="Search programmes, sectors, support or evidence…")
+    with type_column:
+        record_type = st.selectbox("Record type", ["All", *sorted({row.record_type for row in bundle.records})])
+    with status_column:
+        status = st.selectbox("Application status", ["All", *sorted({row.application_status for row in bundle.records})])
+    applicant_column, sector_column = st.columns(2)
+    with applicant_column:
+        applicants = sorted({item for row in bundle.records for item in row.direct_applicant_layer.split(";") if item})
+        applicant = st.selectbox("Direct applicant", ["All", *applicants])
+    with sector_column:
+        sectors = sorted({item for row in bundle.records for item in row.sector.split(";") if item})
+        sector = st.selectbox("Sector", ["All", *sectors])
+    visible = filter_dbt_birac_preview(bundle.records, keyword=keyword, record_type=record_type, status=status, applicant_layer=applicant, sector=sector)
+    parent_names = {row.record_id: row.canonical_name for row in bundle.records}
+    groups = (
+        ("Schemes & Programmes", {"SCHEME", "PROGRAMME"}, None),
+        ("Current Verified Calls", {"APPLICATION_CALL", "FUNDING_ROUND", "COHORT"}, {"OPEN", "UPCOMING"}),
+        ("Challenges & Competitions", {"CHALLENGE", "COMPETITION"}, None),
+        ("Incubator & Intermediary", {"INCUBATOR_OPPORTUNITY", "ACCELERATOR_OPPORTUNITY", "ECOSYSTEM_OPPORTUNITY", "IMPLEMENTATION_PARTNER_OPPORTUNITY"}, None),
+        ("Historical Calls", {"HISTORICAL_CALL"}, None),
+        ("Guidelines & Evidence", set(), None),
+        ("Admin Review", {"REVIEW_REQUIRED"}, None),
+    )
+    tabs = st.tabs([label for label, _, _ in groups])
+    for tab, (label, types, allowed_statuses) in zip(tabs, groups):
+        with tab:
+            if label == "Guidelines & Evidence":
+                if not bundle.documents:
+                    st.info("No verified supporting resources are available.")
+                for document in bundle.documents:
+                    st.markdown(
+                        f'<a target="_blank" rel="noopener noreferrer" href="{esc(document["official_url"])}">{esc(document["title"])} <span aria-hidden="true">↗</span></a> · {esc(display_token(document["document_type"]))}',
+                        unsafe_allow_html=True,
+                    )
+                continue
+            if label == "Admin Review":
+                if not bundle.review_items:
+                    st.success("No unresolved DBT–BIRAC review items remain.")
+                for item in bundle.review_items:
+                    st.warning(f'{display_token(item["review_type"])}: {item["reason"]}')
+                continue
+            records = [row for row in visible if row.record_type in types and (allowed_statuses is None or row.application_status in allowed_statuses)]
+            if not records:
+                st.info(f"No {label.lower()} match the selected filters.")
+            else:
+                st.markdown('<div class="public-record-grid">' + "".join(_dbt_birac_preview_card(row, parent_names) for row in records) + '</div>', unsafe_allow_html=True)
+
 def main() -> None:
     requested_slug = str(st.query_params.get("page", "") or "").strip().lower()
     requested_page = next(
@@ -3142,6 +3297,8 @@ def main() -> None:
         render_meity_page(bundle)
     elif page == "DPIIT":
         render_dpiit_page()
+    elif page == "DBT–BIRAC":
+        render_dbt_birac_page()
     elif page == "Official Sources":
         render_official_sources(official_sources, bundle)
     elif page == "Calls & Opportunities":

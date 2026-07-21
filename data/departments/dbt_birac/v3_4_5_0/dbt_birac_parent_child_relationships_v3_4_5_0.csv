@@ -1,0 +1,11 @@
+﻿parent_record_id,child_record_id,relationship_type,evidence_url,resolution_status
+dbt_birac_programme_37cee8b1f4918e65e71e,dbt_birac_call_0133ddc540a4dd13928f,PROGRAMME_HAS_CALL,https://birac.nic.in/desc_new.php?id=1120,RESOLVED
+dbt_birac_programme_2a21fe6d592a19b7de89,dbt_birac_call_681ccfe095c3b52a8c56,PROGRAMME_HAS_CALL,https://birac.nic.in/cfp_view.php?id=31&scheme_type=5,RESOLVED
+dbt_birac_programme_8394e6f426a8d1ccfe1c,dbt_birac_call_7dc37268d6fe86663d26,PROGRAMME_HAS_CALL,https://birac.nic.in/cfp_view.php?id=84&scheme_type=4,RESOLVED
+dbt_birac_programme_2a21fe6d592a19b7de89,dbt_birac_call_955614b1bbf7c71695f7,PROGRAMME_HAS_CALL,https://birac.nic.in/cfp.php/portal/desc_new.php?id=443,RESOLVED
+dbt_birac_programme_85cb10362c7f8eab552a,dbt_birac_call_bbdac5ae0c028e41f098,PROGRAMME_HAS_CALL,https://birac.nic.in/cfp_view.php?id=82&scheme_type=31,RESOLVED
+dbt_birac_programme_6ed5045938d710d07514,dbt_birac_programme_0cc102270251adbfdb3f,PROGRAMME_HAS_COMPONENT,https://birac.nic.in/desc_new.php?id=216,RESOLVED
+dbt_birac_programme_19b87ac5ecb1afe2d7f3,dbt_birac_programme_950e8371679bc4771790,PROGRAMME_HAS_COMPONENT,https://birac.nic.in/desc_new.php?id=286,RESOLVED
+dbt_birac_programme_6ed5045938d710d07514,dbt_birac_programme_96f0cfcbe5b77792d7ec,PROGRAMME_HAS_COMPONENT,https://birac.nic.in/desc_new.php?id=217,RESOLVED
+dbt_birac_programme_19b87ac5ecb1afe2d7f3,dbt_birac_programme_9fe430e5274621be5189,PROGRAMME_HAS_COMPONENT,https://birac.nic.in/desc_new.php?id=286,RESOLVED
+dbt_birac_programme_2a21fe6d592a19b7de89,dbt_birac_review_8b674da63a197fa42809,PROGRAMME_HAS_CALL,https://birac.nic.in/big.php,RESOLVED

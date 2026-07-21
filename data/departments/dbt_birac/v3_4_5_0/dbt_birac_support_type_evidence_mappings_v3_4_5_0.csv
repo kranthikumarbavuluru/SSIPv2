@@ -1,0 +1,66 @@
+﻿record_id,support_type,evidence_url,mapping_basis
+dbt_birac_call_0133ddc540a4dd13928f,grant,https://birac.nic.in/desc_new.php?id=1120,OFFICIAL_BENEFIT_TEXT
+dbt_birac_call_0133ddc540a4dd13928f,validation,https://birac.nic.in/desc_new.php?id=1120,OFFICIAL_BENEFIT_TEXT
+dbt_birac_call_0133ddc540a4dd13928f,commercialisation,https://birac.nic.in/desc_new.php?id=1120,OFFICIAL_BENEFIT_TEXT
+dbt_birac_call_18b2dc64727b68193481,grant,https://birac.nic.in/cfp_view.php?id=118&scheme_type=6,OFFICIAL_BENEFIT_TEXT
+dbt_birac_call_18b2dc64727b68193481,validation,https://birac.nic.in/cfp_view.php?id=118&scheme_type=6,OFFICIAL_BENEFIT_TEXT
+dbt_birac_call_18b2dc64727b68193481,commercialisation,https://birac.nic.in/cfp_view.php?id=118&scheme_type=6,OFFICIAL_BENEFIT_TEXT
+dbt_birac_call_681ccfe095c3b52a8c56,grant,https://birac.nic.in/cfp_view.php?id=31&scheme_type=5,OFFICIAL_BENEFIT_TEXT
+dbt_birac_call_681ccfe095c3b52a8c56,validation,https://birac.nic.in/cfp_view.php?id=31&scheme_type=5,OFFICIAL_BENEFIT_TEXT
+dbt_birac_call_681ccfe095c3b52a8c56,commercialisation,https://birac.nic.in/cfp_view.php?id=31&scheme_type=5,OFFICIAL_BENEFIT_TEXT
+dbt_birac_call_6c70aaef78171b0e6160,grant,https://birac.nic.in/cfp_view.php?id=117&scheme_type=29,OFFICIAL_BENEFIT_TEXT
+dbt_birac_call_6c70aaef78171b0e6160,validation,https://birac.nic.in/cfp_view.php?id=117&scheme_type=29,OFFICIAL_BENEFIT_TEXT
+dbt_birac_call_6c70aaef78171b0e6160,commercialisation,https://birac.nic.in/cfp_view.php?id=117&scheme_type=29,OFFICIAL_BENEFIT_TEXT
+dbt_birac_call_7dc37268d6fe86663d26,grant,https://birac.nic.in/cfp_view.php?id=84&scheme_type=4,OFFICIAL_BENEFIT_TEXT
+dbt_birac_call_7dc37268d6fe86663d26,validation,https://birac.nic.in/cfp_view.php?id=84&scheme_type=4,OFFICIAL_BENEFIT_TEXT
+dbt_birac_call_7dc37268d6fe86663d26,commercialisation,https://birac.nic.in/cfp_view.php?id=84&scheme_type=4,OFFICIAL_BENEFIT_TEXT
+dbt_birac_call_955614b1bbf7c71695f7,grant,https://birac.nic.in/cfp.php/portal/desc_new.php?id=443,OFFICIAL_BENEFIT_TEXT
+dbt_birac_call_955614b1bbf7c71695f7,validation,https://birac.nic.in/cfp.php/portal/desc_new.php?id=443,OFFICIAL_BENEFIT_TEXT
+dbt_birac_call_955614b1bbf7c71695f7,commercialisation,https://birac.nic.in/cfp.php/portal/desc_new.php?id=443,OFFICIAL_BENEFIT_TEXT
+dbt_birac_call_a34e83aadd81b682b5f3,grant,https://birac.nic.in/cfp_view.php?id=114&scheme_type=46,OFFICIAL_BENEFIT_TEXT
+dbt_birac_call_a34e83aadd81b682b5f3,validation,https://birac.nic.in/cfp_view.php?id=114&scheme_type=46,OFFICIAL_BENEFIT_TEXT
+dbt_birac_call_a34e83aadd81b682b5f3,commercialisation,https://birac.nic.in/cfp_view.php?id=114&scheme_type=46,OFFICIAL_BENEFIT_TEXT
+dbt_birac_call_bbdac5ae0c028e41f098,grant,https://birac.nic.in/cfp_view.php?id=82&scheme_type=31,OFFICIAL_BENEFIT_TEXT
+dbt_birac_call_bbdac5ae0c028e41f098,validation,https://birac.nic.in/cfp_view.php?id=82&scheme_type=31,OFFICIAL_BENEFIT_TEXT
+dbt_birac_call_bbdac5ae0c028e41f098,commercialisation,https://birac.nic.in/cfp_view.php?id=82&scheme_type=31,OFFICIAL_BENEFIT_TEXT
+dbt_birac_call_cac53f6c55087373dede,grant,https://birac.nic.in/cfp_view.php?id=116&scheme_type=52,OFFICIAL_BENEFIT_TEXT
+dbt_birac_call_cac53f6c55087373dede,validation,https://birac.nic.in/cfp_view.php?id=116&scheme_type=52,OFFICIAL_BENEFIT_TEXT
+dbt_birac_call_cac53f6c55087373dede,commercialisation,https://birac.nic.in/cfp_view.php?id=116&scheme_type=52,OFFICIAL_BENEFIT_TEXT
+dbt_birac_programme_0cc102270251adbfdb3f,grant,https://birac.nic.in/desc_new.php?id=216,OFFICIAL_BENEFIT_TEXT
+dbt_birac_programme_0cc102270251adbfdb3f,commercialisation,https://birac.nic.in/desc_new.php?id=216,OFFICIAL_BENEFIT_TEXT
+dbt_birac_programme_0cc102270251adbfdb3f,pilot support,https://birac.nic.in/desc_new.php?id=216,OFFICIAL_BENEFIT_TEXT
+dbt_birac_programme_12f6f212327a46765c5b,grant,https://dbtindia.gov.in/biotechnology-career-advancement-and-re-orientation-biocare-programmes,OFFICIAL_BENEFIT_TEXT
+dbt_birac_programme_12f6f212327a46765c5b,technical assistance,https://dbtindia.gov.in/biotechnology-career-advancement-and-re-orientation-biocare-programmes,OFFICIAL_BENEFIT_TEXT
+dbt_birac_programme_19b25856e1c150ca834c,equity,https://birac.nic.in/seedFundNew.php,OFFICIAL_BENEFIT_TEXT
+dbt_birac_programme_19b25856e1c150ca834c,commercialisation,https://birac.nic.in/seedFundNew.php,OFFICIAL_BENEFIT_TEXT
+dbt_birac_programme_19b87ac5ecb1afe2d7f3,grant,https://birac.nic.in/desc_new.php?id=286,OFFICIAL_BENEFIT_TEXT
+dbt_birac_programme_19b87ac5ecb1afe2d7f3,validation,https://birac.nic.in/desc_new.php?id=286,OFFICIAL_BENEFIT_TEXT
+dbt_birac_programme_19b87ac5ecb1afe2d7f3,commercialisation,https://birac.nic.in/desc_new.php?id=286,OFFICIAL_BENEFIT_TEXT
+dbt_birac_programme_2a0b6287a0e65cff2844,equity,https://birac.nic.in/aceFundNew.php,OFFICIAL_BENEFIT_TEXT
+dbt_birac_programme_2a21fe6d592a19b7de89,grant,https://birac.nic.in/big.php,OFFICIAL_BENEFIT_TEXT
+dbt_birac_programme_2a21fe6d592a19b7de89,mentorship,https://birac.nic.in/big.php,OFFICIAL_BENEFIT_TEXT
+dbt_birac_programme_37cee8b1f4918e65e71e,incubation,https://birac.nic.in/bionest.php,OFFICIAL_BENEFIT_TEXT
+dbt_birac_programme_37cee8b1f4918e65e71e,infrastructure access,https://birac.nic.in/bionest.php,OFFICIAL_BENEFIT_TEXT
+dbt_birac_programme_37cee8b1f4918e65e71e,mentorship,https://birac.nic.in/bionest.php,OFFICIAL_BENEFIT_TEXT
+dbt_birac_programme_6ed5045938d710d07514,grant,https://birac.nic.in/birac_i4.php,OFFICIAL_BENEFIT_TEXT
+dbt_birac_programme_6ed5045938d710d07514,soft loan,https://birac.nic.in/birac_i4.php,OFFICIAL_BENEFIT_TEXT
+dbt_birac_programme_6ed5045938d710d07514,commercialisation,https://birac.nic.in/birac_i4.php,OFFICIAL_BENEFIT_TEXT
+dbt_birac_programme_8394e6f426a8d1ccfe1c,grant,https://birac.nic.in/desc_new.php?id=58,OFFICIAL_BENEFIT_TEXT
+dbt_birac_programme_8394e6f426a8d1ccfe1c,mentorship,https://birac.nic.in/desc_new.php?id=58,OFFICIAL_BENEFIT_TEXT
+dbt_birac_programme_8394e6f426a8d1ccfe1c,incubation,https://birac.nic.in/desc_new.php?id=58,OFFICIAL_BENEFIT_TEXT
+dbt_birac_programme_8394e6f426a8d1ccfe1c,commercialisation,https://birac.nic.in/desc_new.php?id=58,OFFICIAL_BENEFIT_TEXT
+dbt_birac_programme_85cb10362c7f8eab552a,grant,https://birac.nic.in/e_yuva.php,OFFICIAL_BENEFIT_TEXT
+dbt_birac_programme_85cb10362c7f8eab552a,mentorship,https://birac.nic.in/e_yuva.php,OFFICIAL_BENEFIT_TEXT
+dbt_birac_programme_85cb10362c7f8eab552a,incubation,https://birac.nic.in/e_yuva.php,OFFICIAL_BENEFIT_TEXT
+dbt_birac_programme_85cb10362c7f8eab552a,infrastructure access,https://birac.nic.in/e_yuva.php,OFFICIAL_BENEFIT_TEXT
+dbt_birac_programme_920294c17d4689850646,technical assistance,https://pgt.dbtindia.gov.in/,OFFICIAL_BENEFIT_TEXT
+dbt_birac_programme_950e8371679bc4771790,grant,https://birac.nic.in/desc_new.php?id=286,OFFICIAL_BENEFIT_TEXT
+dbt_birac_programme_950e8371679bc4771790,commercialisation,https://birac.nic.in/desc_new.php?id=286,OFFICIAL_BENEFIT_TEXT
+dbt_birac_programme_96f0cfcbe5b77792d7ec,grant,https://birac.nic.in/desc_new.php?id=217,OFFICIAL_BENEFIT_TEXT
+dbt_birac_programme_96f0cfcbe5b77792d7ec,soft loan,https://birac.nic.in/desc_new.php?id=217,OFFICIAL_BENEFIT_TEXT
+dbt_birac_programme_96f0cfcbe5b77792d7ec,validation,https://birac.nic.in/desc_new.php?id=217,OFFICIAL_BENEFIT_TEXT
+dbt_birac_programme_9fe430e5274621be5189,grant,https://birac.nic.in/desc_new.php?id=286,OFFICIAL_BENEFIT_TEXT
+dbt_birac_programme_9fe430e5274621be5189,validation,https://birac.nic.in/desc_new.php?id=286,OFFICIAL_BENEFIT_TEXT
+dbt_birac_programme_a76f47a688f22080c2f5,equity,https://birac.nic.in/leapFund.php,OFFICIAL_BENEFIT_TEXT
+dbt_birac_programme_a76f47a688f22080c2f5,commercialisation,https://birac.nic.in/leapFund.php,OFFICIAL_BENEFIT_TEXT
+dbt_birac_review_8b674da63a197fa42809,grant,https://birac.nic.in/big.php,OFFICIAL_BENEFIT_TEXT

@@ -1,0 +1,26 @@
+﻿record_id,direct_applicant_layer,evidence_url,classification_status
+dbt_birac_call_0133ddc540a4dd13928f,incubator;academic or research institution,https://birac.nic.in/desc_new.php?id=1120,EVIDENCE_SUPPORTED
+dbt_birac_call_18b2dc64727b68193481,startup;academic or research institution;consortium,https://birac.nic.in/cfp_view.php?id=118&scheme_type=6,EVIDENCE_SUPPORTED
+dbt_birac_call_681ccfe095c3b52a8c56,startup;innovator,https://birac.nic.in/cfp_view.php?id=31&scheme_type=5,EVIDENCE_SUPPORTED
+dbt_birac_call_6c70aaef78171b0e6160,startup;biotechnology company,https://birac.nic.in/cfp_view.php?id=117&scheme_type=29,EVIDENCE_SUPPORTED
+dbt_birac_call_7dc37268d6fe86663d26,academic or research institution;implementation partner,https://birac.nic.in/cfp_view.php?id=84&scheme_type=4,EVIDENCE_SUPPORTED
+dbt_birac_call_955614b1bbf7c71695f7,startup;innovator,https://birac.nic.in/cfp.php/portal/desc_new.php?id=443,EVIDENCE_SUPPORTED
+dbt_birac_call_a34e83aadd81b682b5f3,academic or research institution;startup;consortium,https://birac.nic.in/cfp_view.php?id=114&scheme_type=46,EVIDENCE_SUPPORTED
+dbt_birac_call_bbdac5ae0c028e41f098,academic or research institution;implementation partner,https://birac.nic.in/cfp_view.php?id=82&scheme_type=31,EVIDENCE_SUPPORTED
+dbt_birac_call_cac53f6c55087373dede,biotechnology company;academic or research institution;consortium,https://birac.nic.in/cfp_view.php?id=116&scheme_type=52,EVIDENCE_SUPPORTED
+dbt_birac_programme_0cc102270251adbfdb3f,biotechnology company;MSME/company,https://birac.nic.in/desc_new.php?id=216,EVIDENCE_SUPPORTED
+dbt_birac_programme_12f6f212327a46765c5b,academic or research institution,https://dbtindia.gov.in/biotechnology-career-advancement-and-re-orientation-biocare-programmes,EVIDENCE_SUPPORTED
+dbt_birac_programme_19b25856e1c150ca834c,startup,https://birac.nic.in/seedFundNew.php,EVIDENCE_SUPPORTED
+dbt_birac_programme_19b87ac5ecb1afe2d7f3,academic or research institution,https://birac.nic.in/desc_new.php?id=286,EVIDENCE_SUPPORTED
+dbt_birac_programme_2a0b6287a0e65cff2844,fund manager,https://birac.nic.in/aceFundNew.php,EVIDENCE_SUPPORTED
+dbt_birac_programme_2a21fe6d592a19b7de89,startup;innovator,https://birac.nic.in/big.php,EVIDENCE_SUPPORTED
+dbt_birac_programme_37cee8b1f4918e65e71e,incubator;ecosystem participant,https://birac.nic.in/bionest.php,EVIDENCE_SUPPORTED
+dbt_birac_programme_6ed5045938d710d07514,biotechnology company;MSME/company,https://birac.nic.in/birac_i4.php,EVIDENCE_SUPPORTED
+dbt_birac_programme_8394e6f426a8d1ccfe1c,innovator;academic or research institution,https://birac.nic.in/desc_new.php?id=58,EVIDENCE_SUPPORTED
+dbt_birac_programme_85cb10362c7f8eab552a,founder or entrepreneur;innovator;academic or research institution,https://birac.nic.in/e_yuva.php,EVIDENCE_SUPPORTED
+dbt_birac_programme_920294c17d4689850646,academic or research institution,https://pgt.dbtindia.gov.in/,EVIDENCE_SUPPORTED
+dbt_birac_programme_950e8371679bc4771790,academic or research institution;biotechnology company,https://birac.nic.in/desc_new.php?id=286,EVIDENCE_SUPPORTED
+dbt_birac_programme_96f0cfcbe5b77792d7ec,biotechnology company;MSME/company,https://birac.nic.in/desc_new.php?id=217,EVIDENCE_SUPPORTED
+dbt_birac_programme_9fe430e5274621be5189,academic or research institution,https://birac.nic.in/desc_new.php?id=286,EVIDENCE_SUPPORTED
+dbt_birac_programme_a76f47a688f22080c2f5,startup,https://birac.nic.in/leapFund.php,EVIDENCE_SUPPORTED
+dbt_birac_review_8b674da63a197fa42809,unverified,https://birac.nic.in/big.php,EVIDENCE_SUPPORTED

@@ -4,6 +4,8 @@ from copy import copy
 from dataclasses import is_dataclass, replace
 from typing import Any, Callable
 
+from .catalogue_populations import is_evidence_only, poor_scheme_name_reason
+
 
 CALL_KINDS = {
     "APPLICATION_CALL",
@@ -129,6 +131,9 @@ def partition_meity_department_view(
     for record in records:
         if not is_meity_record(record):
             continue
+        evidence_only, _ = is_evidence_only(record)
+        if evidence_only or poor_scheme_name_reason(record):
+            continue
         safe = public_safe_record(record)
         if not is_public_record(record):
             safe = clone_with(safe, application_url="")
@@ -172,7 +177,12 @@ def render_integrated_meity_public_page(
         list(getattr(bundle, "records", []) or [])
     )
     programmes = populations["programmes"]
-    current_calls = populations["calls"]
+    current_calls = [
+        record
+        for record in populations["calls"]
+        if clean(getattr(record, "application_status", "")).upper()
+        in {"OPEN", "UPCOMING"}
+    ]
     history_records = tuple(
         getattr(historical_archive, "records", ()) or ()
     )

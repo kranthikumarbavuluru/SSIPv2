@@ -52,6 +52,13 @@ class DashboardConfig:
             / "catalogue_normalization_plan_v2_8_1.csv"
         )
         configured_preview = os.environ.get("SSIP_CATALOGUE_PREVIEW_PATH", "").strip()
+        latest_preview = (
+            root
+            / "data"
+            / "catalogue_preview"
+            / "v3_4_4_1"
+            / "catalogue_preview_v3_4_4_1.csv"
+        )
         default_preview = root / "data" / "catalogue_preview" / "v3_3_2" / "catalogue_preview_v3_3_2.csv"
         previous_preview = root / "data" / "catalogue_preview" / "v3_3_1" / "batch_1_catalogue_preview_v3_3_1.csv"
         preview_path_configured = bool(configured_preview)
@@ -59,6 +66,8 @@ class DashboardConfig:
             normalization_path = Path(configured_preview)
             if not normalization_path.is_absolute():
                 normalization_path = root / normalization_path
+        elif mode == CatalogueMode.CATALOGUE_PREVIEW and latest_preview.exists():
+            normalization_path = latest_preview
         elif mode == CatalogueMode.CATALOGUE_PREVIEW and default_preview.exists():
             normalization_path = default_preview
         elif mode == CatalogueMode.CATALOGUE_PREVIEW and previous_preview.exists():

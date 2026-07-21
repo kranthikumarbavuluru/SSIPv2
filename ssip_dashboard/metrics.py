@@ -17,6 +17,8 @@ from .catalogue_populations import (
 
 GOVERNMENT_LEVELS = ("Central Government", "State Government", "Unspecified")
 MAIN_SCHEME_RECORD_KINDS = {
+    "SCHEME",
+    "PROGRAMME",
     "SCHEME_OR_PROGRAMME",
     "GRANT",
     "FUND",
@@ -30,6 +32,8 @@ MAIN_SCHEME_RECORD_KINDS = {
     "INFRASTRUCTURE_SUPPORT",
     "RESEARCH_SUPPORT",
     "PROCUREMENT_SUPPORT",
+    "GOVERNMENT_SERVICE",
+    "ECOSYSTEM_OPPORTUNITY",
 }
 
 

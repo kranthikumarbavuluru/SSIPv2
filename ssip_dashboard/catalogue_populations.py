@@ -8,6 +8,8 @@ from urllib.parse import unquote, urlparse
 
 
 MAIN_SCHEME_RECORD_KINDS = {
+    "SCHEME",
+    "PROGRAMME",
     "SCHEME_OR_PROGRAMME",
     "GRANT",
     "FUND",
@@ -23,6 +25,8 @@ MAIN_SCHEME_RECORD_KINDS = {
     "PROCUREMENT_SUPPORT",
     "INDIRECT_FINANCIAL_SUPPORT",
     "UMBRELLA_PROGRAMME",
+    "GOVERNMENT_SERVICE",
+    "ECOSYSTEM_OPPORTUNITY",
 }
 EVIDENCE_ONLY_RECORD_KINDS = {
     "GUIDELINE",
@@ -158,7 +162,11 @@ def is_rejected(record: Any) -> bool:
 
 
 def is_application_call(record: Any) -> bool:
-    return kind(record).upper() in {"APPLICATION_CALL", "CHALLENGE"}
+    return kind(record).upper() in {
+        "APPLICATION_CALL",
+        "CHALLENGE",
+        "HISTORICAL_CALL",
+    }
 
 
 def is_pdf_url(url: str) -> bool:
@@ -219,8 +227,9 @@ def is_evidence_only(record: Any) -> tuple[bool, str]:
     signal = evidence_signal_reason(record)
     if is_pdf_url(decoded_url(record)):
         pdf_reason = formal_pdf_exception_reason(record)
-        if not pdf_reason.startswith("PDF_EXCEPTION_ALLOWED"):
-            return True, pdf_reason
+        if pdf_reason.startswith("PDF_EXCEPTION_ALLOWED"):
+            return False, ""
+        return True, pdf_reason
     if signal:
         return True, signal
     return False, ""

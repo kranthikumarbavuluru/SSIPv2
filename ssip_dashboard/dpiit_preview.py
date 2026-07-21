@@ -34,6 +34,7 @@ class DPIITPreviewBundle:
     documents: tuple[dict[str, str], ...]
     review_items: tuple[dict[str, str], ...]
     manifest: dict[str, Any]
+    published_record_ids: frozenset[str] = frozenset()
 
 
 def default_dpiit_preview_dir(project_root: Path) -> Path:
@@ -48,6 +49,19 @@ def _read_csv(path: Path) -> list[dict[str, str]]:
 def load_dpiit_preview(project_root: Path) -> DPIITPreviewBundle:
     directory = default_dpiit_preview_dir(project_root)
     rows = _read_csv(directory / "dpiit_dashboard_preview_catalogue_v3_4_4_0.csv")
+    current_manifest_path = project_root / "data/publication/current_manifest.json"
+    current_manifest = (
+        json.loads(current_manifest_path.read_text(encoding="utf-8-sig"))
+        if current_manifest_path.exists()
+        else {}
+    )
+    published_ids = frozenset(
+        str(item)
+        for item in current_manifest.get("summary", {}).get(
+            "published_dpiit_record_ids", []
+        )
+        if str(item)
+    )
     records = tuple(
         DPIITPreviewRecord(
             record_id=row.get("record_id", ""),
@@ -64,8 +78,15 @@ def load_dpiit_preview(project_root: Path) -> DPIITPreviewBundle:
             official_url=row.get("official_url", ""),
             guideline_url=row.get("guideline_url", ""),
             last_verified_date=row.get("last_verified_date", ""),
-            publication_status=row.get("publication_status", "PREVIEW_NOT_PUBLISHED"),
-            review_required=row.get("review_required", "1") == "1",
+            publication_status=(
+                "PUBLISHED"
+                if row.get("record_id", "") in published_ids
+                else row.get("publication_status", "PREVIEW_NOT_PUBLISHED")
+            ),
+            review_required=(
+                row.get("review_required", "1") == "1"
+                and row.get("record_id", "") not in published_ids
+            ),
             summary=row.get("summary", ""),
         )
         for row in rows
@@ -75,7 +96,9 @@ def load_dpiit_preview(project_root: Path) -> DPIITPreviewBundle:
     manifest = json.loads(
         (directory / "dpiit_signed_dry_run_manifest_v3_4_4_0.json").read_text(encoding="utf-8")
     )
-    return DPIITPreviewBundle(records, documents, review_items, manifest)
+    return DPIITPreviewBundle(
+        records, documents, review_items, manifest, published_ids
+    )
 
 
 def filter_dpiit_preview(

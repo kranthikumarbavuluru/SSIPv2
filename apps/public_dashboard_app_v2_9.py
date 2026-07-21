@@ -2129,9 +2129,9 @@ def render_calls_and_opportunities() -> None:
         item
         for item in calls
         if (
-            item.application_status.upper() != "CLOSED"
+            status_bucket(item) not in {"CLOSED", "HISTORICAL"}
             if call_view == "OPEN_CURRENT"
-            else item.application_status.upper() == "CLOSED"
+            else status_bucket(item) in {"CLOSED", "HISTORICAL"}
         )
     ]
     if not calls:
@@ -2146,16 +2146,16 @@ def render_calls_and_opportunities() -> None:
         + metric_card(
             "Open",
             sum(
-                item.application_status == "OPEN"
+                status_bucket(item) in {"OPEN", "CLOSING_SOON"}
                 for item in calls
             ),
-            "Accepting applications",
+            "Verified application windows",
             "green",
         )
         + metric_card(
             "Upcoming",
             sum(
-                item.application_status == "UPCOMING"
+                status_bucket(item) == "UPCOMING"
                 for item in calls
             ),
             "Future application windows",
@@ -2164,20 +2164,19 @@ def render_calls_and_opportunities() -> None:
         + metric_card(
             "Closed",
             sum(
-                item.application_status == "CLOSED"
+                status_bucket(item) in {"CLOSED", "HISTORICAL"}
                 for item in calls
             ),
             "Retained for reference",
             "purple",
         )
         + metric_card(
-            "Layer Review",
+            "Verification required",
             sum(
-                item.applicant_layer.upper()
-                in {"", "UNKNOWN", "UNVERIFIED"}
+                status_bucket(item) == "VERIFICATION_REQUIRED"
                 for item in calls
             ),
-            "Applicant classification pending",
+            "Not counted as open",
             "orange",
         )
         + '</div>',
@@ -2921,11 +2920,18 @@ def _dpiit_preview_card(record: DPIITPreviewRecord, parent_names: dict[str, str]
         links.append(
             f'<a target="_blank" rel="noopener noreferrer" href="{esc(record.guideline_url)}">Guidelines ↗</a>'
         )
-    note = (
-        '<div class="public-record-note">Preview only · Admin review required · No public Apply action</div>'
-        if record.review_required
-        else '<div class="public-record-note">Governed preview · Not published · No public Apply action</div>'
-    )
+    if record.publication_status == "PUBLISHED":
+        note = (
+            '<div class="public-record-note">Published · Verified '
+            f'{esc(record.last_verified_date or "Date not available")} · '
+            'No unverified Apply action</div>'
+        )
+    else:
+        note = (
+            '<div class="public-record-note">Preview only · Verification pending · No public Apply action</div>'
+            if record.review_required
+            else '<div class="public-record-note">Governed preview · Not published · No public Apply action</div>'
+        )
     return (
         '<article class="public-record-card">'
         '<div class="public-record-card-top">'
@@ -2944,144 +2950,184 @@ def _dpiit_preview_card(record: DPIITPreviewRecord, parent_names: dict[str, str]
 def render_dpiit_page() -> None:
     bundle = cached_dpiit_preview()
     counts = bundle.manifest.get("counts", {})
-    st.markdown(
-        """
-        <style>
-        .dpiit-evidence-ledger {
-          display: grid;
-          grid-template-columns: minmax(11rem, 1.35fr) repeat(4, minmax(8rem, 1fr));
-          gap: .55rem;
-          align-items: center;
-          margin: .85rem 0 1rem;
-          padding: .85rem 1rem;
-          border: 1px solid #cbdced;
-          border-left: 4px solid #1463a5;
-          border-radius: 12px;
-          background: #f6faff;
-          color: #17324d;
-        }
-        .dpiit-evidence-ledger span { line-height: 1.35; }
-        .dpiit-metric-grid {
-          display: grid;
-          grid-template-columns: repeat(5, minmax(0, 1fr));
-          gap: .7rem;
-          margin: 0 0 1.1rem;
-        }
-        .dpiit-metric {
-          min-width: 0;
-          padding: .85rem 1rem;
-          border: 1px solid #d7e3ef;
-          border-radius: 12px;
-          background: #fff;
-        }
-        .dpiit-metric strong {
-          display: block;
-          color: #123d66;
-          font-size: 1.65rem;
-          font-variant-numeric: tabular-nums;
-          line-height: 1;
-        }
-        .dpiit-metric span { display: block; margin-top: .45rem; color: #52697f; }
-        @media (max-width: 760px) {
-          .dpiit-evidence-ledger { grid-template-columns: 1fr 1fr; }
-          .dpiit-evidence-ledger strong { grid-column: 1 / -1; }
-          .dpiit-metric-grid { grid-template-columns: 1fr 1fr; }
-        }
-        @media (max-width: 430px) {
-          .dpiit-evidence-ledger, .dpiit-metric-grid { grid-template-columns: 1fr; }
-        }
-        </style>
-        """,
-        unsafe_allow_html=True,
-    )
+    is_published = bool(bundle.published_record_ids)
+    permanent_types = {
+        "SCHEME",
+        "PROGRAMME",
+        "GOVERNMENT_SERVICE",
+        "ECOSYSTEM_OPPORTUNITY",
+    }
+    call_types = {"APPLICATION_CALL", "COHORT", "CHALLENGE", "COMPETITION"}
+    permanent_records = [
+        row for row in bundle.records if row.record_type in permanent_types
+    ]
+    current_calls = [
+        row
+        for row in bundle.records
+        if row.record_type in call_types
+        and row.application_status in {"OPEN", "UPCOMING"}
+    ]
+    historical_records = [
+        row for row in bundle.records if row.record_type == "HISTORICAL_CALL"
+    ]
+    parent_names = {row.record_id: row.canonical_name for row in bundle.records}
+
     st.markdown(
         page_intro(
-            "Governed department preview",
-            "DPIIT Schemes, Services & Calls",
-            "Permanent identities, time-bound calls, ecosystem services, historical evidence and unresolved review items are kept separate.",
-            badge="Preview · Not published",
+            "DPIIT intelligence",
+            "DPIIT Schemes, Programmes & Calls",
+            (
+                "Permanent DPIIT identities, verified current calls and governed "
+                "historical references are maintained as separate views. "
+                + (
+                    "Publication-eligible records are live with official evidence."
+                    if is_published
+                    else "Preview records remain non-actionable until published."
+                )
+            ),
+            badge=(
+                f"{len(permanent_records)} permanent · "
+                f"{len(current_calls)} current calls · "
+                f"{len(historical_records)} historical"
+            ),
         ),
         unsafe_allow_html=True,
     )
     st.markdown(
-        '<div class="dpiit-evidence-ledger"><strong>Evidence ledger</strong>'
-        f'<span>{int(counts.get("sources", 0))} registered official sources</span>'
-        f'<span>{int(counts.get("permanent", 0))} permanent identities</span>'
-        f'<span>{int(counts.get("historical_calls", 0))} historical calls</span>'
-        f'<span>Verified {esc(bundle.manifest.get("generated_at", "")[:10])}</span></div>',
-        unsafe_allow_html=True,
-    )
-    metrics = (
-        ("Permanent", int(counts.get("permanent", 0))),
-        ("Current calls", int(counts.get("current_calls", 0))),
-        ("Historical", int(counts.get("historical_calls", 0))),
-        ("Resources", int(counts.get("supporting_documents", 0))),
-        ("Admin review", int(counts.get("review_queue", 0))),
-    )
-    st.markdown(
-        '<div class="dpiit-metric-grid">'
-        + "".join(
-            f'<div class="dpiit-metric"><strong>{value}</strong><span>{esc(label)}</span></div>'
-            for label, value in metrics
+        '<div class="metric-grid call-metrics">'
+        + metric_card(
+            "Permanent identities",
+            len(permanent_records),
+            "Governed DPIIT schemes, programmes and services",
+            "blue",
+        )
+        + metric_card(
+            "Open calls",
+            sum(row.application_status == "OPEN" for row in current_calls),
+            "Verified current application windows",
+            "green",
+        )
+        + metric_card(
+            "Upcoming",
+            sum(row.application_status == "UPCOMING" for row in current_calls),
+            "Verified future application windows",
+            "purple",
+        )
+        + metric_card(
+            "Historical references",
+            len(historical_records),
+            "Reference-only official DPIIT records",
+            "orange",
         )
         + "</div>",
         unsafe_allow_html=True,
     )
 
-    keyword_column, type_column, status_column, applicant_column = st.columns([2.2, 1.3, 1.3, 1.5])
-    with keyword_column:
-        keyword = st.text_input("Search DPIIT preview", placeholder="Search programmes, services or evidence…")
-    with type_column:
-        record_type = st.selectbox("Record type", ["All", *sorted({row.record_type for row in bundle.records})])
-    with status_column:
-        status = st.selectbox("Status", ["All", *sorted({row.application_status for row in bundle.records})])
-    with applicant_column:
-        applicant_options = sorted({item for row in bundle.records for item in row.direct_applicant_layer.split(";") if item})
-        applicant = st.selectbox("Direct applicant", ["All", *applicant_options])
+    programme_tab, call_tab, history_tab = st.tabs(
+        [
+            "Schemes & Programmes",
+            "Current Calls & Challenges",
+            "Historical Archive",
+        ]
+    )
 
-    visible = filter_dpiit_preview(
-        bundle.records, keyword=keyword, record_type=record_type,
-        status=status, applicant_layer=applicant,
-    )
-    parent_names = {row.record_id: row.canonical_name for row in bundle.records}
-    groups = (
-        ("Schemes & Programmes", {"SCHEME", "PROGRAMME"}),
-        ("Government Services", {"GOVERNMENT_SERVICE"}),
-        ("Current Calls & Cohorts", {"APPLICATION_CALL", "COHORT", "CHALLENGE", "COMPETITION"}),
-        ("Ecosystem Opportunities", {"ECOSYSTEM_OPPORTUNITY"}),
-        ("Historical Calls", {"HISTORICAL_CALL"}),
-        ("Evidence Resources", set()),
-        ("Admin Review", {"REVIEW_REQUIRED"}),
-    )
-    tabs = st.tabs([label for label, _ in groups])
-    for tab, (label, types) in zip(tabs, groups):
-        with tab:
-            if label == "Evidence Resources":
-                if not bundle.documents:
-                    st.info("No supporting evidence resources are available in this preview.")
-                else:
-                    for document in bundle.documents:
-                        st.markdown(
-                            f'- [{esc(document["title"])}]({document["official_url"]}) · {esc(display_token(document["document_type"]))}',
-                            unsafe_allow_html=False,
-                        )
-                continue
-            if label == "Admin Review":
-                if not bundle.review_items:
-                    st.success("No unresolved DPIIT review items remain.")
-                for item in bundle.review_items:
-                    st.warning(f'{item["review_type"]}: {item["reason"]}')
-                continue
-            records = [row for row in visible if row.record_type in types]
-            if not records:
-                st.info(f"No {label.lower()} match the selected filters.")
-            else:
-                st.markdown(
-                    '<div class="public-record-grid">'
-                    + "".join(_dpiit_preview_card(row, parent_names) for row in records)
-                    + "</div>",
-                    unsafe_allow_html=True,
+    with programme_tab:
+        st.info(
+            "Permanent DPIIT schemes, programmes, government services and "
+            "ecosystem opportunities are shown independently of dated calls."
+        )
+        keyword_column, type_column, applicant_column = st.columns([2, 1, 1.3])
+        with keyword_column:
+            keyword = st.text_input(
+                "Search DPIIT schemes",
+                key="dpiit_programme_keyword",
+                placeholder="Seed Fund, recognition, credit guarantee…",
+            )
+        with type_column:
+            record_type = st.selectbox(
+                "Programme type",
+                ["All", *sorted({row.record_type for row in permanent_records})],
+                key="dpiit_programme_type",
+            )
+        with applicant_column:
+            applicant_options = sorted(
+                {
+                    item
+                    for row in permanent_records
+                    for item in row.direct_applicant_layer.split(";")
+                    if item
+                }
+            )
+            applicant = st.selectbox(
+                "Direct applicant",
+                ["All", *applicant_options],
+                key="dpiit_programme_applicant",
+            )
+        visible_programmes = filter_dpiit_preview(
+            tuple(permanent_records),
+            keyword=keyword,
+            record_type=record_type,
+            applicant_layer=applicant,
+        )
+        if visible_programmes:
+            st.markdown(
+                '<div class="public-record-grid">'
+                + "".join(
+                    _dpiit_preview_card(row, parent_names)
+                    for row in visible_programmes
                 )
+                + "</div>",
+                unsafe_allow_html=True,
+            )
+        else:
+            st.info("No DPIIT permanent identities match the selected filters.")
+
+    with call_tab:
+        st.info(
+            "Only verified open or upcoming DPIIT calls appear here. "
+            "Unverified and historical records never expose an Apply action."
+        )
+        if current_calls:
+            st.markdown(
+                '<div class="public-record-grid">'
+                + "".join(
+                    _dpiit_preview_card(row, parent_names) for row in current_calls
+                )
+                + "</div>",
+                unsafe_allow_html=True,
+            )
+        else:
+            st.info(
+                "No verified open or upcoming DPIIT calls are currently "
+                "available in this governed preview."
+            )
+
+    with history_tab:
+        st.info(
+            "Historical DPIIT calls remain available for reference. "
+            "Application actions are suppressed."
+        )
+        if historical_records:
+            st.markdown(
+                '<div class="historical-call-grid">'
+                + "".join(
+                    _dpiit_preview_card(row, parent_names)
+                    for row in historical_records
+                )
+                + "</div>",
+                unsafe_allow_html=True,
+            )
+        else:
+            st.info("No governed DPIIT historical references are available.")
+
+    st.caption(
+        "DPIIT Admin Review remains available only in the separate SSIP Admin "
+        "Review workflow. "
+        + ("Published" if is_published else "Preview")
+        + " source coverage: "
+        f'{int(counts.get("sources", 0))} official sources · verified '
+        f'{esc(bundle.manifest.get("generated_at", "")[:10])}.'
+    )
 
 def main() -> None:
     requested_slug = str(st.query_params.get("page", "") or "").strip().lower()

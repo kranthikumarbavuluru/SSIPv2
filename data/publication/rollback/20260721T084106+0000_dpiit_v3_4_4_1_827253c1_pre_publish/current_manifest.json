@@ -1,0 +1,33 @@
+{
+  "run_id": "20260713T062214+0000_meity_app_link_hotfix",
+  "published_at": "2026-07-13T06:22:14.692155+00:00",
+  "catalogue_path": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\catalogue_preview\\v3_3_2\\catalogue_preview_v3_3_2.csv",
+  "versioned_catalogue_path": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\publication\\20260713T062214+0000_meity_app_link_hotfix\\catalogue.csv",
+  "row_count": 139,
+  "catalogue_sha256": "8bfbf82189868c2916e22afcfb5112aa8d1f8f54d5190493c43e76d9655ce094",
+  "validation": {
+    "passed": true,
+    "checks": {
+      "active_row_count_139": true,
+      "master_ids_unique": true,
+      "target_plan_values_suppress_db_fallback": true,
+      "dashboard_application_urls_blank": true,
+      "invalid_logo_url_absent_from_loaded_records": true,
+      "official_pages_preserved": true,
+      "both_meity_records_main_visible": true,
+      "dashboard_visible_count_53": true,
+      "non_target_rows_preserved": true
+    },
+    "errors": []
+  },
+  "summary": {
+    "service_version": "3.4.2.0.3",
+    "run_id": "20260713T062214+0000_meity_app_link_hotfix",
+    "input_rows": 139,
+    "mapped_rows": 139,
+    "dashboard_visible_records": 53,
+    "meity_invalid_application_links_suppressed": 2,
+    "active_catalogue": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\catalogue_preview\\v3_3_2\\catalogue_preview_v3_3_2.csv",
+    "dry_run": false
+  }
+}

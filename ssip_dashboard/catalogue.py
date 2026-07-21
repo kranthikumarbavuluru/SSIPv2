@@ -463,7 +463,7 @@ def build_record(
         implementation_role=as_text(direct("implementation_role")),
         status_basis=as_text(direct("status_basis")),
         status_evidence=as_text(direct("status_evidence")),
-        last_verified_at=as_text(direct("last_verified_at")),
+        last_verified_at=as_text(direct("last_verified_at", "last_verified_date")),
         record_kind=as_text(first_value(plan_row.get("normalized_record_kind"), direct("record_kind"))),
         programme_status=as_text(direct("programme_status")),
         application_status=as_text(direct("application_status", "scheme_status")),

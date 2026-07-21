@@ -136,7 +136,14 @@ def record_value(record: dict[str, Any], *keys: str) -> Any:
 
 
 def completeness(record: dict[str, Any]) -> dict[str, Any]:
-    """Fail-closed metadata and publication-readiness assessment."""
+    """Assess readiness while allowing intentionally unspecified metadata.
+
+    Type, stage, and funding remain visible completion indicators, but an
+    administrator may intentionally leave them blank when official evidence
+    does not specify a value. They therefore do not block publication. The
+    evidence, approval, critical-flag, and call-governance checks remain
+    fail-closed.
+    """
     category = clean(record_value(record, "admin_category", "record_kind")).upper()
     status = clean(
         record_value(
@@ -182,12 +189,6 @@ def completeness(record: dict[str, Any]) -> dict[str, Any]:
         blockers.append("CATEGORY_MISSING")
     if not status:
         blockers.append("STATUS_MISSING")
-    if not applicant_types:
-        blockers.append("TYPE_MISSING")
-    if not startup_stages:
-        blockers.append("STAGE_MISSING")
-    if not funding_reviewed:
-        blockers.append("FUNDING_REVIEW_REQUIRED")
     if not official_source:
         blockers.append("OFFICIAL_SOURCE_MISSING")
     if not admin_approved:
@@ -207,8 +208,6 @@ def completeness(record: dict[str, Any]) -> dict[str, Any]:
         readiness = "NEEDS_OFFICIAL_EVIDENCE"
     elif "PARENT_PROGRAMME_MISSING" in blockers:
         readiness = "NEEDS_PARENT_PROGRAMME"
-    elif "FUNDING_REVIEW_REQUIRED" in blockers:
-        readiness = "NEEDS_FUNDING_REVIEW"
     elif len(blockers) == 1 and blockers[0] == "ADMIN_APPROVAL_REQUIRED":
         readiness = "COMPLETE"
     else:
@@ -475,6 +474,25 @@ class AdminQuickEditorService:
         connection = self._connect()
         try:
             queue = self._queue_rows(connection)
+            publication_state: dict[str, dict[str, Any]] = {}
+            if table_exists(connection, "scheme_staging"):
+                staging_columns = column_names(connection, "scheme_staging")
+                publication_expression = (
+                    "publication_status"
+                    if "publication_status" in staging_columns
+                    else "'' AS publication_status"
+                )
+                public_expression = (
+                    "is_public" if "is_public" in staging_columns else "0 AS is_public"
+                )
+                for state in connection.execute(
+                    f"SELECT master_id,{publication_expression},{public_expression} FROM scheme_staging"
+                ).fetchall():
+                    publication_state[clean(state["master_id"])] = dict(state)
+            for row in queue:
+                state = publication_state.get(clean(row.get("master_id")), {})
+                row["publication_status"] = clean(state.get("publication_status"))
+                row["is_public"] = int(state.get("is_public") or 0)
             queue_ids = {clean(row.get("master_id")) for row in queue}
             staging = self._staging_rows(connection, queue_ids)
         finally:
@@ -640,6 +658,7 @@ class AdminQuickEditorService:
         }
         errors: list[str] = []
         previews: list[dict[str, Any]] = []
+        unchanged_count = 0
         seen: set[str] = set()
         for number, row in enumerate(rows, 2):
             master_id = clean(row.get("master_id"))
@@ -662,23 +681,66 @@ class AdminQuickEditorService:
             if changed_immutable:
                 errors.append(f"Row {number}: immutable field changed: {', '.join(changed_immutable)}.")
                 continue
+            current_values = {
+                "category": clean(record_value(existing, "admin_category", "record_kind")),
+                "status": clean(
+                    existing.get("scheme_status")
+                    or existing.get("application_status")
+                    or existing.get("programme_status")
+                ),
+                "applicant_types": ";".join(normalized_list(existing.get("applicant_types"))),
+                "startup_stages": ";".join(normalized_list(existing.get("startup_stages"))),
+                "funding_minimum": existing.get("funding_minimum"),
+                "funding_maximum": existing.get("funding_maximum"),
+                "admin_note": clean(record_value(existing, "admin_note")),
+            }
+            # Blank optional CSV cells mean "leave unspecified/unchanged".
+            # This prevents an offline blank from erasing verified metadata.
+            effective = {
+                key: (row.get(key) if clean(row.get(key)) else value)
+                for key, value in current_values.items()
+            }
+            comparable = {
+                "category": clean(effective["category"]),
+                "status": clean(effective["status"]),
+                "applicant_types": ";".join(normalized_list(effective["applicant_types"])),
+                "startup_stages": ";".join(normalized_list(effective["startup_stages"])),
+                "funding_minimum": self._csv_number(effective["funding_minimum"]),
+                "funding_maximum": self._csv_number(effective["funding_maximum"]),
+                "admin_note": clean(effective["admin_note"]),
+            }
+            current_comparable = {
+                **current_values,
+                "funding_minimum": self._csv_number(current_values["funding_minimum"]),
+                "funding_maximum": self._csv_number(current_values["funding_maximum"]),
+            }
+            if comparable == current_comparable:
+                unchanged_count += 1
+                continue
             try:
                 preview = self.preview(
                     master_id=master_id,
                     source_table=clean(existing.get("source_table")),
-                    selected_categories=[clean(row.get("category"))],
-                    selected_statuses=[clean(row.get("status"))],
-                    selected_applicant_types=normalized_list(row.get("applicant_types")),
-                    selected_startup_stages=normalized_list(row.get("startup_stages")),
-                    funding_minimum=self._csv_number(row.get("funding_minimum")),
-                    funding_maximum=self._csv_number(row.get("funding_maximum")),
+                    selected_categories=[comparable["category"]],
+                    selected_statuses=[comparable["status"]],
+                    selected_applicant_types=normalized_list(comparable["applicant_types"]),
+                    selected_startup_stages=normalized_list(comparable["startup_stages"]),
+                    funding_minimum=comparable["funding_minimum"],
+                    funding_maximum=comparable["funding_maximum"],
                     editor="CSV Admin",
-                    note=clean(row.get("admin_note")),
+                    note=comparable["admin_note"],
                 )
                 previews.append(preview)
             except Exception as exc:
                 errors.append(f"Row {number}: {exc}")
-        return {"row_count": len(rows), "previews": previews, "errors": errors, "valid": bool(rows) and not errors}
+        return {
+            "row_count": len(rows),
+            "change_count": len(previews),
+            "unchanged_count": unchanged_count,
+            "previews": previews,
+            "errors": errors,
+            "valid": bool(rows) and not errors,
+        }
 
     @staticmethod
     def _csv_number(value: Any) -> float | None:
@@ -812,15 +874,6 @@ class AdminQuickEditorService:
             value for value in stage_order
             if value in stage_selection
         ]
-        if not applicant_types:
-            raise ValueError(
-                "Select All, Individual or Startup under Type."
-            )
-        if not startup_stages:
-            raise ValueError(
-                "Select All or at least one startup stage."
-            )
-
         if funding_minimum is not None and funding_minimum < 0:
             raise ValueError("Funding minimum cannot be negative.")
         if funding_maximum is not None and funding_maximum < 0:
@@ -887,12 +940,20 @@ class AdminQuickEditorService:
         after["applicant_types"] = applicant_types
         after["type_confirmed"] = True
         after["applicant_type_scope"] = (
-            "ALL" if applicant_types == applicant_order else "SELECTED"
+            "UNSPECIFIED"
+            if not applicant_types
+            else "ALL"
+            if applicant_types == applicant_order
+            else "SELECTED"
         )
         after["startup_stages"] = startup_stages
         after["stage_confirmed"] = True
         after["startup_stage_scope"] = (
-            "ALL" if startup_stages == stage_order else "SELECTED"
+            "UNSPECIFIED"
+            if not startup_stages
+            else "ALL"
+            if startup_stages == stage_order
+            else "SELECTED"
         )
         after["admin_note"] = clean(note)
 
@@ -1088,10 +1149,10 @@ class AdminQuickEditorService:
         if current["edit_id"] != payload["edit_id"]:
             raise RuntimeError("The selected record changed after preview.")
 
-        timestamp = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
+        timestamp = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S_%f")
         backup_root = (
             self.paths.project_root.parent
-            / f"SSIP_DB_Backup_v3_4_3_8_1_{timestamp}"
+            / f"SSIP_DB_Backup_v3_4_3_8_2_{timestamp}_{current['edit_id'][-8:]}"
         )
         backup_path = create_consistent_backup(
             self.paths.database_path,

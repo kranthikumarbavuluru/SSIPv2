@@ -37,6 +37,9 @@ class QuickEditorReadinessGateTests(unittest.TestCase):
         rows = self.service.list_records()
         self.assertEqual(len(rows), 3)
         self.assertEqual({row["master_id"] for row in rows}, {"nonpublic", "call", "published"})
+        published = next(row for row in rows if row["master_id"] == "published")
+        self.assertEqual(published["publication_status"], "PUBLISHED")
+        self.assertEqual(published["is_public"], 1)
 
     def test_non_public_updates_staging_and_creates_audit(self) -> None:
         preview = self._preview("nonpublic", "PROGRAMME", "OPEN")
@@ -96,6 +99,28 @@ class QuickEditorReadinessGateTests(unittest.TestCase):
         self.assertTrue(projected["preview_only"])
         self.assertFalse(projected["apply_button_eligible"])
         self.assertEqual(projected["publication_action"], "NONE")
+
+    def test_unspecified_type_stage_and_funding_are_non_blocking(self) -> None:
+        record = self._record(
+            "optional-blanks",
+            "Officially Verified Scheme",
+            "SCHEME",
+            "CLOSED",
+            approved=True,
+        )
+        record["applicant_types"] = []
+        record["startup_stages"] = []
+        record["funding_minimum"] = None
+        record["funding_maximum"] = None
+        record["funding_reviewed"] = False
+
+        assessment = completeness(record)
+
+        self.assertTrue(assessment["type_missing"])
+        self.assertTrue(assessment["stage_missing"])
+        self.assertTrue(assessment["funding_missing"])
+        self.assertTrue(assessment["ready_for_publication_review"])
+        self.assertEqual(assessment["blockers"], [])
 
     def test_csv_rejects_immutable_change(self) -> None:
         exported = self.service.export_csv(self.service.list_records())

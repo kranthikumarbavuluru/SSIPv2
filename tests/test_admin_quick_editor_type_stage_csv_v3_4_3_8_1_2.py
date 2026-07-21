@@ -106,15 +106,14 @@ class QuickEditorTypeStageCsvTests(unittest.TestCase):
                 "ALL",
             )
 
-    def test_empty_type_or_stage_is_rejected(self) -> None:
+    def test_empty_type_or_stage_is_saved_as_unspecified(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             project = self._fixture_project(Path(temporary))
             service = AdminQuickEditorService(
                 QuickEditorPaths.defaults(project),
                 self.config,
             )
-            with self.assertRaisesRegex(ValueError, "under Type"):
-                service.preview(
+            blank_type = service.preview(
                     master_id="m1",
                     source_table="admin_review_queue",
                     selected_categories=["PROGRAMME"],
@@ -124,8 +123,9 @@ class QuickEditorTypeStageCsvTests(unittest.TestCase):
                     editor="Admin",
                     note="",
                 )
-            with self.assertRaisesRegex(ValueError, "startup stage"):
-                service.preview(
+            self.assertEqual(blank_type["applicant_types"], [])
+            self.assertEqual(blank_type["after"]["applicant_type_scope"], "UNSPECIFIED")
+            blank_stage = service.preview(
                     master_id="m1",
                     source_table="admin_review_queue",
                     selected_categories=["PROGRAMME"],
@@ -135,6 +135,8 @@ class QuickEditorTypeStageCsvTests(unittest.TestCase):
                     editor="Admin",
                     note="",
                 )
+            self.assertEqual(blank_stage["startup_stages"], [])
+            self.assertEqual(blank_stage["after"]["startup_stage_scope"], "UNSPECIFIED")
 
     def test_filtered_csv_contains_requested_columns(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:

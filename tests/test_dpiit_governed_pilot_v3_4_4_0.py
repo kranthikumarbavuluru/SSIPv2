@@ -63,13 +63,13 @@ class DPIITGovernedPilotTests(unittest.TestCase):
         self.assertTrue(all(row["record_id"] not in permanent_ids for row in calls))
         self.assertTrue(all(row["parent_record_id"] in permanent_ids for row in calls))
 
-    def test_historical_and_unpublished_records_never_expose_apply(self) -> None:
+    def test_historical_and_public_department_records_never_expose_historical_apply(self) -> None:
         historical = read_csv(self.paths.output_dir / OUTPUT_NAMES["historical"])
         preview = read_csv(self.paths.output_dir / OUTPUT_NAMES["preview"])
         self.assertGreaterEqual(len(historical), 3)
         self.assertTrue(all(row["application_status"] == "CLOSED" for row in historical))
         self.assertTrue(all(not row["application_url"] for row in historical))
-        self.assertTrue(all(row["publication_status"] == "PREVIEW_NOT_PUBLISHED" for row in preview))
+        self.assertTrue(all(row["publication_status"] == "PUBLIC_DEPARTMENT_PAGE" for row in preview))
 
     def test_applicant_layer_and_ownership_are_explicit(self) -> None:
         applicants = read_csv(self.paths.output_dir / OUTPUT_NAMES["applicants"])
@@ -79,12 +79,14 @@ class DPIITGovernedPilotTests(unittest.TestCase):
         self.assertEqual(fof["direct_applicant_layer"], "fund manager/intermediary")
         self.assertTrue(all(row["ownership_status"].startswith("VERIFIED") for row in ownership))
 
-    def test_manifest_is_signed_and_preview_only(self) -> None:
+    def test_manifest_is_signed_and_department_page_publication_is_explicit(self) -> None:
         manifest = self.result["manifest"]
         self.assertEqual(len(manifest["content_signature_sha256"]), 64)
         self.assertFalse(manifest["database_write_performed"])
         self.assertFalse(manifest["publication_performed"])
+        self.assertTrue(manifest["department_page_publication_performed"])
         self.assertEqual(manifest["counts"]["current_calls"], 0)
+        self.assertEqual(manifest["counts"]["public_department_records"], 15)
 
     def test_database_and_publication_are_not_mutated(self) -> None:
         before = self.result["validation"]["protected_hashes_before"]
@@ -104,6 +106,7 @@ class DPIITGovernedPilotTests(unittest.TestCase):
 
     def test_preview_loader_and_filters(self) -> None:
         bundle = load_dpiit_preview(PROJECT_ROOT)
+        self.assertTrue(all(row.publication_status == "PUBLIC_DEPARTMENT_PAGE" for row in bundle.records))
         result = filter_dpiit_preview(bundle.records, keyword="Recognition", record_type="GOVERNMENT_SERVICE")
         self.assertEqual([row.record_id for row in result], ["dpiit_master_6c1afb477ef37cd6acaa"])
         historical = filter_dpiit_preview(bundle.records, status="CLOSED")

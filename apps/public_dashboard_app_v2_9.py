@@ -1277,12 +1277,19 @@ def render_sectors(bundle: CatalogueBundle) -> None:
 def render_resources(bundle: CatalogueBundle, official_sources: list[OfficialSource]) -> None:
     populations = split_catalogue_populations(bundle.records)
     records = [*populations.main_scheme_records, *populations.application_call_records]
-    dbt_documents = list(cached_dbt_birac_preview().documents)
+    department_documents = [
+        {**document, "department_label": "Department of Biotechnology / BIRAC"}
+        for document in cached_dbt_birac_preview().documents
+    ]
+    department_documents.extend(
+        {**document, "department_label": "Department for Promotion of Industry and Internal Trade (DPIIT)"}
+        for document in cached_dpiit_preview().documents
+    )
     resource_records = [
         item for item in records
         if item.official_page_url or item.application_url or item.guideline_urls or item.reference_urls
     ]
-    resource_total = len(resource_records) + len(dbt_documents)
+    resource_total = len(resource_records) + len(department_documents)
     st.markdown(
         page_intro(
             "Application resources",
@@ -1293,7 +1300,7 @@ def render_resources(bundle: CatalogueBundle, official_sources: list[OfficialSou
         unsafe_allow_html=True,
     )
     application_count = sum(bool(item.application_url) for item in resource_records)
-    document_count = sum(bool(item.guideline_urls) for item in resource_records) + len(dbt_documents)
+    document_count = sum(bool(item.guideline_urls) for item in resource_records) + len(department_documents)
     st.markdown(
         '<div class="metric-grid resource-metrics">'
         + metric_card("Resource Records", resource_total, "Schemes, calls and official documents", "blue")
@@ -1328,11 +1335,11 @@ def render_resources(bundle: CatalogueBundle, official_sources: list[OfficialSou
         visible.append(item)
     visible_documents = []
     if population in {"ALL", "DOCUMENT"} and resource_type in {"ALL", "GUIDELINE", "OFFICIAL"}:
-        for document in dbt_documents:
+        for document in department_documents:
             searchable = " ".join((
                 document.get("title", ""),
                 document.get("document_type", ""),
-                "DBT BIRAC Department of Biotechnology",
+                document.get("department_label", ""),
             )).casefold()
             if keyword and keyword not in searchable:
                 continue
@@ -1361,7 +1368,7 @@ def render_resources(bundle: CatalogueBundle, official_sources: list[OfficialSou
             f'<span class="record-kind">{esc(display_token(document.get("document_type", "DOCUMENT")))}</span>'
             '<span class="status-badge status-reference">Official source</span></div>'
             f'<h3>{esc(document.get("title", "DBT–BIRAC document"))}</h3>'
-            '<div class="agency-line">Department of Biotechnology / BIRAC</div>'
+            f'<div class="agency-line">{esc(document.get("department_label", "Government department"))}</div>'
             '<div class="resource-actions">'
             f'<a target="_blank" rel="noopener noreferrer" href="{esc(document.get("official_url", ""))}">Open document</a>'
             '</div></article>'
@@ -2960,9 +2967,9 @@ def _dpiit_preview_card(record: DPIITPreviewRecord, parent_names: dict[str, str]
             f'<a target="_blank" rel="noopener noreferrer" href="{esc(record.guideline_url)}">Guidelines ↗</a>'
         )
     note = (
-        '<div class="public-record-note">Preview only · Admin review required · No public Apply action</div>'
-        if record.review_required
-        else '<div class="public-record-note">Governed preview · Not published · No public Apply action</div>'
+        '<div class="public-record-note">Historical reference · Application window closed · No Apply action</div>'
+        if record.application_status == "CLOSED"
+        else '<div class="public-record-note">Official-source department record · Apply is shown only for a verified open call</div>'
     )
     return (
         '<article class="public-record-card">'
@@ -2971,7 +2978,7 @@ def _dpiit_preview_card(record: DPIITPreviewRecord, parent_names: dict[str, str]
         f'<span class="public-kind">{esc(display_token(record.record_type))}</span></div>'
         f'<h3>{esc(record.canonical_name)}</h3>'
         '<div class="public-record-agency">Department for Promotion of Industry and Internal Trade (DPIIT)</div>'
-        f'<p>{esc(record.summary or "Details are preserved in the official evidence and Admin review package.")}</p>'
+        f'<p>{esc(record.summary or "Details are preserved in the governed official evidence record.")}</p>'
         f'<div class="public-record-facts">{"".join(facts)}</div>'
         f'<div class="public-chip-row"><span>{esc(record.sector)}</span><span>{esc(record.startup_relevance)}</span></div>'
         f'{note}<div class="public-record-actions">{"".join(links)}</div>'
@@ -2981,94 +2988,45 @@ def _dpiit_preview_card(record: DPIITPreviewRecord, parent_names: dict[str, str]
 
 def render_dpiit_page() -> None:
     bundle = cached_dpiit_preview()
-    counts = bundle.manifest.get("counts", {})
-    st.markdown(
-        """
-        <style>
-        .dpiit-evidence-ledger {
-          display: grid;
-          grid-template-columns: minmax(11rem, 1.35fr) repeat(4, minmax(8rem, 1fr));
-          gap: .55rem;
-          align-items: center;
-          margin: .85rem 0 1rem;
-          padding: .85rem 1rem;
-          border: 1px solid #cbdced;
-          border-left: 4px solid #1463a5;
-          border-radius: 12px;
-          background: #f6faff;
-          color: #17324d;
-        }
-        .dpiit-evidence-ledger span { line-height: 1.35; }
-        .dpiit-metric-grid {
-          display: grid;
-          grid-template-columns: repeat(5, minmax(0, 1fr));
-          gap: .7rem;
-          margin: 0 0 1.1rem;
-        }
-        .dpiit-metric {
-          min-width: 0;
-          padding: .85rem 1rem;
-          border: 1px solid #d7e3ef;
-          border-radius: 12px;
-          background: #fff;
-        }
-        .dpiit-metric strong {
-          display: block;
-          color: #123d66;
-          font-size: 1.65rem;
-          font-variant-numeric: tabular-nums;
-          line-height: 1;
-        }
-        .dpiit-metric span { display: block; margin-top: .45rem; color: #52697f; }
-        @media (max-width: 760px) {
-          .dpiit-evidence-ledger { grid-template-columns: 1fr 1fr; }
-          .dpiit-evidence-ledger strong { grid-column: 1 / -1; }
-          .dpiit-metric-grid { grid-template-columns: 1fr 1fr; }
-        }
-        @media (max-width: 430px) {
-          .dpiit-evidence-ledger, .dpiit-metric-grid { grid-template-columns: 1fr; }
-        }
-        </style>
-        """,
-        unsafe_allow_html=True,
-    )
+    permanent = [
+        row for row in bundle.records
+        if row.application_status == "NOT_APPLICABLE_TO_PROGRAMME_IDENTITY"
+    ]
+    current = [row for row in bundle.records if row.application_status in {"OPEN", "UPCOMING"}]
+    historical = [row for row in bundle.records if row.application_status == "CLOSED"]
     st.markdown(
         page_intro(
-            "Governed department preview",
+            "DPIIT intelligence",
             "DPIIT Schemes, Services & Calls",
-            "Permanent identities, time-bound calls, ecosystem services, historical evidence and unresolved review items are kept separate.",
-            badge="Preview · Not published",
+            "Permanent DPIIT schemes, services and programmes, verified current opportunities and the governed historical archive are maintained as separate views.",
+            badge=f"{len(permanent)} permanent records · {len(current)} current calls · {len(historical)} historical",
         ),
         unsafe_allow_html=True,
     )
     st.markdown(
-        '<div class="dpiit-evidence-ledger"><strong>Evidence ledger</strong>'
-        f'<span>{int(counts.get("sources", 0))} registered official sources</span>'
-        f'<span>{int(counts.get("permanent", 0))} permanent identities</span>'
-        f'<span>{int(counts.get("historical_calls", 0))} historical calls</span>'
-        f'<span>Verified {esc(bundle.manifest.get("generated_at", "")[:10])}</span></div>',
+        '<div class="metric-grid call-metrics">'
+        + metric_card("Permanent records", len(permanent), "Governed DPIIT schemes, services and programmes", "blue")
+        + metric_card("Open calls", sum(row.application_status == "OPEN" for row in current), "Verified current application windows", "green")
+        + metric_card("Upcoming", sum(row.application_status == "UPCOMING" for row in current), "Verified future application windows", "purple")
+        + metric_card("Historical calls", len(historical), "Qualified official DPIIT references", "orange")
+        + '</div>',
         unsafe_allow_html=True,
     )
-    metrics = (
-        ("Permanent", int(counts.get("permanent", 0))),
-        ("Current calls", int(counts.get("current_calls", 0))),
-        ("Historical", int(counts.get("historical_calls", 0))),
-        ("Resources", int(counts.get("supporting_documents", 0))),
-        ("Admin review", int(counts.get("review_queue", 0))),
+    st.caption(
+        f'Last verified: {bundle.manifest.get("generated_at", "")[:10]} · '
+        'Published on this department page from governed official-source records.'
     )
     st.markdown(
-        '<div class="dpiit-metric-grid">'
-        + "".join(
-            f'<div class="dpiit-metric"><strong>{value}</strong><span>{esc(label)}</span></div>'
-            for label, value in metrics
-        )
-        + "</div>",
+        '<div class="archive-governance">'
+        '<strong>Verified DPIIT ownership</strong>'
+        '<span>Permanent schemes, government services and ecosystem platforms retain their explicit record type. '
+        'Dated calls and challenges remain separate identities, while unresolved review work stays in the internal workflow.</span></div>',
         unsafe_allow_html=True,
     )
 
     keyword_column, type_column, status_column, applicant_column = st.columns([2.2, 1.3, 1.3, 1.5])
     with keyword_column:
-        keyword = st.text_input("Search DPIIT preview", placeholder="Search programmes, services or evidence…")
+        keyword = st.text_input("Search DPIIT schemes", placeholder="Recognition, Seed Fund, MAARG, challenge…")
     with type_column:
         record_type = st.selectbox("Record type", ["All", *sorted({row.record_type for row in bundle.records})])
     with status_column:
@@ -3083,34 +3041,30 @@ def render_dpiit_page() -> None:
     )
     parent_names = {row.record_id: row.canonical_name for row in bundle.records}
     groups = (
-        ("Schemes & Programmes", {"SCHEME", "PROGRAMME"}),
-        ("Government Services", {"GOVERNMENT_SERVICE"}),
-        ("Current Calls & Cohorts", {"APPLICATION_CALL", "COHORT", "CHALLENGE", "COMPETITION"}),
-        ("Ecosystem Opportunities", {"ECOSYSTEM_OPPORTUNITY"}),
-        ("Historical Calls", {"HISTORICAL_CALL"}),
-        ("Evidence Resources", set()),
-        ("Admin Review", {"REVIEW_REQUIRED"}),
+        (
+            "Schemes & Programmes",
+            {"SCHEME", "PROGRAMME", "GOVERNMENT_SERVICE", "ECOSYSTEM_OPPORTUNITY"},
+            None,
+        ),
+        (
+            "Current Calls & Challenges",
+            {"APPLICATION_CALL", "FUNDING_ROUND", "COHORT", "CHALLENGE", "COMPETITION", "HISTORICAL_CALL"},
+            {"OPEN", "UPCOMING"},
+        ),
+        (
+            "Historical Archive",
+            {"APPLICATION_CALL", "FUNDING_ROUND", "COHORT", "CHALLENGE", "COMPETITION", "HISTORICAL_CALL"},
+            {"CLOSED"},
+        ),
     )
-    tabs = st.tabs([label for label, _ in groups])
-    for tab, (label, types) in zip(tabs, groups):
+    tabs = st.tabs([label for label, _, _ in groups])
+    for tab, (label, types, allowed_statuses) in zip(tabs, groups):
         with tab:
-            if label == "Evidence Resources":
-                if not bundle.documents:
-                    st.info("No supporting evidence resources are available in this preview.")
-                else:
-                    for document in bundle.documents:
-                        st.markdown(
-                            f'- [{esc(document["title"])}]({document["official_url"]}) · {esc(display_token(document["document_type"]))}',
-                            unsafe_allow_html=False,
-                        )
-                continue
-            if label == "Admin Review":
-                if not bundle.review_items:
-                    st.success("No unresolved DPIIT review items remain.")
-                for item in bundle.review_items:
-                    st.warning(f'{item["review_type"]}: {item["reason"]}')
-                continue
-            records = [row for row in visible if row.record_type in types]
+            records = [
+                row for row in visible
+                if row.record_type in types
+                and (allowed_statuses is None or row.application_status in allowed_statuses)
+            ]
             if not records:
                 st.info(f"No {label.lower()} match the selected filters.")
             else:

@@ -12,7 +12,8 @@
     "supporting_documents": 4,
     "relationships": 3,
     "review_queue": 2,
-    "excluded": 2
+    "excluded": 2,
+    "public_department_records": 15
   },
   "files": [
     {
@@ -22,8 +23,8 @@
     },
     {
       "relative_path": "data/departments/dpiit/v3_4_4_0/dpiit_call_challenge_cohort_inventory_v3_4_4_0.csv",
-      "sha256": "026c73517cdd9a25ac0843585ee36d73c530686ddee7fc9dd9ed1376de788bdf",
-      "size_bytes": 1305
+      "sha256": "61040e65aa8dfec28da81a818f3e4bfea4cafd7b7401ea6f0a71f291d4597e69",
+      "size_bytes": 1308
     },
     {
       "relative_path": "data/departments/dpiit/v3_4_4_0/dpiit_crawl_manifest_v3_4_4_0.json",
@@ -32,8 +33,8 @@
     },
     {
       "relative_path": "data/departments/dpiit/v3_4_4_0/dpiit_dashboard_preview_catalogue_v3_4_4_0.csv",
-      "sha256": "06be57de547d066fdb40cd46abb2148e803f877e062a283959ea65f23ed36d00",
-      "size_bytes": 7625
+      "sha256": "2c146ae14a8fdd323ddfc4fbfd039aed77dee58f13e639598b61801f77a5ee23",
+      "size_bytes": 7640
     },
     {
       "relative_path": "data/departments/dpiit/v3_4_4_0/dpiit_discovered_url_inventory_v3_4_4_0.csv",
@@ -62,8 +63,8 @@
     },
     {
       "relative_path": "data/departments/dpiit/v3_4_4_0/dpiit_historical_call_inventory_v3_4_4_0.csv",
-      "sha256": "026c73517cdd9a25ac0843585ee36d73c530686ddee7fc9dd9ed1376de788bdf",
-      "size_bytes": 1305
+      "sha256": "61040e65aa8dfec28da81a818f3e4bfea4cafd7b7401ea6f0a71f291d4597e69",
+      "size_bytes": 1308
     },
     {
       "relative_path": "data/departments/dpiit/v3_4_4_0/dpiit_official_source_registry_v3_4_4_0.csv",
@@ -87,8 +88,8 @@
     },
     {
       "relative_path": "data/departments/dpiit/v3_4_4_0/dpiit_permanent_inventory_v3_4_4_0.csv",
-      "sha256": "6f2d69d1b5423c54f0fd3ce22e54545fea5da676d2e359fe064eaeb251b5387d",
-      "size_bytes": 6681
+      "sha256": "80985991daa30573b87298c53df0592e0f30f8d565077fbf2b96ae47c693932e",
+      "size_bytes": 6693
     },
     {
       "relative_path": "data/departments/dpiit/v3_4_4_0/dpiit_reconciliation_summary_v3_4_4_0.json",
@@ -107,8 +108,8 @@
     },
     {
       "relative_path": "data/departments/dpiit/v3_4_4_0/dpiit_supporting_document_index_v3_4_4_0.csv",
-      "sha256": "d443272848fa5c1b2c3ac4b5f957d8c71debde32b0316085d1363e4bcd81c66f",
-      "size_bytes": 1099
+      "sha256": "da4c2311388eac6dc0cbfffb5266a2390fd6fc1f570cac992bcb940cfa939bb1",
+      "size_bytes": 1103
     },
     {
       "relative_path": "data/departments/dpiit/v3_4_4_0/dpiit_unresolved_review_queue_v3_4_4_0.csv",
@@ -117,12 +118,13 @@
     },
     {
       "relative_path": "data/departments/dpiit/v3_4_4_0/dpiit_validation_report_v3_4_4_0.json",
-      "sha256": "763d637553d97613f12c2614c37748dcd8f72b1c36a25ef2a4eda4846a11b7c7",
-      "size_bytes": 1336
+      "sha256": "a0735b2f2f87d4d2f16fb6d4d5f4d051fd35417de4963105b5af65438e7914aa",
+      "size_bytes": 1400
     }
   ],
-  "content_signature_sha256": "9f70c2df950aabe79c8a84cba09684434bb26f5e9f3ea0605a51aaeef1ac3e39",
+  "content_signature_sha256": "7c980e147149e0415609a8253b3a85ac74c9c0cc355d5800f99466234ecdbfb4",
   "database_write_performed": false,
   "publication_performed": false,
+  "department_page_publication_performed": true,
   "validation_status": "PASS"
 }

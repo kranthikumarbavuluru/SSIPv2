@@ -48,6 +48,11 @@ def _read_csv(path: Path) -> list[dict[str, str]]:
 def load_dpiit_preview(project_root: Path) -> DPIITPreviewBundle:
     directory = default_dpiit_preview_dir(project_root)
     rows = _read_csv(directory / "dpiit_dashboard_preview_catalogue_v3_4_4_0.csv")
+    public_rows = [
+        row for row in rows
+        if row.get("publication_status") == "PUBLIC_DEPARTMENT_PAGE"
+        and row.get("record_type") != "REVIEW_REQUIRED"
+    ]
     records = tuple(
         DPIITPreviewRecord(
             record_id=row.get("record_id", ""),
@@ -64,11 +69,11 @@ def load_dpiit_preview(project_root: Path) -> DPIITPreviewBundle:
             official_url=row.get("official_url", ""),
             guideline_url=row.get("guideline_url", ""),
             last_verified_date=row.get("last_verified_date", ""),
-            publication_status=row.get("publication_status", "PREVIEW_NOT_PUBLISHED"),
+            publication_status=row.get("publication_status", "REVIEW_ONLY_HIDDEN"),
             review_required=row.get("review_required", "1") == "1",
             summary=row.get("summary", ""),
         )
-        for row in rows
+        for row in public_rows
     )
     documents = tuple(_read_csv(directory / "dpiit_supporting_document_index_v3_4_4_0.csv"))
     review_items = tuple(_read_csv(directory / "dpiit_unresolved_review_queue_v3_4_4_0.csv"))

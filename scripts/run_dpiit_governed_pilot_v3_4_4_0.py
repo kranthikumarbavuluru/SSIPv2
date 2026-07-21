@@ -13,7 +13,7 @@ from services.dpiit_governed_pilot_v3_4_4_0 import DPIITGovernedPilot, PipelineP
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Run the preview-only governed DPIIT pilot.")
+    parser = argparse.ArgumentParser(description="Build the governed DPIIT department-page package.")
     parser.add_argument("--live-network", action="store_true", help="Fetch only bounded registered official sources.")
     args = parser.parse_args()
     paths = PipelinePaths.defaults(PROJECT_ROOT)

@@ -203,7 +203,7 @@ class DPIITGovernedPilot:
                 "opening_date": "", "closing_date": "", "application_url": prior.get("application_url", ""),
                 "official_url": entity["official_master_url"], "guideline_url": prior.get("guideline_url", ""),
                 "last_verified_date": self.config["as_of_date"], "evidence_status": "OFFICIAL_PRIMARY",
-                "publication_status": "PREVIEW_NOT_PUBLISHED", "review_required": "1",
+                "publication_status": "PUBLIC_DEPARTMENT_PAGE", "review_required": "1",
                 "summary": prior.get("objective", entity.get("identity_evidence", "")),
             })
         return rows
@@ -228,7 +228,7 @@ class DPIITGovernedPilot:
                 "official_url": relationship["evidence_url"], "direct_applicant_layer": applicants,
                 "startup_relevance": "STARTUP_RELEVANT", "sector": "Not verified",
                 "status_basis": basis, "last_verified_date": self.config["as_of_date"],
-                "publication_status": "PREVIEW_NOT_PUBLISHED", "review_required": "0",
+                "publication_status": "PUBLIC_DEPARTMENT_PAGE", "review_required": "0",
             })
         return sorted(rows, key=lambda row: row["record_id"])
 
@@ -243,7 +243,7 @@ class DPIITGovernedPilot:
                 "title": rel["child_name"], "document_type": rel["child_role"],
                 "parent_record_id": rel["parent_master_id"], "official_url": rel["evidence_url"],
                 "evidence_status": "OFFICIAL_PRIMARY", "last_verified_date": self.config["as_of_date"],
-                "publication_status": "PREVIEW_NOT_PUBLISHED",
+                "publication_status": "PUBLIC_DEPARTMENT_PAGE",
             })
         return sorted(rows, key=lambda row: row["document_id"])
 
@@ -357,7 +357,8 @@ class DPIITGovernedPilot:
                 "recognition_master_id_preserved": any(row["record_id"] == "dpiit_master_6c1afb477ef37cd6acaa" for row in permanent),
                 "recognition_and_80iac_separate": len({"dpiit_master_6c1afb477ef37cd6acaa", "dpiit_master_3b767c3b91080149015f"} & {row["record_id"] for row in permanent}) == 2,
                 "historical_apply_suppressed": all(not row["application_url"] for row in historical),
-                "preview_only": all(row["publication_status"] == "PREVIEW_NOT_PUBLISHED" for row in preview),
+                "department_page_publication_enabled": self.config.get("public_department_page") is True,
+                "public_projection_complete": all(row["publication_status"] == "PUBLIC_DEPARTMENT_PAGE" for row in preview),
                 "protected_assets_unchanged": all(protected.values()),
             },
             "protected_hashes_before": before, "protected_hashes_after": after,
@@ -396,9 +397,11 @@ class DPIITGovernedPilot:
                 "current_calls": sum(row["application_status"] in {"OPEN", "UPCOMING"} for row in calls),
                 "historical_calls": len(historical), "supporting_documents": len(documents),
                 "relationships": len(relationships), "review_queue": len(review), "excluded": len(excluded),
+                "public_department_records": sum(row["publication_status"] == "PUBLIC_DEPARTMENT_PAGE" for row in preview),
             },
             "files": signed_files, "content_signature_sha256": signature,
             "database_write_performed": False, "publication_performed": False,
+            "department_page_publication_performed": True,
             "validation_status": validation["status"],
         }
         _write_json(output / OUTPUT_NAMES["manifest"], manifest)

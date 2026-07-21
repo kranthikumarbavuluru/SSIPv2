@@ -22,7 +22,7 @@
   "crawl_restrictions": [
     "Registry seeds and explicitly linked official evidence only",
     "No authentication, form submission, or whole-web crawl",
-    "No publication database or catalogue writes",
+    "No publication database or main catalogue writes",
     "Tracking parameters and fragments are removed before deduplication"
   ],
   "exclusions": [
@@ -35,5 +35,6 @@
     "Retain requested and final URL",
     "Accept redirects only when the final host remains on the allowlist",
     "Use the normalized final URL as the canonical retrieval URL"
-  ]
+  ],
+  "public_department_page": true
 }

@@ -1,0 +1,46 @@
+﻿record_id,sector,evidence_url,mapping_basis
+dbt_birac_call_0133ddc540a4dd13928f,biotechnology,https://birac.nic.in/desc_new.php?id=1120,OFFICIAL_SCOPE_TEXT
+dbt_birac_call_18b2dc64727b68193481,healthcare,https://birac.nic.in/cfp_view.php?id=118&scheme_type=6,OFFICIAL_SCOPE_TEXT
+dbt_birac_call_681ccfe095c3b52a8c56,biotechnology,https://birac.nic.in/cfp_view.php?id=31&scheme_type=5,OFFICIAL_SCOPE_TEXT
+dbt_birac_call_6c70aaef78171b0e6160,biotechnology,https://birac.nic.in/cfp_view.php?id=117&scheme_type=29,OFFICIAL_SCOPE_TEXT
+dbt_birac_call_7dc37268d6fe86663d26,biotechnology,https://birac.nic.in/cfp_view.php?id=84&scheme_type=4,OFFICIAL_SCOPE_TEXT
+dbt_birac_call_955614b1bbf7c71695f7,biotechnology,https://birac.nic.in/cfp.php/portal/desc_new.php?id=443,OFFICIAL_SCOPE_TEXT
+dbt_birac_call_a34e83aadd81b682b5f3,bioinformatics,https://birac.nic.in/cfp_view.php?id=114&scheme_type=46,OFFICIAL_SCOPE_TEXT
+dbt_birac_call_a34e83aadd81b682b5f3,synthetic biology,https://birac.nic.in/cfp_view.php?id=114&scheme_type=46,OFFICIAL_SCOPE_TEXT
+dbt_birac_call_a34e83aadd81b682b5f3,healthcare,https://birac.nic.in/cfp_view.php?id=114&scheme_type=46,OFFICIAL_SCOPE_TEXT
+dbt_birac_call_a34e83aadd81b682b5f3,agriculture and agritech,https://birac.nic.in/cfp_view.php?id=114&scheme_type=46,OFFICIAL_SCOPE_TEXT
+dbt_birac_call_a34e83aadd81b682b5f3,industrial biotechnology,https://birac.nic.in/cfp_view.php?id=114&scheme_type=46,OFFICIAL_SCOPE_TEXT
+dbt_birac_call_bbdac5ae0c028e41f098,biotechnology,https://birac.nic.in/cfp_view.php?id=82&scheme_type=31,OFFICIAL_SCOPE_TEXT
+dbt_birac_call_cac53f6c55087373dede,industrial biotechnology,https://birac.nic.in/cfp_view.php?id=116&scheme_type=52,OFFICIAL_SCOPE_TEXT
+dbt_birac_call_cac53f6c55087373dede,environmental biotechnology,https://birac.nic.in/cfp_view.php?id=116&scheme_type=52,OFFICIAL_SCOPE_TEXT
+dbt_birac_programme_0cc102270251adbfdb3f,biotechnology,https://birac.nic.in/desc_new.php?id=216,OFFICIAL_SCOPE_TEXT
+dbt_birac_programme_12f6f212327a46765c5b,biotechnology,https://dbtindia.gov.in/biotechnology-career-advancement-and-re-orientation-biocare-programmes,OFFICIAL_SCOPE_TEXT
+dbt_birac_programme_19b25856e1c150ca834c,biotechnology,https://birac.nic.in/seedFundNew.php,OFFICIAL_SCOPE_TEXT
+dbt_birac_programme_19b87ac5ecb1afe2d7f3,biotechnology,https://birac.nic.in/desc_new.php?id=286,OFFICIAL_SCOPE_TEXT
+dbt_birac_programme_2a0b6287a0e65cff2844,biotechnology,https://birac.nic.in/aceFundNew.php,OFFICIAL_SCOPE_TEXT
+dbt_birac_programme_2a21fe6d592a19b7de89,biotechnology,https://birac.nic.in/big.php,OFFICIAL_SCOPE_TEXT
+dbt_birac_programme_37cee8b1f4918e65e71e,biotechnology,https://birac.nic.in/bionest.php,OFFICIAL_SCOPE_TEXT
+dbt_birac_programme_6ed5045938d710d07514,biotechnology,https://birac.nic.in/birac_i4.php,OFFICIAL_SCOPE_TEXT
+dbt_birac_programme_8394e6f426a8d1ccfe1c,healthcare,https://birac.nic.in/desc_new.php?id=58,OFFICIAL_SCOPE_TEXT
+dbt_birac_programme_8394e6f426a8d1ccfe1c,diagnostics,https://birac.nic.in/desc_new.php?id=58,OFFICIAL_SCOPE_TEXT
+dbt_birac_programme_8394e6f426a8d1ccfe1c,medical devices,https://birac.nic.in/desc_new.php?id=58,OFFICIAL_SCOPE_TEXT
+dbt_birac_programme_8394e6f426a8d1ccfe1c,agriculture and agritech,https://birac.nic.in/desc_new.php?id=58,OFFICIAL_SCOPE_TEXT
+dbt_birac_programme_8394e6f426a8d1ccfe1c,environmental biotechnology,https://birac.nic.in/desc_new.php?id=58,OFFICIAL_SCOPE_TEXT
+dbt_birac_programme_85cb10362c7f8eab552a,biotechnology,https://birac.nic.in/e_yuva.php,OFFICIAL_SCOPE_TEXT
+dbt_birac_programme_85cb10362c7f8eab552a,healthcare,https://birac.nic.in/e_yuva.php,OFFICIAL_SCOPE_TEXT
+dbt_birac_programme_85cb10362c7f8eab552a,diagnostics,https://birac.nic.in/e_yuva.php,OFFICIAL_SCOPE_TEXT
+dbt_birac_programme_85cb10362c7f8eab552a,medical devices,https://birac.nic.in/e_yuva.php,OFFICIAL_SCOPE_TEXT
+dbt_birac_programme_85cb10362c7f8eab552a,agriculture and agritech,https://birac.nic.in/e_yuva.php,OFFICIAL_SCOPE_TEXT
+dbt_birac_programme_85cb10362c7f8eab552a,industrial biotechnology,https://birac.nic.in/e_yuva.php,OFFICIAL_SCOPE_TEXT
+dbt_birac_programme_85cb10362c7f8eab552a,bioinformatics,https://birac.nic.in/e_yuva.php,OFFICIAL_SCOPE_TEXT
+dbt_birac_programme_920294c17d4689850646,biotechnology,https://pgt.dbtindia.gov.in/,OFFICIAL_SCOPE_TEXT
+dbt_birac_programme_920294c17d4689850646,healthcare,https://pgt.dbtindia.gov.in/,OFFICIAL_SCOPE_TEXT
+dbt_birac_programme_920294c17d4689850646,agriculture and agritech,https://pgt.dbtindia.gov.in/,OFFICIAL_SCOPE_TEXT
+dbt_birac_programme_920294c17d4689850646,food biotechnology,https://pgt.dbtindia.gov.in/,OFFICIAL_SCOPE_TEXT
+dbt_birac_programme_920294c17d4689850646,industrial biotechnology,https://pgt.dbtindia.gov.in/,OFFICIAL_SCOPE_TEXT
+dbt_birac_programme_920294c17d4689850646,bioinformatics,https://pgt.dbtindia.gov.in/,OFFICIAL_SCOPE_TEXT
+dbt_birac_programme_950e8371679bc4771790,biotechnology,https://birac.nic.in/desc_new.php?id=286,OFFICIAL_SCOPE_TEXT
+dbt_birac_programme_96f0cfcbe5b77792d7ec,biotechnology,https://birac.nic.in/desc_new.php?id=217,OFFICIAL_SCOPE_TEXT
+dbt_birac_programme_9fe430e5274621be5189,biotechnology,https://birac.nic.in/desc_new.php?id=286,OFFICIAL_SCOPE_TEXT
+dbt_birac_programme_a76f47a688f22080c2f5,biotechnology,https://birac.nic.in/leapFund.php,OFFICIAL_SCOPE_TEXT
+dbt_birac_review_8b674da63a197fa42809,biotechnology,https://birac.nic.in/big.php,OFFICIAL_SCOPE_TEXT

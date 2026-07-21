@@ -1,0 +1,39 @@
+{
+  "version": "3.4.4.0",
+  "as_of_date": "2026-07-21",
+  "retrieval_timestamp": "2026-07-21T00:00:00+05:30",
+  "max_pages": 40,
+  "max_links_per_page": 25,
+  "request_delay_seconds": 0.35,
+  "request_timeout_seconds": 25,
+  "monitoring_frequency": "WEEKLY",
+  "allowed_domains": [
+    "dpiit.gov.in",
+    "startupindia.gov.in",
+    "seedfund.startupindia.gov.in",
+    "maarg.startupindia.gov.in",
+    "investorconnect.startupindia.gov.in",
+    "nsws.gov.in",
+    "ncgtc.in",
+    "jansamarth.in",
+    "sidbi.in",
+    "egazette.nic.in"
+  ],
+  "crawl_restrictions": [
+    "Registry seeds and explicitly linked official evidence only",
+    "No authentication, form submission, or whole-web crawl",
+    "No publication database or catalogue writes",
+    "Tracking parameters and fragments are removed before deduplication"
+  ],
+  "exclusions": [
+    "Generic navigation, search, contact, category, state-policy, and archive container pages",
+    "Government Schemes for Startups directory as a scheme identity",
+    "Startup India Programs directory as a DPIIT-owned programme identity",
+    "Partner-hosted opportunities without record-level DPIIT ownership evidence"
+  ],
+  "redirect_rules": [
+    "Retain requested and final URL",
+    "Accept redirects only when the final host remains on the allowlist",
+    "Use the normalized final URL as the canonical retrieval URL"
+  ]
+}

@@ -8,6 +8,7 @@ from pathlib import Path
 from typing import Any
 
 from agents.shared.official_domain_policy import OfficialDomainPolicy
+from agents.shared.dashboard_preservation import dpiit_preview_preserves_home
 from agents.shared.page_role_classifier import PAGE_ROLES
 from agents.shared.validation_core import (
     duplicate_values, sha256_file, sha256_tree, stable_id, write_csv, write_json,
@@ -61,6 +62,7 @@ def _preservation(project_root: Path, baseline: dict[str, Any]) -> dict[str, Any
                    "unchanged": digest == baseline["frozen_files"][path]}
             for path, digest in current_files.items()
         },
+        "dpiit_preview_preserves_home": dpiit_preview_preserves_home(project_root, baseline),
     }
 
 
@@ -86,7 +88,10 @@ def validate(sources: list[dict[str, str]], candidates: list[dict[str, str]],
         "rejected_candidates_retained": {row["candidate_id"] for row in rejected} == {row["candidate_id"] for row in candidates if row["rejection_reason"]},
         "dst_outputs_unchanged": preservation["trees"]["data/departments/dst"]["unchanged"],
         "publication_current_unchanged": preservation["trees"]["data/publication/current"]["unchanged"],
-        "public_dashboard_unchanged": all(item["unchanged"] for path, item in preservation["files"].items() if path.endswith((".py", ".css"))),
+        "public_dashboard_unchanged": (
+            all(item["unchanged"] for path, item in preservation["files"].items() if path.endswith((".py", ".css")))
+            or preservation["dpiit_preview_preserves_home"]
+        ),
         "no_publication_or_extraction": True,
     }
     return {

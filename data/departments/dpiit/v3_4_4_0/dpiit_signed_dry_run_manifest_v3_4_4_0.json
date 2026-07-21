@@ -1,0 +1,128 @@
+{
+  "manifest_version": "1.0",
+  "pipeline_version": "3.4.4.0",
+  "execution_mode": "LIVE_BOUNDED",
+  "generated_at": "2026-07-21T00:00:00+05:30",
+  "counts": {
+    "sources": 20,
+    "permanent": 12,
+    "calls_and_challenges": 3,
+    "current_calls": 0,
+    "historical_calls": 3,
+    "supporting_documents": 4,
+    "relationships": 3,
+    "review_queue": 2,
+    "excluded": 2
+  },
+  "files": [
+    {
+      "relative_path": "data/departments/dpiit/v3_4_4_0/dpiit_applicant_layer_classifications_v3_4_4_0.csv",
+      "sha256": "b39981479af8b9aec62427ee9835e0cc8887af70893dbf7b4f3499a4d2a7497e",
+      "size_bytes": 2281
+    },
+    {
+      "relative_path": "data/departments/dpiit/v3_4_4_0/dpiit_call_challenge_cohort_inventory_v3_4_4_0.csv",
+      "sha256": "026c73517cdd9a25ac0843585ee36d73c530686ddee7fc9dd9ed1376de788bdf",
+      "size_bytes": 1305
+    },
+    {
+      "relative_path": "data/departments/dpiit/v3_4_4_0/dpiit_crawl_manifest_v3_4_4_0.json",
+      "sha256": "d9cf63479856677b449f050ec5a63aa889047ad269faabdc0929ee58dae4e6bc",
+      "size_bytes": 345
+    },
+    {
+      "relative_path": "data/departments/dpiit/v3_4_4_0/dpiit_dashboard_preview_catalogue_v3_4_4_0.csv",
+      "sha256": "06be57de547d066fdb40cd46abb2148e803f877e062a283959ea65f23ed36d00",
+      "size_bytes": 7625
+    },
+    {
+      "relative_path": "data/departments/dpiit/v3_4_4_0/dpiit_discovered_url_inventory_v3_4_4_0.csv",
+      "sha256": "7652dc584e1c721656a5b6f5e051cbc5b5b16c3096b10d556a1b153c63ddac59",
+      "size_bytes": 4818
+    },
+    {
+      "relative_path": "data/departments/dpiit/v3_4_4_0/dpiit_duplicate_version_resolution_v3_4_4_0.csv",
+      "sha256": "8ab3fb3be35aec3f7d7aa2dc8bf46fda6a83e4cea1098c27d077cc23a7c2b1c1",
+      "size_bytes": 377
+    },
+    {
+      "relative_path": "data/departments/dpiit/v3_4_4_0/dpiit_excluded_non_catalogue_inventory_v3_4_4_0.csv",
+      "sha256": "1e032bb50c162ea74608a1e9f8b1e6b45360a2179689bc5709cb6c7762885a2b",
+      "size_bytes": 318
+    },
+    {
+      "relative_path": "data/departments/dpiit/v3_4_4_0/dpiit_fetch_failure_report_v3_4_4_0.csv",
+      "sha256": "21c368bbafa01e4d99565b4579fdd22bc7aa46c6e6b888400c59b692252531b9",
+      "size_bytes": 1694
+    },
+    {
+      "relative_path": "data/departments/dpiit/v3_4_4_0/dpiit_fetch_report_v3_4_4_0.csv",
+      "sha256": "3cdcd650255f6c77566d3fe01398c7a90ae10fb5bfdf365fc8dcff985383eefb",
+      "size_bytes": 4521
+    },
+    {
+      "relative_path": "data/departments/dpiit/v3_4_4_0/dpiit_historical_call_inventory_v3_4_4_0.csv",
+      "sha256": "026c73517cdd9a25ac0843585ee36d73c530686ddee7fc9dd9ed1376de788bdf",
+      "size_bytes": 1305
+    },
+    {
+      "relative_path": "data/departments/dpiit/v3_4_4_0/dpiit_official_source_registry_v3_4_4_0.csv",
+      "sha256": "fa335ba85f0cafa918d4b8dad94f0a41b068258118014c2285c35a125b59376b",
+      "size_bytes": 10942
+    },
+    {
+      "relative_path": "data/departments/dpiit/v3_4_4_0/dpiit_ownership_evidence_v3_4_4_0.csv",
+      "sha256": "3bf2e4595cec53b54b05e3a48aaad2cd98857d922878fe49709ff9a5e517c420",
+      "size_bytes": 3479
+    },
+    {
+      "relative_path": "data/departments/dpiit/v3_4_4_0/dpiit_page_role_classifications_v3_4_4_0.csv",
+      "sha256": "8d8519fd19de3c073249c3997f4d1dbc9b514570505a72d75043d3c2ab59df70",
+      "size_bytes": 3165
+    },
+    {
+      "relative_path": "data/departments/dpiit/v3_4_4_0/dpiit_parent_child_relationships_v3_4_4_0.csv",
+      "sha256": "5a1794ca5c8c990bd3919f869a1dd9f504f440e2ac6e7eb6698112e1cbc9fda5",
+      "size_bytes": 713
+    },
+    {
+      "relative_path": "data/departments/dpiit/v3_4_4_0/dpiit_permanent_inventory_v3_4_4_0.csv",
+      "sha256": "6f2d69d1b5423c54f0fd3ce22e54545fea5da676d2e359fe064eaeb251b5387d",
+      "size_bytes": 6681
+    },
+    {
+      "relative_path": "data/departments/dpiit/v3_4_4_0/dpiit_reconciliation_summary_v3_4_4_0.json",
+      "sha256": "0ba006bba0830116682882d55bdeebae4b9297127083b31bb708cd6f21fedd49",
+      "size_bytes": 247
+    },
+    {
+      "relative_path": "data/departments/dpiit/v3_4_4_0/dpiit_sector_evidence_mappings_v3_4_4_0.csv",
+      "sha256": "f1bf7073ec3310e94cae37fd15483ac11873b7634623208bd1bd37c4f4bcd477",
+      "size_bytes": 1954
+    },
+    {
+      "relative_path": "data/departments/dpiit/v3_4_4_0/dpiit_startup_relevance_classifications_v3_4_4_0.csv",
+      "sha256": "0ff1c50dcc8038dc1a1ea4ec5ea421242b25abe8146f2193aae8ed2ccd5452e5",
+      "size_bytes": 2181
+    },
+    {
+      "relative_path": "data/departments/dpiit/v3_4_4_0/dpiit_supporting_document_index_v3_4_4_0.csv",
+      "sha256": "d443272848fa5c1b2c3ac4b5f957d8c71debde32b0316085d1363e4bcd81c66f",
+      "size_bytes": 1099
+    },
+    {
+      "relative_path": "data/departments/dpiit/v3_4_4_0/dpiit_unresolved_review_queue_v3_4_4_0.csv",
+      "sha256": "fa1cf1a8e43c90a3cf9d3a48e373a73de53f2068f64603334f14afef5fbdfac8",
+      "size_bytes": 456
+    },
+    {
+      "relative_path": "data/departments/dpiit/v3_4_4_0/dpiit_validation_report_v3_4_4_0.json",
+      "sha256": "763d637553d97613f12c2614c37748dcd8f72b1c36a25ef2a4eda4846a11b7c7",
+      "size_bytes": 1336
+    }
+  ],
+  "content_signature_sha256": "9f70c2df950aabe79c8a84cba09684434bb26f5e9f3ea0605a51aaeef1ac3e39",
+  "database_write_performed": false,
+  "publication_performed": false,
+  "validation_status": "PASS"
+}

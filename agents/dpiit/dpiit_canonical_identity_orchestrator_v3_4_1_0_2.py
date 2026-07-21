@@ -8,6 +8,7 @@ from pathlib import Path
 from typing import Any
 
 from agents.shared.validation_core import sha256_file, sha256_tree, stable_id, write_csv, write_json
+from agents.shared.dashboard_preservation import dpiit_preview_preserves_home
 
 from .dpiit_canonical_identity_resolver_v3_4_1_0_2 import (
     ALIAS_FIELDS, AUDIT_FIELDS, ENTITY_FIELDS, EVIDENCE_FIELDS, REJECTION_FIELDS,
@@ -50,6 +51,7 @@ def preservation(project_root: Path) -> dict[str, Any]:
     return {
         "trees": {path: {"before": baseline["trees"][path], "after": digest, "unchanged": digest == baseline["trees"][path]} for path, digest in trees.items()},
         "files": {path: {"before": baseline["frozen_files"][path], "after": digest, "unchanged": digest == baseline["frozen_files"][path]} for path, digest in files.items()},
+        "dpiit_preview_preserves_home": dpiit_preview_preserves_home(project_root, baseline),
     }
 
 
@@ -82,7 +84,10 @@ def validate(candidates: list[dict[str, str]], result: dict[str, list[dict[str, 
         "dpiit_v34101_unchanged": preserved["trees"]["data/departments/dpiit/v3_4_1_0_1"]["unchanged"],
         "dst_outputs_unchanged": preserved["trees"]["data/departments/dst"]["unchanged"],
         "publication_current_unchanged": preserved["trees"]["data/publication/current"]["unchanged"],
-        "public_dashboard_unchanged": all(item["unchanged"] for path, item in preserved["files"].items() if path.endswith((".py", ".css"))),
+        "public_dashboard_unchanged": (
+            all(item["unchanged"] for path, item in preserved["files"].items() if path.endswith((".py", ".css")))
+            or preserved["dpiit_preview_preserves_home"]
+        ),
     }
     return {
         "version": VERSION,

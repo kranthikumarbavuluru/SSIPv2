@@ -81,14 +81,21 @@ from ssip_dashboard.meity_public_integrated_v3_4_3_8_1 import (
     public_safe_record,
     render_integrated_meity_public_page,
 )
+from ssip_dashboard.dpiit_preview import (
+    DPIITPreviewBundle,
+    DPIITPreviewRecord,
+    filter_dpiit_preview,
+    load_dpiit_preview,
+)
 
-APP_VERSION = "3.4.3.8.2-separate-page-projection"
+APP_VERSION = "3.4.4.0-dpiit-governed-preview"
 PAGE_NAMES = [
     "Home",
     "Scheme Explorer",
     "Calls & Opportunities",
     "DST Schemes",
     "MeitY",
+    "DPIIT",
     "Incubators & Ecosystem",
     "Directory",
     "Official Sources",
@@ -100,6 +107,7 @@ NAV_LABELS = {
     "Calls & Opportunities": "Live Calls",
     "DST Schemes": "DST",
     "MeitY": "MeitY",
+    "DPIIT": "DPIIT",
     "Incubators & Ecosystem": "Ecosystem",
     "Directory": "Resources",
     "Official Sources": "Sources",
@@ -110,6 +118,7 @@ PAGE_SLUGS = {
     "Scheme Explorer": "scheme-finder",
     "DST Schemes": "dst-programmes",
     "MeitY": "meity-programmes",
+    "DPIIT": "dpiit-programmes",
     "Calls & Opportunities": "live-calls",
     "Incubators & Ecosystem": "ecosystem",
     "Official Sources": "official-sources",
@@ -515,6 +524,7 @@ def site_header(active_page: str) -> str:
         "Calls & Opportunities",
         "DST Schemes",
         "MeitY",
+        "DPIIT",
         "Directory",
         "Official Sources",
     ]
@@ -2886,6 +2896,193 @@ def render_meity_page(bundle: CatalogueBundle) -> None:
     with tab_history:
         render_meity_historical_archive()
 
+
+@st.cache_data(ttl=300, show_spinner=False)
+def cached_dpiit_preview() -> DPIITPreviewBundle:
+    return load_dpiit_preview(PROJECT_ROOT)
+
+
+def _dpiit_preview_card(record: DPIITPreviewRecord, parent_names: dict[str, str]) -> str:
+    parent = parent_names.get(record.parent_record_id, "")
+    facts = []
+    if parent:
+        facts.append(f'<div><span>Parent programme</span><strong>{esc(parent)}</strong></div>')
+    facts.extend((
+        f'<div><span>Direct applicant</span><strong>{esc(display_token(record.direct_applicant_layer))}</strong></div>',
+        f'<div><span>Application status</span><strong>{esc(display_token(record.application_status))}</strong></div>',
+        f'<div><span>Closing date</span><strong>{esc(record.closing_date or "Not specified")}</strong></div>',
+    ))
+    links = []
+    if record.official_url:
+        links.append(
+            f'<a target="_blank" rel="noopener noreferrer" href="{esc(record.official_url)}">Official evidence ↗</a>'
+        )
+    if record.guideline_url:
+        links.append(
+            f'<a target="_blank" rel="noopener noreferrer" href="{esc(record.guideline_url)}">Guidelines ↗</a>'
+        )
+    note = (
+        '<div class="public-record-note">Preview only · Admin review required · No public Apply action</div>'
+        if record.review_required
+        else '<div class="public-record-note">Governed preview · Not published · No public Apply action</div>'
+    )
+    return (
+        '<article class="public-record-card">'
+        '<div class="public-record-card-top">'
+        f'<span class="status-badge">{esc(display_token(record.application_status))}</span>'
+        f'<span class="public-kind">{esc(display_token(record.record_type))}</span></div>'
+        f'<h3>{esc(record.canonical_name)}</h3>'
+        '<div class="public-record-agency">Department for Promotion of Industry and Internal Trade (DPIIT)</div>'
+        f'<p>{esc(record.summary or "Details are preserved in the official evidence and Admin review package.")}</p>'
+        f'<div class="public-record-facts">{"".join(facts)}</div>'
+        f'<div class="public-chip-row"><span>{esc(record.sector)}</span><span>{esc(record.startup_relevance)}</span></div>'
+        f'{note}<div class="public-record-actions">{"".join(links)}</div>'
+        '</article>'
+    )
+
+
+def render_dpiit_page() -> None:
+    bundle = cached_dpiit_preview()
+    counts = bundle.manifest.get("counts", {})
+    st.markdown(
+        """
+        <style>
+        .dpiit-evidence-ledger {
+          display: grid;
+          grid-template-columns: minmax(11rem, 1.35fr) repeat(4, minmax(8rem, 1fr));
+          gap: .55rem;
+          align-items: center;
+          margin: .85rem 0 1rem;
+          padding: .85rem 1rem;
+          border: 1px solid #cbdced;
+          border-left: 4px solid #1463a5;
+          border-radius: 12px;
+          background: #f6faff;
+          color: #17324d;
+        }
+        .dpiit-evidence-ledger span { line-height: 1.35; }
+        .dpiit-metric-grid {
+          display: grid;
+          grid-template-columns: repeat(5, minmax(0, 1fr));
+          gap: .7rem;
+          margin: 0 0 1.1rem;
+        }
+        .dpiit-metric {
+          min-width: 0;
+          padding: .85rem 1rem;
+          border: 1px solid #d7e3ef;
+          border-radius: 12px;
+          background: #fff;
+        }
+        .dpiit-metric strong {
+          display: block;
+          color: #123d66;
+          font-size: 1.65rem;
+          font-variant-numeric: tabular-nums;
+          line-height: 1;
+        }
+        .dpiit-metric span { display: block; margin-top: .45rem; color: #52697f; }
+        @media (max-width: 760px) {
+          .dpiit-evidence-ledger { grid-template-columns: 1fr 1fr; }
+          .dpiit-evidence-ledger strong { grid-column: 1 / -1; }
+          .dpiit-metric-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 430px) {
+          .dpiit-evidence-ledger, .dpiit-metric-grid { grid-template-columns: 1fr; }
+        }
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
+    st.markdown(
+        page_intro(
+            "Governed department preview",
+            "DPIIT Schemes, Services & Calls",
+            "Permanent identities, time-bound calls, ecosystem services, historical evidence and unresolved review items are kept separate.",
+            badge="Preview · Not published",
+        ),
+        unsafe_allow_html=True,
+    )
+    st.markdown(
+        '<div class="dpiit-evidence-ledger"><strong>Evidence ledger</strong>'
+        f'<span>{int(counts.get("sources", 0))} registered official sources</span>'
+        f'<span>{int(counts.get("permanent", 0))} permanent identities</span>'
+        f'<span>{int(counts.get("historical_calls", 0))} historical calls</span>'
+        f'<span>Verified {esc(bundle.manifest.get("generated_at", "")[:10])}</span></div>',
+        unsafe_allow_html=True,
+    )
+    metrics = (
+        ("Permanent", int(counts.get("permanent", 0))),
+        ("Current calls", int(counts.get("current_calls", 0))),
+        ("Historical", int(counts.get("historical_calls", 0))),
+        ("Resources", int(counts.get("supporting_documents", 0))),
+        ("Admin review", int(counts.get("review_queue", 0))),
+    )
+    st.markdown(
+        '<div class="dpiit-metric-grid">'
+        + "".join(
+            f'<div class="dpiit-metric"><strong>{value}</strong><span>{esc(label)}</span></div>'
+            for label, value in metrics
+        )
+        + "</div>",
+        unsafe_allow_html=True,
+    )
+
+    keyword_column, type_column, status_column, applicant_column = st.columns([2.2, 1.3, 1.3, 1.5])
+    with keyword_column:
+        keyword = st.text_input("Search DPIIT preview", placeholder="Search programmes, services or evidence…")
+    with type_column:
+        record_type = st.selectbox("Record type", ["All", *sorted({row.record_type for row in bundle.records})])
+    with status_column:
+        status = st.selectbox("Status", ["All", *sorted({row.application_status for row in bundle.records})])
+    with applicant_column:
+        applicant_options = sorted({item for row in bundle.records for item in row.direct_applicant_layer.split(";") if item})
+        applicant = st.selectbox("Direct applicant", ["All", *applicant_options])
+
+    visible = filter_dpiit_preview(
+        bundle.records, keyword=keyword, record_type=record_type,
+        status=status, applicant_layer=applicant,
+    )
+    parent_names = {row.record_id: row.canonical_name for row in bundle.records}
+    groups = (
+        ("Schemes & Programmes", {"SCHEME", "PROGRAMME"}),
+        ("Government Services", {"GOVERNMENT_SERVICE"}),
+        ("Current Calls & Cohorts", {"APPLICATION_CALL", "COHORT", "CHALLENGE", "COMPETITION"}),
+        ("Ecosystem Opportunities", {"ECOSYSTEM_OPPORTUNITY"}),
+        ("Historical Calls", {"HISTORICAL_CALL"}),
+        ("Evidence Resources", set()),
+        ("Admin Review", {"REVIEW_REQUIRED"}),
+    )
+    tabs = st.tabs([label for label, _ in groups])
+    for tab, (label, types) in zip(tabs, groups):
+        with tab:
+            if label == "Evidence Resources":
+                if not bundle.documents:
+                    st.info("No supporting evidence resources are available in this preview.")
+                else:
+                    for document in bundle.documents:
+                        st.markdown(
+                            f'- [{esc(document["title"])}]({document["official_url"]}) · {esc(display_token(document["document_type"]))}',
+                            unsafe_allow_html=False,
+                        )
+                continue
+            if label == "Admin Review":
+                if not bundle.review_items:
+                    st.success("No unresolved DPIIT review items remain.")
+                for item in bundle.review_items:
+                    st.warning(f'{item["review_type"]}: {item["reason"]}')
+                continue
+            records = [row for row in visible if row.record_type in types]
+            if not records:
+                st.info(f"No {label.lower()} match the selected filters.")
+            else:
+                st.markdown(
+                    '<div class="public-record-grid">'
+                    + "".join(_dpiit_preview_card(row, parent_names) for row in records)
+                    + "</div>",
+                    unsafe_allow_html=True,
+                )
+
 def main() -> None:
     requested_slug = str(st.query_params.get("page", "") or "").strip().lower()
     requested_page = next(
@@ -2943,6 +3140,8 @@ def main() -> None:
         render_dst_schemes()
     elif page == "MeitY":
         render_meity_page(bundle)
+    elif page == "DPIIT":
+        render_dpiit_page()
     elif page == "Official Sources":
         render_official_sources(official_sources, bundle)
     elif page == "Calls & Opportunities":

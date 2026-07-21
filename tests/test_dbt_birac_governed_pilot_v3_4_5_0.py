@@ -88,10 +88,12 @@ class DBTBIRACGovernedPilotTests(unittest.TestCase):
             self.assertTrue(rows)
             self.assertTrue(all(row["evidence_url"].startswith("https://") for row in rows))
 
-    def test_preview_loader_filters_and_suppresses_all_apply_actions(self) -> None:
+    def test_public_loader_hides_review_records_and_suppresses_unverified_apply_actions(self) -> None:
         bundle = load_dbt_birac_preview(ROOT)
         self.assertTrue(bundle.records)
-        self.assertTrue(all(row.publication_status == "PREVIEW_NOT_PUBLISHED" for row in bundle.records))
+        self.assertTrue(all(row.publication_status == "PUBLIC_DEPARTMENT_PAGE" for row in bundle.records))
+        self.assertNotIn("REVIEW_REQUIRED", {row.record_type for row in bundle.records})
+        self.assertTrue(bundle.review_items)
         self.assertTrue(all(public_apply_url(row) == "" and row.application_url == "" for row in bundle.records))
         filtered = filter_dbt_birac_preview(bundle.records, sector="healthcare")
         self.assertTrue(filtered)

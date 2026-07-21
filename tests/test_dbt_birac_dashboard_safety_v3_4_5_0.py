@@ -18,22 +18,32 @@ def function_hash(path: Path, name: str) -> str:
 
 
 class DBTBIRACDashboardSafetyTests(unittest.TestCase):
-    def test_route_navigation_and_seven_views_are_wired(self) -> None:
+    def test_route_top_level_navigation_and_six_public_views_are_wired(self) -> None:
         source = APP.read_text(encoding="utf-8-sig")
         self.assertIn('"DBT–BIRAC": "dbt-birac-programmes"', source)
         self.assertIn('elif page == "DBT–BIRAC":', source)
+        header = source[source.index("def site_header"):source.index("def page_intro")]
+        primary = header[header.index("primary_pages"):header.index("links = []")]
+        self.assertIn('"DBT–BIRAC"', primary)
+        self.assertNotIn('"Directory"', primary)
+        self.assertNotIn('"Official Sources"', primary)
+        self.assertIn('>Resources</a>', header)
+        self.assertIn('>Sources</a>', header)
+        section = source[source.index("def render_dbt_birac_page"):source.index("def main()")]
         for label in (
-            "Schemes & Programmes", "Current Verified Calls", "Challenges & Competitions",
-            "Incubator & Intermediary", "Historical Calls", "Guidelines & Evidence", "Admin Review",
+            "Schemes & Programmes", "Current Calls", "Challenges & Competitions",
+            "Incubator & Intermediary", "Historical Archive", "Guidelines & Evidence",
         ):
-            self.assertIn(label, source)
+            self.assertIn(label, section)
+        self.assertNotIn("Admin Review", section)
+        self.assertNotIn("Preview · Not published", section)
 
-    def test_preview_has_accessible_safe_links_and_mobile_breakpoints(self) -> None:
+    def test_public_page_has_accessible_safe_links_and_governed_ownership(self) -> None:
         source = APP.read_text(encoding="utf-8-sig")
         section = source[source.index("def _dbt_birac_preview_card"):source.index("def main()")]
         self.assertIn('target="_blank" rel="noopener noreferrer"', section)
-        self.assertIn("@media (max-width:430px)", section)
-        self.assertIn("aria-label=\"Governed ownership chain\"", section)
+        self.assertIn("Verified ownership", section)
+        self.assertIn("Search DBT–BIRAC schemes", section)
         self.assertNotIn("Apply now", section)
 
     def test_home_implementation_and_shared_css_match_required_base(self) -> None:

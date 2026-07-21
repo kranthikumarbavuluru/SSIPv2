@@ -230,7 +230,7 @@ def _programme_rows(as_of: str) -> list[dict[str, Any]]:
             "official_url": url, "guideline_url": "", "status_basis": "Status belongs to a dated call, not the permanent identity",
             "last_verified_date": as_of, "evidence_excerpt": summary,
             "evidence_confidence": "HIGH", "unresolved_fields": "",
-            "publication_status": "PREVIEW_NOT_PUBLISHED", "review_required": "0", "summary": summary,
+            "publication_status": "PUBLIC_DEPARTMENT_PAGE", "review_required": "0", "summary": summary,
         })
     return sorted(rows, key=lambda row: row["record_id"])
 
@@ -256,7 +256,7 @@ def _call_rows(as_of: str) -> list[dict[str, Any]]:
             "application_url": "", "official_url": url, "guideline_url": "",
             "status_basis": basis, "last_verified_date": as_of, "evidence_excerpt": basis,
             "evidence_confidence": "HIGH", "unresolved_fields": "parent_record_id" if not parent else "",
-            "publication_status": "PREVIEW_NOT_PUBLISHED", "review_required": "1" if not parent else "0", "summary": basis,
+            "publication_status": "PUBLIC_DEPARTMENT_PAGE", "review_required": "1" if not parent else "0", "summary": basis,
         })
     rows.append({
         "record_id": _stable_id("review", "big-next-round"),
@@ -270,7 +270,7 @@ def _call_rows(as_of: str) -> list[dict[str, Any]]:
         "status_basis": "Programme page describes recurring calls, but no official individual next-round identity and window were located as of the verification date.",
         "last_verified_date": as_of, "evidence_excerpt": "No individual next-round call evidence located.",
         "evidence_confidence": "LOW", "unresolved_fields": "call_identity;opening_date;closing_date;application_route",
-        "publication_status": "PREVIEW_NOT_PUBLISHED", "review_required": "1",
+        "publication_status": "REVIEW_ONLY_HIDDEN", "review_required": "1",
         "summary": "Monitoring candidate only; it is not a current call and has no Apply action.",
     })
     return sorted(rows, key=lambda row: row["record_id"])
@@ -290,7 +290,7 @@ def classify_page_role(title: str, url: str, registry_role: str = "") -> str:
 
 
 class DBTBIRACGovernedPilot:
-    """Build a deterministic, resumable, preview-only DBT-BIRAC package."""
+    """Build a deterministic, resumable DBT-BIRAC department-page package."""
 
     def __init__(self, paths: PipelinePaths, config: dict[str, Any]) -> None:
         self.paths = paths
@@ -453,7 +453,7 @@ class DBTBIRACGovernedPilot:
             "document_id": _stable_id("document", url), "title": title, "document_type": kind,
             "parent_record_id": _stable_id("programme", parent) if parent else "", "official_url": url,
             "evidence_status": "OFFICIAL_PRIMARY", "last_verified_date": self.config["as_of_date"],
-            "publication_status": "PREVIEW_NOT_PUBLISHED",
+            "publication_status": "PUBLIC_DEPARTMENT_PAGE",
         } for title, kind, parent, url in DOCUMENTS]
         relationships = [{
             "parent_record_id": row["parent_record_id"], "child_record_id": row["record_id"],
@@ -538,7 +538,11 @@ class DBTBIRACGovernedPilot:
         _write_json(self.paths.output_dir / OUTPUT_NAMES["crawl"], crawl)
         protected_after = protected_hashes(self.paths.project_root)
         checks = {
-            "preview_only": self.config.get("preview_only") is True,
+            "department_page_publication_enabled": self.config.get("public_department_page") is True,
+            "review_records_hidden": all(
+                row["publication_status"] == "REVIEW_ONLY_HIDDEN"
+                for row in all_records if row["record_type"] == "REVIEW_REQUIRED"
+            ),
             "no_open_without_current_evidence": not current,
             "all_sources_official": all(self.policy.accepts(row["official_url"]) for row in sources),
             "ownership_separation": all(row["ministry"] == MINISTRY and row["department"] == DEPARTMENT for row in all_records),
@@ -561,10 +565,11 @@ class DBTBIRACGovernedPilot:
             "orphans": sum(not row["parent_record_id"] for row in calls if row["record_type"] not in {"REVIEW_REQUIRED"}),
             "ownership_conflicts": 0, "duplicate_resolutions": len(duplicates), "extensions_linked": len(extensions),
             "excluded": len(excluded), "review_queue": len(review), "existing_reconciled": len(reconciliation),
+            "public_department_records": sum(row["publication_status"] == "PUBLIC_DEPARTMENT_PAGE" for row in all_records),
         }
         signature_payload = json.dumps({"counts": counts, "files": signed, "version": VERSION}, sort_keys=True, separators=(",", ":")).encode("utf-8")
         manifest = {
-            "version": VERSION, "generated_at": self.config["retrieval_timestamp"], "mode": "PREVIEW_ONLY",
+            "version": VERSION, "generated_at": self.config["retrieval_timestamp"], "mode": "PUBLIC_DEPARTMENT_PAGE",
             "counts": counts, "signed_files": signed, "signature_algorithm": "SHA256",
             "signature": _sha_bytes(signature_payload), "database_writes": 0, "publication_writes": 0,
             "validation_status": validation["status"],

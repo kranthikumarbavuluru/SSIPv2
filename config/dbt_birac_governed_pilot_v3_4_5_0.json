@@ -18,8 +18,9 @@
     "Start only from the versioned registry",
     "Maximum depth one and maximum forty attempted pages",
     "No authentication, form submission, or unregistered external crawl",
-    "No database, publication, Admin decision, Home, DST, MeitY, or DPIIT writes"
+    "No database, Admin decision, Home, DST, MeitY, or DPIIT writes"
   ],
   "status_policy": "OPEN requires a named current call, unexpired or continuous window, valid official application route, recent verification and no closure contradiction",
-  "preview_only": true
+  "preview_only": false,
+  "public_department_page": true
 }

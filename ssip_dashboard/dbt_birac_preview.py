@@ -63,6 +63,11 @@ def is_verified_official_url(url: str) -> bool:
 def load_dbt_birac_preview(project_root: Path) -> DBTBIRACPreviewBundle:
     directory = default_dbt_birac_preview_dir(project_root)
     rows = _read_csv(directory / "dbt_birac_dashboard_preview_projection_v3_4_5_0.csv")
+    public_rows = [
+        row for row in rows
+        if row.get("publication_status") == "PUBLIC_DEPARTMENT_PAGE"
+        and row.get("record_type") != "REVIEW_REQUIRED"
+    ]
     records = tuple(
         DBTBIRACPreviewRecord(
             record_id=row.get("record_id", ""), canonical_name=row.get("canonical_name", ""),
@@ -71,13 +76,13 @@ def load_dbt_birac_preview(project_root: Path) -> DBTBIRACPreviewBundle:
             startup_relevance=row.get("startup_relevance", "REVIEW_REQUIRED"), sector=row.get("sector", "Not verified"),
             support_type=row.get("support_type", "Not verified"), application_status=row.get("application_status", "STATUS_UNVERIFIED"),
             opening_date=row.get("opening_date", ""), closing_date=row.get("closing_date", ""),
-            application_url="",  # Preview records never expose Apply actions.
+            application_url="",  # No verified open call exists in this governed snapshot.
             official_url=row.get("official_url", "") if is_verified_official_url(row.get("official_url", "")) else "",
             guideline_url=row.get("guideline_url", "") if is_verified_official_url(row.get("guideline_url", "")) else "",
-            last_verified_date=row.get("last_verified_date", ""), publication_status=row.get("publication_status", "PREVIEW_NOT_PUBLISHED"),
+            last_verified_date=row.get("last_verified_date", ""), publication_status=row.get("publication_status", "REVIEW_ONLY_HIDDEN"),
             review_required=row.get("review_required", "1") == "1", summary=row.get("summary", ""),
         )
-        for row in rows
+        for row in public_rows
     )
     documents = tuple(row for row in _read_csv(directory / "dbt_birac_supporting_document_index_v3_4_5_0.csv") if is_verified_official_url(row.get("official_url", "")))
     review_items = tuple(_read_csv(directory / "dbt_birac_unresolved_admin_review_queue_v3_4_5_0.csv"))
@@ -108,5 +113,5 @@ def filter_dbt_birac_preview(
 
 
 def public_apply_url(record: DBTBIRACPreviewRecord) -> str:
-    """Apply is deliberately suppressed for every unpublished preview record."""
+    """Expose Apply only after an official open call and route pass governance."""
     return ""

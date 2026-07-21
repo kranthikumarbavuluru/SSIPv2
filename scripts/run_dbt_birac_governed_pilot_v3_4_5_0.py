@@ -13,7 +13,7 @@ from services.dbt_birac_governed_pilot_v3_4_5_0 import DBTBIRACGovernedPilot, Pi
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Run the preview-only governed DBT-BIRAC pilot.")
+    parser = argparse.ArgumentParser(description="Build the governed DBT-BIRAC department-page package.")
     parser.add_argument("--live-network", action="store_true", help="Fetch the bounded official-source registry.")
     args = parser.parse_args()
     paths = PipelinePaths.defaults(PROJECT_ROOT)

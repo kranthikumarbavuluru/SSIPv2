@@ -270,6 +270,7 @@ for stylesheet in load_stylesheets():
 def _msme_cache_token() -> str:
     manifests = (
         PROJECT_ROOT / "data/departments/msme/v3_4_6_0/active_publication_manifest_v3_4_6_0.json",
+        PROJECT_ROOT / "data/media_publication/v3_4_7_3/active_publication_manifest_v3_4_7_3.json",
         PROJECT_ROOT / "data/media_publication/v3_4_7_0/active_publication_manifest_v3_4_7_0.json",
     )
     tokens: list[str] = []

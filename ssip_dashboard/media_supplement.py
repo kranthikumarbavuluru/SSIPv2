@@ -18,6 +18,10 @@ from urllib.parse import urlsplit
 
 PUBLICATION_DIR = Path("data/media_publication/v3_4_7_0")
 MANIFEST_NAME = "active_publication_manifest_v3_4_7_0.json"
+PUBLICATION_CANDIDATES = (
+    (Path("data/media_publication/v3_4_7_3"), "active_publication_manifest_v3_4_7_3.json"),
+    (PUBLICATION_DIR, MANIFEST_NAME),
+)
 
 
 class MediaPublicationError(RuntimeError):
@@ -132,9 +136,25 @@ def _record_from_row(row: dict[str, str]) -> dict[str, Any]:
 
 
 def load_active_media_publication(project_root: Path) -> MediaPublication:
-    directory = (project_root / PUBLICATION_DIR).resolve()
-    manifest_path = directory / MANIFEST_NAME
-    if not manifest_path.exists():
+    directory: Path | None = None
+    manifest_path: Path | None = None
+    for candidate_dir, candidate_manifest in PUBLICATION_CANDIDATES:
+        resolved_dir = (project_root / candidate_dir).resolve()
+        resolved_manifest = resolved_dir / candidate_manifest
+        if resolved_manifest.exists():
+            if candidate_dir != PUBLICATION_DIR:
+                try:
+                    candidate_payload = json.loads(resolved_manifest.read_text(encoding="utf-8"))
+                except (OSError, json.JSONDecodeError):
+                    candidate_payload = {}
+                if int(candidate_payload.get("record_count", 0) or 0) == 0:
+                    # An empty review projection must not blank a known-good
+                    # fallback bundle before any records are approved.
+                    continue
+            directory = resolved_dir
+            manifest_path = resolved_manifest
+            break
+    if directory is None or manifest_path is None:
         return MediaPublication(records=(), manifest={"status": "NOT_CONFIGURED"})
 
     try:

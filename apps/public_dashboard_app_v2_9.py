@@ -94,8 +94,13 @@ from ssip_dashboard.dbt_birac_preview import (
     filter_dbt_birac_preview,
     load_dbt_birac_preview,
 )
+from ssip_dashboard.msme_public import (
+    MSMEPublicBundle,
+    build_msme_public_bundle,
+    filter_msme_records,
+)
 
-APP_VERSION = "3.4.5.0-dbt-birac-governed-public"
+APP_VERSION = "3.4.6.0-msme-governed-public"
 LOGGER = logging.getLogger(__name__)
 PAGE_NAMES = [
     "Home",
@@ -105,6 +110,7 @@ PAGE_NAMES = [
     "MeitY",
     "DPIIT",
     "DBT–BIRAC",
+    "MSME",
     "Incubators & Ecosystem",
     "Directory",
     "Official Sources",
@@ -118,6 +124,7 @@ NAV_LABELS = {
     "MeitY": "MeitY",
     "DPIIT": "DPIIT",
     "DBT–BIRAC": "DBT–BIRAC",
+    "MSME": "MSME",
     "Incubators & Ecosystem": "Ecosystem",
     "Directory": "Resources",
     "Official Sources": "Sources",
@@ -130,6 +137,7 @@ PAGE_SLUGS = {
     "MeitY": "meity-programmes",
     "DPIIT": "dpiit-programmes",
     "DBT–BIRAC": "dbt-birac-programmes",
+    "MSME": "msme-programmes",
     "Calls & Opportunities": "live-calls",
     "Incubators & Ecosystem": "ecosystem",
     "Official Sources": "official-sources",
@@ -537,6 +545,7 @@ def site_header(active_page: str) -> str:
         "MeitY",
         "DPIIT",
         "DBT–BIRAC",
+        "MSME",
     ]
     links = []
     for page_name in primary_pages:
@@ -1296,6 +1305,7 @@ def render_sectors(bundle: CatalogueBundle) -> None:
 def render_resources(bundle: CatalogueBundle, official_sources: list[OfficialSource]) -> None:
     populations = split_catalogue_populations(bundle.records)
     records = [*populations.main_scheme_records, *populations.application_call_records]
+    msme_bundle = build_msme_public_bundle(bundle.records)
     department_documents = [
         {**document, "department_label": "Department of Biotechnology / BIRAC"}
         for document in cached_dbt_birac_preview().documents
@@ -1304,9 +1314,20 @@ def render_resources(bundle: CatalogueBundle, official_sources: list[OfficialSou
         {**document, "department_label": "Department for Promotion of Industry and Internal Trade (DPIIT)"}
         for document in cached_dpiit_preview().documents
     )
+    department_documents.extend(
+        {
+            "title": document.scheme_name,
+            "document_type": document.record_kind or "DOCUMENT",
+            "official_url": document.official_page_url,
+            "department_label": "Ministry of Micro, Small and Medium Enterprises",
+        }
+        for document in msme_bundle.documents
+    )
+    msme_document_ids = {document.master_id for document in msme_bundle.documents}
     resource_records = [
         item for item in records
-        if item.official_page_url or item.application_url or item.guideline_urls or item.reference_urls
+        if item.master_id not in msme_document_ids
+        and (item.official_page_url or item.application_url or item.guideline_urls or item.reference_urls)
     ]
     resource_total = len(resource_records) + len(department_documents)
     st.markdown(
@@ -3220,6 +3241,172 @@ def render_dbt_birac_page() -> None:
             else:
                 st.markdown('<div class="public-record-grid">' + "".join(_dbt_birac_preview_card(row, parent_names) for row in records) + '</div>', unsafe_allow_html=True)
 
+
+def _msme_display_title(value: str) -> str:
+    """Use the canonical first title segment while retaining the governed source record."""
+    return str(value or "").split("|", 1)[0].strip() or "MSME support record"
+
+
+def _msme_record_card(record: CatalogueRecord, *, historical: bool = False) -> str:
+    status = record.application_status.upper()
+    if historical:
+        status_label_text = "Historical"
+        status_class = "status-history"
+        note = "Historical reference · No active application action"
+    elif status in {"OPEN", "UPCOMING"}:
+        status_label_text = display_token(status)
+        status_class = "status-open" if status == "OPEN" else "status-upcoming"
+        note = "Verified current opportunity · Confirm the official deadline before applying"
+    else:
+        status_label_text = "Status unverified"
+        status_class = "status-unverified"
+        note = "Permanent support record · Current application status is not verified"
+
+    agency = record.implementing_agency or record.department or record.source or "MSME agency not recorded"
+    verified = record.last_verified_at or record.last_updated or "Not recorded"
+    facts = (
+        f'<div><span>Implementing agency</span><strong>{esc(agency)}</strong></div>'
+        f'<div><span>Support type</span><strong>{esc(display_token(record.record_kind or "SCHEME_OR_PROGRAMME"))}</strong></div>'
+        f'<div><span>Last verified</span><strong>{esc(verified)}</strong></div>'
+    )
+    chips = [*record.sectors[:2], *record.scheme_types[:2]]
+    links = []
+    if record.official_page_url:
+        links.append(
+            f'<a target="_blank" rel="noopener noreferrer" href="{esc(record.official_page_url)}">'
+            'Official page <span aria-hidden="true">↗</span></a>'
+        )
+    if record.application_url and status in {"OPEN", "UPCOMING"}:
+        links.append(
+            f'<a target="_blank" rel="noopener noreferrer" href="{esc(record.application_url)}">'
+            'Application portal <span aria-hidden="true">↗</span></a>'
+        )
+    return (
+        '<article class="public-record-card">'
+        '<div class="public-record-card-top">'
+        f'<span class="status-badge {status_class}">{esc(status_label_text)}</span>'
+        f'<span class="public-kind">{esc(display_token(record.record_kind or "SCHEME_OR_PROGRAMME"))}</span></div>'
+        f'<h3>{esc(_msme_display_title(record.scheme_name))}</h3>'
+        f'<div class="public-record-agency">{esc(agency)}</div>'
+        '<p>Official MSME or NSIC support information retained from the governed catalogue.</p>'
+        f'<div class="public-record-facts">{facts}</div>'
+        f'<div class="public-chip-row">{"".join(f"<span>{esc(item)}</span>" for item in chips if item)}</div>'
+        f'<div class="public-record-note">{esc(note)}</div>'
+        f'<div class="public-record-actions">{"".join(links)}</div>'
+        '</article>'
+    )
+
+
+def _render_msme_record_group(
+    records: list[CatalogueRecord],
+    *,
+    label: str,
+    historical: bool = False,
+) -> None:
+    st.markdown(
+        f'<div class="filter-summary"><strong>{len(records)}</strong> {esc(label.lower())}'
+        '<span>Official links open in a new tab</span></div>',
+        unsafe_allow_html=True,
+    )
+    if not records:
+        st.info(f"No {label.lower()} match the selected filters.")
+        return
+    st.markdown(
+        '<div class="public-record-grid">'
+        + "".join(_msme_record_card(record, historical=historical) for record in records)
+        + '</div>',
+        unsafe_allow_html=True,
+    )
+
+
+def render_msme_page(bundle: CatalogueBundle) -> None:
+    msme: MSMEPublicBundle = build_msme_public_bundle(bundle.records)
+    permanent = list(msme.permanent_records)
+    current = list(msme.current_calls)
+    historical = list(msme.historical_records)
+    public_records = [*permanent, *current, *historical]
+
+    st.markdown(
+        page_intro(
+            "MSME intelligence",
+            "Ministry of MSME Schemes, Calls & Archive",
+            "Permanent MSME and NSIC support records, verified current opportunities and historical references are maintained as separate governed views.",
+            badge=f"{len(permanent)} permanent records · {len(current)} current calls · {len(historical)} historical",
+        ),
+        unsafe_allow_html=True,
+    )
+    st.markdown(
+        '<div class="metric-grid call-metrics">'
+        + metric_card("Permanent records", len(permanent), "Governed MSME and NSIC support identities", "blue")
+        + metric_card("Open calls", sum(row.application_status.upper() == "OPEN" for row in current), "Verified current application windows", "green")
+        + metric_card("Upcoming", sum(row.application_status.upper() == "UPCOMING" for row in current), "Verified future application windows", "purple")
+        + metric_card("Historical references", len(historical), "Closed or historical official support records", "orange")
+        + '</div>',
+        unsafe_allow_html=True,
+    )
+    st.caption(
+        f"Latest record verification: {msme.latest_verification_date} · "
+        "Counts are calculated from the governed catalogue projection."
+    )
+    st.markdown(
+        '<div class="archive-governance">'
+        '<strong>Governed MSME ownership & page roles</strong>'
+        '<span>Ministry of MSME, Office of Development Commissioner and NSIC records retain their implementing agency. '
+        f'{len(msme.documents)} supporting documents are available under Resources; {msme.excluded_count} generic index or unverified call-like records are excluded from public counts.</span></div>',
+        unsafe_allow_html=True,
+    )
+
+    keyword_column, agency_column, type_column = st.columns([2.2, 1.35, 1.35])
+    with keyword_column:
+        keyword = st.text_input(
+            "Search MSME schemes",
+            placeholder="Credit, marketing, registration, incubation…",
+            key="msme_keyword",
+        )
+    agencies = sorted({row.implementing_agency or row.department or row.source for row in public_records})
+    with agency_column:
+        agency = st.selectbox("Implementing agency", ["All", *agencies], key="msme_agency")
+    support_types = sorted({row.record_kind for row in public_records if row.record_kind})
+    with type_column:
+        support_type = st.selectbox(
+            "Support type",
+            ["All", *support_types],
+            format_func=lambda value: "All support types" if value == "All" else display_token(value),
+            key="msme_support_type",
+        )
+
+    visible = filter_msme_records(
+        public_records,
+        keyword=keyword,
+        agency=agency,
+        support_type=support_type,
+    )
+    visible_ids = {row.master_id for row in visible}
+    tab_schemes, tab_calls, tab_history = st.tabs(
+        ["Schemes & Programmes", "Current Calls & Challenges", "Historical Archive"]
+    )
+    with tab_schemes:
+        _render_msme_record_group(
+            [row for row in permanent if row.master_id in visible_ids],
+            label="permanent MSME record(s)",
+        )
+    with tab_calls:
+        _render_msme_record_group(
+            [row for row in current if row.master_id in visible_ids],
+            label="verified current MSME call(s)",
+        )
+        if not current:
+            st.caption(
+                "Unverified challenge and service-centre pages remain excluded until official open-window evidence is recorded."
+            )
+    with tab_history:
+        _render_msme_record_group(
+            [row for row in historical if row.master_id in visible_ids],
+            label="historical MSME reference(s)",
+            historical=True,
+        )
+
+
 def main() -> None:
     requested_slug = str(st.query_params.get("page", "") or "").strip().lower()
     requested_page = next(
@@ -3281,6 +3468,8 @@ def main() -> None:
         render_dpiit_page()
     elif page == "DBT–BIRAC":
         render_dbt_birac_page()
+    elif page == "MSME":
+        render_msme_page(bundle)
     elif page == "Official Sources":
         render_official_sources(official_sources, bundle)
     elif page == "Calls & Opportunities":

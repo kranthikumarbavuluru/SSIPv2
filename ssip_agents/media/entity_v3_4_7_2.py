@@ -12,6 +12,7 @@ import re
 from typing import Any, Iterable
 
 from .intake_v3_4_7_0 import MediaIntakePaths, parse_ingest_date
+from .extraction_v3_4_7_1 import parse_funding_amounts
 
 
 MEDIA_ENTITY_SCHEMA_VERSION = "3.4.7.2"
@@ -213,6 +214,28 @@ def build_entity_candidate(extraction: dict[str, Any], seed: dict[str, str] | No
         parent_basis = "Parent identity carried from governed media publication seed"
     candidate_id = _candidate_id(str(extraction.get("asset_id", "")), name, department)
     evidence_ids = list(extraction.get("evidence_ids", []))
+    seeded_funding = parse_funding_amounts(
+        " ".join(
+            value
+            for value in (
+                seed.get("description", ""),
+                seed.get("benefit_summary", ""),
+                seed.get("status_evidence", ""),
+            )
+            if value
+        )
+    )
+    funding_minimum = extraction.get("funding_minimum")
+    funding_maximum = extraction.get("funding_maximum")
+    funding_currency = extraction.get("funding_currency", "")
+    funding_status = extraction.get("funding_amount_status", "NOT_STATED")
+    if funding_status != "RECORDED" and seeded_funding["funding_amount_status"] == "RECORDED":
+        funding_minimum = seeded_funding["funding_minimum"]
+        funding_maximum = seeded_funding["funding_maximum"]
+        funding_currency = seeded_funding["funding_currency"]
+        funding_status = "RECORDED_FROM_GOVERNED_SEED"
+    if funding_status.startswith("RECORDED"):
+        evidence_ids.append(f"funding:{candidate_id}")
     evidence_ids.append(f"mapping:{candidate_id}:department")
     evidence_ids.append(f"mapping:{candidate_id}:record_kind")
     warnings = list(extraction.get("warnings", []))
@@ -245,6 +268,12 @@ def build_entity_candidate(extraction: dict[str, Any], seed: dict[str, str] | No
         "barcodes": extraction.get("barcodes", []),
         "raw_text": extraction.get("raw_text", ""),
         "language": extraction.get("language", "und"),
+        "funding_minimum": funding_minimum,
+        "funding_maximum": funding_maximum,
+        "funding_currency": funding_currency,
+        "funding_amount_status": funding_status,
+        "funding_amount_optional": bool(extraction.get("funding_amount_optional", True)),
+        "funding_mentions": extraction.get("funding_mentions", []) or seeded_funding["funding_mentions"],
         "evidence_ids": sorted(set(evidence_ids)),
         "warnings": sorted(set(warnings + [value for value in str(seed.get("warnings", "")).split("|") if value])),
         "review_status": "REVIEW_REQUIRED",

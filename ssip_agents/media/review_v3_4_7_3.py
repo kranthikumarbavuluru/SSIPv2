@@ -32,6 +32,8 @@ PUBLICATION_FIELDS = (
     "parent_scheme_name", "publication_decision", "decision_reasons", "evidence_confidence",
     "application_process", "sector", "startup_stage", "contacts", "source_asset_path",
     "source_asset_sha256", "publication_status", "is_public",
+    "funding_minimum", "funding_maximum", "funding_currency", "funding_amount_status",
+    "funding_amount_optional", "funding_evidence",
 )
 
 
@@ -113,6 +115,8 @@ class MediaReviewStore:
         "parent_master_id", "parent_scheme_name", "official_page_url", "application_url",
         "opening_date", "closing_date", "warnings", "description", "benefit_summary",
         "eligibility", "application_process", "sector", "startup_stage", "target_beneficiaries",
+        "funding_minimum", "funding_maximum", "funding_currency", "funding_amount_status",
+        "funding_amount_optional", "funding_evidence",
     })
 
     def __init__(self, project_root: Path, ingest_date: str | date | None = None) -> None:
@@ -234,6 +238,12 @@ def _publication_row(row: dict[str, Any], decision: dict[str, Any]) -> dict[str,
         "source_asset_sha256": row.get("source_asset_sha256", ""),
         "publication_status": "PUBLISHED",
         "is_public": "1",
+        "funding_minimum": row.get("funding_minimum", ""),
+        "funding_maximum": row.get("funding_maximum", ""),
+        "funding_currency": row.get("funding_currency", ""),
+        "funding_amount_status": row.get("funding_amount_status", "NOT_STATED"),
+        "funding_amount_optional": "1" if row.get("funding_amount_optional", True) else "0",
+        "funding_evidence": _pipe(row.get("funding_mentions", [])),
     }
 
 

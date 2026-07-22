@@ -52,6 +52,9 @@ class CatalogueRecord:
     currency: str = "INR"
     funding_minimum: int | None = None
     funding_maximum: int | None = None
+    funding_amount_status: str = "NOT_STATED"
+    funding_amount_optional: bool = True
+    funding_evidence: Any = None
     beneficiary_support_minimum: int | None = None
     beneficiary_support_maximum: int | None = None
     intermediary_support_maximum: int | None = None

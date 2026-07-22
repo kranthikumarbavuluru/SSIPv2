@@ -15,6 +15,8 @@ from pathlib import Path
 from typing import Any
 from urllib.parse import urlsplit
 
+from ssip_agents.media.extraction_v3_4_7_1 import parse_funding_amounts
+
 
 PUBLICATION_DIR = Path("data/media_publication/v3_4_7_0")
 MANIFEST_NAME = "active_publication_manifest_v3_4_7_0.json"
@@ -72,6 +74,22 @@ def _record_from_row(row: dict[str, str]) -> dict[str, Any]:
     if not all(_official_or_organizer_url(url) for url in reference_urls):
         raise MediaPublicationError(f"Unsafe media reference URL: {master_id}")
 
+    funding = parse_funding_amounts(
+        " ".join(
+            value
+            for value in (
+                row.get("description", ""),
+                row.get("benefit_summary", ""),
+                row.get("status_evidence", ""),
+            )
+            if value
+        )
+    )
+    funding_minimum = row.get("funding_minimum", "").strip()
+    funding_maximum = row.get("funding_maximum", "").strip()
+    funding_currency = row.get("funding_currency", "").strip() or funding["funding_currency"]
+    funding_status = row.get("funding_amount_status", "").strip() or funding["funding_amount_status"]
+    funding_mentions = row.get("funding_evidence", "").strip() or funding["funding_mentions"]
     return {
         "master_id": master_id,
         "scheme_name": row.get("canonical_name", "").strip(),
@@ -101,8 +119,12 @@ def _record_from_row(row: dict[str, str]) -> dict[str, Any]:
         "application_url": application_url,
         "opening_date": row.get("opening_date", "").strip(),
         "closing_date": row.get("closing_date", "").strip(),
-        "currency": "INR",
-        "funding_maximum": int(row["funding_maximum"]) if row.get("funding_maximum", "").strip() else None,
+        "currency": funding_currency or "INR",
+        "funding_minimum": int(funding_minimum) if funding_minimum else funding["funding_minimum"],
+        "funding_maximum": int(funding_maximum) if funding_maximum else funding["funding_maximum"],
+        "funding_amount_status": funding_status,
+        "funding_amount_optional": row.get("funding_amount_optional", "1").strip() not in {"0", "false", "no"},
+        "funding_evidence": funding_mentions,
         "objectives": _split(row.get("description", "")),
         "eligibility": _split(row.get("eligibility", "")),
         "benefits": _split(row.get("benefit_summary", "")),

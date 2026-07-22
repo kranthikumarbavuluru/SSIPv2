@@ -27,6 +27,14 @@ def _safe_asset_path(relative_path: str) -> Path | None:
     return candidate
 
 
+def _optional_amount(value: object) -> int | None:
+    try:
+        amount = int(str(value or "").replace(",", "").strip())
+    except (TypeError, ValueError):
+        return None
+    return amount if amount > 0 else None
+
+
 def main() -> None:
     st.set_page_config(page_title="SSIP Media Review", layout="wide")
     st.title("Media review workspace")
@@ -65,13 +73,47 @@ def main() -> None:
         department = st.text_input("Department", value=str(effective.get("department", "Others / Unmapped")))
         kind = st.selectbox("Record kind", ["SCHEME", "APPLICATION_CALL", "CHALLENGE", "OTHER"], index=["SCHEME", "APPLICATION_CALL", "CHALLENGE", "OTHER"].index(str(effective.get("record_kind", "OTHER"))) if str(effective.get("record_kind", "OTHER")) in {"SCHEME", "APPLICATION_CALL", "CHALLENGE", "OTHER"} else 3)
         official_url = st.text_input("Official URL", value=str(effective.get("official_page_url", "") or ((effective.get("official_links") or [""])[0])))
+        funding_minimum = st.number_input(
+            "Funding minimum (optional)",
+            min_value=0,
+            value=int(effective.get("funding_minimum") or 0),
+            step=100_000,
+            help="Leave at 0 when the flyer does not state a lower bound.",
+        )
+        funding_maximum = st.number_input(
+            "Funding maximum (optional)",
+            min_value=0,
+            value=int(effective.get("funding_maximum") or 0),
+            step=100_000,
+            help="Leave at 0 when the flyer does not state an upper bound.",
+        )
+        funding_currency = st.text_input("Funding currency (optional)", value=str(effective.get("funding_currency", "INR") or "INR"))
+        st.caption(
+            "Funding evidence status: "
+            + str(effective.get("funding_amount_status", "NOT_STATED"))
+            + "; blank bounds are allowed when the source does not state an amount."
+        )
         notes = st.text_area("Review notes", value=str(effective.get("decision_notes", "")))
         with st.form("media_review_actions"):
             correction = st.form_submit_button("Save correction")
             approve = st.form_submit_button("Approve for publication")
             reject = st.form_submit_button("Reject")
         if correction or approve or reject:
-            changes = {"canonical_name": name, "department": department, "record_kind": kind, "official_page_url": official_url}
+            changes = {
+                "canonical_name": name,
+                "department": department,
+                "record_kind": kind,
+                "official_page_url": official_url,
+                "funding_minimum": _optional_amount(funding_minimum),
+                "funding_maximum": _optional_amount(funding_maximum),
+                "funding_currency": funding_currency.strip() or "INR",
+                "funding_amount_optional": True,
+                "funding_amount_status": (
+                    "REVIEW_CORRECTED"
+                    if _optional_amount(funding_minimum) is not None or _optional_amount(funding_maximum) is not None
+                    else str(effective.get("funding_amount_status", "NOT_STATED"))
+                ),
+            }
             store.record_correction(selected_id, changes, reviewer, notes)
             if approve:
                 store.record_decision(selected_id, "APPROVE", reviewer, notes)

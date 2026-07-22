@@ -50,6 +50,28 @@ class MediaEntityTests(unittest.TestCase):
         self.assertEqual(candidate["department"], "Others / Unmapped")
         self.assertIn("DEPARTMENT_UNMAPPED", candidate["warnings"])
 
+    def test_funding_fields_are_carried_into_entity_candidate(self) -> None:
+        candidate = build_entity_candidate({
+            "asset_id": "asset-funding",
+            "relative_path": "media/inbox/2026-07-22/funding.jpg",
+            "source_sha256": "ghi",
+            "raw_text": "DST grant support up to INR 10 lakh",
+            "links": [],
+            "qr_values": [],
+            "language": "en",
+            "warnings": [],
+            "evidence_ids": [],
+            "funding_minimum": None,
+            "funding_maximum": 1_000_000,
+            "funding_currency": "INR",
+            "funding_amount_status": "RECORDED",
+            "funding_amount_optional": True,
+            "funding_mentions": [{"mention": "INR 10 lakh", "value": 1_000_000}],
+        })
+        self.assertIsNone(candidate["funding_minimum"])
+        self.assertEqual(candidate["funding_maximum"], 1_000_000)
+        self.assertTrue(candidate["funding_amount_optional"])
+
 
 if __name__ == "__main__":
     unittest.main()

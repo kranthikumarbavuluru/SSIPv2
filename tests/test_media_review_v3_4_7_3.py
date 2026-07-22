@@ -28,6 +28,12 @@ def _candidate() -> dict[str, object]:
         "warnings": [],
         "evidence_ids": ["evidence-1"],
         "review_status": "REVIEW_REQUIRED",
+        "funding_minimum": None,
+        "funding_maximum": 1_000_000,
+        "funding_currency": "INR",
+        "funding_amount_status": "RECORDED",
+        "funding_amount_optional": True,
+        "funding_mentions": [{"mention": "INR 10 lakh", "value": 1_000_000}],
     }
 
 
@@ -65,7 +71,10 @@ class MediaReviewTests(unittest.TestCase):
             self.assertEqual(manifest.exists(), True)
             self.assertEqual(inventory.exists(), True)
             with inventory.open(encoding="utf-8", newline="") as handle:
-                self.assertEqual(len(list(csv.DictReader(handle))), 1)
+                rows = list(csv.DictReader(handle))
+                self.assertEqual(len(rows), 1)
+                self.assertEqual(rows[0]["funding_maximum"], "1000000")
+                self.assertEqual(rows[0]["funding_amount_optional"], "1")
 
     def test_workspace_is_read_only_projection_of_candidates(self) -> None:
         with tempfile.TemporaryDirectory(prefix="ssip-media-workspace-") as temporary:

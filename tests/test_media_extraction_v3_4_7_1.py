@@ -9,6 +9,7 @@ from ssip_agents.media.extraction_v3_4_7_1 import (
     detect_language,
     extract_links,
     extract_media_batch,
+    parse_funding_amounts,
 )
 from ssip_agents.media.intake_v3_4_7_0 import scan_media_batch
 
@@ -25,6 +26,19 @@ class MediaExtractionTests(unittest.TestCase):
     def test_link_extraction_deduplicates_and_trims_punctuation(self) -> None:
         links = extract_links("See https://example.gov.in/call. and https://example.gov.in/call", ["https://pdf.gov.in/form"])
         self.assertEqual(links, ["https://example.gov.in/call", "https://pdf.gov.in/form"])
+
+    def test_funding_amounts_keep_nullable_bounds_and_optional_flag(self) -> None:
+        recorded = parse_funding_amounts("Grant support up to INR 10 lakh")
+        self.assertIsNone(recorded["funding_minimum"])
+        self.assertEqual(recorded["funding_maximum"], 1_000_000)
+        self.assertEqual(recorded["funding_currency"], "INR")
+        self.assertTrue(recorded["funding_amount_optional"])
+        ranged = parse_funding_amounts("Funding support ₹5 lakh to ₹10 lakh")
+        self.assertEqual(ranged["funding_minimum"], 500_000)
+        self.assertEqual(ranged["funding_maximum"], 1_000_000)
+        eligibility_cap = parse_funding_amounts("Grant support up to INR 10 lakh; turnover not above INR 25 lakh")
+        self.assertIsNone(eligibility_cap["funding_minimum"])
+        self.assertEqual(eligibility_cap["funding_maximum"], 1_000_000)
 
     def test_batch_writes_extraction_and_field_evidence_without_db(self) -> None:
         with tempfile.TemporaryDirectory(prefix="ssip-media-extract-") as temporary:

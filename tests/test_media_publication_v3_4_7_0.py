@@ -31,6 +31,11 @@ class MediaPublicationTests(unittest.TestCase):
         rtih = next(record for record in bundle.records if record["scheme_name"].startswith("RTIH"))
         self.assertIn("ITE&C", rtih["department"])
         self.assertEqual({record["application_status"] for record in bundle.records}, {"OPEN"})
+        ignition = next(record for record in bundle.records if "Ignition" in record["scheme_name"])
+        self.assertIsNone(ignition["funding_minimum"])
+        self.assertEqual(ignition["funding_maximum"], 1_000_000)
+        self.assertEqual(ignition["funding_amount_status"], "RECORDED")
+        self.assertTrue(ignition["funding_amount_optional"])
 
     def test_catalogue_and_call_population_include_media_records(self) -> None:
         catalogue = load_catalogue(DashboardConfig.from_env(PROJECT_ROOT))

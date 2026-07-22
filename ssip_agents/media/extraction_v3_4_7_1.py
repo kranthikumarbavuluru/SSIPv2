@@ -24,6 +24,22 @@ MEDIA_EXTRACTION_SCHEMA_VERSION = "3.4.7.1"
 EXTRACTION_REVISION = "media-extractor-qr-barcode-v1"
 _URL_RE = re.compile(r"https?://[^\s<>()\[\]{}\"']+", re.IGNORECASE)
 _TRAILING_URL_CHARS = ".,;:!?)]}>'\""
+_AMOUNT_RE = re.compile(
+    r"(?P<currency>₹|rs\.?|inr|usd|\$)?\s*"
+    r"(?P<number>\d[\d,]*(?:\.\d+)?)\s*"
+    r"(?P<unit>crore|cr|lakh|lac|million|mn|thousand|k)?",
+    re.IGNORECASE,
+)
+_UNIT_MULTIPLIER = {
+    "crore": 10_000_000,
+    "cr": 10_000_000,
+    "lakh": 100_000,
+    "lac": 100_000,
+    "million": 1_000_000,
+    "mn": 1_000_000,
+    "thousand": 1_000,
+    "k": 1_000,
+}
 
 
 @dataclass(frozen=True, slots=True)
@@ -226,6 +242,102 @@ def extract_links(text: str, embedded_links: Iterable[str] = ()) -> list[str]:
     return values
 
 
+def parse_funding_amounts(text: str) -> dict[str, Any]:
+    """Parse explicit money mentions into nullable min/max fields.
+
+    Values are accepted only when a currency marker or scale unit is present,
+    which prevents dates and phone numbers from being mistaken for funding.
+    A single unqualified amount is retained as a recorded amount with a
+    maximum interpretation only when the surrounding text says ``up to`` or
+    ``maximum``.  Missing fields remain ``None``.
+    """
+
+    source = " ".join(str(text or "").split())
+    matches: list[dict[str, Any]] = []
+    for match in _AMOUNT_RE.finditer(source):
+        currency = str(match.group("currency") or "").casefold()
+        unit = str(match.group("unit") or "").casefold()
+        if not currency and not unit:
+            continue
+        try:
+            number = float(match.group("number").replace(",", ""))
+        except ValueError:
+            continue
+        value = int(round(number * _UNIT_MULTIPLIER.get(unit, 1)))
+        if value <= 0:
+            continue
+        start = max(0, match.start() - 32)
+        prefix = source[start : match.start()].casefold()
+        if any(
+            token in prefix
+            for token in (
+                "turnover",
+                "revenue",
+                "annual sales",
+                "salary",
+                "stipend",
+                "application fee",
+                "registration fee",
+                "valuation",
+            )
+        ):
+            continue
+        context = source[start : match.end() + 20].casefold()
+        matches.append({
+            "value": value,
+            "currency": "INR" if currency in {"₹", "rs", "rs.", "inr", ""} else currency.upper(),
+            "mention": match.group(0).strip(),
+            "context": context,
+            "start": match.start(),
+        })
+    if not matches:
+        return {
+            "funding_minimum": None,
+            "funding_maximum": None,
+            "funding_currency": "",
+            "funding_amount_status": "NOT_STATED",
+            "funding_amount_optional": True,
+            "funding_mentions": [],
+        }
+    minimum: int | None = None
+    maximum: int | None = None
+    range_values: list[int] = []
+    for left, right in zip(matches, matches[1:]):
+        between = source[left["start"] + len(left["mention"]) : right["start"]].casefold()
+        range_tail = between[-32:]
+        if re.search(r"(?<!up )\bto\b|[-–—]\s*$", range_tail):
+            range_values.extend((left["value"], right["value"]))
+    for index, item in enumerate(matches):
+        context = item["context"]
+        before = source[max(0, item["start"] - 28) : item["start"]].casefold()
+        if any(token in context for token in ("up to", "upto", "maximum", "max ")):
+            maximum = max(maximum or 0, item["value"])
+        elif any(token in before for token in ("from ", "minimum", "min ")):
+            minimum = min(minimum or item["value"], item["value"])
+        elif index == 0 and len(matches) == 1:
+            # A standalone marked amount is a recorded amount, not a made-up
+            # lower bound. Treating it as maximum keeps the dashboard useful.
+            maximum = item["value"]
+    if range_values:
+        minimum = min(range_values)
+        maximum = max(range_values)
+    if minimum is None and maximum is not None and len(matches) > 1:
+        lower_values = [item["value"] for item in matches if item["value"] != maximum]
+        minimum = min(lower_values) if lower_values else None
+    currency = next((item["currency"] for item in matches if item["currency"]), "INR")
+    return {
+        "funding_minimum": minimum,
+        "funding_maximum": maximum,
+        "funding_currency": currency,
+        "funding_amount_status": "RECORDED",
+        "funding_amount_optional": True,
+        "funding_mentions": [
+            {"mention": item["mention"], "value": item["value"], "currency": item["currency"], "context": item["context"]}
+            for item in matches
+        ],
+    }
+
+
 def _evidence_id(asset_id: str, field_name: str, value: str, index: int = 0) -> str:
     seed = f"{asset_id}:{field_name}:{index}:{value}".encode("utf-8")
     return f"evidence-{hashlib.sha256(seed).hexdigest()[:20]}"
@@ -260,6 +372,7 @@ def extract_media_asset(
             warnings.append(ocr_status)
 
     language, language_confidence = detect_language(text)
+    funding = parse_funding_amounts(text)
     links = extract_links(text, embedded_links)
     qr_values: list[str] = []
     qr_status = "QR_NOT_APPLICABLE"
@@ -300,6 +413,19 @@ def extract_media_asset(
                 source_kind="EMBEDDED_LINK" if link in embedded_links else "PRINTED_LINK",
                 confidence=0.98 if link in embedded_links else 0.82,
                 locator="document-link",
+            ).to_dict()
+        )
+    for index, mention in enumerate(funding["funding_mentions"]):
+        evidence.append(
+            FieldEvidence(
+                evidence_id=_evidence_id(asset_id, "funding_amount", str(mention["mention"]), index),
+                asset_id=asset_id,
+                field_name="funding_amount",
+                value=str(mention["value"]),
+                source_kind="OCR" if suffix != ".pdf" else "PDF_TEXT",
+                confidence=0.84,
+                locator="funding-context",
+                excerpt=str(mention["context"]),
             ).to_dict()
         )
     for index, qr_value in enumerate(qr_values):
@@ -345,6 +471,12 @@ def extract_media_asset(
         "raw_text": text,
         "language": language,
         "language_confidence": language_confidence,
+        "funding_minimum": funding["funding_minimum"],
+        "funding_maximum": funding["funding_maximum"],
+        "funding_currency": funding["funding_currency"],
+        "funding_amount_status": funding["funding_amount_status"],
+        "funding_amount_optional": funding["funding_amount_optional"],
+        "funding_mentions": funding["funding_mentions"],
         "qr_status": qr_status,
         "qr_values": list(dict.fromkeys(qr_values)),
         "barcode_status": barcode_status,
@@ -401,6 +533,7 @@ def extract_media_batch(project_root: Path, ingest_date: str | date | None = Non
         "evidence_count": len(evidence),
         "qr_decoded_count": sum(bool(row.get("qr_values")) for row in extracted),
         "barcode_decoded_count": sum(bool(row.get("barcodes")) for row in extracted),
+        "funding_recorded_count": sum(row.get("funding_amount_status") == "RECORDED" for row in extracted),
         "link_count": sum(len(row.get("links", [])) for row in extracted),
         "warning_count": warning_count,
         "ocr_engine": "optional:pytesseract",

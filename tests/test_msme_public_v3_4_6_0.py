@@ -91,6 +91,7 @@ class MSMEPublicProjectionTests(unittest.TestCase):
     def test_official_host_matching_does_not_accept_lookalikes(self) -> None:
         self.assertTrue(is_official_msme_url("https://www.nsic.co.in/Schemes/Test"))
         self.assertTrue(is_official_msme_url("https://champions.gov.in/test"))
+        self.assertTrue(is_official_msme_url("https://my.msme.gov.in/MyMsmeMob/MsmeScheme/MSME_Scheme.htm"))
         self.assertFalse(is_official_msme_url("https://nsic.co.in.example.com/test"))
         self.assertFalse(is_official_msme_url("javascript:alert(1)"))
 
@@ -118,10 +119,11 @@ class MSMEPublicProjectionTests(unittest.TestCase):
         self.assertEqual(bundle.excluded_count, 16)
         self.assertEqual(
             len(bundle.public_records) + len(bundle.documents) + bundle.excluded_count,
-            84,
+            100,
         )
         self.assertEqual(bundle.latest_verification_date, "2026-07-22")
         self.assertEqual(sum(item.source == "AP MSME ONE" for item in bundle.permanent_records), 31)
+        self.assertEqual(sum(item.source == "MyMSME Portal" for item in bundle.permanent_records), 16)
 
 
 class MSMEDashboardSafetyTests(unittest.TestCase):

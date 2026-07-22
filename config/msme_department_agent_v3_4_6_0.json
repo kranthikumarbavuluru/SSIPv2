@@ -15,6 +15,7 @@
       "application_rule": "Only a separately linked HTTPS official portal is retained; an Apply link is not proof of an open call."
     },
     {"source_id":"msme_ministry_schemes","organisation":"Ministry of MSME","domain":"msme.gov.in","index_url":"https://www.msme.gov.in/offerings?page=1","scope":"Union MSME offering directory; monitored separately from AP state records"},
+    {"source_id":"my_msme_mobile_directory","organisation":"Ministry of MSME / MyMSME portal","domain":"my.msme.gov.in","index_url":"https://my.msme.gov.in/MyMsmeMob/MsmeScheme/MSME_Scheme.htm","scope":"Union SME Division, DC-MSME, NSIC and ARI detail-page directory; overlapping identities are reconciled before publication"},
     {"source_id":"msme_dc","organisation":"Office of the Development Commissioner (MSME)","domain":"dcmsme.gov.in","index_url":"https://dcmsme.gov.in/","scope":"Scheme guidelines and implementation evidence"},
     {"source_id":"msme_champions","organisation":"MSME Champions","domain":"champions.gov.in","index_url":"https://champions.gov.in/","scope":"MSME support and problem-solving evidence"},
     {"source_id":"nsic","organisation":"National Small Industries Corporation","domain":"nsic.co.in","index_url":"https://www.nsic.co.in/","scope":"NSIC services and scheme evidence"},

@@ -20,6 +20,9 @@ from urllib.parse import urlsplit
 PUBLICATION_DIR = Path("data/departments/msme/v3_4_6_0")
 MANIFEST_NAME = "active_publication_manifest_v3_4_6_0.json"
 AP_HOST = "apmsmeone.ap.gov.in"
+MYMSME_PUBLICATION_DIR = PUBLICATION_DIR / "mymsme"
+MYMSME_MANIFEST_NAME = "active_publication_manifest_v3_4_6_0.json"
+MYMSME_HOST = "my.msme.gov.in"
 
 
 class MSMESupplementError(RuntimeError):
@@ -33,12 +36,23 @@ class MSMESupplement:
 
 
 def is_official_ap_url(value: str) -> bool:
+    return _is_official_source_url(value, (AP_HOST,))
+
+
+def is_official_mymsme_url(value: str) -> bool:
+    return _is_official_source_url(value, (MYMSME_HOST,))
+
+
+def _is_official_source_url(value: str, allowed_hosts: tuple[str, ...]) -> bool:
     try:
         parsed = urlsplit(str(value or "").strip())
     except ValueError:
         return False
     host = (parsed.hostname or "").casefold().strip(".")
-    return parsed.scheme == "https" and (host == AP_HOST or host.endswith("." + AP_HOST))
+    return parsed.scheme == "https" and any(
+        host == allowed or host.endswith("." + allowed)
+        for allowed in allowed_hosts
+    )
 
 
 def _official_url(value: str) -> bool:
@@ -54,10 +68,16 @@ def _split(value: str) -> list[str]:
     return [item.strip() for item in str(value or "").split("|") if item.strip()]
 
 
-def _record_from_row(row: dict[str, str]) -> dict[str, Any]:
+def _record_from_row(
+    row: dict[str, str],
+    *,
+    allowed_hosts: tuple[str, ...],
+    default_source: str,
+    default_geographic_scope: str,
+) -> dict[str, Any]:
     source_url = row.get("official_page_url", "").strip()
-    if not is_official_ap_url(source_url):
-        raise MSMESupplementError(f"Unsafe AP MSME source URL: {source_url}")
+    if not _is_official_source_url(source_url, allowed_hosts):
+        raise MSMESupplementError(f"Unsafe MSME source URL: {source_url}")
     if row.get("publication_decision", "").strip() != "AUTO_APPROVED":
         raise MSMESupplementError(f"Non-approved record present in active bundle: {row.get('master_id', '')}")
     application_url = row.get("application_url", "").strip()
@@ -66,7 +86,7 @@ def _record_from_row(row: dict[str, str]) -> dict[str, Any]:
     return {
         "master_id": row["master_id"].strip(),
         "scheme_name": row["canonical_name"].strip(),
-        "source": row.get("source", "AP MSME ONE").strip(),
+        "source": row.get("source", default_source).strip(),
         "ministry": row.get("ministry", "").strip(),
         "department": row.get("department", "").strip(),
         "implementing_agency": row.get("implementing_agency", "").strip(),
@@ -80,7 +100,7 @@ def _record_from_row(row: dict[str, str]) -> dict[str, Any]:
         "record_kind": row.get("record_kind", "SCHEME").strip(),
         "programme_status": row.get("programme_status", "ACTIVE_INFORMATION_AVAILABLE").strip(),
         "application_status": "STATUS_UNVERIFIED",
-        "geographic_scope": row.get("geographic_scope", "Andhra Pradesh directory; scheme scope as stated by official source").strip(),
+        "geographic_scope": row.get("geographic_scope", default_geographic_scope).strip(),
         "catalogue_inclusion": "INCLUDED",
         "catalogue_section": "SCHEMES_AND_PROGRAMMES",
         "publication_status": "PUBLISHED",
@@ -116,9 +136,17 @@ def _record_from_row(row: dict[str, str]) -> dict[str, Any]:
     }
 
 
-def load_active_msme_supplement(project_root: Path) -> MSMESupplement:
-    directory = (project_root / PUBLICATION_DIR).resolve()
-    manifest_path = directory / MANIFEST_NAME
+def _load_active_bundle(
+    project_root: Path,
+    relative_directory: Path,
+    manifest_name: str,
+    *,
+    allowed_hosts: tuple[str, ...],
+    default_source: str,
+    default_geographic_scope: str,
+) -> MSMESupplement:
+    directory = (project_root / relative_directory).resolve()
+    manifest_path = directory / manifest_name
     if not manifest_path.exists():
         return MSMESupplement(records=(), manifest={"status": "NOT_CONFIGURED"})
 
@@ -142,7 +170,15 @@ def load_active_msme_supplement(project_root: Path) -> MSMESupplement:
         raise MSMESupplementError("Active MSME inventory hash does not match its manifest.")
 
     rows = list(csv.DictReader(payload.decode("utf-8-sig").splitlines()))
-    records = tuple(_record_from_row(row) for row in rows)
+    records = tuple(
+        _record_from_row(
+            row,
+            allowed_hosts=allowed_hosts,
+            default_source=default_source,
+            default_geographic_scope=default_geographic_scope,
+        )
+        for row in rows
+    )
     master_ids = [record["master_id"] for record in records]
     urls = [record["official_page_url"].casefold().rstrip("/") for record in records]
     if not master_ids or not all(master_ids) or len(master_ids) != len(set(master_ids)):
@@ -152,3 +188,25 @@ def load_active_msme_supplement(project_root: Path) -> MSMESupplement:
     if len(records) != int(manifest.get("record_count", -1)):
         raise MSMESupplementError("Active MSME record count does not match its manifest.")
     return MSMESupplement(records=records, manifest=manifest)
+
+
+def load_active_msme_supplement(project_root: Path) -> MSMESupplement:
+    return _load_active_bundle(
+        project_root,
+        PUBLICATION_DIR,
+        MANIFEST_NAME,
+        allowed_hosts=(AP_HOST,),
+        default_source="AP MSME ONE",
+        default_geographic_scope="Andhra Pradesh directory; scheme scope as stated by official source",
+    )
+
+
+def load_active_mymsme_supplement(project_root: Path) -> MSMESupplement:
+    return _load_active_bundle(
+        project_root,
+        MYMSME_PUBLICATION_DIR,
+        MYMSME_MANIFEST_NAME,
+        allowed_hosts=(MYMSME_HOST,),
+        default_source="MyMSME Portal",
+        default_geographic_scope="India; scheme scope as stated by official MyMSME source",
+    )

@@ -11,7 +11,7 @@ import pandas as pd
 
 from .config import CatalogueMode, DashboardConfig
 from .data_access import read_dashboard_tables, read_normalization_plan
-from .msme_supplement import load_active_msme_supplement
+from .msme_supplement import load_active_msme_supplement, load_active_mymsme_supplement
 
 
 URL_RE = re.compile(r"https?://[^\s\"'<>\]\)]+", re.IGNORECASE)
@@ -711,9 +711,10 @@ def load_catalogue(config: DashboardConfig) -> CatalogueBundle:
             included_ids.add(master_id)
 
     msme_supplement = load_active_msme_supplement(config.project_root)
+    mymsme_supplement = load_active_mymsme_supplement(config.project_root)
     existing_ids = {record.master_id for record in records}
     supplemental_count = 0
-    for payload in msme_supplement.records:
+    for payload in (*msme_supplement.records, *mymsme_supplement.records):
         master_id = str(payload.get("master_id", ""))
         if master_id in existing_ids:
             continue
@@ -736,5 +737,7 @@ def load_catalogue(config: DashboardConfig) -> CatalogueBundle:
         "published_merged_count": published_merged_count,
         "msme_supplement_count": supplemental_count,
         "msme_supplement_run_id": msme_supplement.manifest.get("run_id", ""),
+        "msme_mymsme_supplement_count": len(mymsme_supplement.records),
+        "msme_mymsme_supplement_run_id": mymsme_supplement.manifest.get("run_id", ""),
     }
     return CatalogueBundle(records=records, mode=config.mode, metadata=metadata)

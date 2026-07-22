@@ -3,7 +3,7 @@ from __future__ import annotations
 import unittest
 from pathlib import Path
 
-from ssip_dashboard.msme_supplement import load_active_msme_supplement
+from ssip_dashboard.msme_supplement import load_active_msme_supplement, load_active_mymsme_supplement
 from scripts.run_msme_agent_v3_4_6_0 import status
 
 
@@ -30,6 +30,14 @@ class MSMEAgentBundleTests(unittest.TestCase):
         report = status()
         self.assertEqual(report["active"]["activation_status"], "ACTIVE")
         self.assertEqual(report["active"]["record_count"], 31)
+
+    def test_mymsme_bundle_contains_verified_additional_records(self) -> None:
+        bundle = load_active_mymsme_supplement(ROOT)
+        self.assertEqual(bundle.manifest["activation_status"], "ACTIVE")
+        self.assertEqual(len(bundle.records), 16)
+        self.assertEqual(len({row["master_id"] for row in bundle.records}), 16)
+        self.assertTrue(all(row["official_page_url"].startswith("https://my.msme.gov.in/") for row in bundle.records))
+        self.assertTrue(all(row["application_status"] == "STATUS_UNVERIFIED" for row in bundle.records))
 
 
 if __name__ == "__main__":

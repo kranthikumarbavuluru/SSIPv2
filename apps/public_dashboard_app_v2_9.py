@@ -3336,6 +3336,8 @@ def render_msme_page(bundle: CatalogueBundle) -> None:
     current = list(msme.current_calls)
     historical = list(msme.historical_records)
     public_records = [*permanent, *current, *historical]
+    ap_msme_count = sum(row.source == "AP MSME ONE" for row in public_records)
+    mymsme_count = sum(row.source == "MyMSME Portal" for row in public_records)
 
     st.markdown(
         page_intro(
@@ -3363,7 +3365,7 @@ def render_msme_page(bundle: CatalogueBundle) -> None:
         '<div class="archive-governance">'
         '<strong>Governed MSME ownership & page roles</strong>'
         '<span>Central and Andhra Pradesh ownership are retained separately; AP MSME ONE records are sourced from dedicated official detail pages. '
-        f'{sum(row.source == "AP MSME ONE" for row in public_records)} AP MSME ONE records are included. {len(msme.documents)} supporting documents are available under Resources; {msme.excluded_count} generic index or unverified call-like records are excluded from public counts.</span></div>',
+        f'{ap_msme_count} AP MSME ONE records and {mymsme_count} MyMSME Portal records are included. {len(msme.documents)} supporting documents are available under Resources; {msme.excluded_count} generic index or unverified call-like records are excluded from public counts.</span></div>',
         unsafe_allow_html=True,
     )
 

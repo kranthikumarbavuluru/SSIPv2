@@ -50,10 +50,34 @@ def main() -> None:
     if not candidates:
         st.info("No extracted candidates are available for this date. Run intake, extraction and entity mapping first.")
         return
-    st.metric("Candidates", workspace.candidate_count)
+    decisions = store.decisions()
+    approved_count = sum(row.get("decision") == "APPROVE" for row in decisions.values())
+    rejected_count = sum(row.get("decision") == "REJECT" for row in decisions.values())
+    metric_columns = st.columns(3)
+    metric_columns[0].metric("Candidates", workspace.candidate_count)
+    metric_columns[1].metric("Approved", approved_count)
+    metric_columns[2].metric("Rejected", rejected_count)
     selected_id = st.selectbox("Candidate", [str(row.get("candidate_id", "")) for row in candidates])
     candidate = next(row for row in candidates if row.get("candidate_id") == selected_id)
     effective = store.effective_candidate(candidate)
+    decision = decisions.get(selected_id)
+    if decision:
+        normalized_decision = str(decision.get("decision", "")).upper()
+        reviewer_name = str(decision.get("reviewer", "reviewer"))
+        recorded_at = str(decision.get("recorded_at", ""))
+        acknowledgement = (
+            f"{normalized_decision.title()} decision recorded by {reviewer_name}"
+            + (f" at {recorded_at}." if recorded_at else ".")
+        )
+        if normalized_decision == "APPROVE":
+            st.success(
+                acknowledgement
+                + " This review approval is acknowledged; public publication remains a separate governed projection."
+            )
+        elif normalized_decision == "REJECT":
+            st.error(acknowledgement)
+        else:
+            st.info(acknowledgement)
     left, right = st.columns([1, 1.25])
     with left:
         st.subheader("Source asset")

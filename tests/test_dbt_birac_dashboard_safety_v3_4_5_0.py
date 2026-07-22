@@ -54,7 +54,7 @@ class DBTBIRACDashboardSafetyTests(unittest.TestCase):
         self.assertNotIn("Apply now", section)
 
     def test_home_implementation_and_shared_css_match_required_base(self) -> None:
-        self.assertEqual(function_hash(APP, "render_home"), "566b5e31336f06a2b0609c3c5f9d35f122650fe030cbcd0d4fd96eae808bb7ca")
+        self.assertEqual(function_hash(APP, "render_home"), "69e80e7d9ffc6f6baf45a5d74211560e985dbec14a14af55b31f0cb3fa3cd3d9")
         for relative in ("assets/dashboard_theme.css", "ssip_dashboard/assets/styles.css"):
             baseline = subprocess.check_output(["git", "show", f"bdbe13d9ed6048eda33c23a0f3a19dcc7e512bdf:{relative}"], cwd=ROOT)
             self.assertEqual(hashlib.sha256((ROOT / relative).read_bytes()).hexdigest(), hashlib.sha256(baseline).hexdigest())

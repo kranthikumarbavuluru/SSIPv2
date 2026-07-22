@@ -2,7 +2,8 @@ from __future__ import annotations
 
 from collections import Counter
 from dataclasses import dataclass
-from typing import Any
+from datetime import date
+from typing import Any, Iterable
 
 from .catalogue_populations import (
     primary_sector,
@@ -61,19 +62,32 @@ def _department_label(record: Any) -> str:
     )
 
 
-def _latest_signal(records: list[Any]) -> str:
+def _verified_date(value: Any) -> str:
+    candidate = str(value or "").strip()[:10]
+    try:
+        return date.fromisoformat(candidate).isoformat()
+    except ValueError:
+        return ""
+
+
+def _latest_signal(
+    records: list[Any],
+    additional_verification_dates: Iterable[str] = (),
+) -> str:
     values = [
         _text(record, "last_verified_at") or _text(record, "last_updated")
         for record in records
     ]
-    values = [value for value in values if value]
-    return max(values)[:10] if values else "Not available"
+    values.extend(str(value or "").strip() for value in additional_verification_dates)
+    verified_dates = [parsed for value in values if (parsed := _verified_date(value))]
+    return max(verified_dates) if verified_dates else "Not available"
 
 
 def build_public_analytics(
     records: list[Any],
     *,
     government_lookup: dict[str, str] | None = None,
+    additional_verification_dates: Iterable[str] = (),
 ) -> PublicAnalyticsSnapshot:
     populations = split_catalogue_populations(records)
     schemes = populations.main_scheme_records
@@ -115,5 +129,8 @@ def build_public_analytics(
         structured_sectors=sectors,
         structured_support_types=support_types,
         readiness=readiness,
-        latest_verification_signal=_latest_signal([*schemes, *calls]),
+        latest_verification_signal=_latest_signal(
+            [*schemes, *calls],
+            additional_verification_dates,
+        ),
     )

@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import csv
 import html
+import logging
 import re
 
 from copy import copy
@@ -95,6 +96,7 @@ from ssip_dashboard.dbt_birac_preview import (
 )
 
 APP_VERSION = "3.4.5.0-dbt-birac-governed-public"
+LOGGER = logging.getLogger(__name__)
 PAGE_NAMES = [
     "Home",
     "Scheme Explorer",
@@ -859,6 +861,19 @@ def navigate_to(page_name: str) -> None:
     st.query_params["page"] = PAGE_SLUGS[page_name]
 
 
+def public_department_verification_dates() -> tuple[str, ...]:
+    """Return governed record dates from public packages outside the main catalogue."""
+    dates: list[str] = []
+    for loader in (cached_dpiit_preview, cached_dbt_birac_preview):
+        try:
+            package = loader()
+        except (OSError, ValueError) as exc:
+            LOGGER.warning("Public department package unavailable for Home verification: %s", exc)
+            continue
+        dates.extend(record.last_verified_date for record in package.records)
+    return tuple(dates)
+
+
 def render_home(bundle: CatalogueBundle, official_sources: list[OfficialSource]) -> None:
     populations = split_catalogue_populations(bundle.records)
     records = populations.main_scheme_records
@@ -866,7 +881,11 @@ def render_home(bundle: CatalogueBundle, official_sources: list[OfficialSource])
     metrics = compute_metrics(bundle.records)
     source_stats = source_summary(official_sources)
     lookup = source_scope_lookup(official_sources)
-    analytics = build_public_analytics(bundle.records, government_lookup=lookup)
+    analytics = build_public_analytics(
+        bundle.records,
+        government_lookup=lookup,
+        additional_verification_dates=public_department_verification_dates(),
+    )
     sector_ready = next((item.complete for item in analytics.readiness if item.label == "Sector evidenced"), 0)
 
     st.markdown(

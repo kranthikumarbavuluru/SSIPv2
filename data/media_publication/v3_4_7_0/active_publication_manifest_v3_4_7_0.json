@@ -1,0 +1,18 @@
+{
+  "version": "3.4.7.0",
+  "activation_status": "ACTIVE",
+  "run_id": "media_publication_20260722",
+  "activated_at": "2026-07-22T17:00:00+05:30",
+  "inventory_file": "published_media_records_v3_4_7_0.csv",
+  "inventory_sha256": "acedc1eb6a0d4503994f9a0d5f5d3799dc7fa679c3a4743627b6ae6a73a0e4b7",
+  "record_count": 2,
+  "auto_approved_count": 2,
+  "exception_count": 0,
+  "publication_decision": "AUTO_APPROVED",
+  "source_assets": [
+    "media/inbox/2026-07-22/1784627858692.jpg",
+    "media/inbox/2026-07-22/1784713726299.jpg"
+  ],
+  "source_last_verified": "2026-07-22",
+  "notes": "Media-derived current calls published from visually reviewed flyers. Both records retain warnings because QR destinations and application routes require follow-up verification."
+}

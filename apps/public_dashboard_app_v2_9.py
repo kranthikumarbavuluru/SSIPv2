@@ -268,11 +268,17 @@ for stylesheet in load_stylesheets():
 
 
 def _msme_cache_token() -> str:
-    manifest = PROJECT_ROOT / "data/departments/msme/v3_4_6_0/active_publication_manifest_v3_4_6_0.json"
-    try:
-        return str(manifest.stat().st_mtime_ns)
-    except OSError:
-        return "missing"
+    manifests = (
+        PROJECT_ROOT / "data/departments/msme/v3_4_6_0/active_publication_manifest_v3_4_6_0.json",
+        PROJECT_ROOT / "data/media_publication/v3_4_7_0/active_publication_manifest_v3_4_7_0.json",
+    )
+    tokens: list[str] = []
+    for manifest in manifests:
+        try:
+            tokens.append(str(manifest.stat().st_mtime_ns))
+        except OSError:
+            tokens.append("missing")
+    return ":".join(tokens)
 
 
 @st.cache_data(ttl=45, show_spinner=False)

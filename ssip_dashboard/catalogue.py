@@ -12,6 +12,7 @@ import pandas as pd
 from .config import CatalogueMode, DashboardConfig
 from .data_access import read_dashboard_tables, read_normalization_plan
 from .msme_supplement import load_active_msme_supplement, load_active_mymsme_supplement
+from .media_supplement import load_active_media_publication
 
 
 URL_RE = re.compile(r"https?://[^\s\"'<>\]\)]+", re.IGNORECASE)
@@ -712,8 +713,10 @@ def load_catalogue(config: DashboardConfig) -> CatalogueBundle:
 
     msme_supplement = load_active_msme_supplement(config.project_root)
     mymsme_supplement = load_active_mymsme_supplement(config.project_root)
+    media_publication = load_active_media_publication(config.project_root)
     existing_ids = {record.master_id for record in records}
     supplemental_count = 0
+    media_supplement_count = 0
     for payload in (*msme_supplement.records, *mymsme_supplement.records):
         master_id = str(payload.get("master_id", ""))
         if master_id in existing_ids:
@@ -721,6 +724,13 @@ def load_catalogue(config: DashboardConfig) -> CatalogueBundle:
         records.append(CatalogueRecord(**payload))
         existing_ids.add(master_id)
         supplemental_count += 1
+    for payload in media_publication.records:
+        master_id = str(payload.get("master_id", ""))
+        if master_id in existing_ids:
+            continue
+        records.append(CatalogueRecord(**payload))
+        existing_ids.add(master_id)
+        media_supplement_count += 1
 
     records = sorted(records, key=lambda item: (item.catalogue_section, item.scheme_name))
     metadata = {
@@ -739,5 +749,7 @@ def load_catalogue(config: DashboardConfig) -> CatalogueBundle:
         "msme_supplement_run_id": msme_supplement.manifest.get("run_id", ""),
         "msme_mymsme_supplement_count": len(mymsme_supplement.records),
         "msme_mymsme_supplement_run_id": mymsme_supplement.manifest.get("run_id", ""),
+        "media_publication_count": media_supplement_count,
+        "media_publication_run_id": media_publication.manifest.get("run_id", ""),
     }
     return CatalogueBundle(records=records, mode=config.mode, metadata=metadata)

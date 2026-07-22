@@ -1,0 +1,20 @@
+{
+  "asset_count": 2,
+  "database_modified": false,
+  "duplicate_count": 0,
+  "generated_at": "2026-07-22T11:45:20.422036+00:00",
+  "hash_algorithm": "sha256",
+  "ingest_date": "2026-07-22",
+  "input_directory": "media/inbox/2026-07-22",
+  "manifest_path": "data/media_runs/2026-07-22/asset_manifest.jsonl",
+  "next_stage": "OCR, QR and visual extraction",
+  "read_error_count": 0,
+  "run_id": "media-20260722",
+  "schema_version": "3.4.7.0",
+  "status_counts": {
+    "READY_FOR_EXTRACTION": 2
+  },
+  "supported_asset_count": 2,
+  "unique_supported_asset_count": 2,
+  "unsupported_count": 0
+}

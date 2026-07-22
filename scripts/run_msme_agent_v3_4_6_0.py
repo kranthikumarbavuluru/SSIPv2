@@ -19,8 +19,12 @@ from pathlib import Path
 import re
 import shutil
 import sys
+import time
 from typing import Any, Iterator
 from urllib.parse import urlsplit
+from urllib.error import HTTPError, URLError
+from urllib.request import Request, urlopen
+from urllib.robotparser import RobotFileParser
 import uuid
 
 
@@ -30,11 +34,14 @@ if str(PROJECT_ROOT) not in sys.path:
 
 SOURCE_INDEX = "https://apmsmeone.ap.gov.in/schemes"
 AP_HOST = "apmsmeone.ap.gov.in"
+AP_ROBOTS_URL = "https://apmsmeone.ap.gov.in/robots.txt"
+USER_AGENT = "SSIP-Governed-MSME-Agent/3.4.6 (+official-public-directory-monitoring)"
 PUBLICATION_DIR = PROJECT_ROOT / "data/departments/msme/v3_4_6_0"
 RUNS_DIR = PUBLICATION_DIR / "runs"
 ACTIVE_MANIFEST = PUBLICATION_DIR / "active_publication_manifest_v3_4_6_0.json"
 LOCK_FILE = PUBLICATION_DIR / ".run.lock"
 VERSION = "3.4.6.0"
+CONFIG_PATH = PROJECT_ROOT / "config/msme_department_agent_v3_4_6_0.json"
 
 OFFICIAL_EXTERNAL_HOSTS = {
     "apmsmeone.ap.gov.in", "pmegp.msme.gov.in", "cgtmse.in", "www.cgtmse.in",
@@ -64,8 +71,59 @@ class AgentError(RuntimeError):
     pass
 
 
+def configured_source() -> dict[str, Any]:
+    try:
+        config = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        raise AgentError(f"Cannot read governed MSME source registry: {CONFIG_PATH}") from exc
+    source = next((item for item in config.get("official_sources", []) if item.get("source_id") == "ap_msme_one_schemes"), None)
+    if not source:
+        raise AgentError("Source ap_msme_one_schemes is missing from the governed source registry.")
+    if source.get("index_url") != SOURCE_INDEX or source.get("domain") != AP_HOST:
+        raise AgentError("Governed source registry does not match the AP MSME adapter allowlist.")
+    return source
+
+
 def utc_now() -> str:
     return datetime.now(timezone.utc).isoformat(timespec="seconds")
+
+
+def check_robots_policy(*, allow_unpublished_robots: bool = False) -> dict[str, Any]:
+    """Require a published robots policy unless an Admin explicitly overrides it."""
+    request = Request(AP_ROBOTS_URL, headers={"User-Agent": USER_AGENT})
+    state = "NOT_PUBLISHED"
+    detail = ""
+    parser: RobotFileParser | None = None
+    try:
+        with urlopen(request, timeout=20) as response:
+            payload = response.read().decode("utf-8", errors="replace")
+            parser = RobotFileParser()
+            parser.set_url(AP_ROBOTS_URL)
+            parser.parse(payload.splitlines())
+            state = "PUBLISHED"
+            detail = "robots.txt retrieved successfully."
+    except HTTPError as exc:
+        state = "NOT_PUBLISHED" if exc.code == 404 else "UNAVAILABLE"
+        detail = f"robots.txt returned HTTP {exc.code}."
+    except (OSError, URLError, TimeoutError) as exc:
+        state = "UNAVAILABLE"
+        detail = f"robots.txt could not be retrieved: {exc}"
+    if parser is not None and not parser.can_fetch(USER_AGENT, SOURCE_INDEX):
+        raise AgentError("robots.txt disallows the AP MSME scheme index.")
+    if state != "PUBLISHED" and not allow_unpublished_robots:
+        raise AgentError(
+            f"Crawl blocked by legal safety gate: {detail} "
+            "Re-run only after confirming the public-source policy with --allow-unpublished-robots."
+        )
+    return {
+        "robots_url": AP_ROBOTS_URL,
+        "robots_state": state,
+        "robots_detail": detail,
+        "user_agent": USER_AGENT,
+        "public_pages_only": True,
+        "no_authentication_or_form_submission": True,
+        "explicit_unpublished_robots_override": allow_unpublished_robots,
+    }
 
 
 def run_id() -> str:
@@ -267,9 +325,19 @@ def discover(max_pages: int = 50, *, verbose: bool = False) -> tuple[list[dict[s
     records: list[dict[str, Any]] = []
     with sync_playwright() as playwright:
         browser = playwright.chromium.launch(headless=True)
-        page = browser.new_page()
+        page = browser.new_page(user_agent=USER_AGENT)
+        last_request_at = 0.0
+
+        def legal_goto(url: str) -> None:
+            nonlocal last_request_at
+            remaining = 1.25 - (time.monotonic() - last_request_at)
+            if remaining > 0:
+                time.sleep(remaining)
+            page.goto(url, wait_until="domcontentloaded", timeout=60000)
+            last_request_at = time.monotonic()
+
         try:
-            page.goto(SOURCE_INDEX, wait_until="domcontentloaded", timeout=60000)
+            legal_goto(SOURCE_INDEX)
             page.locator("a[href^='/schemes/']").first.wait_for(timeout=30000)
             cards = page.locator("a[href^='/schemes/']").evaluate_all(
                 """nodes => nodes.map(node => {
@@ -286,7 +354,7 @@ def discover(max_pages: int = 50, *, verbose: bool = False) -> tuple[list[dict[s
                     continue
                 seen.add(href)
                 try:
-                    page.goto("https://apmsmeone.ap.gov.in" + href, wait_until="domcontentloaded", timeout=60000)
+                    legal_goto("https://apmsmeone.ap.gov.in" + href)
                     page.locator("main h1, h1").first.wait_for(timeout=30000)
                     record = _extract_detail(page, href, card, retrieved_at)
                     records.append(record)
@@ -317,12 +385,14 @@ def _write_evidence_outputs(run_dir: Path, records: list[dict[str, Any]], crawl:
             "source_id": "ap_msme_one_schemes",
             "organisation": "Andhra Pradesh MSME Development Corporation",
             "official_domain": AP_HOST,
+            "robots_url": AP_ROBOTS_URL,
             "source_role": "official state MSME scheme directory and detail evidence",
             "ownership_scope": "Andhra Pradesh directory; central and state records retained separately",
             "authoritative_pages": [SOURCE_INDEX, "https://apmsmeone.ap.gov.in/schemes/{scheme_code}"],
             "crawl_bounds": "scheme index plus linked detail pages; max-pages bounded by CLI",
             "monitoring_frequency": "daily for directory and status changes",
             "rate_limit": "one sequential page request at a time",
+            "legal_policy": crawl.get("legal_policy", {}),
             "last_successful_verification": crawl.get("retrieved_at", ""),
         }],
     }
@@ -486,28 +556,35 @@ def _main(argv: list[str] | None = None) -> int:
     parser.add_argument("--changed-only", action="store_true")
     parser.add_argument("--retry-failures", action="store_true")
     parser.add_argument("--no-publish", action="store_true")
+    parser.add_argument("--allow-unpublished-robots", action="store_true")
     parser.add_argument("--json-report", nargs="?", const="")
     parser.add_argument("--verbose", action="store_true")
     args = parser.parse_args(argv)
     if args.mode == "status":
-        result = status()
+        result = {**status(), "source_definition": configured_source()}
     elif args.mode == "rollback":
+        configured_source()
         result = _rollback(args.run_id)
     else:
+        configured_source()
         name = args.run_id or run_id()
         with _run_lock(name):
             run_dir = RUNS_DIR / name
             run_dir.mkdir(parents=True, exist_ok=args.resume)
             baseline = _baseline()
             if args.mode == "discover":
+                legal_policy = check_robots_policy(allow_unpublished_robots=args.allow_unpublished_robots)
                 records, crawl = discover(args.max_pages, verbose=args.verbose)
+                crawl["legal_policy"] = legal_policy
                 _write_evidence_outputs(run_dir, records, crawl, baseline)
                 result = {"run_id": name, "mode": "discover", "record_count": len(records), "crawl": crawl}
             else:
                 inventory = run_dir / "discovered_scheme_inventory.csv"
                 crawl_path = run_dir / "crawl_manifest.json"
                 if not inventory.exists() or not crawl_path.exists():
+                    legal_policy = check_robots_policy(allow_unpublished_robots=args.allow_unpublished_robots)
                     records, crawl = discover(args.max_pages, verbose=args.verbose)
+                    crawl["legal_policy"] = legal_policy
                     _write_evidence_outputs(run_dir, records, crawl, baseline)
                 else:
                     records = read_csv(inventory)

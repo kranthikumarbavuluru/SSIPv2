@@ -115,6 +115,7 @@ PAGE_NAMES = [
     "Incubators & Ecosystem",
     "Directory",
     "Official Sources",
+    "Media Runs",
     "Scheme Details",
 ]
 NAV_LABELS = {
@@ -129,6 +130,7 @@ NAV_LABELS = {
     "Incubators & Ecosystem": "Ecosystem",
     "Directory": "Resources",
     "Official Sources": "Sources",
+    "Media Runs": "Media runs",
     "Scheme Details": "Profiles",
 }
 PAGE_SLUGS = {
@@ -143,6 +145,7 @@ PAGE_SLUGS = {
     "Incubators & Ecosystem": "ecosystem",
     "Official Sources": "official-sources",
     "Directory": "resources",
+    "Media Runs": "media-runs",
     "Scheme Details": "scheme-profiles",
 }
 
@@ -421,6 +424,16 @@ def record_details_href(record: CatalogueRecord) -> str:
     )
 
 
+def is_media_derived_record(record: CatalogueRecord) -> bool:
+    """Identify records projected from the governed media publication bundle."""
+
+    return (
+        str(record.master_id or "").startswith("media_")
+        or str(record.current_location or "").upper() == "MEDIA_ACTIVE_PUBLICATION"
+        or str(record.source or "").casefold().startswith("media evidence")
+    )
+
+
 def public_status_text(record: CatalogueRecord) -> str:
     """Return a plain-language public status without exposing internal catalogue tokens."""
     bucket = status_bucket(record)
@@ -476,6 +489,8 @@ def public_record_card(
     include_details_link: bool = True,
 ) -> str:
     """Render a public-first scheme/call card without exposing internal tokens."""
+    if is_media_derived_record(record) and record.record_kind.upper() in {"APPLICATION_CALL", "CHALLENGE"}:
+        include_details_link = False
     agency = (
         record.department
         or record.implementing_agency
@@ -573,12 +588,13 @@ def site_header(active_page: str) -> str:
             f'<a class="ssip-nav-link{active}" target="_top" href="?page={PAGE_SLUGS[page_name]}">'
             f'{esc(NAV_LABELS[page_name])}</a>'
         )
-    more_active = active_page in {"Directory", "Official Sources", "Incubators & Ecosystem", "Scheme Details"}
+    more_active = active_page in {"Directory", "Official Sources", "Media Runs", "Incubators & Ecosystem", "Scheme Details"}
     more_class = " is-active" if more_active else ""
     more_links = (
         f'<a target="_top" href="?page={PAGE_SLUGS["Directory"]}">Resources</a>'
         f'<a target="_top" href="?page={PAGE_SLUGS["Official Sources"]}">Sources</a>'
         f'<a target="_top" href="?page={PAGE_SLUGS["Incubators & Ecosystem"]}">Ecosystem</a>'
+        f'<a target="_top" href="?page={PAGE_SLUGS["Media Runs"]}">Media runs</a>'
         f'<a target="_top" href="?page={PAGE_SLUGS["Scheme Details"]}">Scheme profiles</a>'
     )
     return (
@@ -994,12 +1010,15 @@ def render_home(bundle: CatalogueBundle, official_sources: list[OfficialSource])
     current_calls = sorted(
         current_calls,
         key=lambda item: (parse_date(item.closing_date) or date.max, item.scheme_name.casefold()),
-    )[:4]
+    )
+    media_calls = [item for item in current_calls if is_media_derived_record(item)]
+    other_calls = [item for item in current_calls if not is_media_derived_record(item)]
+    current_calls = (media_calls + other_calls)[:6]
     st.markdown(
         '<div class="home-section-heading home-section-heading-spaced"><div>'
         '<span class="page-eyebrow">Time-bound opportunities</span>'
         '<h2>Open and upcoming calls</h2>'
-        '<p>Calls, cohorts and challenges remain separate from their permanent parent schemes.</p>'
+        '<p>Calls, cohorts and challenges remain separate from their permanent parent schemes. Media-derived calls are included when currently actionable.</p>'
         '</div><span class="home-section-action">Check the official deadline before applying</span></div>',
         unsafe_allow_html=True,
     )
@@ -1448,6 +1467,42 @@ def render_resources(bundle: CatalogueBundle, official_sources: list[OfficialSou
     )
 
 
+
+
+def render_media_runs_page(bundle: CatalogueBundle) -> None:
+    """Expose governed media-derived records from the More menu."""
+
+    media_records = sorted(
+        [record for record in bundle.records if is_media_derived_record(record)],
+        key=lambda record: (record.scheme_name.casefold(), record.master_id),
+    )
+    st.markdown(
+        page_intro(
+            "Media intake",
+            "Media-derived schemes, programmes & calls",
+            "Records extracted from dated media runs are shown here after the governed publication gate. Source assets and official links remain available for verification.",
+            badge=f"{len(media_records)} records",
+        ),
+        unsafe_allow_html=True,
+    )
+    if not media_records:
+        st.info("No governed media-run records are currently published.")
+        return
+    current_count = sum(status_bucket(record) in {"OPEN", "CLOSING_SOON", "UPCOMING"} for record in media_records)
+    st.markdown(
+        '<div class="metric-grid resource-metrics">'
+        + metric_card("Media records", len(media_records), "Published from reviewed media runs", "blue")
+        + metric_card("Current calls", current_count, "Open, closing soon or upcoming", "green")
+        + metric_card("Departments mapped", len({record.department for record in media_records if record.department}), "Explicit department mappings", "orange")
+        + '</div>',
+        unsafe_allow_html=True,
+    )
+    st.markdown(
+        '<div class="scheme-results-grid">'
+        + "".join(public_record_card(record, compact=False, include_details_link=False) for record in media_records)
+        + '</div>',
+        unsafe_allow_html=True,
+    )
 
 
 def _dst_preview_notice(bundle: DSTPilotBundle) -> None:
@@ -3587,6 +3642,8 @@ def main() -> None:
         render_startup_ecosystem()
     elif page == "Directory":
         render_resources(bundle, official_sources)
+    elif page == "Media Runs":
+        render_media_runs_page(bundle)
     elif page == "Scheme Details":
         render_scheme_details(bundle)
 

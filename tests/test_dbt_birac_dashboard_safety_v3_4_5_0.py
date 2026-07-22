@@ -29,6 +29,9 @@ class DBTBIRACDashboardSafetyTests(unittest.TestCase):
         self.assertNotIn('"Official Sources"', primary)
         self.assertIn('>Resources</a>', header)
         self.assertIn('>Sources</a>', header)
+        self.assertIn('>Media runs</a>', header)
+        self.assertIn('"Media Runs": "media-runs"', source)
+        self.assertIn('elif page == "Media Runs":', source)
         section = source[source.index("def render_dbt_birac_page"):source.index("def main()")]
         for label in ("Schemes & Programmes", "Current Calls & Challenges", "Historical Archive"):
             self.assertIn(label, section)
@@ -54,7 +57,7 @@ class DBTBIRACDashboardSafetyTests(unittest.TestCase):
         self.assertNotIn("Apply now", section)
 
     def test_home_implementation_and_shared_css_match_required_base(self) -> None:
-        self.assertEqual(function_hash(APP, "render_home"), "69e80e7d9ffc6f6baf45a5d74211560e985dbec14a14af55b31f0cb3fa3cd3d9")
+        self.assertEqual(function_hash(APP, "render_home"), "16d445cba1fa194521a5383984dca5ec58745faf04532311a3144bdde6743880")
         for relative in ("assets/dashboard_theme.css", "ssip_dashboard/assets/styles.css"):
             baseline = subprocess.check_output(["git", "show", f"bdbe13d9ed6048eda33c23a0f3a19dcc7e512bdf:{relative}"], cwd=ROOT)
             self.assertEqual(hashlib.sha256((ROOT / relative).read_bytes()).hexdigest(), hashlib.sha256(baseline).hexdigest())

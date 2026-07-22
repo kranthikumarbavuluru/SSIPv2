@@ -137,13 +137,15 @@ PAGE_SLUGS = {
     "MeitY": "meity-programmes",
     "DPIIT": "dpiit-programmes",
     "DBT–BIRAC": "dbt-birac-programmes",
-    "MSME": "msme-programmes",
+    "MSME": "msme-schemes",
     "Calls & Opportunities": "live-calls",
     "Incubators & Ecosystem": "ecosystem",
     "Official Sources": "official-sources",
     "Directory": "resources",
     "Scheme Details": "scheme-profiles",
 }
+
+PAGE_SLUG_ALIASES = {"msme-programmes": "MSME"}
 
 
 # Public organisation identity aliases.
@@ -264,8 +266,17 @@ for stylesheet in load_stylesheets():
     st.markdown(f"<style>{stylesheet}</style>", unsafe_allow_html=True)
 
 
+def _msme_cache_token() -> str:
+    manifest = PROJECT_ROOT / "data/departments/msme/v3_4_6_0/active_publication_manifest_v3_4_6_0.json"
+    try:
+        return str(manifest.stat().st_mtime_ns)
+    except OSError:
+        return "missing"
+
+
 @st.cache_data(ttl=45, show_spinner=False)
-def cached_catalogue() -> CatalogueBundle:
+def cached_catalogue(msme_cache_token: str = "") -> CatalogueBundle:
+    del msme_cache_token
     loaded = load_catalogue(DashboardConfig.from_env(PROJECT_ROOT))
     return canonicalize_catalogue_organisations(loaded)
 
@@ -2159,7 +2170,7 @@ def _render_published_call_filters(
     return visible
 
 def render_calls_and_opportunities() -> None:
-    bundle = cached_catalogue()
+    bundle = cached_catalogue(_msme_cache_token())
     all_calls = _calls_for_separate_verification_page(bundle)
     calls = [
         item
@@ -2311,7 +2322,7 @@ def render_calls_and_opportunities() -> None:
 
 
 def render_startup_ecosystem() -> None:
-    bundle = cached_catalogue()
+    bundle = cached_catalogue(_msme_cache_token())
     calls = [item for item in _published_calls(bundle) if item.applicant_layer.upper() == "INTERMEDIARY_IMPLEMENTER"]
     parent_names = {item.master_id: item.scheme_name for item in bundle.records}
     st.markdown(page_intro("Institutional opportunities", "Published Incubator & Ecosystem Calls", "Published calls for TBIs, incubators, programme centres and implementation partners. These are never shown as direct founder applications.", badge=f"{len(calls)} intermediary calls"), unsafe_allow_html=True)
@@ -3329,8 +3340,8 @@ def render_msme_page(bundle: CatalogueBundle) -> None:
     st.markdown(
         page_intro(
             "MSME intelligence",
-            "Ministry of MSME Schemes, Calls & Archive",
-            "Permanent MSME and NSIC support records, verified current opportunities and historical references are maintained as separate governed views.",
+            "MSME Schemes, Calls & Archive",
+            "Official Ministry of MSME, AP MSME ONE and implementing-agency records are kept separate from current calls and historical references.",
             badge=f"{len(permanent)} permanent records · {len(current)} current calls · {len(historical)} historical",
         ),
         unsafe_allow_html=True,
@@ -3351,8 +3362,8 @@ def render_msme_page(bundle: CatalogueBundle) -> None:
     st.markdown(
         '<div class="archive-governance">'
         '<strong>Governed MSME ownership & page roles</strong>'
-        '<span>Ministry of MSME, Office of Development Commissioner and NSIC records retain their implementing agency. '
-        f'{len(msme.documents)} supporting documents are available under Resources; {msme.excluded_count} generic index or unverified call-like records are excluded from public counts.</span></div>',
+        '<span>Central and Andhra Pradesh ownership are retained separately; AP MSME ONE records are sourced from dedicated official detail pages. '
+        f'{sum(row.source == "AP MSME ONE" for row in public_records)} AP MSME ONE records are included. {len(msme.documents)} supporting documents are available under Resources; {msme.excluded_count} generic index or unverified call-like records are excluded from public counts.</span></div>',
         unsafe_allow_html=True,
     )
 
@@ -3409,7 +3420,7 @@ def render_msme_page(bundle: CatalogueBundle) -> None:
 
 def main() -> None:
     requested_slug = str(st.query_params.get("page", "") or "").strip().lower()
-    requested_page = next(
+    requested_page = PAGE_SLUG_ALIASES.get(requested_slug) or next(
         (page_name for page_name, slug in PAGE_SLUGS.items() if slug == requested_slug),
         None,
     )
@@ -3446,7 +3457,7 @@ def main() -> None:
         unsafe_allow_html=True,
     )
     try:
-        bundle = cached_catalogue()
+        bundle = cached_catalogue(_msme_cache_token())
         official_sources = cached_official_sources()
     except Exception as exc:
         st.error("The SSIP public dashboard could not load the catalogue.")

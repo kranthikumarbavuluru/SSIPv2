@@ -111,16 +111,17 @@ class MSMEPublicProjectionTests(unittest.TestCase):
         catalogue = load_catalogue(DashboardConfig.from_env(ROOT))
         bundle = build_msme_public_bundle(catalogue.records)
 
-        self.assertEqual(len(bundle.permanent_records), 14)
+        self.assertGreaterEqual(len(bundle.permanent_records), 45)
         self.assertEqual(len(bundle.current_calls), 0)
         self.assertEqual(len(bundle.historical_records), 2)
         self.assertEqual(len(bundle.documents), 21)
         self.assertEqual(bundle.excluded_count, 16)
         self.assertEqual(
             len(bundle.public_records) + len(bundle.documents) + bundle.excluded_count,
-            53,
+            84,
         )
-        self.assertEqual(bundle.latest_verification_date, "Not recorded")
+        self.assertEqual(bundle.latest_verification_date, "2026-07-22")
+        self.assertEqual(sum(item.source == "AP MSME ONE" for item in bundle.permanent_records), 31)
 
 
 class MSMEDashboardSafetyTests(unittest.TestCase):
@@ -130,7 +131,8 @@ class MSMEDashboardSafetyTests(unittest.TestCase):
         ast.parse(cls.source)
 
     def test_route_and_top_level_navigation_are_wired(self) -> None:
-        self.assertIn('"MSME": "msme-programmes"', self.source)
+        self.assertIn('"MSME": "msme-schemes"', self.source)
+        self.assertIn('PAGE_SLUG_ALIASES = {"msme-programmes": "MSME"}', self.source)
         self.assertIn('elif page == "MSME":', self.source)
         header = self.source[self.source.index("def site_header"):self.source.index("def page_intro")]
         primary = header[header.index("primary_pages"):header.index("links = []")]

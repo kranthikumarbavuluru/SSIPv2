@@ -9,6 +9,7 @@ from .catalogue import CatalogueRecord
 
 
 MSME_OFFICIAL_HOSTS = {
+    "apmsmeone.ap.gov.in",
     "champions.gov.in",
     "dcmsme.gov.in",
     "msme.gov.in",
@@ -59,9 +60,11 @@ def _text(record: CatalogueRecord) -> str:
 
 def is_msme_owned(record: CatalogueRecord) -> bool:
     ownership = _text(record)
-    return any(
+    return is_official_msme_url(record.official_page_url) and any(
         marker in ownership
         for marker in (
+            "ap msme one",
+            "andhra pradesh",
             "micro, small and medium enterprises",
             "national small industries corporation",
             "msme champions",

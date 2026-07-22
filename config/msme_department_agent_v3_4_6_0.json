@@ -1,0 +1,31 @@
+{
+  "version": "3.4.6.0",
+  "organisation": "Ministry of Micro, Small and Medium Enterprises",
+  "state_priority": "Andhra Pradesh",
+  "official_sources": [
+    {
+      "source_id": "ap_msme_one_schemes",
+      "organisation": "Andhra Pradesh MSME Development Corporation",
+      "domain": "apmsmeone.ap.gov.in",
+      "index_url": "https://apmsmeone.ap.gov.in/schemes",
+      "detail_pattern": "https://apmsmeone.ap.gov.in/schemes/{scheme_code}",
+      "scope": "Andhra Pradesh directory with central and state scheme identities kept separate",
+      "crawl": {"max_pages": 50, "sequential": true, "daily": true},
+      "status_rule": "Permanent detail-page Active becomes ACTIVE_INFORMATION_AVAILABLE; it never creates an OPEN call.",
+      "application_rule": "Only a separately linked HTTPS official portal is retained; an Apply link is not proof of an open call."
+    },
+    {"source_id":"msme_ministry_schemes","organisation":"Ministry of MSME","domain":"msme.gov.in","index_url":"https://www.msme.gov.in/offerings?page=1","scope":"Union MSME offering directory; monitored separately from AP state records"},
+    {"source_id":"msme_dc","organisation":"Office of the Development Commissioner (MSME)","domain":"dcmsme.gov.in","index_url":"https://dcmsme.gov.in/","scope":"Scheme guidelines and implementation evidence"},
+    {"source_id":"msme_champions","organisation":"MSME Champions","domain":"champions.gov.in","index_url":"https://champions.gov.in/","scope":"MSME support and problem-solving evidence"},
+    {"source_id":"nsic","organisation":"National Small Industries Corporation","domain":"nsic.co.in","index_url":"https://www.nsic.co.in/","scope":"NSIC services and scheme evidence"},
+    {"source_id":"kvic","organisation":"Khadi and Village Industries Commission","domain":"kviconline.gov.in","index_url":"https://www.kviconline.gov.in/","scope":"KVIC programme evidence"},
+    {"source_id":"coir_board","organisation":"Coir Board","domain":"coirboard.gov.in","index_url":"https://coirboard.gov.in/","scope":"Coir-sector programme evidence"}
+  ],
+  "publication": {
+    "active_bundle": "data/departments/msme/v3_4_6_0/active_inventory.csv",
+    "manifest": "data/departments/msme/v3_4_6_0/active_publication_manifest_v3_4_6_0.json",
+    "requires_hash": true,
+    "requires_backup": true,
+    "retirement_policy": "block and route to exception queue"
+  }
+}

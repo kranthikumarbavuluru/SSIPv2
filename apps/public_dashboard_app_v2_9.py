@@ -12,6 +12,7 @@ from collections import Counter
 from datetime import date
 import sys
 from pathlib import Path
+from typing import Callable
 from urllib.parse import quote
 
 import streamlit as st
@@ -2623,6 +2624,57 @@ def _meity_history_chart(
     )
 
 
+def _historical_year_label(value: object) -> str:
+    match = re.search(r"\b(?:19|20)\d{2}\b", str(value or ""))
+    return match.group(0) if match else "Date not recorded"
+
+
+def _department_history_chart(
+    records: list[object] | tuple[object, ...],
+    *,
+    date_getter: Callable[[object], object],
+    legend_label: str,
+) -> str:
+    """Render an accessible year-count chart from explicitly evidenced dates."""
+    counts = Counter(
+        _historical_year_label(date_getter(record))
+        for record in records
+    )
+    if not counts:
+        return '<div class="empty-note">No historical date data is available.</div>'
+
+    def sort_key(value: str) -> tuple[int, int | str]:
+        if value == "Date not recorded":
+            return (1, value)
+        return (0, int(value))
+
+    ordered = sorted(counts, key=sort_key)
+    maximum = max(counts.values()) or 1
+    rows = []
+    for label in ordered:
+        count = counts[label]
+        width = (count / maximum) * 100
+        rows.append(
+            '<div class="history-row">'
+            f'<strong>{esc(label)}</strong>'
+            '<div class="history-track">'
+            '<span class="history-segment history-startup-relevant" '
+            f'style="width:{width:.3f}%" title="{esc(label)}: {count}"></span>'
+            '</div>'
+            f'<b>{count}</b></div>'
+        )
+    return (
+        '<div class="history-chart" role="img" '
+        f'aria-label="{esc(legend_label)} by evidenced year">'
+        '<div class="history-legend">'
+        '<span><i class="history-segment history-startup-relevant"></i>'
+        f'{esc(legend_label)}</span>'
+        '</div>'
+        + "".join(rows)
+        + '</div>'
+    )
+
+
 def _meity_historical_card(
     record: MeitYHistoricalRecord,
 ) -> str:
@@ -3116,6 +3168,18 @@ def render_dpiit_page() -> None:
                 if row.record_type in types
                 and (allowed_statuses is None or row.application_status in allowed_statuses)
             ]
+            if label == "Historical Archive" and records:
+                st.markdown(
+                    '<div class="section-band">'
+                    '<h2 class="section-title">DPIIT Historical Calls by Closing Year</h2>'
+                    + _department_history_chart(
+                        records,
+                        date_getter=lambda item: item.closing_date,
+                        legend_label="Qualified DPIIT historical calls",
+                    )
+                    + '</div>',
+                    unsafe_allow_html=True,
+                )
             if not records:
                 st.info(f"No {label.lower()} match the selected filters.")
             else:
@@ -3247,6 +3311,18 @@ def render_dbt_birac_page() -> None:
     for tab, (label, types, allowed_statuses) in zip(tabs, groups):
         with tab:
             records = [row for row in visible if row.record_type in types and (allowed_statuses is None or row.application_status in allowed_statuses)]
+            if label == "Historical Archive" and records:
+                st.markdown(
+                    '<div class="section-band">'
+                    '<h2 class="section-title">DBT–BIRAC Historical Calls by Closing Year</h2>'
+                    + _department_history_chart(
+                        records,
+                        date_getter=lambda item: item.closing_date,
+                        legend_label="Qualified DBT–BIRAC historical calls",
+                    )
+                    + '</div>',
+                    unsafe_allow_html=True,
+                )
             if not records:
                 st.info(f"No {label.lower()} match the selected filters.")
             else:
@@ -3413,8 +3489,21 @@ def render_msme_page(bundle: CatalogueBundle) -> None:
                 "Unverified challenge and service-centre pages remain excluded until official open-window evidence is recorded."
             )
     with tab_history:
+        visible_history = [row for row in historical if row.master_id in visible_ids]
+        if visible_history:
+            st.markdown(
+                '<div class="section-band">'
+                '<h2 class="section-title">MSME Historical References by Evidenced Year</h2>'
+                + _department_history_chart(
+                    visible_history,
+                    date_getter=lambda item: item.closing_date,
+                    legend_label="Qualified MSME historical references",
+                )
+                + '</div>',
+                unsafe_allow_html=True,
+            )
         _render_msme_record_group(
-            [row for row in historical if row.master_id in visible_ids],
+            visible_history,
             label="historical MSME reference(s)",
             historical=True,
         )

@@ -31,6 +31,14 @@ class VisualFoundationV34140Tests(unittest.TestCase):
         self.assertIn("touch-action: manipulation", css)
         self.assertIn("@media (max-width: 820px)", css)
 
+    def test_density_pass_reclaims_vertical_space_without_losing_touch_targets(self) -> None:
+        css = CSS.read_text(encoding="utf-8")
+        self.assertIn("--ssip-density-gap:", css)
+        self.assertIn("min-height: 230px !important", css)
+        self.assertIn("-webkit-line-clamp: 2", css)
+        self.assertIn("@media (pointer: coarse)", css)
+        self.assertIn("min-height: 44px !important", css)
+
     def test_visual_foundation_does_not_replace_catalogue_logic(self) -> None:
         css = CSS.read_text(encoding="utf-8")
         self.assertIn("presentation layer", css)

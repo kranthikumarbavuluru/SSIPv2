@@ -2175,6 +2175,277 @@ select:focus-visible,
   border-color: var(--ssip-border) !important;
 }
 
+/* v3.4.14.0 density pass — show more verified information above the fold. */
+:root {
+  --ssip-density-gap: .68rem;
+  --ssip-density-section-gap: 1.35rem;
+}
+
+.block-container {
+  padding-top: .18rem !important;
+  padding-bottom: 1.8rem !important;
+}
+
+.ssip-header-main {
+  min-height: 82px !important;
+  gap: .8rem !important;
+  padding: .28rem 0 .34rem !important;
+}
+
+.ssip-brand-mark {
+  width: 38px !important;
+  height: 38px !important;
+  border-radius: 9px !important;
+  font-size: .68rem !important;
+}
+
+.ssip-brand-lockup {
+  gap: .52rem !important;
+}
+
+.ssip-brand-lockup strong {
+  font-size: 1.28rem !important;
+}
+
+.ssip-brand-lockup small {
+  margin-top: .1rem !important;
+  font-size: .64rem !important;
+}
+
+.ssip-primary-nav {
+  gap: .06rem !important;
+}
+
+.ssip-nav-link,
+.ssip-nav-more > summary {
+  min-height: 34px !important;
+  padding: .33rem .5rem !important;
+  font-size: .7rem !important;
+}
+
+.ssip-nav-department {
+  min-height: 30px !important;
+  padding: .3rem .55rem !important;
+  font-size: .68rem !important;
+}
+
+.compact-trust-strip {
+  min-height: 24px !important;
+  margin: 0 0 .45rem !important;
+  padding: .2rem .05rem .28rem !important;
+  font-size: .66rem !important;
+}
+
+.public-hero.public-hero-compact {
+  min-height: 230px !important;
+  gap: .95rem !important;
+  margin: .3rem 0 .72rem !important;
+  padding: 1.18rem 1.35rem !important;
+}
+
+.public-hero.public-hero-compact h1 {
+  max-width: 680px;
+  font-size: clamp(1.9rem, 3.25vw, 2.85rem) !important;
+  line-height: 1.04 !important;
+}
+
+.public-hero.public-hero-compact p {
+  max-width: 710px;
+  margin-top: .66rem !important;
+  font-size: .9rem !important;
+  line-height: 1.45 !important;
+}
+
+.public-hero.public-hero-compact .public-hero-scope {
+  gap: .32rem !important;
+  margin-top: .72rem !important;
+}
+
+.public-hero.public-hero-compact .public-hero-scope span {
+  padding: .28rem .52rem !important;
+  font-size: .66rem !important;
+}
+
+.public-hero.public-hero-compact .public-hero-summary {
+  min-height: 0 !important;
+  padding: .78rem !important;
+}
+
+.public-hero.public-hero-compact .public-hero-summary-grid {
+  gap: .32rem !important;
+}
+
+.public-hero.public-hero-compact .public-hero-summary-grid > div {
+  min-height: 58px !important;
+  padding: .48rem .28rem !important;
+}
+
+.public-hero.public-hero-compact .public-hero-summary-grid strong {
+  font-size: 1.28rem !important;
+}
+
+.public-hero.public-hero-compact .public-hero-summary-grid span {
+  margin-top: .18rem !important;
+  font-size: .6rem !important;
+}
+
+.public-hero.public-hero-compact .public-hero-verified {
+  gap: .5rem !important;
+  padding-top: .55rem !important;
+}
+
+.public-hero.public-hero-compact .public-hero-verified span,
+.public-hero.public-hero-compact .public-hero-verified strong {
+  font-size: .66rem !important;
+}
+
+.home-search-heading h2,
+.home-section-heading h2 {
+  font-size: clamp(1.25rem, 1.8vw, 1.55rem) !important;
+}
+
+.home-search-heading p,
+.home-section-heading p {
+  font-size: .78rem !important;
+}
+
+.home-section-heading-spaced,
+.home-support-grid,
+.home-source-band {
+  margin-top: var(--ssip-density-section-gap) !important;
+}
+
+.home-featured-grid,
+.home-call-grid,
+.home-source-grid {
+  gap: var(--ssip-density-gap) !important;
+  margin-top: .62rem !important;
+}
+
+.public-record-card,
+.home-featured-grid .scheme-card,
+.home-call-grid .scheme-card {
+  padding: .78rem .84rem !important;
+}
+
+.public-record-card h3,
+.scheme-card h3,
+.source-card h3,
+.resource-card h3 {
+  font-size: .92rem !important;
+  line-height: 1.28 !important;
+}
+
+.public-record-card p {
+  margin: .36rem 0 .48rem !important;
+  font-size: .76rem !important;
+  line-height: 1.4 !important;
+  -webkit-line-clamp: 2;
+}
+
+.public-record-agency,
+.public-record-facts,
+.public-record-note,
+.scheme-meta,
+.agency-line {
+  font-size: .68rem !important;
+}
+
+.public-record-facts {
+  gap: .28rem .7rem !important;
+  margin-bottom: .42rem !important;
+}
+
+.public-chip,
+.public-kind,
+.status-badge,
+.record-kind {
+  min-height: 22px !important;
+  padding: .14rem .4rem !important;
+  font-size: .62rem !important;
+}
+
+.public-record-actions {
+  gap: .3rem !important;
+  margin-top: .52rem !important;
+  padding-top: .5rem !important;
+}
+
+.public-action {
+  min-height: 30px !important;
+  padding: .28rem .52rem !important;
+  font-size: .67rem !important;
+}
+
+.section-band,
+.chart-card,
+.metric-card {
+  padding: .72rem !important;
+}
+
+.metric-card {
+  min-height: 0 !important;
+}
+
+.metric-value {
+  font-size: clamp(1.25rem, 2vw, 1.65rem) !important;
+}
+
+.metric-label {
+  margin-top: .22rem !important;
+  font-size: .78rem !important;
+}
+
+.metric-hint {
+  margin-top: .2rem !important;
+  font-size: .64rem !important;
+}
+
+@media (max-width: 820px) {
+  .ssip-header-main {
+    min-height: 72px !important;
+  }
+
+  .public-hero.public-hero-compact {
+    min-height: 0 !important;
+    padding: 1rem !important;
+  }
+
+  .public-hero.public-hero-compact h1 {
+    font-size: 2rem !important;
+  }
+}
+
+@media (max-width: 560px) {
+  .ssip-brand-lockup strong {
+    font-size: 1.15rem !important;
+  }
+
+  .public-hero.public-hero-compact h1 {
+    font-size: 1.78rem !important;
+  }
+}
+
+/* Preserve comfortable touch targets on touch-first devices while keeping
+   desktop navigation compact. */
+@media (pointer: coarse) {
+  .ssip-nav-link,
+  .ssip-nav-more > summary,
+  .ssip-nav-department,
+  .public-action {
+    min-height: 44px !important;
+  }
+}
+
+/* Keep the summary beside the message on medium desktop widths; stacking it
+   below the hero creates an unnecessary half-screen of empty-feeling space. */
+@media (min-width: 900px) and (max-width: 1050px) {
+  .public-hero.public-hero-compact {
+    grid-template-columns: minmax(0, 1fr) minmax(220px, .72fr) !important;
+    align-items: stretch;
+  }
+}
+
 
 
 /* v3.4.0.16 — Phase 3 product navigation, finder toolbar and scheme profiles */

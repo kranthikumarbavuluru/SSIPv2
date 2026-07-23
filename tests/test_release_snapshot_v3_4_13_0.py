@@ -36,7 +36,7 @@ class ReleaseSnapshotV34130Tests(unittest.TestCase):
 
     def test_dashboard_version_marker(self) -> None:
         source = (ROOT / "apps" / "public_dashboard_app_v2_9.py").read_text(encoding="utf-8-sig")
-        self.assertIn('APP_VERSION = "3.4.13.0-governed-catalogue-snapshot"', source)
+        self.assertIn('APP_VERSION = "3.4.14.0-visual-foundation"', source)
 
 
 if __name__ == "__main__":

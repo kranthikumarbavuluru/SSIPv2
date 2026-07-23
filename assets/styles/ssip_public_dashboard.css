@@ -1839,6 +1839,342 @@ div[data-testid="stExpander"] summary { font-weight: 800 !important; color: var(
   .public-record-card { padding: .9rem; }
 }
 
+/* ===========================================================================
+   v3.4.14.0 — visual foundation
+
+   This is the final shared presentation layer for the public catalogue. It
+   establishes a small, named token system and accessible interaction rules so
+   subsequent visual work can extend the same language without changing data
+   or publication behaviour.
+   =========================================================================== */
+
+:root {
+  --ssip-ink: #12233f;
+  --ssip-ink-soft: #4c6280;
+  --ssip-navy: #062a62;
+  --ssip-cobalt: #1769d1;
+  --ssip-cobalt-strong: #0d4da8;
+  --ssip-mist: #eef5fc;
+  --ssip-mist-strong: #e1edf9;
+  --ssip-surface: #ffffff;
+  --ssip-surface-raised: #ffffff;
+  --ssip-mint: #0b8967;
+  --ssip-mint-soft: #e3f5ef;
+  --ssip-amber: #aa640b;
+  --ssip-amber-soft: #fff3df;
+  --ssip-border: #d5e3f1;
+  --ssip-border-strong: #aec7e4;
+  --ssip-page: #f3f7fc;
+  --ssip-radius-sm: 8px;
+  --ssip-radius-md: 12px;
+  --ssip-radius-lg: 18px;
+  --ssip-shadow-1: 0 4px 14px rgba(6, 42, 98, .055);
+  --ssip-shadow-2: 0 12px 30px rgba(6, 42, 98, .10);
+  --ssip-focus: 0 0 0 3px rgba(23, 105, 209, .24);
+  color-scheme: light;
+}
+
+html:has(#ssip-dark-mode) {
+  --ssip-ink: #edf5ff;
+  --ssip-ink-soft: #b6c8de;
+  --ssip-navy: #f2f7ff;
+  --ssip-cobalt: #75b5ff;
+  --ssip-cobalt-strong: #a8d2ff;
+  --ssip-mist: #132a47;
+  --ssip-mist-strong: #1a385c;
+  --ssip-surface: #10213a;
+  --ssip-surface-raised: #142945;
+  --ssip-mint: #67d6b0;
+  --ssip-mint-soft: #173d35;
+  --ssip-amber: #ffc875;
+  --ssip-amber-soft: #3b2d18;
+  --ssip-border: #2c4669;
+  --ssip-border-strong: #4b6d97;
+  --ssip-page: #081426;
+  --ssip-shadow-1: 0 5px 18px rgba(0, 0, 0, .22);
+  --ssip-shadow-2: 0 15px 34px rgba(0, 0, 0, .30);
+  --ssip-focus: 0 0 0 3px rgba(117, 181, 255, .34);
+  color-scheme: dark;
+}
+
+html {
+  background: var(--ssip-page);
+  scroll-padding-top: 1.5rem;
+}
+
+body,
+.stApp,
+button,
+input,
+textarea,
+select {
+  color: var(--ssip-ink);
+  font-family: "Source Sans 3", Inter, "Segoe UI", Roboto, Arial, sans-serif;
+  line-height: 1.45;
+}
+
+.stApp {
+  background:
+    radial-gradient(circle at 92% 0%, rgba(23, 105, 209, .08), transparent 24rem),
+    linear-gradient(180deg, var(--ssip-page) 0, var(--ssip-surface) 24rem, var(--ssip-page) 100%);
+}
+
+h1,
+h2,
+h3,
+h4,
+.brand-title,
+.ssip-brand-lockup strong,
+.public-hero h1 {
+  font-family: "Manrope", Inter, "Segoe UI", sans-serif;
+  text-wrap: balance;
+}
+
+.metric-value,
+.public-hero-summary-grid strong,
+.public-hero-verified strong,
+.kpi-strip strong {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+.block-container {
+  min-width: 0;
+}
+
+.ssip-header-main,
+.ssip-brand-bar {
+  border-color: var(--ssip-border) !important;
+}
+
+.ssip-brand-mark,
+.brand-mark {
+  box-shadow: var(--ssip-shadow-1);
+}
+
+.ssip-brand-lockup strong,
+.brand-title,
+.primary-nav-heading strong,
+.section-title,
+.home-search-heading h2,
+.home-section-heading h2 {
+  color: var(--ssip-navy) !important;
+}
+
+.ssip-brand-lockup small,
+.brand-subtitle,
+.ssip-header-trust,
+.nav-note,
+.home-search-heading p,
+.home-section-heading p {
+  color: var(--ssip-ink-soft) !important;
+}
+
+.ssip-nav-link,
+.ssip-nav-more > summary {
+  min-height: 40px;
+  border-radius: var(--ssip-radius-sm);
+  color: var(--ssip-ink-soft) !important;
+  transition: color .18s ease, background-color .18s ease, box-shadow .18s ease, transform .18s ease;
+  touch-action: manipulation;
+}
+
+.ssip-nav-link:hover,
+.ssip-nav-more > summary:hover {
+  background: var(--ssip-mist) !important;
+  color: var(--ssip-cobalt-strong) !important;
+}
+
+.ssip-nav-link.is-active,
+.ssip-nav-more.is-active > summary {
+  background: var(--ssip-mist) !important;
+  color: var(--ssip-cobalt-strong) !important;
+  box-shadow: inset 0 -2px 0 var(--ssip-cobalt);
+}
+
+.ssip-primary-nav-departments {
+  scrollbar-color: var(--ssip-border-strong) transparent;
+}
+
+.public-hero.public-hero-compact {
+  border: 1px solid rgba(174, 200, 232, .9);
+  border-left: 4px solid var(--ssip-mint);
+  border-radius: var(--ssip-radius-lg) !important;
+  box-shadow: var(--ssip-shadow-2);
+}
+
+.public-hero-summary {
+  border-color: rgba(255, 255, 255, .28);
+}
+
+.section-band,
+.chart-card,
+.scheme-card,
+.source-card,
+.resource-card,
+.opportunity-row,
+.right-panel,
+.smart-strip,
+.public-record-card {
+  border-color: var(--ssip-border) !important;
+  border-radius: var(--ssip-radius-md) !important;
+  background: var(--ssip-surface) !important;
+  box-shadow: var(--ssip-shadow-1);
+}
+
+.section-band,
+.chart-card,
+.scheme-card,
+.source-card,
+.resource-card,
+.opportunity-row,
+.public-record-card {
+  transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease;
+}
+
+.scheme-card:hover,
+.source-card:hover,
+.resource-card:hover,
+.public-record-card:hover,
+.opportunity-row:hover {
+  border-color: var(--ssip-border-strong) !important;
+  box-shadow: var(--ssip-shadow-2);
+  transform: translateY(-2px);
+}
+
+.metric-card {
+  border: 1px solid var(--ssip-border) !important;
+  border-radius: var(--ssip-radius-md) !important;
+  background: var(--ssip-surface-raised) !important;
+  box-shadow: var(--ssip-shadow-1);
+}
+
+.metric-value {
+  color: var(--ssip-navy) !important;
+}
+
+.metric-label,
+.analytics-legend-row strong,
+.analytics-bar-heading strong,
+.readiness-heading strong {
+  color: var(--ssip-ink) !important;
+}
+
+.metric-hint,
+.scheme-meta,
+.agency-line,
+.public-record-agency,
+.public-record-facts,
+.public-record-note {
+  color: var(--ssip-ink-soft) !important;
+}
+
+div[data-testid="stTextInputRootElement"],
+div[data-baseweb="input"],
+div[data-baseweb="select"] > div,
+div[data-testid="stNumberInput"] > div,
+div[data-testid="stMultiSelect"] > div {
+  min-height: 44px;
+  border-color: var(--ssip-border-strong) !important;
+  border-radius: var(--ssip-radius-sm) !important;
+  background: var(--ssip-surface) !important;
+  color: var(--ssip-ink) !important;
+}
+
+div[data-testid="stTextInputRootElement"]:focus-within,
+div[data-baseweb="input"]:focus-within,
+div[data-baseweb="select"] > div:focus-within,
+div[data-testid="stNumberInput"] > div:focus-within,
+div[data-testid="stMultiSelect"] > div:focus-within {
+  border-color: var(--ssip-cobalt) !important;
+  box-shadow: var(--ssip-focus) !important;
+}
+
+div[data-testid="stButton"] > button,
+div[data-testid="stDownloadButton"] > button,
+.public-action,
+.home-advanced-search-link {
+  min-height: 44px;
+  border-radius: var(--ssip-radius-sm);
+  touch-action: manipulation;
+  transition: transform .18s ease, box-shadow .18s ease, background-color .18s ease, border-color .18s ease;
+}
+
+a,
+button,
+[role="button"] {
+  -webkit-tap-highlight-color: rgba(23, 105, 209, .18);
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[role="button"]:focus-visible,
+[role="radio"]:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid var(--ssip-cobalt) !important;
+  outline-offset: 2px;
+  box-shadow: var(--ssip-focus) !important;
+}
+
+.status-badge,
+.record-kind,
+.public-kind,
+.public-chip {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 820px) {
+  .ssip-header-main {
+    gap: .65rem;
+  }
+
+  .public-hero.public-hero-compact {
+    border-radius: var(--ssip-radius-md) !important;
+  }
+
+  .home-featured-grid,
+  .home-call-grid,
+  .home-source-grid,
+  .analytics-primary-grid,
+  .analytics-comparison-grid,
+  .analytics-secondary-grid {
+    min-width: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+:root:has(#ssip-dark-mode) .section-band,
+:root:has(#ssip-dark-mode) .chart-card,
+:root:has(#ssip-dark-mode) .scheme-card,
+:root:has(#ssip-dark-mode) .source-card,
+:root:has(#ssip-dark-mode) .resource-card,
+:root:has(#ssip-dark-mode) .opportunity-row,
+:root:has(#ssip-dark-mode) .right-panel,
+:root:has(#ssip-dark-mode) .smart-strip,
+:root:has(#ssip-dark-mode) .public-record-card,
+:root:has(#ssip-dark-mode) .metric-card {
+  background: var(--ssip-surface) !important;
+  border-color: var(--ssip-border) !important;
+}
+
 
 
 /* v3.4.0.16 — Phase 3 product navigation, finder toolbar and scheme profiles */
@@ -3459,4 +3795,200 @@ body.dark-mode .ssip-nav-department-agri {
   background: #183a24;
   border-color: #386e47;
   color: #b8e8c1;
+}
+
+/* v3.4.14.0 final calibration: keep the foundation authoritative after the
+   historical presentation layers above. */
+body,
+.stApp,
+button,
+input,
+textarea,
+select {
+  font-family: "Source Sans 3", Inter, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+.stApp {
+  background:
+    radial-gradient(circle at 92% 0%, rgba(23, 105, 209, .08), transparent 24rem),
+    linear-gradient(180deg, var(--ssip-page) 0, var(--ssip-surface) 24rem, var(--ssip-page) 100%);
+  color: var(--ssip-ink);
+}
+
+.ssip-brand-lockup strong,
+.brand-title,
+.primary-nav-heading strong,
+.section-title,
+.home-search-heading h2,
+.home-section-heading h2,
+.metric-value {
+  color: var(--ssip-navy) !important;
+}
+
+.ssip-brand-lockup small,
+.brand-subtitle,
+.ssip-header-trust,
+.nav-note,
+.home-search-heading p,
+.home-section-heading p,
+.metric-hint,
+.scheme-meta,
+.agency-line,
+.public-record-agency,
+.public-record-facts,
+.public-record-note {
+  color: var(--ssip-ink-soft) !important;
+}
+
+.ssip-header-main,
+.ssip-brand-bar {
+  border-color: var(--ssip-border) !important;
+}
+
+.ssip-nav-link,
+.ssip-nav-more > summary {
+  min-height: 40px;
+  border-radius: var(--ssip-radius-sm);
+  color: var(--ssip-ink-soft) !important;
+  transition: color .18s ease, background-color .18s ease, box-shadow .18s ease, transform .18s ease;
+  touch-action: manipulation;
+}
+
+.ssip-nav-link:hover,
+.ssip-nav-more > summary:hover,
+.ssip-nav-link.is-active,
+.ssip-nav-more.is-active > summary {
+  background: var(--ssip-mist) !important;
+  color: var(--ssip-cobalt-strong) !important;
+}
+
+.public-hero.public-hero-compact {
+  border-left: 4px solid var(--ssip-mint) !important;
+  border-radius: var(--ssip-radius-lg) !important;
+  box-shadow: var(--ssip-shadow-2);
+}
+
+.section-band,
+.chart-card,
+.scheme-card,
+.source-card,
+.resource-card,
+.opportunity-row,
+.right-panel,
+.smart-strip,
+.public-record-card,
+.metric-card {
+  border-color: var(--ssip-border) !important;
+  border-radius: var(--ssip-radius-md) !important;
+  background: var(--ssip-surface) !important;
+  box-shadow: var(--ssip-shadow-1);
+}
+
+.scheme-card:hover,
+.source-card:hover,
+.resource-card:hover,
+.public-record-card:hover,
+.opportunity-row:hover {
+  border-color: var(--ssip-border-strong) !important;
+  box-shadow: var(--ssip-shadow-2);
+  transform: translateY(-2px);
+}
+
+div[data-testid="stTextInputRootElement"],
+div[data-baseweb="input"],
+div[data-baseweb="select"] > div,
+div[data-testid="stNumberInput"] > div,
+div[data-testid="stMultiSelect"] > div {
+  min-height: 44px;
+  border-color: var(--ssip-border-strong) !important;
+  border-radius: var(--ssip-radius-sm) !important;
+  background: var(--ssip-surface) !important;
+  color: var(--ssip-ink) !important;
+}
+
+div[data-testid="stTextInputRootElement"]:focus-within,
+div[data-baseweb="input"]:focus-within,
+div[data-baseweb="select"] > div:focus-within,
+div[data-testid="stNumberInput"] > div:focus-within,
+div[data-testid="stMultiSelect"] > div:focus-within {
+  border-color: var(--ssip-cobalt) !important;
+  box-shadow: var(--ssip-focus) !important;
+}
+
+div[data-testid="stButton"] > button,
+div[data-testid="stDownloadButton"] > button,
+.public-action,
+.home-advanced-search-link {
+  min-height: 44px;
+  border-radius: var(--ssip-radius-sm);
+  touch-action: manipulation;
+  transition: transform .18s ease, box-shadow .18s ease, background-color .18s ease, border-color .18s ease;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[role="button"]:focus-visible,
+[role="radio"]:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid var(--ssip-cobalt) !important;
+  outline-offset: 2px;
+  box-shadow: var(--ssip-focus) !important;
+}
+
+.metric-value,
+.public-hero-summary-grid strong,
+.public-hero-verified strong,
+.kpi-strip strong {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+html {
+  background: var(--ssip-page);
+  scroll-padding-top: 1.5rem;
+}
+
+@media (max-width: 820px) {
+  .ssip-header-main,
+  .public-hero.public-hero-compact,
+  .home-featured-grid,
+  .home-call-grid,
+  .home-source-grid,
+  .analytics-primary-grid,
+  .analytics-comparison-grid,
+  .analytics-secondary-grid {
+    min-width: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+:root:has(#ssip-dark-mode) .section-band,
+:root:has(#ssip-dark-mode) .chart-card,
+:root:has(#ssip-dark-mode) .scheme-card,
+:root:has(#ssip-dark-mode) .source-card,
+:root:has(#ssip-dark-mode) .resource-card,
+:root:has(#ssip-dark-mode) .opportunity-row,
+:root:has(#ssip-dark-mode) .right-panel,
+:root:has(#ssip-dark-mode) .smart-strip,
+:root:has(#ssip-dark-mode) .public-record-card,
+:root:has(#ssip-dark-mode) .metric-card {
+  background: var(--ssip-surface) !important;
+  border-color: var(--ssip-border) !important;
 }

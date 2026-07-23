@@ -126,7 +126,7 @@ from ssip_dashboard.moe_public import (
     filter_moe_records,
 )
 
-APP_VERSION = "3.4.12.0-moe-aicte-governed-public"
+APP_VERSION = "3.4.13.0-governed-catalogue-snapshot"
 LOGGER = logging.getLogger(__name__)
 PAGE_NAMES = [
     "Home",

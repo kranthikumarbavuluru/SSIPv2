@@ -1797,7 +1797,7 @@ def render_dst_schemes() -> None:
             st.markdown(
                 f'<div class="filter-summary">'
                 f'<strong>{len(visible_programmes)}</strong> '
-                'permanent DST programme record(s)'
+                'DST scheme(s) and programme(s)'
                 '<span>Calls are maintained separately</span></div>',
                 unsafe_allow_html=True,
             )
@@ -3268,13 +3268,13 @@ def render_dpiit_page() -> None:
             "DPIIT intelligence",
             "DPIIT Schemes, Services & Calls",
             "Permanent DPIIT schemes, services and programmes, verified current opportunities and the governed historical archive are maintained as separate views.",
-            badge=f"{len(permanent)} permanent records · {len(current)} current calls · {len(historical)} historical",
+            badge=f"{len(permanent)} schemes & programmes · {len(current)} current calls · {len(historical)} historical",
         ),
         unsafe_allow_html=True,
     )
     st.markdown(
         '<div class="metric-grid call-metrics">'
-        + metric_card("Permanent records", len(permanent), "Governed DPIIT schemes, services and programmes", "blue")
+        + metric_card("Schemes & programmes", len(permanent), "Governed DPIIT schemes, services and programmes", "blue")
         + metric_card("Open calls", sum(row.application_status == "OPEN" for row in current), "Verified current application windows", "green")
         + metric_card("Upcoming", sum(row.application_status == "UPCOMING" for row in current), "Verified future application windows", "purple")
         + metric_card("Historical calls", len(historical), "Qualified official DPIIT references", "orange")
@@ -3297,7 +3297,7 @@ def render_dpiit_page() -> None:
     with keyword_column:
         keyword = st.text_input("Search DPIIT schemes", placeholder="Recognition, Seed Fund, MAARG, challenge…")
     with type_column:
-        record_type = st.selectbox("Record type", ["All", *sorted({row.record_type for row in bundle.records})])
+        record_type = st.selectbox("Scheme / programme type", ["All", *sorted({row.record_type for row in bundle.records})])
     with status_column:
         status = st.selectbox("Status", ["All", *sorted({row.application_status for row in bundle.records})])
     with applicant_column:
@@ -3440,7 +3440,7 @@ def render_dbt_birac_page() -> None:
     with keyword_column:
         keyword = st.text_input("Search DBT–BIRAC schemes", placeholder="BIG, PACE, biotechnology, grant…")
     with type_column:
-        record_type = st.selectbox("Record type", ["All", *sorted({row.record_type for row in bundle.records})])
+        record_type = st.selectbox("Scheme / programme type", ["All", *sorted({row.record_type for row in bundle.records})])
     with status_column:
         status = st.selectbox("Application status", ["All", *sorted({row.application_status for row in bundle.records})])
     applicant_column, sector_column = st.columns(2)
@@ -3586,13 +3586,13 @@ def render_msme_page(bundle: CatalogueBundle) -> None:
             "MSME intelligence",
             "MSME Schemes, Calls & Archive",
             "Official Ministry of MSME, AP MSME ONE and implementing-agency records are kept separate from current calls and historical references.",
-            badge=f"{len(permanent)} permanent records · {len(current)} current calls · {len(historical)} historical",
+            badge=f"{len(permanent)} schemes & programmes · {len(current)} current calls · {len(historical)} historical",
         ),
         unsafe_allow_html=True,
     )
     st.markdown(
         '<div class="metric-grid call-metrics">'
-        + metric_card("Permanent records", len(permanent), "Governed MSME and NSIC support identities", "blue")
+        + metric_card("Schemes & programmes", len(permanent), "Governed MSME and NSIC support identities", "blue")
         + metric_card("Open calls", sum(row.application_status.upper() == "OPEN" for row in current), "Verified current application windows", "green")
         + metric_card("Upcoming", sum(row.application_status.upper() == "UPCOMING" for row in current), "Verified future application windows", "purple")
         + metric_card("Historical references", len(historical), "Closed or historical official support records", "orange")
@@ -3600,7 +3600,7 @@ def render_msme_page(bundle: CatalogueBundle) -> None:
         unsafe_allow_html=True,
     )
     st.caption(
-        f"Latest record verification: {msme.latest_verification_date} · "
+        f"Latest scheme verification: {msme.latest_verification_date} · "
         "Counts are calculated from the governed catalogue projection."
     )
     st.markdown(
@@ -3643,7 +3643,7 @@ def render_msme_page(bundle: CatalogueBundle) -> None:
     with tab_schemes:
         _render_msme_record_group(
             [row for row in permanent if row.master_id in visible_ids],
-            label="permanent MSME record(s)",
+            label="MSME scheme(s) and programme(s)",
         )
     with tab_calls:
         _render_msme_record_group(
@@ -3697,7 +3697,7 @@ def _dot_record_card(record: CatalogueRecord, *, historical: bool = False) -> st
         date_fact = f'<div><span>Closing date</span><strong>{esc(record.closing_date)}</strong></div>'
     facts = (
         f'<div><span>Implementing agency</span><strong>{esc(agency)}</strong></div>'
-        f'<div><span>Record type</span><strong>{esc(display_token(record.record_kind))}</strong></div>'
+        f'<div><span>Scheme / programme type</span><strong>{esc(display_token(record.record_kind))}</strong></div>'
         f'<div><span>Last verified</span><strong>{esc(verified)}</strong></div>'
         f'{date_fact}'
         f'{funding}'
@@ -3740,13 +3740,13 @@ def render_dot_page(bundle: CatalogueBundle) -> None:
             "DoT intelligence",
             "DoT Schemes, Calls & Archive",
             "Department of Telecommunications support identities, verified application windows and historical TTDF/DCIS calls are maintained as separate public views.",
-            badge=f"{len(permanent)} permanent records · {len(current)} current calls · {len(historical)} historical",
+            badge=f"{len(permanent)} schemes & programmes · {len(current)} current calls · {len(historical)} historical",
         ),
         unsafe_allow_html=True,
     )
     st.markdown(
         '<div class="metric-grid call-metrics">'
-        + metric_card("Permanent records", len(permanent), "Governed DoT schemes and programmes", "blue")
+        + metric_card("Schemes & programmes", len(permanent), "Governed DoT schemes and programmes", "blue")
         + metric_card("Open calls", sum(row.application_status.upper() == "OPEN" for row in current), "Verified current application windows", "green")
         + metric_card("Upcoming", sum(row.application_status.upper() == "UPCOMING" for row in current), "Verified future application windows", "purple")
         + metric_card("Historical calls", len(historical), "Qualified TTDF and DCIS references", "orange")
@@ -3754,7 +3754,7 @@ def render_dot_page(bundle: CatalogueBundle) -> None:
         unsafe_allow_html=True,
     )
     st.caption(
-        f"Latest record verification: {dot.latest_verification_date} · "
+        f"Latest scheme verification: {dot.latest_verification_date} · "
         "Counts are calculated from the governed DoT publication snapshot."
     )
     st.markdown(
@@ -3768,7 +3768,7 @@ def render_dot_page(bundle: CatalogueBundle) -> None:
     with keyword_column:
         keyword = st.text_input("Search DoT schemes", placeholder="TTDF, 5G, testing, rural connectivity…", key="dot_keyword")
     with type_column:
-        record_type = st.selectbox("Record type", ["All", *sorted({row.record_kind for row in all_records})], key="dot_record_type")
+        record_type = st.selectbox("Scheme / programme type", ["All", *sorted({row.record_kind for row in all_records})], key="dot_record_type")
     with status_column:
         status = st.selectbox("Application status", ["All", *sorted({row.application_status for row in all_records})], key="dot_status")
     visible = filter_dot_records(all_records, keyword=keyword, record_type=record_type, status=status)
@@ -3776,7 +3776,7 @@ def render_dot_page(bundle: CatalogueBundle) -> None:
     tab_schemes, tab_calls, tab_history = st.tabs(["Schemes & Programmes", "Current Calls & Challenges", "Historical Archive"])
     with tab_schemes:
         rows = [row for row in permanent if row.master_id in visible_ids]
-        st.markdown(f'<div class="filter-summary"><strong>{len(rows)}</strong> permanent DoT record(s)<span>Official links open in a new tab</span></div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="filter-summary"><strong>{len(rows)}</strong> DoT scheme(s) and programme(s)<span>Official links open in a new tab</span></div>', unsafe_allow_html=True)
         if rows:
             st.markdown('<div class="public-record-grid">' + "".join(_dot_record_card(row) for row in rows) + '</div>', unsafe_allow_html=True)
         else:
@@ -4045,7 +4045,7 @@ def _msde_record_card(record: CatalogueRecord, *, historical: bool = False) -> s
         funding = f'<div><span>Maximum support</span><strong>{esc(format_inr(record.funding_maximum))}</strong></div>'
     facts = (
         f'<div><span>Implementing agency</span><strong>{esc(agency)}</strong></div>'
-        f'<div><span>Record type</span><strong>{esc(display_token(record.record_kind))}</strong></div>'
+        f'<div><span>Scheme / programme type</span><strong>{esc(display_token(record.record_kind))}</strong></div>'
         f'<div><span>Last verified</span><strong>{esc(verified)}</strong></div>'
         f'{date_fact}{funding}'
     )
@@ -4101,7 +4101,7 @@ def render_msde_page(bundle: CatalogueBundle) -> None:
         unsafe_allow_html=True,
     )
     st.caption(
-        f"Latest record verification: {msde.latest_verification_date} · "
+        f"Latest scheme verification: {msde.latest_verification_date} · "
         "Counts are calculated from the governed MSDE publication snapshot."
     )
     st.markdown(
@@ -4115,7 +4115,7 @@ def render_msde_page(bundle: CatalogueBundle) -> None:
     with keyword_column:
         keyword = st.text_input("Search MSDE schemes", placeholder="PMKVY, apprenticeship, entrepreneurship…", key="msde_keyword")
     with type_column:
-        record_type = st.selectbox("Record type", ["All", *sorted({row.record_kind for row in all_records})], key="msde_record_type")
+        record_type = st.selectbox("Scheme / programme type", ["All", *sorted({row.record_kind for row in all_records})], key="msde_record_type")
     with status_column:
         status = st.selectbox("Application status", ["All", *sorted({row.application_status for row in all_records})], key="msde_status")
     visible = filter_msde_records(all_records, keyword=keyword, record_type=record_type, status=status)
@@ -4173,7 +4173,7 @@ def _moe_record_card(record: CatalogueRecord, *, historical: bool = False) -> st
         funding = f'<div><span>Maximum support</span><strong>{esc(format_inr(record.funding_maximum))}</strong></div>'
     facts = (
         f'<div><span>Implementing agency</span><strong>{esc(agency)}</strong></div>'
-        f'<div><span>Record type</span><strong>{esc(display_token(record.record_kind))}</strong></div>'
+        f'<div><span>Scheme / programme type</span><strong>{esc(display_token(record.record_kind))}</strong></div>'
         f'<div><span>Last verified</span><strong>{esc(verified)}</strong></div>'
         f'{date_fact}{funding}'
     )
@@ -4233,7 +4233,7 @@ def render_moe_page(bundle: CatalogueBundle) -> None:
         unsafe_allow_html=True,
     )
     st.caption(
-        f"Latest record verification: {moe.latest_verification_date} · "
+        f"Latest scheme verification: {moe.latest_verification_date} · "
         "Counts are calculated from the governed MoE / AICTE publication snapshot."
     )
     st.markdown(
@@ -4247,7 +4247,7 @@ def render_moe_page(bundle: CatalogueBundle) -> None:
     with keyword_column:
         keyword = st.text_input("Search MoE / AICTE schemes", placeholder="IIC, IDEA Lab, YUKTI, PMRC…", key="moe_keyword")
     with type_column:
-        record_type = st.selectbox("Record type", ["All", *sorted({row.record_kind for row in all_records})], key="moe_record_type")
+        record_type = st.selectbox("Scheme / programme type", ["All", *sorted({row.record_kind for row in all_records})], key="moe_record_type")
     with status_column:
         status = st.selectbox("Application status", ["All", *sorted({row.application_status for row in all_records})], key="moe_status")
     visible = filter_moe_records(all_records, keyword=keyword, record_type=record_type, status=status)

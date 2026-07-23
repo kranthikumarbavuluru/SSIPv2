@@ -149,7 +149,7 @@ class MSMEDashboardSafetyTests(unittest.TestCase):
             self.assertIn(label, section)
         self.assertNotIn("Admin Review", section)
         self.assertIn("build_msme_public_bundle", section)
-        self.assertIn("Latest record verification", section)
+        self.assertIn("Latest scheme verification", section)
 
     def test_documents_are_moved_to_shared_resources(self) -> None:
         resources = self.source[

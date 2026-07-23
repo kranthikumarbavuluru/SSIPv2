@@ -13,7 +13,7 @@ from datetime import date
 import sys
 from pathlib import Path
 from typing import Callable
-from urllib.parse import quote
+from urllib.parse import quote, urlsplit
 
 import streamlit as st
 
@@ -125,6 +125,14 @@ from ssip_dashboard.moe_public import (
     build_moe_public_bundle,
     filter_moe_records,
 )
+from services.admin_auth_v1 import (
+    admin_auth_config,
+    clear_authenticated,
+    is_authenticated,
+    mark_authenticated,
+    register_failed_attempt,
+    verify_admin_password,
+)
 
 APP_VERSION = "3.4.14.0-visual-foundation"
 LOGGER = logging.getLogger(__name__)
@@ -147,6 +155,7 @@ PAGE_NAMES = [
     "Official Sources",
     "Media Runs",
     "Scheme Details",
+    "Admin Login",
 ]
 NAV_LABELS = {
     "Home": "Home",
@@ -167,6 +176,7 @@ NAV_LABELS = {
     "Official Sources": "Sources",
     "Media Runs": "Media runs",
     "Scheme Details": "Profiles",
+    "Admin Login": "Admin sign in",
 }
 PAGE_SLUGS = {
     "Home": "overview",
@@ -187,6 +197,7 @@ PAGE_SLUGS = {
     "Directory": "resources",
     "Media Runs": "media-runs",
     "Scheme Details": "scheme-profiles",
+    "Admin Login": "admin/login",
 }
 
 PAGE_SLUG_ALIASES = {"msme-programmes": "MSME"}
@@ -640,7 +651,7 @@ def site_header(active_page: str) -> str:
             f'<a class="ssip-nav-link{active}" target="_top" href="?page={PAGE_SLUGS[page_name]}">'
             f'{esc(NAV_LABELS[page_name])}</a>'
         )
-    more_active = active_page in {"Directory", "Official Sources", "Media Runs", "Incubators & Ecosystem", "Scheme Details"}
+    more_active = active_page in {"Directory", "Official Sources", "Media Runs", "Incubators & Ecosystem", "Scheme Details", "Admin Login"}
     more_class = " is-active" if more_active else ""
     more_links = (
         f'<a target="_top" href="?page={PAGE_SLUGS["Directory"]}">Resources</a>'
@@ -648,6 +659,7 @@ def site_header(active_page: str) -> str:
         f'<a target="_top" href="?page={PAGE_SLUGS["Incubators & Ecosystem"]}">Ecosystem</a>'
         f'<a target="_top" href="?page={PAGE_SLUGS["Media Runs"]}">Media runs</a>'
         f'<a target="_top" href="?page={PAGE_SLUGS["Scheme Details"]}">Scheme profiles</a>'
+        '<a target="_top" href="?page=admin/login">Admin sign in</a>'
     )
     department_links = []
     department_classes = {
@@ -695,6 +707,84 @@ def page_intro(eyebrow: str, title: str, description: str, *, badge: str = "") -
         f'<div><div class="page-eyebrow">{esc(eyebrow)}</div>'
         f'<h1>{esc(title)}</h1><p>{esc(description)}</p></div>{badge_html}'
         '</section>'
+    )
+
+
+def browser_request_path() -> str:
+    """Read the browser path when Streamlit is mounted below a friendly route."""
+
+    try:
+        return urlsplit(str(st.context.url or "")).path.rstrip("/") or "/"
+    except Exception:
+        return ""
+
+
+def render_admin_login() -> None:
+    """Render the public admin entry page without loading catalogue data."""
+
+    config = admin_auth_config()
+    st.markdown(
+        page_intro(
+            "Restricted workspace",
+            "SSIP Admin sign in",
+            "Sign in to continue to the governed review and publication workspace. "
+            "Public catalogue pages remain read-only.",
+            badge="Admin access",
+        ),
+        unsafe_allow_html=True,
+    )
+
+    if is_authenticated(st.session_state):
+        st.markdown(
+            '<section class="admin-login-shell admin-login-shell-authenticated">'
+            '<div class="admin-login-card">'
+            '<span class="page-eyebrow">Session active</span>'
+            '<h2>Admin access is ready</h2>'
+            '<p>This browser session is authenticated. Open the separate review workspace to inspect, approve and publish governed records.</p>'
+            '</div></section>',
+            unsafe_allow_html=True,
+        )
+        st.markdown(
+            f'<a class="admin-login-action" target="_blank" rel="noopener noreferrer" '
+            f'href="{esc(config.workspace_url)}">Open admin review workspace</a>',
+            unsafe_allow_html=True,
+        )
+        if st.button("Sign out", key="admin_public_sign_out"):
+            clear_authenticated(st.session_state)
+            st.rerun()
+        return
+
+    st.markdown('<section class="admin-login-shell"><div class="admin-login-card">', unsafe_allow_html=True)
+    if not config.secret_configured:
+        st.error(
+            "Admin login is not configured. Set SSIP_ADMIN_PASSWORD or "
+            "SSIP_ADMIN_PASSWORD_HASH before starting the dashboard."
+        )
+    else:
+        with st.form("ssip_admin_login_form", clear_on_submit=False):
+            st.markdown('<span class="page-eyebrow">Credential check</span>', unsafe_allow_html=True)
+            st.markdown("<h2>Enter the admin password</h2>", unsafe_allow_html=True)
+            password = st.text_input(
+                "Admin password",
+                type="password",
+                autocomplete="current-password",
+                placeholder="Enter admin password…",
+                label_visibility="visible",
+            )
+            submitted = st.form_submit_button("Sign in", type="primary", use_container_width=True)
+        if submitted:
+            if verify_admin_password(password):
+                mark_authenticated(st.session_state)
+                st.rerun()
+            attempts = register_failed_attempt(st.session_state)
+            st.error("Password not accepted. Check the configured secret and try again.")
+            if attempts >= 5:
+                st.warning("Several failed attempts were recorded for this browser session.")
+    st.markdown('</div></section>', unsafe_allow_html=True)
+    st.markdown(
+        '<p class="admin-login-note">Credentials are evaluated locally and are never written to catalogue records.</p>'
+        '<a class="admin-login-back" target="_top" href="/?page=overview">Return to the public dashboard</a>',
+        unsafe_allow_html=True,
     )
 
 
@@ -1206,6 +1296,7 @@ def render_home(bundle: CatalogueBundle, official_sources: list[OfficialSource])
         '<footer class="public-footer">'
         f'<span>Last catalogue update: {esc(latest_signal)}</span>'
         '<span>Official-source catalogue · Read-only public access</span>'
+        '<a class="public-footer-admin" target="_top" href="?page=admin/login">Admin sign in</a>'
         '</footer>',
         unsafe_allow_html=True,
     )
@@ -4283,10 +4374,13 @@ def render_moe_page(bundle: CatalogueBundle) -> None:
 
 def main() -> None:
     requested_slug = str(st.query_params.get("page", "") or "").strip().lower()
-    requested_page = PAGE_SLUG_ALIASES.get(requested_slug) or next(
-        (page_name for page_name, slug in PAGE_SLUGS.items() if slug == requested_slug),
-        None,
-    )
+    if browser_request_path().casefold() == "/admin/login":
+        requested_page = "Admin Login"
+    else:
+        requested_page = PAGE_SLUG_ALIASES.get(requested_slug) or next(
+            (page_name for page_name, slug in PAGE_SLUGS.items() if slug == requested_slug),
+            None,
+        )
     if "ssip_primary_navigation" not in st.session_state and requested_page:
         st.session_state["ssip_primary_navigation"] = requested_page
 
@@ -4319,6 +4413,11 @@ def main() -> None:
         '<span id="ssip-main-content" class="main-content-anchor" tabindex="-1"></span>',
         unsafe_allow_html=True,
     )
+    if page == "Admin Login":
+        render_admin_login()
+        st.caption("SSIP · Restricted admin entry")
+        return
+
     try:
         bundle = cached_catalogue(_msme_cache_token())
         official_sources = cached_official_sources()

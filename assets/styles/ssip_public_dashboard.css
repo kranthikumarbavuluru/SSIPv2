@@ -2184,6 +2184,98 @@ select:focus-visible,
   content: none !important;
 }
 
+.admin-login-shell {
+  display: grid;
+  place-items: center;
+  min-height: 280px;
+  margin: 1.2rem 0;
+  padding: 1.2rem;
+  border: 1px solid var(--ssip-border);
+  border-radius: var(--ssip-radius-lg);
+  background: linear-gradient(135deg, rgba(234, 243, 255, .8), rgba(241, 252, 248, .85));
+}
+
+.admin-login-shell-authenticated {
+  min-height: 210px;
+}
+
+.admin-login-card {
+  width: min(100%, 540px);
+  padding: clamp(1.1rem, 2.5vw, 1.8rem);
+  border: 1px solid var(--ssip-border-strong);
+  border-radius: var(--ssip-radius-md);
+  background: var(--ssip-surface);
+  box-shadow: var(--ssip-shadow-1);
+}
+
+.admin-login-card h2 {
+  margin: .35rem 0 .55rem;
+  color: var(--ssip-navy);
+  font-size: clamp(1.2rem, 2vw, 1.55rem);
+  text-wrap: balance;
+}
+
+.admin-login-card p,
+.admin-login-note {
+  color: var(--ssip-ink-soft);
+  line-height: 1.55;
+}
+
+.admin-login-action,
+.admin-login-back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  border-radius: var(--ssip-radius-sm);
+  text-decoration: none !important;
+  touch-action: manipulation;
+}
+
+.admin-login-action {
+  width: min(100%, 540px);
+  margin: 0 auto .8rem;
+  padding: .65rem 1rem;
+  background: var(--ssip-cobalt);
+  color: #ffffff !important;
+  font-weight: 750;
+}
+
+.admin-login-action:hover,
+.admin-login-action:focus-visible {
+  background: var(--ssip-cobalt-strong);
+}
+
+.admin-login-note,
+.admin-login-back {
+  display: block;
+  width: min(100%, 540px);
+  margin-inline: auto;
+}
+
+.admin-login-note {
+  margin-top: .5rem;
+  font-size: .75rem;
+  text-align: center;
+}
+
+.admin-login-back {
+  color: var(--ssip-cobalt-strong) !important;
+  font-size: .78rem;
+  text-align: center;
+}
+
+.public-footer-admin {
+  color: var(--ssip-cobalt-strong) !important;
+  font-weight: 750;
+  text-decoration: none !important;
+}
+
+.public-footer-admin:hover,
+.public-footer-admin:focus-visible {
+  text-decoration: underline !important;
+}
+
 /* v3.4.14.0 shared Home card grid — schemes and time-bound opportunities
    should read as one catalogue surface, not two unrelated layouts. */
 .scheme-results-grid,

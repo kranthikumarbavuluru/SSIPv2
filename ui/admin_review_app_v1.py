@@ -20,6 +20,13 @@ from services.admin_verification_intelligence_v1 import (  # noqa: E402
     record_category,
     verification_assessment,
 )
+from services.admin_auth_v1 import (  # noqa: E402
+    admin_auth_config,
+    is_authenticated,
+    mark_authenticated,
+    register_failed_attempt,
+    verify_admin_password,
+)
 from services.department_review_intake_v1 import (  # noqa: E402
     available_intakes,
     get_intake,
@@ -1258,6 +1265,44 @@ def _render_three_column_review_workspace(
     st.json(record, expanded=True)
 
 
+def _render_admin_login(st: Any) -> bool:
+    """Gate the operational review workspace with the shared admin secret."""
+
+    config = admin_auth_config()
+    if is_authenticated(st.session_state):
+        return True
+
+    st.title("SSIP Admin sign in")
+    st.caption(
+        "This workspace controls review, staging and publication. "
+        "Credentials are checked locally and are not stored in the catalogue."
+    )
+    if not config.secret_configured:
+        st.error(
+            "Admin login is not configured. Set SSIP_ADMIN_PASSWORD or "
+            "SSIP_ADMIN_PASSWORD_HASH before starting the workspace."
+        )
+        return False
+
+    with st.form("ssip_operational_admin_login", clear_on_submit=False):
+        password = st.text_input(
+            "Admin password",
+            type="password",
+            autocomplete="current-password",
+            placeholder="Enter admin password…",
+        )
+        submitted = st.form_submit_button("Sign in", type="primary")
+    if submitted:
+        if verify_admin_password(password):
+            mark_authenticated(st.session_state)
+            st.rerun()
+        attempts = register_failed_attempt(st.session_state)
+        st.error("Password not accepted. Check the configured secret and try again.")
+        if attempts >= 5:
+            st.warning("Several failed attempts were recorded for this browser session.")
+    return False
+
+
 def main() -> None:
     import streamlit as st
 
@@ -1267,6 +1312,9 @@ def main() -> None:
         layout="wide",
         initial_sidebar_state="expanded",
     )
+
+    if not _render_admin_login(st):
+        return
 
     @st.cache_resource
     def get_service() -> AdminReviewService:

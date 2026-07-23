@@ -34,6 +34,29 @@ Admin review workspace, after creating or supplying a local staging database:
 python -m streamlit run .\ui\admin_review_app_v1.py --server.port 8505
 ```
 
+Admin entry page:
+
+```text
+http://localhost:8506/?page=admin/login
+```
+
+The query route is the reliable local Streamlit entry point. A reverse proxy
+may expose the same page as `/admin/login` when it forwards the Streamlit
+session and websocket correctly.
+
+Provide the secret outside the repository before starting the dashboard and
+review workspace. A plaintext value is supported for local development; a
+PBKDF2-SHA256 value can be supplied through `SSIP_ADMIN_PASSWORD_HASH` for
+deployment. Do not commit either value:
+
+```powershell
+$env:SSIP_ADMIN_PASSWORD = "replace-with-your-secret"
+```
+
+The public page links to the separate review workspace on port 8505, which
+uses the same login gate. Set `SSIP_ADMIN_WORKSPACE_URL` when that workspace
+is hosted elsewhere.
+
 Operational databases are intentionally excluded from Git. In catalogue-preview
 mode the public dashboard can load the governed preview CSV without a database.
 

@@ -1,0 +1,79 @@
+{
+  "version": "3.4.2.0.3",
+  "phase": "MeitY Invalid Application-Link Suppression Hotfix",
+  "validation_status": "PASS",
+  "run_id": "20260713T062214+0000_meity_app_link_hotfix",
+  "counts": {
+    "active_catalogue_rows": 139,
+    "dashboard_loaded_records": 166,
+    "dashboard_visible_records": 53,
+    "target_records": 2
+  },
+  "target_records": [
+    {
+      "master_id": "147173e17ea741687247",
+      "scheme_name": "SAMRIDH",
+      "official_page_url": "https://msh.meity.gov.in/schemes/samridh",
+      "application_url_exposed_to_dashboard": "",
+      "application_status": "APPLICATION_STATUS_REQUIRES_VERIFICATION"
+    },
+    {
+      "master_id": "6af79cf6c8a213dddce8",
+      "scheme_name": "TIDE 2.0",
+      "official_page_url": "https://msh.meity.gov.in/schemes/tide",
+      "application_url_exposed_to_dashboard": "",
+      "application_status": "NO_CURRENT_APPLICATION_ROUTE_CONFIRMED"
+    }
+  ],
+  "checks": [
+    {
+      "name": "active_row_count_139",
+      "passed": true,
+      "details": "actual=139"
+    },
+    {
+      "name": "master_ids_unique",
+      "passed": true,
+      "details": "unique=139 rows=139"
+    },
+    {
+      "name": "target_plan_values_suppress_db_fallback",
+      "passed": true,
+      "details": "Both catalogue rows must contain the explicit non-URL suppression value."
+    },
+    {
+      "name": "dashboard_application_urls_blank",
+      "passed": true,
+      "details": "The dashboard loader must expose a blank application_url for both schemes."
+    },
+    {
+      "name": "invalid_logo_url_absent_from_loaded_records",
+      "passed": true,
+      "details": "The MSH logo-application URL must not be exposed."
+    },
+    {
+      "name": "official_pages_preserved",
+      "passed": true,
+      "details": "Both records must retain their official scheme-information pages."
+    },
+    {
+      "name": "both_meity_records_main_visible",
+      "passed": true,
+      "details": "visible=['147173e17ea741687247', '6af79cf6c8a213dddce8']"
+    },
+    {
+      "name": "dashboard_visible_count_53",
+      "passed": true,
+      "details": "actual=53"
+    },
+    {
+      "name": "non_target_rows_preserved",
+      "passed": true,
+      "details": "changed_non_target_rows=0"
+    }
+  ],
+  "failed_checks": [],
+  "publication_performed": true,
+  "database_modified": false,
+  "dashboard_code_modified": false
+}

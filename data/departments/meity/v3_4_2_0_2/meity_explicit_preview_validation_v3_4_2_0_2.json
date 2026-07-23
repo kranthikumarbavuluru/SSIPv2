@@ -1,0 +1,89 @@
+{
+  "version": "3.4.2.0.2",
+  "phase": "MeitY explicit-preview candidate validation",
+  "validation_status": "PASS",
+  "active_catalogue": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\catalogue_preview\\v3_3_2\\catalogue_preview_v3_3_2.csv",
+  "candidate_catalogue": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\catalogue_preview\\v3_4_2_0_2\\catalogue_preview_v3_4_2_0_2.csv",
+  "counts": {
+    "active_raw_rows": 137,
+    "candidate_raw_rows": 139,
+    "active_loaded_records": 164,
+    "candidate_loaded_records": 166,
+    "active_main_schemes": 51,
+    "candidate_main_schemes": 53
+  },
+  "meity_loaded_ids": [
+    "147173e17ea741687247",
+    "6af79cf6c8a213dddce8"
+  ],
+  "meity_main_visible_ids": [
+    "147173e17ea741687247",
+    "6af79cf6c8a213dddce8"
+  ],
+  "checks": [
+    {
+      "name": "active_raw_rows_137",
+      "passed": true,
+      "details": "actual=137"
+    },
+    {
+      "name": "candidate_raw_rows_139",
+      "passed": true,
+      "details": "actual=139"
+    },
+    {
+      "name": "column_order_preserved",
+      "passed": true,
+      "details": "active=47 candidate=47"
+    },
+    {
+      "name": "existing_137_rows_unchanged",
+      "passed": true,
+      "details": "The original active rows must remain identical and in the same order."
+    },
+    {
+      "name": "candidate_master_ids_unique",
+      "passed": true,
+      "details": "rows=139 unique=139"
+    },
+    {
+      "name": "exactly_two_meity_raw_rows",
+      "passed": true,
+      "details": "raw_ids=['147173e17ea741687247', '6af79cf6c8a213dddce8']"
+    },
+    {
+      "name": "active_dashboard_visible_51",
+      "passed": true,
+      "details": "actual=51"
+    },
+    {
+      "name": "candidate_dashboard_visible_53",
+      "passed": true,
+      "details": "actual=53"
+    },
+    {
+      "name": "both_meity_records_loaded",
+      "passed": true,
+      "details": "loaded_ids=['147173e17ea741687247', '6af79cf6c8a213dddce8']"
+    },
+    {
+      "name": "both_meity_records_main_visible",
+      "passed": true,
+      "details": "visible_ids=['147173e17ea741687247', '6af79cf6c8a213dddce8']"
+    },
+    {
+      "name": "only_meity_added_to_main_population",
+      "passed": true,
+      "details": "new_main_ids=['147173e17ea741687247', '6af79cf6c8a213dddce8']"
+    },
+    {
+      "name": "no_open_application_claim",
+      "passed": true,
+      "details": "application_url must remain blank and no OPEN status may be asserted."
+    }
+  ],
+  "failed_checks": [],
+  "publication_performed": false,
+  "database_modified": false,
+  "dashboard_modified": false
+}

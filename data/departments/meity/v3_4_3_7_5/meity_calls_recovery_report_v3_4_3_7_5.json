@@ -1,0 +1,28 @@
+{
+  "version": "3.4.3.7.5",
+  "phase": "MeitY Calls, Challenges and Application Windows Recovery",
+  "generated_at": "2026-07-14T07:42:37+00:00",
+  "effective_date": "2026-07-14",
+  "network_requested": true,
+  "network_documents_attempted": 30,
+  "network_documents_successful": 30,
+  "local_raw_candidates": 52,
+  "network_raw_candidates": 1,
+  "merged_raw_candidates": 32,
+  "admin_queue_count": 18,
+  "verified_current_call_count": 0,
+  "historical_or_closed_call_count": 0,
+  "unresolved_parent_count": 0,
+  "public_application_route_count": 0,
+  "off_domain_sources_accepted": 0,
+  "permanent_scheme_records_modified": 0,
+  "database_modified": false,
+  "publication_performed": false,
+  "output_files": {
+    "admin_queue": "D:\\WebSite\\DASHBOARD\\Code\\SSIP_GitHub\\data\\departments\\meity\\v3_4_3_7_5\\meity_admin_review_queue_v3_4_3_7_5.csv",
+    "candidates": "D:\\WebSite\\DASHBOARD\\Code\\SSIP_GitHub\\data\\departments\\meity\\v3_4_3_7_5\\meity_call_candidates_v3_4_3_7_5.csv",
+    "fetch_log": "D:\\WebSite\\DASHBOARD\\Code\\SSIP_GitHub\\data\\departments\\meity\\v3_4_3_7_5\\meity_fetch_log_v3_4_3_7_5.csv",
+    "rejected_noise": "D:\\WebSite\\DASHBOARD\\Code\\SSIP_GitHub\\data\\departments\\meity\\v3_4_3_7_5\\meity_rejected_noise_v3_4_3_7_5.csv"
+  },
+  "recovery_signature": "70bf2e101ac3de4f2fb7eb5818839ac4dd1f090d2a1cd7a4f3979299e2486857"
+}

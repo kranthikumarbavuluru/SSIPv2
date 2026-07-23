@@ -1,0 +1,15 @@
+{
+  "version": "3.4.8.0",
+  "activation_status": "ACTIVE",
+  "run_id": "dot_initial_governed_public_20260722",
+  "activated_at": "2026-07-22T00:00:00+05:30",
+  "inventory_file": "active_inventory.csv",
+  "inventory_sha256": "a24711ad907892c9af51e0cfa4c8a4481f27db0fa1ad84f31ea16d93880a7f9e",
+  "record_count": 11,
+  "auto_approved_count": 11,
+  "exception_count": 0,
+  "publication_decision": "AUTO_APPROVED",
+  "source_index": "https://www.dot.gov.in/whats-new",
+  "source_last_verified": "2026-07-22",
+  "notes": "Initial DoT public snapshot: four permanent scheme/programme identities and seven closed TTDF/DCIS calls. No current application window is inferred without dated official evidence."
+}

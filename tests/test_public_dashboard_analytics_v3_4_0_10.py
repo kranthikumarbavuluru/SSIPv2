@@ -117,6 +117,14 @@ class PublicDashboardAnalyticsTest(unittest.TestCase):
         self.assertNotIn("Sector Not Specified", snapshot.structured_sectors)
         self.assertNotIn("SUPPORT_TYPE_NOT_SPECIFIED", snapshot.structured_support_types)
 
+    def test_snapshot_includes_separately_published_department_verification_dates(self) -> None:
+        snapshot = build_public_analytics(
+            [record()],
+            additional_verification_dates=("2026-07-21", "not-a-date", ""),
+        )
+
+        self.assertEqual(snapshot.latest_verification_signal, "2026-07-21")
+
     def test_dashboard_uses_accessible_non_donut_analytics(self) -> None:
         app = (ROOT / "apps" / "public_dashboard_app_v2_9.py").read_text(encoding="utf-8-sig")
         css = (ROOT / "assets" / "dashboard_theme.css").read_text(encoding="utf-8")

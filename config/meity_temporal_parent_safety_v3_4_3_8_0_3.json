@@ -1,0 +1,87 @@
+{
+  "version": "3.4.3.8.0.3",
+  "source_version": "3.4.3.8.0.2",
+  "source_dir": "data/departments/meity/v3_4_3_8_0_2",
+  "purified_source_dir": "data/departments/meity/v3_4_3_8_0_1",
+  "output_dir": "data/departments/meity/v3_4_3_8_0_3",
+  "verification_freshness_days": 45,
+  "official_domains": [
+    "msh.meity.gov.in",
+    "meity.gov.in",
+    "www.meity.gov.in"
+  ],
+  "explicit_open_markers": [
+    "applications are invited",
+    "application is invited",
+    "applications open",
+    "application open",
+    "open for applications",
+    "apply now",
+    "register now",
+    "submit your application",
+    "last date to apply",
+    "deadline for application"
+  ],
+  "reopen_markers": [
+    "reopened",
+    "re-opened",
+    "applications reopened",
+    "applications re-opened",
+    "fresh applications invited"
+  ],
+  "safe_action_labels": {
+    "CONFIRM_EXISTING_PROGRAMME_FAMILY": "CONFIRM_CANONICAL_PROGRAMME_FAMILY",
+    "CONFIRM_PROGRAMME_FAMILY": "CONFIRM_CANONICAL_PROGRAMME_FAMILY",
+    "REVIEW_NEW_PROGRAMME_FAMILY": "REVIEW_NEW_PROGRAMME_IDENTITY",
+    "CONFIRM_CALL_OR_CHALLENGE_GROUP": "CONFIRM_CALL_IDENTITY_AND_PARENT",
+    "REVIEW_CURRENT_CALL": "VERIFY_CURRENT_CALL_EVIDENCE",
+    "CONFIRM_HISTORICAL_GROUP": "CONFIRM_HISTORICAL_CLASSIFICATION",
+    "REVIEW_IDENTITY_OR_ROLE": "REVIEW_IDENTITY_OR_ROLE",
+    "REVIEW_LOW_RISK_GROUP": "REVIEW_IDENTITY_OR_ROLE"
+  },
+  "programme_aliases": {
+    "GENESIS": [
+      "genesis",
+      "gen-next support for innovative startups"
+    ],
+    "SASACT": [
+      "sasact"
+    ],
+    "SAMRIDH": [
+      "samridh",
+      "startup accelerator of meity for product innovation development and growth"
+    ],
+    "TIDE 2.0": [
+      "tide 2.0",
+      "tide2.0",
+      "technology incubation and development of entrepreneurs"
+    ],
+    "XR Startup Program": [
+      "xr startup program",
+      "xr startup programme"
+    ],
+    "CREST Semiconductor Accelerator": [
+      "crest semiconductor accelerator",
+      "semiconductor accelerator"
+    ],
+    "MathWorks Startup Program": [
+      "mathworks startup program",
+      "mathworks"
+    ]
+  },
+  "standalone_call_aliases": {
+    "Google Appscale Academy": [
+      "google appscale academy",
+      "googleappscale",
+      "appscale academy"
+    ],
+    "BHUMI – BSF Border Security Hackathon": [
+      "bhumi",
+      "bsf border security hackathon"
+    ],
+    "DRISHTI – SSB Grand Challenge on Strengthening Border Security": [
+      "drishti",
+      "ssb grand challenge"
+    ]
+  }
+}

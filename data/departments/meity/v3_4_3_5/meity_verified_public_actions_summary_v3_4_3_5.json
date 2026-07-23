@@ -1,0 +1,61 @@
+{
+  "version": "3.4.3.5",
+  "stage": "VERIFIED_PUBLIC_ACTIONS_PREVIEW",
+  "execution_mode": "PREVIEW_ONLY",
+  "release_readiness_status": "PASS",
+  "verified_public_action_count": 4,
+  "action_type_counts": {
+    "SCHEME_DETAILS": 4
+  },
+  "verified_scheme_names": [
+    "GENESIS",
+    "SAMRIDH",
+    "SASACT",
+    "TIDE 2.0"
+  ],
+  "apply_now_button_count": 0,
+  "open_call_button_count": 0,
+  "scheme_details_button_count": 4,
+  "guidelines_button_count": 0,
+  "manual_button_count": 0,
+  "notification_button_count": 0,
+  "review_required_count": 0,
+  "database_writes": 0,
+  "dashboard_code_changes": 0,
+  "publication_performed": false,
+  "validation": {
+    "checks": {
+      "exactly_four_actions": true,
+      "expected_schemes_only": true,
+      "all_scheme_details": true,
+      "all_scheme_master_roles": true,
+      "all_verified_information_pages": true,
+      "all_public_button_eligible": true,
+      "all_active_non_time_bound": true,
+      "all_https": true,
+      "all_official_meity_domains": true,
+      "unique_resolved_urls": true,
+      "no_apply_now_actions": true,
+      "no_open_call_actions": true
+    },
+    "passed": true
+  },
+  "actions_path": "data/departments/meity/v3_4_3_5/meity_verified_public_actions_v3_4_3_5.csv",
+  "source_sha256": "ef43bd7e27df2ead5fe88ab8bf2751a80eac6c4e13e8894173a6625b57650a8c",
+  "classification_sha256": "d11465dc9d2885096a770c9aecc938f3b436f0fe11d366b8cbf13144ae4e2f71",
+  "browser_verification_sha256": "8465b27761858dda3aa0372ca0a3b00552f57fd1de714899a0ac94a9bb88975c",
+  "inventory_sha256": "cef5c394608624ce543debdf6bf16f65360bee9ece4c44dcaf59b156db2c36b0",
+  "quarantine_sha256": "7caf52148156172d292fb72d45e25e92bbe15e6ac548858a0dd3474b7cfcc876",
+  "actions_sha256": "28f6174ebf4313394f205682dc1735451f14f060f346264c84d857d6cee0836e",
+  "generated_at_utc": "2026-07-13T09:21:43+00:00",
+  "safety": {
+    "source_candidate_unchanged": true,
+    "offline_classification_unchanged": true,
+    "browser_verification_unchanged": true,
+    "clean_inventory_unchanged": true,
+    "quarantine_inventory_unchanged": true,
+    "database_files_unchanged": true,
+    "dashboard_python_files_unchanged": true,
+    "publication_current_unchanged": true
+  }
+}

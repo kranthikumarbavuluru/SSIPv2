@@ -1,0 +1,42 @@
+{
+  "service_version": "3.4.0.3.1",
+  "department_code": "DST",
+  "generated_at": "2026-07-10T10:40:23+00:00",
+  "counts": {
+    "input_review_rows": 476,
+    "input_category_gap_rows": 443,
+    "unique_category_gaps": 114,
+    "duplicate_gap_occurrences": 329,
+    "possible_new_schemes": 0,
+    "possible_new_programmes": 0,
+    "existing_entity_matches": 0,
+    "non_entity_gaps": 11,
+    "admin_review_rows": 103,
+    "unresolved_unique_gaps": 103
+  },
+  "quality": {
+    "unresolved_rate": 0.903509,
+    "maximum_unresolved_rate": 0.3,
+    "invalid_classifications": [],
+    "possible_call_contamination": 0,
+    "duplicate_candidate_urls": 0,
+    "existing_candidate_overlap": 0,
+    "forbidden_identity_fields_found": []
+  },
+  "checks": {
+    "all_input_gap_occurrences_accounted_for": true,
+    "unique_gap_urls_unique": true,
+    "all_unique_gaps_classified": true,
+    "gap_classifications_valid": true,
+    "duplicate_rows_accounted_for": true,
+    "possible_candidates_have_unique_urls": true,
+    "possible_candidates_not_existing_entities": true,
+    "call_pages_not_proposed_as_permanent_entities": true,
+    "forbidden_identity_fields_absent": true,
+    "canonical_scheme_identity_created": false,
+    "identity_locked": false,
+    "unresolved_rate_within_limit": false
+  },
+  "gap_validation_passed": false,
+  "ready_for_v3_4_0_4": false
+}

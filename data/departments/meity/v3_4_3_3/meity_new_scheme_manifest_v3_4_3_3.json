@@ -1,0 +1,89 @@
+{
+  "version": "3.4.3.3",
+  "phase": "MeitY SASACT and GENESIS Identity, Evidence and Status Validation",
+  "generated_at": "2026-07-13T08:24:23+00:00",
+  "validation_status": "PASS",
+  "outputs": [
+    {
+      "path": "data/departments/meity/v3_4_3_3/meity_new_scheme_application_status_v3_4_3_3.csv",
+      "sha256": "c44c5792b62a76751f93b709e6f4e05f8c40255c48f7d82056fe3d7e012c773d",
+      "size_bytes": 1407
+    },
+    {
+      "path": "data/departments/meity/v3_4_3_3/meity_new_scheme_field_evidence_v3_4_3_3.csv",
+      "sha256": "254ba3de38dee0926e147ec72d4286329ca0b997af958f1317613d95e1d86b88",
+      "size_bytes": 14733
+    },
+    {
+      "path": "data/departments/meity/v3_4_3_3/meity_new_scheme_identity_validation_v3_4_3_3.csv",
+      "sha256": "d57286b01f1a06e3fcb4257290ccf9f397cb852033786bb4b7289e1058b88120",
+      "size_bytes": 993
+    },
+    {
+      "path": "data/departments/meity/v3_4_3_3/meity_new_scheme_review_queue_v3_4_3_3.csv",
+      "sha256": "ee12a4db12cbdaac4ac1ef48c37e88b01c5d7d767fecc64575e4dd93412bf253",
+      "size_bytes": 1189
+    },
+    {
+      "path": "data/departments/meity/v3_4_3_3/meity_new_scheme_validation_summary_v3_4_3_3.json",
+      "sha256": "0a28c0b067aed2e72c8aaa87c3b5ce3fcdba86bcf768a0cc0df5e21fe26be0ca",
+      "size_bytes": 5986
+    },
+    {
+      "path": "data/departments/meity/v3_4_3_3/meity_new_scheme_validation_v3_4_3_3.json",
+      "sha256": "4dfb2b768e15ad4f5ade966c4f616dc3877fa29faf9ee71a0c4cb1bc5e8898f2",
+      "size_bytes": 3674
+    },
+    {
+      "path": "data/departments/meity/v3_4_3_3/meity_official_source_fetch_log_v3_4_3_3.csv",
+      "sha256": "f3626d46a11e93b424a4a3b985594cd26656884db0eb1a3b98a78bde468b0c10",
+      "size_bytes": 2507
+    },
+    {
+      "path": "data/departments/meity/v3_4_3_3/source_snapshots/genesis_administrative_approval_ed34c8c510.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "path": "data/departments/meity/v3_4_3_3/source_snapshots/genesis_ministry_scheme_detail_page_5e7978c974.txt",
+      "sha256": "aacff260aec8d4a8f86e888e5c24f6e8a188465a691d5158e8b6740e991f33c3",
+      "size_bytes": 292
+    },
+    {
+      "path": "data/departments/meity/v3_4_3_3/source_snapshots/genesis_official_scheme_brief_ff1bd20342.txt",
+      "sha256": "4fb96a314d14ee8ada874aff0360a336a914ba2180a28ace076be8b9e07564ca",
+      "size_bytes": 1281
+    },
+    {
+      "path": "data/departments/meity/v3_4_3_3/source_snapshots/genesis_official_scheme_brochure_e0127f8242.txt",
+      "sha256": "94bf5fc2416193c09a8e3a41cf41716f5027623057d5fab0fa46482d342d3502",
+      "size_bytes": 5488
+    },
+    {
+      "path": "data/departments/meity/v3_4_3_3/source_snapshots/genesis_reference_application_form_0333bfd127.txt",
+      "sha256": "9c19be3066b15343bf68de86e84e0597da3e1d41a800f46effa40f1fbd368374",
+      "size_bytes": 4435
+    },
+    {
+      "path": "data/departments/meity/v3_4_3_3/source_snapshots/genesis_scheme_master_page_28ac6fb921.txt",
+      "sha256": "99f1b743fca4c06eb6ebb18d41204ce6243514459b223769dee01d250e61c25a",
+      "size_bytes": 2561
+    },
+    {
+      "path": "data/departments/meity/v3_4_3_3/source_snapshots/sasact_official_annual_report_902bcc5a3a.txt",
+      "sha256": "5aa7e1a36cb0d9633b75e6f3a4d1fe0c3fb490d2988fc1ef27fef8f7b2aada96",
+      "size_bytes": 1070084
+    },
+    {
+      "path": "data/departments/meity/v3_4_3_3/source_snapshots/sasact_official_grant_release_ledger_ac17712cce.txt",
+      "sha256": "91f9443d039896adba131235fb52d15fa29cadcbfe13c8afc54bab476ebe8e2a",
+      "size_bytes": 95399
+    },
+    {
+      "path": "data/departments/meity/v3_4_3_3/source_snapshots/sasact_scheme_master_page_1c5c50d5e8.txt",
+      "sha256": "54f3e30b06d4fd64442e00488a0e2c27392a172f748e5444470d3f32e915266f",
+      "size_bytes": 1997
+    }
+  ],
+  "publication_status": "NOT_PUBLISHED"
+}

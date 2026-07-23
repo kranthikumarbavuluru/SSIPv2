@@ -1,0 +1,50 @@
+{
+    "manifest_version":  "1.0",
+    "phase_version":  "3.4.1.0.4",
+    "phase":  "DPIIT Governed Field Extraction and Evidence Validation Pilot",
+    "execution_mode":  "MANUAL_PREVIEW_ONLY",
+    "generated_from_baseline_at":  "2026-07-12T20:08:54.8022921+05:30",
+    "output_directory":  "data/departments/dpiit/v3_4_1_0_4",
+    "validation_status":  "PASS",
+    "pilot_record_count":  3,
+    "evidence_row_count":  59,
+    "review_row_count":  11,
+    "files":  [
+                  {
+                      "relative_path":  "data/departments/dpiit/v3_4_1_0_4/dpiit_extraction_pilot_records_v3_4_1_0_4.csv",
+                      "sha256":  "c704bc4ea2e8aad022f23bbf183dc92b0b7376773ae0a87659e6d4d9fb4e3451",
+                      "size_bytes":  9031
+                  },
+                  {
+                      "relative_path":  "data/departments/dpiit/v3_4_1_0_4/dpiit_field_evidence_registry_v3_4_1_0_4.csv",
+                      "sha256":  "4e9d6d52455b4c50535c290aea227757049638444795ecd0292a9316fec17d50",
+                      "size_bytes":  33758
+                  },
+                  {
+                      "relative_path":  "data/departments/dpiit/v3_4_1_0_4/dpiit_extraction_review_queue_v3_4_1_0_4.csv",
+                      "sha256":  "26d4464f9d966daf5fc511124f054ab7205c6c06b4041dc7101982b51affd463",
+                      "size_bytes":  4940
+                  },
+                  {
+                      "relative_path":  "data/departments/dpiit/v3_4_1_0_4/dpiit_pilot_identity_lookup_v3_4_1_0_4.csv",
+                      "sha256":  "462a1e406bf2a63d3ac88b83934db77b4b67dabb1749655bce4ad057af2ab7e8",
+                      "size_bytes":  3469
+                  },
+                  {
+                      "relative_path":  "data/departments/dpiit/v3_4_1_0_4/dpiit_extraction_validation_v3_4_1_0_4.json",
+                      "sha256":  "f23e67f0a4288fa635aab66b0a32566a279a0249869c5e6e8f06da55b030cece",
+                      "size_bytes":  13911
+                  },
+                  {
+                      "relative_path":  "data/departments/dpiit/v3_4_1_0_4/dpiit_extraction_summary_v3_4_1_0_4.json",
+                      "sha256":  "187623d074c5a1091e0edbc843d79501983478c299b387ff86a1807e0d86f4a4",
+                      "size_bytes":  7732
+                  }
+              ],
+    "publication":  {
+                        "permitted":  false,
+                        "performed":  false,
+                        "active_catalogue_modified":  false,
+                        "immutable_publication_modified":  false
+                    }
+}

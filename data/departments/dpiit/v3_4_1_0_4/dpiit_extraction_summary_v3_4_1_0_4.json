@@ -1,0 +1,111 @@
+{
+    "version":  "3.4.1.0.4",
+    "phase":  "DPIIT Governed Field Extraction and Evidence Validation Pilot",
+    "execution_mode":  "MANUAL_PREVIEW_ONLY",
+    "as_of_date":  "2026-07-12",
+    "overall_status":  "PASS",
+    "scope":  {
+                  "exact_record_count":  3,
+                  "discovery_performed":  false,
+                  "new_identity_created":  false,
+                  "calls_or_rounds_extracted":  false,
+                  "database_modified":  false,
+                  "dashboard_modified":  false,
+                  "publication_performed":  false
+              },
+    "record_summaries":  [
+                             {
+                                 "master_id":  "dpiit_master_3b767c3b91080149015f",
+                                 "canonical_name":  "Section 80-IAC Tax Exemption Eligibility Certification for Startups",
+                                 "record_kind":  "GOVERNMENT_SERVICE",
+                                 "programme_status":  "APPLICATION_INFORMATION_AVAILABLE",
+                                 "field_completeness":  "0.87",
+                                 "confidence":  "0.97",
+                                 "review_decision":  "NEEDS_MANUAL_REVIEW",
+                                 "evidence_count":  20,
+                                 "open_review_count":  3,
+                                 "open_review_fields":  [
+                                                            "contact_details",
+                                                            "guideline_url",
+                                                            "required_documents"
+                                                        ]
+                             },
+                             {
+                                 "master_id":  "dpiit_master_6c1afb477ef37cd6acaa",
+                                 "canonical_name":  "DPIIT Startup Recognition",
+                                 "record_kind":  "GOVERNMENT_SERVICE",
+                                 "programme_status":  "CURRENT_SERVICE_INFORMATION_AVAILABLE",
+                                 "field_completeness":  "0.80",
+                                 "confidence":  "0.96",
+                                 "review_decision":  "NEEDS_MANUAL_REVIEW",
+                                 "evidence_count":  18,
+                                 "open_review_count":  3,
+                                 "open_review_fields":  [
+                                                            "contact_details",
+                                                            "guideline_url",
+                                                            "required_documents"
+                                                        ]
+                             },
+                             {
+                                 "master_id":  "dpiit_master_c89f3d410e746f1594dc",
+                                 "canonical_name":  "Startup India Fund of Funds 2.0",
+                                 "record_kind":  "SCHEME",
+                                 "programme_status":  "APPLICATION_INFORMATION_AVAILABLE",
+                                 "field_completeness":  "0.90",
+                                 "confidence":  "0.97",
+                                 "review_decision":  "NEEDS_MANUAL_REVIEW",
+                                 "evidence_count":  21,
+                                 "open_review_count":  5,
+                                 "open_review_fields":  [
+                                                            "contact_details",
+                                                            "funding_maximum",
+                                                            "funding_minimum",
+                                                            "implementing_agency",
+                                                            "required_documents"
+                                                        ]
+                             }
+                         ],
+    "application_status_conclusions":  [
+                                           {
+                                               "master_id":  "dpiit_master_6c1afb477ef37cd6acaa",
+                                               "conclusion":  "Current service information and an NSWS application route are available. This is a continuing government service, not a time-bound call."
+                                           },
+                                           {
+                                               "master_id":  "dpiit_master_3b767c3b91080149015f",
+                                               "conclusion":  "Application information is available for the separate 80-IAC eligibility-certification service. DPIIT Startup Recognition remains a prerequisite."
+                                           },
+                                           {
+                                               "master_id":  "dpiit_master_c89f3d410e746f1594dc",
+                                               "conclusion":  "Application information is available for eligible SEBI-registered AIFs through SIDBI. Startups do not apply directly to DPIIT for FoF 2.0 capital."
+                                           }
+                                       ],
+    "totals":  {
+                   "pilot_records":  3,
+                   "evidence_rows":  59,
+                   "open_review_rows":  11,
+                   "failed_validation_checks":  0
+               },
+    "files_created_or_updated_in_phase":  [
+                                              "data/departments/dpiit/v3_4_1_0_4/dpiit_pilot_identity_lookup_v3_4_1_0_4.csv",
+                                              "data/departments/dpiit/v3_4_1_0_4/dpiit_extraction_pilot_records_v3_4_1_0_4.csv",
+                                              "data/departments/dpiit/v3_4_1_0_4/dpiit_field_evidence_registry_v3_4_1_0_4.csv",
+                                              "data/departments/dpiit/v3_4_1_0_4/dpiit_extraction_review_queue_v3_4_1_0_4.csv",
+                                              "data/departments/dpiit/v3_4_1_0_4/dpiit_extraction_validation_v3_4_1_0_4.json",
+                                              "data/departments/dpiit/v3_4_1_0_4/dpiit_extraction_summary_v3_4_1_0_4.json",
+                                              "data/departments/dpiit/v3_4_1_0_4/dpiit_extraction_manifest_v3_4_1_0_4.json",
+                                              "data/audit/dpiit_v3_4_1_0_4_manual_prechange_sha256.json",
+                                              "data/audit/dpiit_v3_4_1_0_4_manual_postchange_sha256.json",
+                                              "scripts/dpiit_manual_pilot_finalize_v3_4_1_0_4.ps1"
+                                          ],
+    "pre_existing_governed_files_modified":  [
+
+                                             ],
+    "governance_conclusions":  [
+                                   "DPIIT Startup Recognition remains a government service.",
+                                   "Section 80-IAC remains a separate government service requiring DPIIT Startup Recognition.",
+                                   "Startup India Fund of Funds 2.0 remains a separate scheme identity.",
+                                   "Fund of Funds 2.0 remains linked to Fund of Funds for Startups 1.0 through VERSION_LINEAGE_FROM without merging.",
+                                   "The INR 10,000 crore FoF 2.0 corpus is not stored as a universal startup-level funding maximum.",
+                                   "No record was published."
+                               ]
+}

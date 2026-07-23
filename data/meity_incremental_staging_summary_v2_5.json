@@ -1,0 +1,444 @@
+{
+  "hotfix_version": "2.5.1",
+  "run_id": "fb51a873695749a3bba8648701aa8012",
+  "source": "MeitY Startup Hub",
+  "started_at": "2026-07-09T05:46:35.520352+00:00",
+  "generated_at": "2026-07-09T05:46:35.523088+00:00",
+  "dry_run": true,
+  "database_committed": false,
+  "input_record_count": 0,
+  "approved_input_count": 0,
+  "review_input_count": 0,
+  "rejected_input_count": 0,
+  "decisions": {},
+  "actions": {},
+  "inserted_new_count": 0,
+  "updated_existing_count": 0,
+  "updated_preserving_final_workflow_count": 0,
+  "reused_unchanged_count": 0,
+  "rejection_audit_only_count": 0,
+  "failure_count": 0,
+  "incremental_input_is_meity_only": true,
+  "database_path": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\database\\ssip_staging_v1.db",
+  "database_backup_path": null,
+  "detected_staging_table": "scheme_staging",
+  "detected_review_table": "admin_review_queue",
+  "staging_adapter": {
+    "table_name": "scheme_staging",
+    "category": "approved",
+    "business_key_columns": [
+      "master_id"
+    ],
+    "columns": [
+      {
+        "name": "master_id",
+        "declared_type": "TEXT",
+        "not_null": false,
+        "default_value": null,
+        "primary_key_position": 1
+      },
+      {
+        "name": "scheme_name",
+        "declared_type": "TEXT",
+        "not_null": true,
+        "default_value": null,
+        "primary_key_position": 0
+      },
+      {
+        "name": "short_name",
+        "declared_type": "TEXT",
+        "not_null": false,
+        "default_value": null,
+        "primary_key_position": 0
+      },
+      {
+        "name": "source",
+        "declared_type": "TEXT",
+        "not_null": false,
+        "default_value": null,
+        "primary_key_position": 0
+      },
+      {
+        "name": "ministry",
+        "declared_type": "TEXT",
+        "not_null": false,
+        "default_value": null,
+        "primary_key_position": 0
+      },
+      {
+        "name": "department",
+        "declared_type": "TEXT",
+        "not_null": false,
+        "default_value": null,
+        "primary_key_position": 0
+      },
+      {
+        "name": "implementing_agency",
+        "declared_type": "TEXT",
+        "not_null": false,
+        "default_value": null,
+        "primary_key_position": 0
+      },
+      {
+        "name": "record_kind",
+        "declared_type": "TEXT",
+        "not_null": false,
+        "default_value": null,
+        "primary_key_position": 0
+      },
+      {
+        "name": "programme_status",
+        "declared_type": "TEXT",
+        "not_null": false,
+        "default_value": null,
+        "primary_key_position": 0
+      },
+      {
+        "name": "application_status",
+        "declared_type": "TEXT",
+        "not_null": false,
+        "default_value": null,
+        "primary_key_position": 0
+      },
+      {
+        "name": "scheme_status",
+        "declared_type": "TEXT",
+        "not_null": false,
+        "default_value": null,
+        "primary_key_position": 0
+      },
+      {
+        "name": "geographic_scope",
+        "declared_type": "TEXT",
+        "not_null": false,
+        "default_value": null,
+        "primary_key_position": 0
+      },
+      {
+        "name": "official_page_url",
+        "declared_type": "TEXT",
+        "not_null": false,
+        "default_value": null,
+        "primary_key_position": 0
+      },
+      {
+        "name": "application_url",
+        "declared_type": "TEXT",
+        "not_null": false,
+        "default_value": null,
+        "primary_key_position": 0
+      },
+      {
+        "name": "opening_date",
+        "declared_type": "TEXT",
+        "not_null": false,
+        "default_value": null,
+        "primary_key_position": 0
+      },
+      {
+        "name": "closing_date",
+        "declared_type": "TEXT",
+        "not_null": false,
+        "default_value": null,
+        "primary_key_position": 0
+      },
+      {
+        "name": "validation_score",
+        "declared_type": "REAL",
+        "not_null": false,
+        "default_value": null,
+        "primary_key_position": 0
+      },
+      {
+        "name": "validation_decision",
+        "declared_type": "TEXT",
+        "not_null": true,
+        "default_value": null,
+        "primary_key_position": 0
+      },
+      {
+        "name": "publication_status",
+        "declared_type": "TEXT",
+        "not_null": true,
+        "default_value": "'STAGED'",
+        "primary_key_position": 0
+      },
+      {
+        "name": "funding_minimum",
+        "declared_type": "INTEGER",
+        "not_null": false,
+        "default_value": null,
+        "primary_key_position": 0
+      },
+      {
+        "name": "funding_maximum",
+        "declared_type": "INTEGER",
+        "not_null": false,
+        "default_value": null,
+        "primary_key_position": 0
+      },
+      {
+        "name": "currency",
+        "declared_type": "TEXT",
+        "not_null": false,
+        "default_value": null,
+        "primary_key_position": 0
+      },
+      {
+        "name": "beneficiary_support_minimum",
+        "declared_type": "INTEGER",
+        "not_null": false,
+        "default_value": null,
+        "primary_key_position": 0
+      },
+      {
+        "name": "beneficiary_support_maximum",
+        "declared_type": "INTEGER",
+        "not_null": false,
+        "default_value": null,
+        "primary_key_position": 0
+      },
+      {
+        "name": "intermediary_support_maximum",
+        "declared_type": "INTEGER",
+        "not_null": false,
+        "default_value": null,
+        "primary_key_position": 0
+      },
+      {
+        "name": "scheme_corpus",
+        "declared_type": "INTEGER",
+        "not_null": false,
+        "default_value": null,
+        "primary_key_position": 0
+      },
+      {
+        "name": "record_hash",
+        "declared_type": "TEXT",
+        "not_null": true,
+        "default_value": null,
+        "primary_key_position": 0
+      },
+      {
+        "name": "raw_record_json",
+        "declared_type": "TEXT",
+        "not_null": true,
+        "default_value": null,
+        "primary_key_position": 0
+      },
+      {
+        "name": "first_loaded_at",
+        "declared_type": "TEXT",
+        "not_null": true,
+        "default_value": null,
+        "primary_key_position": 0
+      },
+      {
+        "name": "last_loaded_at",
+        "declared_type": "TEXT",
+        "not_null": true,
+        "default_value": null,
+        "primary_key_position": 0
+      },
+      {
+        "name": "last_import_run_id",
+        "declared_type": "TEXT",
+        "not_null": false,
+        "default_value": null,
+        "primary_key_position": 0
+      }
+    ]
+  },
+  "review_adapter": {
+    "table_name": "admin_review_queue",
+    "category": "review",
+    "business_key_columns": [
+      "master_id"
+    ],
+    "columns": [
+      {
+        "name": "master_id",
+        "declared_type": "TEXT",
+        "not_null": false,
+        "default_value": null,
+        "primary_key_position": 1
+      },
+      {
+        "name": "scheme_name",
+        "declared_type": "TEXT",
+        "not_null": true,
+        "default_value": null,
+        "primary_key_position": 0
+      },
+      {
+        "name": "source",
+        "declared_type": "TEXT",
+        "not_null": false,
+        "default_value": null,
+        "primary_key_position": 0
+      },
+      {
+        "name": "record_kind",
+        "declared_type": "TEXT",
+        "not_null": false,
+        "default_value": null,
+        "primary_key_position": 0
+      },
+      {
+        "name": "programme_status",
+        "declared_type": "TEXT",
+        "not_null": false,
+        "default_value": null,
+        "primary_key_position": 0
+      },
+      {
+        "name": "application_status",
+        "declared_type": "TEXT",
+        "not_null": false,
+        "default_value": null,
+        "primary_key_position": 0
+      },
+      {
+        "name": "official_page_url",
+        "declared_type": "TEXT",
+        "not_null": false,
+        "default_value": null,
+        "primary_key_position": 0
+      },
+      {
+        "name": "application_url",
+        "declared_type": "TEXT",
+        "not_null": false,
+        "default_value": null,
+        "primary_key_position": 0
+      },
+      {
+        "name": "decision",
+        "declared_type": "TEXT",
+        "not_null": true,
+        "default_value": null,
+        "primary_key_position": 0
+      },
+      {
+        "name": "validation_score",
+        "declared_type": "REAL",
+        "not_null": false,
+        "default_value": null,
+        "primary_key_position": 0
+      },
+      {
+        "name": "review_status",
+        "declared_type": "TEXT",
+        "not_null": true,
+        "default_value": "'PENDING'",
+        "primary_key_position": 0
+      },
+      {
+        "name": "priority",
+        "declared_type": "TEXT",
+        "not_null": true,
+        "default_value": null,
+        "primary_key_position": 0
+      },
+      {
+        "name": "decision_reasons_json",
+        "declared_type": "TEXT",
+        "not_null": true,
+        "default_value": null,
+        "primary_key_position": 0
+      },
+      {
+        "name": "warnings_json",
+        "declared_type": "TEXT",
+        "not_null": true,
+        "default_value": null,
+        "primary_key_position": 0
+      },
+      {
+        "name": "critical_flags_json",
+        "declared_type": "TEXT",
+        "not_null": true,
+        "default_value": null,
+        "primary_key_position": 0
+      },
+      {
+        "name": "recommended_actions_json",
+        "declared_type": "TEXT",
+        "not_null": true,
+        "default_value": null,
+        "primary_key_position": 0
+      },
+      {
+        "name": "validated_record_json",
+        "declared_type": "TEXT",
+        "not_null": true,
+        "default_value": null,
+        "primary_key_position": 0
+      },
+      {
+        "name": "record_hash",
+        "declared_type": "TEXT",
+        "not_null": true,
+        "default_value": null,
+        "primary_key_position": 0
+      },
+      {
+        "name": "first_queued_at",
+        "declared_type": "TEXT",
+        "not_null": true,
+        "default_value": null,
+        "primary_key_position": 0
+      },
+      {
+        "name": "updated_at",
+        "declared_type": "TEXT",
+        "not_null": true,
+        "default_value": null,
+        "primary_key_position": 0
+      },
+      {
+        "name": "last_import_run_id",
+        "declared_type": "TEXT",
+        "not_null": false,
+        "default_value": null,
+        "primary_key_position": 0
+      }
+    ]
+  },
+  "database_candidate_count": 1,
+  "database_detection": {
+    "selected_score": 241,
+    "selected_tables": [
+      "admin_review_actions",
+      "admin_review_queue",
+      "import_runs",
+      "meity_incremental_staging_audit_v2_5",
+      "rejected_scheme_records",
+      "scheme_attributes",
+      "scheme_contacts",
+      "scheme_sources",
+      "scheme_staging",
+      "sqlite_sequence",
+      "validation_audit"
+    ],
+    "candidates": [
+      {
+        "path": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\database\\ssip_staging_v1.db",
+        "score": 241,
+        "staging_table": "scheme_staging",
+        "review_table": "admin_review_queue"
+      }
+    ]
+  },
+  "input_paths": {
+    "approved": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\approved_for_database_v2_4.json",
+    "review": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\admin_review_queue_v2_4.json",
+    "rejected": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\rejected_scheme_records_v2_4.json"
+  },
+  "output_paths": {
+    "summary": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\meity_incremental_staging_summary_v2_5.json",
+    "audit": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\meity_incremental_staging_audit_v2_5.json",
+    "failures": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\meity_incremental_staging_failures_v2_5.json",
+    "plan": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\meity_incremental_staging_plan_v2_5.json"
+  }
+}

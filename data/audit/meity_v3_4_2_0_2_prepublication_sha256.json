@@ -1,0 +1,20 @@
+{
+  "version": "3.4.2.0.2",
+  "phase": "MeitY Publication Readiness and Governed Catalogue Promotion",
+  "execution_mode": "CANDIDATE_BUILD_ONLY",
+  "recorded_at": "2026-07-13T05:37:54.479113+00:00",
+  "active_catalogue": {
+    "path": "data/catalogue_preview/v3_3_2/catalogue_preview_v3_3_2.csv",
+    "row_count": 137,
+    "sha256": "f82556d15593f83ffe40255fc79c8da9fba22430f82add99d07240d11d0f971a"
+  },
+  "current_manifest_sha256": "193e0d37a296662d9ed124d5847a27749f4c7bb64118b11294ea650264949a5a",
+  "immutable_catalogue": {
+    "row_count": 137,
+    "sha256": "f82556d15593f83ffe40255fc79c8da9fba22430f82add99d07240d11d0f971a"
+  },
+  "dashboard_sha256": "77bd6cff08353e9587459b8f507ef5399b3c508fd514d73bdb87f8cc97ca14cd",
+  "publication_performed": false,
+  "database_modified": false,
+  "dashboard_modified": false
+}

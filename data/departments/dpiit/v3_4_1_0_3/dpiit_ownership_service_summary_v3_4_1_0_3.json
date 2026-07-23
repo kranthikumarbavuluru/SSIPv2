@@ -1,0 +1,21 @@
+{
+  "as_of": "2026-07-12",
+  "database_modified": false,
+  "evidence_records": 10,
+  "input_review_items": 6,
+  "lineage_decisions": 1,
+  "new_service_identities": 1,
+  "ownership_decisions": 4,
+  "ownership_decisions_by_type": {
+    "RESOLVED_AS_GENERIC_PLATFORM_UTILITY": 1,
+    "VERIFIED_DPIIT_ISSUED_NOTIFICATION": 1,
+    "VERIFIED_DPIIT_PLATFORM_DIRECTORY_CONTEXT": 2
+  },
+  "publication_performed": false,
+  "resolved_review_items": 6,
+  "resolved_services": 2,
+  "service_relationships": 1,
+  "unresolved_review_items": 0,
+  "validation_passed": true,
+  "version": "3.4.1.0.3"
+}

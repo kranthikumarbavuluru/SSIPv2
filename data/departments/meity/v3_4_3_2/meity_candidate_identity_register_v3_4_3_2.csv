@@ -1,0 +1,5 @@
+﻿candidate_id,master_id,canonical_name,canonical_url,identity_decision,record_kind,existing_identity,requires_identity_validation,publication_status
+147173e17ea741687247,147173e17ea741687247,SAMRIDH,https://msh.meity.gov.in/schemes/samridh,EXISTING_MASTER_ID_RETAINED,SCHEME,true,false,NOT_PUBLISHED
+6af79cf6c8a213dddce8,6af79cf6c8a213dddce8,TIDE 2.0,https://msh.meity.gov.in/schemes/tide,EXISTING_MASTER_ID_RETAINED,SCHEME,true,false,NOT_PUBLISHED
+meity_1c5c50d5e86fc876d0b3,,SASACT,https://msh.meity.gov.in/schemes/sasact,NEW_PERMANENT_IDENTITY_CANDIDATE,SCHEME,false,true,NOT_PUBLISHED
+meity_28ac6fb921386a6968c7,,GENESIS,https://msh.meity.gov.in/schemes/genesis,NEW_PERMANENT_IDENTITY_CANDIDATE,SCHEME,false,true,NOT_PUBLISHED

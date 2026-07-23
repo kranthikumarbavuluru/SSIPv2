@@ -1,0 +1,207 @@
+{
+  "entries": [
+    {
+      "classification": {
+        "application_status": "NO_CURRENT_APPLICATION_ROUTE_CONFIRMED",
+        "page_role": null,
+        "programme_status": "HISTORICAL_SCHEME_INFORMATION_AVAILABLE"
+      },
+      "confidence": {
+        "completeness": null,
+        "evidence": null,
+        "identity": null
+      },
+      "duplicate_evidence": {
+        "duplicate_check_status": "PASS"
+      },
+      "extracted_evidence": {
+        "benefits": "Official grant-release evidence records implementation funding for SASACT through STPI.",
+        "deadline": null,
+        "eligibility": null,
+        "objective": null,
+        "opening_date": null
+      },
+      "hashes": {
+        "candidate_row_hash": "e7fa41735689ee519a2e9e4087f13ed0c6a2dbd8330b90268e9351f5fb67c498",
+        "evidence_hash": "b5be262a2c2917bf1efa2f48f9fa7be228de2c2e1c7808125e1136640eeb76d1"
+      },
+      "official_ownership": {
+        "department": "Ministry of Electronics and Information Technology (MeitY)",
+        "ministry": "Ministry of Electronics and Information Technology (MeitY)",
+        "source": "MeitY Startup Hub"
+      },
+      "proposed_publication_fields": {
+        "application_process": "",
+        "application_status": "NO_CURRENT_APPLICATION_ROUTE_CONFIRMED",
+        "application_url": "NO_CURRENT_APPLICATION_ROUTE",
+        "benefits": "Official grant-release evidence records implementation funding for SASACT through STPI.",
+        "catalogue_inclusion": "INCLUDED",
+        "catalogue_section": "SCHEMES_AND_PROGRAMMES",
+        "closing_date": "",
+        "contact_details": "",
+        "currency": "INR",
+        "current_decision": "APPROVED_FOR_DATABASE",
+        "department": "Ministry of Electronics and Information Technology (MeitY)",
+        "eligibility": "",
+        "field_evidence": "{\"application_process\": \"https://msh.meity.gov.in/assets/Administrative%20Approval_TIDE%202.0.pdf\", \"application_status\": \"https://msh.meity.gov.in/assets/Administrative%20Approval_TIDE%202.0.pdf\", \"benefits\": \"https://msh.meity.gov.in/assets/Administrative%20Approval_TIDE%202.0.pdf\", \"department\": \"https://msh.meity.gov.in/assets/Administrative%20Approval_TIDE%202.0.pdf\", \"eligibility\": \"https://msh.meity.gov.in/assets/Administrative%20Approval_TIDE%202.0.pdf\", \"funding_maximum\": \"https://msh.meity.gov.in/assets/Administrative%20Approval_TIDE%202.0.pdf\", \"implementing_agency\": \"https://msh.meity.gov.in/assets/Administrative%20Approval_TIDE%202.0.pdf\", \"ministry\": \"https://msh.meity.gov.in/assets/Administrative%20Approval_TIDE%202.0.pdf\", \"programme_status\": \"https://msh.meity.gov.in/assets/Administrative%20Approval_TIDE%202.0.pdf\", \"scheme_name\": \"https://msh.meity.gov.in/schemes/tide\"}",
+        "funding_maximum": "4000000",
+        "funding_minimum": "",
+        "guideline_urls": "https://msh.meity.gov.in/assets/Administrative%20Approval_TIDE%202.0.pdf",
+        "implementing_agency": "MeitY Startup Hub through Software Technology Parks of India",
+        "last_verified_date": "2026-07-13",
+        "master_id": "194b7ba77d6b53f30b91",
+        "ministry": "Ministry of Electronics and Information Technology (MeitY)",
+        "normalized_record_kind": "SCHEME_OR_PROGRAMME",
+        "official_page_url": "https://msh.meity.gov.in/schemes/sasact",
+        "opening_date": "",
+        "primary_sector": "Cross-sector Innovation & Entrepreneurship",
+        "programme_status": "HISTORICAL_SCHEME_INFORMATION_AVAILABLE",
+        "record_kind": "SCHEME",
+        "required_documents": "",
+        "scheme_name": "SASACT",
+        "scheme_type": "SCHEME",
+        "secondary_sectors": "",
+        "sector": "Cross-sector Innovation & Entrepreneurship",
+        "sector_agent_version": "3.4.2.0.2",
+        "sector_classification_method": "MANUAL_OFFICIAL_EVIDENCE",
+        "sector_confidence": "0.99",
+        "sector_evidence": "Official scheme material establishes startup acceleration, incubation, innovation and funding support.",
+        "sector_evidence_url": "https://msh.meity.gov.in/assets/Administrative%20Approval_TIDE%202.0.pdf",
+        "sector_reason": "The scheme supports technology startups through acceleration, incubation and structured financial or market support.",
+        "sector_review_required": "false",
+        "sector_verified_at": "2026-07-13",
+        "source": "MeitY Startup Hub",
+        "startup_access_evidence": "Historical TIDE 2.0 support was delivered through participating incubation centres. The approved period ended on 2024-01-31; no current central application route is asserted.",
+        "startup_beneficiary_evidence": "Designated incubation centres, technology entrepreneurs and ICT or emerging-technology startups supported through those centres.",
+        "startup_relevance_classification": "RELEVANCE_REVIEW_REQUIRED",
+        "startup_relevance_score": "1.00",
+        "startup_stage": "Idea to proof of concept through Entrepreneur-in-Residence support; prototype development through grants; and product development or market outreach through investment support.",
+        "status_evidence": "",
+        "target_beneficiaries": "Designated incubation centres, technology entrepreneurs and ICT or emerging-technology startups supported through those centres."
+      },
+      "relationship_evidence": {
+        "call_identity_check_status": "PASS",
+        "parent_canonical_name": null,
+        "parent_master_id": null
+      },
+      "review_id": "MEITY-194b7ba77d6b53f30b91-e7fa41735689",
+      "source_urls": {
+        "application_url": "NO_CURRENT_APPLICATION_ROUTE",
+        "canonical_scheme_url": "https://msh.meity.gov.in/schemes/sasact",
+        "guidelines_url": null,
+        "official_source_url": "https://msh.meity.gov.in/schemes/sasact"
+      },
+      "stable_identity": {
+        "canonical_name": "SASACT",
+        "entity_type": "SCHEME",
+        "master_id": "194b7ba77d6b53f30b91",
+        "permanent_scheme_or_call": "PERMANENT_SCHEME"
+      },
+      "unresolved_warnings": []
+    },
+    {
+      "classification": {
+        "application_status": "APPLICATION_STATUS_REQUIRES_VERIFICATION",
+        "page_role": null,
+        "programme_status": "UMBRELLA_SCHEME_INFORMATION_AVAILABLE"
+      },
+      "confidence": {
+        "completeness": null,
+        "evidence": null,
+        "identity": null
+      },
+      "duplicate_evidence": {
+        "duplicate_check_status": "PASS"
+      },
+      "extracted_evidence": {
+        "benefits": "Support may include early-stage funding up to INR 10 lakh, pilot/investment support up to INR 50 lakh, and deep-tech support up to INR 1 crore, subject to component rules.",
+        "deadline": null,
+        "eligibility": "DPIIT-registered startup; at least 51% Indian promoter shareholding at application; additional component-specific selection requirements apply.",
+        "objective": null,
+        "opening_date": null
+      },
+      "hashes": {
+        "candidate_row_hash": "a5e591ff4c6961af2aa20a3bb0f9a47b31b18156be5274543e22b4be92469773",
+        "evidence_hash": "cae05b8ed60836fe3813daa36ff7fb3398b79be844aa3c78f97325ca8903240c"
+      },
+      "official_ownership": {
+        "department": "Ministry of Electronics and Information Technology (MeitY)",
+        "ministry": "Ministry of Electronics and Information Technology (MeitY)",
+        "source": "MeitY Startup Hub"
+      },
+      "proposed_publication_fields": {
+        "application_process": "",
+        "application_status": "APPLICATION_STATUS_REQUIRES_VERIFICATION",
+        "application_url": "NO_CURRENT_APPLICATION_ROUTE",
+        "benefits": "Support may include early-stage funding up to INR 10 lakh, pilot/investment support up to INR 50 lakh, and deep-tech support up to INR 1 crore, subject to component rules.",
+        "catalogue_inclusion": "INCLUDED",
+        "catalogue_section": "SCHEMES_AND_PROGRAMMES",
+        "closing_date": "",
+        "contact_details": "",
+        "currency": "INR",
+        "current_decision": "APPROVED_FOR_DATABASE",
+        "department": "Ministry of Electronics and Information Technology (MeitY)",
+        "eligibility": "DPIIT-registered startup; at least 51% Indian promoter shareholding at application; additional component-specific selection requirements apply.",
+        "field_evidence": "{\"application_process\": \"https://msh.meity.gov.in/assets/Scheme-Report.pdf\", \"application_status\": \"https://msh.meity.gov.in/schemes/samridh\", \"benefits\": \"https://msh.meity.gov.in/assets/Scheme-Report.pdf\", \"department\": \"https://msh.meity.gov.in/assets/Scheme-Report.pdf\", \"eligibility\": \"https://msh.meity.gov.in/assets/Scheme-Report.pdf\", \"funding_maximum\": \"https://msh.meity.gov.in/assets/Scheme-Report.pdf\", \"implementing_agency\": \"https://msh.meity.gov.in/assets/Scheme-Report.pdf\", \"ministry\": \"https://msh.meity.gov.in/assets/Scheme-Report.pdf\", \"programme_status\": \"https://msh.meity.gov.in/schemes/samridh\", \"scheme_name\": \"https://msh.meity.gov.in/schemes/samridh\"}",
+        "funding_maximum": "4000000",
+        "funding_minimum": "",
+        "guideline_urls": "https://msh.meity.gov.in/assets/Scheme-Report.pdf",
+        "implementing_agency": "MeitY Startup Hub through approximately 50 Implementing Agencies",
+        "last_verified_date": "2026-07-13",
+        "master_id": "94f8ab0a070a6ff15fce",
+        "ministry": "Ministry of Electronics and Information Technology (MeitY)",
+        "normalized_record_kind": "SCHEME_OR_PROGRAMME",
+        "official_page_url": "https://msh.meity.gov.in/schemes/genesis",
+        "opening_date": "",
+        "primary_sector": "Cross-sector Innovation & Entrepreneurship",
+        "programme_status": "UMBRELLA_SCHEME_INFORMATION_AVAILABLE",
+        "record_kind": "SCHEME",
+        "required_documents": "",
+        "scheme_name": "GENESIS",
+        "scheme_type": "SCHEME",
+        "secondary_sectors": "",
+        "sector": "Cross-sector Innovation & Entrepreneurship",
+        "sector_agent_version": "3.4.2.0.2",
+        "sector_classification_method": "MANUAL_OFFICIAL_EVIDENCE",
+        "sector_confidence": "0.95",
+        "sector_evidence": "Official scheme material establishes startup acceleration, incubation, innovation and funding support.",
+        "sector_evidence_url": "https://msh.meity.gov.in/assets/Scheme-Report.pdf",
+        "sector_reason": "The scheme supports technology startups through acceleration, incubation and structured financial or market support.",
+        "sector_review_required": "false",
+        "sector_verified_at": "2026-07-13",
+        "source": "MeitY Startup Hub",
+        "startup_access_evidence": "Support is delivered through selected accelerators or incubation centres; no currently open central application route is asserted.",
+        "startup_beneficiary_evidence": "Eligible accelerators as direct scheme partners and selected product-based or IT-based startups as downstream beneficiaries.",
+        "startup_relevance_classification": "RELEVANCE_REVIEW_REQUIRED",
+        "startup_relevance_score": "1.00",
+        "startup_stage": "Potential technology and software-product startups requiring acceleration from product or prototype development towards commercialization and growth.",
+        "status_evidence": "",
+        "target_beneficiaries": "Eligible accelerators as direct scheme partners and selected product-based or IT-based startups as downstream beneficiaries."
+      },
+      "relationship_evidence": {
+        "call_identity_check_status": "PASS",
+        "parent_canonical_name": null,
+        "parent_master_id": null
+      },
+      "review_id": "MEITY-94f8ab0a070a6ff15fce-a5e591ff4c69",
+      "source_urls": {
+        "application_url": "NO_CURRENT_APPLICATION_ROUTE",
+        "canonical_scheme_url": "https://msh.meity.gov.in/schemes/genesis",
+        "guidelines_url": null,
+        "official_source_url": "https://msh.meity.gov.in/schemes/genesis"
+      },
+      "stable_identity": {
+        "canonical_name": "GENESIS",
+        "entity_type": "SCHEME",
+        "master_id": "94f8ab0a070a6ff15fce",
+        "permanent_scheme_or_call": "PERMANENT_SCHEME"
+      },
+      "unresolved_warnings": []
+    }
+  ],
+  "fabricated_evidence": false,
+  "phase": "MeitY Admin Verification Gate",
+  "source_generated_at": "2026-07-13T08:35:06+00:00",
+  "source_version": "3.4.3.4",
+  "version": "3.4.3.7"
+}

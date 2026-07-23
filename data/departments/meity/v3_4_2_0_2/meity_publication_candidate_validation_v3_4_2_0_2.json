@@ -1,0 +1,73 @@
+{
+  "version": "3.4.2.0.2",
+  "validation_status": "FAIL",
+  "governance_defaults_derived_from_visible_catalogue": {
+    "normalized_record_kind": "SCHEME_OR_PROGRAMME",
+    "catalogue_inclusion": "INCLUDED",
+    "catalogue_section": "SCHEMES_AND_PROGRAMMES",
+    "current_decision": "NEEDS_REVIEW",
+    "startup_relevance_classification": "RELEVANCE_REVIEW_REQUIRED",
+    "sector_review_required": "false"
+  },
+  "counts": {
+    "active_rows_before": 137,
+    "candidate_rows": 139,
+    "addition_rows": 2,
+    "reviews_resolved": 7,
+    "visible_before": 51,
+    "visible_after_candidate": 25
+  },
+  "candidate_visible_meity_ids": [],
+  "checks": [
+    {
+      "name": "candidate_row_count",
+      "passed": true,
+      "details": "rows=139"
+    },
+    {
+      "name": "candidate_master_ids_unique",
+      "passed": true,
+      "details": "all master_id values must be unique"
+    },
+    {
+      "name": "reviews_resolved",
+      "passed": true,
+      "details": "resolved=7"
+    },
+    {
+      "name": "no_open_application_claim",
+      "passed": true,
+      "details": "application_url blank and no OPEN status"
+    },
+    {
+      "name": "both_meity_ids_dashboard_visible",
+      "passed": false,
+      "details": "visible_ids=[]"
+    },
+    {
+      "name": "dashboard_visible_count_increases_by_two",
+      "passed": false,
+      "details": "before=51 after=25"
+    },
+    {
+      "name": "official_urls_only",
+      "passed": true,
+      "details": "approved official hosts only"
+    },
+    {
+      "name": "legacy_contamination_excluded",
+      "passed": true,
+      "details": "contaminated=0"
+    },
+    {
+      "name": "governed_statuses_preserved",
+      "passed": true,
+      "details": "exact status pairs required"
+    }
+  ],
+  "failed_checks": [
+    "both_meity_ids_dashboard_visible",
+    "dashboard_visible_count_increases_by_two"
+  ],
+  "publication_performed": false
+}

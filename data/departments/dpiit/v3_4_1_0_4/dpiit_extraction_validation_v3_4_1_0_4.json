@@ -1,0 +1,163 @@
+{
+    "version":  "3.4.1.0.4",
+    "phase":  "DPIIT Governed Field Extraction and Evidence Validation Pilot",
+    "execution_mode":  "MANUAL_PREVIEW_ONLY",
+    "as_of_date":  "2026-07-12",
+    "baseline_recorded_at":  "2026-07-12T20:08:54.8022921+05:30",
+    "overall_status":  "PASS",
+    "failed_checks":  [
+
+                      ],
+    "counts":  {
+                   "pilot_records":  3,
+                   "evidence_rows":  59,
+                   "review_rows":  11,
+                   "active_catalogue_rows":  137,
+                   "immutable_publication_rows":  137,
+                   "dashboard_visible_records":  51
+               },
+    "checks":  {
+                   "exactly_three_pilot_records":  true,
+                   "exact_master_ids_preserved":  true,
+                   "no_duplicate_master_ids":  true,
+                   "exactly_59_evidence_rows":  true,
+                   "exactly_11_review_rows":  true,
+                   "no_duplicate_evidence_ids":  true,
+                   "no_duplicate_review_ids":  true,
+                   "every_populated_public_field_has_evidence":  true,
+                   "evidence_values_match_pilot_records":  true,
+                   "all_evidence_urls_are_official_https":  true,
+                   "all_programme_statuses_are_allowed":  true,
+                   "all_review_decisions_are_allowed":  true,
+                   "recognition_and_80iac_are_separate":  true,
+                   "requires_dpiit_recognition_relationship_preserved":  true,
+                   "fof2_identity_is_separate":  true,
+                   "fof2_version_lineage_is_preserved":  true,
+                   "fof2_is_not_direct_startup_application":  true,
+                   "no_call_or_round_stored_as_permanent_record":  true,
+                   "no_unsupported_open_application_status":  true,
+                   "no_pilot_record_is_in_active_catalogue":  true,
+                   "active_catalogue_row_count_is_137":  true,
+                   "immutable_publication_row_count_is_137":  true,
+                   "dashboard_visible_record_count_is_51":  true,
+                   "canonical_publication_hash_is_preserved":  true,
+                   "all_frozen_files_are_unchanged":  true,
+                   "all_frozen_trees_are_unchanged":  true,
+                   "no_publication_occurred":  true
+               },
+    "validation_findings":  {
+                                "missing_evidence":  [
+
+                                                     ],
+                                "evidence_value_mismatches":  [
+
+                                                              ],
+                                "non_official_evidence_urls":  [
+
+                                                               ],
+                                "invalid_programme_statuses":  [
+
+                                                               ],
+                                "invalid_review_decisions":  [
+
+                                                             ],
+                                "duplicate_master_ids":  [
+                                                             null
+                                                         ],
+                                "duplicate_evidence_ids":  [
+                                                               null
+                                                           ],
+                                "duplicate_review_ids":  [
+                                                             null
+                                                         ],
+                                "pilot_ids_found_in_active_catalogue":  [
+
+                                                                        ]
+                            },
+    "preservation":  {
+                         "frozen_files":  {
+                                              "data/catalogue_preview/v3_3_2/catalogue_preview_v3_3_2.csv":  {
+                                                                                                                 "before_sha256":  "f82556d15593f83ffe40255fc79c8da9fba22430f82add99d07240d11d0f971a",
+                                                                                                                 "after_sha256":  "f82556d15593f83ffe40255fc79c8da9fba22430f82add99d07240d11d0f971a",
+                                                                                                                 "unchanged":  true
+                                                                                                             },
+                                              "data/publication/current_manifest.json":  {
+                                                                                             "before_sha256":  "193e0d37a296662d9ed124d5847a27749f4c7bb64118b11294ea650264949a5a",
+                                                                                             "after_sha256":  "193e0d37a296662d9ed124d5847a27749f4c7bb64118b11294ea650264949a5a",
+                                                                                             "unchanged":  true
+                                                                                         },
+                                              "data/publication/20260710T162806+0000_f4936983/catalogue.csv":  {
+                                                                                                                   "before_sha256":  "f82556d15593f83ffe40255fc79c8da9fba22430f82add99d07240d11d0f971a",
+                                                                                                                   "after_sha256":  "f82556d15593f83ffe40255fc79c8da9fba22430f82add99d07240d11d0f971a",
+                                                                                                                   "unchanged":  true
+                                                                                                               },
+                                              "data/publication/20260710T162806+0000_f4936983/manifest.json":  {
+                                                                                                                   "before_sha256":  "193e0d37a296662d9ed124d5847a27749f4c7bb64118b11294ea650264949a5a",
+                                                                                                                   "after_sha256":  "193e0d37a296662d9ed124d5847a27749f4c7bb64118b11294ea650264949a5a",
+                                                                                                                   "unchanged":  true
+                                                                                                               },
+                                              "apps/public_dashboard_app_v2_9.py":  {
+                                                                                        "before_sha256":  "77bd6cff08353e9587459b8f507ef5399b3c508fd514d73bdb87f8cc97ca14cd",
+                                                                                        "after_sha256":  "77bd6cff08353e9587459b8f507ef5399b3c508fd514d73bdb87f8cc97ca14cd",
+                                                                                        "unchanged":  true
+                                                                                    },
+                                              "assets/dashboard_theme.css":  {
+                                                                                 "before_sha256":  "2841d412db0c4f1f4c5800b5bfc71860217f6427a62855b2560004e5af946524",
+                                                                                 "after_sha256":  "2841d412db0c4f1f4c5800b5bfc71860217f6427a62855b2560004e5af946524",
+                                                                                 "unchanged":  true
+                                                                             },
+                                              "assets/styles/ssip_public_dashboard.css":  {
+                                                                                              "before_sha256":  "9c03cb27fd339acf075c3daa986a2805fd68f52ffe55adafc7266dc8c96bc1b8",
+                                                                                              "after_sha256":  "9c03cb27fd339acf075c3daa986a2805fd68f52ffe55adafc7266dc8c96bc1b8",
+                                                                                              "unchanged":  true
+                                                                                          },
+                                              "tests/test_end_to_end_governed_agents_v1.py":  {
+                                                                                                  "before_sha256":  "ae41218d6000a28c3831843411faec2fc4e65d2efd1a2dd5b4f530127d1f70a8",
+                                                                                                  "after_sha256":  "ae41218d6000a28c3831843411faec2fc4e65d2efd1a2dd5b4f530127d1f70a8",
+                                                                                                  "unchanged":  true
+                                                                                              }
+                                          },
+                         "frozen_trees":  {
+                                              "data/departments/dpiit/v3_4_1_0_1":  {
+                                                                                        "before_sha256":  "047ca967f040f4eee599b8cb3265b2bf2a0881b90427d2e87d2cbb902e9ff53a",
+                                                                                        "after_sha256":  "047ca967f040f4eee599b8cb3265b2bf2a0881b90427d2e87d2cbb902e9ff53a",
+                                                                                        "unchanged":  true
+                                                                                    },
+                                              "data/departments/dpiit/v3_4_1_0_2":  {
+                                                                                        "before_sha256":  "8d07cdacec8ff74d944d6ded9b666e6d69efac57b942281efb63748361265ef0",
+                                                                                        "after_sha256":  "8d07cdacec8ff74d944d6ded9b666e6d69efac57b942281efb63748361265ef0",
+                                                                                        "unchanged":  true
+                                                                                    },
+                                              "data/departments/dpiit/v3_4_1_0_3":  {
+                                                                                        "before_sha256":  "0052d48d2f9cbe434642d464bbd65de41e9e36c76350fda4698ee0b93de79c4e",
+                                                                                        "after_sha256":  "0052d48d2f9cbe434642d464bbd65de41e9e36c76350fda4698ee0b93de79c4e",
+                                                                                        "unchanged":  true
+                                                                                    },
+                                              "data/departments/dst":  {
+                                                                           "before_sha256":  "5a32eb04530f9a72cfd7f01f354fa081595613b678153b5e7942ab9425261976",
+                                                                           "after_sha256":  "5a32eb04530f9a72cfd7f01f354fa081595613b678153b5e7942ab9425261976",
+                                                                           "unchanged":  true
+                                                                       }
+                                          },
+                         "canonical_publication_content_hash":  "838ca86cde4b2ceebd4325850c783823c931a3e42ef5c4ef74b7ae54a4596e4d"
+                     },
+    "relationships":  {
+                          "requires_dpiit_recognition":  {
+                                                             "relationship_id":  "dpiit_service_relationship_daed6df830911b7c3fd5",
+                                                             "source_master_id":  "dpiit_master_3b767c3b91080149015f",
+                                                             "target_master_id":  "dpiit_master_6c1afb477ef37cd6acaa",
+                                                             "relationship_type":  "REQUIRES_DPIIT_RECOGNITION",
+                                                             "status":  "LOCKED_OFFICIAL_SERVICE_RELATIONSHIP"
+                                                         },
+                          "fof2_version_lineage":  {
+                                                       "decision_id":  "dpiit_lineage_decision_0e322e898faab7d7a30f",
+                                                       "current_master_id":  "dpiit_master_c89f3d410e746f1594dc",
+                                                       "current_name":  "Startup India Fund of Funds 2.0",
+                                                       "predecessor_name":  "Fund of Funds for Startups 1.0",
+                                                       "relationship_type":  "VERSION_LINEAGE_FROM",
+                                                       "decision":  "SEPARATE_VERSION_IDENTITY_CONFIRMED",
+                                                       "merge_allowed":  "0",
+                                                       "publication_status":  "NOT_PUBLISHED"
+                                                   }
+                      }
+}

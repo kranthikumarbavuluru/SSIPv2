@@ -11,6 +11,13 @@ import pandas as pd
 
 from .config import CatalogueMode, DashboardConfig
 from .data_access import read_dashboard_tables, read_normalization_plan
+from .msme_supplement import load_active_msme_supplement, load_active_mymsme_supplement
+from .media_supplement import load_active_media_publication
+from .dot_public import load_active_dot_supplement
+from .idex_public import load_active_idex_supplement
+from .agri_startup_public import load_active_agri_startup_supplement
+from .msde_public import load_active_msde_supplement
+from .moe_public import load_active_moe_supplement
 
 
 URL_RE = re.compile(r"https?://[^\s\"'<>\]\)]+", re.IGNORECASE)
@@ -50,6 +57,9 @@ class CatalogueRecord:
     currency: str = "INR"
     funding_minimum: int | None = None
     funding_maximum: int | None = None
+    funding_amount_status: str = "NOT_STATED"
+    funding_amount_optional: bool = True
+    funding_evidence: Any = None
     beneficiary_support_minimum: int | None = None
     beneficiary_support_maximum: int | None = None
     intermediary_support_maximum: int | None = None
@@ -65,6 +75,7 @@ class CatalogueRecord:
     startup_stage: list[str] = field(default_factory=list)
     guideline_urls: list[str] = field(default_factory=list)
     reference_urls: list[str] = field(default_factory=list)
+    verified_public_actions: list[dict[str, Any]] = field(default_factory=list)
     contacts: list[str] = field(default_factory=list)
     warnings: list[str] = field(default_factory=list)
     recommended_actions: list[str] = field(default_factory=list)
@@ -316,6 +327,85 @@ def payload_from_rows(*rows: dict[str, Any]) -> dict[str, Any]:
     return payload
 
 
+def parse_verified_public_actions(
+    raw_value: Any,
+    schema_version: Any = "",
+) -> list[dict[str, Any]]:
+    # Return only governed, verified, non-application scheme-detail actions.
+    if as_text(schema_version) != "3.4.3.5" or is_blank(raw_value):
+        return []
+
+    parsed = safe_json(raw_value)
+    if not isinstance(parsed, list):
+        return []
+
+    verified: list[dict[str, Any]] = []
+    seen_urls: set[str] = set()
+
+    for item in parsed:
+        if not isinstance(item, dict):
+            continue
+
+        action_type = as_text(item.get("action_type")).upper()
+        link_role = as_text(item.get("link_role")).upper()
+        verification_status = as_text(
+            item.get("verification_status")
+        ).upper()
+        is_active = str(item.get("is_active", "")).strip().lower() in {
+            "true",
+            "1",
+            "yes",
+        }
+        is_time_bound = str(
+            item.get("is_time_bound", "")
+        ).strip().lower() in {
+            "true",
+            "1",
+            "yes",
+        }
+        resolved_url = safe_url(item.get("resolved_url"))
+
+        if action_type != "SCHEME_DETAILS":
+            continue
+        if link_role != "SCHEME_MASTER":
+            continue
+        if verification_status != "VERIFIED_INFORMATION_PAGE":
+            continue
+        if not is_active or is_time_bound or not resolved_url:
+            continue
+
+        normalized_url = resolved_url.casefold().rstrip("/")
+        if normalized_url in seen_urls:
+            continue
+        seen_urls.add(normalized_url)
+
+        verified.append(
+            {
+                "action_id": as_text(item.get("action_id")),
+                "action_type": "SCHEME_DETAILS",
+                "link_role": "SCHEME_MASTER",
+                "label": "Scheme Details",
+                "resolved_url": resolved_url,
+                "verification_status": "VERIFIED_INFORMATION_PAGE",
+                "confidence": as_float(item.get("confidence")),
+                "is_active": True,
+                "is_time_bound": False,
+                "deadline_status": as_text(
+                    item.get("deadline_status")
+                )
+                or "NOT_APPLICABLE",
+                "last_verified_at": as_text(
+                    item.get("last_verified_at")
+                ),
+                "verification_source": as_text(
+                    item.get("verification_source")
+                ),
+            }
+        )
+
+    return verified
+
+
 def build_record(
     master_id: str,
     *,
@@ -418,6 +508,10 @@ def build_record(
         startup_stage=dedupe(to_list(deep_find(payload, ["startup_stage", "startup_stages"])) + values_for(attributes, master_id, ["startup_stage"])),
         guideline_urls=guideline_urls,
         reference_urls=all_urls,
+        verified_public_actions=parse_verified_public_actions(
+            plan_row.get("verified_public_actions_json"),
+            plan_row.get("verified_public_action_schema_version"),
+        ),
         contacts=dedupe(to_list(deep_find(payload, ["contact_details", "contacts", "contact"])) + contacts.get(master_id, [])),
         warnings=warning_values,
         recommended_actions=to_list(first_value(plan_row.get("recommended_actions"), review_row.get("recommended_actions_json"), payload.get("recommended_actions"))),
@@ -625,6 +719,72 @@ def load_catalogue(config: DashboardConfig) -> CatalogueBundle:
                 published_appended_count += 1
             included_ids.add(master_id)
 
+    msme_supplement = load_active_msme_supplement(config.project_root)
+    mymsme_supplement = load_active_mymsme_supplement(config.project_root)
+    media_publication = load_active_media_publication(config.project_root)
+    dot_supplement = load_active_dot_supplement(config.project_root)
+    idex_supplement = load_active_idex_supplement(config.project_root)
+    agri_startup_supplement = load_active_agri_startup_supplement(config.project_root)
+    msde_supplement = load_active_msde_supplement(config.project_root)
+    moe_supplement = load_active_moe_supplement(config.project_root)
+    existing_ids = {record.master_id for record in records}
+    supplemental_count = 0
+    media_supplement_count = 0
+    for payload in (*msme_supplement.records, *mymsme_supplement.records):
+        master_id = str(payload.get("master_id", ""))
+        if master_id in existing_ids:
+            continue
+        records.append(CatalogueRecord(**payload))
+        existing_ids.add(master_id)
+        supplemental_count += 1
+    for payload in media_publication.records:
+        master_id = str(payload.get("master_id", ""))
+        if master_id in existing_ids:
+            continue
+        records.append(CatalogueRecord(**payload))
+        existing_ids.add(master_id)
+        media_supplement_count += 1
+    dot_supplement_count = 0
+    for payload in dot_supplement.records:
+        master_id = str(payload.get("master_id", ""))
+        if master_id in existing_ids:
+            continue
+        records.append(CatalogueRecord(**payload))
+        existing_ids.add(master_id)
+        dot_supplement_count += 1
+    idex_supplement_count = 0
+    for payload in idex_supplement.records:
+        master_id = str(payload.get("master_id", ""))
+        if master_id in existing_ids:
+            continue
+        records.append(CatalogueRecord(**payload))
+        existing_ids.add(master_id)
+        idex_supplement_count += 1
+    agri_startup_supplement_count = 0
+    for payload in agri_startup_supplement.records:
+        master_id = str(payload.get("master_id", ""))
+        if master_id in existing_ids:
+            continue
+        records.append(CatalogueRecord(**payload))
+        existing_ids.add(master_id)
+        agri_startup_supplement_count += 1
+    msde_supplement_count = 0
+    for payload in msde_supplement.records:
+        master_id = str(payload.get("master_id", ""))
+        if master_id in existing_ids:
+            continue
+        records.append(CatalogueRecord(**payload))
+        existing_ids.add(master_id)
+        msde_supplement_count += 1
+    moe_supplement_count = 0
+    for payload in moe_supplement.records:
+        master_id = str(payload.get("master_id", ""))
+        if master_id in existing_ids:
+            continue
+        records.append(CatalogueRecord(**payload))
+        existing_ids.add(master_id)
+        moe_supplement_count += 1
+
     records = sorted(records, key=lambda item: (item.catalogue_section, item.scheme_name))
     metadata = {
         "mode": config.mode.value,
@@ -638,5 +798,21 @@ def load_catalogue(config: DashboardConfig) -> CatalogueBundle:
         "record_count": len(records),
         "published_appended_count": published_appended_count,
         "published_merged_count": published_merged_count,
+        "msme_supplement_count": supplemental_count,
+        "msme_supplement_run_id": msme_supplement.manifest.get("run_id", ""),
+        "msme_mymsme_supplement_count": len(mymsme_supplement.records),
+        "msme_mymsme_supplement_run_id": mymsme_supplement.manifest.get("run_id", ""),
+        "media_publication_count": media_supplement_count,
+        "media_publication_run_id": media_publication.manifest.get("run_id", ""),
+        "dot_supplement_count": dot_supplement_count,
+        "dot_supplement_run_id": dot_supplement.manifest.get("run_id", ""),
+        "idex_supplement_count": idex_supplement_count,
+        "idex_supplement_run_id": idex_supplement.manifest.get("run_id", ""),
+        "agri_startup_supplement_count": agri_startup_supplement_count,
+        "agri_startup_supplement_run_id": agri_startup_supplement.manifest.get("run_id", ""),
+        "msde_supplement_count": msde_supplement_count,
+        "msde_supplement_run_id": msde_supplement.manifest.get("run_id", ""),
+        "moe_supplement_count": moe_supplement_count,
+        "moe_supplement_run_id": moe_supplement.manifest.get("run_id", ""),
     }
     return CatalogueBundle(records=records, mode=config.mode, metadata=metadata)

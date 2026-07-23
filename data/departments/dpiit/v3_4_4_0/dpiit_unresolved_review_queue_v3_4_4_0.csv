@@ -1,0 +1,3 @@
+﻿review_id,record_id,review_type,reason,priority,review_status,publication_status
+dpiit_review_current_bsgc_instances,dpiit_master_8314bd560187bd1f0e75,CURRENT_CHALLENGE_ENUMERATION,Dynamic challenge cards need individual official identities and dates,HIGH,OPEN,NOT_PUBLISHED
+dpiit_review_nsa_dates,dpiit_call_7d5cea5e1b0af96bf961,DATE_COMPLETENESS,Official closure is explicit but opening and closing dates are not captured,MEDIUM,OPEN,NOT_PUBLISHED

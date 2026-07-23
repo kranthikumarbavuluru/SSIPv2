@@ -1,0 +1,23 @@
+{
+  "version": "3.4.3.7.5",
+  "allowed_hosts": [
+    "msh.meity.gov.in",
+    "api.meity.gov.in",
+    "meity.gov.in",
+    "www.meity.gov.in"
+  ],
+  "entry_urls": [
+    "https://msh.meity.gov.in/",
+    "https://msh.meity.gov.in/whatsnew",
+    "https://msh.meity.gov.in/challenges",
+    "https://msh.meity.gov.in/schemes",
+    "https://msh.meity.gov.in/schemes/genesis",
+    "https://msh.meity.gov.in/schemes/sasact",
+    "https://msh.meity.gov.in/schemes/samridh",
+    "https://msh.meity.gov.in/schemes/tide",
+    "https://www.meity.gov.in/"
+  ],
+  "timeout_seconds": 10,
+  "max_network_documents": 30,
+  "max_document_bytes": 2500000
+}

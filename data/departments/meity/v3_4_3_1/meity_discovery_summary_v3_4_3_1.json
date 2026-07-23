@@ -1,0 +1,91 @@
+{
+  "version": "3.4.3.1",
+  "phase": "MeitY Discovery Expansion Hotfix",
+  "execution_mode": "DISCOVERY_PREVIEW_ONLY",
+  "coverage_status": "PASS",
+  "completed_at": "2026-07-13T07:08:23+00:00",
+  "settings": {
+    "max_pages": 400,
+    "max_depth": 5,
+    "delay": 0.35,
+    "timeout": 30,
+    "browser_mode": "auto",
+    "browser_available": true,
+    "browser_error": "",
+    "use_llm": "auto",
+    "llm_available": true,
+    "llm_model": "qwen2.5-7b-instruct",
+    "llm_max": 60,
+    "min_pages": 20,
+    "min_detail_urls": 8,
+    "min_master_candidates": 4
+  },
+  "counts": {
+    "pages_attempted": 107,
+    "unique_urls_visited": 107,
+    "queued_urls_remaining": 0,
+    "new_urls_beyond_seeds": 96,
+    "discovered_detail_urls": 68,
+    "discovery_indexes": 7,
+    "rendered_indexes": 10,
+    "api_endpoints_seen": 33,
+    "api_endpoints_attempted": 33,
+    "existing_identity_matches": 2,
+    "manual_review_rows": 30,
+    "CALL_INSTANCE_CANDIDATE": 7,
+    "DISCOVERY_INDEX": 7,
+    "EVIDENCE_ONLY": 31,
+    "MANUAL_REVIEW": 23,
+    "NON_CATALOGUE": 18,
+    "PROGRAMME_MASTER_CANDIDATE": 17,
+    "SCHEME_MASTER_CANDIDATE": 4
+  },
+  "coverage_checks": [
+    {
+      "name": "minimum_pages_attempted",
+      "passed": true,
+      "details": "actual=107 minimum=20"
+    },
+    {
+      "name": "discovery_indexes_parsed",
+      "passed": true,
+      "details": "actual=7 minimum=2"
+    },
+    {
+      "name": "detail_urls_discovered",
+      "passed": true,
+      "details": "actual=68 minimum=8"
+    },
+    {
+      "name": "urls_discovered_beyond_seeds",
+      "passed": true,
+      "details": "actual=96 minimum=5"
+    },
+    {
+      "name": "minimum_master_candidates",
+      "passed": true,
+      "details": "actual=21 minimum=4"
+    },
+    {
+      "name": "rendered_or_api_discovery_operational",
+      "passed": true,
+      "details": "rendered_indexes=10 api_endpoints_attempted=33"
+    },
+    {
+      "name": "invalid_logo_page_not_master",
+      "passed": true,
+      "details": "The MSH logo application page must never be a scheme or call."
+    }
+  ],
+  "failed_coverage_checks": [],
+  "governance": {
+    "calls_and_cohorts_separate_from_permanent_schemes": true,
+    "listing_pages_classified_as_discovery_indexes": true,
+    "official_domains_only": true,
+    "application_status_not_inferred_from_scheme_page": true,
+    "invalid_msh_logo_application_excluded": true,
+    "publication_performed": false,
+    "database_modified": false,
+    "dashboard_modified": false
+  }
+}

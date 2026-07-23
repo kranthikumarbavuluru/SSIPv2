@@ -1,0 +1,79 @@
+{
+  "checks": {
+    "aliases_unique_within_master": true,
+    "all_outputs_not_published": true,
+    "bharat_challenge_instance_not_master": true,
+    "call_award_challenge_children_preserved": true,
+    "canonical_entity_schema_complete": true,
+    "canonical_master_ids_unique": true,
+    "canonical_names_unique_within_type": true,
+    "dpiit_v34101_unchanged": true,
+    "dst_outputs_unchanged": true,
+    "fund_of_funds_2_identity_separate": true,
+    "fund_of_funds_lineage_held_for_review": true,
+    "historical_dipp_not_current_department": true,
+    "input_candidate_ids_unique": true,
+    "mixed_recognition_tax_service_held_for_review": true,
+    "national_startup_awards_edition_not_master": true,
+    "public_dashboard_unchanged": true,
+    "publication_current_unchanged": true,
+    "rejected_candidates_retained": true,
+    "sisfs_call_not_master": true,
+    "temporary_instances_not_canonical_entities": true
+  },
+  "counts": {
+    "aliases": 15,
+    "audits": 11,
+    "entities": 11,
+    "evidence": 19,
+    "platforms_services": 4,
+    "programmes": 3,
+    "rejections": 1,
+    "relationships": 7,
+    "reviews": 6,
+    "schemes": 4
+  },
+  "preservation": {
+    "files": {
+      "apps/public_dashboard_app_v2_9.py": {
+        "after": "77bd6cff08353e9587459b8f507ef5399b3c508fd514d73bdb87f8cc97ca14cd",
+        "before": "77bd6cff08353e9587459b8f507ef5399b3c508fd514d73bdb87f8cc97ca14cd",
+        "unchanged": true
+      },
+      "assets/dashboard_theme.css": {
+        "after": "2841d412db0c4f1f4c5800b5bfc71860217f6427a62855b2560004e5af946524",
+        "before": "2841d412db0c4f1f4c5800b5bfc71860217f6427a62855b2560004e5af946524",
+        "unchanged": true
+      },
+      "data/publication/current_manifest.json": {
+        "after": "193e0d37a296662d9ed124d5847a27749f4c7bb64118b11294ea650264949a5a",
+        "before": "193e0d37a296662d9ed124d5847a27749f4c7bb64118b11294ea650264949a5a",
+        "unchanged": true
+      },
+      "ssip_dashboard/assets/styles.css": {
+        "after": "ea9fadec7c9f29aa54b4ebbaa25ce64d1484e4941b90075f1160e97d31a803be",
+        "before": "ea9fadec7c9f29aa54b4ebbaa25ce64d1484e4941b90075f1160e97d31a803be",
+        "unchanged": true
+      }
+    },
+    "trees": {
+      "data/departments/dpiit/v3_4_1_0_1": {
+        "after": "4b6bff9e1a35b7f119b139eea25b4b56b830b43e03aafde39135ae1045160e24",
+        "before": "4b6bff9e1a35b7f119b139eea25b4b56b830b43e03aafde39135ae1045160e24",
+        "unchanged": true
+      },
+      "data/departments/dst": {
+        "after": "7cbc42c792d0555116c0943c6b78574a9a175623ddfb066e6f7fe5a48e40c2ff",
+        "before": "7cbc42c792d0555116c0943c6b78574a9a175623ddfb066e6f7fe5a48e40c2ff",
+        "unchanged": true
+      },
+      "data/publication/current": {
+        "after": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "before": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "unchanged": true
+      }
+    }
+  },
+  "validation_passed": true,
+  "version": "3.4.1.0.2"
+}

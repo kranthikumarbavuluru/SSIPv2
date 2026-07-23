@@ -1,0 +1,34 @@
+{
+  "checks": {
+    "all_sources_official": true,
+    "dbt_only_not_birac": true,
+    "department_page_publication_enabled": true,
+    "historical_apply_suppressed": true,
+    "no_open_without_current_evidence": true,
+    "ownership_separation": true,
+    "protected_unchanged": true,
+    "review_records_hidden": true
+  },
+  "protected_after": {
+    "database": "42e5e7ff26bc7f0b5e4d8ce7f13a12c91631733048a1f816858b07b512561a9b",
+    "dpiit": "7ddba795a8d245874e96f401eebdcb42ef0fa76308f592f83ec261bb1432eb24",
+    "dst": "f0dd6ec587fa0b8503ca33f8468ccb82bc1c0341f6085abb0d2b5a2217776c9c",
+    "home_css": "8efd74a7bcd61a5a8f0203d7df1ed71f03b333fd5e378f1e1287e312a1ad6684",
+    "home_function": "566b5e31336f06a2b0609c3c5f9d35f122650fe030cbcd0d4fd96eae808bb7ca",
+    "meity": "11d76e4647b38d577022ff567c34afed2a2683dc1b3251e3d674b81028544637",
+    "publication_current": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "shared_home_css": "d81ec9522a375c4d6ffdfc4496672db3ddb5083d7e5bafc5f0f14924505fca73"
+  },
+  "protected_before": {
+    "database": "42e5e7ff26bc7f0b5e4d8ce7f13a12c91631733048a1f816858b07b512561a9b",
+    "dpiit": "7ddba795a8d245874e96f401eebdcb42ef0fa76308f592f83ec261bb1432eb24",
+    "dst": "f0dd6ec587fa0b8503ca33f8468ccb82bc1c0341f6085abb0d2b5a2217776c9c",
+    "home_css": "8efd74a7bcd61a5a8f0203d7df1ed71f03b333fd5e378f1e1287e312a1ad6684",
+    "home_function": "566b5e31336f06a2b0609c3c5f9d35f122650fe030cbcd0d4fd96eae808bb7ca",
+    "meity": "11d76e4647b38d577022ff567c34afed2a2683dc1b3251e3d674b81028544637",
+    "publication_current": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "shared_home_css": "d81ec9522a375c4d6ffdfc4496672db3ddb5083d7e5bafc5f0f14924505fca73"
+  },
+  "status": "PASS",
+  "version": "3.4.5.0"
+}

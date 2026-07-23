@@ -5,11 +5,21 @@ import hashlib
 import json
 import os
 import sqlite3
+import sys
 import uuid
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Iterable
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
+from services.organization_canonicalization_v3_4_3_7_4 import (
+    canonical_payload_hash,
+    canonicalize_organization_record,
+)
 
 
 LOADER_VERSION = "1.0.0"
@@ -147,11 +157,12 @@ def upsert_approved_scheme(
     run_id: str,
     loaded_at: str,
 ) -> dict[str, int]:
+    record = canonicalize_organization_record(record)
     master_id = str(record["master_id"])
     validation = record.get("validation") or {}
     funding_values = _funding_values(record)
     raw_json = stable_json(record)
-    rec_hash = record_hash(record)
+    rec_hash = canonical_payload_hash(record)
 
     connection.execute(
         """
@@ -320,8 +331,12 @@ def upsert_review_item(
     run_id: str,
     loaded_at: str,
 ) -> None:
-    validated_record = item.get("validated_record") or {}
-    rec_hash = record_hash(validated_record or item)
+    item = dict(item)
+    validated_record = canonicalize_organization_record(
+        item.get("validated_record") or {}
+    )
+    item["validated_record"] = validated_record
+    rec_hash = canonical_payload_hash(validated_record or item)
     connection.execute(
         """
         INSERT INTO admin_review_queue (
@@ -383,6 +398,7 @@ def upsert_rejected_item(
     run_id: str,
     loaded_at: str,
 ) -> None:
+    item = canonicalize_organization_record(item)
     validation = item.get("validation") or {}
     decision = item.get("decision") or validation.get("decision") or "REJECTED"
     reasons = item.get("rejection_reasons") or item.get("decision_reasons") or validation.get("decision_reasons") or []
@@ -412,7 +428,7 @@ def upsert_rejected_item(
             item.get("validation_score") or validation.get("validation_score"),
             stable_json(reasons),
             stable_json(item),
-            record_hash(item),
+            canonical_payload_hash(item),
             loaded_at,
             loaded_at,
             run_id,

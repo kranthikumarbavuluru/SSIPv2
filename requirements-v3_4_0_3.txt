@@ -1,0 +1,2 @@
+# Production code uses the Python standard library only.
+pytest>=8.0

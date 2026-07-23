@@ -1,0 +1,21 @@
+{
+  "run_id": "20260710T164709+0000_061be334",
+  "published_at": "2026-07-10T16:47:09+00:00",
+  "active_catalogue": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\catalogue_preview\\v3_3_2\\catalogue_preview_v3_3_2.csv",
+  "public_rows": 8,
+  "call_rows": 7,
+  "active_catalogue_sha256": "140f2cf326b219dd4451ad4663721994f8ffd75e11f9dddf20c68f6177d38858",
+  "validation": {
+    "passed": true,
+    "checks": {
+      "input_rows_accounted_for": true,
+      "public_rows_have_sector": true,
+      "public_rows_sector_fields_match": true,
+      "no_navigation_in_public": true,
+      "no_supporting_documents_in_public": true,
+      "no_sector_review_rows_in_public": true,
+      "calls_separated": true,
+      "public_count_minimum_met": true
+    }
+  }
+}

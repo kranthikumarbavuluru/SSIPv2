@@ -1,0 +1,29 @@
+{
+  "version": "3.4.2.0.3",
+  "phase": "MeitY Invalid Application-Link Suppression Hotfix",
+  "run_id": "20260713T062214+0000_meity_app_link_hotfix",
+  "published_at": "2026-07-13T06:22:14.692155+00:00",
+  "before": {
+    "active_catalogue_raw_sha256": "89e96cf71eb0852a12e4418097a8ceba62ca17f52cdebe9f55a604bf9ac564a4",
+    "current_manifest_raw_sha256": "58f87215a7f9f97a1407e8376f67418cb5d34528a09c4e09277994f125574c16",
+    "active_catalogue_rows": 139
+  },
+  "after": {
+    "active_catalogue_raw_sha256": "0181012e52125ffb646c89ff86b39ac0136277aa76750e527e2870de7aaf43ba",
+    "current_manifest_raw_sha256": "189d1f363db367080dd7117640f717527707e1d86e089f151f0f58adca53ccb0",
+    "active_catalogue_rows": 139,
+    "dashboard_visible_records": 53,
+    "canonical_catalogue_hash": "8bfbf82189868c2916e22afcfb5112aa8d1f8f54d5190493c43e76d9655ce094"
+  },
+  "backups": {
+    "catalogue": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\publication\\backups\\20260713T062214+0000_meity_app_link_hotfix\\catalogue_before.csv",
+    "manifest": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\publication\\backups\\20260713T062214+0000_meity_app_link_hotfix\\current_manifest_before.json"
+  },
+  "release": {
+    "directory": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\publication\\20260713T062214+0000_meity_app_link_hotfix",
+    "catalogue": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\publication\\20260713T062214+0000_meity_app_link_hotfix\\catalogue.csv"
+  },
+  "database_modified": false,
+  "dashboard_code_modified": false,
+  "rollback_available": true
+}

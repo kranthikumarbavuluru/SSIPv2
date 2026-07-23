@@ -1,0 +1,273 @@
+{
+    "schema_version":  "3.4.3.5",
+    "component":  "SSIP governed public action-link resolution",
+    "department":  "MeitY",
+    "execution_mode":  "PREVIEW_ONLY",
+    "source":  {
+                   "catalogue_path":  "data/catalogue_preview/v3_4_3_4/catalogue_preview_v3_4_3_4.csv",
+                   "expected_minimum_raw_rows":  141,
+                   "expected_minimum_dashboard_schemes":  55,
+                   "required_visible_entities":  [
+                                                     "SASACT",
+                                                     "GENESIS"
+                                                 ]
+               },
+    "output":  {
+                   "directory":  "data/departments/meity/v3_4_3_5",
+                   "publication_allowed":  false,
+                   "database_writes_allowed":  false,
+                   "dashboard_code_changes_allowed":  false,
+                   "active_catalogue_changes_allowed":  false
+               },
+    "identity_governance":  {
+                                "preserve_canonical_scheme_identity":  true,
+                                "preserve_existing_master_ids":  true,
+                                "preserve_non_meity_rows":  true,
+                                "delete_existing_rows":  false,
+                                "rename_scheme_from_call_name":  false,
+                                "represent_calls_separately":  true,
+                                "require_parent_for_call_instance":  true
+                            },
+    "required_action_fields":  [
+                                   "master_id",
+                                   "canonical_name",
+                                   "action_type",
+                                   "link_role",
+                                   "original_url",
+                                   "resolved_url",
+                                   "official_domain",
+                                   "source_authority",
+                                   "verification_status",
+                                   "http_status",
+                                   "is_active",
+                                   "is_time_bound",
+                                   "deadline",
+                                   "deadline_status",
+                                   "parent_master_id",
+                                   "call_instance_id",
+                                   "confidence",
+                                   "evidence",
+                                   "rejection_reason",
+                                   "last_verified_at"
+                               ],
+    "supported_action_types":  [
+                                   "APPLY_NOW",
+                                   "APPLICATION_PORTAL",
+                                   "VIEW_OPEN_CALL",
+                                   "SCHEME_DETAILS",
+                                   "GUIDELINES",
+                                   "USER_MANUAL",
+                                   "OFFICIAL_NOTIFICATION",
+                                   "ELIGIBILITY_DETAILS",
+                                   "CONTACT_DETAILS"
+                               ],
+    "supported_link_roles":  [
+                                 "APPLICATION_FORM",
+                                 "APPLICATION_PORTAL",
+                                 "OPEN_CALL_PAGE",
+                                 "SCHEME_MASTER",
+                                 "PROGRAMME_MASTER",
+                                 "GUIDELINES_DOCUMENT",
+                                 "USER_MANUAL_DOCUMENT",
+                                 "OFFICIAL_NOTIFICATION",
+                                 "ELIGIBILITY_PAGE",
+                                 "CONTACT_PAGE",
+                                 "INFORMATION_PAGE",
+                                 "LOGIN_PAGE",
+                                 "UNKNOWN"
+                             ],
+    "verification_statuses":  [
+                                  "VERIFIED_ACTIVE_APPLICATION",
+                                  "VERIFIED_ACTIVE_CALL",
+                                  "VERIFIED_INFORMATION_PAGE",
+                                  "VERIFIED_GUIDELINES",
+                                  "VERIFIED_MANUAL",
+                                  "VERIFIED_NOTIFICATION",
+                                  "VERIFIED_CONTACT_PAGE",
+                                  "EXPIRED_APPLICATION",
+                                  "CLOSED_CALL",
+                                  "REDIRECTED_TO_INFORMATION_PAGE",
+                                  "LOGIN_REQUIRED",
+                                  "ACCESS_BLOCKED",
+                                  "BROKEN_LINK",
+                                  "UNVERIFIED",
+                                  "REJECTED_NON_OFFICIAL"
+                              ],
+    "deadline_statuses":  [
+                              "OPEN",
+                              "CONTINUOUS",
+                              "UPCOMING",
+                              "EXPIRED",
+                              "CLOSED",
+                              "NOT_APPLICABLE",
+                              "UNKNOWN"
+                          ],
+    "official_domain_policy":  {
+                                   "require_https_when_available":  true,
+                                   "allow_verified_http_redirect_to_https":  true,
+                                   "permitted_domain_suffixes":  [
+                                                                     "meity.gov.in",
+                                                                     "msh.meity.gov.in",
+                                                                     "gov.in",
+                                                                     "nic.in",
+                                                                     "stpi.in",
+                                                                     "cdac.in"
+                                                                 ],
+                                   "trusted_exact_domains":  [
+                                                                 "www.meity.gov.in",
+                                                                 "meity.gov.in",
+                                                                 "msh.meity.gov.in",
+                                                                 "www.digitalindia.gov.in",
+                                                                 "digitalindia.gov.in",
+                                                                 "www.startupindia.gov.in",
+                                                                 "startupindia.gov.in",
+                                                                 "www.mygov.in",
+                                                                 "mygov.in",
+                                                                 "www.stpi.in",
+                                                                 "stpi.in",
+                                                                 "www.cdac.in",
+                                                                 "cdac.in"
+                                                             ],
+                                   "reject_url_shorteners":  true,
+                                   "reject_social_media_as_application_destination":  true,
+                                   "reject_unverified_third_party_forms":  true,
+                                   "require_source_authority_evidence":  true
+                               },
+    "confidence_thresholds":  {
+                                  "APPLY_NOW":  0.92,
+                                  "APPLICATION_PORTAL":  0.92,
+                                  "VIEW_OPEN_CALL":  0.9,
+                                  "SCHEME_DETAILS":  0.85,
+                                  "GUIDELINES":  0.85,
+                                  "USER_MANUAL":  0.85,
+                                  "OFFICIAL_NOTIFICATION":  0.85,
+                                  "ELIGIBILITY_DETAILS":  0.85,
+                                  "CONTACT_DETAILS":  0.85
+                              },
+    "button_policy":  {
+                          "preferred_order":  [
+                                                  "APPLY_NOW",
+                                                  "VIEW_OPEN_CALL",
+                                                  "SCHEME_DETAILS",
+                                                  "GUIDELINES",
+                                                  "USER_MANUAL",
+                                                  "OFFICIAL_NOTIFICATION",
+                                                  "CONTACT_DETAILS"
+                                              ],
+                          "deduplicate_resolved_urls_per_record":  true,
+                          "hide_empty_urls":  true,
+                          "hide_unverified_links":  true,
+                          "hide_rejected_links":  true,
+                          "hide_broken_links":  true,
+                          "open_external_links_in_new_tab":  true,
+                          "apply_now":  {
+                                            "allowed_link_roles":  [
+                                                                       "APPLICATION_FORM",
+                                                                       "APPLICATION_PORTAL"
+                                                                   ],
+                                            "allowed_verification_statuses":  [
+                                                                                  "VERIFIED_ACTIVE_APPLICATION"
+                                                                              ],
+                                            "allowed_deadline_statuses":  [
+                                                                              "OPEN",
+                                                                              "CONTINUOUS"
+                                                                          ],
+                                            "require_official_domain":  true,
+                                            "require_active_window":  true,
+                                            "forbid_information_page":  true,
+                                            "forbid_guideline_document":  true,
+                                            "forbid_notification_document":  true,
+                                            "forbidden_file_extensions":  [
+                                                                              ".pdf",
+                                                                              ".doc",
+                                                                              ".docx",
+                                                                              ".xls",
+                                                                              ".xlsx",
+                                                                              ".zip"
+                                                                          ]
+                                        },
+                          "view_open_call":  {
+                                                 "allowed_link_roles":  [
+                                                                            "OPEN_CALL_PAGE"
+                                                                        ],
+                                                 "allowed_verification_statuses":  [
+                                                                                       "VERIFIED_ACTIVE_CALL"
+                                                                                   ],
+                                                 "allowed_deadline_statuses":  [
+                                                                                   "OPEN",
+                                                                                   "CONTINUOUS",
+                                                                                   "UPCOMING"
+                                                                               ],
+                                                 "require_parent_master_id":  true,
+                                                 "require_call_instance_id":  true,
+                                                 "require_official_domain":  true
+                                             },
+                          "scheme_details":  {
+                                                 "allowed_link_roles":  [
+                                                                            "SCHEME_MASTER",
+                                                                            "PROGRAMME_MASTER",
+                                                                            "INFORMATION_PAGE"
+                                                                        ],
+                                                 "allowed_verification_statuses":  [
+                                                                                       "VERIFIED_INFORMATION_PAGE"
+                                                                                   ],
+                                                 "require_official_domain":  true
+                                             },
+                          "guidelines":  {
+                                             "allowed_link_roles":  [
+                                                                        "GUIDELINES_DOCUMENT"
+                                                                    ],
+                                             "allowed_verification_statuses":  [
+                                                                                   "VERIFIED_GUIDELINES"
+                                                                               ]
+                                         },
+                          "user_manual":  {
+                                              "allowed_link_roles":  [
+                                                                         "USER_MANUAL_DOCUMENT"
+                                                                     ],
+                                              "allowed_verification_statuses":  [
+                                                                                    "VERIFIED_MANUAL"
+                                                                                ]
+                                          },
+                          "official_notification":  {
+                                                        "allowed_link_roles":  [
+                                                                                   "OFFICIAL_NOTIFICATION"
+                                                                               ],
+                                                        "allowed_verification_statuses":  [
+                                                                                              "VERIFIED_NOTIFICATION"
+                                                                                          ]
+                                                    }
+                      },
+    "rejection_reasons":  [
+                              "NON_OFFICIAL_DOMAIN",
+                              "UNVERIFIED_SOURCE_AUTHORITY",
+                              "GENERAL_INFORMATION_PAGE_NOT_APPLICATION",
+                              "EXPIRED_APPLICATION_WINDOW",
+                              "CLOSED_CALL",
+                              "BROKEN_DESTINATION",
+                              "ACCESS_BLOCKED",
+                              "LOGIN_ONLY_WITHOUT_PUBLIC_APPLICATION_EVIDENCE",
+                              "URL_SHORTENER",
+                              "SOCIAL_MEDIA_DESTINATION",
+                              "UNVERIFIED_THIRD_PARTY_FORM",
+                              "GUIDELINE_USED_AS_APPLICATION_URL",
+                              "NOTIFICATION_USED_AS_APPLICATION_URL",
+                              "MISSING_PARENT_SCHEME",
+                              "MISSING_CALL_INSTANCE",
+                              "DUPLICATE_RESOLVED_URL",
+                              "INSUFFICIENT_CONFIDENCE"
+                          ],
+    "release_readiness":  {
+                              "valid_values":  [
+                                                   "PASS",
+                                                   "PASS_WITH_REVIEW",
+                                                   "FAIL"
+                                               ],
+                              "pass_requires_zero_unsafe_public_buttons":  true,
+                              "review_queue_allows_pass_with_review":  true,
+                              "catalogue_regression_causes_failure":  true,
+                              "identity_corruption_causes_failure":  true,
+                              "production_write_causes_failure":  true,
+                              "publication_attempt_causes_failure":  true
+                          }
+}

@@ -1,0 +1,15 @@
+{
+  "version": "3.4.6.0",
+  "activation_status": "ACTIVE",
+  "run_id": "mymsme_initial_verified_20260722",
+  "activated_at": "2026-07-22T00:00:00+05:30",
+  "inventory_file": "active_inventory.csv",
+  "inventory_sha256": "3ee9b83c4356c056f0c4f40061e95000fa1622765a358dccbc6a043db367fdfa",
+  "record_count": 16,
+  "auto_approved_count": 16,
+  "exception_count": 0,
+  "publication_decision": "AUTO_APPROVED",
+  "source_index": "https://my.msme.gov.in/MyMsmeMob/MsmeScheme/MSME_Scheme.htm",
+  "source_last_verified": "2026-07-22",
+  "notes": "Initial governed MyMSME detail-page publication. Overlapping AP MSME ONE and NSIC identities remain canonicalized to existing records; permanent status is information-only and no current call is inferred."
+}

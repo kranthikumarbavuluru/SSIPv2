@@ -1,0 +1,15 @@
+{
+  "version": "3.4.6.0",
+  "activation_status": "ACTIVE",
+  "run_id": "apmsme_initial_verified_20260722",
+  "activated_at": "2026-07-22T00:00:00+05:30",
+  "inventory_file": "active_inventory.csv",
+  "inventory_sha256": "fabc4a93886d67b31057894cc04bad3dac89f5905774e0119e1740773a00d925",
+  "record_count": 31,
+  "auto_approved_count": 31,
+  "exception_count": 0,
+  "publication_decision": "AUTO_APPROVED",
+  "source_index": "https://apmsmeone.ap.gov.in/schemes",
+  "source_last_verified": "2026-07-22",
+  "notes": "Initial governed AP MSME ONE directory publication. Permanent scheme status is information-only; no current call is inferred."
+}

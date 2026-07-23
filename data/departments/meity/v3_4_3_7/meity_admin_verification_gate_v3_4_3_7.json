@@ -1,0 +1,40 @@
+{
+  "calls_coverage_status": "INCOMPLETE",
+  "counts": {
+    "active_dashboard_schemes": 53,
+    "active_raw_rows": 139,
+    "approved": 0,
+    "candidate_dashboard_schemes": 55,
+    "candidate_raw_rows": 141,
+    "deferred": 0,
+    "material_delta": 2,
+    "pending": 2,
+    "public_application_buttons": 0,
+    "rejected": 0,
+    "returned": 0,
+    "review_queue": 2,
+    "verified_meity_current_calls": 0
+  },
+  "gate_status": "WAITING_FOR_ADMIN",
+  "generated_at": "2026-07-13T08:35:06+00:00",
+  "inputs": {
+    "active_catalogue": "data/catalogue_preview/v3_3_2/catalogue_preview_v3_3_2.csv",
+    "candidate_catalogue": "data/catalogue_preview/v3_4_3_4/catalogue_preview_v3_4_3_4.csv",
+    "upstream_manifest": "data/departments/meity/v3_4_3_4/meity_release_readiness_manifest_v3_4_3_4.json"
+  },
+  "integrity": {
+    "active_catalogue_unchanged": true,
+    "dashboard_unchanged": true,
+    "database_unchanged": true,
+    "database_writes_performed": false,
+    "network_requests_performed": false,
+    "publication_current_unchanged": true,
+    "publication_performed": false
+  },
+  "phase": "MeitY Admin Verification Gate",
+  "targets": {
+    "genesis_queued": true,
+    "sasact_queued": true
+  },
+  "version": "3.4.3.7"
+}

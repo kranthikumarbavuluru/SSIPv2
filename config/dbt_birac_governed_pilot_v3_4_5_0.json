@@ -1,0 +1,26 @@
+{
+  "version": "3.4.5.0",
+  "as_of_date": "2026-07-21",
+  "retrieval_timestamp": "2026-07-21T00:00:00+05:30",
+  "max_pages": 40,
+  "max_depth": 1,
+  "max_links_per_page": 20,
+  "request_delay_seconds": 0.5,
+  "request_timeout_seconds": 25,
+  "max_response_bytes": 2097152,
+  "allowed_domains": [
+    "birac.nic.in",
+    "dbtindia.gov.in",
+    "pgt.dbtindia.gov.in",
+    "birac.eoffice.gov.in"
+  ],
+  "crawl_restrictions": [
+    "Start only from the versioned registry",
+    "Maximum depth one and maximum forty attempted pages",
+    "No authentication, form submission, or unregistered external crawl",
+    "No database, Admin decision, Home, DST, MeitY, or DPIIT writes"
+  ],
+  "status_policy": "OPEN requires a named current call, unexpired or continuous window, valid official application route, recent verification and no closure contradiction",
+  "preview_only": false,
+  "public_department_page": true
+}

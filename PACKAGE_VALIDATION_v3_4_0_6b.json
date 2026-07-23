@@ -1,0 +1,91 @@
+{
+  "package_version": "3.4.0.6b",
+  "package_name": "SSIP Sector Catalogue Repair",
+  "validated": true,
+  "validation": {
+    "python_compile": "PASSED",
+    "self_test": "PASSED",
+    "pytest": "5 passed",
+    "synthetic_47_record_integration": "PASSED",
+    "zero_blank_sector_gate": "PASSED",
+    "zero_sector_not_specified_gate": "PASSED",
+    "identity_order_preservation": "PASSED"
+  },
+  "files": [
+    {
+      "path": ".pytest_cache/.gitignore",
+      "sha256": "3ed731b65d06150c138e2dadb0be0697550888a6b47eb8c45ecc9adba8b8e9bd",
+      "size_bytes": 37
+    },
+    {
+      "path": ".pytest_cache/CACHEDIR.TAG",
+      "sha256": "37dc88ef9a0abeddbe81053a6dd8fdfb13afb613045ea1eb4a5c815a74a3bde4",
+      "size_bytes": 191
+    },
+    {
+      "path": ".pytest_cache/README.md",
+      "sha256": "73fd6fccdd802c419a6b2d983d6c3173b7da97558ac4b589edec2dfe443db9ad",
+      "size_bytes": 302
+    },
+    {
+      "path": ".pytest_cache/v/cache/lastfailed",
+      "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "size_bytes": 2
+    },
+    {
+      "path": ".pytest_cache/v/cache/nodeids",
+      "sha256": "69cbb390617cdedfe1f662ce49f00fdedf8a7afd0a80f38ef7d716f3b5a112d6",
+      "size_bytes": 333
+    },
+    {
+      "path": "README_v3_4_0_6b.md",
+      "sha256": "a77f607e003a1f3146dcae1d384d91569352c3fc2b1cac32c4e2e0b42136edb4",
+      "size_bytes": 1294
+    },
+    {
+      "path": "RUN_SECTOR_REPAIR_v3_4_0_6b.ps1",
+      "sha256": "a8e2b5b50913583297a233fdd7b0aabb9f661c12acb189cb47b5f33e6e9488c0",
+      "size_bytes": 2582
+    },
+    {
+      "path": "config/sector_rules_v3_4_0_6b.json",
+      "sha256": "4b3fd514c16dad45446b72c65d3969d564967e44300e7c7c859b3bf04775bee7",
+      "size_bytes": 5293
+    },
+    {
+      "path": "requirements-v3_4_0_6b.txt",
+      "sha256": "2899f82bee41846d2e3b445001d33fec545fa4b69dc5d1c06f0e80736c941f52",
+      "size_bytes": 56
+    },
+    {
+      "path": "scripts/__pycache__/sector_catalogue_repair_v3_4_0_6b.cpython-313.pyc",
+      "sha256": "4516087dbe9b152c4c362c7d761adffcd3ff230c7c8277d8ecf39037c449256b",
+      "size_bytes": 29105
+    },
+    {
+      "path": "scripts/__pycache__/verify_dashboard_sector_source_v3_4_0_6b.cpython-313.pyc",
+      "sha256": "e50a6ed0dd64a5df60fe2c17ebbe71bfa03f196fc2d11804c23974256cc9107d",
+      "size_bytes": 2828
+    },
+    {
+      "path": "scripts/sector_catalogue_repair_v3_4_0_6b.py",
+      "sha256": "9afd708833c3af18fbf70a4356b310af8400c53a595521a443c2ef0da206e9f3",
+      "size_bytes": 18767
+    },
+    {
+      "path": "scripts/verify_dashboard_sector_source_v3_4_0_6b.py",
+      "sha256": "bcedb20c34b1d3028d17c61a0b6538c9b890b6f76a5581d044b5a512bf221484",
+      "size_bytes": 1074
+    },
+    {
+      "path": "tests/__pycache__/test_sector_catalogue_repair_v3_4_0_6b.cpython-313-pytest-9.0.2.pyc",
+      "sha256": "b98e6bef61679e3393ccade3e54860241dd70d8638cd7bbdeff0466cc6bab194",
+      "size_bytes": 7497
+    },
+    {
+      "path": "tests/test_sector_catalogue_repair_v3_4_0_6b.py",
+      "sha256": "9eb2c890e9d343229fe8159d7ed07b6c2b45dc18f236d51b05a04219bbb2f65e",
+      "size_bytes": 1090
+    }
+  ]
+}

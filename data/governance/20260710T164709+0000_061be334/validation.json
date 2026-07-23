@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "checks": {
+    "input_rows_accounted_for": true,
+    "public_rows_have_sector": true,
+    "public_rows_sector_fields_match": true,
+    "no_navigation_in_public": true,
+    "no_supporting_documents_in_public": true,
+    "no_sector_review_rows_in_public": true,
+    "calls_separated": true,
+    "public_count_minimum_met": true
+  }
+}

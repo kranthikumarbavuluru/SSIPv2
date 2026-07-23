@@ -1,0 +1,70 @@
+{
+  "version": "3.4.3.5",
+  "stage": "ONLINE_SCHEME_PAGE_VERIFICATION",
+  "execution_mode": "PREVIEW_ONLY",
+  "verification_policy": "CONTENT_EVIDENCE_ONLY",
+  "release_readiness_status": "PASS_WITH_REVIEW",
+  "selected_candidate_count": 4,
+  "network_verification_attempts": 4,
+  "result_row_count": 4,
+  "verification_status_counts": {
+    "UNVERIFIED": 4
+  },
+  "network_status_counts": {
+    "COMPLETED": 4
+  },
+  "verified_information_page_count": 0,
+  "scheme_details_button_candidate_count": 0,
+  "review_required_count": 4,
+  "apply_now_button_count": 0,
+  "open_call_button_count": 0,
+  "pdf_requests": 0,
+  "quarantined_link_requests": 0,
+  "database_writes": 0,
+  "dashboard_code_changes": 0,
+  "publication_performed": false,
+  "timeout_seconds": 25,
+  "verified_at_utc": "2026-07-13T09:07:19+00:00",
+  "verification_path": "data/departments/meity/v3_4_3_5/meity_scheme_page_online_verification_v3_4_3_5.csv",
+  "source_sha256": "ef43bd7e27df2ead5fe88ab8bf2751a80eac6c4e13e8894173a6625b57650a8c",
+  "classification_sha256": "d11465dc9d2885096a770c9aecc938f3b436f0fe11d366b8cbf13144ae4e2f71",
+  "inventory_sha256": "cef5c394608624ce543debdf6bf16f65360bee9ece4c44dcaf59b156db2c36b0",
+  "quarantine_sha256": "7caf52148156172d292fb72d45e25e92bbe15e6ac548858a0dd3474b7cfcc876",
+  "verification_sha256": "0159e802a3c273c4863dd1707f6027da0ffded7a1feb625a3a0b22facd59ba99",
+  "preflight": {
+    "version": "3.4.3.5",
+    "stage": "ONLINE_SCHEME_PAGE_PREFLIGHT",
+    "selected_candidate_count": 4,
+    "selected_names": [
+      "GENESIS",
+      "SAMRIDH",
+      "SASACT",
+      "TIDE 2.0"
+    ],
+    "selected_urls": [
+      "https://msh.meity.gov.in/schemes/genesis",
+      "https://msh.meity.gov.in/schemes/samridh",
+      "https://msh.meity.gov.in/schemes/sasact",
+      "https://msh.meity.gov.in/schemes/tide"
+    ],
+    "checks": {
+      "candidate_count_is_four": true,
+      "expected_names_present": true,
+      "all_urls_are_https": true,
+      "all_urls_are_meity_scheme_pages": true,
+      "no_document_urls_selected": true,
+      "no_apply_actions_selected": true
+    },
+    "preflight_passed": true,
+    "network_requests": 0
+  },
+  "safety": {
+    "source_candidate_unchanged": true,
+    "offline_classification_unchanged": true,
+    "clean_inventory_unchanged": true,
+    "quarantine_inventory_unchanged": true,
+    "database_files_unchanged": true,
+    "dashboard_python_files_unchanged": true,
+    "publication_current_unchanged": true
+  }
+}

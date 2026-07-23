@@ -1,0 +1,16 @@
+{
+  "version": "3.4.3.7.7",
+  "plan_signature": "b2997097d5304881923b5e820b5cd100721c55901115adf5f89bc1297be5a48d",
+  "classification_counts": {
+    "VALID_CALL_INSTANCE": 6,
+    "EVENT_OR_CONFERENCE": 4,
+    "NAVIGATION_OR_DIRECTORY": 3,
+    "UNRESOLVED": 1,
+    "PRESS_RELEASE_OR_NEWS": 1,
+    "RAW_DOCUMENT": 1
+  },
+  "republication_eligible_count": 0,
+  "manual_rebuild_required_count": 16,
+  "database_modified": false,
+  "publication_performed": false
+}

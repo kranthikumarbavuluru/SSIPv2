@@ -1,0 +1,53 @@
+{
+  "version": "3.4.10.0",
+  "audit_run": "agri_startup_second_pass_call_audit_20260723",
+  "audited_at": "2026-07-23",
+  "scope": "Startup-focused agriculture and allied-sector opportunities discovered through official incubator-linked portals",
+  "source_coverage": {
+    "enabled_official_sources": 42,
+    "named_agriculture_batches": 2,
+    "linked_startup_portals": [
+      "MANAGE-CIA",
+      "ANGRAU Poshan Tirupati",
+      "PDKV Research and Incubation Foundation",
+      "AFBIC IIT Kharagpur",
+      "ABIF IIT Kharagpur"
+    ],
+    "incubator_directory_policy": "Discovery only; directory entries are never published as schemes or calls."
+  },
+  "published_projection": {
+    "programme_identities": 21,
+    "current_calls_with_official_deadlines": 4,
+    "historical_calls_with_official_deadlines": 12,
+    "published_records": 37
+  },
+  "newly_validated_records": [
+    "MANAGE-CIA Cohort 15 SOP/AOP/SAIP calls",
+    "MANAGE Agri-Eureka 2024",
+    "MANAGE Agri-Eureka 2025",
+    "PDKV-RIF Agri-Tech Hackathon 2026",
+    "MANAGE Digital Marketing Skills for Agri-Startups Ninth Batch",
+    "AFBIC IIT Kharagpur SAIP/AOP/SOP programme identities",
+    "ABIF IIT Kharagpur incubation application identity"
+  ],
+  "not_promoted_to_calls": [
+    {
+      "source": "MANAGE training calendar and scheduled events",
+      "reason": "Training, webinars and stakeholder events without a dated application window are not treated as grant or application calls."
+    },
+    {
+      "source": "MANAGE incubator directory",
+      "reason": "Incubator names and addresses are discovery sources, not opportunities for applicants."
+    },
+    {
+      "source": "AFBIC and ABIF application pages",
+      "reason": "Programme applications are visible, but no official closing date is stated; records remain programme identities/status-unverified."
+    }
+  ],
+  "next_discovery_targets": [
+    "R-ABI portals listed by MANAGE, including KAU, Nutrihub, UAS Dharwad and ICAR/IIT partner pages",
+    "Archived cohort posters and application PDFs for MANAGE Cohorts 4-14",
+    "Future dated calls published by PDKV-RIF, AFBIC and ABIF"
+  ],
+  "publication_guardrail": "Do not inflate the call count with the hundreds of applicants, incubated startups, training sessions or directory entries reported by incubator sources. Each public record must represent one unique scheme, programme, call or challenge with its own official evidence."
+}

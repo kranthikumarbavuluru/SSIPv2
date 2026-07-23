@@ -1,0 +1,27 @@
+﻿{
+    "version":  "3.4.1.0.4",
+    "phase":  "DPIIT Governed Field Extraction and Evidence Validation Pilot",
+    "execution_mode":  "MANUAL_PREVIEW_ONLY",
+    "recorded_at":  "2026-07-12T20:08:54.8022921+05:30",
+    "output_directory":  "data/departments/dpiit/v3_4_1_0_4",
+    "publication_permitted":  false,
+    "database_modification_permitted":  false,
+    "dashboard_modification_permitted":  false,
+    "frozen_files":  {
+                         "data/catalogue_preview/v3_3_2/catalogue_preview_v3_3_2.csv":  "f82556d15593f83ffe40255fc79c8da9fba22430f82add99d07240d11d0f971a",
+                         "data/publication/current_manifest.json":  "193e0d37a296662d9ed124d5847a27749f4c7bb64118b11294ea650264949a5a",
+                         "data/publication/20260710T162806+0000_f4936983/catalogue.csv":  "f82556d15593f83ffe40255fc79c8da9fba22430f82add99d07240d11d0f971a",
+                         "data/publication/20260710T162806+0000_f4936983/manifest.json":  "193e0d37a296662d9ed124d5847a27749f4c7bb64118b11294ea650264949a5a",
+                         "apps/public_dashboard_app_v2_9.py":  "77bd6cff08353e9587459b8f507ef5399b3c508fd514d73bdb87f8cc97ca14cd",
+                         "assets/dashboard_theme.css":  "2841d412db0c4f1f4c5800b5bfc71860217f6427a62855b2560004e5af946524",
+                         "assets/styles/ssip_public_dashboard.css":  "9c03cb27fd339acf075c3daa986a2805fd68f52ffe55adafc7266dc8c96bc1b8",
+                         "tests/test_end_to_end_governed_agents_v1.py":  "ae41218d6000a28c3831843411faec2fc4e65d2efd1a2dd5b4f530127d1f70a8"
+                     },
+    "frozen_trees":  {
+                         "data/departments/dpiit/v3_4_1_0_1":  "047ca967f040f4eee599b8cb3265b2bf2a0881b90427d2e87d2cbb902e9ff53a",
+                         "data/departments/dpiit/v3_4_1_0_2":  "8d07cdacec8ff74d944d6ded9b666e6d69efac57b942281efb63748361265ef0",
+                         "data/departments/dpiit/v3_4_1_0_3":  "0052d48d2f9cbe434642d464bbd65de41e9e36c76350fda4698ee0b93de79c4e",
+                         "data/departments/dst":  "5a32eb04530f9a72cfd7f01f354fa081595613b678153b5e7942ab9425261976"
+                     },
+    "git_status":  "NOT_A_GIT_REPOSITORY"
+}

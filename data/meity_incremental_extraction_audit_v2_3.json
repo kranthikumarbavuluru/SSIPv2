@@ -1,0 +1,127 @@
+[
+  {
+    "master_id": "ee7270f0f7d3d581c623",
+    "scheme_name": "SITAA - Contactless Fingerprint Authentication",
+    "source": "MeitY Startup Hub",
+    "action": "REEXTRACTED_INCOMPLETE",
+    "reason_codes": [
+      "BENEFITS_NOT_FOUND"
+    ],
+    "source_urls": [
+      "https://msh.meity.gov.in/challenges/home/5f56490b-947e-4893-b9da-fe11f15251ec"
+    ],
+    "previous_source_fingerprint": "910049a8560a96334ba63b4a9069f286d8e0ac6e49607b5b936a0f02162928b3",
+    "current_source_fingerprint": "a76f426c7b79ac7bf0e26132e680ebfab374b362319cf9786b850ef953de0042",
+    "extraction_confidence": 0.875,
+    "quality_flags": [
+      "BENEFITS_NOT_FOUND",
+      "REQUIRED_DOCUMENTS_NOT_FOUND",
+      "EXPLICIT_FUNDING_AMOUNT_NOT_FOUND"
+    ],
+    "checked_at": "2026-07-09T05:45:27.803184+00:00"
+  },
+  {
+    "master_id": "8434e0f45cca386fc5e5",
+    "scheme_name": "SITAA - Presentation Attack Detection",
+    "source": "MeitY Startup Hub",
+    "action": "REEXTRACTED_INCOMPLETE",
+    "reason_codes": [
+      "BENEFITS_NOT_FOUND"
+    ],
+    "source_urls": [
+      "https://msh.meity.gov.in/challenges/home/35ed1bc3-26e1-4aef-99ee-3f759a530f55"
+    ],
+    "previous_source_fingerprint": "83ffbc20cc7eb1a4121b2527e55133b7be8463951f22d5c8515840dbad7ecafc",
+    "current_source_fingerprint": "37cd1d4a598aac8901ca2df6b7e4001f8635a4a36ce6a1ce865f7f3bc48ddd2c",
+    "extraction_confidence": 0.875,
+    "quality_flags": [
+      "BENEFITS_NOT_FOUND",
+      "REQUIRED_DOCUMENTS_NOT_FOUND",
+      "EXPLICIT_FUNDING_AMOUNT_NOT_FOUND"
+    ],
+    "checked_at": "2026-07-09T05:45:27.803269+00:00"
+  },
+  {
+    "master_id": "e3abff4124f05a31f188",
+    "scheme_name": "SASACT",
+    "source": "MeitY Startup Hub",
+    "action": "REEXTRACTED_INCOMPLETE",
+    "reason_codes": [
+      "BENEFITS_NOT_FOUND"
+    ],
+    "source_urls": [
+      "https://msh.meity.gov.in/schemes/sasact"
+    ],
+    "previous_source_fingerprint": "4a4e76e9763f2bdbafdc50cbff1ea3c44b98b09b213c0b3efa96d5b30c2c7228",
+    "current_source_fingerprint": "c1fb24deb5080adcbc736eae170b6ebc2289fe3fc44d724d2d3f8a8819b874f6",
+    "extraction_confidence": 0.875,
+    "quality_flags": [
+      "BENEFITS_NOT_FOUND",
+      "REQUIRED_DOCUMENTS_NOT_FOUND"
+    ],
+    "checked_at": "2026-07-09T05:45:27.803313+00:00"
+  },
+  {
+    "master_id": "190830c31088c57ffdbc",
+    "scheme_name": "GENESIS",
+    "source": "MeitY Startup Hub",
+    "action": "REEXTRACTED_INCOMPLETE",
+    "reason_codes": [
+      "ELIGIBILITY_NOT_FOUND"
+    ],
+    "source_urls": [
+      "https://msh.meity.gov.in/schemes/genesis"
+    ],
+    "previous_source_fingerprint": "7dcf4cf04daae0e6a627268566f1cd5b14f4e663ecc8978b6247df5d83b8d357",
+    "current_source_fingerprint": "d3af656f909dbf98fce49e8bef01f5b0fd38fe5e26ad0ae99e90005808a989fd",
+    "extraction_confidence": 0.875,
+    "quality_flags": [
+      "ELIGIBILITY_NOT_FOUND",
+      "REQUIRED_DOCUMENTS_NOT_FOUND"
+    ],
+    "checked_at": "2026-07-09T05:45:36.130676+00:00"
+  },
+  {
+    "master_id": "147173e17ea741687247",
+    "scheme_name": "SAMRIDH",
+    "source": "MeitY Startup Hub",
+    "action": "REEXTRACTED_INCOMPLETE",
+    "reason_codes": [
+      "ELIGIBILITY_NOT_FOUND"
+    ],
+    "source_urls": [
+      "https://msh.meity.gov.in/schemes/samridh"
+    ],
+    "previous_source_fingerprint": "69656e123f512f65433d570f839b9c2c689160e0936cc576c5dc8e27975a6b9d",
+    "current_source_fingerprint": "c21d241a03c7455fc773f88f2f676845873828668c6dfa93b8c90fa0d7788100",
+    "extraction_confidence": 0.875,
+    "quality_flags": [
+      "ELIGIBILITY_NOT_FOUND",
+      "REQUIRED_DOCUMENTS_NOT_FOUND"
+    ],
+    "checked_at": "2026-07-09T05:45:36.201674+00:00"
+  },
+  {
+    "master_id": "6af79cf6c8a213dddce8",
+    "scheme_name": "TIDE 2.0",
+    "source": "MeitY Startup Hub",
+    "action": "REEXTRACTED_INCOMPLETE",
+    "reason_codes": [
+      "BENEFITS_NOT_FOUND",
+      "ELIGIBILITY_NOT_FOUND"
+    ],
+    "source_urls": [
+      "https://msh.meity.gov.in/schemes/tide"
+    ],
+    "previous_source_fingerprint": "88c8ce4220b2405185bec63dfb1a91b8d0d55b6b4d197059ffe163db0a84d6fa",
+    "current_source_fingerprint": "38ae377fe24fba2c7cc796d5b9fa62bba0f5f58a57d68172d7fcc1c58e1a676f",
+    "extraction_confidence": 0.75,
+    "quality_flags": [
+      "ELIGIBILITY_NOT_FOUND",
+      "BENEFITS_NOT_FOUND",
+      "REQUIRED_DOCUMENTS_NOT_FOUND",
+      "EXPLICIT_FUNDING_AMOUNT_NOT_FOUND"
+    ],
+    "checked_at": "2026-07-09T05:45:41.133366+00:00"
+  }
+]

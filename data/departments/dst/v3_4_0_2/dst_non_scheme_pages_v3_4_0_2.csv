@@ -1,0 +1,100 @@
+﻿page_id,requested_url,normalized_url,final_url,canonical_url,parent_url,depth,source_role_hint,page_role_hint,http_status,content_type,charset,title,language,fetched_at,last_modified_header,etag,last_updated_text,content_length_header,bytes_received,content_sha256,text_sha256,word_count,link_count,text_excerpt,snapshot_path,duplicate_of_page_id,robots_decision,fetch_duration_ms,error,page_title,discovered_from_url,crawl_depth,error_message,main_text,main_text_length,text_extraction_status,text_extraction_method,text_selected_selector,text_candidate_count,text_extraction_error,url_resolution_status,replacement_url,url_resolution_note,classified_page_id,page_role,page_role_confidence,page_role_score,second_best_role,second_best_score,scheme_evidence_score,call_evidence_score,possible_parent_name_text,classification_reasons,review_flags,requires_admin_review,identity_safeguard,classified_at
+dst_page_5e6051036de89bd0d0f5,https://dst.gov.in/callforproposals/call-nomination-workshop-design-and-evaluation-innovation-policies-specific-focus,https://dst.gov.in/callforproposals/call-nomination-workshop-design-and-evaluation-innovation-policies-specific-focus,https://dst.gov.in/callforproposals/call-nomination-workshop-design-and-evaluation-innovation-policies-specific-focus,https://dst.gov.in/callforproposals/call-nomination-workshop-design-and-evaluation-innovation-policies-specific-focus,https://dst.gov.in/archive-call-for-proposals?page=5,2,CALL_CANDIDATE,CALL_CANDIDATE,200,text/html,utf-8,Call for Nomination: Workshop on Design and Evaluation of Innovation Policies (with a specific focus on Scientometrics),en,2026-07-10T09:29:05+00:00,"Fri, 10 Jul 2026 09:29:05 GMT",,25 Feb 2019,11221,53781,41762ab1280f8c04bfb4c587e72e21df6c1c690f24633d54912b86b99b8d733a,08e011ca2c4552ffebe704cbc9015c7205d7ee5a7b25ef72d986094d13fd49d8,17,95,Call for Nomination: Workshop on Design and Evaluation of Innovation Policies (with a specific focus on Scientometrics),snapshots\html\callforproposals-call-nomination-workshop-design-and-evaluation-innova_5e6051036de89bd0.html.gz,,UNAVAILABLE_HTTP_404_CONSERVATIVE_ALLOW,382,,Call for Nomination: Workshop on Design and Evaluation of Innovation Policies (with a specific focus on Scientometrics),https://dst.gov.in/archive-call-for-proposals?page=5,2,,Call for Nomination: Workshop on Design and Evaluation of Innovation Policies (with a specific focus on Scientometrics),119,SUCCESS_BODY_FALLBACK,BEAUTIFULSOUP_REGION_SCORING,body_fallback,7,,CURRENT_OR_UNRESOLVED,,,dst_page_5e6051036de89bd0d0f5,EVENT,0.9900,130.000,CALL_FOR_PROPOSALS,42.000,0.000,42.000,,CALL_AUDIT_EVENT_RELATED | EVENT_TITLE,LOW_TEXT_BODY_FALLBACK,1,NO_CANONICAL_SCHEME_IDENTITY_CREATED,2026-07-10T09:59:23+00:00
+dst_page_dce9e16c7e89b030391b,https://dst.gov.in/promotion-university-research-and-scientific-excellencepurse,https://dst.gov.in/promotion-university-research-and-scientific-excellencepurse,https://dst.gov.in/promotion-university-research-and-scientific-excellencepurse,https://dst.gov.in/,https://dst.gov.in/institutional-capacity-building-programmes,1,SCHEME_PROGRAMME_SUPPORTING_PAGE,UNCLASSIFIED_SOURCE_PAGE,404,text/html,utf-8,Page not found,en,2026-07-10T09:31:08+00:00,"Fri, 10 Jul 2026 09:31:08 GMT",,01 Jan 1970,,42280,ae4327bfd9057644d7e4673cd0614cb7f2ebd0c427fba6f480cfa06628d8037a,e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855,0,32,,snapshots\html\promotion-university-research-and-scientific-excellencepurse_dce9e16c7e89b030.html.gz,,UNAVAILABLE_HTTP_404_CONSERVATIVE_ALLOW,247,,Page not found,https://dst.gov.in/institutional-capacity-building-programmes,1,,,0,HTTP_ERROR_PAGE,,,0,,BROKEN_URL_REPLACED,https://dst.gov.in/promotion-university-research-and-scientific-excellence-purse,Malformed legacy PURSE slug; separator before 'purse' was missing.,dst_page_dce9e16c7e89b030391b,BROKEN_OFFICIAL_LINK,0.9900,100.000,UNKNOWN,0.000,0.000,0.000,,HTTP_STATUS_404,,0,NO_CANONICAL_SCHEME_IDENTITY_CREATED,2026-07-10T09:59:23+00:00
+dst_page_3ccb8bce6ea16038a637,https://dst.gov.in/news/advertisement-filling-6-temporary-posts-scientists-under-nano-mission-deputation-including,https://dst.gov.in/news/advertisement-filling-6-temporary-posts-scientists-under-nano-mission-deputation-including,https://dst.gov.in/news/advertisement-filling-6-temporary-posts-scientists-under-nano-mission-deputation-including,https://dst.gov.in/news/advertisement-filling-6-temporary-posts-scientists-under-nano-mission-deputation-including,https://dst.gov.in/archive,1,UNCLASSIFIED_SOURCE_PAGE,UNCLASSIFIED_SOURCE_PAGE,200,text/html,utf-8,Advertisement for filling up of 6 temporary posts of Scientists under NANO Mission on Deputation (including short-term contract),en,2026-07-10T09:31:33+00:00,"Fri, 10 Jul 2026 09:31:33 GMT",,14 Sep 2022,11404,54462,900f69fddd4423766b386a41c9f0e922c245d007492d7b08e7c1d4030778fdd2,649efbec8622a81e9b1d44c5a180d7d5752304a2f6a1a59f7464e6c8cbdbb83c,39,98,"Advertisement for filling up of 6 temporary posts of Scientists under NANO Mission on Deputation (including short-term contract)
+Notice - List of eligible and ineligible candidates 0 bytes
+Notice: 22.07.2022 0 bytes
+Notice : Important dates 0 bytes",snapshots\html\news-advertisement-filling-6-temporary-posts-scientists-under-nano-mis_3ccb8bce6ea16038.html.gz,,UNAVAILABLE_HTTP_404_CONSERVATIVE_ALLOW,399,,Advertisement for filling up of 6 temporary posts of Scientists under NANO Mission on Deputation (including short-term contract),https://dst.gov.in/archive,1,,"Advertisement for filling up of 6 temporary posts of Scientists under NANO Mission on Deputation (including short-term contract)
+Notice - List of eligible and ineligible candidates 0 bytes
+Notice: 22.07.2022 0 bytes
+Notice : Important dates 0 bytes",248,SUCCESS_BODY_FALLBACK,BEAUTIFULSOUP_REGION_SCORING,body_fallback,8,,CURRENT_OR_UNRESOLVED,,,dst_page_3ccb8bce6ea16038a637,NEWS,0.6400,50.000,PROGRAMME_MASTER_CANDIDATE,43.000,28.000,0.000,,NEWS_TITLE_OR_URL,LOW_CONFIDENCE | LOW_TEXT_BODY_FALLBACK,1,NO_CANONICAL_SCHEME_IDENTITY_CREATED,2026-07-10T09:59:23+00:00
+dst_page_0d4a052925b63609de8e,https://dst.gov.in/news/advertisement-filling-two-posts-scientific-attache-one-each-indian-mission-berlin-germany,https://dst.gov.in/news/advertisement-filling-two-posts-scientific-attache-one-each-indian-mission-berlin-germany,https://dst.gov.in/news/advertisement-filling-two-posts-scientific-attache-one-each-indian-mission-berlin-germany,https://dst.gov.in/news/advertisement-filling-two-posts-scientific-attache-one-each-indian-mission-berlin-germany,https://dst.gov.in/archive,1,UNCLASSIFIED_SOURCE_PAGE,UNCLASSIFIED_SOURCE_PAGE,200,text/html,utf-8,"Advertisement for filling up of two posts of Scientific Attache one each in Indian Mission at Berlin, Germany & Indian Mission at Tokyo, Japan on deputation (including short term contract) basis",en,2026-07-10T09:31:34+00:00,"Fri, 10 Jul 2026 09:31:34 GMT",,05 Aug 2022,11660,55640,e1c816397b5637f34ad039c4b01dce664555e30893d893542b5480ad9132d408,ae72c21f243101559e923b43b3a08b0a5f0100dc9a932abd713f6185ae199db4,76,101,"Advertisement for filling up of two posts of Scientific Attache one each in Indian Mission at Berlin, Germany & Indian Mission at Tokyo, Japan on deputation (including short term contract) basis
+Notice for interview schedule - Scientific Attache 0 bytes
+Notice - Decision on representations received against Eligibility status, within the due date 0 bytes
+Notice - Eligibility status 301.65 KB
+Notice - representations against status of applications 0 bytes
+Status of Applications 0 bytes
+Notice to Candidates 0 bytes",snapshots\html\news-advertisement-filling-two-posts-scientific-attache-one-each-india_0d4a052925b63609.html.gz,,UNAVAILABLE_HTTP_404_CONSERVATIVE_ALLOW,436,,"Advertisement for filling up of two posts of Scientific Attache one each in Indian Mission at Berlin, Germany & Indian Mission at Tokyo, Japan on deputation (including short term contract) basis",https://dst.gov.in/archive,1,,"Advertisement for filling up of two posts of Scientific Attache one each in Indian Mission at Berlin, Germany & Indian Mission at Tokyo, Japan on deputation (including short term contract) basis
+Notice for interview schedule - Scientific Attache 0 bytes
+Notice - Decision on representations received against Eligibility status, within the due date 0 bytes
+Notice - Eligibility status 301.65 KB
+Notice - representations against status of applications 0 bytes
+Status of Applications 0 bytes
+Notice to Candidates 0 bytes",517,SUCCESS_BODY_FALLBACK,BEAUTIFULSOUP_REGION_SCORING,body_fallback,8,,CURRENT_OR_UNRESOLVED,,,dst_page_0d4a052925b63609de8e,NEWS,0.6971,50.000,PROGRAMME_MASTER_CANDIDATE,33.000,14.000,0.000,,NEWS_TITLE_OR_URL,LOW_CONFIDENCE | LOW_TEXT_BODY_FALLBACK,1,NO_CANONICAL_SCHEME_IDENTITY_CREATED,2026-07-10T09:59:23+00:00
+dst_page_ff9159671a474201220d,https://dst.gov.in/sites/default/files/agriculture.htm,https://dst.gov.in/sites/default/files/agriculture.htm,https://dst.gov.in/sites/default/files/agriculture.htm,https://dst.gov.in/,https://dst.gov.in/archive,1,UNCLASSIFIED_SOURCE_PAGE,UNCLASSIFIED_SOURCE_PAGE,404,text/html,utf-8,Page not found,en,2026-07-10T09:31:35+00:00,"Fri, 10 Jul 2026 09:31:35 GMT",,01 Jan 1970,,42206,1285895366de1841b9b75d816b120d0ffb86ec2cc6026efc1b515b7da7b49e26,e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855,0,32,,snapshots\html\sites-default-files-agriculture-htm_ff9159671a474201.html.gz,,UNAVAILABLE_HTTP_404_CONSERVATIVE_ALLOW,252,,Page not found,https://dst.gov.in/archive,1,,,0,HTTP_ERROR_PAGE,,,0,,BROKEN_LEGACY_RESOURCE,,Legacy static resource retained as evidence; must not create a scheme identity.,dst_page_ff9159671a474201220d,BROKEN_OFFICIAL_LINK,0.9900,100.000,UNKNOWN,0.000,0.000,0.000,,HTTP_STATUS_404,,0,NO_CANONICAL_SCHEME_IDENTITY_CREATED,2026-07-10T09:59:23+00:00
+dst_page_b8cbbfb6dc42be758c34,https://dst.gov.in/whatsnew/announcement,https://dst.gov.in/whatsnew/announcement,https://dst.gov.in/whatsnew/announcement,https://dst.gov.in/whatsnew/announcement,,0,ANNOUNCEMENT_INDEX,UNCLASSIFIED_SOURCE_PAGE,200,text/html,utf-8,Announcement,en,2026-07-10T09:31:36+00:00,"Fri, 10 Jul 2026 09:31:36 GMT",,10 Jul 2026,13644,72954,2a3718adcf2b7ad1922a8f825f505ecaf4f83aeb1e578d4bb7e917361cfbd562,e6c59510ebbef5d99be1a39bfcf12c3fe507307198eda3a219171078dc1d8061,600,142,"Announcement
+Name of the Program
+Forms
+Abdul Kalam Technology Innovation National Fellowship (PDF) 62.35 KB
+Form (PDF) 112.78 KB
+Advertisement for the post of Director, IIG, Mumbai
+Advertisement for the post of Director, SCTIMST, Trivandrum 0 bytes
+Vacancy Notice for engagement of Project Coordinator in TDB
+Re-advertisement for the post of Director, Raman Research Institute (RRI) 0 bytes
+Advertisement for the post of Chairperson, Recruitment and Assessment Board,(RAB), CSIR, New Delhi 0 bytes
+Advertisement for the post of Scientist H in ANRF 0 bytes
+Advertisement for the posts of COO and CFO in ANRF 0 bytes
+Advertisement for the position of Director, RRI
+Call for applications/nominations for appointment of Director, SNBNCBS
+Applications invited for various post of RDIF Management Team 335.51 KB
+Notice for Extension of the Last Date for submission of applications for various posts in ANRF
+Advertisement for various posts of Institute of Pesticides Formulation Technology (IPFT) 0 bytes
+Advertisement for Scientist D and C posts in ANRF 0 bytes
+Advertisement for various posts in ANRF 0 bytes
+Advertisement for the post of Director, WIHG Dehradun
+Vacancy for filling up of one (01) post of Secretary in JERC on deputation basis 1.37 MB
+Advertisement for the post of Director, CeNS, Bengaluru 0 bytes
+Advertisement for the post of Director, ARI, Pune 256.93 KB
+Filling up of one post of Director (Administration & Finance) in Level-13 of Pay Matrix in Survey of India on deputation basis - List of candidates whose applications are received within the due date 395.1 KB
+Call for applications for appointment of Executive Editor, Indian Academy of Sciences, Bengaluru
+Filling up the various post of Institute of Pesticides Formulation Technology
+Call for applications / nominations for appointment of Director, INST, Mohali (PDF) 725.84 KB
+Re-advertisement for the post of Director, IIA (PDF) 320.14 KB
+Advertisement for recruitment to 02 (Two) posts of Joint Director (NATMO) (PDF) 825.34 K",snapshots\html\whatsnew-announcement_b8cbbfb6dc42be75.html.gz,,UNAVAILABLE_HTTP_404_CONSERVATIVE_ALLOW,779,,Announcement,,0,,"Announcement
+Name of the Program
+Forms
+Abdul Kalam Technology Innovation National Fellowship (PDF) 62.35 KB
+Form (PDF) 112.78 KB
+Advertisement for the post of Director, IIG, Mumbai
+Advertisement for the post of Director, SCTIMST, Trivandrum 0 bytes
+Vacancy Notice for engagement of Project Coordinator in TDB
+Re-advertisement for the post of Director, Raman Research Institute (RRI) 0 bytes
+Advertisement for the post of Chairperson, Recruitment and Assessment Board,(RAB), CSIR, New Delhi 0 bytes
+Advertisement for the post of Scientist H in ANRF 0 bytes
+Advertisement for the posts of COO and CFO in ANRF 0 bytes
+Advertisement for the position of Director, RRI
+Call for applications/nominations for appointment of Director, SNBNCBS
+Applications invited for various post of RDIF Management Team 335.51 KB
+Notice for Extension of the Last Date for submission of applications for various posts in ANRF
+Advertisement for various posts of Institute of Pesticides Formulation Technology (IPFT) 0 bytes
+Advertisement for Scientist D and C posts in ANRF 0 bytes
+Advertisement for various posts in ANRF 0 bytes
+Advertisement for the post of Director, WIHG Dehradun
+Vacancy for filling up of one (01) post of Secretary in JERC on deputation basis 1.37 MB
+Advertisement for the post of Director, CeNS, Bengaluru 0 bytes
+Advertisement for the post of Director, ARI, Pune 256.93 KB
+Filling up of one post of Director (Administration & Finance) in Level-13 of Pay Matrix in Survey of India on deputation basis - List of candidates whose applications are received within the due date 395.1 KB
+Call for applications for appointment of Executive Editor, Indian Academy of Sciences, Bengaluru
+Filling up the various post of Institute of Pesticides Formulation Technology
+Call for applications / nominations for appointment of Director, INST, Mohali (PDF) 725.84 KB
+Re-advertisement for the post of Director, IIA (PDF) 320.14 KB
+Advertisement for recruitment to 02 (Two) posts of Joint Director (NATMO) (PDF) 825.34 KB
+Call for applications/nominations for appointment to the post of President in JNCASR (PDF) 574.52 KB
+Advertisement for the post of Director, IACS (PDF) 213.14 KB
+Advertisement for the post of Director, ARIES, Nainital (PDF) 351.51 KB
+Filling up of 1(one) post of Secretary, National Company Law Tribunal (NCLT) (PDF) 661.36 KB
+Announcement by Ministry of Mines inviting Science and Technology Project Proposals on SATYABHAMA Portal for 2023-24 (PDF) 151.51 KB
+National Geoscience Awards 2023 (PDF) 780.2 KB
+5th National Water Awards-2023 (PDF) 455.69 KB
+Advertisement for filling up of 02 post of Scientist 'G' in SERB on a deputation basis (PDF) 265.94 KB
+Filling up of the post of Assistant at TRAI HQ, New Delhi on deputation on foreign service terms reg. (PDF) 1.24 MB
+Vacancy Notice for Head International / Bilateral Collaboration Program in TDB (PDF) 969.04 KB
+Vacancy Notice for Personal Assistant in TDB (PDF) 168.15 KB
+Filling up the post of Deputy Development Commissioner (DDC), Visakhapatnam SEZ, on deputation basis (PDF) 612.46 KB
+Selection of Two(02) Young Professional in Domestic Transport Division of Ministry of Civil Aviation on Contractual Basis (PDF) 289.08 KB
+Vacancy for the position of Media Coordinator in TDB (PDF) 142 KB
+National Awards for e-Governance 2023 (PDF) 240.58 KB
+Advertisement for the post of Director Bose Institute (PDF) 726.89 KB
+Applications invited for the post of Personal Assistant in TDB (PDF) 470.64 KB
+British Council Women in STEM Scholarships (PDF) 917.84 KB
+Advertisement for the post of Director, Wadia Institute of Himalayan Geology (PDF) 93.29 KB",3605,SUCCESS_BODY_FALLBACK,BEAUTIFULSOUP_REGION_SCORING,body_fallback,7,,CURRENT_OR_UNRESOLVED,,,dst_page_b8cbbfb6dc42be758c34,NEWS,0.7257,50.000,PROGRAMME_CATEGORY_INDEX,28.000,0.000,22.000,,NEWS_TITLE_OR_URL,,0,NO_CANONICAL_SCHEME_IDENTITY_CREATED,2026-07-10T09:59:23+00:00

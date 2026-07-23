@@ -1,0 +1,76 @@
+{
+  "hotfix_version": "2.3.0",
+  "source": "MeitY Startup Hub",
+  "input_master_count": 34,
+  "meity_master_candidate_count": 6,
+  "existing_record_count": 16,
+  "existing_meity_record_count": 6,
+  "existing_non_meity_record_count": 10,
+  "processed_meity_record_count": 6,
+  "output_record_count": 16,
+  "output_meity_record_count": 6,
+  "non_meity_records_preserved": 10,
+  "orphaned_meity_records_preserved": 0,
+  "failure_count": 0,
+  "actions": {
+    "REEXTRACTED_INCOMPLETE": 6
+  },
+  "quality_flags": {
+    "BENEFITS_NOT_FOUND": 4,
+    "REQUIRED_DOCUMENTS_NOT_FOUND": 6,
+    "EXPLICIT_FUNDING_AMOUNT_NOT_FOUND": 3,
+    "ELIGIBILITY_NOT_FOUND": 3
+  },
+  "average_meity_extraction_confidence": 0.854,
+  "fetch_statistics": {
+    "cache_hits": 0,
+    "network_fetches": 6,
+    "browser_renders": 6,
+    "pdf_documents": 0,
+    "html_documents": 6,
+    "fetch_failures": 0
+  },
+  "meity_candidates": [
+    {
+      "master_id": "ee7270f0f7d3d581c623",
+      "canonical_name": "SITAA - Contactless Fingerprint Authentication",
+      "current_status": "ACTIVE_CALL_OPEN",
+      "best_available_url": "https://msh.meity.gov.in/challenges/home/5f56490b-947e-4893-b9da-fe11f15251ec"
+    },
+    {
+      "master_id": "8434e0f45cca386fc5e5",
+      "canonical_name": "SITAA - Presentation Attack Detection",
+      "current_status": "ACTIVE_CALL_OPEN",
+      "best_available_url": "https://msh.meity.gov.in/challenges/home/35ed1bc3-26e1-4aef-99ee-3f759a530f55"
+    },
+    {
+      "master_id": "e3abff4124f05a31f188",
+      "canonical_name": "SASACT",
+      "current_status": "SCHEME_INFORMATION_AVAILABLE",
+      "best_available_url": "https://msh.meity.gov.in/schemes/sasact"
+    },
+    {
+      "master_id": "190830c31088c57ffdbc",
+      "canonical_name": "GENESIS",
+      "current_status": "SCHEME_INFORMATION_AVAILABLE",
+      "best_available_url": "https://msh.meity.gov.in/schemes/genesis"
+    },
+    {
+      "master_id": "147173e17ea741687247",
+      "canonical_name": "SAMRIDH",
+      "current_status": "SCHEME_INFORMATION_AVAILABLE",
+      "best_available_url": "https://msh.meity.gov.in/schemes/samridh"
+    },
+    {
+      "master_id": "6af79cf6c8a213dddce8",
+      "canonical_name": "TIDE 2.0",
+      "current_status": "SCHEME_INFORMATION_AVAILABLE",
+      "best_available_url": "https://msh.meity.gov.in/schemes/tide"
+    }
+  ],
+  "input_path": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\scheme_master_candidates_v1.json",
+  "existing_records_path": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\extracted_scheme_records_v1.json",
+  "versioned_output_path": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\extracted_scheme_records_v2_3.json",
+  "generated_at": "2026-07-09T05:45:46.880805+00:00",
+  "canonical_published": false
+}

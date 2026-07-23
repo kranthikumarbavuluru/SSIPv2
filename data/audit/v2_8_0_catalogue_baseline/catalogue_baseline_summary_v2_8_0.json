@@ -1,0 +1,99 @@
+{
+  "audit_version": "2.8.0",
+  "database": "database\\ssip_staging_v1.db",
+  "counts": {
+    "scheme_staging": 10,
+    "admin_review_queue": 12,
+    "admin_review_actions": 16,
+    "scheme_attributes": 169,
+    "scheme_contacts": 20,
+    "scheme_sources": 14,
+    "unique_staged_master_ids": 10,
+    "unique_review_master_ids": 12,
+    "approved_review_master_ids": 5,
+    "rejected_review_master_ids": 7,
+    "staged_and_reviewed": 5,
+    "staged_without_review_row": 5,
+    "reviewed_without_staging_row": 7,
+    "approved_but_not_staged": 0,
+    "rejected_but_still_staged": 0
+  },
+  "staging": {
+    "by_source": {
+      "BIRAC": 2,
+      "DST": 6,
+      "Startup India": 2
+    },
+    "by_publication_status": {
+      "READY_FOR_PUBLICATION": 1,
+      "STAGED": 9
+    },
+    "by_is_public": {
+      "NULL": 10
+    },
+    "by_programme_status": {
+      "CALL_INFORMATION_AVAILABLE": 1,
+      "CALL_INFORMATION_CURRENT": 4,
+      "SCHEME_INFORMATION_AVAILABLE": 4,
+      "UMBRELLA_PROGRAMME_INFORMATION_AVAILABLE": 1
+    },
+    "by_record_kind": {
+      "APPLICATION_CALL": 5,
+      "NULL": 1,
+      "SCHEME_OR_PROGRAMME": 3,
+      "UMBRELLA_PROGRAMME": 1
+    },
+    "by_application_status": {
+      "APPLY_THROUGH_MEMBER_INSTITUTION": 1,
+      "CLOSED": 2,
+      "COMPONENT_SPECIFIC": 1,
+      "DEADLINE_UNVERIFIED": 1,
+      "NOT_A_SINGLE_APPLICATION_WINDOW": 1,
+      "NULL": 1,
+      "OPEN": 3
+    }
+  },
+  "review": {
+    "by_source": {
+      "BIRAC": 1,
+      "DST": 4,
+      "MeitY Startup Hub": 6,
+      "Startup India": 1
+    },
+    "by_review_status": {
+      "APPROVED": 5,
+      "REJECTED": 7
+    },
+    "by_decision": {
+      "APPROVED_FOR_DATABASE": 5,
+      "REJECTED": 7
+    },
+    "by_programme_status": {
+      "CALL_INFORMATION_AVAILABLE": 1,
+      "CALL_INFORMATION_CURRENT": 3,
+      "CALL_STATUS_CONFLICT_REQUIRES_REVIEW": 2,
+      "SCHEME_INFORMATION_AVAILABLE": 5,
+      "UMBRELLA_PROGRAMME_INFORMATION_AVAILABLE": 1
+    }
+  },
+  "master_id_sets": {
+    "staged_without_review_row": [
+      "1f994994972aa20c7c5d",
+      "23290a8aab541138ab07",
+      "4dffaf1021d344e091ab",
+      "c684dceb539277134b92",
+      "f60669191ee8384cbb3f"
+    ],
+    "reviewed_without_staging_row": [
+      "147173e17ea741687247",
+      "190830c31088c57ffdbc",
+      "6af79cf6c8a213dddce8",
+      "8434e0f45cca386fc5e5",
+      "bc14bfe65059a3a46427",
+      "e3abff4124f05a31f188",
+      "ee7270f0f7d3d581c623"
+    ],
+    "approved_but_not_staged": [],
+    "rejected_but_still_staged": []
+  }
+}

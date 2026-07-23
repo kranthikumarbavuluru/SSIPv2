@@ -1,0 +1,1973 @@
+[
+  {
+    "master_id": "2fcf4cfd53ae3826cf8c",
+    "scheme_name": "Bio-AI / BioE3 Mulankur Hubs",
+    "source": "BIRAC",
+    "record_kind": "APPLICATION_CALL",
+    "programme_status": "CALL_INFORMATION_CURRENT",
+    "application_status": "OPEN",
+    "official_page_url": "https://birac.nic.in/desc_new.php?id=1334",
+    "application_url": "https://birac.nic.in/login.php",
+    "decision": "NEEDS_MORE_EVIDENCE",
+    "validation_score": 0.535,
+    "decision_reasons": [
+      "Call is discoverable, but the application process is incomplete."
+    ],
+    "warnings": [
+      "APPLICATION_PROCESS_REQUIRES_EVIDENCE",
+      "BENEFITS_OR_FUNDING_REQUIRES_EVIDENCE",
+      "ELIGIBILITY_REQUIRES_EVIDENCE",
+      "OBJECTIVE_REQUIRES_EVIDENCE",
+      "REQUIRED_DOCUMENTS_NOT_VERIFIED"
+    ],
+    "critical_flags": [],
+    "corrections_count": 4,
+    "recommended_admin_actions": [
+      "Confirm eligibility from the official guideline, RFP, or application portal.",
+      "Confirm the exact financial/non-financial benefit and beneficiary-level limit.",
+      "Confirm the step-by-step application process and official application link."
+    ],
+    "validated_record": {
+      "master_id": "2fcf4cfd53ae3826cf8c",
+      "scheme_name": "Bio-AI / BioE3 Mulankur Hubs",
+      "short_name": "",
+      "source": "BIRAC",
+      "ministry": "Ministry of Science and Technology",
+      "department": "Department of Biotechnology (DBT)",
+      "implementing_agency": "Biotechnology Industry Research Assistance Council (BIRAC)",
+      "scheme_type": [
+        "Challenge / Call"
+      ],
+      "target_beneficiaries": [
+        "Industry"
+      ],
+      "startup_stage": [
+        "Ideation",
+        "Early Stage",
+        "Commercialisation"
+      ],
+      "sector": [
+        "Biotechnology",
+        "Healthcare",
+        "Digital Technology"
+      ],
+      "geographic_scope": "National (India)",
+      "states_or_uts": [],
+      "objectives": [],
+      "eligibility": [],
+      "benefits": [],
+      "funding_amount": {
+        "minimum": null,
+        "maximum": null,
+        "currency": "INR",
+        "funding_types": [],
+        "amount_mentions": [],
+        "beneficiary_support": {
+          "minimum": null,
+          "maximum": null
+        },
+        "intermediary_support_maximum": null,
+        "scheme_corpus": null
+      },
+      "application_process": [],
+      "selection_process": [],
+      "required_documents": [],
+      "application_url": "https://birac.nic.in/login.php",
+      "official_page_url": "https://birac.nic.in/desc_new.php?id=1334",
+      "guideline_urls": [],
+      "opening_date": null,
+      "closing_date": "2026-07-15",
+      "scheme_status": "OPEN_FOR_APPLICATIONS",
+      "contact_details": [],
+      "source_evidence": [
+        {
+          "url": "https://birac.nic.in/desc_new.php?id=1334",
+          "title": "BIRAC-New",
+          "content_kind": "html",
+          "source_hash": "42fb321ae66bca4dc539040f39dd6254564fc252e60528136fb2153d2318d5a8",
+          "fetched_at": "2026-07-08T12:06:50.081821+00:00",
+          "rendered_with_browser": false,
+          "text_length": 1665
+        }
+      ],
+      "field_evidence": {
+        "benefits": [
+          {
+            "field": "benefits",
+            "value": "Click here to Register/Apply View RFP View Implimentation Plan Annual Reports Compliance RTI DBT-BIRAC MOU Birac News Tenders Vacancy What's New Loan Non-repayment Caution Supported projects TRL This is the official Website of Biotechnology Industry Research Assistance Council (BIRAC) , a Public Sector Enterprise, set up by Department of Biotechnology (DBT), Government of India © 2026 Last Updated: 01 July, 2026",
+            "source_url": "https://birac.nic.in/desc_new.php?id=1334",
+            "quote": "Click here to Register/Apply View RFP View Implimentation Plan Annual Reports Compliance RTI DBT-BIRAC MOU Birac News Tenders Vacancy What's New Loan Non-repayment Caution Supported projects TRL This is the official Website of Biotechnology Industry Research Assistance Council (BIRAC) , a Public Sector Enterprise, set up by Department of Biotechnology (DBT), Government of India © 2026 Last Updated: 01 July, 2026",
+            "method": "keyword-context",
+            "confidence": 0.68
+          }
+        ],
+        "closing_date": [
+          {
+            "field": "closing_date",
+            "value": "2026-07-15",
+            "source_url": "https://birac.nic.in/desc_new.php?id=1334",
+            "quote": "BIRAC-New",
+            "method": "deadline-context",
+            "confidence": 0.9
+          }
+        ],
+        "application_url": [
+          {
+            "field": "application_url",
+            "value": "https://birac.nic.in/login.php",
+            "source_url": "https://birac.nic.in/desc_new.php?id=1334",
+            "quote": "Click here to Register/Apply",
+            "method": "application-link-ranking",
+            "confidence": 0.95
+          }
+        ],
+        "scheme_name": [
+          {
+            "field": "scheme_name",
+            "value": "Bio-AI / BioE3 Mulankur Hubs",
+            "source_url": "https://birac.nic.in/desc_new.php?id=1334",
+            "quote": "Bio-AI / BioE3 Mulankur Hubs",
+            "method": "master-candidate",
+            "confidence": 0.98
+          }
+        ],
+        "ministry": [
+          {
+            "field": "ministry",
+            "value": "Ministry of Science and Technology",
+            "source_url": "https://www.birac.nic.in/",
+            "quote": "BIRAC is a public sector enterprise set up by the Department of Biotechnology, Government of India.",
+            "method": "source-authority-config",
+            "confidence": 0.94
+          }
+        ],
+        "department": [
+          {
+            "field": "department",
+            "value": "Department of Biotechnology (DBT)",
+            "source_url": "https://www.birac.nic.in/",
+            "quote": "BIRAC is a public sector enterprise set up by the Department of Biotechnology, Government of India.",
+            "method": "source-authority-config",
+            "confidence": 0.94
+          }
+        ],
+        "implementing_agency": [
+          {
+            "field": "implementing_agency",
+            "value": "Biotechnology Industry Research Assistance Council (BIRAC)",
+            "source_url": "https://www.birac.nic.in/",
+            "quote": "BIRAC is a public sector enterprise set up by the Department of Biotechnology, Government of India.",
+            "method": "source-authority-config",
+            "confidence": 0.94
+          }
+        ]
+      },
+      "quality_flags": [
+        "ELIGIBILITY_NOT_FOUND",
+        "REQUIRED_DOCUMENTS_NOT_FOUND",
+        "EXPLICIT_FUNDING_AMOUNT_NOT_FOUND"
+      ],
+      "extraction_confidence": 0.875,
+      "master_readiness": "NEEDS_CONTENT_EXTRACTION_AND_REVIEW",
+      "master_current_status": "ACTIVE_CALL_OPEN",
+      "extracted_at": "2026-07-08T12:06:50.093441+00:00",
+      "extractor_version": "1.0.0",
+      "application_url_status": "GENERAL_OFFICIAL_PORTAL",
+      "deadline_evidence": {
+        "method": "extractor-value",
+        "confidence": 0.7
+      },
+      "record_kind": "APPLICATION_CALL",
+      "programme_status": "CALL_INFORMATION_CURRENT",
+      "application_status": "OPEN",
+      "validation": {
+        "decision": "NEEDS_MORE_EVIDENCE",
+        "decision_reasons": [
+          "Call is discoverable, but the application process is incomplete."
+        ],
+        "validation_score": 0.535,
+        "warnings": [
+          "APPLICATION_PROCESS_REQUIRES_EVIDENCE",
+          "BENEFITS_OR_FUNDING_REQUIRES_EVIDENCE",
+          "ELIGIBILITY_REQUIRES_EVIDENCE",
+          "OBJECTIVE_REQUIRES_EVIDENCE",
+          "REQUIRED_DOCUMENTS_NOT_VERIFIED"
+        ],
+        "critical_flags": [],
+        "corrections": [
+          {
+            "field": "benefits",
+            "before": [
+              "Click here to Register/Apply View RFP View Implimentation Plan Annual Reports Compliance RTI DBT-BIRAC MOU Birac News Tenders Vacancy What's New Loan Non-repayment Caution Supported projects TRL This is the official Website of Biotechnology Industry Research Assistance Council (BIRAC) , a Public Sector Enterprise, set up by Department of Biotechnology (DBT), Government of India © 2026 Last Updated: 01 July, 2026"
+            ],
+            "after": [],
+            "reason": "Removed navigation, footer, fragments, duplicates, or misclassified text."
+          },
+          {
+            "field": "geographic_scope",
+            "before": {
+              "scope": "National (India) - inferred from national authority",
+              "states_or_uts": []
+            },
+            "after": {
+              "scope": "National (India)",
+              "states_or_uts": []
+            },
+            "reason": "Central-government pages often contain state names in navigation or contact addresses; geography was normalized from programme context."
+          },
+          {
+            "field": "funding_amount",
+            "before": {
+              "minimum": null,
+              "maximum": null,
+              "currency": "INR",
+              "funding_types": [
+                "Loan",
+                "Equity / Fund",
+                "Incubation Support",
+                "Challenge / Call"
+              ],
+              "amount_mentions": []
+            },
+            "after": {
+              "minimum": null,
+              "maximum": null,
+              "currency": "INR",
+              "funding_types": [],
+              "amount_mentions": [],
+              "beneficiary_support": {
+                "minimum": null,
+                "maximum": null
+              },
+              "intermediary_support_maximum": null,
+              "scheme_corpus": null
+            },
+            "reason": "Classified monetary evidence by role and removed section numbers, counts, examples, corpus values, and eligibility thresholds from direct-benefit limits."
+          },
+          {
+            "field": "scheme_type",
+            "before": [
+              "Loan",
+              "Equity / Fund",
+              "Incubation Support",
+              "Challenge / Call"
+            ],
+            "after": [
+              "Challenge / Call"
+            ],
+            "reason": "Scheme type was re-derived from the scheme name and validated content instead of page navigation menus."
+          }
+        ],
+        "as_of_date": "2026-07-08",
+        "validated_at": "2026-07-08T12:23:15.570111+00:00",
+        "validator_version": "1.0.0",
+        "record_hash": "9fad9b331224afbce0c4799711d2a618a5cbc20ff9168c206d05d8c04223708f"
+      }
+    }
+  },
+  {
+    "master_id": "a56767dbf672793e0cab",
+    "scheme_name": "Building U.S.-India Partnerships to Drive Innovation",
+    "source": "DST",
+    "record_kind": "APPLICATION_CALL",
+    "programme_status": "CALL_INFORMATION_CURRENT",
+    "application_status": "OPEN",
+    "official_page_url": "https://dst.gov.in/callforproposals-1",
+    "application_url": null,
+    "decision": "NEEDS_MORE_EVIDENCE",
+    "validation_score": 0.72,
+    "decision_reasons": [
+      "Call is discoverable, but the application process is incomplete."
+    ],
+    "warnings": [
+      "APPLICATION_LINK_REQUIRES_REVIEW",
+      "APPLICATION_PROCESS_REQUIRES_EVIDENCE",
+      "ELIGIBILITY_REQUIRES_EVIDENCE",
+      "REQUIRED_DOCUMENTS_NOT_VERIFIED"
+    ],
+    "critical_flags": [],
+    "corrections_count": 5,
+    "recommended_admin_actions": [
+      "Confirm eligibility from the official guideline, RFP, or application portal.",
+      "Confirm the step-by-step application process and official application link."
+    ],
+    "validated_record": {
+      "master_id": "a56767dbf672793e0cab",
+      "scheme_name": "Building U.S.-India Partnerships to Drive Innovation",
+      "short_name": "",
+      "source": "DST",
+      "ministry": "Ministry of Science and Technology",
+      "department": "Department of Science and Technology (DST)",
+      "implementing_agency": "Department of Science and Technology (DST)",
+      "scheme_type": [
+        "Challenge / Call",
+        "Grant / Scholarship"
+      ],
+      "target_beneficiaries": [
+        "Entrepreneurs",
+        "Industry"
+      ],
+      "startup_stage": [
+        "Ideation",
+        "Commercialisation"
+      ],
+      "sector": [
+        "Quantum Technology",
+        "Critical Minerals"
+      ],
+      "geographic_scope": "International bilateral programme involving India and U.S.",
+      "states_or_uts": [],
+      "objectives": [
+        "The objective of the call is to select and support promising joint U.S.-India S&T-based entrepreneurial initiatives through a competitive process that addresses the theme of \" Commercializing Technologies for Societal Impact \" on co-developing products or technologies that are beyond the ideation stage, high on societal impact, and have significant potential for commercialization in the thematic areas of Critical Minerals & Supply Chain Resilience and Quantum Technologies."
+      ],
+      "eligibility": [],
+      "benefits": [
+        "The grant-in-aid will provide financial support of up to INR 1,50,00,000/- (INR 15 Million or approximately USD 165,000*) per project for a duration of up to 24 months."
+      ],
+      "funding_amount": {
+        "minimum": null,
+        "maximum": 15000000,
+        "currency": "INR",
+        "funding_types": [
+          "Grant / Scholarship"
+        ],
+        "amount_mentions": [
+          {
+            "amount": 15000000,
+            "currency": "INR",
+            "display_text": "INR 1,50,00,000",
+            "role": "BENEFICIARY_LIMIT",
+            "context": "Chain Resilience and Quantum Technologies. The grant-in-aid will provide financial support of up to INR 1,50,00,000/- (INR 15 Million or approximately USD 165,000*) per project for a duration of up to 24 months. The online submission is currently open with a deadline of 31 st July 2026 . The pr",
+            "source_url": "https://dst.gov.in/callforproposals-1"
+          },
+          {
+            "amount": 15000000,
+            "currency": "INR",
+            "display_text": "INR 1,50,00,000",
+            "role": "BENEFICIARY_LIMIT",
+            "context": "The grant-in-aid will provide financial support of up to INR 1,50,00,000/- (INR 15 Million or approximately USD 165,000*) per project for a duration of up to 24 months.",
+            "source_url": ""
+          }
+        ],
+        "beneficiary_support": {
+          "minimum": null,
+          "maximum": 15000000
+        },
+        "intermediary_support_maximum": null,
+        "scheme_corpus": null
+      },
+      "application_process": [],
+      "selection_process": [],
+      "required_documents": [],
+      "application_url": null,
+      "official_page_url": "https://dst.gov.in/callforproposals-1",
+      "guideline_urls": [],
+      "opening_date": null,
+      "closing_date": "2026-07-31",
+      "scheme_status": "OPEN_STATUS_REQUIRES_DEADLINE_VERIFICATION",
+      "contact_details": [],
+      "source_evidence": [
+        {
+          "url": "https://dst.gov.in/callforproposals-1",
+          "title": "Call for Proposals on \"Building U.S.-India Partnerships to Drive Innovation in Critical Minerals and Quantum Technology | Department Of Science & Technology",
+          "content_kind": "html",
+          "source_hash": "dca2016f7992ebdb9da23eeb245d794ada0157aad391e1bc8c8b2843b918a5a1",
+          "fetched_at": "2026-07-08T12:05:30.307499+00:00",
+          "rendered_with_browser": false,
+          "text_length": 2136
+        }
+      ],
+      "field_evidence": {
+        "benefits": [
+          {
+            "field": "benefits",
+            "value": "The grant-in-aid will provide financial support of up to INR 1,50,00,000/- (INR 15 Million or approximately USD 165,000*) per project for a duration of up to 24 months.",
+            "source_url": "https://dst.gov.in/callforproposals-1",
+            "quote": "The grant-in-aid will provide financial support of up to INR 1,50,00,000/- (INR 15 Million or approximately USD 165,000*) per project for a duration of up to 24 months.",
+            "method": "keyword-context",
+            "confidence": 0.68
+          }
+        ],
+        "objectives": [
+          {
+            "field": "objectives",
+            "value": "The objective of the call is to select and support promising joint U.S.-India S&T-based entrepreneurial initiatives through a competitive process that addresses the theme of \" Commercializing Technologies for Societal Impact \" on co-developing products or technologies that are beyond the ideation stage, high on societal impact, and have significant potential for commercialization in the thematic areas of Critical Minerals & Supply Chain Resilience and Quantum Technologies.",
+            "source_url": "https://dst.gov.in/callforproposals-1",
+            "quote": "The objective of the call is to select and support promising joint U.S.-India S&T-based entrepreneurial initiatives through a competitive process that addresses the theme of \" Commercializing Technologies for Societal Impact \" on co-developing products or technologies that are beyond the ideation stage, high on societal impact, and have significant potential for commercialization in the thematic areas of Critical Mi…",
+            "method": "keyword-context",
+            "confidence": 0.68
+          }
+        ],
+        "funding_amount": [
+          {
+            "field": "funding_amount",
+            "value": 15000000,
+            "source_url": "https://dst.gov.in/callforproposals-1",
+            "quote": "Chain Resilience and Quantum Technologies. The grant-in-aid will provide financial support of up to INR 1,50,00,000/- (INR 15 Million or approximately USD 165,000*) per project for a duration of up to 24 months. The online submission is currently open with a deadline of 31 st July 2026 . The pr",
+            "method": "money-pattern",
+            "confidence": 0.88
+          },
+          {
+            "field": "funding_amount",
+            "value": 15000000,
+            "source_url": "https://dst.gov.in/callforproposals-1",
+            "quote": "d Quantum Technologies. The grant-in-aid will provide financial support of up to INR 1,50,00,000/- (INR 15 Million or approximately USD 165,000*) per project for a duration of up to 24 months. The online submission is currently open with a deadline of 31 st July 2026 . The program brochure is",
+            "method": "money-pattern",
+            "confidence": 0.88
+          },
+          {
+            "field": "funding_amount",
+            "value": 15000000,
+            "source_url": "",
+            "quote": "The grant-in-aid will provide financial support of up to INR 1,50,00,000/- (INR 15 Million or approximately USD 165,000*) per project for a duration of up to 24 months.",
+            "method": "money-pattern",
+            "confidence": 0.88
+          }
+        ],
+        "application_url": [
+          {
+            "field": "application_url",
+            "value": "https://dst.gov.in/announcement/applications-invited-throughout-year",
+            "source_url": "https://dst.gov.in/callforproposals-1",
+            "quote": "https://dst.gov.in/announcement/applications-invited-throughout-year",
+            "method": "application-link-ranking",
+            "confidence": 0.85
+          }
+        ],
+        "scheme_name": [
+          {
+            "field": "scheme_name",
+            "value": "Building U.S.-India Partnerships to Drive Innovation",
+            "source_url": "https://dst.gov.in/callforproposals-1",
+            "quote": "Building U.S.-India Partnerships to Drive Innovation",
+            "method": "master-candidate",
+            "confidence": 0.98
+          }
+        ],
+        "ministry": [
+          {
+            "field": "ministry",
+            "value": "Ministry of Science and Technology",
+            "source_url": "https://dst.gov.in/",
+            "quote": "Configured from the official Department of Science and Technology website.",
+            "method": "source-authority-config",
+            "confidence": 0.92
+          }
+        ],
+        "department": [
+          {
+            "field": "department",
+            "value": "Department of Science and Technology (DST)",
+            "source_url": "https://dst.gov.in/",
+            "quote": "Configured from the official Department of Science and Technology website.",
+            "method": "source-authority-config",
+            "confidence": 0.92
+          }
+        ],
+        "implementing_agency": [
+          {
+            "field": "implementing_agency",
+            "value": "Department of Science and Technology (DST)",
+            "source_url": "https://dst.gov.in/",
+            "quote": "Configured from the official Department of Science and Technology website.",
+            "method": "source-authority-config",
+            "confidence": 0.92
+          }
+        ]
+      },
+      "quality_flags": [
+        "ELIGIBILITY_NOT_FOUND",
+        "REQUIRED_DOCUMENTS_NOT_FOUND",
+        "ACTIVE_CALL_DEADLINE_NOT_VERIFIED"
+      ],
+      "extraction_confidence": 0.875,
+      "master_readiness": "NEEDS_CONTENT_EXTRACTION_AND_REVIEW",
+      "master_current_status": "ACTIVE_CALL_OPEN",
+      "extracted_at": "2026-07-08T12:06:49.704593+00:00",
+      "extractor_version": "1.0.0",
+      "application_url_status": "GENERIC_OR_UNVERIFIED",
+      "deadline_evidence": {
+        "method": "deadline-context-validation",
+        "confidence": 0.98,
+        "quote": "of up to INR 1,50,00,000/- (INR 15 Million or approximately USD 165,000*) per project for a duration of up to 24 months. The online submission is currently open with a deadline of 31 st July 2026 . The pr"
+      },
+      "record_kind": "APPLICATION_CALL",
+      "programme_status": "CALL_INFORMATION_CURRENT",
+      "application_status": "OPEN",
+      "validation": {
+        "decision": "NEEDS_MORE_EVIDENCE",
+        "decision_reasons": [
+          "Call is discoverable, but the application process is incomplete."
+        ],
+        "validation_score": 0.72,
+        "warnings": [
+          "APPLICATION_LINK_REQUIRES_REVIEW",
+          "APPLICATION_PROCESS_REQUIRES_EVIDENCE",
+          "ELIGIBILITY_REQUIRES_EVIDENCE",
+          "REQUIRED_DOCUMENTS_NOT_VERIFIED"
+        ],
+        "critical_flags": [],
+        "corrections": [
+          {
+            "field": "geographic_scope",
+            "before": {
+              "scope": "National (India) - inferred from national authority",
+              "states_or_uts": []
+            },
+            "after": {
+              "scope": "International bilateral programme involving India and U.S.",
+              "states_or_uts": []
+            },
+            "reason": "Central-government pages often contain state names in navigation or contact addresses; geography was normalized from programme context."
+          },
+          {
+            "field": "funding_amount",
+            "before": {
+              "minimum": 15000000,
+              "maximum": 15000000,
+              "currency": "INR",
+              "funding_types": [
+                "Grant",
+                "Challenge / Call"
+              ],
+              "amount_mentions": [
+                {
+                  "amount": 15000000,
+                  "currency": "INR",
+                  "display_text": "INR 1,50,00,000",
+                  "context": "Chain Resilience and Quantum Technologies. The grant-in-aid will provide financial support of up to INR 1,50,00,000/- (INR 15 Million or approximately USD 165,000*) per project for a duration of up to 24 months. The online submission is currently open with a deadline of 31 st July 2026 . The pr",
+                  "source_url": "https://dst.gov.in/callforproposals-1"
+                },
+                {
+                  "amount": 15000000,
+                  "currency": "INR",
+                  "display_text": "INR 15 Million",
+                  "context": "d Quantum Technologies. The grant-in-aid will provide financial support of up to INR 1,50,00,000/- (INR 15 Million or approximately USD 165,000*) per project for a duration of up to 24 months. The online submission is currently open with a deadline of 31 st July 2026 . The program brochure is",
+                  "source_url": "https://dst.gov.in/callforproposals-1"
+                },
+                {
+                  "amount": 15000000,
+                  "currency": "INR",
+                  "display_text": "INR 1,50,00,000",
+                  "context": "The grant-in-aid will provide financial support of up to INR 1,50,00,000/- (INR 15 Million or approximately USD 165,000*) per project for a duration of up to 24 months.",
+                  "source_url": ""
+                }
+              ]
+            },
+            "after": {
+              "minimum": null,
+              "maximum": 15000000,
+              "currency": "INR",
+              "funding_types": [
+                "Grant / Scholarship"
+              ],
+              "amount_mentions": [
+                {
+                  "amount": 15000000,
+                  "currency": "INR",
+                  "display_text": "INR 1,50,00,000",
+                  "role": "BENEFICIARY_LIMIT",
+                  "context": "Chain Resilience and Quantum Technologies. The grant-in-aid will provide financial support of up to INR 1,50,00,000/- (INR 15 Million or approximately USD 165,000*) per project for a duration of up to 24 months. The online submission is currently open with a deadline of 31 st July 2026 . The pr",
+                  "source_url": "https://dst.gov.in/callforproposals-1"
+                },
+                {
+                  "amount": 15000000,
+                  "currency": "INR",
+                  "display_text": "INR 1,50,00,000",
+                  "role": "BENEFICIARY_LIMIT",
+                  "context": "The grant-in-aid will provide financial support of up to INR 1,50,00,000/- (INR 15 Million or approximately USD 165,000*) per project for a duration of up to 24 months.",
+                  "source_url": ""
+                }
+              ],
+              "beneficiary_support": {
+                "minimum": null,
+                "maximum": 15000000
+              },
+              "intermediary_support_maximum": null,
+              "scheme_corpus": null
+            },
+            "reason": "Classified monetary evidence by role and removed section numbers, counts, examples, corpus values, and eligibility thresholds from direct-benefit limits."
+          },
+          {
+            "field": "scheme_type",
+            "before": [
+              "Grant",
+              "Challenge / Call"
+            ],
+            "after": [
+              "Challenge / Call",
+              "Grant / Scholarship"
+            ],
+            "reason": "Scheme type was re-derived from the scheme name and validated content instead of page navigation menus."
+          },
+          {
+            "field": "application_url",
+            "before": "https://dst.gov.in/announcement/applications-invited-throughout-year",
+            "after": null,
+            "reason": "Generic registration or announcement links were not accepted as scheme-specific application links."
+          },
+          {
+            "field": "closing_date",
+            "before": null,
+            "after": "2026-07-31",
+            "reason": "Deadline was resolved from explicit deadline/application context and separated from selection or administrative milestone dates."
+          }
+        ],
+        "as_of_date": "2026-07-08",
+        "validated_at": "2026-07-08T12:23:15.572398+00:00",
+        "validator_version": "1.0.0",
+        "record_hash": "7eecddff01ed6cee1c7f1680271d7aa3bb0043fdb21906206242e75fea2dfe2e"
+      }
+    }
+  },
+  {
+    "master_id": "6446e10db652ef637b48",
+    "scheme_name": "India-Austria Science & Technology Cooperation",
+    "source": "DST",
+    "record_kind": "APPLICATION_CALL",
+    "programme_status": "CALL_INFORMATION_AVAILABLE",
+    "application_status": "CLOSED",
+    "official_page_url": "https://dst.gov.in/callforproposals/india-austria-science-technology-cooperation-call-proposals-2026",
+    "application_url": null,
+    "decision": "NEEDS_MORE_EVIDENCE",
+    "validation_score": 0.565,
+    "decision_reasons": [
+      "Call is discoverable, but the application process is incomplete."
+    ],
+    "warnings": [
+      "APPLICATION_LINK_REQUIRES_REVIEW",
+      "APPLICATION_PROCESS_REQUIRES_EVIDENCE",
+      "BENEFITS_OR_FUNDING_REQUIRES_EVIDENCE",
+      "ELIGIBILITY_REQUIRES_EVIDENCE",
+      "REQUIRED_DOCUMENTS_NOT_VERIFIED"
+    ],
+    "critical_flags": [],
+    "corrections_count": 4,
+    "recommended_admin_actions": [
+      "Confirm eligibility from the official guideline, RFP, or application portal.",
+      "Confirm the exact financial/non-financial benefit and beneficiary-level limit.",
+      "Confirm the step-by-step application process and official application link."
+    ],
+    "validated_record": {
+      "master_id": "6446e10db652ef637b48",
+      "scheme_name": "India-Austria Science & Technology Cooperation",
+      "short_name": "",
+      "source": "DST",
+      "ministry": "Ministry of Science and Technology",
+      "department": "Department of Science and Technology (DST)",
+      "implementing_agency": "Department of Science and Technology (DST)",
+      "scheme_type": [
+        "Challenge / Call"
+      ],
+      "target_beneficiaries": [
+        "Researchers"
+      ],
+      "startup_stage": [],
+      "sector": [
+        "Biotechnology",
+        "Quantum Technology"
+      ],
+      "geographic_scope": "International bilateral programme involving India and Austria",
+      "states_or_uts": [],
+      "objectives": [
+        "The programme for S&T Cooperation is carried out in the frame of international agreements with selected partner countries with the aim to stimulate international research."
+      ],
+      "eligibility": [],
+      "benefits": [],
+      "funding_amount": {
+        "minimum": null,
+        "maximum": null,
+        "currency": "INR",
+        "funding_types": [],
+        "amount_mentions": [],
+        "beneficiary_support": {
+          "minimum": null,
+          "maximum": null
+        },
+        "intermediary_support_maximum": null,
+        "scheme_corpus": null
+      },
+      "application_process": [],
+      "selection_process": [],
+      "required_documents": [],
+      "application_url": null,
+      "official_page_url": "https://dst.gov.in/callforproposals/india-austria-science-technology-cooperation-call-proposals-2026",
+      "guideline_urls": [],
+      "opening_date": null,
+      "closing_date": "2026-06-05",
+      "scheme_status": "CLOSED_OR_DEADLINE_PASSED",
+      "contact_details": [
+        {
+          "type": "email",
+          "value": "c.agarwal@gov.in"
+        },
+        {
+          "type": "phone",
+          "value": "1129512324"
+        }
+      ],
+      "source_evidence": [
+        {
+          "url": "https://dst.gov.in/callforproposals/india-austria-science-technology-cooperation-call-proposals-2026",
+          "title": "India-Austria Science & Technology Cooperation, Call for Proposals -2026 | Department Of Science & Technology",
+          "content_kind": "html",
+          "source_hash": "ec58ee2834be8b0504f5f7934c0da963aeb09ac4254556c7cc33f35d2da8d4a4",
+          "fetched_at": "2026-07-08T12:06:50.434216+00:00",
+          "rendered_with_browser": false,
+          "text_length": 1904
+        }
+      ],
+      "field_evidence": {
+        "objectives": [
+          {
+            "field": "objectives",
+            "value": "The programme for S&T Cooperation is carried out in the frame of international agreements with selected partner countries with the aim to stimulate international research.",
+            "source_url": "https://dst.gov.in/callforproposals/india-austria-science-technology-cooperation-call-proposals-2026",
+            "quote": "The programme for S&T Cooperation is carried out in the frame of international agreements with selected partner countries with the aim to stimulate international research.",
+            "method": "keyword-context",
+            "confidence": 0.68
+          }
+        ],
+        "closing_date": [
+          {
+            "field": "closing_date",
+            "value": "2026-06-05",
+            "source_url": "https://dst.gov.in/callforproposals/india-austria-science-technology-cooperation-call-proposals-2026",
+            "quote": "Important Dates Starting date of Call: 20 April 2026 Closing date of Call: 5 June 2026, 11:59 PM (IST), in Austria: 12 noon CET Contact Details The following may be contacted for further details and clarifications: For India: Dr.",
+            "method": "deadline-context",
+            "confidence": 0.9
+          }
+        ],
+        "contact_details": [
+          {
+            "field": "contact_details",
+            "value": "c.agarwal@gov",
+            "source_url": "https://dst.gov.in/callforproposals/india-austria-science-technology-cooperation-call-proposals-2026",
+            "quote": "c[dot]agarwal[at]gov",
+            "method": "obfuscated-email-pattern",
+            "confidence": 0.8
+          },
+          {
+            "field": "contact_details",
+            "value": "11-29512324",
+            "source_url": "https://dst.gov.in/callforproposals/india-austria-science-technology-cooperation-call-proposals-2026",
+            "quote": "0 016, India Email: c[dot]agarwal[at]gov[dot]in Tel. +91 (0)11-29512324 (extn:18087) Website: dst.gov.in/ For Austria: Ms. Konstanze",
+            "method": "phone-pattern",
+            "confidence": 0.78
+          }
+        ],
+        "application_url": [
+          {
+            "field": "application_url",
+            "value": "https://dst.gov.in/announcement/applications-invited-throughout-year",
+            "source_url": "https://dst.gov.in/callforproposals/india-austria-science-technology-cooperation-call-proposals-2026",
+            "quote": "https://dst.gov.in/announcement/applications-invited-throughout-year",
+            "method": "application-link-ranking",
+            "confidence": 0.85
+          }
+        ],
+        "scheme_name": [
+          {
+            "field": "scheme_name",
+            "value": "India-Austria Science & Technology Cooperation",
+            "source_url": "https://dst.gov.in/callforproposals/india-austria-science-technology-cooperation-call-proposals-2026",
+            "quote": "India-Austria Science & Technology Cooperation",
+            "method": "master-candidate",
+            "confidence": 0.98
+          }
+        ],
+        "ministry": [
+          {
+            "field": "ministry",
+            "value": "Ministry of Science and Technology",
+            "source_url": "https://dst.gov.in/",
+            "quote": "Configured from the official Department of Science and Technology website.",
+            "method": "source-authority-config",
+            "confidence": 0.92
+          }
+        ],
+        "department": [
+          {
+            "field": "department",
+            "value": "Department of Science and Technology (DST)",
+            "source_url": "https://dst.gov.in/",
+            "quote": "Configured from the official Department of Science and Technology website.",
+            "method": "source-authority-config",
+            "confidence": 0.92
+          }
+        ],
+        "implementing_agency": [
+          {
+            "field": "implementing_agency",
+            "value": "Department of Science and Technology (DST)",
+            "source_url": "https://dst.gov.in/",
+            "quote": "Configured from the official Department of Science and Technology website.",
+            "method": "source-authority-config",
+            "confidence": 0.92
+          }
+        ]
+      },
+      "quality_flags": [
+        "ELIGIBILITY_NOT_FOUND",
+        "BENEFITS_NOT_FOUND",
+        "REQUIRED_DOCUMENTS_NOT_FOUND",
+        "EXPLICIT_FUNDING_AMOUNT_NOT_FOUND"
+      ],
+      "extraction_confidence": 0.75,
+      "master_readiness": "NEEDS_CONTENT_EXTRACTION_AND_REVIEW",
+      "master_current_status": "ACTIVE_CALL_OPEN",
+      "extracted_at": "2026-07-08T12:06:50.440629+00:00",
+      "extractor_version": "1.0.0",
+      "application_url_status": "GENERIC_OR_UNVERIFIED",
+      "deadline_evidence": {
+        "method": "deadline-context-validation",
+        "confidence": 0.6900000000000001,
+        "quote": "Important Dates Starting date of Call: 20 April 2026 Closing date of Call: 5 June 2026, 11:59 PM (IST), in Austria: 12 noon CET Contact Details The following may be contacted for further details and clarifications: For India: Dr."
+      },
+      "record_kind": "APPLICATION_CALL",
+      "programme_status": "CALL_INFORMATION_AVAILABLE",
+      "application_status": "CLOSED",
+      "validation": {
+        "decision": "NEEDS_MORE_EVIDENCE",
+        "decision_reasons": [
+          "Call is discoverable, but the application process is incomplete."
+        ],
+        "validation_score": 0.565,
+        "warnings": [
+          "APPLICATION_LINK_REQUIRES_REVIEW",
+          "APPLICATION_PROCESS_REQUIRES_EVIDENCE",
+          "BENEFITS_OR_FUNDING_REQUIRES_EVIDENCE",
+          "ELIGIBILITY_REQUIRES_EVIDENCE",
+          "REQUIRED_DOCUMENTS_NOT_VERIFIED"
+        ],
+        "critical_flags": [],
+        "corrections": [
+          {
+            "field": "geographic_scope",
+            "before": {
+              "scope": "State / UT specific",
+              "states_or_uts": [
+                "Delhi"
+              ]
+            },
+            "after": {
+              "scope": "International bilateral programme involving India and Austria",
+              "states_or_uts": []
+            },
+            "reason": "Central-government pages often contain state names in navigation or contact addresses; geography was normalized from programme context."
+          },
+          {
+            "field": "contact_details",
+            "before": [
+              {
+                "type": "email",
+                "value": "c.agarwal@gov"
+              },
+              {
+                "type": "phone",
+                "value": "11-29512324"
+              }
+            ],
+            "after": [
+              {
+                "type": "email",
+                "value": "c.agarwal@gov.in"
+              },
+              {
+                "type": "phone",
+                "value": "1129512324"
+              }
+            ],
+            "reason": "Rejected date-like phone numbers and restored complete official email domains where supported by evidence."
+          },
+          {
+            "field": "funding_amount",
+            "before": {
+              "minimum": null,
+              "maximum": null,
+              "currency": "INR",
+              "funding_types": [
+                "Challenge / Call"
+              ],
+              "amount_mentions": []
+            },
+            "after": {
+              "minimum": null,
+              "maximum": null,
+              "currency": "INR",
+              "funding_types": [],
+              "amount_mentions": [],
+              "beneficiary_support": {
+                "minimum": null,
+                "maximum": null
+              },
+              "intermediary_support_maximum": null,
+              "scheme_corpus": null
+            },
+            "reason": "Classified monetary evidence by role and removed section numbers, counts, examples, corpus values, and eligibility thresholds from direct-benefit limits."
+          },
+          {
+            "field": "application_url",
+            "before": "https://dst.gov.in/announcement/applications-invited-throughout-year",
+            "after": null,
+            "reason": "Generic registration or announcement links were not accepted as scheme-specific application links."
+          }
+        ],
+        "as_of_date": "2026-07-08",
+        "validated_at": "2026-07-08T12:23:15.575100+00:00",
+        "validator_version": "1.0.0",
+        "record_hash": "e723a906e1e22a7541140bc621b9ec041a3a7886388cec2eb72fa9f862b0515e"
+      }
+    }
+  },
+  {
+    "master_id": "19eed8a8d960d536a52f",
+    "scheme_name": "Indo-Japan Cooperative Science Programme (IJCSP)",
+    "source": "DST",
+    "record_kind": "APPLICATION_CALL",
+    "programme_status": "CALL_INFORMATION_CURRENT",
+    "application_status": "DEADLINE_UNVERIFIED",
+    "official_page_url": "https://dst.gov.in/callforproposals/dst-jsps-call-proposal-2026-under-indo-japan-cooperative-science-programme-ijcsp",
+    "application_url": null,
+    "decision": "NEEDS_MORE_EVIDENCE",
+    "validation_score": 0.54,
+    "decision_reasons": [
+      "Current call deadline could not be verified."
+    ],
+    "warnings": [
+      "ACTIVE_CALL_DEADLINE_UNVERIFIED",
+      "APPLICATION_LINK_REQUIRES_REVIEW",
+      "APPLICATION_PROCESS_REQUIRES_EVIDENCE",
+      "BENEFITS_OR_FUNDING_REQUIRES_EVIDENCE",
+      "OBJECTIVE_REQUIRES_EVIDENCE",
+      "REQUIRED_DOCUMENTS_NOT_VERIFIED"
+    ],
+    "critical_flags": [],
+    "corrections_count": 3,
+    "recommended_admin_actions": [
+      "Confirm the exact financial/non-financial benefit and beneficiary-level limit.",
+      "Confirm the step-by-step application process and official application link.",
+      "Confirm the latest closing date or extension notice."
+    ],
+    "validated_record": {
+      "master_id": "19eed8a8d960d536a52f",
+      "scheme_name": "Indo-Japan Cooperative Science Programme (IJCSP)",
+      "short_name": "IJCSP",
+      "source": "DST",
+      "ministry": "Ministry of Science and Technology",
+      "department": "Department of Science and Technology (DST)",
+      "implementing_agency": "Department of Science and Technology (DST)",
+      "scheme_type": [
+        "Challenge / Call"
+      ],
+      "target_beneficiaries": [
+        "Researchers"
+      ],
+      "startup_stage": [],
+      "sector": [
+        "Agriculture"
+      ],
+      "geographic_scope": "International bilateral programme involving India and Japan",
+      "states_or_uts": [],
+      "objectives": [],
+      "eligibility": [
+        "Applications are invited from eligible Indian researchers /scientists to submit proposals for Joint Research Projects and Joint Workshops/Seminars under IJCSP."
+      ],
+      "benefits": [],
+      "funding_amount": {
+        "minimum": null,
+        "maximum": null,
+        "currency": "INR",
+        "funding_types": [],
+        "amount_mentions": [],
+        "beneficiary_support": {
+          "minimum": null,
+          "maximum": null
+        },
+        "intermediary_support_maximum": null,
+        "scheme_corpus": null
+      },
+      "application_process": [],
+      "selection_process": [],
+      "required_documents": [],
+      "application_url": null,
+      "official_page_url": "https://dst.gov.in/callforproposals/dst-jsps-call-proposal-2026-under-indo-japan-cooperative-science-programme-ijcsp",
+      "guideline_urls": [],
+      "opening_date": null,
+      "closing_date": null,
+      "scheme_status": "OPEN_STATUS_REQUIRES_DEADLINE_VERIFICATION",
+      "contact_details": [],
+      "source_evidence": [
+        {
+          "url": "https://dst.gov.in/callforproposals/dst-jsps-call-proposal-2026-under-indo-japan-cooperative-science-programme-ijcsp",
+          "title": "DST- JSPS call for proposal 2026 under the Indo-Japan Cooperative Science Programme (IJCSP) | Department Of Science & Technology",
+          "content_kind": "html",
+          "source_hash": "8215b29fa134f147fefa75e59fd1b5199fdfd0c31c1090aa513e1b2b4e20daf3",
+          "fetched_at": "2026-07-08T12:06:50.922405+00:00",
+          "rendered_with_browser": false,
+          "text_length": 905
+        }
+      ],
+      "field_evidence": {
+        "eligibility": [
+          {
+            "field": "eligibility",
+            "value": "Applications are invited from eligible Indian researchers /scientists to submit proposals for Joint Research Projects and Joint Workshops/Seminars under IJCSP.",
+            "source_url": "https://dst.gov.in/callforproposals/dst-jsps-call-proposal-2026-under-indo-japan-cooperative-science-programme-ijcsp",
+            "quote": "Applications are invited from eligible Indian researchers /scientists to submit proposals for Joint Research Projects and Joint Workshops/Seminars under IJCSP.",
+            "method": "keyword-context",
+            "confidence": 0.68
+          }
+        ],
+        "application_url": [
+          {
+            "field": "application_url",
+            "value": "https://dst.gov.in/announcement/applications-invited-throughout-year",
+            "source_url": "https://dst.gov.in/callforproposals/dst-jsps-call-proposal-2026-under-indo-japan-cooperative-science-programme-ijcsp",
+            "quote": "https://dst.gov.in/announcement/applications-invited-throughout-year",
+            "method": "application-link-ranking",
+            "confidence": 0.85
+          }
+        ],
+        "scheme_name": [
+          {
+            "field": "scheme_name",
+            "value": "Indo-Japan Cooperative Science Programme (IJCSP)",
+            "source_url": "https://dst.gov.in/callforproposals/dst-jsps-call-proposal-2026-under-indo-japan-cooperative-science-programme-ijcsp",
+            "quote": "Indo-Japan Cooperative Science Programme (IJCSP)",
+            "method": "master-candidate",
+            "confidence": 0.98
+          }
+        ],
+        "ministry": [
+          {
+            "field": "ministry",
+            "value": "Ministry of Science and Technology",
+            "source_url": "https://dst.gov.in/",
+            "quote": "Configured from the official Department of Science and Technology website.",
+            "method": "source-authority-config",
+            "confidence": 0.92
+          }
+        ],
+        "department": [
+          {
+            "field": "department",
+            "value": "Department of Science and Technology (DST)",
+            "source_url": "https://dst.gov.in/",
+            "quote": "Configured from the official Department of Science and Technology website.",
+            "method": "source-authority-config",
+            "confidence": 0.92
+          }
+        ],
+        "implementing_agency": [
+          {
+            "field": "implementing_agency",
+            "value": "Department of Science and Technology (DST)",
+            "source_url": "https://dst.gov.in/",
+            "quote": "Configured from the official Department of Science and Technology website.",
+            "method": "source-authority-config",
+            "confidence": 0.92
+          }
+        ]
+      },
+      "quality_flags": [
+        "BENEFITS_NOT_FOUND",
+        "REQUIRED_DOCUMENTS_NOT_FOUND",
+        "EXPLICIT_FUNDING_AMOUNT_NOT_FOUND",
+        "ACTIVE_CALL_DEADLINE_NOT_VERIFIED"
+      ],
+      "extraction_confidence": 0.875,
+      "master_readiness": "NEEDS_CONTENT_EXTRACTION_AND_REVIEW",
+      "master_current_status": "ACTIVE_CALL_OPEN",
+      "extracted_at": "2026-07-08T12:06:50.928374+00:00",
+      "extractor_version": "1.0.0",
+      "application_url_status": "GENERIC_OR_UNVERIFIED",
+      "deadline_evidence": null,
+      "record_kind": "APPLICATION_CALL",
+      "programme_status": "CALL_INFORMATION_CURRENT",
+      "application_status": "DEADLINE_UNVERIFIED",
+      "validation": {
+        "decision": "NEEDS_MORE_EVIDENCE",
+        "decision_reasons": [
+          "Current call deadline could not be verified."
+        ],
+        "validation_score": 0.54,
+        "warnings": [
+          "ACTIVE_CALL_DEADLINE_UNVERIFIED",
+          "APPLICATION_LINK_REQUIRES_REVIEW",
+          "APPLICATION_PROCESS_REQUIRES_EVIDENCE",
+          "BENEFITS_OR_FUNDING_REQUIRES_EVIDENCE",
+          "OBJECTIVE_REQUIRES_EVIDENCE",
+          "REQUIRED_DOCUMENTS_NOT_VERIFIED"
+        ],
+        "critical_flags": [],
+        "corrections": [
+          {
+            "field": "geographic_scope",
+            "before": {
+              "scope": "State / UT specific",
+              "states_or_uts": [
+                "Delhi"
+              ]
+            },
+            "after": {
+              "scope": "International bilateral programme involving India and Japan",
+              "states_or_uts": []
+            },
+            "reason": "Central-government pages often contain state names in navigation or contact addresses; geography was normalized from programme context."
+          },
+          {
+            "field": "funding_amount",
+            "before": {
+              "minimum": null,
+              "maximum": null,
+              "currency": "INR",
+              "funding_types": [
+                "Challenge / Call"
+              ],
+              "amount_mentions": []
+            },
+            "after": {
+              "minimum": null,
+              "maximum": null,
+              "currency": "INR",
+              "funding_types": [],
+              "amount_mentions": [],
+              "beneficiary_support": {
+                "minimum": null,
+                "maximum": null
+              },
+              "intermediary_support_maximum": null,
+              "scheme_corpus": null
+            },
+            "reason": "Classified monetary evidence by role and removed section numbers, counts, examples, corpus values, and eligibility thresholds from direct-benefit limits."
+          },
+          {
+            "field": "application_url",
+            "before": "https://dst.gov.in/announcement/applications-invited-throughout-year",
+            "after": null,
+            "reason": "Generic registration or announcement links were not accepted as scheme-specific application links."
+          }
+        ],
+        "as_of_date": "2026-07-08",
+        "validated_at": "2026-07-08T12:23:15.575397+00:00",
+        "validator_version": "1.0.0",
+        "record_hash": "80b3d2ebdf82a48b42a1609916b0eb24360e5f444752a832393df2bac006e96a"
+      }
+    }
+  },
+  {
+    "master_id": "0cb848c7d0402bf25982",
+    "scheme_name": "National Science & Technology Entrepreneurship Development Board (NSTEDB)",
+    "source": "DST",
+    "record_kind": "UMBRELLA_PROGRAMME",
+    "programme_status": "UMBRELLA_PROGRAMME_INFORMATION_AVAILABLE",
+    "application_status": "NOT_A_SINGLE_APPLICATION_WINDOW",
+    "official_page_url": "https://dst.gov.in/scientific-programmes/st-and-socio-economic-development/national-science-technology-entrepreneurship-development-board-nstedb",
+    "application_url": null,
+    "decision": "NEEDS_ADMIN_REVIEW",
+    "validation_score": 0.615,
+    "decision_reasons": [
+      "Umbrella programme should be split into component schemes before publication."
+    ],
+    "warnings": [
+      "BENEFITS_OR_FUNDING_REQUIRES_EVIDENCE",
+      "ELIGIBILITY_REQUIRES_EVIDENCE",
+      "REQUIRED_DOCUMENTS_NOT_VERIFIED"
+    ],
+    "critical_flags": [],
+    "corrections_count": 5,
+    "recommended_admin_actions": [
+      "Confirm eligibility from the official guideline, RFP, or application portal.",
+      "Confirm the exact financial/non-financial benefit and beneficiary-level limit.",
+      "Create separate records for each component programme instead of publishing the umbrella page as one scheme."
+    ],
+    "validated_record": {
+      "master_id": "0cb848c7d0402bf25982",
+      "scheme_name": "National Science & Technology Entrepreneurship Development Board (NSTEDB)",
+      "short_name": "NSTEDB",
+      "source": "DST",
+      "ministry": "Ministry of Science and Technology",
+      "department": "Department of Science and Technology (DST)",
+      "implementing_agency": "Department of Science and Technology (DST)",
+      "scheme_type": [
+        "Entrepreneurship Support",
+        "Incubation Support"
+      ],
+      "target_beneficiaries": [
+        "Startups",
+        "Innovators",
+        "Entrepreneurs",
+        "Researchers",
+        "Students",
+        "Incubators",
+        "Academic institutions",
+        "Women entrepreneurs"
+      ],
+      "startup_stage": [
+        "Prototype",
+        "Early Stage",
+        "Growth"
+      ],
+      "sector": [],
+      "geographic_scope": "National (India)",
+      "states_or_uts": [],
+      "objectives": [
+        "To promote and develop high-end entrepreneurship for S&T manpower as well as self-employment by utilizing S&T infrastructure and by using S&T methods.",
+        "To facilitate and conduct various informational services relating to promotion of entrepreneurship.",
+        "To network agencies of the support system, academic institutions and Research & Development (R&D) organizations to foster entrepreneurship and self-employing using S&T with special focus on backward areas as well.",
+        "Implementation of the NIDHI programs",
+        "To act as a policy advisory body with regard to entrepreneurship.",
+        "National Initiative for Developing and Harnessing Innovations (NIDHI) is an umbrella programme conceived and developed by the Innovation and Entrepreneurship Division (NSTEDB) of DST, Government of India in 2016, for promoting S&T based entrepreneurship and startup ecosystem across the country.The programme works in line with the national priorities and goals and its focus is to build an innovation driven entrepreneurial ecosystem with an objective of national development through wealth and job creation. NIDHI aims to nurture start-ups through scouting, supporting and scaling of innovations. NIDHI is developed keeping in line the new national aspirations and on the basis of DST’s experience of three decades, in promoting innovative start-ups.",
+        "Key Components of NIDHI (National Initiative for Developing and Harnessing Innovations): The components of NIDHI are designed to support ideators and innovators since their early startup journey and link them to the entire market value chain.",
+        "NIDHI-Entrepreneur in Residence (EIR): Inspiring graduating students to take entrepreneurship by providing fellowship. For more details please visit: http://www.nidhi-eir.in/"
+      ],
+      "eligibility": [],
+      "benefits": [],
+      "funding_amount": {
+        "minimum": null,
+        "maximum": null,
+        "currency": "INR",
+        "funding_types": [],
+        "amount_mentions": [],
+        "beneficiary_support": {
+          "minimum": null,
+          "maximum": null
+        },
+        "intermediary_support_maximum": null,
+        "scheme_corpus": null
+      },
+      "application_process": [],
+      "selection_process": [],
+      "required_documents": [],
+      "application_url": null,
+      "official_page_url": "https://dst.gov.in/scientific-programmes/st-and-socio-economic-development/national-science-technology-entrepreneurship-development-board-nstedb",
+      "guideline_urls": [],
+      "opening_date": null,
+      "closing_date": null,
+      "scheme_status": "SCHEME_INFORMATION_AVAILABLE_STATUS_UNVERIFIED",
+      "contact_details": [
+        {
+          "type": "email",
+          "value": "praveen.roy@nic.in"
+        },
+        {
+          "type": "phone",
+          "value": "01126590316"
+        }
+      ],
+      "source_evidence": [
+        {
+          "url": "https://dst.gov.in/scientific-programmes/st-and-socio-economic-development/national-science-technology-entrepreneurship-development-board-nstedb",
+          "title": "National Science & Technology Entrepreneurship Development Board | Department Of Science & Technology",
+          "content_kind": "html",
+          "source_hash": "4f4776e94ae5b8fa9c1ce74a3119e8691628df817b02f90f67cc457db56ea397",
+          "fetched_at": "2026-07-08T12:06:53.189524+00:00",
+          "rendered_with_browser": false,
+          "text_length": 6006
+        }
+      ],
+      "field_evidence": {
+        "objectives": [
+          {
+            "field": "objectives",
+            "value": "To promote and develop high-end entrepreneurship for S&T manpower as well as self-employment by utilizing S&T infrastructure and by using S&T methods.",
+            "source_url": "https://dst.gov.in/scientific-programmes/st-and-socio-economic-development/national-science-technology-entrepreneurship-development-board-nstedb",
+            "quote": "Major Objectives of NSTEDB:: To promote and develop high-end entrepreneurship for S&T manpower as well as self-employment by utilizing S&T infrastructure and by using S&T methods.",
+            "method": "section-heading",
+            "confidence": 0.9
+          },
+          {
+            "field": "objectives",
+            "value": "To facilitate and conduct various informational services relating to promotion of entrepreneurship.",
+            "source_url": "https://dst.gov.in/scientific-programmes/st-and-socio-economic-development/national-science-technology-entrepreneurship-development-board-nstedb",
+            "quote": "Major Objectives of NSTEDB:: To facilitate and conduct various informational services relating to promotion of entrepreneurship.",
+            "method": "section-heading",
+            "confidence": 0.9
+          },
+          {
+            "field": "objectives",
+            "value": "To network agencies of the support system, academic institutions and Research & Development (R&D) organizations to foster entrepreneurship and self-employing using S&T with special focus on backward areas as well.",
+            "source_url": "https://dst.gov.in/scientific-programmes/st-and-socio-economic-development/national-science-technology-entrepreneurship-development-board-nstedb",
+            "quote": "Major Objectives of NSTEDB:: To network agencies of the support system, academic institutions and Research & Development (R&D) organizations to foster entrepreneurship and self-employing using S&T with special focus on backward areas as well.",
+            "method": "section-heading",
+            "confidence": 0.9
+          },
+          {
+            "field": "objectives",
+            "value": "Implementation of the NIDHI programs",
+            "source_url": "https://dst.gov.in/scientific-programmes/st-and-socio-economic-development/national-science-technology-entrepreneurship-development-board-nstedb",
+            "quote": "Major Objectives of NSTEDB:: Implementation of the NIDHI programs",
+            "method": "section-heading",
+            "confidence": 0.9
+          },
+          {
+            "field": "objectives",
+            "value": "To act as a policy advisory body with regard to entrepreneurship.",
+            "source_url": "https://dst.gov.in/scientific-programmes/st-and-socio-economic-development/national-science-technology-entrepreneurship-development-board-nstedb",
+            "quote": "Major Objectives of NSTEDB:: To act as a policy advisory body with regard to entrepreneurship.",
+            "method": "section-heading",
+            "confidence": 0.9
+          },
+          {
+            "field": "objectives",
+            "value": "About NIDHI",
+            "source_url": "https://dst.gov.in/scientific-programmes/st-and-socio-economic-development/national-science-technology-entrepreneurship-development-board-nstedb",
+            "quote": "Major Objectives of NSTEDB:: About NIDHI",
+            "method": "section-heading",
+            "confidence": 0.9
+          },
+          {
+            "field": "objectives",
+            "value": "National Initiative for Developing and Harnessing Innovations (NIDHI) is an umbrella programme conceived and developed by the Innovation and Entrepreneurship Division (NSTEDB) of DST, Government of India in 2016, for promoting S&T based entrepreneurship and startup ecosystem across the country.The programme works in line with the national priorities and goals and its focus is to build an innovation driven entrepreneurial ecosystem with an objective of national development through wealth and job creation. NIDHI aims to nurture start-ups through scouting, supporting and scaling of innovations. NIDHI is developed keeping in line the new national aspirations and on the basis of DST’s experience of three decades, in promoting innovative start-ups.",
+            "source_url": "https://dst.gov.in/scientific-programmes/st-and-socio-economic-development/national-science-technology-entrepreneurship-development-board-nstedb",
+            "quote": "Major Objectives of NSTEDB:: National Initiative for Developing and Harnessing Innovations (NIDHI) is an umbrella programme conceived and developed by the Innovation and Entrepreneurship Division (NSTEDB) of DST, Government of India in 2016, for promoting S&T based entrepreneurship and startup ecosystem across the country.The programme works in line with the national priorities and goals and its focus is to build an…",
+            "method": "section-heading",
+            "confidence": 0.9
+          },
+          {
+            "field": "objectives",
+            "value": "Key Components of NIDHI (National Initiative for Developing and Harnessing Innovations): The components of NIDHI are designed to support ideators and innovators since their early startup journey and link them to the entire market value chain.",
+            "source_url": "https://dst.gov.in/scientific-programmes/st-and-socio-economic-development/national-science-technology-entrepreneurship-development-board-nstedb",
+            "quote": "Major Objectives of NSTEDB:: Key Components of NIDHI (National Initiative for Developing and Harnessing Innovations): The components of NIDHI are designed to support ideators and innovators since their early startup journey and link them to the entire market value chain.",
+            "method": "section-heading",
+            "confidence": 0.9
+          },
+          {
+            "field": "objectives",
+            "value": "NIDHI-Entrepreneur in Residence (EIR): Inspiring graduating students to take entrepreneurship by providing fellowship. For more details please visit: http://www.nidhi-eir.in/",
+            "source_url": "https://dst.gov.in/scientific-programmes/st-and-socio-economic-development/national-science-technology-entrepreneurship-development-board-nstedb",
+            "quote": "Major Objectives of NSTEDB:: NIDHI-Entrepreneur in Residence (EIR): Inspiring graduating students to take entrepreneurship by providing fellowship. For more details please visit: http://www.nidhi-eir.in/",
+            "method": "section-heading",
+            "confidence": 0.9
+          },
+          {
+            "field": "objectives",
+            "value": "NIDHI-Promotion and Acceleration of Young and Aspiring Technology Entrepreneurs (PRAYAS): Supports innovators and startups to technically and financially from Idea to Prototype stage. For more details please visit : https://www.nidhi-prayas.org/ .",
+            "source_url": "https://dst.gov.in/scientific-programmes/st-and-socio-economic-development/national-science-technology-entrepreneurship-development-board-nstedb",
+            "quote": "Major Objectives of NSTEDB:: NIDHI-Promotion and Acceleration of Young and Aspiring Technology Entrepreneurs (PRAYAS): Supports innovators and startups to technically and financially from Idea to Prototype stage. For more details please visit : https://www.nidhi-prayas.org/ .",
+            "method": "section-heading",
+            "confidence": 0.9
+          },
+          {
+            "field": "objectives",
+            "value": "NIDHI - Inclusive-Technology Business Incubator (iTBI): Program has been rolled out to increase outreach of incubation program in terms of geographies, gender etc. Program guidelines for NIDHIi-TBI are available at https://www.nstedb.com/NIDHI-Inclusive-TBI-Guidelines.pdf",
+            "source_url": "https://dst.gov.in/scientific-programmes/st-and-socio-economic-development/national-science-technology-entrepreneurship-development-board-nstedb",
+            "quote": "Major Objectives of NSTEDB:: NIDHI - Inclusive-Technology Business Incubator (iTBI): Program has been rolled out to increase outreach of incubation program in terms of geographies, gender etc. Program guidelines for NIDHIi-TBI are available at https://www.nstedb.com/NIDHI-Inclusive-TBI-Guidelines.pdf",
+            "method": "section-heading",
+            "confidence": 0.9
+          },
+          {
+            "field": "objectives",
+            "value": "NIDHI-Technology Business Incubator (TBI): Support and nurture knowledge driven innovative start-ups into successful enterprises. Program guidelines for NIDHI-TBI are available at https://www.nstedb.com/New_Programmes/NIDHI-TBI.pdf .",
+            "source_url": "https://dst.gov.in/scientific-programmes/st-and-socio-economic-development/national-science-technology-entrepreneurship-development-board-nstedb",
+            "quote": "Major Objectives of NSTEDB:: NIDHI-Technology Business Incubator (TBI): Support and nurture knowledge driven innovative start-ups into successful enterprises. Program guidelines for NIDHI-TBI are available at https://www.nstedb.com/New_Programmes/NIDHI-TBI.pdf .",
+            "method": "section-heading",
+            "confidence": 0.9
+          }
+        ],
+        "contact_details": [
+          {
+            "field": "contact_details",
+            "value": "praveen.roy@nic",
+            "source_url": "https://dst.gov.in/scientific-programmes/st-and-socio-economic-development/national-science-technology-entrepreneurship-development-board-nstedb",
+            "quote": "praveen[dot]roy[at]nic",
+            "method": "obfuscated-email-pattern",
+            "confidence": 0.8
+          },
+          {
+            "field": "contact_details",
+            "value": "011-26590316",
+            "source_url": "https://dst.gov.in/scientific-programmes/st-and-socio-economic-development/national-science-technology-entrepreneurship-development-board-nstedb",
+            "quote": "nology Bhawan New Mehrauli Road New Delhi-110 016. Telefax: 011-26590316 Email: praveen[dot]roy[at]nic[dot]in",
+            "method": "phone-pattern",
+            "confidence": 0.78
+          }
+        ],
+        "application_url": [
+          {
+            "field": "application_url",
+            "value": "https://dst.gov.in/announcement/applications-invited-throughout-year",
+            "source_url": "https://dst.gov.in/scientific-programmes/st-and-socio-economic-development/national-science-technology-entrepreneurship-development-board-nstedb",
+            "quote": "https://dst.gov.in/announcement/applications-invited-throughout-year",
+            "method": "application-link-ranking",
+            "confidence": 0.85
+          }
+        ],
+        "scheme_name": [
+          {
+            "field": "scheme_name",
+            "value": "National Science & Technology Entrepreneurship Development Board (NSTEDB)",
+            "source_url": "https://dst.gov.in/scientific-programmes/st-and-socio-economic-development/national-science-technology-entrepreneurship-development-board-nstedb",
+            "quote": "National Science & Technology Entrepreneurship Development Board (NSTEDB)",
+            "method": "master-candidate",
+            "confidence": 0.98
+          }
+        ],
+        "ministry": [
+          {
+            "field": "ministry",
+            "value": "Ministry of Science and Technology",
+            "source_url": "https://dst.gov.in/",
+            "quote": "Configured from the official Department of Science and Technology website.",
+            "method": "source-authority-config",
+            "confidence": 0.92
+          }
+        ],
+        "department": [
+          {
+            "field": "department",
+            "value": "Department of Science and Technology (DST)",
+            "source_url": "https://dst.gov.in/",
+            "quote": "Configured from the official Department of Science and Technology website.",
+            "method": "source-authority-config",
+            "confidence": 0.92
+          }
+        ],
+        "implementing_agency": [
+          {
+            "field": "implementing_agency",
+            "value": "Department of Science and Technology (DST)",
+            "source_url": "https://dst.gov.in/",
+            "quote": "Configured from the official Department of Science and Technology website.",
+            "method": "source-authority-config",
+            "confidence": 0.92
+          }
+        ]
+      },
+      "quality_flags": [
+        "ELIGIBILITY_NOT_FOUND",
+        "BENEFITS_NOT_FOUND",
+        "REQUIRED_DOCUMENTS_NOT_FOUND",
+        "EXPLICIT_FUNDING_AMOUNT_NOT_FOUND"
+      ],
+      "extraction_confidence": 0.75,
+      "master_readiness": "READY_FOR_EXTRACTION",
+      "master_current_status": "SCHEME_INFORMATION_AVAILABLE",
+      "extracted_at": "2026-07-08T12:06:53.198718+00:00",
+      "extractor_version": "1.0.0",
+      "application_url_status": "GENERIC_OR_UNVERIFIED",
+      "deadline_evidence": null,
+      "record_kind": "UMBRELLA_PROGRAMME",
+      "programme_status": "UMBRELLA_PROGRAMME_INFORMATION_AVAILABLE",
+      "application_status": "NOT_A_SINGLE_APPLICATION_WINDOW",
+      "validation": {
+        "decision": "NEEDS_ADMIN_REVIEW",
+        "decision_reasons": [
+          "Umbrella programme should be split into component schemes before publication."
+        ],
+        "validation_score": 0.615,
+        "warnings": [
+          "BENEFITS_OR_FUNDING_REQUIRES_EVIDENCE",
+          "ELIGIBILITY_REQUIRES_EVIDENCE",
+          "REQUIRED_DOCUMENTS_NOT_VERIFIED"
+        ],
+        "critical_flags": [],
+        "corrections": [
+          {
+            "field": "geographic_scope",
+            "before": {
+              "scope": "State / UT specific",
+              "states_or_uts": [
+                "Goa",
+                "Delhi"
+              ]
+            },
+            "after": {
+              "scope": "National (India)",
+              "states_or_uts": []
+            },
+            "reason": "Central-government pages often contain state names in navigation or contact addresses; geography was normalized from programme context."
+          },
+          {
+            "field": "contact_details",
+            "before": [
+              {
+                "type": "email",
+                "value": "praveen.roy@nic"
+              },
+              {
+                "type": "phone",
+                "value": "011-26590316"
+              }
+            ],
+            "after": [
+              {
+                "type": "email",
+                "value": "praveen.roy@nic.in"
+              },
+              {
+                "type": "phone",
+                "value": "01126590316"
+              }
+            ],
+            "reason": "Rejected date-like phone numbers and restored complete official email domains where supported by evidence."
+          },
+          {
+            "field": "funding_amount",
+            "before": {
+              "minimum": null,
+              "maximum": null,
+              "currency": "INR",
+              "funding_types": [
+                "Fellowship",
+                "Incubation Support"
+              ],
+              "amount_mentions": []
+            },
+            "after": {
+              "minimum": null,
+              "maximum": null,
+              "currency": "INR",
+              "funding_types": [],
+              "amount_mentions": [],
+              "beneficiary_support": {
+                "minimum": null,
+                "maximum": null
+              },
+              "intermediary_support_maximum": null,
+              "scheme_corpus": null
+            },
+            "reason": "Classified monetary evidence by role and removed section numbers, counts, examples, corpus values, and eligibility thresholds from direct-benefit limits."
+          },
+          {
+            "field": "scheme_type",
+            "before": [
+              "Fellowship",
+              "Incubation Support"
+            ],
+            "after": [
+              "Entrepreneurship Support",
+              "Incubation Support"
+            ],
+            "reason": "Scheme type was re-derived from the scheme name and validated content instead of page navigation menus."
+          },
+          {
+            "field": "application_url",
+            "before": "https://dst.gov.in/announcement/applications-invited-throughout-year",
+            "after": null,
+            "reason": "Generic registration or announcement links were not accepted as scheme-specific application links."
+          }
+        ],
+        "as_of_date": "2026-07-08",
+        "validated_at": "2026-07-08T12:23:15.576092+00:00",
+        "validator_version": "1.0.0",
+        "record_hash": "970fb937285427fabb960ca03d8ca049fa137b8551ace149454fa236cb2e67ed"
+      }
+    }
+  },
+  {
+    "master_id": "bc14bfe65059a3a46427",
+    "scheme_name": "Startup India Fund of Funds",
+    "source": "Startup India",
+    "record_kind": "SCHEME_OR_PROGRAMME",
+    "programme_status": "SCHEME_INFORMATION_AVAILABLE",
+    "application_status": "NOT_DIRECTLY_APPLICABLE_BY_STARTUPS",
+    "official_page_url": "https://www.startupindia.gov.in/content/dam/startupindia/Startup-India-Fund-of-Funds-2.0-Scheme.pdf",
+    "application_url": null,
+    "decision": "NEEDS_ADMIN_REVIEW",
+    "validation_score": 0.795,
+    "decision_reasons": [
+      "Record is credible but one or more fields require admin confirmation."
+    ],
+    "warnings": [
+      "ELIGIBILITY_REQUIRES_EVIDENCE",
+      "REQUIRED_DOCUMENTS_NOT_VERIFIED",
+      "SINGLE_SOURCE_ONLY"
+    ],
+    "critical_flags": [],
+    "corrections_count": 5,
+    "recommended_admin_actions": [
+      "Confirm eligibility from the official guideline, RFP, or application portal."
+    ],
+    "validated_record": {
+      "master_id": "bc14bfe65059a3a46427",
+      "scheme_name": "Startup India Fund of Funds",
+      "short_name": "",
+      "source": "Startup India",
+      "ministry": "Ministry of Commerce and Industry",
+      "department": "Department for Promotion of Industry and Internal Trade (DPIIT)",
+      "implementing_agency": "Startup India / DPIIT",
+      "scheme_type": [
+        "Equity / Fund"
+      ],
+      "target_beneficiaries": [
+        "Startups",
+        "Academic institutions",
+        "Industry"
+      ],
+      "startup_stage": [
+        "Growth"
+      ],
+      "sector": [
+        "Deep Technology"
+      ],
+      "geographic_scope": "National (India)",
+      "states_or_uts": [],
+      "objectives": [
+        "1.1 Startup India Fund of Funds 2.0 will enable access to venture capital for startups across stages and",
+        "sectors as was in the case of Fund of Funds for Startups 1.0 while providing thrust to innovation"
+      ],
+      "eligibility": [],
+      "benefits": [
+        "This will include: (i) Supporting AIFs with larger corpuses to increase the availability of funds required for capital intensiv e segments such as deep tech and manufacturing",
+        "(ii) Supporting longer duration (term) AIFs to cater to startups having longer R&D cycles and gestation periods",
+        "(iii) Higher contribution from the Scheme for specific segments as deep tech and manufacturing wherein private capital is limited and cautious",
+        "and (iv) Moderation of investment multiplier (minimum amount an AIF must invest in startups as a multiple of the amount committed to it under the Scheme) to encourage larger number of AIFs to benefit from the Scheme and invest in startups"
+      ],
+      "funding_amount": {
+        "minimum": null,
+        "maximum": null,
+        "currency": "INR",
+        "funding_types": [
+          "Equity / Fund"
+        ],
+        "amount_mentions": [
+          {
+            "amount": 100000000000,
+            "currency": "INR",
+            "display_text": "Rs. 10,000 crore",
+            "role": "SCHEME_CORPUS",
+            "context": "vernment has approved the establishment of ‘Startup India Fund of Funds 2.0’ with a total corpus of Rs. 10,000 crore for the purpose of mobilizing venture capital for the startup ecosystem of the country. The Scheme shall be known as the ‘Startup India Fund of Funds 2.0 (Startup India FoF 2.0)’.",
+            "source_url": "https://www.startupindia.gov.in/content/dam/startupindia/Startup-India-Fund-of-Funds-2.0-Scheme.pdf"
+          }
+        ],
+        "beneficiary_support": {
+          "minimum": null,
+          "maximum": null
+        },
+        "intermediary_support_maximum": null,
+        "scheme_corpus": 100000000000
+      },
+      "application_process": [],
+      "selection_process": [],
+      "required_documents": [],
+      "application_url": null,
+      "official_page_url": "https://www.startupindia.gov.in/content/dam/startupindia/Startup-India-Fund-of-Funds-2.0-Scheme.pdf",
+      "guideline_urls": [],
+      "opening_date": null,
+      "closing_date": null,
+      "scheme_status": "SCHEME_INFORMATION_AVAILABLE_STATUS_UNVERIFIED",
+      "contact_details": [],
+      "source_evidence": [
+        {
+          "url": "https://www.startupindia.gov.in/content/dam/startupindia/Startup-India-Fund-of-Funds-2.0-Scheme.pdf",
+          "title": "Startup India Fund of Funds 2.0 Scheme",
+          "content_kind": "pdf",
+          "source_hash": "c99f0a9a69f5164c0762a24bc812a008e4bc6a7dea77132aee51f9635e8f8d51",
+          "fetched_at": "2026-07-08T12:06:51.832171+00:00",
+          "rendered_with_browser": false,
+          "text_length": 14658
+        }
+      ],
+      "field_evidence": {
+        "eligibility": [
+          {
+            "field": "eligibility",
+            "value": "monitoring processes, reporting and assessment requirements, mechanism for disbursal of funds to",
+            "source_url": "https://www.startupindia.gov.in/content/dam/startupindia/Startup-India-Fund-of-Funds-2.0-Scheme.pdf",
+            "quote": "cover the detailed segment-wise provisions, eligibility criteria for AIFs and startups, selection and: monitoring processes, reporting and assessment requirements, mechanism for disbursal of funds to",
+            "method": "section-heading",
+            "confidence": 0.9
+          },
+          {
+            "field": "eligibility",
+            "value": "IAs and AIFs, composition of inv estment committee, and all other details necessary for operating",
+            "source_url": "https://www.startupindia.gov.in/content/dam/startupindia/Startup-India-Fund-of-Funds-2.0-Scheme.pdf",
+            "quote": "cover the detailed segment-wise provisions, eligibility criteria for AIFs and startups, selection and: IAs and AIFs, composition of inv estment committee, and all other details necessary for operating",
+            "method": "section-heading",
+            "confidence": 0.9
+          },
+          {
+            "field": "eligibility",
+            "value": "the Scheme.",
+            "source_url": "https://www.startupindia.gov.in/content/dam/startupindia/Startup-India-Fund-of-Funds-2.0-Scheme.pdf",
+            "quote": "cover the detailed segment-wise provisions, eligibility criteria for AIFs and startups, selection and: the Scheme.",
+            "method": "section-heading",
+            "confidence": 0.9
+          },
+          {
+            "field": "eligibility",
+            "value": "2.2. The implementation of the Scheme will inter-alia entail:",
+            "source_url": "https://www.startupindia.gov.in/content/dam/startupindia/Startup-India-Fund-of-Funds-2.0-Scheme.pdf",
+            "quote": "cover the detailed segment-wise provisions, eligibility criteria for AIFs and startups, selection and: 2.2. The implementation of the Scheme will inter-alia entail:",
+            "method": "section-heading",
+            "confidence": 0.9
+          },
+          {
+            "field": "eligibility",
+            "value": "a. Small Industries Development Bank of India (SIDBI), Implementation Agency (IA) of the",
+            "source_url": "https://www.startupindia.gov.in/content/dam/startupindia/Startup-India-Fund-of-Funds-2.0-Scheme.pdf",
+            "quote": "cover the detailed segment-wise provisions, eligibility criteria for AIFs and startups, selection and: a. Small Industries Development Bank of India (SIDBI), Implementation Agency (IA) of the",
+            "method": "section-heading",
+            "confidence": 0.9
+          },
+          {
+            "field": "eligibility",
+            "value": "FFS 1.0, shall also be the Implementing Agency for the Startup India FoF 2.0. In addition,",
+            "source_url": "https://www.startupindia.gov.in/content/dam/startupindia/Startup-India-Fund-of-Funds-2.0-Scheme.pdf",
+            "quote": "cover the detailed segment-wise provisions, eligibility criteria for AIFs and startups, selection and: FFS 1.0, shall also be the Implementing Agency for the Startup India FoF 2.0. In addition,",
+            "method": "section-heading",
+            "confidence": 0.9
+          },
+          {
+            "field": "eligibility",
+            "value": "another domestic IA(s) shall also be selected to implement the proposed Scheme.",
+            "source_url": "https://www.startupindia.gov.in/content/dam/startupindia/Startup-India-Fund-of-Funds-2.0-Scheme.pdf",
+            "quote": "cover the detailed segment-wise provisions, eligibility criteria for AIFs and startups, selection and: another domestic IA(s) shall also be selected to implement the proposed Scheme.",
+            "method": "section-heading",
+            "confidence": 0.9
+          },
+          {
+            "field": "eligibility",
+            "value": "b. The IAs will seek proposals from AIFs and conduct due diligence, post which a Venture",
+            "source_url": "https://www.startupindia.gov.in/content/dam/startupindia/Startup-India-Fund-of-Funds-2.0-Scheme.pdf",
+            "quote": "cover the detailed segment-wise provisions, eligibility criteria for AIFs and startups, selection and: b. The IAs will seek proposals from AIFs and conduct due diligence, post which a Venture",
+            "method": "section-heading",
+            "confidence": 0.9
+          },
+          {
+            "field": "eligibility",
+            "value": "Capital Investment Committee (VCIC) constituted by DPIIT, which would include",
+            "source_url": "https://www.startupindia.gov.in/content/dam/startupindia/Startup-India-Fund-of-Funds-2.0-Scheme.pdf",
+            "quote": "cover the detailed segment-wise provisions, eligibility criteria for AIFs and startups, selection and: Capital Investment Committee (VCIC) constituted by DPIIT, which would include",
+            "method": "section-heading",
+            "confidence": 0.9
+          },
+          {
+            "field": "eligibility",
+            "value": "representation from the industry, subject matter experts, and IAs, will consider the proposals",
+            "source_url": "https://www.startupindia.gov.in/content/dam/startupindia/Startup-India-Fund-of-Funds-2.0-Scheme.pdf",
+            "quote": "cover the detailed segment-wise provisions, eligibility criteria for AIFs and startups, selection and: representation from the industry, subject matter experts, and IAs, will consider the proposals",
+            "method": "section-heading",
+            "confidence": 0.9
+          },
+          {
+            "field": "eligibility",
+            "value": "for recommendation. VCIC will consider AIFs managed by experienced professionals with",
+            "source_url": "https://www.startupindia.gov.in/content/dam/startupindia/Startup-India-Fund-of-Funds-2.0-Scheme.pdf",
+            "quote": "cover the detailed segment-wise provisions, eligibility criteria for AIFs and startups, selection and: for recommendation. VCIC will consider AIFs managed by experienced professionals with",
+            "method": "section-heading",
+            "confidence": 0.9
+          }
+        ],
+        "benefits": [
+          {
+            "field": "benefits",
+            "value": "This will include: (i) Supporting AIFs with larger corpuses to increase the availability of funds required for capital intensiv e segments such as deep tech and manufacturing; (ii) Supporting longer duration (term) AIFs to cater to startups having longer R&D cycles and gestation periods; (iii) Higher contribution from the Scheme for specific segments as deep tech and manufacturing wherein private capital is limited and cautious; and (iv) Moderation of investment multiplier (minimum amount an AIF must invest in startups as a multiple of the amount committed to it under the Scheme) to encourage larger number of AIFs to benefit from the Scheme and invest in startups; [भाग II—खण् ड 3(ii)] भारत का रािपत्र : असाधारण 5 c.",
+            "source_url": "https://www.startupindia.gov.in/content/dam/startupindia/Startup-India-Fund-of-Funds-2.0-Scheme.pdf",
+            "quote": "This will include: (i) Supporting AIFs with larger corpuses to increase the availability of funds required for capital intensiv e segments such as deep tech and manufacturing; (ii) Supporting longer duration (term) AIFs to cater to startups having longer R&D cycles and gestation periods; (iii) Higher contribution from the Scheme for specific segments as deep tech and manufacturing wherein private capital is limited…",
+            "method": "keyword-context",
+            "confidence": 0.68
+          }
+        ],
+        "objectives": [
+          {
+            "field": "objectives",
+            "value": "1.1 Startup India Fund of Funds 2.0 will enable access to venture capital for startups across stages and",
+            "source_url": "https://www.startupindia.gov.in/content/dam/startupindia/Startup-India-Fund-of-Funds-2.0-Scheme.pdf",
+            "quote": "1. Objectives: 1.1 Startup India Fund of Funds 2.0 will enable access to venture capital for startups across stages and",
+            "method": "section-heading",
+            "confidence": 0.9
+          },
+          {
+            "field": "objectives",
+            "value": "sectors as was in the case of Fund of Funds for Startups 1.0 while providing thrust to innovation",
+            "source_url": "https://www.startupindia.gov.in/content/dam/startupindia/Startup-India-Fund-of-Funds-2.0-Scheme.pdf",
+            "quote": "1. Objectives: sectors as was in the case of Fund of Funds for Startups 1.0 while providing thrust to innovation",
+            "method": "section-heading",
+            "confidence": 0.9
+          }
+        ],
+        "funding_amount": [
+          {
+            "field": "funding_amount",
+            "value": 100000000000,
+            "source_url": "https://www.startupindia.gov.in/content/dam/startupindia/Startup-India-Fund-of-Funds-2.0-Scheme.pdf",
+            "quote": "vernment has approved the establishment of ‘Startup India Fund of Funds 2.0’ with a total corpus of Rs. 10,000 crore for the purpose of mobilizing venture capital for the startup ecosystem of the country. The Scheme shall be known as the ‘Startup India Fund of Funds 2.0 (Startup India FoF 2.0)’.",
+            "method": "money-pattern",
+            "confidence": 0.88
+          }
+        ],
+        "scheme_name": [
+          {
+            "field": "scheme_name",
+            "value": "Startup India Fund of Funds",
+            "source_url": "https://www.startupindia.gov.in/content/dam/startupindia/Startup-India-Fund-of-Funds-2.0-Scheme.pdf",
+            "quote": "Startup India Fund of Funds",
+            "method": "master-candidate",
+            "confidence": 0.98
+          }
+        ],
+        "ministry": [
+          {
+            "field": "ministry",
+            "value": "Ministry of Commerce and Industry",
+            "source_url": "https://www.startupindia.gov.in/",
+            "quote": "Startup India is the Government of India startup initiative operated through DPIIT under the Ministry of Commerce and Industry.",
+            "method": "source-authority-config",
+            "confidence": 0.9
+          }
+        ],
+        "department": [
+          {
+            "field": "department",
+            "value": "Department for Promotion of Industry and Internal Trade (DPIIT)",
+            "source_url": "https://www.startupindia.gov.in/",
+            "quote": "Startup India is the Government of India startup initiative operated through DPIIT under the Ministry of Commerce and Industry.",
+            "method": "source-authority-config",
+            "confidence": 0.9
+          }
+        ],
+        "implementing_agency": [
+          {
+            "field": "implementing_agency",
+            "value": "Startup India / DPIIT",
+            "source_url": "https://www.startupindia.gov.in/",
+            "quote": "Startup India is the Government of India startup initiative operated through DPIIT under the Ministry of Commerce and Industry.",
+            "method": "source-authority-config",
+            "confidence": 0.9
+          }
+        ]
+      },
+      "quality_flags": [
+        "APPLICATION_PROCESS_NOT_FOUND",
+        "REQUIRED_DOCUMENTS_NOT_FOUND"
+      ],
+      "extraction_confidence": 0.875,
+      "master_readiness": "READY_FOR_EXTRACTION",
+      "master_current_status": "SCHEME_INFORMATION_AVAILABLE",
+      "extracted_at": "2026-07-08T12:06:51.856251+00:00",
+      "extractor_version": "1.0.0",
+      "application_url_status": "INDIRECT_OR_INTERMEDIARY_APPLICATION",
+      "deadline_evidence": null,
+      "record_kind": "SCHEME_OR_PROGRAMME",
+      "programme_status": "SCHEME_INFORMATION_AVAILABLE",
+      "application_status": "NOT_DIRECTLY_APPLICABLE_BY_STARTUPS",
+      "validation": {
+        "decision": "NEEDS_ADMIN_REVIEW",
+        "decision_reasons": [
+          "Record is credible but one or more fields require admin confirmation."
+        ],
+        "validation_score": 0.795,
+        "warnings": [
+          "ELIGIBILITY_REQUIRES_EVIDENCE",
+          "REQUIRED_DOCUMENTS_NOT_VERIFIED",
+          "SINGLE_SOURCE_ONLY"
+        ],
+        "critical_flags": [],
+        "corrections": [
+          {
+            "field": "eligibility",
+            "before": [
+              "monitoring processes, reporting and assessment requirements, mechanism for disbursal of funds to",
+              "IAs and AIFs, composition of inv estment committee, and all other details necessary for operating",
+              "2.2. The implementation of the Scheme will inter-alia entail",
+              "a. Small Industries Development Bank of India (SIDBI), Implementation Agency (IA) of the",
+              "FFS 1.0, shall also be the Implementing Agency for the Startup India FoF 2.0. In addition,",
+              "another domestic IA(s) shall also be selected to implement the proposed Scheme.",
+              "b. The IAs will seek proposals from AIFs and conduct due diligence, post which a Venture",
+              "Capital Investment Committee (VCIC) constituted by DPIIT, which would include",
+              "representation from the industry, subject matter experts, and IAs, will consider the proposals",
+              "for recommendation. VCIC will consider AIFs managed by experienced professionals with"
+            ],
+            "after": [],
+            "reason": "Removed navigation, footer, fragments, duplicates, or misclassified text."
+          },
+          {
+            "field": "benefits",
+            "before": [
+              "This will include: (i) Supporting AIFs with larger corpuses to increase the availability of funds required for capital intensiv e segments such as deep tech and manufacturing",
+              "(ii) Supporting longer duration (term) AIFs to cater to startups having longer R&D cycles and gestation periods",
+              "(iii) Higher contribution from the Scheme for specific segments as deep tech and manufacturing wherein private capital is limited and cautious",
+              "and (iv) Moderation of investment multiplier (minimum amount an AIF must invest in startups as a multiple of the amount committed to it under the Scheme) to encourage larger number of AIFs to benefit from the Scheme and invest in startups",
+              "[भाग II—खण् ड 3(ii)] भारत का रािपत्र : असाधारण 5 c."
+            ],
+            "after": [
+              "This will include: (i) Supporting AIFs with larger corpuses to increase the availability of funds required for capital intensiv e segments such as deep tech and manufacturing",
+              "(ii) Supporting longer duration (term) AIFs to cater to startups having longer R&D cycles and gestation periods",
+              "(iii) Higher contribution from the Scheme for specific segments as deep tech and manufacturing wherein private capital is limited and cautious",
+              "and (iv) Moderation of investment multiplier (minimum amount an AIF must invest in startups as a multiple of the amount committed to it under the Scheme) to encourage larger number of AIFs to benefit from the Scheme and invest in startups"
+            ],
+            "reason": "Removed navigation, footer, fragments, duplicates, or misclassified text."
+          },
+          {
+            "field": "geographic_scope",
+            "before": {
+              "scope": "State / UT specific",
+              "states_or_uts": [
+                "Delhi"
+              ]
+            },
+            "after": {
+              "scope": "National (India)",
+              "states_or_uts": []
+            },
+            "reason": "Central-government pages often contain state names in navigation or contact addresses; geography was normalized from programme context."
+          },
+          {
+            "field": "funding_amount",
+            "before": {
+              "minimum": 100000000000,
+              "maximum": 100000000000,
+              "currency": "INR",
+              "funding_types": [
+                "Equity / Fund",
+                "Tax / Regulatory Support"
+              ],
+              "amount_mentions": [
+                {
+                  "amount": 100000000000,
+                  "currency": "INR",
+                  "display_text": "Rs. 10,000 crore",
+                  "context": "vernment has approved the establishment of ‘Startup India Fund of Funds 2.0’ with a total corpus of Rs. 10,000 crore for the purpose of mobilizing venture capital for the startup ecosystem of the country. The Scheme shall be known as the ‘Startup India Fund of Funds 2.0 (Startup India FoF 2.0)’.",
+                  "source_url": "https://www.startupindia.gov.in/content/dam/startupindia/Startup-India-Fund-of-Funds-2.0-Scheme.pdf"
+                }
+              ]
+            },
+            "after": {
+              "minimum": null,
+              "maximum": null,
+              "currency": "INR",
+              "funding_types": [
+                "Equity / Fund"
+              ],
+              "amount_mentions": [
+                {
+                  "amount": 100000000000,
+                  "currency": "INR",
+                  "display_text": "Rs. 10,000 crore",
+                  "role": "SCHEME_CORPUS",
+                  "context": "vernment has approved the establishment of ‘Startup India Fund of Funds 2.0’ with a total corpus of Rs. 10,000 crore for the purpose of mobilizing venture capital for the startup ecosystem of the country. The Scheme shall be known as the ‘Startup India Fund of Funds 2.0 (Startup India FoF 2.0)’.",
+                  "source_url": "https://www.startupindia.gov.in/content/dam/startupindia/Startup-India-Fund-of-Funds-2.0-Scheme.pdf"
+                }
+              ],
+              "beneficiary_support": {
+                "minimum": null,
+                "maximum": null
+              },
+              "intermediary_support_maximum": null,
+              "scheme_corpus": 100000000000
+            },
+            "reason": "Classified monetary evidence by role and removed section numbers, counts, examples, corpus values, and eligibility thresholds from direct-benefit limits."
+          },
+          {
+            "field": "scheme_type",
+            "before": [
+              "Equity / Fund",
+              "Tax / Regulatory Support"
+            ],
+            "after": [
+              "Equity / Fund"
+            ],
+            "reason": "Scheme type was re-derived from the scheme name and validated content instead of page navigation menus."
+          }
+        ],
+        "as_of_date": "2026-07-08",
+        "validated_at": "2026-07-08T12:23:15.579690+00:00",
+        "validator_version": "1.0.0",
+        "record_hash": "fcf23295ede378f1f29318bccbb493e305cf1c12e25bc2f719af6339e7a0e9f6"
+      }
+    }
+  }
+]

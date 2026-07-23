@@ -1,0 +1,23 @@
+{
+  "version": "3.4.3.8.0.3",
+  "generated_at": "2026-07-15T05:43:34+00:00",
+  "source_manifest_signature": "ff3d525523b908091762f90bdccb8e90c6a4604db884b5f554c439d8cea17357",
+  "source_decision_bundle_count": 17,
+  "safe_decision_bundle_count": 17,
+  "safe_child_count": 22,
+  "temporal_downgrade_count": 1,
+  "parent_link_repair_count": 11,
+  "current_status_evidence_complete_count": 0,
+  "historical_classification_count": 1,
+  "unsafe_current_status_count": 0,
+  "ambiguous_decision_label_count": 0,
+  "deep_review_requires_child_selection": true,
+  "deep_review_requires_admin_note": true,
+  "session_state_signature": "86f3281d8a4f51aface7edea42e0037c60066d8b65d3e2d2e7353aa89b5b7cce",
+  "session_decisions_invalidated_on_signature_change": true,
+  "apply_action_allowed_count": 0,
+  "publication_eligible_count": 0,
+  "database_write_performed": false,
+  "publication_performed": false,
+  "signature": "61a5055d8b6c89a9608b0e756811455f7595aab195330059c0aa6a14dc62d68e"
+}

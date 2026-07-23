@@ -1,0 +1,119 @@
+﻿external_domain,occurrence_count,unique_url_count,source_page_count,authority_tier,crawl_recommendation,sample_urls
+india.gov.in,1248,2,416,GOVERNMENT_PORTAL,RECORD_AND_REVIEW,https://india.gov.in/ | https://india.gov.in/hi
+onlinedst.gov.in,496,4,416,DST_RELATED_PORTAL,RECORD_AND_REVIEW,https://onlinedst.gov.in/ | https://onlinedst.gov.in/Login.aspx | https://onlinedst.gov.in/Projectproposalformat.aspx
+youtube.com,420,2,416,SOCIAL_MEDIA,DO_NOT_CRAWL,https://youtube.com/channel/UCl2D2pFgcfkwHgJy9OHambw | https://youtube.com/watch
+pib.gov.in,418,2,416,GOVERNMENT_PORTAL,RECORD_AND_REVIEW,https://pib.gov.in/PressReleasePage.aspx | https://pib.gov.in/indexd.aspx
+facebook.com,416,1,416,SOCIAL_MEDIA,DO_NOT_CRAWL,https://facebook.com/Department-of-Science-Technology-Govt-of-India-969734629779302
+twitter.com,416,1,416,SOCIAL_MEDIA,DO_NOT_CRAWL,https://twitter.com/IndiaDST
+indiadst.wordpress.com,416,1,416,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://indiadst.wordpress.com/
+swachhbharatmission.ddws.gov.in,416,1,416,GOVERNMENT_PORTAL,RECORD_AND_REVIEW,https://swachhbharatmission.ddws.gov.in/
+aistic.gov.in,416,1,416,GOVERNMENT_PORTAL,RECORD_AND_REVIEW,https://aistic.gov.in/ASEAN/ICDST
+dst.dashboard.nic.in,416,1,416,GOVERNMENT_PORTAL,RECORD_AND_REVIEW,https://dst.dashboard.nic.in/
+dst.eoffice.gov.in,416,1,416,GOVERNMENT_PORTAL,RECORD_AND_REVIEW,https://dst.eoffice.gov.in/
+cooperation.gov.in,416,1,416,GOVERNMENT_PORTAL,RECORD_AND_REVIEW,https://cooperation.gov.in/
+delhiwtsa24.in,416,1,416,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://delhiwtsa24.in/
+egazette.gov.in,416,1,416,GOVERNMENT_PORTAL,RECORD_AND_REVIEW,https://egazette.gov.in/(S(z10015qjwyphq0zhtxo0lar1))/default.aspx
+pmcares.gov.in,416,1,416,GOVERNMENT_PORTAL,RECORD_AND_REVIEW,https://pmcares.gov.in/en
+gandhi.gov.in,416,1,416,GOVERNMENT_PORTAL,RECORD_AND_REVIEW,https://gandhi.gov.in/
+cpao.nic.in,416,1,416,GOVERNMENT_PORTAL,RECORD_AND_REVIEW,https://cpao.nic.in/
+pledge.cvc.nic.in,416,1,416,GOVERNMENT_PORTAL,RECORD_AND_REVIEW,https://pledge.cvc.nic.in/
+indiacode.nic.in,416,1,416,GOVERNMENT_PORTAL,RECORD_AND_REVIEW,https://indiacode.nic.in/
+pmindia.gov.in,416,1,416,GOVERNMENT_PORTAL,RECORD_AND_REVIEW,https://pmindia.gov.in/en/national-defence-fund
+goidirectory.nic.in,416,1,416,GOVERNMENT_PORTAL,RECORD_AND_REVIEW,https://goidirectory.nic.in/index.php
+digitalindia.gov.in,416,1,416,GOVERNMENT_PORTAL,RECORD_AND_REVIEW,https://digitalindia.gov.in/
+pmnrf.gov.in,416,1,416,GOVERNMENT_PORTAL,RECORD_AND_REVIEW,https://pmnrf.gov.in/
+nic.in,416,1,416,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://nic.in/
+serbonline.in,9,9,1,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://serbonline.in/SERB/HRR | https://serbonline.in/SERB/Ramanujan_fellowship | https://serbonline.in/SERB/Weaker_section
+iusstf.org,8,8,6,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://iusstf.org/ | https://iusstf.org/home | https://iusstf.org/indo-u-s-fellowship-for-women-in-stemm-wistemm-
+tdb.gov.in,6,6,6,GOVERNMENT_PORTAL,RECORD_AND_REVIEW,https://tdb.gov.in/ | https://tdb.gov.in/current-opening | https://tdb.gov.in/india-spain-joint-call-rdi-projects-2024
+youtu.be,5,5,2,SOCIAL_MEDIA,DO_NOT_CRAWL,https://youtu.be/Dz0D_joMbmo | https://youtu.be/bJvfd8g6paY | https://youtu.be/kJzaNgyVpf8
+nidhi-eir.in,3,1,3,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://nidhi-eir.in/
+nidhi-prayas.org,3,1,3,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://nidhi-prayas.org/
+cetp-submission.mur.gov.it,3,1,3,INTERNATIONAL_GOVERNMENT,RECORD_ONLY,https://cetp-submission.mur.gov.it/
+dststutitraining.com,2,1,2,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://dststutitraining.com/
+insaindia.res.in,2,2,2,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://insaindia.res.in/isrf-call-2024-25 | https://insaindia.res.in/isrf-call-2025-26
+gita.org.in,2,2,2,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://gita.org.in/OnlineRfp/ProgramInfo.aspx | https://gita.org.in/bilateral_funding_India-Israel.html
+mostr.gov.lk,2,1,2,INTERNATIONAL_GOVERNMENT,RECORD_ONLY,https://mostr.gov.lk/
+tifac.org.in,2,2,2,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://tifac.org.in/ | https://tifac.org.in/index.php/programmes/capacity-building/kiran-ipr
+endowment.iusstf.org,2,1,1,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://endowment.iusstf.org/login
+qcinnovation.co.in,2,1,1,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://qcinnovation.co.in/
+samgnya.in,2,2,1,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://samgnya.in/ | https://samgnya.in/startups
+qmettech.com,2,2,1,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://qmettech.com/ | https://qmettech.com/entrepreneurship-development/nextsense-call-for-proposal-2025
+dsttara.in,2,2,2,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://dsttara.in/InnerPages/COVID.aspx | https://dsttara.in/InnerPages/Core_Support_Groups.aspx
+nstmis-dst.org,2,1,1,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://nstmis-dst.org/
+ngcma.dst.gov.in,2,1,2,DST_RELATED_PORTAL,RECORD_AND_REVIEW,https://ngcma.dst.gov.in/Login.aspx
+bharatinnovates.in,1,1,1,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://bharatinnovates.in/
+eservices.dot.gov.in,1,1,1,GOVERNMENT_PORTAL,RECORD_AND_REVIEW,https://eservices.dot.gov.in/5ghackathon
+pmkisan.gov.in,1,1,1,GOVERNMENT_PORTAL,RECORD_AND_REVIEW,https://pmkisan.gov.in/
+narendramodi.in,1,1,1,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://narendramodi.in/
+cbpssubscriber.mygov.in,1,1,1,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://cbpssubscriber.mygov.in/aff/ELBNzMRJt7Otejxh
+rdifund.anrf.gov.in,1,1,1,GOVERNMENT_PORTAL,RECORD_AND_REVIEW,https://rdifund.anrf.gov.in/
+csirhrdg.res.in,1,1,1,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://csirhrdg.res.in/Home/Index/1/Default/2687/67
+dbtindia.gov.in,1,1,1,GOVERNMENT_PORTAL,RECORD_AND_REVIEW,https://dbtindia.gov.in/schemes-programmes/building-capacities/awards/innovative-young-bio-technologist-award-iyba
+isro.gov.in,1,1,1,GOVERNMENT_PORTAL,RECORD_AND_REVIEW,https://isro.gov.in/RESPONDProjects.html
+moes.gov.in,1,1,1,GOVERNMENT_PORTAL,RECORD_AND_REVIEW,https://moes.gov.in/programmes/programmes
+usief.org.in,1,1,1,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://usief.org.in/Fellowships/Fulbright-Kalam-Climate-Fellowship.aspx
+oead.at,1,1,1,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://oead.at/wtz
+serc.iisc.ac.in,1,1,1,ACADEMIC_INSTITUTION,RECORD_ONLY,https://serc.iisc.ac.in/projects/nsm
+igstc-2020.b2match.io,1,1,1,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://igstc-2020.b2match.io/
+ignitiongrants.usistef.online,1,1,1,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://ignitiongrants.usistef.online/login
+e-techcom.tdb.gov.in,1,1,1,GOVERNMENT_PORTAL,RECORD_AND_REVIEW,https://e-techcom.tdb.gov.in/
+i4f.org,1,1,1,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://i4f.org/
+cet.usistef.online,1,1,1,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://cet.usistef.online/login
+lindau-nobel.org,1,1,1,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://lindau-nobel.org/
+wisekiranipr.org.in,1,1,1,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://wisekiranipr.org.in/wsci/online/Control.do
+indiarussiainnovate.org,1,1,1,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://indiarussiainnovate.org/apply.html
+49.50.81.218,1,1,1,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://49.50.81.218/visitation-program-for-indian-applicants.aspx
+cefipra.org,1,1,1,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://cefipra.org/raman-charpak-2017
+iusstf-ef.ciieindia.org,1,1,1,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://iusstf-ef.ciieindia.org/
+igstc.org,1,1,1,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://igstc.org/
+newgeniedc-edii.in,1,1,1,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://newgeniedc-edii.in/
+ghcindia.anitaborg.org,1,1,1,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://ghcindia.anitaborg.org/women-entrepreneur-quest-2017
+ukieri.org,1,1,1,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://ukieri.org/call-for-research-applications-2017-18.html
+proposal.sakshat.ac.in,1,1,1,ACADEMIC_INSTITUTION,RECORD_ONLY,https://proposal.sakshat.ac.in/scholarship
+tih.iitb.ac.in,1,1,1,ACADEMIC_INSTITUTION,RECORD_ONLY,https://tih.iitb.ac.in/
+ai4icps.in,1,1,1,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://ai4icps.in/
+ihub-data.iiit.ac.in,1,1,1,ACADEMIC_INSTITUTION,RECORD_ONLY,https://ihub-data.iiit.ac.in/
+artpark.in,1,1,1,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://artpark.in/
+c3ihub.org,1,1,1,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://c3ihub.org/
+ihub-drishti.ai,1,1,1,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://ihub-drishti.ai/
+tih.iitr.ac.in,1,1,1,ACADEMIC_INSTITUTION,RECORD_ONLY,https://tih.iitr.ac.in/
+tih-iitp.com,1,1,1,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://tih-iitp.com/
+pravartak.org.in,1,1,1,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://pravartak.org.in/
+tihan.iith.ac.in,1,1,1,ACADEMIC_INSTITUTION,RECORD_ONLY,https://tihan.iith.ac.in/
+idapthub.org,1,1,1,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://idapthub.org/
+iitg.ac.in,1,1,1,ACADEMIC_INSTITUTION,RECORD_ONLY,https://iitg.ac.in/tihue
+ihfc.co.in,1,1,1,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://ihfc.co.in/
+ihub-awadh.in,1,1,1,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://ihub-awadh.in/
+texmin.in,1,1,1,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://texmin.in/
+iitpkd.ac.in,1,1,1,ACADEMIC_INSTITUTION,RECORD_ONLY,https://iitpkd.ac.in/technology-ihub-foundation
+comet.iiitb.ac.in,1,1,1,ACADEMIC_INSTITUTION,RECORD_ONLY,https://comet.iiitb.ac.in/
+biocytih.co.in,1,1,1,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://biocytih.co.in/
+ideas-tih.org,1,1,1,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://ideas-tih.org/
+drishticps.iiti.ac.in,1,1,1,ACADEMIC_INSTITUTION,RECORD_ONLY,https://drishticps.iiti.ac.in/
+ihub-anubhuti-iiitd.org,1,1,1,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://ihub-anubhuti-iiitd.org/index.html
+quantech.org.in,1,1,1,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://quantech.org.in/
+iittnif.com,1,1,1,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://iittnif.com/
+ibitf.co.in,1,1,1,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://ibitf.co.in/
+nmicps.in,1,1,1,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://nmicps.in/
+qmdhub.co.in,1,1,1,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://qmdhub.co.in/
+forms.gle,1,1,1,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://forms.gle/5ADb8LBsbx8oWEts6
+nsmindia.in,1,1,1,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://nsmindia.in/
+himalayageoportal.in,1,1,1,APPLICATION_PORTAL,RECORD_AND_REVIEW,https://himalayageoportal.in/
+sciencexpress.in,1,1,1,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://sciencexpress.in/
+nstedb.com,1,1,1,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://nstedb.com/
+dst-iget.in,1,1,1,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://dst-iget.in/
+unwgic2022.in,1,1,1,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://unwgic2022.in/
+istem.gov.in,1,1,1,GOVERNMENT_PORTAL,RECORD_AND_REVIEW,https://istem.gov.in/
+saifora.iitb.ac.in,1,1,1,ACADEMIC_INSTITUTION,RECORD_ONLY,https://saifora.iitb.ac.in/crnts/Online_Ext_Reg/Web_Portal_DST_SAIF/index.jsp
+online-inspire.gov.in,1,1,1,GOVERNMENT_PORTAL,RECORD_AND_REVIEW,https://online-inspire.gov.in/
+oecd.org,1,1,1,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://oecd.org/
+indiascienceandtechnology.gov.in,1,1,1,GOVERNMENT_PORTAL,RECORD_AND_REVIEW,https://indiascienceandtechnology.gov.in/science-society-setu
+115.112.95.106,1,1,1,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://115.112.95.106/disha
+scienceandsociety-dst.org,1,1,1,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://scienceandsociety-dst.org/sactioned.htm
+iigm.res.in,1,1,1,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://iigm.res.in/careers/positionvacancies
+rri.res.in,1,1,1,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://rri.res.in/careers/regular-other-openings
+bose.res.in,1,1,1,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://bose.res.in/InfoAnnouncements/JobOpenings.jsp
+wihg.res.in,1,1,1,UNCLASSIFIED_EXTERNAL,RECORD_ONLY,https://wihg.res.in/recruitment
+ias.ac.in,1,1,1,ACADEMIC_INSTITUTION,RECORD_ONLY,https://ias.ac.in/positions
+ipft.gov.in,1,1,1,GOVERNMENT_PORTAL,RECORD_AND_REVIEW,https://ipft.gov.in/announcements/recruitment

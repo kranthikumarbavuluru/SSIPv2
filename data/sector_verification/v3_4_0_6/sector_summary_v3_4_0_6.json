@@ -1,0 +1,49 @@
+{
+  "service_version": "3.4.0.6",
+  "generated_at": "2026-07-10T14:36:56+00:00",
+  "input_catalogue": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\catalogue_preview\\v3_3_2\\catalogue_preview_v3_3_2.csv",
+  "output_directory": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\sector_verification\\v3_4_0_6",
+  "counts": {
+    "input_rows": 137,
+    "output_rows": 137,
+    "visible_main_records": 119,
+    "records_missing_sector": 0,
+    "invalid_sector_values": 0,
+    "manual_review_records": 8,
+    "network_enriched_records": 137,
+    "lm_verified_records": 0
+  },
+  "primary_sector_distribution": {
+    "Cross-sector MSME & Startup Finance": 26,
+    "Cross-sector Innovation & Entrepreneurship": 74,
+    "Agriculture & AgriTech": 2,
+    "Artificial Intelligence & Data": 4,
+    "Healthcare & MedTech": 2,
+    "Aerospace & Defence": 2,
+    "Financial Services & FinTech": 1,
+    "Retail, Commerce & Consumer Technology": 1,
+    "Biotechnology & Life Sciences": 3,
+    "Digital Technology & Software": 2,
+    "Robotics & Automation": 1,
+    "Environment & Circular Economy": 1
+  },
+  "methods": {
+    "EXISTING_SECTOR_CONFIRMED": 47,
+    "DETERMINISTIC_EVIDENCE": 48,
+    "CROSS_SECTOR_FALLBACK": 34,
+    "SECTOR_CONFLICT_REVIEW": 8
+  },
+  "validation_passed": true,
+  "applied_to_dashboard_catalogue": true,
+  "backup_path": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\backups\\sector_verification_v3_4_0_6\\catalogue_preview_v3_3_2_before_sector_agent_20260710_200656.csv",
+  "network_allowed": true,
+  "lm_studio_used": false,
+  "outputs": {
+    "enriched_catalogue": "catalogue_with_verified_sectors_v3_4_0_6.csv",
+    "audit": "sector_verification_audit_v3_4_0_6.csv",
+    "review_queue": "sector_manual_review_queue_v3_4_0_6.csv",
+    "distribution": "sector_distribution_v3_4_0_6.csv",
+    "taxonomy": "sector_taxonomy_v3_4_0_6.csv",
+    "validation": "sector_validation_v3_4_0_6.json"
+  }
+}

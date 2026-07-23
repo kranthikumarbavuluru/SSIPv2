@@ -1,0 +1,73 @@
+{
+  "service_version": "3.4.0.3.2",
+  "department_code": "DST",
+  "department_name": "Department of Science and Technology",
+  "completed_at": "2026-07-10T10:56:15+00:00",
+  "input_dir": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\departments\\dst\\v3_4_0_3",
+  "classifier_dir": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\departments\\dst\\v3_4_0_2",
+  "link_graph": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\departments\\dst\\v3_4_0_1\\crawl\\dst_link_graph_v3_4_0_1.csv",
+  "output_dir": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\departments\\dst\\v3_4_0_3_2",
+  "network_access_used": false,
+  "recrawl_performed": false,
+  "corrected_semantics": {
+    "category_gap_source_url_interpretation": "TARGET_URL",
+    "category_lineage_join": "REVERSE_LINK_GRAPH_TO_URL_TO_FROM_URL"
+  },
+  "identity_safeguard": {
+    "canonical_scheme_identity_created": false,
+    "identity_locked": false,
+    "call_pages_used_as_permanent_candidates": false,
+    "generic_pages_allowed_in_corrected_inventory": false,
+    "description": "Direct target and quality decisions only; v3.4.0.4 must curate and lock permanent identities."
+  },
+  "counts": {
+    "input_category_gap_rows": 443,
+    "unique_category_gaps": 114,
+    "duplicate_gap_occurrences": 329,
+    "direct_target_matches": 15,
+    "unresolved_unique_gaps": 102,
+    "existing_entity_gap_matches": 0,
+    "possible_new_schemes": 0,
+    "possible_new_programmes": 0,
+    "gap_non_entity_pages": 11,
+    "true_broken_targets": 1,
+    "input_provisional_entities": 33,
+    "corrected_provisional_schemes": 3,
+    "corrected_provisional_programmes": 20,
+    "provisional_entity_downgrades": 5,
+    "admin_review_rows": 107
+  },
+  "gap_classification_counts": {
+    "ACCESSIBILITY_OR_NAVIGATION_PAGE": 1,
+    "BROKEN_OFFICIAL_LINK": 1,
+    "CATEGORY_OR_INDEX_PAGE": 4,
+    "SUPPORTING_PAGE": 6,
+    "UNRESOLVED": 102
+  },
+  "provisional_entity_quality_decision_counts": {
+    "ADMIN_REVIEW": 5,
+    "DOWNGRADE_TO_ARCHIVE": 1,
+    "DOWNGRADE_TO_SUPPORTING_PAGE": 4,
+    "KEEP_AS_PROVISIONAL_PROGRAMME": 20,
+    "KEEP_AS_PROVISIONAL_SCHEME": 3
+  },
+  "hotfix_validation_passed": false,
+  "ready_for_v3_4_0_4": false,
+  "outputs": {
+    "direct_target_matches": "dst_direct_target_matches_v3_4_0_3_2.csv",
+    "category_lineage": "dst_recovered_category_lineage_v3_4_0_3_2.csv",
+    "existing_entity_gap_matches": "dst_existing_entity_gap_matches_v3_4_0_3_2.csv",
+    "possible_new_schemes": "dst_possible_new_scheme_pages_v3_4_0_3_2.csv",
+    "possible_new_programmes": "dst_possible_new_programme_pages_v3_4_0_3_2.csv",
+    "gap_non_entity_pages": "dst_gap_non_entity_pages_v3_4_0_3_2.csv",
+    "true_broken_targets": "dst_true_broken_targets_v3_4_0_3_2.csv",
+    "gap_duplicates": "dst_gap_duplicates_v3_4_0_3_2.csv",
+    "corrected_schemes": "dst_corrected_provisional_schemes_v3_4_0_3_2.csv",
+    "corrected_programmes": "dst_corrected_provisional_programmes_v3_4_0_3_2.csv",
+    "entity_downgrades": "dst_provisional_entity_downgrades_v3_4_0_3_2.csv",
+    "review_queue": "dst_identity_review_queue_v3_4_0_3_2.csv",
+    "audit": "dst_hotfix_audit_v3_4_0_3_2.csv",
+    "validation": "dst_hotfix_validation_v3_4_0_3_2.json",
+    "summary": "dst_hotfix_summary_v3_4_0_3_2.json"
+  }
+}

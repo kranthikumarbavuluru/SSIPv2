@@ -1,0 +1,80 @@
+{
+  "checks": {
+    "all_records_not_published": true,
+    "all_v34102_reviews_adjudicated": true,
+    "archive_utility_has_no_owner_assignment": true,
+    "cross_department_directory_not_scheme_identity": true,
+    "directory_child_ownership_not_inferred": true,
+    "dpiit_v34101_unchanged": true,
+    "dpiit_v34102_unchanged": true,
+    "dst_outputs_unchanged": true,
+    "fof2_identity_not_merged": true,
+    "fof2_version_lineage_recorded": true,
+    "gazette_issuer_verified_from_official_text": true,
+    "no_unresolved_review_items": true,
+    "public_dashboard_unchanged": true,
+    "publication_current_unchanged": true,
+    "recognition_and_80iac_are_distinct_services": true,
+    "recognition_master_id_preserved": true,
+    "tax_service_owned_by_dpiit": true,
+    "tax_service_requires_recognition": true
+  },
+  "counts": {
+    "evidence": 10,
+    "lineage": 1,
+    "ownership": 4,
+    "resolved": 6,
+    "service_decisions": 1,
+    "service_relationships": 1,
+    "services": 2,
+    "unresolved": 0
+  },
+  "preservation": {
+    "files": {
+      "apps/public_dashboard_app_v2_9.py": {
+        "after": "77bd6cff08353e9587459b8f507ef5399b3c508fd514d73bdb87f8cc97ca14cd",
+        "before": "77bd6cff08353e9587459b8f507ef5399b3c508fd514d73bdb87f8cc97ca14cd",
+        "unchanged": true
+      },
+      "assets/dashboard_theme.css": {
+        "after": "2841d412db0c4f1f4c5800b5bfc71860217f6427a62855b2560004e5af946524",
+        "before": "2841d412db0c4f1f4c5800b5bfc71860217f6427a62855b2560004e5af946524",
+        "unchanged": true
+      },
+      "data/publication/current_manifest.json": {
+        "after": "193e0d37a296662d9ed124d5847a27749f4c7bb64118b11294ea650264949a5a",
+        "before": "193e0d37a296662d9ed124d5847a27749f4c7bb64118b11294ea650264949a5a",
+        "unchanged": true
+      },
+      "ssip_dashboard/assets/styles.css": {
+        "after": "ea9fadec7c9f29aa54b4ebbaa25ce64d1484e4941b90075f1160e97d31a803be",
+        "before": "ea9fadec7c9f29aa54b4ebbaa25ce64d1484e4941b90075f1160e97d31a803be",
+        "unchanged": true
+      }
+    },
+    "trees": {
+      "data/departments/dpiit/v3_4_1_0_1": {
+        "after": "4b6bff9e1a35b7f119b139eea25b4b56b830b43e03aafde39135ae1045160e24",
+        "before": "4b6bff9e1a35b7f119b139eea25b4b56b830b43e03aafde39135ae1045160e24",
+        "unchanged": true
+      },
+      "data/departments/dpiit/v3_4_1_0_2": {
+        "after": "3c113844348633538835e46c45efa1a38bd433515bf3685f08615eec2985c99e",
+        "before": "3c113844348633538835e46c45efa1a38bd433515bf3685f08615eec2985c99e",
+        "unchanged": true
+      },
+      "data/departments/dst": {
+        "after": "7cbc42c792d0555116c0943c6b78574a9a175623ddfb066e6f7fe5a48e40c2ff",
+        "before": "7cbc42c792d0555116c0943c6b78574a9a175623ddfb066e6f7fe5a48e40c2ff",
+        "unchanged": true
+      },
+      "data/publication/current": {
+        "after": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "before": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "unchanged": true
+      }
+    }
+  },
+  "validation_passed": true,
+  "version": "3.4.1.0.3"
+}

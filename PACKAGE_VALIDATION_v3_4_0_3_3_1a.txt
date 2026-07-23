@@ -1,0 +1,8 @@
+SSIP v3.4.0.3.3.1a package validation
+
+Fix: Added ACCESSIBILITY_LINK to ALLOWED_FINAL_CLASSES.
+Identity rule: identity_locked=false remains mandatory in this calibration stage.
+
+Python compile: PASSED
+Internal self-test: PASSED
+Pytest: 9 passed

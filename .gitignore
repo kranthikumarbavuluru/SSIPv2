@@ -25,6 +25,14 @@ outputs/
 github_export/
 .pytest_cache/
 .test_tmp*/
+media/inbox/*
+!media/inbox/.gitkeep
+media/processed/*
+!media/processed/.gitkeep
+media/quarantine/*
+!media/quarantine/.gitkeep
+data/media_runs/*
+!data/media_runs/.gitkeep
 data/test_runs/
 data/agent_runs/
 data/agent_state/

@@ -1,0 +1,41 @@
+{
+  "version": "3.4.3.3",
+  "phase": "MeitY SASACT and GENESIS Identity, Evidence and Status Validation",
+  "recorded_at": "2026-07-13T08:24:23+00:00",
+  "validation_status": "PASS",
+  "frozen_file_results": {
+    "data/catalogue_preview/v3_3_2/catalogue_preview_v3_3_2.csv": {
+      "before": "0181012e52125ffb646c89ff86b39ac0136277aa76750e527e2870de7aaf43ba",
+      "after": "0181012e52125ffb646c89ff86b39ac0136277aa76750e527e2870de7aaf43ba",
+      "unchanged": true
+    },
+    "data/publication/current_manifest.json": {
+      "before": "189d1f363db367080dd7117640f717527707e1d86e089f151f0f58adca53ccb0",
+      "after": "189d1f363db367080dd7117640f717527707e1d86e089f151f0f58adca53ccb0",
+      "unchanged": true
+    },
+    "database/ssip_staging_v1.db": {
+      "before": "41862a0fadd78ac2238153fec50af7136619eaf6a5c22951f57ba42a2ee101c3",
+      "after": "41862a0fadd78ac2238153fec50af7136619eaf6a5c22951f57ba42a2ee101c3",
+      "unchanged": true
+    },
+    "apps/public_dashboard_app_v2_9.py": {
+      "before": "1db5b66ffc049cc521615e9595042e02a277ad6f14d77ec84f5c8c9e880e9bb0",
+      "after": "1db5b66ffc049cc521615e9595042e02a277ad6f14d77ec84f5c8c9e880e9bb0",
+      "unchanged": true
+    },
+    "data/departments/meity/v3_4_3_2/meity_candidate_identity_register_v3_4_3_2.csv": {
+      "before": "62cd640260d28697ec156b5001e02ee1c15e90901d6386de2b66c62f9156cb7b",
+      "after": "62cd640260d28697ec156b5001e02ee1c15e90901d6386de2b66c62f9156cb7b",
+      "unchanged": true
+    },
+    "data/departments/meity/v3_4_3_2/meity_triage_validation_v3_4_3_2.json": {
+      "before": "c5ded94364515e766437160fb5a3e62d10ee547e049be8ddd54177b8d0d77d82",
+      "after": "c5ded94364515e766437160fb5a3e62d10ee547e049be8ddd54177b8d0d77d82",
+      "unchanged": true
+    }
+  },
+  "publication_performed": false,
+  "database_modified": false,
+  "dashboard_modified": false
+}

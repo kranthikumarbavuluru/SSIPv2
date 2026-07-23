@@ -1,0 +1,26 @@
+from pathlib import Path
+
+PROJECT_ROOT = Path(__file__).parent
+
+AGENTS_FOLDER = PROJECT_ROOT / "agents"
+DATABASE_FOLDER = PROJECT_ROOT / "database"
+DOWNLOAD_FOLDER = PROJECT_ROOT / "downloads"
+OUTPUT_FOLDER = PROJECT_ROOT / "outputs"
+PROMPTS_FOLDER = PROJECT_ROOT / "prompts"
+EXCEL_FOLDER = PROJECT_ROOT / "excel"
+LOG_FOLDER = PROJECT_ROOT / "logs"
+
+DATABASE_FILE = DATABASE_FOLDER / "ssip.db"
+EXCEL_FILE = EXCEL_FOLDER / "Schemes_Dashboard.xlsx"
+
+LM_STUDIO_URL = "http://127.0.0.1:1234/v1"
+MODEL_NAME = "qwen2.5-7b-instruct"
+
+TEMPERATURE = 0.1
+MAX_TOKENS = 2000
+MAX_WEBPAGE_CHARS = 6000
+
+REQUEST_TIMEOUT = 20
+USER_AGENT = "Mozilla/5.0"
+
+VERSION = "1.0.0"

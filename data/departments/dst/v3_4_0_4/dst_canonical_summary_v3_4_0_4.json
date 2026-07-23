@@ -1,0 +1,47 @@
+{
+  "service_version": "3.4.0.4",
+  "department_code": "DST",
+  "department_name": "Department of Science and Technology",
+  "completed_at": "2026-07-10T11:55:26+00:00",
+  "identity_policy": {
+    "permanent_identity_locked": true,
+    "temporary_calls_can_rename_scheme": false,
+    "manual_review_rows_published": false,
+    "description": "Only corrected permanent DST scheme/programme identities are locked. Calls remain separate future instances."
+  },
+  "counts": {
+    "canonical_entities": 23,
+    "canonical_schemes": 3,
+    "canonical_programmes": 20,
+    "canonical_aliases": 18,
+    "relationship_reviews": 9,
+    "manual_entity_reviews": 4,
+    "identity_lock_rejections": 0,
+    "publication_records": 23
+  },
+  "canonical_validation_passed": true,
+  "ready_for_dashboard_preview": true,
+  "ready_for_v3_4_0_5": true,
+  "dashboard": {
+    "application": "apps/ssip_public_dashboard_v3_4_0_4.py",
+    "database": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\departments\\dst\\v3_4_0_4\\ssip_public_preview_v3_4_0_4.db",
+    "default_port": 8502,
+    "public_preview_records": 23
+  },
+  "outputs": {
+    "canonical_entities": "dst_canonical_entity_registry_v3_4_0_4.csv",
+    "canonical_schemes": "dst_canonical_scheme_registry_v3_4_0_4.csv",
+    "canonical_programmes": "dst_canonical_programme_registry_v3_4_0_4.csv",
+    "canonical_aliases": "dst_canonical_alias_registry_v3_4_0_4.csv",
+    "relationship_review": "dst_relationship_review_queue_v3_4_0_4.csv",
+    "manual_review": "dst_manual_entity_review_queue_v3_4_0_4.csv",
+    "rejections": "dst_identity_lock_rejections_v3_4_0_4.csv",
+    "publication_catalogue": "dst_publication_catalogue_v3_4_0_4.csv",
+    "publication_json": "dst_publication_catalogue_v3_4_0_4.json",
+    "database": "ssip_public_preview_v3_4_0_4.db",
+    "audit": "dst_identity_lock_audit_v3_4_0_4.csv",
+    "validation": "dst_canonical_validation_v3_4_0_4.json",
+    "summary": "dst_canonical_summary_v3_4_0_4.json"
+  },
+  "output_directory": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\departments\\dst\\v3_4_0_4"
+}

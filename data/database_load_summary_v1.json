@@ -1,0 +1,19 @@
+{
+  "run_id": "e35068312d2c4abb91acd46a18bda570",
+  "loader_version": "1.0.0",
+  "dry_run": false,
+  "input_approved_count": 4,
+  "input_review_count": 6,
+  "input_rejected_count": 0,
+  "input_audit_count": 10,
+  "staged_scheme_count": 4,
+  "pending_review_count": 6,
+  "review_queue_total_count": 6,
+  "rejected_table_count": 0,
+  "validation_audit_count": 10,
+  "scheme_attribute_rows_written": 103,
+  "scheme_contact_rows_written": 16,
+  "scheme_source_rows_written": 9,
+  "database_path": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\database\\ssip_staging_v1.db",
+  "generated_at": "2026-07-08T12:30:55.088973+00:00"
+}

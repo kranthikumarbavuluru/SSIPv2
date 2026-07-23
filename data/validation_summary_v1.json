@@ -1,0 +1,49 @@
+{
+  "as_of_date": "2026-07-08",
+  "input_record_count": 10,
+  "upstream_failure_count": 0,
+  "approved_for_database_count": 4,
+  "admin_review_queue_count": 6,
+  "rejected_count": 0,
+  "records_by_decision": {
+    "NEEDS_MORE_EVIDENCE": 4,
+    "APPROVED_FOR_DATABASE": 4,
+    "NEEDS_ADMIN_REVIEW": 2
+  },
+  "records_by_source": {
+    "BIRAC": 2,
+    "DST": 5,
+    "Startup India": 3
+  },
+  "records_by_programme_status": {
+    "CALL_INFORMATION_CURRENT": 4,
+    "SCHEME_INFORMATION_AVAILABLE": 4,
+    "CALL_INFORMATION_AVAILABLE": 1,
+    "UMBRELLA_PROGRAMME_INFORMATION_AVAILABLE": 1
+  },
+  "records_by_application_status": {
+    "OPEN": 3,
+    "COMPONENT_SPECIFIC": 1,
+    "CLOSED": 2,
+    "DEADLINE_UNVERIFIED": 1,
+    "NOT_A_SINGLE_APPLICATION_WINDOW": 1,
+    "APPLY_THROUGH_MEMBER_INSTITUTION": 1,
+    "NOT_DIRECTLY_APPLICABLE_BY_STARTUPS": 1
+  },
+  "warning_counts": {
+    "APPLICATION_PROCESS_REQUIRES_EVIDENCE": 4,
+    "BENEFITS_OR_FUNDING_REQUIRES_EVIDENCE": 4,
+    "ELIGIBILITY_REQUIRES_EVIDENCE": 5,
+    "OBJECTIVE_REQUIRES_EVIDENCE": 3,
+    "REQUIRED_DOCUMENTS_NOT_VERIFIED": 9,
+    "INVALID_CONTACTS_REMOVED": 1,
+    "APPLICATION_LINK_REQUIRES_REVIEW": 3,
+    "SINGLE_SOURCE_ONLY": 2,
+    "ACTIVE_CALL_DEADLINE_UNVERIFIED": 1
+  },
+  "total_field_corrections": 49,
+  "average_validation_score": 0.739,
+  "input_path": "D:\\WebSite\\DASHBOARD\\Code\\SSIP\\data\\extracted_scheme_records_v1.json",
+  "generated_at": "2026-07-08T12:23:15.581778+00:00",
+  "validator_version": "1.0.0"
+}

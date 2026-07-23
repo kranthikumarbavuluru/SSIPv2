@@ -1,0 +1,25 @@
+{
+  "service_version": "3.4.0.5",
+  "generated_at": "2026-07-10T13:38:35+00:00",
+  "project_root": "D:\\WebSite\\DASHBOARD\\Code\\SSIP",
+  "deep_search": {
+    "pages_processed": 180,
+    "startup_calls_identified": 6,
+    "manual_review_candidates": 59,
+    "supporting_documents": 423,
+    "fetch_errors": 4,
+    "classification_counts": {
+      "CALL_REVIEW_REQUIRED": 32,
+      "DIRECT_STARTUP_SCHEME": 8,
+      "ECOSYSTEM_REVIEW_REQUIRED": 14,
+      "FETCH_ERROR": 4,
+      "MANUAL_STARTUP_REVIEW": 13,
+      "REJECTED_NON_STARTUP": 57,
+      "STARTUP_ACCESS_PROGRAMME": 6,
+      "STARTUP_CALL_INSTANCE": 6,
+      "STARTUP_ECOSYSTEM_MISSION": 18,
+      "SUPPORTING_OR_NOISE": 22
+    }
+  },
+  "pipeline_passed": true
+}

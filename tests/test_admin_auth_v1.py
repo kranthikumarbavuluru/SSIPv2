@@ -43,6 +43,7 @@ class AdminAuthV1Tests(TestCase):
         self.assertIn('"Admin Login"', public)
         self.assertIn('"admin/login"', public)
         self.assertIn('href="?page=admin/login"', public)
+        self.assertIn('class="admin-login-action" target="_top"', public)
         self.assertIn("verify_admin_password", public)
         self.assertIn("verify_admin_password", admin)
         self.assertNotIn("local-test-secret", public)

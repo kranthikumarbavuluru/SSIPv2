@@ -53,9 +53,9 @@ deployment. Do not commit either value:
 $env:SSIP_ADMIN_PASSWORD = "replace-with-your-secret"
 ```
 
-The public page links to the separate review workspace on port 8505, which
-uses the same login gate. Set `SSIP_ADMIN_WORKSPACE_URL` when that workspace
-is hosted elsewhere.
+The public page links in the current tab to the separate review workspace on
+port 8505, which uses the same login gate. Set `SSIP_ADMIN_WORKSPACE_URL` when
+that workspace is hosted elsewhere.
 
 Operational databases are intentionally excluded from Git. In catalogue-preview
 mode the public dashboard can load the governed preview CSV without a database.

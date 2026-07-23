@@ -745,7 +745,7 @@ def render_admin_login() -> None:
             unsafe_allow_html=True,
         )
         st.markdown(
-            f'<a class="admin-login-action" target="_blank" rel="noopener noreferrer" '
+            f'<a class="admin-login-action" target="_top" '
             f'href="{esc(config.workspace_url)}">Open admin review workspace</a>',
             unsafe_allow_html=True,
         )

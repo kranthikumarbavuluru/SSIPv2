@@ -2175,8 +2175,18 @@ select:focus-visible,
   border-color: var(--ssip-border) !important;
 }
 
+/* v3.4.14.0 navigation copy calibration — keep the real More label once. */
+.ssip-nav-more > summary {
+  font-size: .76rem !important;
+}
+
+.ssip-nav-more > summary::before {
+  content: none !important;
+}
+
 /* v3.4.14.0 shared Home card grid — schemes and time-bound opportunities
    should read as one catalogue surface, not two unrelated layouts. */
+.scheme-results-grid,
 .home-featured-grid,
 .home-call-grid,
 .home-source-grid {
@@ -2186,6 +2196,7 @@ select:focus-visible,
   gap: var(--ssip-density-gap, .68rem) !important;
 }
 
+.scheme-results-grid > *,
 .home-featured-grid > *,
 .home-call-grid > *,
 .home-source-grid > * {
@@ -2193,6 +2204,8 @@ select:focus-visible,
   height: 100%;
 }
 
+.scheme-results-grid .scheme-card,
+.scheme-results-grid .public-record-card,
 .home-featured-grid .scheme-card,
 .home-call-grid .scheme-card,
 .home-source-grid .source-card {
@@ -2201,6 +2214,7 @@ select:focus-visible,
 }
 
 @media (min-width: 681px) and (max-width: 900px) {
+  .scheme-results-grid,
   .home-featured-grid,
   .home-call-grid,
   .home-source-grid {
@@ -2209,6 +2223,7 @@ select:focus-visible,
 }
 
 @media (max-width: 680px) {
+  .scheme-results-grid,
   .home-featured-grid,
   .home-call-grid,
   .home-source-grid {

@@ -39,6 +39,14 @@ class VisualFoundationV34140Tests(unittest.TestCase):
         self.assertIn("@media (pointer: coarse)", css)
         self.assertIn("min-height: 44px !important", css)
 
+    def test_home_support_and_call_cards_share_one_grid_system(self) -> None:
+        css = CSS.read_text(encoding="utf-8")
+        self.assertIn("/* v3.4.14.0 shared Home card grid", css)
+        self.assertIn(".home-featured-grid,\n.home-call-grid,\n.home-source-grid", css)
+        self.assertIn("grid-template-columns: repeat(3, minmax(0, 1fr)) !important", css)
+        self.assertIn("grid-template-columns: repeat(2, minmax(0, 1fr)) !important", css)
+        self.assertIn("grid-template-columns: 1fr !important", css)
+
     def test_visual_foundation_does_not_replace_catalogue_logic(self) -> None:
         css = CSS.read_text(encoding="utf-8")
         self.assertIn("presentation layer", css)

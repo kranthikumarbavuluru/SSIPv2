@@ -2175,6 +2175,47 @@ select:focus-visible,
   border-color: var(--ssip-border) !important;
 }
 
+/* v3.4.14.0 shared Home card grid — schemes and time-bound opportunities
+   should read as one catalogue surface, not two unrelated layouts. */
+.home-featured-grid,
+.home-call-grid,
+.home-source-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  grid-auto-rows: 1fr !important;
+  align-items: stretch !important;
+  gap: var(--ssip-density-gap, .68rem) !important;
+}
+
+.home-featured-grid > *,
+.home-call-grid > *,
+.home-source-grid > * {
+  min-width: 0;
+  height: 100%;
+}
+
+.home-featured-grid .scheme-card,
+.home-call-grid .scheme-card,
+.home-source-grid .source-card {
+  height: 100%;
+  margin: 0 !important;
+}
+
+@media (min-width: 681px) and (max-width: 900px) {
+  .home-featured-grid,
+  .home-call-grid,
+  .home-source-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 680px) {
+  .home-featured-grid,
+  .home-call-grid,
+  .home-source-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
 /* v3.4.14.0 density pass — show more verified information above the fold. */
 :root {
   --ssip-density-gap: .68rem;

@@ -3824,7 +3824,7 @@ def _idex_record_card(record: CatalogueRecord, *, historical: bool = False) -> s
         date_fact = f'<div><span>Closing date</span><strong>{esc(record.closing_date)}</strong></div>'
     facts = (
         f'<div><span>Implementing agency</span><strong>{esc(agency)}</strong></div>'
-        f'<div><span>Record type</span><strong>{esc(display_token(record.record_kind))}</strong></div>'
+        f'<div><span>Scheme / programme type</span><strong>{esc(display_token(record.record_kind))}</strong></div>'
         f'<div><span>Last verified</span><strong>{esc(verified)}</strong></div>'
         f'{date_fact}'
         f'{funding}'
@@ -3865,37 +3865,37 @@ def render_idex_page(bundle: CatalogueBundle) -> None:
     st.markdown(
         page_intro(
             "iDEX intelligence",
-            "iDEX Schemes, Challenges & Archive",
-            "Department of Defence Production and Defence Innovation Organisation support identities, verified challenge windows and historical iDEX records are maintained as separate public views.",
-            badge=f"{len(permanent)} permanent records · {len(current)} current challenges · {len(historical)} historical",
+            "iDEX Schemes, Programmes, Calls & Archive",
+            "Department of Defence Production and Defence Innovation Organisation schemes, programmes, verified calls and historical references are maintained as separate public views.",
+            badge=f"{len(permanent)} schemes & programmes · {len(current)} current calls · {len(historical)} historical",
         ),
         unsafe_allow_html=True,
     )
     st.markdown(
         '<div class="metric-grid call-metrics">'
-        + metric_card("Permanent records", len(permanent), "Governed iDEX schemes and programmes", "blue")
-        + metric_card("Open challenges", sum(row.application_status.upper() == "OPEN" for row in current), "Verified current iDEX application windows", "green")
+        + metric_card("Schemes & programmes", len(permanent), "Governed iDEX schemes and programmes", "blue")
+        + metric_card("Open calls", sum(row.application_status.upper() == "OPEN" for row in current), "Verified current iDEX application windows", "green")
         + metric_card("Upcoming", sum(row.application_status.upper() == "UPCOMING" for row in current), "Verified future challenge windows", "purple")
-        + metric_card("Historical challenges", len(historical), "Qualified DISC, ADITI and iDEX references", "orange")
+        + metric_card("Historical calls", len(historical), "Qualified DISC, ADITI and iDEX references", "orange")
         + '</div>',
         unsafe_allow_html=True,
     )
     st.caption(
-        f"Latest record verification: {idex.latest_verification_date} · "
+        f"Latest scheme verification: {idex.latest_verification_date} · "
         "Counts are calculated from the governed iDEX publication snapshot."
     )
     st.markdown(
         '<div class="archive-governance">'
         '<strong>iDEX ownership and status governance</strong>'
         '<span>Permanent iDEX, ADITI and SPARK identities are separate from dated DISC, Open, Thematic and partner challenges. '
-        f'{len(current)} current iDEX challenge window(s) are published only where an official deadline was evidenced; {idex.excluded_count} call-like records remain excluded from active counts.</span></div>',
+        f'{len(current)} current iDEX challenge window(s) are published only where an official deadline was evidenced; {idex.excluded_count} call-like entries remain excluded from active counts.</span></div>',
         unsafe_allow_html=True,
     )
     keyword_column, type_column, status_column = st.columns([2.3, 1.35, 1.35])
     with keyword_column:
         keyword = st.text_input("Search iDEX schemes and challenges", placeholder="DISC, ADITI, Open Challenge, aerospace…", key="idex_keyword")
     with type_column:
-        record_type = st.selectbox("Record type", ["All", *sorted({row.record_kind for row in all_records})], key="idex_record_type")
+        record_type = st.selectbox("Scheme / programme type", ["All", *sorted({row.record_kind for row in all_records})], key="idex_record_type")
     with status_column:
         status = st.selectbox("Application status", ["All", *sorted({row.application_status for row in all_records})], key="idex_status")
     visible = filter_idex_records(all_records, keyword=keyword, record_type=record_type, status=status)
@@ -3903,7 +3903,7 @@ def render_idex_page(bundle: CatalogueBundle) -> None:
     tab_schemes, tab_calls, tab_history = st.tabs(["Schemes & Programmes", "Current Calls & Challenges", "Historical Archive"])
     with tab_schemes:
         rows = [row for row in permanent if row.master_id in visible_ids]
-        st.markdown(f'<div class="filter-summary"><strong>{len(rows)}</strong> permanent iDEX record(s)<span>Official links open in a new tab</span></div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="filter-summary"><strong>{len(rows)}</strong> iDEX scheme(s) and programme(s)<span>Official links open in a new tab</span></div>', unsafe_allow_html=True)
         if rows:
             st.markdown('<div class="public-record-grid">' + "".join(_idex_record_card(row) for row in rows) + '</div>', unsafe_allow_html=True)
         else:
@@ -3926,7 +3926,7 @@ def render_idex_page(bundle: CatalogueBundle) -> None:
             )
             st.markdown('<div class="public-record-grid">' + "".join(_idex_record_card(row, historical=True) for row in rows) + '</div>', unsafe_allow_html=True)
         else:
-            st.info("No historical iDEX records match the selected filters.")
+            st.info("No historical iDEX calls match the selected filters.")
 
 
 def _agri_startup_record_card(record: CatalogueRecord, *, historical: bool = False) -> str:

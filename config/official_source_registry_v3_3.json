@@ -43,6 +43,48 @@
         "ap_startup_portal",
         "ap_industries_incentives"
       ]
+    },
+    {
+      "batch_id": "agri_incubator_call_sources",
+      "description": "Agriculture incubator directories and linked incubator portals used to discover startup calls, cohorts and grant windows; incubators remain discovery sources, not scheme records.",
+      "priority": "HIGH",
+      "source_ids": [
+        "manage_agri_incubator_directory",
+        "angrau_poshan_call_source"
+      ]
+    },
+    {
+      "batch_id": "agri_linked_startup_call_sources",
+      "description": "Direct agriculture-startup programme and challenge pages linked from the incubator directory audit.",
+      "priority": "HIGH",
+      "source_ids": [
+        "pdkv_rif_startup_calls",
+        "afbic_iitkgp_startup_programmes",
+        "abif_iitkgp_startup_applications"
+      ]
+    },
+    {
+      "batch_id": "msde_scheme_sources",
+      "description": "MSDE, Skill India Digital and functional-arm sources for skilling, apprenticeship and entrepreneurship support discovery.",
+      "priority": "HIGH",
+      "source_ids": [
+        "msde_offerings_index",
+        "msde_whats_new",
+        "skill_india_digital_hub",
+        "nsdc_skill_programmes"
+      ]
+    },
+    {
+      "batch_id": "moe_aicte_innovation_sources",
+      "description": "Ministry of Education, AICTE Innovation Cell and PMRC sources for higher-education innovation, entrepreneurship and research opportunities.",
+      "priority": "HIGH",
+      "source_ids": [
+        "moe_nep_innovation_index",
+        "moe_iic_industry_collaboration",
+        "aicte_mic_bootcamp_calls",
+        "pmrc_call_portal",
+        "moe_schemes_guidelines"
+      ]
     }
   ],
   "additional_sources": [
@@ -178,6 +220,229 @@
       "official_url": "https://www.apindustries.gov.in/",
       "seed_urls": ["https://www.apindustries.gov.in/"],
       "coverage_note": "Andhra Pradesh pilot source for industry incentives and enterprise support schemes.",
+      "status": "DISCOVERY_SEED",
+      "enabled": true
+    },
+    {
+      "source_id": "manage_agri_incubator_directory",
+      "name": "MANAGE - Agri-Business Incubation Centres in India",
+      "scope": "Central",
+      "ministry": "Ministry of Agriculture & Farmers Welfare",
+      "department": "National Institute of Agricultural Extension Management (MANAGE)",
+      "agency": "MANAGE-CIA",
+      "source_type": "agriculture_incubator_directory",
+      "priority": "HIGH",
+      "official_url": "https://www.manage.gov.in/managecia/ViewAgriResources.aspx",
+      "seed_urls": ["https://www.manage.gov.in/managecia/ViewAgriResources.aspx"],
+      "coverage_note": "Official incubator directory used to follow linked incubator portals for startup calls, cohorts and applications. Do not publish the directory entries as schemes.",
+      "status": "DISCOVERY_SEED",
+      "enabled": true
+    },
+    {
+      "source_id": "angrau_poshan_call_source",
+      "name": "ANGRAU POSHAN Incubator - Tirupati Calls",
+      "scope": "Central",
+      "ministry": "Ministry of Agriculture & Farmers Welfare",
+      "department": "Department of Agriculture & Farmers Welfare",
+      "agency": "ANGRAU Poshan Incubator",
+      "source_type": "agriculture_incubator_call_portal",
+      "priority": "HIGH",
+      "official_url": "https://www.angraurabitpt.org/",
+      "seed_urls": [
+        "https://www.angraurabitpt.org/",
+        "https://www.angraurabitpt.org/program_details/13",
+        "https://www.angraurabitpt.org/faq"
+      ],
+      "coverage_note": "Official Tirupati incubator portal for YOCH, AGRI INVO, MERISTEMS and subsequent cohort calls; follow programme pages and linked brochures/guidelines.",
+      "status": "DISCOVERY_SEED",
+      "enabled": true
+    },
+    {
+      "source_id": "pdkv_rif_startup_calls",
+      "name": "PDKV Research and Incubation Foundation - Startup Calls",
+      "scope": "Central",
+      "ministry": "Ministry of Agriculture & Farmers Welfare",
+      "department": "Department of Agriculture & Farmers Welfare",
+      "agency": "PDKV Research and Incubation Foundation",
+      "source_type": "agriculture_startup_challenge_portal",
+      "priority": "HIGH",
+      "official_url": "https://pdkvrif.com/",
+      "seed_urls": [
+        "https://pdkvrif.com/",
+        "https://pdkvrif.com/startup.pdf",
+        "https://pdkvrif.com/resources/AgriTech_Hackathon_2026_PDKV-RIF_Akola_Revised_3.pdf"
+      ],
+      "coverage_note": "Official PDKV-RIF portal for agri-startup applications and dated Agri-Tech Hackathon calls; keep the incubator identity out of catalogue counts.",
+      "status": "DISCOVERY_SEED",
+      "enabled": true
+    },
+    {
+      "source_id": "afbic_iitkgp_startup_programmes",
+      "name": "AFBIC IIT Kharagpur - Agriculture Startup Programmes",
+      "scope": "Central",
+      "ministry": "Ministry of Agriculture & Farmers Welfare",
+      "department": "Department of Agriculture & Farmers Welfare",
+      "agency": "Agri Food Business Incubation Centre IIT Kharagpur",
+      "source_type": "agriculture_startup_programme_portal",
+      "priority": "HIGH",
+      "official_url": "https://afbic.iitkgp.ac.in/",
+      "seed_urls": [
+        "https://afbic.iitkgp.ac.in/",
+        "https://afbic.iitkgp.ac.in/Sathi/aip",
+        "https://afbic.iitkgp.ac.in/Sathi/aop",
+        "https://afbic.iitkgp.ac.in/Sathi/sop"
+      ],
+      "coverage_note": "Official AFBIC programme pages for SAIP, AOP and SOP identities and any future dated application calls.",
+      "status": "DISCOVERY_SEED",
+      "enabled": true
+    },
+    {
+      "source_id": "abif_iitkgp_startup_applications",
+      "name": "ABIF IIT Kharagpur - Startup Applications",
+      "scope": "Central",
+      "ministry": "Ministry of Agriculture & Farmers Welfare",
+      "department": "Department of Agriculture & Farmers Welfare",
+      "agency": "Agri Business Incubation Foundation IIT Kharagpur",
+      "source_type": "agriculture_startup_application_portal",
+      "priority": "HIGH",
+      "official_url": "https://abif.iitkgp.ac.in/apply/incubation",
+      "seed_urls": ["https://abif.iitkgp.ac.in/apply/incubation"],
+      "coverage_note": "Official ABIF application surface for agriculture and allied-sector incubation/acceleration; no dated window is inferred without official evidence.",
+      "status": "DISCOVERY_SEED",
+      "enabled": true
+    },
+    {
+      "source_id": "msde_offerings_index",
+      "name": "MSDE - Schemes and Services",
+      "scope": "Central",
+      "ministry": "Ministry of Skill Development and Entrepreneurship",
+      "department": "Ministry of Skill Development and Entrepreneurship",
+      "agency": "MSDE",
+      "source_type": "ministry_scheme_directory",
+      "priority": "HIGH",
+      "official_url": "https://www.msde.gov.in/offerings",
+      "seed_urls": ["https://www.msde.gov.in/offerings"],
+      "coverage_note": "Official MSDE offerings index for permanent schemes and services; dated application windows require separate evidence.",
+      "status": "DISCOVERY_SEED",
+      "enabled": true
+    },
+    {
+      "source_id": "msde_whats_new",
+      "name": "MSDE - What's New and Notices",
+      "scope": "Central",
+      "ministry": "Ministry of Skill Development and Entrepreneurship",
+      "department": "Ministry of Skill Development and Entrepreneurship",
+      "agency": "MSDE",
+      "source_type": "ministry_notice_index",
+      "priority": "HIGH",
+      "official_url": "https://www.msde.gov.in/whats-new",
+      "seed_urls": ["https://www.msde.gov.in/whats-new"],
+      "coverage_note": "Official MSDE notices, public comments and programme updates used to identify dated calls and historical windows.",
+      "status": "DISCOVERY_SEED",
+      "enabled": true
+    },
+    {
+      "source_id": "skill_india_digital_hub",
+      "name": "Skill India Digital Hub",
+      "scope": "Central",
+      "ministry": "Ministry of Skill Development and Entrepreneurship",
+      "department": "Ministry of Skill Development and Entrepreneurship",
+      "agency": "Skill India Digital",
+      "source_type": "skill_application_portal",
+      "priority": "HIGH",
+      "official_url": "https://www.skillindiadigital.gov.in/",
+      "seed_urls": ["https://www.skillindiadigital.gov.in/"],
+      "coverage_note": "Official Skill India Digital application and course surface; use only explicit programme and window evidence.",
+      "status": "DISCOVERY_SEED",
+      "enabled": true
+    },
+    {
+      "source_id": "nsdc_skill_programmes",
+      "name": "National Skill Development Corporation - Programmes",
+      "scope": "Central",
+      "ministry": "Ministry of Skill Development and Entrepreneurship",
+      "department": "Ministry of Skill Development and Entrepreneurship",
+      "agency": "National Skill Development Corporation (NSDC)",
+      "source_type": "functional_arm_programme_portal",
+      "priority": "HIGH",
+      "official_url": "https://www.nsdcindia.org/",
+      "seed_urls": ["https://www.nsdcindia.org/"],
+      "coverage_note": "MSDE functional-arm source for implementation and support programmes; keep agency records distinct from ministry scheme identities.",
+      "status": "DISCOVERY_SEED",
+      "enabled": true
+    },
+    {
+      "source_id": "moe_nep_innovation_index",
+      "name": "Ministry of Education - NEP Innovation Initiatives",
+      "scope": "Central",
+      "ministry": "Ministry of Education",
+      "department": "Department of Higher Education, Ministry of Education",
+      "agency": "Ministry of Education",
+      "source_type": "ministry_innovation_index",
+      "priority": "HIGH",
+      "official_url": "https://www.education.gov.in/nep-initiatives",
+      "seed_urls": ["https://www.education.gov.in/nep-initiatives"],
+      "coverage_note": "Official MoE index for NEP higher-education innovation and entrepreneurship initiatives.",
+      "status": "DISCOVERY_SEED",
+      "enabled": true
+    },
+    {
+      "source_id": "moe_iic_industry_collaboration",
+      "name": "Ministry of Education - Industry Institute Collaboration",
+      "scope": "Central",
+      "ministry": "Ministry of Education",
+      "department": "Department of Higher Education, Ministry of Education",
+      "agency": "Ministry of Education's Innovation Cell",
+      "source_type": "higher_education_innovation_portal",
+      "priority": "HIGH",
+      "official_url": "https://www.education.gov.in/nep/iic",
+      "seed_urls": ["https://www.education.gov.in/nep/iic"],
+      "coverage_note": "Official MoE page for IIC, R&D Cell, apprenticeships, industry linkages and entrepreneurship outcomes.",
+      "status": "DISCOVERY_SEED",
+      "enabled": true
+    },
+    {
+      "source_id": "aicte_mic_bootcamp_calls",
+      "name": "AICTE / MoE Innovation Cell - IDE Bootcamp Calls",
+      "scope": "Central",
+      "ministry": "Ministry of Education",
+      "department": "Department of Higher Education, Ministry of Education",
+      "agency": "AICTE and Ministry of Education's Innovation Cell",
+      "source_type": "innovation_call_portal",
+      "priority": "HIGH",
+      "official_url": "https://bootcamp.mic.gov.in/",
+      "seed_urls": ["https://bootcamp.mic.gov.in/"],
+      "coverage_note": "Official bootcamp surface for student and startup innovation calls; publish only dated application windows.",
+      "status": "DISCOVERY_SEED",
+      "enabled": true
+    },
+    {
+      "source_id": "pmrc_call_portal",
+      "name": "Prime Minister Research Chair - Applications",
+      "scope": "Central",
+      "ministry": "Ministry of Education",
+      "department": "Department of Higher Education, Ministry of Education",
+      "agency": "Prime Minister Research Chair Secretariat",
+      "source_type": "research_application_portal",
+      "priority": "HIGH",
+      "official_url": "https://pmrc.education.gov.in/",
+      "seed_urls": ["https://pmrc.education.gov.in/", "https://pmrc.education.gov.in/about"],
+      "coverage_note": "Official PMRC scheme and application surface; current deadlines are read from explicit portal notices.",
+      "status": "DISCOVERY_SEED",
+      "enabled": true
+    },
+    {
+      "source_id": "moe_schemes_guidelines",
+      "name": "Ministry of Education - Schemes and Guidelines",
+      "scope": "Central",
+      "ministry": "Ministry of Education",
+      "department": "Department of Higher Education, Ministry of Education",
+      "agency": "Ministry of Education",
+      "source_type": "ministry_scheme_guideline_index",
+      "priority": "MEDIUM",
+      "official_url": "https://www.education.gov.in/schemes-guidelines",
+      "seed_urls": ["https://www.education.gov.in/schemes-guidelines"],
+      "coverage_note": "Official MoE scheme and guideline index for permanent identities and historical reference documents.",
       "status": "DISCOVERY_SEED",
       "enabled": true
     }

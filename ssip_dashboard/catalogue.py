@@ -13,6 +13,11 @@ from .config import CatalogueMode, DashboardConfig
 from .data_access import read_dashboard_tables, read_normalization_plan
 from .msme_supplement import load_active_msme_supplement, load_active_mymsme_supplement
 from .media_supplement import load_active_media_publication
+from .dot_public import load_active_dot_supplement
+from .idex_public import load_active_idex_supplement
+from .agri_startup_public import load_active_agri_startup_supplement
+from .msde_public import load_active_msde_supplement
+from .moe_public import load_active_moe_supplement
 
 
 URL_RE = re.compile(r"https?://[^\s\"'<>\]\)]+", re.IGNORECASE)
@@ -717,6 +722,11 @@ def load_catalogue(config: DashboardConfig) -> CatalogueBundle:
     msme_supplement = load_active_msme_supplement(config.project_root)
     mymsme_supplement = load_active_mymsme_supplement(config.project_root)
     media_publication = load_active_media_publication(config.project_root)
+    dot_supplement = load_active_dot_supplement(config.project_root)
+    idex_supplement = load_active_idex_supplement(config.project_root)
+    agri_startup_supplement = load_active_agri_startup_supplement(config.project_root)
+    msde_supplement = load_active_msde_supplement(config.project_root)
+    moe_supplement = load_active_moe_supplement(config.project_root)
     existing_ids = {record.master_id for record in records}
     supplemental_count = 0
     media_supplement_count = 0
@@ -734,6 +744,46 @@ def load_catalogue(config: DashboardConfig) -> CatalogueBundle:
         records.append(CatalogueRecord(**payload))
         existing_ids.add(master_id)
         media_supplement_count += 1
+    dot_supplement_count = 0
+    for payload in dot_supplement.records:
+        master_id = str(payload.get("master_id", ""))
+        if master_id in existing_ids:
+            continue
+        records.append(CatalogueRecord(**payload))
+        existing_ids.add(master_id)
+        dot_supplement_count += 1
+    idex_supplement_count = 0
+    for payload in idex_supplement.records:
+        master_id = str(payload.get("master_id", ""))
+        if master_id in existing_ids:
+            continue
+        records.append(CatalogueRecord(**payload))
+        existing_ids.add(master_id)
+        idex_supplement_count += 1
+    agri_startup_supplement_count = 0
+    for payload in agri_startup_supplement.records:
+        master_id = str(payload.get("master_id", ""))
+        if master_id in existing_ids:
+            continue
+        records.append(CatalogueRecord(**payload))
+        existing_ids.add(master_id)
+        agri_startup_supplement_count += 1
+    msde_supplement_count = 0
+    for payload in msde_supplement.records:
+        master_id = str(payload.get("master_id", ""))
+        if master_id in existing_ids:
+            continue
+        records.append(CatalogueRecord(**payload))
+        existing_ids.add(master_id)
+        msde_supplement_count += 1
+    moe_supplement_count = 0
+    for payload in moe_supplement.records:
+        master_id = str(payload.get("master_id", ""))
+        if master_id in existing_ids:
+            continue
+        records.append(CatalogueRecord(**payload))
+        existing_ids.add(master_id)
+        moe_supplement_count += 1
 
     records = sorted(records, key=lambda item: (item.catalogue_section, item.scheme_name))
     metadata = {
@@ -754,5 +804,15 @@ def load_catalogue(config: DashboardConfig) -> CatalogueBundle:
         "msme_mymsme_supplement_run_id": mymsme_supplement.manifest.get("run_id", ""),
         "media_publication_count": media_supplement_count,
         "media_publication_run_id": media_publication.manifest.get("run_id", ""),
+        "dot_supplement_count": dot_supplement_count,
+        "dot_supplement_run_id": dot_supplement.manifest.get("run_id", ""),
+        "idex_supplement_count": idex_supplement_count,
+        "idex_supplement_run_id": idex_supplement.manifest.get("run_id", ""),
+        "agri_startup_supplement_count": agri_startup_supplement_count,
+        "agri_startup_supplement_run_id": agri_startup_supplement.manifest.get("run_id", ""),
+        "msde_supplement_count": msde_supplement_count,
+        "msde_supplement_run_id": msde_supplement.manifest.get("run_id", ""),
+        "moe_supplement_count": moe_supplement_count,
+        "moe_supplement_run_id": moe_supplement.manifest.get("run_id", ""),
     }
     return CatalogueBundle(records=records, mode=config.mode, metadata=metadata)

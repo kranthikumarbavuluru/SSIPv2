@@ -3328,3 +3328,135 @@ variables already change with the application's light/dark mode.
   opacity: 1 !important;
   visibility: visible !important;
 }
+
+/* v3.4.9.1 — two-tier department navigation with expandable, colour-coded destinations */
+.ssip-header-main {
+  min-height: 104px;
+  align-items: center;
+  gap: 1rem;
+}
+
+.ssip-header-nav-stack {
+  min-width: 0;
+  display: grid;
+  gap: .34rem;
+  align-self: center;
+}
+
+.ssip-primary-nav-core {
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: .2rem;
+}
+
+.ssip-primary-nav-departments {
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  gap: .32rem;
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #b6cbe4 transparent;
+  padding: .08rem .06rem .18rem;
+}
+
+.ssip-primary-nav-departments::-webkit-scrollbar { height: 5px; }
+.ssip-primary-nav-departments::-webkit-scrollbar-thumb { background: #b6cbe4; border-radius: 99px; }
+
+.ssip-nav-department {
+  --department-bg: #eef5fd;
+  --department-border: #c9dced;
+  --department-text: #315b8d;
+  min-height: 34px;
+  padding: .42rem .72rem;
+  border: 1px solid var(--department-border) !important;
+  border-radius: 8px;
+  background: var(--department-bg) !important;
+  color: var(--department-text) !important;
+  font-size: .74rem;
+  font-weight: 800;
+  letter-spacing: .005em;
+  box-shadow: 0 1px 2px rgba(8, 44, 99, .04);
+  transition: background-color .18s ease, border-color .18s ease, color .18s ease, transform .18s ease, box-shadow .18s ease;
+  touch-action: manipulation;
+}
+
+.ssip-nav-department-dst { --department-bg: #eaf3ff; --department-border: #bfd6f6; --department-text: #0b4da5; }
+.ssip-nav-department-meity { --department-bg: #e9f8f4; --department-border: #b9e7d7; --department-text: #087a65; }
+.ssip-nav-department-dpiit { --department-bg: #fff4e5; --department-border: #f2d39b; --department-text: #8b4f00; }
+.ssip-nav-department-dbt-birac { --department-bg: #f1ecff; --department-border: #d8c9fa; --department-text: #6041a5; }
+.ssip-nav-department-msme { --department-bg: #eef7e7; --department-border: #c9e1b9; --department-text: #356b2f; }
+.ssip-nav-department-dot { --department-bg: #e8f1fb; --department-border: #bfd3eb; --department-text: #1e4f84; }
+.ssip-nav-department-idex { --department-bg: #fff0f0; --department-border: #f3c7c7; --department-text: #9a3d3d; }
+.ssip-nav-department-msde { --department-bg: #fff1e8; --department-border: #f0c5a6; --department-text: #9b4a13; }
+.ssip-nav-department-moe { --department-bg: #f4efff; --department-border: #d8c7f4; --department-text: #6843a7; }
+
+.ssip-nav-department:hover,
+.ssip-nav-department:focus-visible {
+  background: color-mix(in srgb, var(--department-bg) 72%, #ffffff) !important;
+  border-color: var(--department-text) !important;
+  color: var(--department-text) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(8, 44, 99, .1);
+}
+
+.ssip-nav-department.is-active {
+  border-color: var(--department-text) !important;
+  box-shadow: inset 0 -3px 0 var(--department-text), 0 2px 7px rgba(8, 44, 99, .08);
+  font-weight: 900;
+}
+
+.ssip-nav-department.is-active::after { display: none; }
+
+:root:has(#ssip-dark-mode) .ssip-nav-department {
+  --department-bg: #172b46;
+  --department-border: #385a7f;
+  --department-text: #dcecff;
+  box-shadow: none;
+}
+
+:root:has(#ssip-dark-mode) .ssip-nav-department-dst { --department-border: #4d7caf; }
+:root:has(#ssip-dark-mode) .ssip-nav-department-meity { --department-border: #3e8c79; }
+:root:has(#ssip-dark-mode) .ssip-nav-department-dpiit { --department-border: #a37a3f; }
+:root:has(#ssip-dark-mode) .ssip-nav-department-dbt-birac { --department-border: #7f6ab7; }
+:root:has(#ssip-dark-mode) .ssip-nav-department-msme { --department-border: #66945b; }
+:root:has(#ssip-dark-mode) .ssip-nav-department-dot { --department-border: #527ba7; }
+:root:has(#ssip-dark-mode) .ssip-nav-department-idex { --department-border: #a86a6a; }
+:root:has(#ssip-dark-mode) .ssip-nav-department-msde { --department-border: #a87955; }
+:root:has(#ssip-dark-mode) .ssip-nav-department-moe { --department-border: #8068b1; }
+
+@media (max-width: 1120px) {
+  .ssip-header-main { grid-template-columns: auto minmax(0, 1fr); }
+  .ssip-header-trust { grid-column: 2; justify-self: end; margin-top: -.2rem; }
+}
+
+@media (max-width: 820px) {
+  .ssip-header-main { grid-template-columns: 1fr; min-height: auto; gap: .45rem; }
+  .ssip-header-nav-stack { width: 100%; }
+  .ssip-header-trust { grid-column: auto; justify-self: start; margin-top: 0; }
+  .ssip-primary-nav-core,
+  .ssip-primary-nav-departments { justify-content: flex-start; }
+}
+
+@media (max-width: 560px) {
+  .ssip-header-trust { display: none; }
+  .ssip-nav-department { min-height: 33px; padding: .4rem .6rem; font-size: .7rem; }
+  .ssip-primary-nav-core { gap: .08rem; }
+}
+.ssip-nav-department-agri {
+  background: #eaf7ed;
+  border-color: #b8dfbd;
+  color: #246b36;
+}
+.ssip-nav-department-agri:hover,
+.ssip-nav-department-agri.is-active {
+  background: #d8f0dc;
+  border-color: #72b67d;
+  color: #185a2a;
+}
+html[data-theme="dark"] .ssip-nav-department-agri,
+body.dark-mode .ssip-nav-department-agri {
+  background: #183a24;
+  border-color: #386e47;
+  color: #b8e8c1;
+}

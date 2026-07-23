@@ -100,8 +100,33 @@ from ssip_dashboard.msme_public import (
     build_msme_public_bundle,
     filter_msme_records,
 )
+from ssip_dashboard.dot_public import (
+    DOTPublicBundle,
+    build_dot_public_bundle,
+    filter_dot_records,
+)
+from ssip_dashboard.idex_public import (
+    IDEXPublicBundle,
+    build_idex_public_bundle,
+    filter_idex_records,
+)
+from ssip_dashboard.agri_startup_public import (
+    AgriStartupPublicBundle,
+    build_agri_startup_public_bundle,
+    filter_agri_startup_records,
+)
+from ssip_dashboard.msde_public import (
+    MSDEPublicBundle,
+    build_msde_public_bundle,
+    filter_msde_records,
+)
+from ssip_dashboard.moe_public import (
+    MOEPublicBundle,
+    build_moe_public_bundle,
+    filter_moe_records,
+)
 
-APP_VERSION = "3.4.6.0-msme-governed-public"
+APP_VERSION = "3.4.12.0-moe-aicte-governed-public"
 LOGGER = logging.getLogger(__name__)
 PAGE_NAMES = [
     "Home",
@@ -112,6 +137,11 @@ PAGE_NAMES = [
     "DPIIT",
     "DBT–BIRAC",
     "MSME",
+    "DoT",
+    "iDEX",
+    "Agriculture",
+    "MSDE",
+    "MoE",
     "Incubators & Ecosystem",
     "Directory",
     "Official Sources",
@@ -127,6 +157,11 @@ NAV_LABELS = {
     "DPIIT": "DPIIT",
     "DBT–BIRAC": "DBT–BIRAC",
     "MSME": "MSME",
+    "DoT": "DoT",
+    "iDEX": "iDEX",
+    "Agriculture": "Agriculture",
+    "MSDE": "MSDE",
+    "MoE": "MoE",
     "Incubators & Ecosystem": "Ecosystem",
     "Directory": "Resources",
     "Official Sources": "Sources",
@@ -141,6 +176,11 @@ PAGE_SLUGS = {
     "DPIIT": "dpiit-programmes",
     "DBT–BIRAC": "dbt-birac-programmes",
     "MSME": "msme-schemes",
+    "DoT": "dot-programmes",
+    "iDEX": "idex-programmes",
+    "Agriculture": "agri-startups",
+    "MSDE": "msde-programmes",
+    "MoE": "moe-programmes",
     "Calls & Opportunities": "live-calls",
     "Incubators & Ecosystem": "ecosystem",
     "Official Sources": "official-sources",
@@ -273,6 +313,11 @@ for stylesheet in load_stylesheets():
 def _msme_cache_token() -> str:
     manifests = (
         PROJECT_ROOT / "data/departments/msme/v3_4_6_0/active_publication_manifest_v3_4_6_0.json",
+        PROJECT_ROOT / "data/departments/dot/v3_4_8_0/active_publication_manifest_v3_4_8_0.json",
+        PROJECT_ROOT / "data/departments/idex/v3_4_9_0/active_publication_manifest_v3_4_9_0.json",
+        PROJECT_ROOT / "data/departments/agri_startup/v3_4_10_0/active_publication_manifest_v3_4_10_0.json",
+        PROJECT_ROOT / "data/departments/msde/v3_4_11_0/active_publication_manifest_v3_4_11_0.json",
+        PROJECT_ROOT / "data/departments/moe/v3_4_12_0/active_publication_manifest_v3_4_12_0.json",
         PROJECT_ROOT / "data/media_publication/v3_4_7_3/active_publication_manifest_v3_4_7_3.json",
         PROJECT_ROOT / "data/media_publication/v3_4_7_0/active_publication_manifest_v3_4_7_0.json",
     )
@@ -570,7 +615,7 @@ def public_record_card(
 
 
 def site_header(active_page: str) -> str:
-    """Render a compact website-style header with query-parameter navigation."""
+    """Render a two-tier header: portal tools above, department destinations below."""
     primary_pages = [
         "Home",
         "Scheme Explorer",
@@ -580,9 +625,16 @@ def site_header(active_page: str) -> str:
         "DPIIT",
         "DBT–BIRAC",
         "MSME",
+        "DoT",
+        "iDEX",
+        "Agriculture",
+        "MSDE",
+        "MoE",
     ]
+    core_pages = primary_pages[:3]
+    department_pages = primary_pages[3:]
     links = []
-    for page_name in primary_pages:
+    for page_name in core_pages:
         active = " is-active" if active_page == page_name else ""
         links.append(
             f'<a class="ssip-nav-link{active}" target="_top" href="?page={PAGE_SLUGS[page_name]}">'
@@ -597,6 +649,27 @@ def site_header(active_page: str) -> str:
         f'<a target="_top" href="?page={PAGE_SLUGS["Media Runs"]}">Media runs</a>'
         f'<a target="_top" href="?page={PAGE_SLUGS["Scheme Details"]}">Scheme profiles</a>'
     )
+    department_links = []
+    department_classes = {
+        "DST Schemes": "dst",
+        "MeitY": "meity",
+        "DPIIT": "dpiit",
+        "DBTâ€“BIRAC": "dbt-birac",
+        "MSME": "msme",
+        "DoT": "dot",
+        "iDEX": "idex",
+        "Agriculture": "agri",
+        "MSDE": "msde",
+        "MoE": "moe",
+    }
+    for page_name in department_pages:
+        active = " is-active" if active_page == page_name else ""
+        department_class = department_classes.get(page_name, "department")
+        department_links.append(
+            f'<a class="ssip-nav-link ssip-nav-department ssip-nav-department-{department_class}{active}" '
+            f'target="_top" href="?page={PAGE_SLUGS[page_name]}">'
+            f'{esc(NAV_LABELS[page_name])}</a>'
+        )
     return (
         '<header class="ssip-site-header">'
         '<div class="ssip-header-main">'
@@ -604,9 +677,12 @@ def site_header(active_page: str) -> str:
         '<span class="ssip-brand-mark">SSIP</span>'
         '<span class="ssip-brand-copy"><strong>SSIP</strong>'
         '<small>Startup Scheme Intelligence Platform</small></span></a>'
-        f'<nav class="ssip-primary-nav" aria-label="Primary navigation">{" ".join(links)}'
+        '<div class="ssip-header-nav-stack">'
+        f'<nav class="ssip-primary-nav ssip-primary-nav-core" aria-label="Portal navigation">{" ".join(links)}'
         f'<details class="ssip-nav-more{more_class}"><summary>More</summary>'
         f'<div class="ssip-nav-more-menu">{more_links}</div></details></nav>'
+        f'<nav class="ssip-primary-nav ssip-primary-nav-departments" aria-label="Department navigation">{" ".join(department_links)}</nav>'
+        '</div>'
         '<div class="ssip-header-trust"><i></i><span>Official-source catalogue</span></div>'
         '</div></header>'
     )
@@ -1344,6 +1420,10 @@ def render_resources(bundle: CatalogueBundle, official_sources: list[OfficialSou
     populations = split_catalogue_populations(bundle.records)
     records = [*populations.main_scheme_records, *populations.application_call_records]
     msme_bundle = build_msme_public_bundle(bundle.records)
+    dot_bundle = build_dot_public_bundle(bundle.records)
+    idex_bundle = build_idex_public_bundle(bundle.records)
+    agri_bundle = build_agri_startup_public_bundle(bundle.records)
+    moe_bundle = build_moe_public_bundle(bundle.records)
     department_documents = [
         {**document, "department_label": "Department of Biotechnology / BIRAC"}
         for document in cached_dbt_birac_preview().documents
@@ -1361,10 +1441,34 @@ def render_resources(bundle: CatalogueBundle, official_sources: list[OfficialSou
         }
         for document in msme_bundle.documents
     )
+    department_documents.extend(
+        {**document, "department_label": "Department of Telecommunications (DoT)"}
+        for document in dot_bundle.documents
+    )
+    department_documents.extend(
+        {**document, "department_label": "Department of Defence Production / iDEX"}
+        for document in idex_bundle.documents
+    )
+    department_documents.extend(
+        {**document, "department_label": "Agriculture & Farmers Welfare startup ecosystem"}
+        for document in agri_bundle.documents
+    )
+    department_documents.extend(
+        {**document, "department_label": "Ministry of Education / AICTE"}
+        for document in moe_bundle.documents
+    )
     msme_document_ids = {document.master_id for document in msme_bundle.documents}
+    dot_document_ids = {record.master_id for record in (*dot_bundle.permanent_records, *dot_bundle.current_calls, *dot_bundle.historical_records)}
+    idex_document_ids = {record.master_id for record in (*idex_bundle.permanent_records, *idex_bundle.current_calls, *idex_bundle.historical_records)}
+    agri_document_ids = {record.master_id for record in (*agri_bundle.permanent_records, *agri_bundle.current_calls, *agri_bundle.historical_records)}
+    moe_document_ids = {record.master_id for record in (*moe_bundle.permanent_records, *moe_bundle.current_calls, *moe_bundle.historical_records)}
     resource_records = [
         item for item in records
         if item.master_id not in msme_document_ids
+        and item.master_id not in dot_document_ids
+        and item.master_id not in idex_document_ids
+        and item.master_id not in agri_document_ids
+        and item.master_id not in moe_document_ids
         and (item.official_page_url or item.application_url or item.guideline_urls or item.reference_urls)
     ]
     resource_total = len(resource_records) + len(department_documents)
@@ -3571,6 +3675,612 @@ def render_msme_page(bundle: CatalogueBundle) -> None:
         )
 
 
+def _dot_record_card(record: CatalogueRecord, *, historical: bool = False) -> str:
+    status = record.application_status.upper()
+    if historical:
+        status_label_text, status_class = "Historical", "status-history"
+        note = "Historical reference · No active application action"
+    elif status in {"OPEN", "UPCOMING"}:
+        status_label_text = display_token(status)
+        status_class = "status-open" if status == "OPEN" else "status-upcoming"
+        note = "Verified current opportunity · Confirm the official deadline before applying"
+    else:
+        status_label_text, status_class = "Status unverified", "status-unverified"
+        note = "Permanent DoT support record · Current application status is not verified"
+    agency = record.implementing_agency or record.department or "Department of Telecommunications"
+    verified = record.last_verified_at or record.last_updated or "Not recorded"
+    funding = ""
+    if record.funding_maximum is not None:
+        funding = f'<div><span>Maximum support</span><strong>{esc(format_inr(record.funding_maximum))}</strong></div>'
+    date_fact = ""
+    if record.closing_date:
+        date_fact = f'<div><span>Closing date</span><strong>{esc(record.closing_date)}</strong></div>'
+    facts = (
+        f'<div><span>Implementing agency</span><strong>{esc(agency)}</strong></div>'
+        f'<div><span>Record type</span><strong>{esc(display_token(record.record_kind))}</strong></div>'
+        f'<div><span>Last verified</span><strong>{esc(verified)}</strong></div>'
+        f'{date_fact}'
+        f'{funding}'
+    )
+    chips = [*record.sectors[:3], *record.scheme_types[:2]]
+    links = []
+    if record.official_page_url:
+        links.append(
+            f'<a target="_blank" rel="noopener noreferrer" href="{esc(record.official_page_url)}">Official page <span aria-hidden="true">↗</span></a>'
+        )
+    for url in record.guideline_urls[:1]:
+        links.append(
+            f'<a target="_blank" rel="noopener noreferrer" href="{esc(url)}">Guideline <span aria-hidden="true">↗</span></a>'
+        )
+    summary = record.benefits[0] if record.benefits else (record.objectives[0] if record.objectives else "Details are preserved in the governed official evidence record.")
+    return (
+        '<article class="public-record-card">'
+        '<div class="public-record-card-top">'
+        f'<span class="status-badge {status_class}">{esc(status_label_text)}</span>'
+        f'<span class="public-kind">{esc(display_token(record.record_kind))}</span></div>'
+        f'<h3>{esc(record.scheme_name)}</h3>'
+        f'<div class="public-record-agency">{esc(agency)}</div>'
+        f'<p>{esc(summary)}</p>'
+        f'<div class="public-record-facts">{facts}</div>'
+        f'<div class="public-chip-row">{"".join(f"<span>{esc(item)}</span>" for item in chips if item)}</div>'
+        f'<div class="public-record-note">{esc(note)}</div>'
+        f'<div class="public-record-actions">{"".join(links)}</div>'
+        '</article>'
+    )
+
+
+def render_dot_page(bundle: CatalogueBundle) -> None:
+    dot: DOTPublicBundle = build_dot_public_bundle(bundle.records)
+    permanent = list(dot.permanent_records)
+    current = list(dot.current_calls)
+    historical = list(dot.historical_records)
+    all_records = [*permanent, *current, *historical]
+    st.markdown(
+        page_intro(
+            "DoT intelligence",
+            "DoT Schemes, Calls & Archive",
+            "Department of Telecommunications support identities, verified application windows and historical TTDF/DCIS calls are maintained as separate public views.",
+            badge=f"{len(permanent)} permanent records · {len(current)} current calls · {len(historical)} historical",
+        ),
+        unsafe_allow_html=True,
+    )
+    st.markdown(
+        '<div class="metric-grid call-metrics">'
+        + metric_card("Permanent records", len(permanent), "Governed DoT schemes and programmes", "blue")
+        + metric_card("Open calls", sum(row.application_status.upper() == "OPEN" for row in current), "Verified current application windows", "green")
+        + metric_card("Upcoming", sum(row.application_status.upper() == "UPCOMING" for row in current), "Verified future application windows", "purple")
+        + metric_card("Historical calls", len(historical), "Qualified TTDF and DCIS references", "orange")
+        + '</div>',
+        unsafe_allow_html=True,
+    )
+    st.caption(
+        f"Latest record verification: {dot.latest_verification_date} · "
+        "Counts are calculated from the governed DoT publication snapshot."
+    )
+    st.markdown(
+        '<div class="archive-governance">'
+        '<strong>DoT ownership and status governance</strong>'
+        '<span>Permanent DoT, TTDF and DCIS identities are separate from dated calls. '
+        f'No current DoT call is published in this snapshot because no dated official application window was verified; {dot.excluded_count} call-like records remain excluded from active counts.</span></div>',
+        unsafe_allow_html=True,
+    )
+    keyword_column, type_column, status_column = st.columns([2.3, 1.35, 1.35])
+    with keyword_column:
+        keyword = st.text_input("Search DoT schemes", placeholder="TTDF, 5G, testing, rural connectivity…", key="dot_keyword")
+    with type_column:
+        record_type = st.selectbox("Record type", ["All", *sorted({row.record_kind for row in all_records})], key="dot_record_type")
+    with status_column:
+        status = st.selectbox("Application status", ["All", *sorted({row.application_status for row in all_records})], key="dot_status")
+    visible = filter_dot_records(all_records, keyword=keyword, record_type=record_type, status=status)
+    visible_ids = {row.master_id for row in visible}
+    tab_schemes, tab_calls, tab_history = st.tabs(["Schemes & Programmes", "Current Calls & Challenges", "Historical Archive"])
+    with tab_schemes:
+        rows = [row for row in permanent if row.master_id in visible_ids]
+        st.markdown(f'<div class="filter-summary"><strong>{len(rows)}</strong> permanent DoT record(s)<span>Official links open in a new tab</span></div>', unsafe_allow_html=True)
+        if rows:
+            st.markdown('<div class="public-record-grid">' + "".join(_dot_record_card(row) for row in rows) + '</div>', unsafe_allow_html=True)
+        else:
+            st.info("No DoT schemes or programmes match the selected filters.")
+    with tab_calls:
+        rows = [row for row in current if row.master_id in visible_ids]
+        st.markdown(f'<div class="filter-summary"><strong>{len(rows)}</strong> verified current DoT call(s)<span>Unverified windows remain hidden</span></div>', unsafe_allow_html=True)
+        if rows:
+            st.markdown('<div class="public-record-grid">' + "".join(_dot_record_card(row) for row in rows) + '</div>', unsafe_allow_html=True)
+        else:
+            st.info("No verified open or upcoming DoT calls are currently published.")
+    with tab_history:
+        rows = [row for row in historical if row.master_id in visible_ids]
+        if rows:
+            st.markdown(
+                '<div class="section-band"><h2 class="section-title">DoT Historical Calls by Evidenced Closing Year</h2>'
+                + _department_history_chart(rows, date_getter=lambda item: item.closing_date, legend_label="Qualified DoT historical calls")
+                + '</div>',
+                unsafe_allow_html=True,
+            )
+            st.markdown('<div class="public-record-grid">' + "".join(_dot_record_card(row, historical=True) for row in rows) + '</div>', unsafe_allow_html=True)
+        else:
+            st.info("No historical DoT records match the selected filters.")
+
+
+def _idex_record_card(record: CatalogueRecord, *, historical: bool = False) -> str:
+    status = record.application_status.upper()
+    if historical:
+        status_label_text, status_class = "Historical", "status-history"
+        note = "Historical challenge reference · No active application action"
+    elif status in {"OPEN", "UPCOMING"}:
+        status_label_text = display_token(status)
+        status_class = "status-open" if status == "OPEN" else "status-upcoming"
+        note = "Verified current challenge · Confirm the official deadline before applying"
+    else:
+        status_label_text, status_class = "Status unverified", "status-unverified"
+        note = "Permanent iDEX support identity · Current application status is not verified"
+    agency = record.implementing_agency or "Defence Innovation Organisation (DIO)"
+    verified = record.last_verified_at or record.last_updated or "Not recorded"
+    funding = ""
+    if record.funding_maximum is not None:
+        funding = f'<div><span>Maximum support</span><strong>{esc(format_inr(record.funding_maximum))}</strong></div>'
+    date_fact = ""
+    if record.closing_date:
+        date_fact = f'<div><span>Closing date</span><strong>{esc(record.closing_date)}</strong></div>'
+    facts = (
+        f'<div><span>Implementing agency</span><strong>{esc(agency)}</strong></div>'
+        f'<div><span>Record type</span><strong>{esc(display_token(record.record_kind))}</strong></div>'
+        f'<div><span>Last verified</span><strong>{esc(verified)}</strong></div>'
+        f'{date_fact}'
+        f'{funding}'
+    )
+    chips = [*record.sectors[:3], *record.scheme_types[:2]]
+    links = []
+    if record.official_page_url:
+        links.append(
+            f'<a target="_blank" rel="noopener noreferrer" href="{esc(record.official_page_url)}">Official page <span aria-hidden="true">↗</span></a>'
+        )
+    for url in record.guideline_urls[:1]:
+        links.append(
+            f'<a target="_blank" rel="noopener noreferrer" href="{esc(url)}">Guideline <span aria-hidden="true">↗</span></a>'
+        )
+    summary = record.benefits[0] if record.benefits else (record.objectives[0] if record.objectives else "Details are preserved in the governed official evidence record.")
+    return (
+        '<article class="public-record-card">'
+        '<div class="public-record-card-top">'
+        f'<span class="status-badge {status_class}">{esc(status_label_text)}</span>'
+        f'<span class="public-kind">{esc(display_token(record.record_kind))}</span></div>'
+        f'<h3>{esc(record.scheme_name)}</h3>'
+        f'<div class="public-record-agency">{esc(agency)}</div>'
+        f'<p>{esc(summary)}</p>'
+        f'<div class="public-record-facts">{facts}</div>'
+        f'<div class="public-chip-row">{"".join(f"<span>{esc(item)}</span>" for item in chips if item)}</div>'
+        f'<div class="public-record-note">{esc(note)}</div>'
+        f'<div class="public-record-actions">{"".join(links)}</div>'
+        '</article>'
+    )
+
+
+def render_idex_page(bundle: CatalogueBundle) -> None:
+    idex: IDEXPublicBundle = build_idex_public_bundle(bundle.records)
+    permanent = list(idex.permanent_records)
+    current = list(idex.current_calls)
+    historical = list(idex.historical_records)
+    all_records = [*permanent, *current, *historical]
+    st.markdown(
+        page_intro(
+            "iDEX intelligence",
+            "iDEX Schemes, Challenges & Archive",
+            "Department of Defence Production and Defence Innovation Organisation support identities, verified challenge windows and historical iDEX records are maintained as separate public views.",
+            badge=f"{len(permanent)} permanent records · {len(current)} current challenges · {len(historical)} historical",
+        ),
+        unsafe_allow_html=True,
+    )
+    st.markdown(
+        '<div class="metric-grid call-metrics">'
+        + metric_card("Permanent records", len(permanent), "Governed iDEX schemes and programmes", "blue")
+        + metric_card("Open challenges", sum(row.application_status.upper() == "OPEN" for row in current), "Verified current iDEX application windows", "green")
+        + metric_card("Upcoming", sum(row.application_status.upper() == "UPCOMING" for row in current), "Verified future challenge windows", "purple")
+        + metric_card("Historical challenges", len(historical), "Qualified DISC, ADITI and iDEX references", "orange")
+        + '</div>',
+        unsafe_allow_html=True,
+    )
+    st.caption(
+        f"Latest record verification: {idex.latest_verification_date} · "
+        "Counts are calculated from the governed iDEX publication snapshot."
+    )
+    st.markdown(
+        '<div class="archive-governance">'
+        '<strong>iDEX ownership and status governance</strong>'
+        '<span>Permanent iDEX, ADITI and SPARK identities are separate from dated DISC, Open, Thematic and partner challenges. '
+        f'{len(current)} current iDEX challenge window(s) are published only where an official deadline was evidenced; {idex.excluded_count} call-like records remain excluded from active counts.</span></div>',
+        unsafe_allow_html=True,
+    )
+    keyword_column, type_column, status_column = st.columns([2.3, 1.35, 1.35])
+    with keyword_column:
+        keyword = st.text_input("Search iDEX schemes and challenges", placeholder="DISC, ADITI, Open Challenge, aerospace…", key="idex_keyword")
+    with type_column:
+        record_type = st.selectbox("Record type", ["All", *sorted({row.record_kind for row in all_records})], key="idex_record_type")
+    with status_column:
+        status = st.selectbox("Application status", ["All", *sorted({row.application_status for row in all_records})], key="idex_status")
+    visible = filter_idex_records(all_records, keyword=keyword, record_type=record_type, status=status)
+    visible_ids = {row.master_id for row in visible}
+    tab_schemes, tab_calls, tab_history = st.tabs(["Schemes & Programmes", "Current Calls & Challenges", "Historical Archive"])
+    with tab_schemes:
+        rows = [row for row in permanent if row.master_id in visible_ids]
+        st.markdown(f'<div class="filter-summary"><strong>{len(rows)}</strong> permanent iDEX record(s)<span>Official links open in a new tab</span></div>', unsafe_allow_html=True)
+        if rows:
+            st.markdown('<div class="public-record-grid">' + "".join(_idex_record_card(row) for row in rows) + '</div>', unsafe_allow_html=True)
+        else:
+            st.info("No iDEX schemes or programmes match the selected filters.")
+    with tab_calls:
+        rows = [row for row in current if row.master_id in visible_ids]
+        st.markdown(f'<div class="filter-summary"><strong>{len(rows)}</strong> verified current iDEX challenge(s)<span>Unverified windows remain hidden</span></div>', unsafe_allow_html=True)
+        if rows:
+            st.markdown('<div class="public-record-grid">' + "".join(_idex_record_card(row) for row in rows) + '</div>', unsafe_allow_html=True)
+        else:
+            st.info("No verified open or upcoming iDEX challenges match the selected filters.")
+    with tab_history:
+        rows = [row for row in historical if row.master_id in visible_ids]
+        if rows:
+            st.markdown(
+                '<div class="section-band"><h2 class="section-title">iDEX Historical Challenges by Evidenced Closing Year</h2>'
+                + _department_history_chart(rows, date_getter=lambda item: item.closing_date, legend_label="Qualified iDEX historical challenges")
+                + '</div>',
+                unsafe_allow_html=True,
+            )
+            st.markdown('<div class="public-record-grid">' + "".join(_idex_record_card(row, historical=True) for row in rows) + '</div>', unsafe_allow_html=True)
+        else:
+            st.info("No historical iDEX records match the selected filters.")
+
+
+def _agri_startup_record_card(record: CatalogueRecord, *, historical: bool = False) -> str:
+    status = record.application_status.upper()
+    if historical:
+        status_label_text, status_class = "Historical", "status-history"
+        note = "Historical startup/innovation reference · No active application action"
+    elif status in {"OPEN", "UPCOMING"}:
+        status_label_text = display_token(status)
+        status_class = "status-open" if status == "OPEN" else "status-upcoming"
+        note = "Verified current startup opportunity · Confirm the official deadline before applying"
+    else:
+        status_label_text, status_class = "Status unverified", "status-unverified"
+        note = "Permanent agri-startup support identity · Current application status is not verified"
+    agency = record.implementing_agency or record.department or "Department of Agriculture & Farmers Welfare"
+    verified = record.last_verified_at or record.last_updated or "Not recorded"
+    date_fact = f'<div><span>Closing date</span><strong>{esc(record.closing_date)}</strong></div>' if record.closing_date else ""
+    funding = f'<div><span>Maximum support</span><strong>{esc(format_inr(record.funding_maximum))}</strong></div>' if record.funding_maximum is not None else ""
+    facts = (
+        f'<div><span>Implementing agency</span><strong>{esc(agency)}</strong></div>'
+        f'<div><span>Scheme type</span><strong>{esc(display_token(record.record_kind))}</strong></div>'
+        f'<div><span>Last verified</span><strong>{esc(verified)}</strong></div>{date_fact}{funding}'
+    )
+    chips = [*record.sectors[:3], *record.scheme_types[:2]]
+    links = []
+    if record.application_url:
+        links.append(f'<a target="_blank" rel="noopener noreferrer" href="{esc(record.application_url)}">Register / Apply <span aria-hidden="true">↗</span></a>')
+    if record.official_page_url:
+        links.append(f'<a target="_blank" rel="noopener noreferrer" href="{esc(record.official_page_url)}">Official page <span aria-hidden="true">↗</span></a>')
+    for url in record.guideline_urls[:1]:
+        links.append(f'<a target="_blank" rel="noopener noreferrer" href="{esc(url)}">Guideline <span aria-hidden="true">↗</span></a>')
+    summary = record.benefits[0] if record.benefits else (record.objectives[0] if record.objectives else "Details are preserved in the governed official evidence record.")
+    return (
+        '<article class="public-record-card"><div class="public-record-card-top">'
+        f'<span class="status-badge {status_class}">{esc(status_label_text)}</span><span class="public-kind">{esc(display_token(record.record_kind))}</span></div>'
+        f'<h3>{esc(record.scheme_name)}</h3><div class="public-record-agency">{esc(agency)}</div><p>{esc(summary)}</p>'
+        f'<div class="public-record-facts">{facts}</div><div class="public-chip-row">{"".join(f"<span>{esc(item)}</span>" for item in chips if item)}</div>'
+        f'<div class="public-record-note">{esc(note)}</div><div class="public-record-actions">{"".join(links)}</div></article>'
+    )
+
+
+def render_agri_startup_page(bundle: CatalogueBundle) -> None:
+    agri: AgriStartupPublicBundle = build_agri_startup_public_bundle(bundle.records)
+    permanent, current, historical = list(agri.permanent_records), list(agri.current_calls), list(agri.historical_records)
+    all_records = [*permanent, *current, *historical]
+    st.markdown(page_intro(
+        "Agri-startup intelligence", "Agri-Startup & Innovation",
+        "Startup schemes, incubators, venture funds and innovation calls in the agriculture and allied ecosystem are maintained as separate public views.",
+        badge=f"{len(permanent)} schemes & programmes · {len(current)} current calls · {len(historical)} historical",
+    ), unsafe_allow_html=True)
+    st.markdown(
+        '<div class="metric-grid call-metrics">'
+        + metric_card("Schemes & programmes", len(permanent), "Governed agri-startup schemes and programmes", "blue")
+        + metric_card("Open calls", sum(row.application_status.upper() == "OPEN" for row in current), "Verified current application windows", "green")
+        + metric_card("Upcoming", sum(row.application_status.upper() == "UPCOMING" for row in current), "Verified future application windows", "purple")
+        + metric_card("Historical innovation calls", len(historical), "Qualified historical references", "orange") + '</div>', unsafe_allow_html=True)
+    st.caption(f"Latest scheme verification: {agri.latest_verification_date} · Counts are calculated from the governed agriculture-startup publication snapshot.")
+    st.markdown(
+        '<div class="archive-governance"><strong>Agri-startup scope and status governance</strong>'
+        f'<span>General farmer-benefit schemes are excluded. Incubator directories are discovery sources only; training calendars are also discovery evidence and neither is counted as schemes. Current startup and allied-sector opportunities are shown only where an official deadline and registration evidence are available; undated programme identities remain visible without being promoted to open calls. {agri.excluded_count} call-like records remain excluded from active counts.</span></div>',
+        unsafe_allow_html=True,
+    )
+    keyword_column, type_column, status_column = st.columns([2.3, 1.35, 1.35])
+    with keyword_column:
+        keyword = st.text_input("Search agri-startup schemes", placeholder="RKVY, AgriSURE, incubator, agritech…", key="agri_startup_keyword")
+    with type_column:
+        record_type = st.selectbox("Scheme / programme type", ["All", *sorted({row.record_kind for row in all_records})], key="agri_startup_record_type")
+    with status_column:
+        status = st.selectbox("Application status", ["All", *sorted({row.application_status for row in all_records})], key="agri_startup_status")
+    visible_ids = {row.master_id for row in filter_agri_startup_records(all_records, keyword=keyword, record_type=record_type, status=status)}
+    tab_schemes, tab_calls, tab_history = st.tabs(["Schemes & Programmes", "Current Calls & Challenges", "Historical Archive"])
+    with tab_schemes:
+        rows = [row for row in permanent if row.master_id in visible_ids]
+        st.markdown(f'<div class="filter-summary"><strong>{len(rows)}</strong> agriculture startup scheme(s) and programme(s)<span>Official links open in a new tab</span></div>', unsafe_allow_html=True)
+        if rows:
+            st.markdown('<div class="public-record-grid">' + "".join(_agri_startup_record_card(row) for row in rows) + '</div>', unsafe_allow_html=True)
+        else:
+            st.info("No agriculture startup schemes or programmes match the selected filters.")
+    with tab_calls:
+        rows = [row for row in current if row.master_id in visible_ids]
+        st.markdown(f'<div class="filter-summary"><strong>{len(rows)}</strong> verified current agri-startup call(s)<span>Unverified windows remain hidden</span></div>', unsafe_allow_html=True)
+        if rows:
+            st.markdown('<div class="public-record-grid">' + "".join(_agri_startup_record_card(row) for row in rows) + '</div>', unsafe_allow_html=True)
+        else:
+            st.info("No verified open or upcoming agriculture startup calls are currently published.")
+    with tab_history:
+        rows = [row for row in historical if row.master_id in visible_ids]
+        if rows:
+            st.markdown('<div class="section-band"><h2 class="section-title">Agri-Startup Historical Innovation Calls by Evidenced Closing Year</h2>' + _department_history_chart(rows, date_getter=lambda item: item.closing_date, legend_label="Qualified agri-startup historical calls") + '</div>', unsafe_allow_html=True)
+            st.markdown('<div class="public-record-grid">' + "".join(_agri_startup_record_card(row, historical=True) for row in rows) + '</div>', unsafe_allow_html=True)
+        else:
+            st.info("No historical agri-startup schemes or calls match the selected filters.")
+
+
+def _msde_record_card(record: CatalogueRecord, *, historical: bool = False) -> str:
+    status = record.application_status.upper()
+    if historical:
+        status_label_text, status_class = "Historical", "status-history"
+        note = "Historical MSDE reference · No active application action"
+    elif status in {"OPEN", "UPCOMING"}:
+        status_label_text = display_token(status)
+        status_class = "status-open" if status == "OPEN" else "status-upcoming"
+        note = "Verified current opportunity · Confirm the official deadline before applying"
+    else:
+        status_label_text, status_class = "Status unverified", "status-unverified"
+        note = "Permanent MSDE support identity · Current application status is not verified"
+    agency = record.implementing_agency or record.department or "MSDE"
+    verified = record.last_verified_at or record.last_updated or "Not recorded"
+    date_fact = ""
+    if record.opening_date:
+        date_fact += f'<div><span>Opening date</span><strong>{esc(record.opening_date)}</strong></div>'
+    if record.closing_date:
+        date_fact += f'<div><span>Closing date</span><strong>{esc(record.closing_date)}</strong></div>'
+    funding = ""
+    if record.funding_maximum is not None:
+        funding = f'<div><span>Maximum support</span><strong>{esc(format_inr(record.funding_maximum))}</strong></div>'
+    facts = (
+        f'<div><span>Implementing agency</span><strong>{esc(agency)}</strong></div>'
+        f'<div><span>Record type</span><strong>{esc(display_token(record.record_kind))}</strong></div>'
+        f'<div><span>Last verified</span><strong>{esc(verified)}</strong></div>'
+        f'{date_fact}{funding}'
+    )
+    chips = [*record.sectors[:3], *record.scheme_types[:2]]
+    links = []
+    if record.official_page_url:
+        links.append(
+            f'<a target="_blank" rel="noopener noreferrer" href="{esc(record.official_page_url)}">Official page <span aria-hidden="true">↗</span></a>'
+        )
+    for url in record.guideline_urls[:1]:
+        links.append(
+            f'<a target="_blank" rel="noopener noreferrer" href="{esc(url)}">Guideline <span aria-hidden="true">↗</span></a>'
+        )
+    summary = record.benefits[0] if record.benefits else (record.objectives[0] if record.objectives else "Details are preserved in the governed official evidence record.")
+    return (
+        '<article class="public-record-card">'
+        '<div class="public-record-card-top">'
+        f'<span class="status-badge {status_class}">{esc(status_label_text)}</span>'
+        f'<span class="public-kind">{esc(display_token(record.record_kind))}</span></div>'
+        f'<h3>{esc(record.scheme_name)}</h3>'
+        f'<div class="public-record-agency">{esc(agency)}</div>'
+        f'<p>{esc(summary)}</p>'
+        f'<div class="public-record-facts">{facts}</div>'
+        f'<div class="public-chip-row">{"".join(f"<span>{esc(item)}</span>" for item in chips if item)}</div>'
+        f'<div class="public-record-note">{esc(note)}</div>'
+        f'<div class="public-record-actions">{"".join(links)}</div>'
+        '</article>'
+    )
+
+
+def render_msde_page(bundle: CatalogueBundle) -> None:
+    msde: MSDEPublicBundle = build_msde_public_bundle(bundle.records)
+    permanent = list(msde.permanent_records)
+    current = list(msde.current_calls)
+    historical = list(msde.historical_records)
+    all_records = [*permanent, *current, *historical]
+    st.markdown(
+        page_intro(
+            "MSDE intelligence",
+            "MSDE Schemes, Programmes & Calls",
+            "Ministry of Skill Development & Entrepreneurship schemes, entrepreneurship pathways, verified calls and historical references are maintained as separate public views.",
+            badge=f"{len(permanent)} schemes & programmes · {len(current)} current calls · {len(historical)} historical",
+        ),
+        unsafe_allow_html=True,
+    )
+    st.markdown(
+        '<div class="metric-grid call-metrics">'
+        + metric_card("Schemes & programmes", len(permanent), "Governed MSDE support identities", "blue")
+        + metric_card("Open calls", sum(row.application_status.upper() == "OPEN" for row in current), "Verified current application windows", "green")
+        + metric_card("Upcoming", sum(row.application_status.upper() == "UPCOMING" for row in current), "Verified future application windows", "purple")
+        + metric_card("Historical references", len(historical), "Qualified MSDE cycles and notices", "orange")
+        + '</div>',
+        unsafe_allow_html=True,
+    )
+    st.caption(
+        f"Latest record verification: {msde.latest_verification_date} · "
+        "Counts are calculated from the governed MSDE publication snapshot."
+    )
+    st.markdown(
+        '<div class="archive-governance">'
+        '<strong>MSDE ownership and status governance</strong>'
+        '<span>Permanent Skill India and entrepreneurship identities are separate from dated calls and public-comment windows. '
+        f'Only official dated application evidence is promoted to current calls; {msde.excluded_count} call-like record(s) remain excluded from active counts.</span></div>',
+        unsafe_allow_html=True,
+    )
+    keyword_column, type_column, status_column = st.columns([2.3, 1.35, 1.35])
+    with keyword_column:
+        keyword = st.text_input("Search MSDE schemes", placeholder="PMKVY, apprenticeship, entrepreneurship…", key="msde_keyword")
+    with type_column:
+        record_type = st.selectbox("Record type", ["All", *sorted({row.record_kind for row in all_records})], key="msde_record_type")
+    with status_column:
+        status = st.selectbox("Application status", ["All", *sorted({row.application_status for row in all_records})], key="msde_status")
+    visible = filter_msde_records(all_records, keyword=keyword, record_type=record_type, status=status)
+    visible_ids = {row.master_id for row in visible}
+    tab_schemes, tab_calls, tab_history = st.tabs(["Schemes & Programmes", "Current Calls & Challenges", "Historical Archive"])
+    with tab_schemes:
+        rows = [row for row in permanent if row.master_id in visible_ids]
+        st.markdown(f'<div class="filter-summary"><strong>{len(rows)}</strong> MSDE scheme(s) and programme(s)<span>Official links open in a new tab</span></div>', unsafe_allow_html=True)
+        if rows:
+            st.markdown('<div class="public-record-grid">' + "".join(_msde_record_card(row) for row in rows) + '</div>', unsafe_allow_html=True)
+        else:
+            st.info("No MSDE schemes or programmes match the selected filters.")
+    with tab_calls:
+        rows = [row for row in current if row.master_id in visible_ids]
+        st.markdown(f'<div class="filter-summary"><strong>{len(rows)}</strong> verified current MSDE call(s)<span>Undated windows remain hidden</span></div>', unsafe_allow_html=True)
+        if rows:
+            st.markdown('<div class="public-record-grid">' + "".join(_msde_record_card(row) for row in rows) + '</div>', unsafe_allow_html=True)
+        else:
+            st.info("No verified open or upcoming MSDE calls are currently published.")
+    with tab_history:
+        rows = [row for row in historical if row.master_id in visible_ids]
+        if rows:
+            st.markdown(
+                '<div class="section-band"><h2 class="section-title">MSDE Historical Calls & Cycles by Evidenced Closing Year</h2>'
+                + _department_history_chart(rows, date_getter=lambda item: item.closing_date, legend_label="Qualified MSDE historical references")
+                + '</div>',
+                unsafe_allow_html=True,
+            )
+            st.markdown('<div class="public-record-grid">' + "".join(_msde_record_card(row, historical=True) for row in rows) + '</div>', unsafe_allow_html=True)
+        else:
+            st.info("No historical MSDE records match the selected filters.")
+
+
+def _moe_record_card(record: CatalogueRecord, *, historical: bool = False) -> str:
+    status = record.application_status.upper()
+    if historical:
+        status_label_text, status_class = "Historical", "status-history"
+        note = "Historical MoE / AICTE reference · No active application action"
+    elif status in {"OPEN", "UPCOMING"}:
+        status_label_text = display_token(status)
+        status_class = "status-open" if status == "OPEN" else "status-upcoming"
+        note = "Verified current opportunity · Confirm the official deadline before applying"
+    else:
+        status_label_text, status_class = "Status unverified", "status-unverified"
+        note = "Permanent MoE / AICTE identity · Current application status is not verified"
+    agency = record.implementing_agency or record.department or "Ministry of Education / AICTE"
+    verified = record.last_verified_at or record.last_updated or "Not recorded"
+    date_fact = ""
+    if record.opening_date:
+        date_fact += f'<div><span>Opening date</span><strong>{esc(record.opening_date)}</strong></div>'
+    if record.closing_date:
+        date_fact += f'<div><span>Closing date</span><strong>{esc(record.closing_date)}</strong></div>'
+    funding = ""
+    if record.funding_maximum is not None:
+        funding = f'<div><span>Maximum support</span><strong>{esc(format_inr(record.funding_maximum))}</strong></div>'
+    facts = (
+        f'<div><span>Implementing agency</span><strong>{esc(agency)}</strong></div>'
+        f'<div><span>Record type</span><strong>{esc(display_token(record.record_kind))}</strong></div>'
+        f'<div><span>Last verified</span><strong>{esc(verified)}</strong></div>'
+        f'{date_fact}{funding}'
+    )
+    chips = [*record.sectors[:3], *record.scheme_types[:2]]
+    links = []
+    if record.official_page_url:
+        links.append(
+            f'<a target="_blank" rel="noopener noreferrer" href="{esc(record.official_page_url)}">Official page <span aria-hidden="true">↗</span></a>'
+        )
+    if record.application_url:
+        links.append(
+            f'<a target="_blank" rel="noopener noreferrer" href="{esc(record.application_url)}">Apply / portal <span aria-hidden="true">↗</span></a>'
+        )
+    for url in record.guideline_urls[:1]:
+        links.append(
+            f'<a target="_blank" rel="noopener noreferrer" href="{esc(url)}">Guideline <span aria-hidden="true">↗</span></a>'
+        )
+    summary = record.benefits[0] if record.benefits else (record.objectives[0] if record.objectives else "Details are preserved in the governed official evidence record.")
+    return (
+        '<article class="public-record-card">'
+        '<div class="public-record-card-top">'
+        f'<span class="status-badge {status_class}">{esc(status_label_text)}</span>'
+        f'<span class="public-kind">{esc(display_token(record.record_kind))}</span></div>'
+        f'<h3>{esc(record.scheme_name)}</h3>'
+        f'<div class="public-record-agency">{esc(agency)}</div>'
+        f'<p>{esc(summary)}</p>'
+        f'<div class="public-record-facts">{facts}</div>'
+        f'<div class="public-chip-row">{"".join(f"<span>{esc(item)}</span>" for item in chips if item)}</div>'
+        f'<div class="public-record-note">{esc(note)}</div>'
+        f'<div class="public-record-actions">{"".join(links)}</div>'
+        '</article>'
+    )
+
+
+def render_moe_page(bundle: CatalogueBundle) -> None:
+    moe: MOEPublicBundle = build_moe_public_bundle(bundle.records)
+    permanent = list(moe.permanent_records)
+    current = list(moe.current_calls)
+    historical = list(moe.historical_records)
+    all_records = [*permanent, *current, *historical]
+    st.markdown(
+        page_intro(
+            "MoE / AICTE intelligence",
+            "MoE / AICTE Schemes, Programmes & Calls",
+            "Higher-education innovation, entrepreneurship, research pathways and dated application windows are maintained as separate public views.",
+            badge=f"{len(permanent)} schemes & programmes · {len(current)} current calls · {len(historical)} historical",
+        ),
+        unsafe_allow_html=True,
+    )
+    st.markdown(
+        '<div class="metric-grid call-metrics">'
+        + metric_card("Schemes & programmes", len(permanent), "Governed MoE / AICTE support identities", "blue")
+        + metric_card("Open calls", sum(row.application_status.upper() == "OPEN" for row in current), "Verified current application windows", "green")
+        + metric_card("Upcoming", sum(row.application_status.upper() == "UPCOMING" for row in current), "Verified future application windows", "purple")
+        + metric_card("Historical references", len(historical), "Qualified MoE / AICTE cycles", "orange")
+        + '</div>',
+        unsafe_allow_html=True,
+    )
+    st.caption(
+        f"Latest record verification: {moe.latest_verification_date} · "
+        "Counts are calculated from the governed MoE / AICTE publication snapshot."
+    )
+    st.markdown(
+        '<div class="archive-governance">'
+        '<strong>MoE / AICTE ownership and status governance</strong>'
+        '<span>Permanent innovation identities are separate from dated challenge and research-application windows. '
+        f'Only official dated application evidence is promoted to current calls; {moe.excluded_count} call-like record(s) remain excluded from active counts.</span></div>',
+        unsafe_allow_html=True,
+    )
+    keyword_column, type_column, status_column = st.columns([2.3, 1.35, 1.35])
+    with keyword_column:
+        keyword = st.text_input("Search MoE / AICTE schemes", placeholder="IIC, IDEA Lab, YUKTI, PMRC…", key="moe_keyword")
+    with type_column:
+        record_type = st.selectbox("Record type", ["All", *sorted({row.record_kind for row in all_records})], key="moe_record_type")
+    with status_column:
+        status = st.selectbox("Application status", ["All", *sorted({row.application_status for row in all_records})], key="moe_status")
+    visible = filter_moe_records(all_records, keyword=keyword, record_type=record_type, status=status)
+    visible_ids = {row.master_id for row in visible}
+    tab_schemes, tab_calls, tab_history = st.tabs(["Schemes & Programmes", "Current Calls & Challenges", "Historical Archive"])
+    with tab_schemes:
+        rows = [row for row in permanent if row.master_id in visible_ids]
+        st.markdown(f'<div class="filter-summary"><strong>{len(rows)}</strong> MoE / AICTE scheme(s) and programme(s)<span>Official links open in a new tab</span></div>', unsafe_allow_html=True)
+        if rows:
+            st.markdown('<div class="public-record-grid">' + "".join(_moe_record_card(row) for row in rows) + '</div>', unsafe_allow_html=True)
+        else:
+            st.info("No MoE / AICTE schemes or programmes match the selected filters.")
+    with tab_calls:
+        rows = [row for row in current if row.master_id in visible_ids]
+        st.markdown(f'<div class="filter-summary"><strong>{len(rows)}</strong> verified current MoE / AICTE call(s)<span>Undated windows remain hidden</span></div>', unsafe_allow_html=True)
+        if rows:
+            st.markdown('<div class="public-record-grid">' + "".join(_moe_record_card(row) for row in rows) + '</div>', unsafe_allow_html=True)
+        else:
+            st.info("No verified open or upcoming MoE / AICTE calls are currently published.")
+    with tab_history:
+        rows = [row for row in historical if row.master_id in visible_ids]
+        if rows:
+            st.markdown(
+                '<div class="section-band"><h2 class="section-title">MoE / AICTE Historical Calls by Evidenced Closing Year</h2>'
+                + _department_history_chart(rows, date_getter=lambda item: item.closing_date, legend_label="Qualified MoE / AICTE historical references")
+                + '</div>',
+                unsafe_allow_html=True,
+            )
+            st.markdown('<div class="public-record-grid">' + "".join(_moe_record_card(row, historical=True) for row in rows) + '</div>', unsafe_allow_html=True)
+        else:
+            st.info("No historical MoE / AICTE records match the selected filters.")
+
+
 def main() -> None:
     requested_slug = str(st.query_params.get("page", "") or "").strip().lower()
     requested_page = PAGE_SLUG_ALIASES.get(requested_slug) or next(
@@ -3634,6 +4344,16 @@ def main() -> None:
         render_dbt_birac_page()
     elif page == "MSME":
         render_msme_page(bundle)
+    elif page == "DoT":
+        render_dot_page(bundle)
+    elif page == "iDEX":
+        render_idex_page(bundle)
+    elif page == "Agriculture":
+        render_agri_startup_page(bundle)
+    elif page == "MSDE":
+        render_msde_page(bundle)
+    elif page == "MoE":
+        render_moe_page(bundle)
     elif page == "Official Sources":
         render_official_sources(official_sources, bundle)
     elif page == "Calls & Opportunities":

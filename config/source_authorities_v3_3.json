@@ -85,6 +85,42 @@
       "confidence": 0.88
     },
     {
+      "match_field": "agency",
+      "match_values": ["MANAGE-CIA", "ANGRAU Poshan Incubator"],
+      "authority_id": "agriculture_incubator_sources",
+      "ministry": "Ministry of Agriculture & Farmers Welfare",
+      "department": "Department of Agriculture & Farmers Welfare / MANAGE-CIA",
+      "authority_type": "agriculture_incubator_source",
+      "confidence": 0.9
+    },
+    {
+      "match_field": "agency",
+      "match_values": ["PDKV Research and Incubation Foundation", "Agri Food Business Incubation Centre IIT Kharagpur", "Agri Business Incubation Foundation IIT Kharagpur"],
+      "authority_id": "agriculture_startup_portals",
+      "ministry": "Ministry of Agriculture & Farmers Welfare",
+      "department": "Department of Agriculture & Farmers Welfare / linked startup portals",
+      "authority_type": "agriculture_startup_programme_source",
+      "confidence": 0.9
+    },
+    {
+      "match_field": "ministry",
+      "match_values": ["Ministry of Skill Development and Entrepreneurship", "Ministry of Skill Development & Entrepreneurship"],
+      "authority_id": "msde_skill_ecosystem",
+      "ministry": "Ministry of Skill Development and Entrepreneurship",
+      "department": "Ministry of Skill Development and Entrepreneurship",
+      "authority_type": "central_ministry",
+      "confidence": 0.95
+    },
+    {
+      "match_field": "ministry",
+      "match_values": ["Ministry of Education"],
+      "authority_id": "moe_higher_education_innovation",
+      "ministry": "Ministry of Education",
+      "department": "Department of Higher Education, Ministry of Education",
+      "authority_type": "central_ministry",
+      "confidence": 0.95
+    },
+    {
       "match_field": "ministry",
       "match_values": ["Ministry of Defence", "Department of Space", "Ministry of Education", "Ministry of New and Renewable Energy", "Ministry of Agriculture and Farmers Welfare"],
       "authority_id": "central_programme_authority",

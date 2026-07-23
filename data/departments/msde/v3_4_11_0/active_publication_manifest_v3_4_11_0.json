@@ -1,0 +1,15 @@
+{
+  "version": "3.4.11.0",
+  "activation_status": "ACTIVE",
+  "run_id": "msde_initial_governed_public_20260723",
+  "activated_at": "2026-07-23T00:00:00+05:30",
+  "inventory_file": "active_inventory.csv",
+  "inventory_sha256": "eda184ce766da7b22a4608060d1514036fa17013ee6da563c6a026656eda39da",
+  "record_count": 25,
+  "auto_approved_count": 25,
+  "exception_count": 0,
+  "publication_decision": "AUTO_APPROVED",
+  "source_index": "https://www.msde.gov.in/offerings",
+  "source_last_verified": "2026-07-23",
+  "notes": "Initial MSDE public snapshot: 22 permanent scheme/programme identities, 2 historical PMKVY cycles, and 1 closed official public-comment call. No open call is published without dated official application evidence."
+}

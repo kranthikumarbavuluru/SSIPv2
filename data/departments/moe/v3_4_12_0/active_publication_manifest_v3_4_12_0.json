@@ -1,0 +1,15 @@
+{
+  "version": "3.4.12.0",
+  "activation_status": "ACTIVE",
+  "run_id": "moe_aicte_initial_governed_public_20260723",
+  "activated_at": "2026-07-23T00:00:00+05:30",
+  "inventory_file": "active_inventory.csv",
+  "inventory_sha256": "d6aa82db03d3b199ff6f45d876aae9ed91d398205d140739a1bea365b22bb0d1",
+  "record_count": 15,
+  "auto_approved_count": 15,
+  "exception_count": 0,
+  "publication_decision": "AUTO_APPROVED",
+  "source_index": "https://www.education.gov.in/nep-initiatives",
+  "source_last_verified": "2026-07-23",
+  "notes": "Initial MoE / AICTE innovation snapshot: 12 permanent scheme and programme identities, 1 open PMRC application call with an official 15 August 2026 deadline, and 2 historical challenge cycles."
+}

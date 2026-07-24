@@ -1,0 +1,61 @@
+{
+  "version": "3.4.13.0",
+  "release_type": "GOVERNED_CATALOGUE_SNAPSHOT",
+  "created_at": "2026-07-23T07:29:28+00:00",
+  "snapshot_file": "data/releases/v3_4_13_0/catalogue_snapshot_v3_4_13_0.csv",
+  "snapshot_sha256": "cf07e77a78c9d2249f053a5e8af1bb87b3a7539563691ba27831b35716d82038",
+  "catalogue_mode": "CATALOGUE_PREVIEW",
+  "counts": {
+    "loaded_records": 341,
+    "schemes_and_programmes": 158,
+    "application_calls": 89,
+    "evidence_or_excluded": 94
+  },
+  "latest_verification": "2026-07-23",
+  "department_publication_manifests": {
+    "agri_startup": {
+      "path": "data/departments/agri_startup/v3_4_10_0/active_publication_manifest_v3_4_10_0.json",
+      "version": "3.4.10.0",
+      "record_count": 37,
+      "sha256": "248c0bd64989a715f02bbde25fbc743497dc41588c933e8efaaaa0346e841d11"
+    },
+    "dot": {
+      "path": "data/departments/dot/v3_4_8_0/active_publication_manifest_v3_4_8_0.json",
+      "version": "3.4.8.0",
+      "record_count": 11,
+      "sha256": "435f763365a25c58f6c576ad569811153077a05d7490daa6e7f32d5bef283d0f"
+    },
+    "idex": {
+      "path": "data/departments/idex/v3_4_9_0/active_publication_manifest_v3_4_9_0.json",
+      "version": "3.4.9.0",
+      "record_count": 35,
+      "sha256": "6177af85e9bf275e6aa19f325726a2a694e0716756434cc0ce64512c7c85ee97"
+    },
+    "moe": {
+      "path": "data/departments/moe/v3_4_12_0/active_publication_manifest_v3_4_12_0.json",
+      "version": "3.4.12.0",
+      "record_count": 15,
+      "sha256": "add08b4c78a7d3ee7b11121661b88a74253ba15b01a23f1c538443776e2199c3"
+    },
+    "msde": {
+      "path": "data/departments/msde/v3_4_11_0/active_publication_manifest_v3_4_11_0.json",
+      "version": "3.4.11.0",
+      "record_count": 25,
+      "sha256": "0e24cba6edaf8478695473efea8fc1323ff04e3d23a44b4222b98aa246550119"
+    },
+    "msme": {
+      "path": "data/departments/msme/v3_4_6_0/active_publication_manifest_v3_4_6_0.json",
+      "version": "3.4.6.0",
+      "record_count": 31,
+      "sha256": "578f0680e16cb4e01cf62c2d4deb6551f19ea2fcb0775d133f3e6f132a56c93c"
+    },
+    "msme_mymsme": {
+      "path": "data/departments/msme/v3_4_6_0/mymsme/active_publication_manifest_v3_4_6_0.json",
+      "version": "3.4.6.0",
+      "record_count": 16,
+      "sha256": "ed9c17635fe282bba64a1b5e0f19e22b47167f6b5a514d5e0006cf32c4685c57"
+    }
+  },
+  "database_modified": false,
+  "notes": "Immutable read-only snapshot. Existing department snapshots and the SQLite database were not modified."
+}

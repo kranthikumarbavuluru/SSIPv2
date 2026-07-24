@@ -12,7 +12,8 @@ from collections import Counter
 from datetime import date
 import sys
 from pathlib import Path
-from urllib.parse import quote
+from typing import Callable
+from urllib.parse import quote, urlsplit
 
 import streamlit as st
 
@@ -99,8 +100,41 @@ from ssip_dashboard.msme_public import (
     build_msme_public_bundle,
     filter_msme_records,
 )
+from ssip_dashboard.dot_public import (
+    DOTPublicBundle,
+    build_dot_public_bundle,
+    filter_dot_records,
+)
+from ssip_dashboard.idex_public import (
+    IDEXPublicBundle,
+    build_idex_public_bundle,
+    filter_idex_records,
+)
+from ssip_dashboard.agri_startup_public import (
+    AgriStartupPublicBundle,
+    build_agri_startup_public_bundle,
+    filter_agri_startup_records,
+)
+from ssip_dashboard.msde_public import (
+    MSDEPublicBundle,
+    build_msde_public_bundle,
+    filter_msde_records,
+)
+from ssip_dashboard.moe_public import (
+    MOEPublicBundle,
+    build_moe_public_bundle,
+    filter_moe_records,
+)
+from services.admin_auth_v1 import (
+    admin_auth_config,
+    clear_authenticated,
+    is_authenticated,
+    mark_authenticated,
+    register_failed_attempt,
+    verify_admin_password,
+)
 
-APP_VERSION = "3.4.6.0-msme-governed-public"
+APP_VERSION = "3.4.14.0-visual-foundation"
 LOGGER = logging.getLogger(__name__)
 PAGE_NAMES = [
     "Home",
@@ -111,10 +145,17 @@ PAGE_NAMES = [
     "DPIIT",
     "DBT–BIRAC",
     "MSME",
+    "DoT",
+    "iDEX",
+    "Agriculture",
+    "MSDE",
+    "MoE",
     "Incubators & Ecosystem",
     "Directory",
     "Official Sources",
+    "Media Runs",
     "Scheme Details",
+    "Admin Login",
 ]
 NAV_LABELS = {
     "Home": "Home",
@@ -125,10 +166,17 @@ NAV_LABELS = {
     "DPIIT": "DPIIT",
     "DBT–BIRAC": "DBT–BIRAC",
     "MSME": "MSME",
+    "DoT": "DoT",
+    "iDEX": "iDEX",
+    "Agriculture": "Agriculture",
+    "MSDE": "MSDE",
+    "MoE": "MoE",
     "Incubators & Ecosystem": "Ecosystem",
     "Directory": "Resources",
     "Official Sources": "Sources",
+    "Media Runs": "Media runs",
     "Scheme Details": "Profiles",
+    "Admin Login": "Admin sign in",
 }
 PAGE_SLUGS = {
     "Home": "overview",
@@ -137,13 +185,22 @@ PAGE_SLUGS = {
     "MeitY": "meity-programmes",
     "DPIIT": "dpiit-programmes",
     "DBT–BIRAC": "dbt-birac-programmes",
-    "MSME": "msme-programmes",
+    "MSME": "msme-schemes",
+    "DoT": "dot-programmes",
+    "iDEX": "idex-programmes",
+    "Agriculture": "agri-startups",
+    "MSDE": "msde-programmes",
+    "MoE": "moe-programmes",
     "Calls & Opportunities": "live-calls",
     "Incubators & Ecosystem": "ecosystem",
     "Official Sources": "official-sources",
     "Directory": "resources",
+    "Media Runs": "media-runs",
     "Scheme Details": "scheme-profiles",
+    "Admin Login": "admin/login",
 }
+
+PAGE_SLUG_ALIASES = {"msme-programmes": "MSME"}
 
 
 # Public organisation identity aliases.
@@ -264,8 +321,29 @@ for stylesheet in load_stylesheets():
     st.markdown(f"<style>{stylesheet}</style>", unsafe_allow_html=True)
 
 
+def _msme_cache_token() -> str:
+    manifests = (
+        PROJECT_ROOT / "data/departments/msme/v3_4_6_0/active_publication_manifest_v3_4_6_0.json",
+        PROJECT_ROOT / "data/departments/dot/v3_4_8_0/active_publication_manifest_v3_4_8_0.json",
+        PROJECT_ROOT / "data/departments/idex/v3_4_9_0/active_publication_manifest_v3_4_9_0.json",
+        PROJECT_ROOT / "data/departments/agri_startup/v3_4_10_0/active_publication_manifest_v3_4_10_0.json",
+        PROJECT_ROOT / "data/departments/msde/v3_4_11_0/active_publication_manifest_v3_4_11_0.json",
+        PROJECT_ROOT / "data/departments/moe/v3_4_12_0/active_publication_manifest_v3_4_12_0.json",
+        PROJECT_ROOT / "data/media_publication/v3_4_7_3/active_publication_manifest_v3_4_7_3.json",
+        PROJECT_ROOT / "data/media_publication/v3_4_7_0/active_publication_manifest_v3_4_7_0.json",
+    )
+    tokens: list[str] = []
+    for manifest in manifests:
+        try:
+            tokens.append(str(manifest.stat().st_mtime_ns))
+        except OSError:
+            tokens.append("missing")
+    return ":".join(tokens)
+
+
 @st.cache_data(ttl=45, show_spinner=False)
-def cached_catalogue() -> CatalogueBundle:
+def cached_catalogue(msme_cache_token: str = "") -> CatalogueBundle:
+    del msme_cache_token
     loaded = load_catalogue(DashboardConfig.from_env(PROJECT_ROOT))
     return canonicalize_catalogue_organisations(loaded)
 
@@ -402,6 +480,16 @@ def record_details_href(record: CatalogueRecord) -> str:
     )
 
 
+def is_media_derived_record(record: CatalogueRecord) -> bool:
+    """Identify records projected from the governed media publication bundle."""
+
+    return (
+        str(record.master_id or "").startswith("media_")
+        or str(record.current_location or "").upper() == "MEDIA_ACTIVE_PUBLICATION"
+        or str(record.source or "").casefold().startswith("media evidence")
+    )
+
+
 def public_status_text(record: CatalogueRecord) -> str:
     """Return a plain-language public status without exposing internal catalogue tokens."""
     bucket = status_bucket(record)
@@ -457,6 +545,8 @@ def public_record_card(
     include_details_link: bool = True,
 ) -> str:
     """Render a public-first scheme/call card without exposing internal tokens."""
+    if is_media_derived_record(record) and record.record_kind.upper() in {"APPLICATION_CALL", "CHALLENGE"}:
+        include_details_link = False
     agency = (
         record.department
         or record.implementing_agency
@@ -536,7 +626,7 @@ def public_record_card(
 
 
 def site_header(active_page: str) -> str:
-    """Render a compact website-style header with query-parameter navigation."""
+    """Render a two-tier header: portal tools above, department destinations below."""
     primary_pages = [
         "Home",
         "Scheme Explorer",
@@ -546,22 +636,52 @@ def site_header(active_page: str) -> str:
         "DPIIT",
         "DBT–BIRAC",
         "MSME",
+        "DoT",
+        "iDEX",
+        "Agriculture",
+        "MSDE",
+        "MoE",
     ]
+    core_pages = primary_pages[:3]
+    department_pages = primary_pages[3:]
     links = []
-    for page_name in primary_pages:
+    for page_name in core_pages:
         active = " is-active" if active_page == page_name else ""
         links.append(
             f'<a class="ssip-nav-link{active}" target="_top" href="?page={PAGE_SLUGS[page_name]}">'
             f'{esc(NAV_LABELS[page_name])}</a>'
         )
-    more_active = active_page in {"Directory", "Official Sources", "Incubators & Ecosystem", "Scheme Details"}
+    more_active = active_page in {"Directory", "Official Sources", "Media Runs", "Incubators & Ecosystem", "Scheme Details", "Admin Login"}
     more_class = " is-active" if more_active else ""
     more_links = (
         f'<a target="_top" href="?page={PAGE_SLUGS["Directory"]}">Resources</a>'
         f'<a target="_top" href="?page={PAGE_SLUGS["Official Sources"]}">Sources</a>'
         f'<a target="_top" href="?page={PAGE_SLUGS["Incubators & Ecosystem"]}">Ecosystem</a>'
+        f'<a target="_top" href="?page={PAGE_SLUGS["Media Runs"]}">Media runs</a>'
         f'<a target="_top" href="?page={PAGE_SLUGS["Scheme Details"]}">Scheme profiles</a>'
+        '<a target="_top" href="?page=admin/login">Admin sign in</a>'
     )
+    department_links = []
+    department_classes = {
+        "DST Schemes": "dst",
+        "MeitY": "meity",
+        "DPIIT": "dpiit",
+        "DBTâ€“BIRAC": "dbt-birac",
+        "MSME": "msme",
+        "DoT": "dot",
+        "iDEX": "idex",
+        "Agriculture": "agri",
+        "MSDE": "msde",
+        "MoE": "moe",
+    }
+    for page_name in department_pages:
+        active = " is-active" if active_page == page_name else ""
+        department_class = department_classes.get(page_name, "department")
+        department_links.append(
+            f'<a class="ssip-nav-link ssip-nav-department ssip-nav-department-{department_class}{active}" '
+            f'target="_top" href="?page={PAGE_SLUGS[page_name]}">'
+            f'{esc(NAV_LABELS[page_name])}</a>'
+        )
     return (
         '<header class="ssip-site-header">'
         '<div class="ssip-header-main">'
@@ -569,9 +689,12 @@ def site_header(active_page: str) -> str:
         '<span class="ssip-brand-mark">SSIP</span>'
         '<span class="ssip-brand-copy"><strong>SSIP</strong>'
         '<small>Startup Scheme Intelligence Platform</small></span></a>'
-        f'<nav class="ssip-primary-nav" aria-label="Primary navigation">{" ".join(links)}'
+        '<div class="ssip-header-nav-stack">'
+        f'<nav class="ssip-primary-nav ssip-primary-nav-core" aria-label="Portal navigation">{" ".join(links)}'
         f'<details class="ssip-nav-more{more_class}"><summary>More</summary>'
         f'<div class="ssip-nav-more-menu">{more_links}</div></details></nav>'
+        f'<nav class="ssip-primary-nav ssip-primary-nav-departments" aria-label="Department navigation">{" ".join(department_links)}</nav>'
+        '</div>'
         '<div class="ssip-header-trust"><i></i><span>Official-source catalogue</span></div>'
         '</div></header>'
     )
@@ -584,6 +707,84 @@ def page_intro(eyebrow: str, title: str, description: str, *, badge: str = "") -
         f'<div><div class="page-eyebrow">{esc(eyebrow)}</div>'
         f'<h1>{esc(title)}</h1><p>{esc(description)}</p></div>{badge_html}'
         '</section>'
+    )
+
+
+def browser_request_path() -> str:
+    """Read the browser path when Streamlit is mounted below a friendly route."""
+
+    try:
+        return urlsplit(str(st.context.url or "")).path.rstrip("/") or "/"
+    except Exception:
+        return ""
+
+
+def render_admin_login() -> None:
+    """Render the public admin entry page without loading catalogue data."""
+
+    config = admin_auth_config()
+    st.markdown(
+        page_intro(
+            "Restricted workspace",
+            "SSIP Admin sign in",
+            "Sign in to continue to the governed review and publication workspace. "
+            "Public catalogue pages remain read-only.",
+            badge="Admin access",
+        ),
+        unsafe_allow_html=True,
+    )
+
+    if is_authenticated(st.session_state):
+        st.markdown(
+            '<section class="admin-login-shell admin-login-shell-authenticated">'
+            '<div class="admin-login-card">'
+            '<span class="page-eyebrow">Session active</span>'
+            '<h2>Admin access is ready</h2>'
+            '<p>This browser session is authenticated. Open the separate review workspace to inspect, approve and publish governed records.</p>'
+            '</div></section>',
+            unsafe_allow_html=True,
+        )
+        st.markdown(
+            f'<a class="admin-login-action" target="_top" '
+            f'href="{esc(config.workspace_url)}">Open admin review workspace</a>',
+            unsafe_allow_html=True,
+        )
+        if st.button("Sign out", key="admin_public_sign_out"):
+            clear_authenticated(st.session_state)
+            st.rerun()
+        return
+
+    st.markdown('<section class="admin-login-shell"><div class="admin-login-card">', unsafe_allow_html=True)
+    if not config.secret_configured:
+        st.error(
+            "Admin login is not configured. Set SSIP_ADMIN_PASSWORD or "
+            "SSIP_ADMIN_PASSWORD_HASH before starting the dashboard."
+        )
+    else:
+        with st.form("ssip_admin_login_form", clear_on_submit=False):
+            st.markdown('<span class="page-eyebrow">Credential check</span>', unsafe_allow_html=True)
+            st.markdown("<h2>Enter the admin password</h2>", unsafe_allow_html=True)
+            password = st.text_input(
+                "Admin password",
+                type="password",
+                autocomplete="current-password",
+                placeholder="Enter admin password…",
+                label_visibility="visible",
+            )
+            submitted = st.form_submit_button("Sign in", type="primary", use_container_width=True)
+        if submitted:
+            if verify_admin_password(password):
+                mark_authenticated(st.session_state)
+                st.rerun()
+            attempts = register_failed_attempt(st.session_state)
+            st.error("Password not accepted. Check the configured secret and try again.")
+            if attempts >= 5:
+                st.warning("Several failed attempts were recorded for this browser session.")
+    st.markdown('</div></section>', unsafe_allow_html=True)
+    st.markdown(
+        '<p class="admin-login-note">Credentials are evaluated locally and are never written to catalogue records.</p>'
+        '<a class="admin-login-back" target="_top" href="/?page=overview">Return to the public dashboard</a>',
+        unsafe_allow_html=True,
     )
 
 
@@ -975,12 +1176,15 @@ def render_home(bundle: CatalogueBundle, official_sources: list[OfficialSource])
     current_calls = sorted(
         current_calls,
         key=lambda item: (parse_date(item.closing_date) or date.max, item.scheme_name.casefold()),
-    )[:4]
+    )
+    media_calls = [item for item in current_calls if is_media_derived_record(item)]
+    other_calls = [item for item in current_calls if not is_media_derived_record(item)]
+    current_calls = (media_calls + other_calls)[:6]
     st.markdown(
         '<div class="home-section-heading home-section-heading-spaced"><div>'
         '<span class="page-eyebrow">Time-bound opportunities</span>'
         '<h2>Open and upcoming calls</h2>'
-        '<p>Calls, cohorts and challenges remain separate from their permanent parent schemes.</p>'
+        '<p>Calls, cohorts and challenges remain separate from their permanent parent schemes. Media-derived calls are included when currently actionable.</p>'
         '</div><span class="home-section-action">Check the official deadline before applying</span></div>',
         unsafe_allow_html=True,
     )
@@ -1092,6 +1296,7 @@ def render_home(bundle: CatalogueBundle, official_sources: list[OfficialSource])
         '<footer class="public-footer">'
         f'<span>Last catalogue update: {esc(latest_signal)}</span>'
         '<span>Official-source catalogue · Read-only public access</span>'
+        '<a class="public-footer-admin" target="_top" href="?page=admin/login">Admin sign in</a>'
         '</footer>',
         unsafe_allow_html=True,
     )
@@ -1306,6 +1511,10 @@ def render_resources(bundle: CatalogueBundle, official_sources: list[OfficialSou
     populations = split_catalogue_populations(bundle.records)
     records = [*populations.main_scheme_records, *populations.application_call_records]
     msme_bundle = build_msme_public_bundle(bundle.records)
+    dot_bundle = build_dot_public_bundle(bundle.records)
+    idex_bundle = build_idex_public_bundle(bundle.records)
+    agri_bundle = build_agri_startup_public_bundle(bundle.records)
+    moe_bundle = build_moe_public_bundle(bundle.records)
     department_documents = [
         {**document, "department_label": "Department of Biotechnology / BIRAC"}
         for document in cached_dbt_birac_preview().documents
@@ -1323,10 +1532,34 @@ def render_resources(bundle: CatalogueBundle, official_sources: list[OfficialSou
         }
         for document in msme_bundle.documents
     )
+    department_documents.extend(
+        {**document, "department_label": "Department of Telecommunications (DoT)"}
+        for document in dot_bundle.documents
+    )
+    department_documents.extend(
+        {**document, "department_label": "Department of Defence Production / iDEX"}
+        for document in idex_bundle.documents
+    )
+    department_documents.extend(
+        {**document, "department_label": "Agriculture & Farmers Welfare startup ecosystem"}
+        for document in agri_bundle.documents
+    )
+    department_documents.extend(
+        {**document, "department_label": "Ministry of Education / AICTE"}
+        for document in moe_bundle.documents
+    )
     msme_document_ids = {document.master_id for document in msme_bundle.documents}
+    dot_document_ids = {record.master_id for record in (*dot_bundle.permanent_records, *dot_bundle.current_calls, *dot_bundle.historical_records)}
+    idex_document_ids = {record.master_id for record in (*idex_bundle.permanent_records, *idex_bundle.current_calls, *idex_bundle.historical_records)}
+    agri_document_ids = {record.master_id for record in (*agri_bundle.permanent_records, *agri_bundle.current_calls, *agri_bundle.historical_records)}
+    moe_document_ids = {record.master_id for record in (*moe_bundle.permanent_records, *moe_bundle.current_calls, *moe_bundle.historical_records)}
     resource_records = [
         item for item in records
         if item.master_id not in msme_document_ids
+        and item.master_id not in dot_document_ids
+        and item.master_id not in idex_document_ids
+        and item.master_id not in agri_document_ids
+        and item.master_id not in moe_document_ids
         and (item.official_page_url or item.application_url or item.guideline_urls or item.reference_urls)
     ]
     resource_total = len(resource_records) + len(department_documents)
@@ -1429,6 +1662,42 @@ def render_resources(bundle: CatalogueBundle, official_sources: list[OfficialSou
     )
 
 
+
+
+def render_media_runs_page(bundle: CatalogueBundle) -> None:
+    """Expose governed media-derived records from the More menu."""
+
+    media_records = sorted(
+        [record for record in bundle.records if is_media_derived_record(record)],
+        key=lambda record: (record.scheme_name.casefold(), record.master_id),
+    )
+    st.markdown(
+        page_intro(
+            "Media intake",
+            "Media-derived schemes, programmes & calls",
+            "Records extracted from dated media runs are shown here after the governed publication gate. Source assets and official links remain available for verification.",
+            badge=f"{len(media_records)} records",
+        ),
+        unsafe_allow_html=True,
+    )
+    if not media_records:
+        st.info("No governed media-run records are currently published.")
+        return
+    current_count = sum(status_bucket(record) in {"OPEN", "CLOSING_SOON", "UPCOMING"} for record in media_records)
+    st.markdown(
+        '<div class="metric-grid resource-metrics">'
+        + metric_card("Media records", len(media_records), "Published from reviewed media runs", "blue")
+        + metric_card("Current calls", current_count, "Open, closing soon or upcoming", "green")
+        + metric_card("Departments mapped", len({record.department for record in media_records if record.department}), "Explicit department mappings", "orange")
+        + '</div>',
+        unsafe_allow_html=True,
+    )
+    st.markdown(
+        '<div class="scheme-results-grid">'
+        + "".join(public_record_card(record, compact=False, include_details_link=False) for record in media_records)
+        + '</div>',
+        unsafe_allow_html=True,
+    )
 
 
 def _dst_preview_notice(bundle: DSTPilotBundle) -> None:
@@ -1619,7 +1888,7 @@ def render_dst_schemes() -> None:
             st.markdown(
                 f'<div class="filter-summary">'
                 f'<strong>{len(visible_programmes)}</strong> '
-                'permanent DST programme record(s)'
+                'DST scheme(s) and programme(s)'
                 '<span>Calls are maintained separately</span></div>',
                 unsafe_allow_html=True,
             )
@@ -2159,7 +2428,7 @@ def _render_published_call_filters(
     return visible
 
 def render_calls_and_opportunities() -> None:
-    bundle = cached_catalogue()
+    bundle = cached_catalogue(_msme_cache_token())
     all_calls = _calls_for_separate_verification_page(bundle)
     calls = [
         item
@@ -2311,7 +2580,7 @@ def render_calls_and_opportunities() -> None:
 
 
 def render_startup_ecosystem() -> None:
-    bundle = cached_catalogue()
+    bundle = cached_catalogue(_msme_cache_token())
     calls = [item for item in _published_calls(bundle) if item.applicant_layer.upper() == "INTERMEDIARY_IMPLEMENTER"]
     parent_names = {item.master_id: item.scheme_name for item in bundle.records}
     st.markdown(page_intro("Institutional opportunities", "Published Incubator & Ecosystem Calls", "Published calls for TBIs, incubators, programme centres and implementation partners. These are never shown as direct founder applications.", badge=f"{len(calls)} intermediary calls"), unsafe_allow_html=True)
@@ -2606,6 +2875,57 @@ def _meity_history_chart(
         '<span><i class="history-segment '
         'history-startup-relevant"></i>'
         'Qualified historical call</span>'
+        '</div>'
+        + "".join(rows)
+        + '</div>'
+    )
+
+
+def _historical_year_label(value: object) -> str:
+    match = re.search(r"\b(?:19|20)\d{2}\b", str(value or ""))
+    return match.group(0) if match else "Date not recorded"
+
+
+def _department_history_chart(
+    records: list[object] | tuple[object, ...],
+    *,
+    date_getter: Callable[[object], object],
+    legend_label: str,
+) -> str:
+    """Render an accessible year-count chart from explicitly evidenced dates."""
+    counts = Counter(
+        _historical_year_label(date_getter(record))
+        for record in records
+    )
+    if not counts:
+        return '<div class="empty-note">No historical date data is available.</div>'
+
+    def sort_key(value: str) -> tuple[int, int | str]:
+        if value == "Date not recorded":
+            return (1, value)
+        return (0, int(value))
+
+    ordered = sorted(counts, key=sort_key)
+    maximum = max(counts.values()) or 1
+    rows = []
+    for label in ordered:
+        count = counts[label]
+        width = (count / maximum) * 100
+        rows.append(
+            '<div class="history-row">'
+            f'<strong>{esc(label)}</strong>'
+            '<div class="history-track">'
+            '<span class="history-segment history-startup-relevant" '
+            f'style="width:{width:.3f}%" title="{esc(label)}: {count}"></span>'
+            '</div>'
+            f'<b>{count}</b></div>'
+        )
+    return (
+        '<div class="history-chart" role="img" '
+        f'aria-label="{esc(legend_label)} by evidenced year">'
+        '<div class="history-legend">'
+        '<span><i class="history-segment history-startup-relevant"></i>'
+        f'{esc(legend_label)}</span>'
         '</div>'
         + "".join(rows)
         + '</div>'
@@ -3039,13 +3359,13 @@ def render_dpiit_page() -> None:
             "DPIIT intelligence",
             "DPIIT Schemes, Services & Calls",
             "Permanent DPIIT schemes, services and programmes, verified current opportunities and the governed historical archive are maintained as separate views.",
-            badge=f"{len(permanent)} permanent records · {len(current)} current calls · {len(historical)} historical",
+            badge=f"{len(permanent)} schemes & programmes · {len(current)} current calls · {len(historical)} historical",
         ),
         unsafe_allow_html=True,
     )
     st.markdown(
         '<div class="metric-grid call-metrics">'
-        + metric_card("Permanent records", len(permanent), "Governed DPIIT schemes, services and programmes", "blue")
+        + metric_card("Schemes & programmes", len(permanent), "Governed DPIIT schemes, services and programmes", "blue")
         + metric_card("Open calls", sum(row.application_status == "OPEN" for row in current), "Verified current application windows", "green")
         + metric_card("Upcoming", sum(row.application_status == "UPCOMING" for row in current), "Verified future application windows", "purple")
         + metric_card("Historical calls", len(historical), "Qualified official DPIIT references", "orange")
@@ -3068,7 +3388,7 @@ def render_dpiit_page() -> None:
     with keyword_column:
         keyword = st.text_input("Search DPIIT schemes", placeholder="Recognition, Seed Fund, MAARG, challenge…")
     with type_column:
-        record_type = st.selectbox("Record type", ["All", *sorted({row.record_type for row in bundle.records})])
+        record_type = st.selectbox("Scheme / programme type", ["All", *sorted({row.record_type for row in bundle.records})])
     with status_column:
         status = st.selectbox("Status", ["All", *sorted({row.application_status for row in bundle.records})])
     with applicant_column:
@@ -3105,6 +3425,18 @@ def render_dpiit_page() -> None:
                 if row.record_type in types
                 and (allowed_statuses is None or row.application_status in allowed_statuses)
             ]
+            if label == "Historical Archive" and records:
+                st.markdown(
+                    '<div class="section-band">'
+                    '<h2 class="section-title">DPIIT Historical Calls by Closing Year</h2>'
+                    + _department_history_chart(
+                        records,
+                        date_getter=lambda item: item.closing_date,
+                        legend_label="Qualified DPIIT historical calls",
+                    )
+                    + '</div>',
+                    unsafe_allow_html=True,
+                )
             if not records:
                 st.info(f"No {label.lower()} match the selected filters.")
             else:
@@ -3199,7 +3531,7 @@ def render_dbt_birac_page() -> None:
     with keyword_column:
         keyword = st.text_input("Search DBT–BIRAC schemes", placeholder="BIG, PACE, biotechnology, grant…")
     with type_column:
-        record_type = st.selectbox("Record type", ["All", *sorted({row.record_type for row in bundle.records})])
+        record_type = st.selectbox("Scheme / programme type", ["All", *sorted({row.record_type for row in bundle.records})])
     with status_column:
         status = st.selectbox("Application status", ["All", *sorted({row.application_status for row in bundle.records})])
     applicant_column, sector_column = st.columns(2)
@@ -3236,6 +3568,18 @@ def render_dbt_birac_page() -> None:
     for tab, (label, types, allowed_statuses) in zip(tabs, groups):
         with tab:
             records = [row for row in visible if row.record_type in types and (allowed_statuses is None or row.application_status in allowed_statuses)]
+            if label == "Historical Archive" and records:
+                st.markdown(
+                    '<div class="section-band">'
+                    '<h2 class="section-title">DBT–BIRAC Historical Calls by Closing Year</h2>'
+                    + _department_history_chart(
+                        records,
+                        date_getter=lambda item: item.closing_date,
+                        legend_label="Qualified DBT–BIRAC historical calls",
+                    )
+                    + '</div>',
+                    unsafe_allow_html=True,
+                )
             if not records:
                 st.info(f"No {label.lower()} match the selected filters.")
             else:
@@ -3325,19 +3669,21 @@ def render_msme_page(bundle: CatalogueBundle) -> None:
     current = list(msme.current_calls)
     historical = list(msme.historical_records)
     public_records = [*permanent, *current, *historical]
+    ap_msme_count = sum(row.source == "AP MSME ONE" for row in public_records)
+    mymsme_count = sum(row.source == "MyMSME Portal" for row in public_records)
 
     st.markdown(
         page_intro(
             "MSME intelligence",
-            "Ministry of MSME Schemes, Calls & Archive",
-            "Permanent MSME and NSIC support records, verified current opportunities and historical references are maintained as separate governed views.",
-            badge=f"{len(permanent)} permanent records · {len(current)} current calls · {len(historical)} historical",
+            "MSME Schemes, Calls & Archive",
+            "Official Ministry of MSME, AP MSME ONE and implementing-agency records are kept separate from current calls and historical references.",
+            badge=f"{len(permanent)} schemes & programmes · {len(current)} current calls · {len(historical)} historical",
         ),
         unsafe_allow_html=True,
     )
     st.markdown(
         '<div class="metric-grid call-metrics">'
-        + metric_card("Permanent records", len(permanent), "Governed MSME and NSIC support identities", "blue")
+        + metric_card("Schemes & programmes", len(permanent), "Governed MSME and NSIC support identities", "blue")
         + metric_card("Open calls", sum(row.application_status.upper() == "OPEN" for row in current), "Verified current application windows", "green")
         + metric_card("Upcoming", sum(row.application_status.upper() == "UPCOMING" for row in current), "Verified future application windows", "purple")
         + metric_card("Historical references", len(historical), "Closed or historical official support records", "orange")
@@ -3345,14 +3691,14 @@ def render_msme_page(bundle: CatalogueBundle) -> None:
         unsafe_allow_html=True,
     )
     st.caption(
-        f"Latest record verification: {msme.latest_verification_date} · "
+        f"Latest scheme verification: {msme.latest_verification_date} · "
         "Counts are calculated from the governed catalogue projection."
     )
     st.markdown(
         '<div class="archive-governance">'
         '<strong>Governed MSME ownership & page roles</strong>'
-        '<span>Ministry of MSME, Office of Development Commissioner and NSIC records retain their implementing agency. '
-        f'{len(msme.documents)} supporting documents are available under Resources; {msme.excluded_count} generic index or unverified call-like records are excluded from public counts.</span></div>',
+        '<span>Central and Andhra Pradesh ownership are retained separately; AP MSME ONE records are sourced from dedicated official detail pages. '
+        f'{ap_msme_count} AP MSME ONE records and {mymsme_count} MyMSME Portal records are included. {len(msme.documents)} supporting documents are available under Resources; {msme.excluded_count} generic index or unverified call-like records are excluded from public counts.</span></div>',
         unsafe_allow_html=True,
     )
 
@@ -3388,7 +3734,7 @@ def render_msme_page(bundle: CatalogueBundle) -> None:
     with tab_schemes:
         _render_msme_record_group(
             [row for row in permanent if row.master_id in visible_ids],
-            label="permanent MSME record(s)",
+            label="MSME scheme(s) and programme(s)",
         )
     with tab_calls:
         _render_msme_record_group(
@@ -3400,19 +3746,641 @@ def render_msme_page(bundle: CatalogueBundle) -> None:
                 "Unverified challenge and service-centre pages remain excluded until official open-window evidence is recorded."
             )
     with tab_history:
+        visible_history = [row for row in historical if row.master_id in visible_ids]
+        if visible_history:
+            st.markdown(
+                '<div class="section-band">'
+                '<h2 class="section-title">MSME Historical References by Evidenced Year</h2>'
+                + _department_history_chart(
+                    visible_history,
+                    date_getter=lambda item: item.closing_date,
+                    legend_label="Qualified MSME historical references",
+                )
+                + '</div>',
+                unsafe_allow_html=True,
+            )
         _render_msme_record_group(
-            [row for row in historical if row.master_id in visible_ids],
+            visible_history,
             label="historical MSME reference(s)",
             historical=True,
         )
 
 
+def _dot_record_card(record: CatalogueRecord, *, historical: bool = False) -> str:
+    status = record.application_status.upper()
+    if historical:
+        status_label_text, status_class = "Historical", "status-history"
+        note = "Historical reference · No active application action"
+    elif status in {"OPEN", "UPCOMING"}:
+        status_label_text = display_token(status)
+        status_class = "status-open" if status == "OPEN" else "status-upcoming"
+        note = "Verified current opportunity · Confirm the official deadline before applying"
+    else:
+        status_label_text, status_class = "Status unverified", "status-unverified"
+        note = "Permanent DoT support record · Current application status is not verified"
+    agency = record.implementing_agency or record.department or "Department of Telecommunications"
+    verified = record.last_verified_at or record.last_updated or "Not recorded"
+    funding = ""
+    if record.funding_maximum is not None:
+        funding = f'<div><span>Maximum support</span><strong>{esc(format_inr(record.funding_maximum))}</strong></div>'
+    date_fact = ""
+    if record.closing_date:
+        date_fact = f'<div><span>Closing date</span><strong>{esc(record.closing_date)}</strong></div>'
+    facts = (
+        f'<div><span>Implementing agency</span><strong>{esc(agency)}</strong></div>'
+        f'<div><span>Scheme / programme type</span><strong>{esc(display_token(record.record_kind))}</strong></div>'
+        f'<div><span>Last verified</span><strong>{esc(verified)}</strong></div>'
+        f'{date_fact}'
+        f'{funding}'
+    )
+    chips = [*record.sectors[:3], *record.scheme_types[:2]]
+    links = []
+    if record.official_page_url:
+        links.append(
+            f'<a target="_blank" rel="noopener noreferrer" href="{esc(record.official_page_url)}">Official page <span aria-hidden="true">↗</span></a>'
+        )
+    for url in record.guideline_urls[:1]:
+        links.append(
+            f'<a target="_blank" rel="noopener noreferrer" href="{esc(url)}">Guideline <span aria-hidden="true">↗</span></a>'
+        )
+    summary = record.benefits[0] if record.benefits else (record.objectives[0] if record.objectives else "Details are preserved in the governed official evidence record.")
+    return (
+        '<article class="public-record-card">'
+        '<div class="public-record-card-top">'
+        f'<span class="status-badge {status_class}">{esc(status_label_text)}</span>'
+        f'<span class="public-kind">{esc(display_token(record.record_kind))}</span></div>'
+        f'<h3>{esc(record.scheme_name)}</h3>'
+        f'<div class="public-record-agency">{esc(agency)}</div>'
+        f'<p>{esc(summary)}</p>'
+        f'<div class="public-record-facts">{facts}</div>'
+        f'<div class="public-chip-row">{"".join(f"<span>{esc(item)}</span>" for item in chips if item)}</div>'
+        f'<div class="public-record-note">{esc(note)}</div>'
+        f'<div class="public-record-actions">{"".join(links)}</div>'
+        '</article>'
+    )
+
+
+def render_dot_page(bundle: CatalogueBundle) -> None:
+    dot: DOTPublicBundle = build_dot_public_bundle(bundle.records)
+    permanent = list(dot.permanent_records)
+    current = list(dot.current_calls)
+    historical = list(dot.historical_records)
+    all_records = [*permanent, *current, *historical]
+    st.markdown(
+        page_intro(
+            "DoT intelligence",
+            "DoT Schemes, Calls & Archive",
+            "Department of Telecommunications support identities, verified application windows and historical TTDF/DCIS calls are maintained as separate public views.",
+            badge=f"{len(permanent)} schemes & programmes · {len(current)} current calls · {len(historical)} historical",
+        ),
+        unsafe_allow_html=True,
+    )
+    st.markdown(
+        '<div class="metric-grid call-metrics">'
+        + metric_card("Schemes & programmes", len(permanent), "Governed DoT schemes and programmes", "blue")
+        + metric_card("Open calls", sum(row.application_status.upper() == "OPEN" for row in current), "Verified current application windows", "green")
+        + metric_card("Upcoming", sum(row.application_status.upper() == "UPCOMING" for row in current), "Verified future application windows", "purple")
+        + metric_card("Historical calls", len(historical), "Qualified TTDF and DCIS references", "orange")
+        + '</div>',
+        unsafe_allow_html=True,
+    )
+    st.caption(
+        f"Latest scheme verification: {dot.latest_verification_date} · "
+        "Counts are calculated from the governed DoT publication snapshot."
+    )
+    st.markdown(
+        '<div class="archive-governance">'
+        '<strong>DoT ownership and status governance</strong>'
+        '<span>Permanent DoT, TTDF and DCIS identities are separate from dated calls. '
+        f'No current DoT call is published in this snapshot because no dated official application window was verified; {dot.excluded_count} call-like records remain excluded from active counts.</span></div>',
+        unsafe_allow_html=True,
+    )
+    keyword_column, type_column, status_column = st.columns([2.3, 1.35, 1.35])
+    with keyword_column:
+        keyword = st.text_input("Search DoT schemes", placeholder="TTDF, 5G, testing, rural connectivity…", key="dot_keyword")
+    with type_column:
+        record_type = st.selectbox("Scheme / programme type", ["All", *sorted({row.record_kind for row in all_records})], key="dot_record_type")
+    with status_column:
+        status = st.selectbox("Application status", ["All", *sorted({row.application_status for row in all_records})], key="dot_status")
+    visible = filter_dot_records(all_records, keyword=keyword, record_type=record_type, status=status)
+    visible_ids = {row.master_id for row in visible}
+    tab_schemes, tab_calls, tab_history = st.tabs(["Schemes & Programmes", "Current Calls & Challenges", "Historical Archive"])
+    with tab_schemes:
+        rows = [row for row in permanent if row.master_id in visible_ids]
+        st.markdown(f'<div class="filter-summary"><strong>{len(rows)}</strong> DoT scheme(s) and programme(s)<span>Official links open in a new tab</span></div>', unsafe_allow_html=True)
+        if rows:
+            st.markdown('<div class="public-record-grid">' + "".join(_dot_record_card(row) for row in rows) + '</div>', unsafe_allow_html=True)
+        else:
+            st.info("No DoT schemes or programmes match the selected filters.")
+    with tab_calls:
+        rows = [row for row in current if row.master_id in visible_ids]
+        st.markdown(f'<div class="filter-summary"><strong>{len(rows)}</strong> verified current DoT call(s)<span>Unverified windows remain hidden</span></div>', unsafe_allow_html=True)
+        if rows:
+            st.markdown('<div class="public-record-grid">' + "".join(_dot_record_card(row) for row in rows) + '</div>', unsafe_allow_html=True)
+        else:
+            st.info("No verified open or upcoming DoT calls are currently published.")
+    with tab_history:
+        rows = [row for row in historical if row.master_id in visible_ids]
+        if rows:
+            st.markdown(
+                '<div class="section-band"><h2 class="section-title">DoT Historical Calls by Evidenced Closing Year</h2>'
+                + _department_history_chart(rows, date_getter=lambda item: item.closing_date, legend_label="Qualified DoT historical calls")
+                + '</div>',
+                unsafe_allow_html=True,
+            )
+            st.markdown('<div class="public-record-grid">' + "".join(_dot_record_card(row, historical=True) for row in rows) + '</div>', unsafe_allow_html=True)
+        else:
+            st.info("No historical DoT records match the selected filters.")
+
+
+def _idex_record_card(record: CatalogueRecord, *, historical: bool = False) -> str:
+    status = record.application_status.upper()
+    if historical:
+        status_label_text, status_class = "Historical", "status-history"
+        note = "Historical challenge reference · No active application action"
+    elif status in {"OPEN", "UPCOMING"}:
+        status_label_text = display_token(status)
+        status_class = "status-open" if status == "OPEN" else "status-upcoming"
+        note = "Verified current challenge · Confirm the official deadline before applying"
+    else:
+        status_label_text, status_class = "Status unverified", "status-unverified"
+        note = "Permanent iDEX support identity · Current application status is not verified"
+    agency = record.implementing_agency or "Defence Innovation Organisation (DIO)"
+    verified = record.last_verified_at or record.last_updated or "Not recorded"
+    funding = ""
+    if record.funding_maximum is not None:
+        funding = f'<div><span>Maximum support</span><strong>{esc(format_inr(record.funding_maximum))}</strong></div>'
+    date_fact = ""
+    if record.closing_date:
+        date_fact = f'<div><span>Closing date</span><strong>{esc(record.closing_date)}</strong></div>'
+    facts = (
+        f'<div><span>Implementing agency</span><strong>{esc(agency)}</strong></div>'
+        f'<div><span>Scheme / programme type</span><strong>{esc(display_token(record.record_kind))}</strong></div>'
+        f'<div><span>Last verified</span><strong>{esc(verified)}</strong></div>'
+        f'{date_fact}'
+        f'{funding}'
+    )
+    chips = [*record.sectors[:3], *record.scheme_types[:2]]
+    links = []
+    if record.official_page_url:
+        links.append(
+            f'<a target="_blank" rel="noopener noreferrer" href="{esc(record.official_page_url)}">Official page <span aria-hidden="true">↗</span></a>'
+        )
+    for url in record.guideline_urls[:1]:
+        links.append(
+            f'<a target="_blank" rel="noopener noreferrer" href="{esc(url)}">Guideline <span aria-hidden="true">↗</span></a>'
+        )
+    summary = record.benefits[0] if record.benefits else (record.objectives[0] if record.objectives else "Details are preserved in the governed official evidence record.")
+    return (
+        '<article class="public-record-card">'
+        '<div class="public-record-card-top">'
+        f'<span class="status-badge {status_class}">{esc(status_label_text)}</span>'
+        f'<span class="public-kind">{esc(display_token(record.record_kind))}</span></div>'
+        f'<h3>{esc(record.scheme_name)}</h3>'
+        f'<div class="public-record-agency">{esc(agency)}</div>'
+        f'<p>{esc(summary)}</p>'
+        f'<div class="public-record-facts">{facts}</div>'
+        f'<div class="public-chip-row">{"".join(f"<span>{esc(item)}</span>" for item in chips if item)}</div>'
+        f'<div class="public-record-note">{esc(note)}</div>'
+        f'<div class="public-record-actions">{"".join(links)}</div>'
+        '</article>'
+    )
+
+
+def render_idex_page(bundle: CatalogueBundle) -> None:
+    idex: IDEXPublicBundle = build_idex_public_bundle(bundle.records)
+    permanent = list(idex.permanent_records)
+    current = list(idex.current_calls)
+    historical = list(idex.historical_records)
+    all_records = [*permanent, *current, *historical]
+    st.markdown(
+        page_intro(
+            "iDEX intelligence",
+            "iDEX Schemes, Programmes, Calls & Archive",
+            "Department of Defence Production and Defence Innovation Organisation schemes, programmes, verified calls and historical references are maintained as separate public views.",
+            badge=f"{len(permanent)} schemes & programmes · {len(current)} current calls · {len(historical)} historical",
+        ),
+        unsafe_allow_html=True,
+    )
+    st.markdown(
+        '<div class="metric-grid call-metrics">'
+        + metric_card("Schemes & programmes", len(permanent), "Governed iDEX schemes and programmes", "blue")
+        + metric_card("Open calls", sum(row.application_status.upper() == "OPEN" for row in current), "Verified current iDEX application windows", "green")
+        + metric_card("Upcoming", sum(row.application_status.upper() == "UPCOMING" for row in current), "Verified future challenge windows", "purple")
+        + metric_card("Historical calls", len(historical), "Qualified DISC, ADITI and iDEX references", "orange")
+        + '</div>',
+        unsafe_allow_html=True,
+    )
+    st.caption(
+        f"Latest scheme verification: {idex.latest_verification_date} · "
+        "Counts are calculated from the governed iDEX publication snapshot."
+    )
+    st.markdown(
+        '<div class="archive-governance">'
+        '<strong>iDEX ownership and status governance</strong>'
+        '<span>Permanent iDEX, ADITI and SPARK identities are separate from dated DISC, Open, Thematic and partner challenges. '
+        f'{len(current)} current iDEX challenge window(s) are published only where an official deadline was evidenced; {idex.excluded_count} call-like entries remain excluded from active counts.</span></div>',
+        unsafe_allow_html=True,
+    )
+    keyword_column, type_column, status_column = st.columns([2.3, 1.35, 1.35])
+    with keyword_column:
+        keyword = st.text_input("Search iDEX schemes and challenges", placeholder="DISC, ADITI, Open Challenge, aerospace…", key="idex_keyword")
+    with type_column:
+        record_type = st.selectbox("Scheme / programme type", ["All", *sorted({row.record_kind for row in all_records})], key="idex_record_type")
+    with status_column:
+        status = st.selectbox("Application status", ["All", *sorted({row.application_status for row in all_records})], key="idex_status")
+    visible = filter_idex_records(all_records, keyword=keyword, record_type=record_type, status=status)
+    visible_ids = {row.master_id for row in visible}
+    tab_schemes, tab_calls, tab_history = st.tabs(["Schemes & Programmes", "Current Calls & Challenges", "Historical Archive"])
+    with tab_schemes:
+        rows = [row for row in permanent if row.master_id in visible_ids]
+        st.markdown(f'<div class="filter-summary"><strong>{len(rows)}</strong> iDEX scheme(s) and programme(s)<span>Official links open in a new tab</span></div>', unsafe_allow_html=True)
+        if rows:
+            st.markdown('<div class="public-record-grid">' + "".join(_idex_record_card(row) for row in rows) + '</div>', unsafe_allow_html=True)
+        else:
+            st.info("No iDEX schemes or programmes match the selected filters.")
+    with tab_calls:
+        rows = [row for row in current if row.master_id in visible_ids]
+        st.markdown(f'<div class="filter-summary"><strong>{len(rows)}</strong> verified current iDEX challenge(s)<span>Unverified windows remain hidden</span></div>', unsafe_allow_html=True)
+        if rows:
+            st.markdown('<div class="public-record-grid">' + "".join(_idex_record_card(row) for row in rows) + '</div>', unsafe_allow_html=True)
+        else:
+            st.info("No verified open or upcoming iDEX challenges match the selected filters.")
+    with tab_history:
+        rows = [row for row in historical if row.master_id in visible_ids]
+        if rows:
+            st.markdown(
+                '<div class="section-band"><h2 class="section-title">iDEX Historical Challenges by Evidenced Closing Year</h2>'
+                + _department_history_chart(rows, date_getter=lambda item: item.closing_date, legend_label="Qualified iDEX historical challenges")
+                + '</div>',
+                unsafe_allow_html=True,
+            )
+            st.markdown('<div class="public-record-grid">' + "".join(_idex_record_card(row, historical=True) for row in rows) + '</div>', unsafe_allow_html=True)
+        else:
+            st.info("No historical iDEX calls match the selected filters.")
+
+
+def _agri_startup_record_card(record: CatalogueRecord, *, historical: bool = False) -> str:
+    status = record.application_status.upper()
+    if historical:
+        status_label_text, status_class = "Historical", "status-history"
+        note = "Historical startup/innovation reference · No active application action"
+    elif status in {"OPEN", "UPCOMING"}:
+        status_label_text = display_token(status)
+        status_class = "status-open" if status == "OPEN" else "status-upcoming"
+        note = "Verified current startup opportunity · Confirm the official deadline before applying"
+    else:
+        status_label_text, status_class = "Status unverified", "status-unverified"
+        note = "Permanent agri-startup support identity · Current application status is not verified"
+    agency = record.implementing_agency or record.department or "Department of Agriculture & Farmers Welfare"
+    verified = record.last_verified_at or record.last_updated or "Not recorded"
+    date_fact = f'<div><span>Closing date</span><strong>{esc(record.closing_date)}</strong></div>' if record.closing_date else ""
+    funding = f'<div><span>Maximum support</span><strong>{esc(format_inr(record.funding_maximum))}</strong></div>' if record.funding_maximum is not None else ""
+    facts = (
+        f'<div><span>Implementing agency</span><strong>{esc(agency)}</strong></div>'
+        f'<div><span>Scheme type</span><strong>{esc(display_token(record.record_kind))}</strong></div>'
+        f'<div><span>Last verified</span><strong>{esc(verified)}</strong></div>{date_fact}{funding}'
+    )
+    chips = [*record.sectors[:3], *record.scheme_types[:2]]
+    links = []
+    if record.application_url:
+        links.append(f'<a target="_blank" rel="noopener noreferrer" href="{esc(record.application_url)}">Register / Apply <span aria-hidden="true">↗</span></a>')
+    if record.official_page_url:
+        links.append(f'<a target="_blank" rel="noopener noreferrer" href="{esc(record.official_page_url)}">Official page <span aria-hidden="true">↗</span></a>')
+    for url in record.guideline_urls[:1]:
+        links.append(f'<a target="_blank" rel="noopener noreferrer" href="{esc(url)}">Guideline <span aria-hidden="true">↗</span></a>')
+    summary = record.benefits[0] if record.benefits else (record.objectives[0] if record.objectives else "Details are preserved in the governed official evidence record.")
+    return (
+        '<article class="public-record-card"><div class="public-record-card-top">'
+        f'<span class="status-badge {status_class}">{esc(status_label_text)}</span><span class="public-kind">{esc(display_token(record.record_kind))}</span></div>'
+        f'<h3>{esc(record.scheme_name)}</h3><div class="public-record-agency">{esc(agency)}</div><p>{esc(summary)}</p>'
+        f'<div class="public-record-facts">{facts}</div><div class="public-chip-row">{"".join(f"<span>{esc(item)}</span>" for item in chips if item)}</div>'
+        f'<div class="public-record-note">{esc(note)}</div><div class="public-record-actions">{"".join(links)}</div></article>'
+    )
+
+
+def render_agri_startup_page(bundle: CatalogueBundle) -> None:
+    agri: AgriStartupPublicBundle = build_agri_startup_public_bundle(bundle.records)
+    permanent, current, historical = list(agri.permanent_records), list(agri.current_calls), list(agri.historical_records)
+    all_records = [*permanent, *current, *historical]
+    st.markdown(page_intro(
+        "Agri-startup intelligence", "Agri-Startup & Innovation",
+        "Startup schemes, incubators, venture funds and innovation calls in the agriculture and allied ecosystem are maintained as separate public views.",
+        badge=f"{len(permanent)} schemes & programmes · {len(current)} current calls · {len(historical)} historical",
+    ), unsafe_allow_html=True)
+    st.markdown(
+        '<div class="metric-grid call-metrics">'
+        + metric_card("Schemes & programmes", len(permanent), "Governed agri-startup schemes and programmes", "blue")
+        + metric_card("Open calls", sum(row.application_status.upper() == "OPEN" for row in current), "Verified current application windows", "green")
+        + metric_card("Upcoming", sum(row.application_status.upper() == "UPCOMING" for row in current), "Verified future application windows", "purple")
+        + metric_card("Historical innovation calls", len(historical), "Qualified historical references", "orange") + '</div>', unsafe_allow_html=True)
+    st.caption(f"Latest scheme verification: {agri.latest_verification_date} · Counts are calculated from the governed agriculture-startup publication snapshot.")
+    st.markdown(
+        '<div class="archive-governance"><strong>Agri-startup scope and status governance</strong>'
+        f'<span>General farmer-benefit schemes are excluded. Incubator directories are discovery sources only; training calendars are also discovery evidence and neither is counted as schemes. Current startup and allied-sector opportunities are shown only where an official deadline and registration evidence are available; undated programme identities remain visible without being promoted to open calls. {agri.excluded_count} call-like records remain excluded from active counts.</span></div>',
+        unsafe_allow_html=True,
+    )
+    keyword_column, type_column, status_column = st.columns([2.3, 1.35, 1.35])
+    with keyword_column:
+        keyword = st.text_input("Search agri-startup schemes", placeholder="RKVY, AgriSURE, incubator, agritech…", key="agri_startup_keyword")
+    with type_column:
+        record_type = st.selectbox("Scheme / programme type", ["All", *sorted({row.record_kind for row in all_records})], key="agri_startup_record_type")
+    with status_column:
+        status = st.selectbox("Application status", ["All", *sorted({row.application_status for row in all_records})], key="agri_startup_status")
+    visible_ids = {row.master_id for row in filter_agri_startup_records(all_records, keyword=keyword, record_type=record_type, status=status)}
+    tab_schemes, tab_calls, tab_history = st.tabs(["Schemes & Programmes", "Current Calls & Challenges", "Historical Archive"])
+    with tab_schemes:
+        rows = [row for row in permanent if row.master_id in visible_ids]
+        st.markdown(f'<div class="filter-summary"><strong>{len(rows)}</strong> agriculture startup scheme(s) and programme(s)<span>Official links open in a new tab</span></div>', unsafe_allow_html=True)
+        if rows:
+            st.markdown('<div class="public-record-grid">' + "".join(_agri_startup_record_card(row) for row in rows) + '</div>', unsafe_allow_html=True)
+        else:
+            st.info("No agriculture startup schemes or programmes match the selected filters.")
+    with tab_calls:
+        rows = [row for row in current if row.master_id in visible_ids]
+        st.markdown(f'<div class="filter-summary"><strong>{len(rows)}</strong> verified current agri-startup call(s)<span>Unverified windows remain hidden</span></div>', unsafe_allow_html=True)
+        if rows:
+            st.markdown('<div class="public-record-grid">' + "".join(_agri_startup_record_card(row) for row in rows) + '</div>', unsafe_allow_html=True)
+        else:
+            st.info("No verified open or upcoming agriculture startup calls are currently published.")
+    with tab_history:
+        rows = [row for row in historical if row.master_id in visible_ids]
+        if rows:
+            st.markdown('<div class="section-band"><h2 class="section-title">Agri-Startup Historical Innovation Calls by Evidenced Closing Year</h2>' + _department_history_chart(rows, date_getter=lambda item: item.closing_date, legend_label="Qualified agri-startup historical calls") + '</div>', unsafe_allow_html=True)
+            st.markdown('<div class="public-record-grid">' + "".join(_agri_startup_record_card(row, historical=True) for row in rows) + '</div>', unsafe_allow_html=True)
+        else:
+            st.info("No historical agri-startup schemes or calls match the selected filters.")
+
+
+def _msde_record_card(record: CatalogueRecord, *, historical: bool = False) -> str:
+    status = record.application_status.upper()
+    if historical:
+        status_label_text, status_class = "Historical", "status-history"
+        note = "Historical MSDE reference · No active application action"
+    elif status in {"OPEN", "UPCOMING"}:
+        status_label_text = display_token(status)
+        status_class = "status-open" if status == "OPEN" else "status-upcoming"
+        note = "Verified current opportunity · Confirm the official deadline before applying"
+    else:
+        status_label_text, status_class = "Status unverified", "status-unverified"
+        note = "Permanent MSDE support identity · Current application status is not verified"
+    agency = record.implementing_agency or record.department or "MSDE"
+    verified = record.last_verified_at or record.last_updated or "Not recorded"
+    date_fact = ""
+    if record.opening_date:
+        date_fact += f'<div><span>Opening date</span><strong>{esc(record.opening_date)}</strong></div>'
+    if record.closing_date:
+        date_fact += f'<div><span>Closing date</span><strong>{esc(record.closing_date)}</strong></div>'
+    funding = ""
+    if record.funding_maximum is not None:
+        funding = f'<div><span>Maximum support</span><strong>{esc(format_inr(record.funding_maximum))}</strong></div>'
+    facts = (
+        f'<div><span>Implementing agency</span><strong>{esc(agency)}</strong></div>'
+        f'<div><span>Scheme / programme type</span><strong>{esc(display_token(record.record_kind))}</strong></div>'
+        f'<div><span>Last verified</span><strong>{esc(verified)}</strong></div>'
+        f'{date_fact}{funding}'
+    )
+    chips = [*record.sectors[:3], *record.scheme_types[:2]]
+    links = []
+    if record.official_page_url:
+        links.append(
+            f'<a target="_blank" rel="noopener noreferrer" href="{esc(record.official_page_url)}">Official page <span aria-hidden="true">↗</span></a>'
+        )
+    for url in record.guideline_urls[:1]:
+        links.append(
+            f'<a target="_blank" rel="noopener noreferrer" href="{esc(url)}">Guideline <span aria-hidden="true">↗</span></a>'
+        )
+    summary = record.benefits[0] if record.benefits else (record.objectives[0] if record.objectives else "Details are preserved in the governed official evidence record.")
+    return (
+        '<article class="public-record-card">'
+        '<div class="public-record-card-top">'
+        f'<span class="status-badge {status_class}">{esc(status_label_text)}</span>'
+        f'<span class="public-kind">{esc(display_token(record.record_kind))}</span></div>'
+        f'<h3>{esc(record.scheme_name)}</h3>'
+        f'<div class="public-record-agency">{esc(agency)}</div>'
+        f'<p>{esc(summary)}</p>'
+        f'<div class="public-record-facts">{facts}</div>'
+        f'<div class="public-chip-row">{"".join(f"<span>{esc(item)}</span>" for item in chips if item)}</div>'
+        f'<div class="public-record-note">{esc(note)}</div>'
+        f'<div class="public-record-actions">{"".join(links)}</div>'
+        '</article>'
+    )
+
+
+def render_msde_page(bundle: CatalogueBundle) -> None:
+    msde: MSDEPublicBundle = build_msde_public_bundle(bundle.records)
+    permanent = list(msde.permanent_records)
+    current = list(msde.current_calls)
+    historical = list(msde.historical_records)
+    all_records = [*permanent, *current, *historical]
+    st.markdown(
+        page_intro(
+            "MSDE intelligence",
+            "MSDE Schemes, Programmes & Calls",
+            "Ministry of Skill Development & Entrepreneurship schemes, entrepreneurship pathways, verified calls and historical references are maintained as separate public views.",
+            badge=f"{len(permanent)} schemes & programmes · {len(current)} current calls · {len(historical)} historical",
+        ),
+        unsafe_allow_html=True,
+    )
+    st.markdown(
+        '<div class="metric-grid call-metrics">'
+        + metric_card("Schemes & programmes", len(permanent), "Governed MSDE support identities", "blue")
+        + metric_card("Open calls", sum(row.application_status.upper() == "OPEN" for row in current), "Verified current application windows", "green")
+        + metric_card("Upcoming", sum(row.application_status.upper() == "UPCOMING" for row in current), "Verified future application windows", "purple")
+        + metric_card("Historical references", len(historical), "Qualified MSDE cycles and notices", "orange")
+        + '</div>',
+        unsafe_allow_html=True,
+    )
+    st.caption(
+        f"Latest scheme verification: {msde.latest_verification_date} · "
+        "Counts are calculated from the governed MSDE publication snapshot."
+    )
+    st.markdown(
+        '<div class="archive-governance">'
+        '<strong>MSDE ownership and status governance</strong>'
+        '<span>Permanent Skill India and entrepreneurship identities are separate from dated calls and public-comment windows. '
+        f'Only official dated application evidence is promoted to current calls; {msde.excluded_count} call-like record(s) remain excluded from active counts.</span></div>',
+        unsafe_allow_html=True,
+    )
+    keyword_column, type_column, status_column = st.columns([2.3, 1.35, 1.35])
+    with keyword_column:
+        keyword = st.text_input("Search MSDE schemes", placeholder="PMKVY, apprenticeship, entrepreneurship…", key="msde_keyword")
+    with type_column:
+        record_type = st.selectbox("Scheme / programme type", ["All", *sorted({row.record_kind for row in all_records})], key="msde_record_type")
+    with status_column:
+        status = st.selectbox("Application status", ["All", *sorted({row.application_status for row in all_records})], key="msde_status")
+    visible = filter_msde_records(all_records, keyword=keyword, record_type=record_type, status=status)
+    visible_ids = {row.master_id for row in visible}
+    tab_schemes, tab_calls, tab_history = st.tabs(["Schemes & Programmes", "Current Calls & Challenges", "Historical Archive"])
+    with tab_schemes:
+        rows = [row for row in permanent if row.master_id in visible_ids]
+        st.markdown(f'<div class="filter-summary"><strong>{len(rows)}</strong> MSDE scheme(s) and programme(s)<span>Official links open in a new tab</span></div>', unsafe_allow_html=True)
+        if rows:
+            st.markdown('<div class="public-record-grid">' + "".join(_msde_record_card(row) for row in rows) + '</div>', unsafe_allow_html=True)
+        else:
+            st.info("No MSDE schemes or programmes match the selected filters.")
+    with tab_calls:
+        rows = [row for row in current if row.master_id in visible_ids]
+        st.markdown(f'<div class="filter-summary"><strong>{len(rows)}</strong> verified current MSDE call(s)<span>Undated windows remain hidden</span></div>', unsafe_allow_html=True)
+        if rows:
+            st.markdown('<div class="public-record-grid">' + "".join(_msde_record_card(row) for row in rows) + '</div>', unsafe_allow_html=True)
+        else:
+            st.info("No verified open or upcoming MSDE calls are currently published.")
+    with tab_history:
+        rows = [row for row in historical if row.master_id in visible_ids]
+        if rows:
+            st.markdown(
+                '<div class="section-band"><h2 class="section-title">MSDE Historical Calls & Cycles by Evidenced Closing Year</h2>'
+                + _department_history_chart(rows, date_getter=lambda item: item.closing_date, legend_label="Qualified MSDE historical references")
+                + '</div>',
+                unsafe_allow_html=True,
+            )
+            st.markdown('<div class="public-record-grid">' + "".join(_msde_record_card(row, historical=True) for row in rows) + '</div>', unsafe_allow_html=True)
+        else:
+            st.info("No historical MSDE records match the selected filters.")
+
+
+def _moe_record_card(record: CatalogueRecord, *, historical: bool = False) -> str:
+    status = record.application_status.upper()
+    if historical:
+        status_label_text, status_class = "Historical", "status-history"
+        note = "Historical MoE / AICTE reference · No active application action"
+    elif status in {"OPEN", "UPCOMING"}:
+        status_label_text = display_token(status)
+        status_class = "status-open" if status == "OPEN" else "status-upcoming"
+        note = "Verified current opportunity · Confirm the official deadline before applying"
+    else:
+        status_label_text, status_class = "Status unverified", "status-unverified"
+        note = "Permanent MoE / AICTE identity · Current application status is not verified"
+    agency = record.implementing_agency or record.department or "Ministry of Education / AICTE"
+    verified = record.last_verified_at or record.last_updated or "Not recorded"
+    date_fact = ""
+    if record.opening_date:
+        date_fact += f'<div><span>Opening date</span><strong>{esc(record.opening_date)}</strong></div>'
+    if record.closing_date:
+        date_fact += f'<div><span>Closing date</span><strong>{esc(record.closing_date)}</strong></div>'
+    funding = ""
+    if record.funding_maximum is not None:
+        funding = f'<div><span>Maximum support</span><strong>{esc(format_inr(record.funding_maximum))}</strong></div>'
+    facts = (
+        f'<div><span>Implementing agency</span><strong>{esc(agency)}</strong></div>'
+        f'<div><span>Scheme / programme type</span><strong>{esc(display_token(record.record_kind))}</strong></div>'
+        f'<div><span>Last verified</span><strong>{esc(verified)}</strong></div>'
+        f'{date_fact}{funding}'
+    )
+    chips = [*record.sectors[:3], *record.scheme_types[:2]]
+    links = []
+    if record.official_page_url:
+        links.append(
+            f'<a target="_blank" rel="noopener noreferrer" href="{esc(record.official_page_url)}">Official page <span aria-hidden="true">↗</span></a>'
+        )
+    if record.application_url:
+        links.append(
+            f'<a target="_blank" rel="noopener noreferrer" href="{esc(record.application_url)}">Apply / portal <span aria-hidden="true">↗</span></a>'
+        )
+    for url in record.guideline_urls[:1]:
+        links.append(
+            f'<a target="_blank" rel="noopener noreferrer" href="{esc(url)}">Guideline <span aria-hidden="true">↗</span></a>'
+        )
+    summary = record.benefits[0] if record.benefits else (record.objectives[0] if record.objectives else "Details are preserved in the governed official evidence record.")
+    return (
+        '<article class="public-record-card">'
+        '<div class="public-record-card-top">'
+        f'<span class="status-badge {status_class}">{esc(status_label_text)}</span>'
+        f'<span class="public-kind">{esc(display_token(record.record_kind))}</span></div>'
+        f'<h3>{esc(record.scheme_name)}</h3>'
+        f'<div class="public-record-agency">{esc(agency)}</div>'
+        f'<p>{esc(summary)}</p>'
+        f'<div class="public-record-facts">{facts}</div>'
+        f'<div class="public-chip-row">{"".join(f"<span>{esc(item)}</span>" for item in chips if item)}</div>'
+        f'<div class="public-record-note">{esc(note)}</div>'
+        f'<div class="public-record-actions">{"".join(links)}</div>'
+        '</article>'
+    )
+
+
+def render_moe_page(bundle: CatalogueBundle) -> None:
+    moe: MOEPublicBundle = build_moe_public_bundle(bundle.records)
+    permanent = list(moe.permanent_records)
+    current = list(moe.current_calls)
+    historical = list(moe.historical_records)
+    all_records = [*permanent, *current, *historical]
+    st.markdown(
+        page_intro(
+            "MoE / AICTE intelligence",
+            "MoE / AICTE Schemes, Programmes & Calls",
+            "Higher-education innovation, entrepreneurship, research pathways and dated application windows are maintained as separate public views.",
+            badge=f"{len(permanent)} schemes & programmes · {len(current)} current calls · {len(historical)} historical",
+        ),
+        unsafe_allow_html=True,
+    )
+    st.markdown(
+        '<div class="metric-grid call-metrics">'
+        + metric_card("Schemes & programmes", len(permanent), "Governed MoE / AICTE support identities", "blue")
+        + metric_card("Open calls", sum(row.application_status.upper() == "OPEN" for row in current), "Verified current application windows", "green")
+        + metric_card("Upcoming", sum(row.application_status.upper() == "UPCOMING" for row in current), "Verified future application windows", "purple")
+        + metric_card("Historical references", len(historical), "Qualified MoE / AICTE cycles", "orange")
+        + '</div>',
+        unsafe_allow_html=True,
+    )
+    st.caption(
+        f"Latest scheme verification: {moe.latest_verification_date} · "
+        "Counts are calculated from the governed MoE / AICTE publication snapshot."
+    )
+    st.markdown(
+        '<div class="archive-governance">'
+        '<strong>MoE / AICTE ownership and status governance</strong>'
+        '<span>Permanent innovation identities are separate from dated challenge and research-application windows. '
+        f'Only official dated application evidence is promoted to current calls; {moe.excluded_count} call-like record(s) remain excluded from active counts.</span></div>',
+        unsafe_allow_html=True,
+    )
+    keyword_column, type_column, status_column = st.columns([2.3, 1.35, 1.35])
+    with keyword_column:
+        keyword = st.text_input("Search MoE / AICTE schemes", placeholder="IIC, IDEA Lab, YUKTI, PMRC…", key="moe_keyword")
+    with type_column:
+        record_type = st.selectbox("Scheme / programme type", ["All", *sorted({row.record_kind for row in all_records})], key="moe_record_type")
+    with status_column:
+        status = st.selectbox("Application status", ["All", *sorted({row.application_status for row in all_records})], key="moe_status")
+    visible = filter_moe_records(all_records, keyword=keyword, record_type=record_type, status=status)
+    visible_ids = {row.master_id for row in visible}
+    tab_schemes, tab_calls, tab_history = st.tabs(["Schemes & Programmes", "Current Calls & Challenges", "Historical Archive"])
+    with tab_schemes:
+        rows = [row for row in permanent if row.master_id in visible_ids]
+        st.markdown(f'<div class="filter-summary"><strong>{len(rows)}</strong> MoE / AICTE scheme(s) and programme(s)<span>Official links open in a new tab</span></div>', unsafe_allow_html=True)
+        if rows:
+            st.markdown('<div class="public-record-grid">' + "".join(_moe_record_card(row) for row in rows) + '</div>', unsafe_allow_html=True)
+        else:
+            st.info("No MoE / AICTE schemes or programmes match the selected filters.")
+    with tab_calls:
+        rows = [row for row in current if row.master_id in visible_ids]
+        st.markdown(f'<div class="filter-summary"><strong>{len(rows)}</strong> verified current MoE / AICTE call(s)<span>Undated windows remain hidden</span></div>', unsafe_allow_html=True)
+        if rows:
+            st.markdown('<div class="public-record-grid">' + "".join(_moe_record_card(row) for row in rows) + '</div>', unsafe_allow_html=True)
+        else:
+            st.info("No verified open or upcoming MoE / AICTE calls are currently published.")
+    with tab_history:
+        rows = [row for row in historical if row.master_id in visible_ids]
+        if rows:
+            st.markdown(
+                '<div class="section-band"><h2 class="section-title">MoE / AICTE Historical Calls by Evidenced Closing Year</h2>'
+                + _department_history_chart(rows, date_getter=lambda item: item.closing_date, legend_label="Qualified MoE / AICTE historical references")
+                + '</div>',
+                unsafe_allow_html=True,
+            )
+            st.markdown('<div class="public-record-grid">' + "".join(_moe_record_card(row, historical=True) for row in rows) + '</div>', unsafe_allow_html=True)
+        else:
+            st.info("No historical MoE / AICTE records match the selected filters.")
+
+
 def main() -> None:
     requested_slug = str(st.query_params.get("page", "") or "").strip().lower()
-    requested_page = next(
-        (page_name for page_name, slug in PAGE_SLUGS.items() if slug == requested_slug),
-        None,
-    )
+    if browser_request_path().casefold() == "/admin/login":
+        requested_page = "Admin Login"
+    else:
+        requested_page = PAGE_SLUG_ALIASES.get(requested_slug) or next(
+            (page_name for page_name, slug in PAGE_SLUGS.items() if slug == requested_slug),
+            None,
+        )
     if "ssip_primary_navigation" not in st.session_state and requested_page:
         st.session_state["ssip_primary_navigation"] = requested_page
 
@@ -3445,8 +4413,13 @@ def main() -> None:
         '<span id="ssip-main-content" class="main-content-anchor" tabindex="-1"></span>',
         unsafe_allow_html=True,
     )
+    if page == "Admin Login":
+        render_admin_login()
+        st.caption("SSIP · Restricted admin entry")
+        return
+
     try:
-        bundle = cached_catalogue()
+        bundle = cached_catalogue(_msme_cache_token())
         official_sources = cached_official_sources()
     except Exception as exc:
         st.error("The SSIP public dashboard could not load the catalogue.")
@@ -3470,6 +4443,16 @@ def main() -> None:
         render_dbt_birac_page()
     elif page == "MSME":
         render_msme_page(bundle)
+    elif page == "DoT":
+        render_dot_page(bundle)
+    elif page == "iDEX":
+        render_idex_page(bundle)
+    elif page == "Agriculture":
+        render_agri_startup_page(bundle)
+    elif page == "MSDE":
+        render_msde_page(bundle)
+    elif page == "MoE":
+        render_moe_page(bundle)
     elif page == "Official Sources":
         render_official_sources(official_sources, bundle)
     elif page == "Calls & Opportunities":
@@ -3478,6 +4461,8 @@ def main() -> None:
         render_startup_ecosystem()
     elif page == "Directory":
         render_resources(bundle, official_sources)
+    elif page == "Media Runs":
+        render_media_runs_page(bundle)
     elif page == "Scheme Details":
         render_scheme_details(bundle)
 

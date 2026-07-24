@@ -116,6 +116,18 @@ SUPPORT_TYPE_MAP = {
     "INDIRECT_FINANCIAL_SUPPORT": "INDIRECT_FINANCIAL_SUPPORT",
 }
 
+# Governed department supplements use concise inventory labels (for example,
+# ``SCHEME`` and ``PROGRAMME``), while the normalized catalogue uses the
+# richer population vocabulary below. Keep the boundary tolerant so every
+# approved supplement participates in Home, Explorer and Live Calls without
+# each department loader having to duplicate catalogue normalization.
+RECORD_KIND_ALIASES = {
+    "SCHEME": "SCHEME_OR_PROGRAMME",
+    "PROGRAMME": "SCHEME_OR_PROGRAMME",
+    "GOVERNMENT_SERVICE": "SCHEME_OR_PROGRAMME",
+    "HISTORICAL_CALL": "CHALLENGE",
+}
+
 
 @dataclass(frozen=True)
 class CataloguePopulations:
@@ -146,7 +158,8 @@ def values(record: Any, field: str) -> list[str]:
 
 
 def kind(record: Any) -> str:
-    return value(record, "normalized_record_kind") or value(record, "record_kind") or "SCHEME_OR_PROGRAMME"
+    raw = (value(record, "normalized_record_kind") or value(record, "record_kind") or "SCHEME_OR_PROGRAMME").upper()
+    return RECORD_KIND_ALIASES.get(raw, raw)
 
 
 def decoded_url(record: Any) -> str:

@@ -1,0 +1,8 @@
+# Optional media extraction engines. The pipeline remains runnable without
+# these packages and records UNAVAILABLE warnings instead of inventing data.
+Pillow>=10.0
+pytesseract>=0.3.13
+opencv-python-headless>=4.9
+pyzbar>=0.1.9
+pypdf>=5.0
+langdetect>=1.0.9

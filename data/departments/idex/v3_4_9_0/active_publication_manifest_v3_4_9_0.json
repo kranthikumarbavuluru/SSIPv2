@@ -1,0 +1,15 @@
+{
+  "version": "3.4.9.0",
+  "activation_status": "ACTIVE",
+  "run_id": "idex_initial_governed_public_20260722",
+  "activated_at": "2026-07-22T00:00:00+05:30",
+  "inventory_file": "active_inventory.csv",
+  "inventory_sha256": "4dcc43bbb625afeaec4475a66f94460470fa4c0d2133b66739ea64ec4fedf397",
+  "record_count": 35,
+  "auto_approved_count": 35,
+  "exception_count": 0,
+  "publication_decision": "AUTO_APPROVED",
+  "source_index": "https://idex.gov.in/challenges",
+  "source_last_verified": "2026-07-22",
+  "notes": "Initial iDEX public snapshot: three permanent identities, one dated open challenge, and 31 historical challenge references. Only the official Open Challenge window closing 30 September 2026 is published as current."
+}

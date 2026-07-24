@@ -140,6 +140,22 @@ class SourceRegistryV33Test(unittest.TestCase):
         self.assertGreaterEqual(len(report["planned_discovery_batches"]), 3)
         self.assertEqual(report["network_requests_performed"], 0)
         self.assertEqual(report["database_writes_performed"], 0)
+        sources, _registry = load_registry_sources(project_root)
+        source_ids = {source.source_id for source in sources}
+        self.assertIn("manage_agri_incubator_directory", source_ids)
+        self.assertIn("angrau_poshan_call_source", source_ids)
+        self.assertIn("pdkv_rif_startup_calls", source_ids)
+        self.assertIn("afbic_iitkgp_startup_programmes", source_ids)
+        self.assertIn("abif_iitkgp_startup_applications", source_ids)
+        self.assertIn("msde_offerings_index", source_ids)
+        self.assertIn("msde_whats_new", source_ids)
+        self.assertIn("skill_india_digital_hub", source_ids)
+        self.assertIn("nsdc_skill_programmes", source_ids)
+        self.assertIn("moe_nep_innovation_index", source_ids)
+        self.assertIn("moe_iic_industry_collaboration", source_ids)
+        self.assertIn("aicte_mic_bootcamp_calls", source_ids)
+        self.assertIn("pmrc_call_portal", source_ids)
+        self.assertIn("moe_schemes_guidelines", source_ids)
 
 
 if __name__ == "__main__":
